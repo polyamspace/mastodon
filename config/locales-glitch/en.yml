@@ -93,5 +93,7 @@ en:
   sounds:
     default: Boop
     laser: Laser
+  themes:
+    fairy-floss: Fairy Floss (Pastel dark)
   users:
     invalid_invite_request_text: This text includes forbidden words or expressions
