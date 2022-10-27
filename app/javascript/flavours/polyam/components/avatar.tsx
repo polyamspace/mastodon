@@ -26,28 +26,21 @@ export const Avatar: React.FC<Props> = ({
     ...styleFromParent,
     width: `${size}px`,
     height: `${size}px`,
-    backgroundSize: `${size}px ${size}px`,
   };
 
-  if (account) {
-    style.backgroundImage = `url(${account.get(
-      hovering ? 'avatar' : 'avatar_static',
-    )})`;
-  }
+  const src = hovering ? account?.get('avatar') : account?.get('avatar_static');
 
   return (
     <div
-      className={classNames(
-        'account__avatar',
-        { 'account__avatar-inline': inline },
-        className,
-      )}
+      className={classNames('account__avatar', {
+        'account__avatar-inline': inline,
+      })}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={style}
       data-avatar-of={account && `@${account.get('acct')}`}
-      role='img'
-      aria-label=''
-    />
+    >
+      {src && <img src={src} alt='' />}
+    </div>
   );
 };
