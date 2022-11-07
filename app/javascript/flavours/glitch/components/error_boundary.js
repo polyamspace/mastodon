@@ -4,7 +4,6 @@ import { FormattedMessage } from 'react-intl';
 import { source_url } from 'flavours/glitch/initial_state';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 import StackTrace from 'stacktrace-js';
-import { Helmet } from 'react-helmet';
 
 export default class ErrorBoundary extends React.PureComponent {
 
@@ -123,10 +122,6 @@ export default class ErrorBoundary extends React.PureComponent {
             )}
           </ul>
         </div>
-
-        <Helmet>
-          <meta name='robots' content='noindex' />
-        </Helmet>
       </div>
     );
   }

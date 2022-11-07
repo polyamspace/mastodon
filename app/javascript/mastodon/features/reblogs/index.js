@@ -11,7 +11,6 @@ import Column from '../ui/components/column';
 import ScrollableList from '../../components/scrollable_list';
 import Icon from 'mastodon/components/icon';
 import ColumnHeader from '../../components/column_header';
-import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   refresh: { id: 'refresh', defaultMessage: 'Refresh' },
@@ -81,10 +80,6 @@ class Reblogs extends ImmutablePureComponent {
             <AccountContainer key={id} id={id} withNote={false} />,
           )}
         </ScrollableList>
-
-        <Helmet>
-          <meta name='robots' content='noindex' />
-        </Helmet>
       </Column>
     );
   }

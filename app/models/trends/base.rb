@@ -98,8 +98,4 @@ class Trends::Base
       pipeline.rename(from_key, to_key)
     end
   end
-
-  def skip_review?
-    Setting.trendable_by_default
-  end
 end

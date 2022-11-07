@@ -70,8 +70,6 @@ export default class Avatar extends React.PureComponent {
         onMouseLeave={this.handleMouseLeave}
         style={style}
         data-avatar-of={account && `@${account.get('acct')}`}
-        role='img'
-        aria-label={account?.get('acct')}
       />
     );
   }

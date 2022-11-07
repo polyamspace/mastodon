@@ -69,10 +69,6 @@ export default class AdminReport extends ImmutablePureComponent {
   render () {
     const { intl, account, notification, unread, report } = this.props;
 
-    if (!report) {
-      return null;
-    }
-
     //  Links to the display name.
     const displayName = account.get('display_name_html') || account.get('username');
     const link = (

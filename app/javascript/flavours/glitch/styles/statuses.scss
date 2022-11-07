@@ -133,7 +133,8 @@ a.button.logo-button {
   justify-content: center;
 }
 
-.embed {
+.embed,
+.public-layout {
   .status__content[data-spoiler=folded] {
     .e-content {
       display: none;
@@ -203,7 +204,8 @@ a.button.logo-button {
 }
 
 // Styling from upstream's WebUI, as public pages use the same layout
-.embed {
+.embed,
+.public-layout {
   .status {
     .status__info {
       font-size: 15px;
@@ -242,7 +244,8 @@ a.button.logo-button {
 }
 
 .rtl {
-  .embed {
+  .embed,
+  .public-layout {
     .status {
       padding-left: 10px;
       padding-right: 68px;

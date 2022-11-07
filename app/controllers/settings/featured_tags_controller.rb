@@ -10,9 +10,9 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   def create
-    @featured_tag = CreateFeaturedTagService.new.call(current_account, featured_tag_params[:name], force: false)
+    @featured_tag = current_account.featured_tags.new(featured_tag_params)
 
-    if @featured_tag.valid?
+    if @featured_tag.save
       redirect_to settings_featured_tags_path
     else
       set_featured_tags
@@ -23,7 +23,7 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   def destroy
-    RemoveFeaturedTagWorker.perform_async(current_account.id, @featured_tag.id)
+    @featured_tag.destroy!
     redirect_to settings_featured_tags_path
   end
 

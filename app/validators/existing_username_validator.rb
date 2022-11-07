@@ -6,7 +6,7 @@ class ExistingUsernameValidator < ActiveModel::EachValidator
 
     usernames_and_domains = begin
       value.split(',').map do |str|
-        username, domain = str.strip.gsub(/\A@/, '').split('@', 2)
+        username, domain = str.strip.gsub(/\A@/, '').split('@')
         domain = nil if TagManager.instance.local_domain?(domain)
 
         next if username.blank?
@@ -21,8 +21,8 @@ class ExistingUsernameValidator < ActiveModel::EachValidator
 
     if options[:multiple]
       record.errors.add(attribute, I18n.t('existing_username_validator.not_found_multiple', usernames: usernames_with_no_accounts.join(', '))) if usernames_with_no_accounts.any?
-    elsif usernames_with_no_accounts.any? || usernames_and_domains.size > 1
-      record.errors.add(attribute, I18n.t('existing_username_validator.not_found'))
+    else
+      record.errors.add(attribute, I18n.t('existing_username_validator.not_found')) if usernames_with_no_accounts.any? || usernames_and_domains.size > 1
     end
   end
 end

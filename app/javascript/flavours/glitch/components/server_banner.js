@@ -1,21 +1,19 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { domain } from 'flavours/glitch/initial_state';
 import { fetchServer } from 'flavours/glitch/actions/server';
+import { connect } from 'react-redux';
+import Account from 'flavours/glitch/containers/account_container';
 import ShortNumber from 'flavours/glitch/components/short_number';
 import Skeleton from 'flavours/glitch/components/skeleton';
-import Account from 'flavours/glitch/containers/account_container';
-import { domain } from 'flavours/glitch/initial_state';
-import Image from 'flavours/glitch/components/image';
-import { Link } from 'react-router-dom';
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
   aboutActiveUsers: { id: 'server_banner.about_active_users', defaultMessage: 'People using this server during the last 30 days (Monthly Active Users)' },
 });
 
 const mapStateToProps = state => ({
-  server: state.getIn(['server', 'server']),
+  server: state.get('server'),
 });
 
 export default @connect(mapStateToProps)
@@ -43,7 +41,7 @@ class ServerBanner extends React.PureComponent {
           <FormattedMessage id='server_banner.introduction' defaultMessage='{domain} is part of the decentralized social network powered by {mastodon}.' values={{ domain: <strong>{domain}</strong>, mastodon: <a href='https://joinmastodon.org' target='_blank'>Mastodon</a> }} />
         </div>
 
-        <Image blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} className='server-banner__hero' />
+        <img src={server.get('thumbnail')} alt={server.get('title')} className='server-banner__hero' />
 
         <div className='server-banner__description'>
           {isLoading ? (
@@ -85,7 +83,7 @@ class ServerBanner extends React.PureComponent {
 
         <hr className='spacer' />
 
-        <Link className='button button--block button-secondary' to='/about'><FormattedMessage id='server_banner.learn_more' defaultMessage='Learn more' /></Link>
+        <a className='button button--block button-secondary' href='/about/more' target='_blank'><FormattedMessage id='server_banner.learn_more' defaultMessage='Learn more' /></a>
       </div>
     );
   }

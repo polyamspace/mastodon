@@ -3,7 +3,7 @@
 class Scheduler::VacuumScheduler
   include Sidekiq::Worker
 
-  sidekiq_options retry: 0, lock: :until_executed
+  sidekiq_options retry: 0
 
   def perform
     vacuum_operations.each do |operation|

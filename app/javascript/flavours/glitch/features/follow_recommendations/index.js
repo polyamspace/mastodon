@@ -12,7 +12,6 @@ import Column from 'flavours/glitch/features/ui/components/column';
 import Account from './components/account';
 import imageGreeting from 'mastodon/../images/elephant_ui_greeting.svg';
 import Button from 'flavours/glitch/components/button';
-import { Helmet } from 'react-helmet';
 
 const mapStateToProps = state => ({
   suggestions: state.getIn(['suggestions', 'items']),
@@ -105,10 +104,6 @@ class FollowRecommendations extends ImmutablePureComponent {
             </React.Fragment>
           )}
         </div>
-
-        <Helmet>
-          <meta name='robots' content='noindex' />
-        </Helmet>
       </Column>
     );
   }

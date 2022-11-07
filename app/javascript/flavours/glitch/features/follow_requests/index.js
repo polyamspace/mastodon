@@ -12,7 +12,6 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import { me } from 'flavours/glitch/initial_state';
-import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' },
@@ -89,10 +88,6 @@ class FollowRequests extends ImmutablePureComponent {
             <AccountAuthorizeContainer key={id} id={id} />,
           )}
         </ScrollableList>
-
-        <Helmet>
-          <meta name='robots' content='noindex' />
-        </Helmet>
       </Column>
     );
   }

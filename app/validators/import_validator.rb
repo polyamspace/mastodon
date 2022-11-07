@@ -26,8 +26,6 @@ class ImportValidator < ActiveModel::Validator
     when 'following'
       validate_following_import(import, row_count)
     end
-  rescue CSV::MalformedCSVError
-    import.errors.add(:data, :malformed)
   end
 
   private

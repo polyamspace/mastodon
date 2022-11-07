@@ -1,7 +1,9 @@
 - content_for :page_title do
-  = t('privacy_policy.title')
+  = t('terms.title', instance: site_hostname)
 
-- content_for :header_tags do
-  = render partial: 'shared/og'
-
-= render 'shared/web_app'
+.grid
+  .column-0
+    .box-widget
+      .rich-formatting= @instance_presenter.privacy_policy.html_safe.presence || t('terms.body_html')
+  .column-1
+    = render 'application/sidebar'

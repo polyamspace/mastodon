@@ -42,20 +42,28 @@ export default class Avatar extends React.PureComponent {
       ...this.props.style,
       width: `${size}px`,
       height: `${size}px`,
+      backgroundSize: `${size}px ${size}px`,
     };
 
-    let src;
+    if (account) {
+      const src = account.get('avatar');
+      const staticSrc = account.get('avatar_static');
 
-    if (hovering || animate) {
-      src = account?.get('avatar');
-    } else {
-      src = account?.get('avatar_static');
+      if (hovering || animate) {
+        style.backgroundImage = `url(${src})`;
+      } else {
+        style.backgroundImage = `url(${staticSrc})`;
+      }
     }
 
+
     return (
-      <div className={classNames('account__avatar', { 'account__avatar-inline': inline })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} style={style}>
-        <img src={src} alt={account?.get('acct')} />
-      </div>
+      <div
+        className={classNames('account__avatar', { 'account__avatar-inline': inline })}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+        style={style}
+      />
     );
   }
 

@@ -20,8 +20,10 @@ class Api::V1::Admin::IpBlocksController < Api::BaseController
 
   def create
     authorize :ip_block, :create?
+
     @ip_block = IpBlock.create!(resource_params)
     log_action :create, @ip_block
+
     render json: @ip_block, serializer: REST::Admin::IpBlockSerializer
   end
 
@@ -37,16 +39,20 @@ class Api::V1::Admin::IpBlocksController < Api::BaseController
 
   def update
     authorize @ip_block, :update?
+
     @ip_block.update(resource_params)
     log_action :update, @ip_block
+
     render json: @ip_block, serializer: REST::Admin::IpBlockSerializer
   end
 
   def destroy
     authorize @ip_block, :destroy?
+
     @ip_block.destroy!
     log_action :destroy, @ip_block
-    render_empty
+
+    render json: @ip_block, serializer: REST::Admin::IpBlockSerializer
   end
 
   private

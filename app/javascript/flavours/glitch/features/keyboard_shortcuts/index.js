@@ -1,11 +1,10 @@
 import React from 'react';
-import Column from 'flavours/glitch/components/column';
+import Column from 'flavours/glitch/features/ui/components/column';
+import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },
@@ -29,13 +28,8 @@ class KeyboardShortcuts extends ImmutablePureComponent {
     const { intl, collapseEnabled, multiColumn } = this.props;
 
     return (
-      <Column>
-        <ColumnHeader
-          title={intl.formatMessage(messages.heading)}
-          icon='question'
-          multiColumn={multiColumn}
-        />
-
+      <Column bindToDocument={!multiColumn} icon='question' heading={intl.formatMessage(messages.heading)}>
+        <ColumnBackButtonSlim />
         <div className='keyboard-shortcuts scrollable optionally-scrollable'>
           <table>
             <thead>
@@ -138,10 +132,6 @@ class KeyboardShortcuts extends ImmutablePureComponent {
             </tbody>
           </table>
         </div>
-
-        <Helmet>
-          <meta name='robots' content='noindex' />
-        </Helmet>
       </Column>
     );
   }

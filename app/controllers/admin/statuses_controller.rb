@@ -3,23 +3,18 @@
 module Admin
   class StatusesController < BaseController
     before_action :set_account
-    before_action :set_statuses, except: :show
-    before_action :set_status, only: :show
+    before_action :set_statuses
 
     PER_PAGE = 20
 
     def index
-      authorize [:admin, :status], :index?
+      authorize :status, :index?
 
       @status_batch_action = Admin::StatusBatchAction.new
     end
 
-    def show
-      authorize [:admin, @status], :show?
-    end
-
     def batch
-      authorize [:admin, :status], :index?
+      authorize :status, :index?
 
       @status_batch_action = Admin::StatusBatchAction.new(admin_status_batch_action_params.merge(current_account: current_account, report_id: params[:report_id], type: action_from_button))
       @status_batch_action.save!
@@ -37,7 +32,6 @@ module Admin
 
     def after_create_redirect_path
       report_id = @status_batch_action&.report_id || params[:report_id]
-
       if report_id.present?
         admin_report_path(report_id)
       else
@@ -47,10 +41,6 @@ module Admin
 
     def set_account
       @account = Account.find(params[:account_id])
-    end
-
-    def set_status
-      @status = @account.statuses.find(params[:id])
     end
 
     def set_statuses

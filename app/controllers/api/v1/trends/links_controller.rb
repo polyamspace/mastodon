@@ -28,9 +28,7 @@ class Api::V1::Trends::LinksController < Api::BaseController
   end
 
   def links_from_trends
-    scope = Trends.links.query.allowed.in_locale(content_locale)
-    scope = scope.filtered_for(current_account) if user_signed_in?
-    scope
+    Trends.links.query.allowed.in_locale(content_locale)
   end
 
   def insert_pagination_headers

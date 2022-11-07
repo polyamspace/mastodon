@@ -40,7 +40,7 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def theme_color
-    '#191b22'
+    '#6364FF'
   end
 
   def background_color
@@ -52,7 +52,7 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def start_url
-    '/home'
+    '/web/home'
   end
 
   def scope
@@ -77,11 +77,11 @@ class ManifestSerializer < ActiveModel::Serializer
     [
       {
         name: 'Compose new post',
-        url: '/publish',
+        url: '/web/publish',
       },
       {
         name: 'Notifications',
-        url: '/notifications',
+        url: '/web/notifications',
       },
     ]
   end

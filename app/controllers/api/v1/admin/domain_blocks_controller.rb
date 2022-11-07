@@ -40,6 +40,7 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
 
   def update
     authorize @domain_block, :update?
+
     @domain_block.update(domain_block_params)
     severity_changed = @domain_block.severity_changed?
     @domain_block.save!
@@ -52,7 +53,7 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
     authorize @domain_block, :destroy?
     UnblockDomainService.new.call(@domain_block)
     log_action :destroy, @domain_block
-    render_empty
+    render json: @domain_block, serializer: REST::Admin::DomainBlockSerializer
   end
 
   private

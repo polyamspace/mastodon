@@ -1,17 +1,16 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import ColumnHeader from 'mastodon/components/column_header';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import LoadingIndicator from '../../components/loading_indicator';
+import { fetchFavourites } from '../../actions/interactions';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import AccountContainer from '../../containers/account_container';
+import Column from '../ui/components/column';
+import ScrollableList from '../../components/scrollable_list';
 import Icon from 'mastodon/components/icon';
-import { fetchFavourites } from 'mastodon/actions/interactions';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
-import ScrollableList from 'mastodon/components/scrollable_list';
-import AccountContainer from 'mastodon/containers/account_container';
-import Column from 'mastodon/features/ui/components/column';
-import { Helmet } from 'react-helmet';
+import ColumnHeader from '../../components/column_header';
 
 const messages = defineMessages({
   refresh: { id: 'refresh', defaultMessage: 'Refresh' },
@@ -81,10 +80,6 @@ class Favourites extends ImmutablePureComponent {
             <AccountContainer key={id} id={id} withNote={false} />,
           )}
         </ScrollableList>
-
-        <Helmet>
-          <meta name='robots' content='noindex' />
-        </Helmet>
       </Column>
     );
   }

@@ -29,10 +29,6 @@ gl:
           attributes:
             website:
               invalid: non é un URL válido
-        import:
-          attributes:
-            data:
-              malformed: ten formato incorrecto
         status:
           attributes:
             reblog:

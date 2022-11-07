@@ -60,13 +60,14 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   def reject
     authorize @account.user, :reject?
     DeleteAccountService.new.call(@account, reserve_email: false, reserve_username: false)
-    render_empty
+    render json: @account, serializer: REST::Admin::AccountSerializer
   end
 
   def destroy
     authorize @account, :destroy?
+    json = render_to_body json: @account, serializer: REST::Admin::AccountSerializer
     Admin::AccountDeletionWorker.perform_async(@account.id)
-    render_empty
+    render json: json
   end
 
   def unsensitive

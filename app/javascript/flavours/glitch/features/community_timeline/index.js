@@ -10,8 +10,7 @@ import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/col
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectCommunityStream } from 'flavours/glitch/actions/streaming';
 import { Helmet } from 'react-helmet';
-import { domain } from 'flavours/glitch/initial_state';
-import DismissableBanner from 'flavours/glitch/components/dismissable_banner';
+import { title } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
@@ -139,10 +138,6 @@ class CommunityTimeline extends React.PureComponent {
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
-        <DismissableBanner id='community_timeline'>
-          <FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} />
-        </DismissableBanner>
-
         <StatusListContainer
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
@@ -154,8 +149,7 @@ class CommunityTimeline extends React.PureComponent {
         />
 
         <Helmet>
-          <title>{intl.formatMessage(messages.title)}</title>
-          <meta name='robots' content='noindex' />
+          <title>{intl.formatMessage(messages.title)} - {title}</title>
         </Helmet>
       </Column>
     );

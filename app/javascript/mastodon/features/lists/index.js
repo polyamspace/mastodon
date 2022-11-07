@@ -1,19 +1,18 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { Helmet } from 'react-helmet';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
-import { fetchLists } from 'mastodon/actions/lists';
-import ColumnBackButtonSlim from 'mastodon/components/column_back_button_slim';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
-import ScrollableList from 'mastodon/components/scrollable_list';
-import Column from 'mastodon/features/ui/components/column';
-import ColumnLink from 'mastodon/features/ui/components/column_link';
-import ColumnSubheading from 'mastodon/features/ui/components/column_subheading';
+import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import LoadingIndicator from '../../components/loading_indicator';
+import Column from '../ui/components/column';
+import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import { fetchLists } from '../../actions/lists';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import ColumnLink from '../ui/components/column_link';
+import ColumnSubheading from '../ui/components/column_subheading';
 import NewListForm from './components/new_list_form';
+import { createSelector } from 'reselect';
+import ScrollableList from '../../components/scrollable_list';
 
 const messages = defineMessages({
   heading: { id: 'column.lists', defaultMessage: 'Lists' },
@@ -77,11 +76,6 @@ class Lists extends ImmutablePureComponent {
             <ColumnLink key={list.get('id')} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />,
           )}
         </ScrollableList>
-
-        <Helmet>
-          <title>{intl.formatMessage(messages.heading)}</title>
-          <meta name='robots' content='noindex' />
-        </Helmet>
       </Column>
     );
   }

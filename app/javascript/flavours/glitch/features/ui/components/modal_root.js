@@ -13,8 +13,10 @@ import FavouriteModal from './favourite_modal';
 import AudioModal from './audio_modal';
 import DoodleModal from './doodle_modal';
 import ConfirmationModal from './confirmation_modal';
+import SubscribedLanguagesModal from 'flavours/glitch/features/subscribed_languages_modal';
 import FocalPointModal from './focal_point_modal';
 import DeprecatedSettingsModal from './deprecated_settings_modal';
+import InteractionModal from 'flavours/glitch/features/interaction_modal';
 import {
   OnboardingModal,
   MuteModal,
@@ -27,11 +29,7 @@ import {
   PinnedAccountsEditor,
   CompareHistoryModal,
   FilterModal,
-  InteractionModal,
-  SubscribedLanguagesModal,
-  ClosedRegistrationsModal,
 } from 'flavours/glitch/features/ui/util/async-components';
-import { Helmet } from 'react-helmet';
 
 const MODAL_COMPONENTS = {
   'MEDIA': () => Promise.resolve({ default: MediaModal }),
@@ -55,9 +53,8 @@ const MODAL_COMPONENTS = {
   'PINNED_ACCOUNTS_EDITOR': PinnedAccountsEditor,
   'COMPARE_HISTORY': CompareHistoryModal,
   'FILTER': FilterModal,
-  'SUBSCRIBED_LANGUAGES': SubscribedLanguagesModal,
-  'INTERACTION': InteractionModal,
-  'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
+  'SUBSCRIBED_LANGUAGES': () => Promise.resolve({ default: SubscribedLanguagesModal }),
+  'INTERACTION': () => Promise.resolve({ default: InteractionModal }),
 };
 
 export default class ModalRoot extends React.PureComponent {
@@ -122,15 +119,9 @@ export default class ModalRoot extends React.PureComponent {
     return (
       <Base backgroundColor={backgroundColor} onClose={this.handleClose} noEsc={props ? props.noEsc : false} ignoreFocus={ignoreFocus}>
         {visible && (
-          <>
-            <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
-              {(SpecificComponent) => <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={this.setModalRef} />}
-            </BundleContainer>
-
-            <Helmet>
-              <meta name='robots' content='noindex' />
-            </Helmet>
-          </>
+          <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
+            {(SpecificComponent) => <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={this.setModalRef} />}
+          </BundleContainer>
         )}
       </Base>
     );

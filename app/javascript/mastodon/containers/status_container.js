@@ -237,14 +237,6 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     dispatch(deployPictureInPicture(status.get('id'), status.getIn(['account', 'id']), type, mediaProps));
   },
 
-  onInteractionModal (type, status) {
-    dispatch(openModal('INTERACTION', {
-      type,
-      accountId: status.getIn(['account', 'id']),
-      url: status.get('url'),
-    }));
-  },
-
 });
 
 export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Status));

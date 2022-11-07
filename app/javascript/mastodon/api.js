@@ -1,31 +1,20 @@
-// @ts-check
-
 import axios from 'axios';
 import LinkHeader from 'http-link-header';
 import ready from './ready';
 
-/**
- * @param {import('axios').AxiosResponse} response
- * @returns {LinkHeader}
- */
 export const getLinks = response => {
   const value = response.headers.link;
 
   if (!value) {
-    return new LinkHeader();
+    return { refs: [] };
   }
 
   return LinkHeader.parse(value);
 };
 
-/** @type {import('axios').RawAxiosRequestHeaders} */
 const csrfHeader = {};
 
-/**
- * @returns {void}
- */
 const setCSRFHeader = () => {
-  /** @type {HTMLMetaElement | null} */
   const csrfToken = document.querySelector('meta[name=csrf-token]');
 
   if (csrfToken) {
@@ -35,10 +24,6 @@ const setCSRFHeader = () => {
 
 ready(setCSRFHeader);
 
-/**
- * @param {() => import('immutable').Map} getState
- * @returns {import('axios').RawAxiosRequestHeaders}
- */
 const authorizationHeaderFromState = getState => {
   const accessToken = getState && getState().getIn(['meta', 'access_token'], '');
 
@@ -51,25 +36,17 @@ const authorizationHeaderFromState = getState => {
   };
 };
 
-/**
- * @param {() => import('immutable').Map} getState
- * @returns {import('axios').AxiosInstance}
- */
-export default function api(getState) {
-  return axios.create({
-    headers: {
-      ...csrfHeader,
-      ...authorizationHeaderFromState(getState),
-    },
+export default getState => axios.create({
+  headers: {
+    ...csrfHeader,
+    ...authorizationHeaderFromState(getState),
+  },
 
-    transformResponse: [
-      function (data) {
-        try {
-          return JSON.parse(data);
-        } catch {
-          return data;
-        }
-      },
-    ],
-  });
-}
+  transformResponse: [function (data) {
+    try {
+      return JSON.parse(data);
+    } catch(Exception) {
+      return data;
+    }
+  }],
+});

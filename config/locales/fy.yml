@@ -1,5 +1,8 @@
 ---
 fy:
+  about:
+    active_count_after: warber
+    active_footnote: Moanliks Warbere Brûkers (MWB)
   accounts:
     last_active: letst warber
   admin:

@@ -1,5 +1,6 @@
 #  (REQUIRED) The location of the pack files inside `pack_directory`.
 pack:
+  about: about.js
   admin:
     - admin.js
     - public.js

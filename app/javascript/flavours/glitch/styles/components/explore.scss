@@ -3,9 +3,10 @@
 }
 
 .explore__search-header {
-  background: darken($ui-base-color, 4%);
+  background: $ui-base-color;
+  display: flex;
+  align-items: flex-start;
   justify-content: center;
-  align-items: center;
   padding: 15px;
 
   .search {
@@ -14,8 +15,14 @@
   }
 
   .search__input {
-    border: 1px solid lighten($ui-base-color, 8%);
+    border-radius: 4px;
+    color: $inverted-text-color;
+    background: $simple-background-color;
     padding: 10px;
+
+    &::placeholder {
+      color: $dark-text-color;
+    }
   }
 
   .search .fa {

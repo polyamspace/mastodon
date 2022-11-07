@@ -10,7 +10,6 @@ export default class ColumnLoading extends ImmutablePureComponent {
   static propTypes = {
     title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
     icon: PropTypes.string,
-    multiColumn: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -19,11 +18,10 @@ export default class ColumnLoading extends ImmutablePureComponent {
   };
 
   render() {
-    let { title, icon, multiColumn } = this.props;
-
+    let { title, icon } = this.props;
     return (
       <Column>
-        <ColumnHeader icon={icon} title={title} multiColumn={multiColumn} focusable={false} placeholder />
+        <ColumnHeader icon={icon} title={title} multiColumn={false} focusable={false} placeholder />
         <div className='scrollable' />
       </Column>
     );

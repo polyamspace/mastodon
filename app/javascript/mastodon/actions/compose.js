@@ -1,20 +1,18 @@
-import axios from 'axios';
+import api from '../api';
+import { CancelToken, isCancel } from 'axios';
 import { throttle } from 'lodash';
-import { defineMessages } from 'react-intl';
-import api from 'mastodon/api';
-import { search as emojiSearch } from 'mastodon/features/emoji/emoji_mart_search_light';
-import { tagHistory } from 'mastodon/settings';
-import resizeImage from 'mastodon/utils/resize_image';
-import { showAlert, showAlertForError } from './alerts';
+import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
+import { tagHistory } from '../settings';
 import { useEmoji } from './emojis';
+import resizeImage from '../utils/resize_image';
 import { importFetchedAccounts } from './importer';
-import { openModal } from './modal';
 import { updateTimeline } from './timelines';
+import { showAlertForError } from './alerts';
+import { showAlert } from './alerts';
+import { openModal } from './modal';
+import { defineMessages } from 'react-intl';
 
-/** @type {AbortController | undefined} */
-let fetchComposeSuggestionsAccountsController;
-/** @type {AbortController | undefined} */
-let fetchComposeSuggestionsTagsController;
+let cancelFetchComposeSuggestionsAccounts, cancelFetchComposeSuggestionsTags;
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
@@ -25,13 +23,11 @@ export const COMPOSE_REPLY_CANCEL    = 'COMPOSE_REPLY_CANCEL';
 export const COMPOSE_DIRECT          = 'COMPOSE_DIRECT';
 export const COMPOSE_MENTION         = 'COMPOSE_MENTION';
 export const COMPOSE_RESET           = 'COMPOSE_RESET';
-
-export const COMPOSE_UPLOAD_REQUEST    = 'COMPOSE_UPLOAD_REQUEST';
-export const COMPOSE_UPLOAD_SUCCESS    = 'COMPOSE_UPLOAD_SUCCESS';
-export const COMPOSE_UPLOAD_FAIL       = 'COMPOSE_UPLOAD_FAIL';
-export const COMPOSE_UPLOAD_PROGRESS   = 'COMPOSE_UPLOAD_PROGRESS';
-export const COMPOSE_UPLOAD_PROCESSING = 'COMPOSE_UPLOAD_PROCESSING';
-export const COMPOSE_UPLOAD_UNDO       = 'COMPOSE_UPLOAD_UNDO';
+export const COMPOSE_UPLOAD_REQUEST  = 'COMPOSE_UPLOAD_REQUEST';
+export const COMPOSE_UPLOAD_SUCCESS  = 'COMPOSE_UPLOAD_SUCCESS';
+export const COMPOSE_UPLOAD_FAIL     = 'COMPOSE_UPLOAD_FAIL';
+export const COMPOSE_UPLOAD_PROGRESS = 'COMPOSE_UPLOAD_PROGRESS';
+export const COMPOSE_UPLOAD_UNDO     = 'COMPOSE_UPLOAD_UNDO';
 
 export const THUMBNAIL_UPLOAD_REQUEST  = 'THUMBNAIL_UPLOAD_REQUEST';
 export const THUMBNAIL_UPLOAD_SUCCESS  = 'THUMBNAIL_UPLOAD_SUCCESS';
@@ -81,8 +77,10 @@ const messages = defineMessages({
   uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
 });
 
+const COMPOSE_PANEL_BREAKPOINT = 600 + (285 * 1) + (10 * 1);
+
 export const ensureComposeIsVisible = (getState, routerHistory) => {
-  if (!getState().getIn(['compose', 'mounted'])) {
+  if (!getState().getIn(['compose', 'mounted']) && window.innerWidth < COMPOSE_PANEL_BREAKPOINT) {
     routerHistory.push('/publish');
   }
 };
@@ -272,16 +270,13 @@ export function uploadCompose(files) {
           if (status === 200) {
             dispatch(uploadComposeSuccess(data, f));
           } else if (status === 202) {
-            dispatch(uploadComposeProcessing());
-
             let tryCount = 1;
-
             const poll = () => {
               api(getState).get(`/api/v1/media/${data.id}`).then(response => {
                 if (response.status === 200) {
                   dispatch(uploadComposeSuccess(response.data, f));
                 } else if (response.status === 206) {
-                  const retryAfter = (Math.log2(tryCount) || 1) * 1000;
+                  let retryAfter = (Math.log2(tryCount) || 1) * 1000;
                   tryCount += 1;
                   setTimeout(() => poll(), retryAfter);
                 }
@@ -295,10 +290,6 @@ export function uploadCompose(files) {
     };
   };
 };
-
-export const uploadComposeProcessing = () => ({
-  type: COMPOSE_UPLOAD_PROCESSING,
-});
 
 export const uploadThumbnail = (id, file) => (dispatch, getState) => {
   dispatch(uploadThumbnailRequest());
@@ -444,8 +435,8 @@ export function undoUploadCompose(media_id) {
 };
 
 export function clearComposeSuggestions() {
-  if (fetchComposeSuggestionsAccountsController) {
-    fetchComposeSuggestionsAccountsController.abort();
+  if (cancelFetchComposeSuggestionsAccounts) {
+    cancelFetchComposeSuggestionsAccounts();
   }
   return {
     type: COMPOSE_SUGGESTIONS_CLEAR,
@@ -453,14 +444,14 @@ export function clearComposeSuggestions() {
 };
 
 const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => {
-  if (fetchComposeSuggestionsAccountsController) {
-    fetchComposeSuggestionsAccountsController.abort();
+  if (cancelFetchComposeSuggestionsAccounts) {
+    cancelFetchComposeSuggestionsAccounts();
   }
 
-  fetchComposeSuggestionsAccountsController = new AbortController();
-
   api(getState).get('/api/v1/accounts/search', {
-    signal: fetchComposeSuggestionsAccountsController.signal,
+    cancelToken: new CancelToken(cancel => {
+      cancelFetchComposeSuggestionsAccounts = cancel;
+    }),
 
     params: {
       q: token.slice(1),
@@ -471,11 +462,9 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
     dispatch(importFetchedAccounts(response.data));
     dispatch(readyComposeSuggestionsAccounts(token, response.data));
   }).catch(error => {
-    if (!axios.isCancel(error)) {
+    if (!isCancel(error)) {
       dispatch(showAlertForError(error));
     }
-  }).finally(() => {
-    fetchComposeSuggestionsAccountsController = undefined;
   });
 }, 200, { leading: true, trailing: true });
 
@@ -485,16 +474,16 @@ const fetchComposeSuggestionsEmojis = (dispatch, getState, token) => {
 };
 
 const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
-  if (fetchComposeSuggestionsTagsController) {
-    fetchComposeSuggestionsTagsController.abort();
+  if (cancelFetchComposeSuggestionsTags) {
+    cancelFetchComposeSuggestionsTags();
   }
 
   dispatch(updateSuggestionTags(token));
 
-  fetchComposeSuggestionsTagsController = new AbortController();
-
   api(getState).get('/api/v2/search', {
-    signal: fetchComposeSuggestionsTagsController.signal,
+    cancelToken: new CancelToken(cancel => {
+      cancelFetchComposeSuggestionsTags = cancel;
+    }),
 
     params: {
       type: 'hashtags',
@@ -506,11 +495,9 @@ const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
   }).then(({ data }) => {
     dispatch(readyComposeSuggestionsTags(token, data.hashtags));
   }).catch(error => {
-    if (!axios.isCancel(error)) {
+    if (!isCancel(error)) {
       dispatch(showAlertForError(error));
     }
-  }).finally(() => {
-    fetchComposeSuggestionsTagsController = undefined;
   });
 }, 200, { leading: true, trailing: true });
 

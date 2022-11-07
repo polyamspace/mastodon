@@ -12,9 +12,7 @@ class InstancePresenter < ActiveModelSerializers::Model
     end
 
     def account
-      username, domain = Setting.site_contact_username.strip.gsub(/\A@/, '').split('@', 2)
-      domain = nil if TagManager.instance.local_domain?(domain)
-      Account.find_remote(username, domain) if username.present?
+      Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
     end
   end
 
@@ -84,6 +82,10 @@ class InstancePresenter < ActiveModelSerializers::Model
 
   def thumbnail
     @thumbnail ||= Rails.cache.fetch('site_uploads/thumbnail') { SiteUpload.find_by(var: 'thumbnail') }
+  end
+
+  def hero
+    @hero ||= Rails.cache.fetch('site_uploads/hero') { SiteUpload.find_by(var: 'hero') }
   end
 
   def mascot

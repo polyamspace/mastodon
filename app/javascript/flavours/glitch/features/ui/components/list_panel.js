@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createSelector } from 'reselect';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { fetchLists } from 'flavours/glitch/actions/lists';
-import ColumnLink from './column_link';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
+import { NavLink, withRouter } from 'react-router-dom';
+import Icon from 'flavours/glitch/components/icon';
 
 const getOrderedLists = createSelector([state => state.get('lists')], lists => {
   if (!lists) {
@@ -42,11 +42,11 @@ class ListPanel extends ImmutablePureComponent {
     }
 
     return (
-      <div className='list-panel'>
+      <div>
         <hr />
 
         {lists.map(list => (
-          <ColumnLink icon='list-ul' key={list.get('id')} strict text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
+          <NavLink key={list.get('id')} className='column-link column-link--transparent' strict to={`/lists/${list.get('id')}`}><Icon className='column-link__icon' id='list-ul' fixedWidth />{list.get('title')}</NavLink>
         ))}
       </div>
     );

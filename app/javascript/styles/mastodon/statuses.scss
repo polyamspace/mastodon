@@ -137,7 +137,8 @@ a.button.logo-button {
   justify-content: center;
 }
 
-.embed {
+.embed,
+.public-layout {
   .status__content[data-spoiler="folded"] {
     .e-content {
       display: none;

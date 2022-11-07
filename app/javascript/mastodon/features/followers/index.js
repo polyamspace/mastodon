@@ -21,10 +21,9 @@ import MissingIndicator from 'mastodon/components/missing_indicator';
 import TimelineHint from 'mastodon/components/timeline_hint';
 import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
 import { getAccountHidden } from 'mastodon/selectors';
-import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
-  const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
+  const accountId = id || state.getIn(['accounts_map', acct]);
 
   if (!accountId) {
     return {

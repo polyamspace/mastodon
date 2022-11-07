@@ -43,7 +43,6 @@ class Footer extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
-    identity: PropTypes.object,
   };
 
   static propTypes = {
@@ -68,44 +67,26 @@ class Footer extends ImmutablePureComponent {
   };
 
   handleReplyClick = () => {
-    const { dispatch, askReplyConfirmation, status, intl } = this.props;
-    const { signedIn } = this.context.identity;
+    const { dispatch, askReplyConfirmation, intl } = this.props;
 
-    if (signedIn) {
-      if (askReplyConfirmation) {
-        dispatch(openModal('CONFIRM', {
-          message: intl.formatMessage(messages.replyMessage),
-          confirm: intl.formatMessage(messages.replyConfirm),
-          onConfirm: this._performReply,
-        }));
-      } else {
-        this._performReply();
-      }
-    } else {
-      dispatch(openModal('INTERACTION', {
-        type: 'reply',
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('url'),
+    if (askReplyConfirmation) {
+      dispatch(openModal('CONFIRM', {
+        message: intl.formatMessage(messages.replyMessage),
+        confirm: intl.formatMessage(messages.replyConfirm),
+        onConfirm: this._performReply,
       }));
+    } else {
+      this._performReply();
     }
   };
 
   handleFavouriteClick = () => {
     const { dispatch, status } = this.props;
-    const { signedIn } = this.context.identity;
 
-    if (signedIn) {
-      if (status.get('favourited')) {
-        dispatch(unfavourite(status));
-      } else {
-        dispatch(favourite(status));
-      }
+    if (status.get('favourited')) {
+      dispatch(unfavourite(status));
     } else {
-      dispatch(openModal('INTERACTION', {
-        type: 'favourite',
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('url'),
-      }));
+      dispatch(favourite(status));
     }
   };
 
@@ -116,22 +97,13 @@ class Footer extends ImmutablePureComponent {
 
   handleReblogClick = e => {
     const { dispatch, status } = this.props;
-    const { signedIn } = this.context.identity;
 
-    if (signedIn) {
-      if (status.get('reblogged')) {
-        dispatch(unreblog(status));
-      } else if ((e && e.shiftKey) || !boostModal) {
-        this._performReblog(status);
-      } else {
-        dispatch(initBoostModal({ status, onReblog: this._performReblog }));
-      }
+    if (status.get('reblogged')) {
+      dispatch(unreblog(status));
+    } else if ((e && e.shiftKey) || !boostModal) {
+      this._performReblog(status);
     } else {
-      dispatch(openModal('INTERACTION', {
-        type: 'reblog',
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('url'),
-      }));
+      dispatch(initBoostModal({ status, onReblog: this._performReblog }));
     }
   };
 

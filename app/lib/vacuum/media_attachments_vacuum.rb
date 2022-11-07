@@ -8,8 +8,8 @@ class Vacuum::MediaAttachmentsVacuum
   end
 
   def perform
-    vacuum_orphaned_records!
     vacuum_cached_files! if retention_period?
+    vacuum_orphaned_records!
   end
 
   private

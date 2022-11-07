@@ -26,7 +26,6 @@ function loadPolyfills() {
   // Edge does not have requestIdleCallback and object-fit CSS property.
   // This avoids shipping them all the polyfills.
   const needsExtraPolyfills = !(
-    window.AbortController &&
     window.IntersectionObserver &&
     window.IntersectionObserverEntry &&
     'isIntersecting' in IntersectionObserverEntry.prototype &&

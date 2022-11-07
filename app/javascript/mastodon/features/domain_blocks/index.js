@@ -11,7 +11,6 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import DomainContainer from '../../containers/domain_container';
 import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
 import ScrollableList from '../../components/scrollable_list';
-import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   heading: { id: 'column.domain_blocks', defaultMessage: 'Blocked domains' },
@@ -60,7 +59,6 @@ class Blocks extends ImmutablePureComponent {
     return (
       <Column bindToDocument={!multiColumn} icon='minus-circle' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-
         <ScrollableList
           scrollKey='domain_blocks'
           onLoadMore={this.handleLoadMore}
@@ -72,10 +70,6 @@ class Blocks extends ImmutablePureComponent {
             <DomainContainer key={domain} domain={domain} />,
           )}
         </ScrollableList>
-
-        <Helmet>
-          <meta name='robots' content='noindex' />
-        </Helmet>
       </Column>
     );
   }
