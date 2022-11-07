@@ -158,3 +158,4 @@ gem 'xorcist', '~> 1.1'
 
 gem 'hcaptcha', '~> 7.1'
 gem 'cocoon', '~> 1.2'
+gem 'psych', '< 4'

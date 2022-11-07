@@ -31,6 +31,6 @@ export const disableSwiping = getMeta('disable_swiping');
 export const languages = initialState && initialState.languages;
 
 // Glitch-soc-specific settings
-export const maxChars = (initialState && initialState.max_toot_chars) || 500;
+//export const maxChars = (initialState && initialState.max_toot_chars) || 500;
 
 export default initialState;
