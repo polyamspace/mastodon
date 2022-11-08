@@ -15,6 +15,7 @@ import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_cont
 import AccountNoteContainer from '../containers/account_note_container';
 import { PERMISSION_MANAGE_USERS } from 'flavours/glitch/permissions';
 import { Helmet } from 'react-helmet';
+import { countBy } from 'lodash';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -270,10 +271,11 @@ class Header extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: accountAdminLink(account.get('id')) });
     }
 
-    const content          = { __html: account.get('note_emojified') };
+    const content         = { __html: account.get('note_emojified') };
     const displayNameHtml = { __html: account.get('display_name_html') };
     const fields          = account.get('fields');
     const acct            = account.get('acct').indexOf('@') === -1 && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
+    const role            = account.get('user_role');
 
     let badge;
 
@@ -281,6 +283,8 @@ class Header extends ImmutablePureComponent {
       badge = (<div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div>);
     } else if (account.get('group')) {
       badge = (<div className='account-role group'><FormattedMessage id='account.badges.group' defaultMessage='Group' /></div>);
+    } else if (role && role.get('highlighted')) {
+      badge = (<div className={classNames('account-role', `user-role-${role.get('id')}`)}>{role.get('name')}</div>);
     } else {
       badge = null;
     }
