@@ -8,10 +8,8 @@
   %link{ rel: 'alternate', type: 'application/rss+xml', href: @rss_url }/
   %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@account) }/
 
-  - if @older_url
-    %link{ rel: 'next', href: @older_url }/
-  - if @newer_url
-    %link{ rel: 'prev', href: @newer_url }/
+  - @account.fields.select(&:verifiable?).each do |field|
+    %link{ rel: 'me', type: 'text/html', href: field.value }/
 
   = opengraph 'og:type', 'profile'
   = render 'og', account: @account, url: short_account_url(@account, only_path: false)
