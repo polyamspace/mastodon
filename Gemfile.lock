@@ -478,6 +478,7 @@ GEM
       pry (>= 0.13, < 0.15)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
+    psych (3.3.4)
     public_suffix (5.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -813,6 +814,7 @@ DEPENDENCIES
   private_address_check (~> 0.5)
   pry-byebug (~> 3.10)
   pry-rails (~> 0.3)
+  psych (< 4)
   puma (~> 5.6)
   pundit (~> 2.2)
   rack (~> 2.2.4)
@@ -857,3 +859,9 @@ DEPENDENCIES
   webpacker (~> 5.4)
   webpush!
   xorcist (~> 1.1)
+
+RUBY VERSION
+   ruby 3.0.4p208
+
+BUNDLED WITH
+   2.2.33
