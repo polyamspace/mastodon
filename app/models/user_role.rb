@@ -36,17 +36,19 @@ class UserRole < ApplicationRecord
     manage_roles: (1 << 17),
     manage_user_access: (1 << 18),
     delete_user_data: (1 << 19),
+    change_max_use: (1 << 20),
   }.freeze
 
   module Flags
     NONE = 0
     ALL  = FLAGS.values.reduce(&:|)
 
-    DEFAULT = FLAGS[:invite_users]
+    DEFAULT = FLAGS[:invite_users] + FLAGS[:change_max_use]
 
     CATEGORIES = {
       invites: %i(
         invite_users
+        change_max_use
       ).freeze,
 
       moderation: %w(

@@ -30,7 +30,7 @@ en:
       appeal:
         text: You can only appeal a strike once
       invite:
-        comment: Optional. You can enter for whom the invite is, or reason for creating it
+        comment: Optional. You can enter for whom the invite is for, or reason for creating it
       defaults:
         autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
