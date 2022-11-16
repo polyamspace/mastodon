@@ -1404,7 +1404,7 @@
         "id": "compose_form.spoiler_placeholder"
       },
       {
-        "defaultMessage": "Publish",
+        "defaultMessage": "Toot",
         "id": "compose_form.publish"
       },
       {
@@ -3988,7 +3988,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Publish",
+        "defaultMessage": "Toot",
         "id": "compose_form.publish"
       },
       {
