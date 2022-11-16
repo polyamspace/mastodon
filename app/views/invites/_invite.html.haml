@@ -9,7 +9,7 @@
     %td
       = fa_icon 'user fw'
       = invite.uses
-      = " / #{invite.max_uses}" unless invite.max_uses.nil?
+      = " / #{invite.max_uses.nil? ? "∞" : invite.max_uses}"
     %td
       - if invite.expires_at.nil?
         ∞
@@ -19,6 +19,9 @@
   - else
     %td{ colspan: 2 }
       = t('invites.expired')
+
+  %td
+    = invite.comment
 
   %td
     - if invite.valid_for_use? && policy(invite).destroy?
