@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage, FormattedDate, injectIntl, defineMessages } from 'react-intl';
 import Column from 'flavours/glitch/components/column';
+import ColumnHeader from 'flavours/glitch/components/column_header';
 import api from 'flavours/glitch/api';
 import Skeleton from 'flavours/glitch/components/skeleton';
 
@@ -32,12 +33,26 @@ class PrivacyPolicy extends React.PureComponent {
     });
   }
 
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
+  setRef = c => {
+    this.column = c;
+  }
+
   render () {
     const { intl, multiColumn } = this.props;
     const { isLoading, content, lastUpdated } = this.state;
 
     return (
-      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+        <ColumnHeader
+          icon='user-secret'
+          title={intl.formatMessage(messages.title)}
+          onClick={this.handleHeaderClick}
+          multiColumn={multiColumn}
+        />
         <div className='scrollable privacy-policy'>
           <div className='column-title'>
             <h3><FormattedMessage id='privacy_policy.title' defaultMessage='Privacy Policy' /></h3>
