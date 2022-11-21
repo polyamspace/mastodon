@@ -16,11 +16,12 @@ import Icon from 'flavours/glitch/components/icon';
 
 //  Utils.
 import { focusRoot } from 'flavours/glitch/utils/dom_helpers';
-import { searchEnabled } from 'flavours/glitch/initial_state';
+import { searchEnabled, searchPreview } from 'flavours/glitch/initial_state';
 import Motion from '../../ui/util/optional_motion';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
+  placeholderDisabled: { id: 'search.disabled', defaultMessage: 'Search disabled' },
   placeholderSignedIn: { id: 'search.search_or_paste', defaultMessage: 'Search or paste URL' },
 });
 
@@ -146,17 +147,27 @@ class Search extends React.PureComponent {
       <div className='search'>
         <label>
           <span style={{ display: 'none' }}>{intl.formatMessage(messages.placeholder)}</span>
-          <input
-            ref={this.setRef}
-            className='search__input'
-            type='text'
-            placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
-            value={value || ''}
-            onChange={this.handleChange}
-            onKeyUp={this.handleKeyUp}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-          />
+          {signedIn || searchPreview ? (
+            <input
+              ref={this.setRef}
+              className='search__input'
+              type='text'
+              placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
+              value={value || ''}
+              onChange={this.handleChange}
+              onKeyUp={this.handleKeyUp}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+            />
+          ) : (
+            <input
+              ref={this.setRef}
+              className='search__input'
+              type='text'
+              placeholder={intl.formatMessage(messages.placeholderDisabled)}
+              readOnly
+            />
+          )}
         </label>
 
         <div

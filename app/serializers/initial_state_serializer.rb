@@ -46,7 +46,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       activity_api_enabled: Setting.activity_api_enabled,
       single_user_mode: Rails.configuration.x.single_user_mode,
       translation_enabled: TranslationService.configured?,
-      trends_as_landing_page: Setting.trends_as_landing_page
+      trends_as_landing_page: Setting.trends_as_landing_page,
+      search_preview: Setting.search_preview,
     }
 
     if object.current_account

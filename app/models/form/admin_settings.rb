@@ -40,6 +40,7 @@ class Form::AdminSettings
     media_cache_retention_period
     content_cache_retention_period
     backups_retention_period
+    search_preview
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -64,6 +65,7 @@ class Form::AdminSettings
     noindex
     require_invite_text
     captcha_enabled
+    search_preview
   ).freeze
 
   UPLOAD_KEYS = %i(

@@ -4,11 +4,12 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Overlay from 'react-overlays/lib/Overlay';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
-import { searchEnabled } from '../../../initial_state';
+import { searchEnabled, searchPreview } from '../../../initial_state';
 import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
+  placeholderDisabled: { id: 'search.disabled', defaultMessage: 'Search disabled' },
   placeholderSignedIn: { id: 'search.search_or_paste', defaultMessage: 'Search or paste URL' },
 });
 
@@ -125,17 +126,27 @@ class Search extends React.PureComponent {
       <div className='search'>
         <label>
           <span style={{ display: 'none' }}>{intl.formatMessage(messages.placeholder)}</span>
-          <input
-            ref={this.setRef}
-            className='search__input'
-            type='text'
-            placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
-            value={value}
-            onChange={this.handleChange}
-            onKeyUp={this.handleKeyUp}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-          />
+          {signedIn || searchPreview ? (
+            <input
+              ref={this.setRef}
+              className='search__input'
+              type='text'
+              placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
+              value={value || ''}
+              onChange={this.handleChange}
+              onKeyUp={this.handleKeyUp}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+            />
+          ) : (
+            <input
+              ref={this.setRef}
+              className='search__input'
+              type='text'
+              placeholder={intl.formatMessage(messages.placeholderDisabled)}
+              readOnly
+            />
+          )}
         </label>
 
         <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
