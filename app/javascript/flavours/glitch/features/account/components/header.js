@@ -290,7 +290,7 @@ class Header extends ImmutablePureComponent {
     const isLocal         = account.get('acct').indexOf('@') === -1;
     const acct            = isLocal && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
     const isIndexable     = !account.get('noindex');
-    const role            = account.get('user_role');
+    const role            = account.get('role');
 
     let badge;
 
@@ -298,7 +298,7 @@ class Header extends ImmutablePureComponent {
       badge = (<div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div>);
     } else if (account.get('group')) {
       badge = (<div className='account-role group'><FormattedMessage id='account.badges.group' defaultMessage='Group' /></div>);
-    } else if (role && role.get('highlighted')) {
+    } else if (role) {
       badge = (<div className={classNames('account-role', `user-role-${role.get('id')}`)}>{role.get('name')}</div>);
     } else {
       badge = null;

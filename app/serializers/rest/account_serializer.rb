@@ -4,7 +4,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   include RoutingHelper
   include FormattingHelper
 
-  attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :group, :user_role, :created_at,
+  attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :group, :created_at,
              :note, :url, :avatar, :avatar_static, :header, :header_static,
              :followers_count, :following_count, :statuses_count, :last_status_at
 
@@ -15,6 +15,16 @@ class REST::AccountSerializer < ActiveModel::Serializer
   attribute :suspended, if: :suspended?
   attribute :silenced, key: :limited, if: :silenced?
   attribute :noindex, if: :local?
+
+  class RoleSerializer < ActiveModel::Serializer
+    attributes :id, :name, :color
+
+    def id
+      object.id.to_s
+    end
+  end
+
+  has_one :role, serializer: RoleSerializer, if: :local?
 
   class FieldSerializer < ActiveModel::Serializer
     include FormattingHelper
@@ -112,8 +122,8 @@ class REST::AccountSerializer < ActiveModel::Serializer
     object.user_prefers_noindex?
   end
 
-  def user_role
-    object.user_role
+  def role
+    object.user.role unless object.suspended? || !object.user&.role&.highlighted? 
   end
 
   delegate :suspended?, :silenced?, :local?, to: :object
