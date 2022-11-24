@@ -289,17 +289,19 @@ class Header extends ImmutablePureComponent {
     const isIndexable     = !account.get('noindex');
     const role            = account.get('role');
 
-    let badge;
+    let badge, roleBadge;
 
     if (account.get('bot')) {
       badge = (<div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div>);
     } else if (account.get('group')) {
       badge = (<div className='account-role group'><FormattedMessage id='account.badges.group' defaultMessage='Group' /></div>);
-    } else if (role) {
-      badge = (<div className={classNames('account-role', `user-role-${role.get('id')}`)}>{role.get('name')}</div>);
     } else {
       badge = null;
     }
+
+    if (role) {
+      roleBadge = (<div className={classNames('account-role', `user-role-${role.get('id')}`)}>{role.get('name')}</div>);
+    } else roleBadge = null;
 
     return (
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
@@ -333,7 +335,7 @@ class Header extends ImmutablePureComponent {
 
           <div className='account__header__tabs__name'>
             <h1>
-              <span dangerouslySetInnerHTML={displayNameHtml} /> {badge}
+              <span dangerouslySetInnerHTML={displayNameHtml} /> {badge} {roleBadge}
               <small>@{acct} {lockedIcon}</small>
             </h1>
           </div>
