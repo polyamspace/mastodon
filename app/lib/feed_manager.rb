@@ -43,6 +43,7 @@ class FeedManager
       filter_from_home?(status, receiver.id, build_crutches(receiver.id, [status]))
     when :list
       filter_from_list?(status, receiver) || filter_from_home?(status, receiver.account_id, build_crutches(receiver.account_id, [status]))
+      filter_from_home?(status, receiver.id, build_crutches(receiver.id, [status]), :list)
     when :mentions
       filter_from_mentions?(status, receiver.id)
     when :direct
@@ -399,11 +400,19 @@ class FeedManager
   # @param [Status] status
   # @param [Integer] receiver_id
   # @param [Hash] crutches
+  # @param [Symbol] timeline_type
   # @return [Boolean]
-  def filter_from_home?(status, receiver_id, crutches)
+  def filter_from_home?(status, receiver_id, crutches, timeline_type=:home)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
     return true  if crutches[:languages][status.account_id].present? && status.language.present? && !crutches[:languages][status.account_id].include?(status.language)
+    # exclusive list feature
+    unless timeline_type == :list
+      # find all exclusive lists
+      lists = List.where(account: Account.find(receiver_id), is_exclusive: true)
+      # is account on an exclusive list, filter from home
+      return true if ListAccount.where(list: lists, account_id: status.account_id).exists?
+    end
 
     check_for_blocks = crutches[:active_mentions][status.id] || []
     check_for_blocks.concat([status.account_id])
