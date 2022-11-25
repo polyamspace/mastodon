@@ -30,6 +30,7 @@ class ListEditor extends ImmutablePureComponent {
     listId: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    isExclusive: PropTypes.bool.isRequired,
     onInitialize: PropTypes.func.isRequired,
     onClear: PropTypes.func.isRequired,
     onReset: PropTypes.func.isRequired,
@@ -53,7 +54,7 @@ class ListEditor extends ImmutablePureComponent {
 
     return (
       <div className='modal-root__modal list-editor'>
-        <EditListForm />
+        <EditListForm isExclusive={this.props.isExclusive} />
 
         <SearchContainer />
 

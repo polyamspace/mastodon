@@ -113,7 +113,7 @@ class ListTimeline extends React.PureComponent {
   }
 
   handleEditClick = () => {
-    this.props.dispatch(openModal('LIST_EDITOR', { listId: this.props.params.id }));
+    this.props.dispatch(openModal('LIST_EDITOR', { listId: this.props.params.id, isExclusive: this.props.list.get('is_exclusive') }));
   }
 
   handleDeleteClick = () => {
@@ -138,7 +138,7 @@ class ListTimeline extends React.PureComponent {
   handleRepliesPolicyChange = ({ target }) => {
     const { dispatch, list } = this.props;
     const { id } = this.props.params;
-    this.props.dispatch(updateList(id, undefined, false, target.value));
+    this.props.dispatch(updateList(id, undefined, false, undefined, target.value));
   }
 
   render () {

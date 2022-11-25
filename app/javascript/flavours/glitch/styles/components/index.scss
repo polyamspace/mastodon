@@ -1017,6 +1017,15 @@
   border-color: $ui-highlight-color;
 }
 
+label[for="is-exclusive-checkbox"] {
+  margin-left: 20px;
+}
+
+.is-exclusive-checkbox {
+  transform: scale(0.7);
+  transform-origin: bottom;
+}
+
 .getting-started__wrapper,
 .getting_started,
 .flex-spacer {
