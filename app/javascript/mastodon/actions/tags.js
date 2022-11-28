@@ -37,6 +37,34 @@ export const fetchHashtagFail = error => ({
   error,
 });
 
+export const fetchFollowedHashtags = () => (dispatch, getState) => {
+  dispatch(fetchFollowedHashtagsRequest());
+
+  api(getState).get(`/api/v1/followed_tags`)
+    .then(({ data }) => dispatch(fetchFollowedHashtagsSuccess(data)))
+    .catch(err => dispatch(fetchFollowedHashtagsSuccess(err)));
+};
+
+export function fetchFollowedHashtagsRequest() {
+  return {
+    type: FOLLOWED_HASHTAGS_FETCH_REQUEST,
+  };
+};
+
+export function fetchFollowedHashtagsSuccess(followed_tags) {
+  return {
+    type: FOLLOWED_HASHTAGS_FETCH_SUCCESS,
+    followed_tags,
+  };
+};
+
+export function fetchFollowedHashtagsFail(error) {
+  return {
+    type: FOLLOWED_HASHTAGS_FETCH_FAIL,
+    error,
+  };
+};
+
 export const followHashtag = name => (dispatch, getState) => {
   dispatch(followHashtagRequest(name));
 
