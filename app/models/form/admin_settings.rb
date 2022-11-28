@@ -47,6 +47,7 @@ class Form::AdminSettings
     media_cache_retention_period
     content_cache_retention_period
     backups_retention_period
+    invite_text_filter
   ).freeze
 
   BOOLEAN_KEYS = %i(

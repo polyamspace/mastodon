@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_25_104951) do
+ActiveRecord::Schema.define(version: 2022_11_27_215222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -780,6 +780,14 @@ ActiveRecord::Schema.define(version: 2022_11_25_104951) do
     t.bigint "preview_card_id", null: false
     t.bigint "status_id", null: false
     t.index ["status_id", "preview_card_id"], name: "index_preview_cards_statuses_on_status_id_and_preview_card_id"
+  end
+
+  create_table "registration_filters", force: :cascade do |t|
+    t.text "phrase", default: "", null: false
+    t.integer "type", default: 0, null: false
+    t.boolean "whole_word", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "relays", force: :cascade do |t|

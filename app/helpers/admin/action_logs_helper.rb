@@ -33,6 +33,8 @@ module Admin::ActionLogsHelper
       else
         I18n.t('admin.action_logs.deleted_account')
       end
+    when 'RegistrationFilter'
+      link_to log.human_identifier, admin_registration_filters_path(log.target_id)
     end
   end
 end
