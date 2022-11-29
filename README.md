@@ -29,3 +29,4 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Replace "Get the app" with "Documentation" in footer ([b991737](https://github.com/polyamspace/mastodon/commit/b99173737d85ba5a0f881d688f8203c44646c4f1))
 - Add exclusive lists ([PR #1](https://github.com/polyamspace/mastodon/pull/1))
 - Add account request text filter ([PR #2](https://github.com/polyamspace/mastodon/pull/2))
+- Add new sounds and allow user to select notification sound ([PR #3](https://github.com/polyamspace/mastodon/pull/3))
