@@ -1,3 +1,5 @@
+import { notificationSound } from '../initial_state';
+
 const createAudio = sources => {
   const audio = new Audio();
   sources.forEach(({ type, src }) => {
@@ -24,16 +26,14 @@ const play = audio => {
 
 export default function soundsMiddleware() {
   const soundCache = {
-    boop: createAudio([
-      {
+    notificationSound: createAudio(!notificationSound ?
+      [{
         src: '/sounds/boop.ogg',
         type: 'audio/ogg',
-      },
-      {
+      }, {
         src: '/sounds/boop.mp3',
         type: 'audio/mpeg',
-      },
-    ]),
+      }] : notificationSound),
   };
 
   return () => next => action => {
