@@ -33,6 +33,7 @@ class ListForm extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
+    onToggle: PropTypes.func.isRequired,
   };
 
   handleChange = e => {
