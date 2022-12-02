@@ -409,7 +409,7 @@ class FeedManager
     # exclusive list feature
     unless timeline_type == :list
       # find all exclusive lists
-      lists = List.where(account: Account.find(receiver_id), is_exclusive: true)
+      lists = List.where(account_id: receiver_id, is_exclusive: true)
       # is account on an exclusive list, filter from home
       return true if ListAccount.where(list: lists, account_id: status.account_id).exists?
     end
