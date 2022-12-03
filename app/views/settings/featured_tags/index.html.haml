@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('settings.featured_tags')
 
-%p= t('featured_tags.hint_html')
+%p= t('featured_tags.hint_html', limit: @featured_tag.limit)
 
 %hr.spacer/
 
