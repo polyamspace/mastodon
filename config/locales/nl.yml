@@ -1108,7 +1108,7 @@ nl:
     add_new: Nieuwe toevoegen
     errors:
       limit: Je hebt al het maximaal aantal hashtags uitgelicht
-    hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare berichten per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
+    hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare berichten per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden. Je kunt totdat %{limit} hashtags uitlichten."
   filters:
     contexts:
       account: Profielen
