@@ -6,6 +6,7 @@ module Settings
       flavour
       skin
       noindex
+      norss
     ).freeze
 
     def initialize(object)

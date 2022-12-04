@@ -48,6 +48,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_system_font_ui,
       :setting_system_emoji_font,
       :setting_noindex,
+      :setting_norss,
       :setting_hide_followers_count,
       :setting_aggregate_reblogs,
       :setting_show_application,

@@ -35,6 +35,7 @@ class UserSettingsDecorator
     user.settings['hide_followers_count'] = hide_followers_count_preference if change?('setting_hide_followers_count')
     user.settings['flavour']             = flavour_preference if change?('setting_flavour')
     user.settings['skin']                = skin_preference if change?('setting_skin')
+    user.settings['norss']               = norss_preference if change?('setting_norss')
     user.settings['aggregate_reblogs']   = aggregate_reblogs_preference if change?('setting_aggregate_reblogs')
     user.settings['show_application']    = show_application_preference if change?('setting_show_application')
     user.settings['advanced_layout']     = advanced_layout_preference if change?('setting_advanced_layout')
@@ -112,6 +113,10 @@ class UserSettingsDecorator
 
   def flavour_preference
     settings['setting_flavour']
+  end
+
+  def norss_preference
+    boolean_cast_setting 'setting_norss'
   end
 
   def skin_preference

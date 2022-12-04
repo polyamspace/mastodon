@@ -24,6 +24,11 @@ class AccountsController < ApplicationController
       format.rss do
         expires_in 1.minute, public: true
 
+        if @account&.user&.setting_norss == true
+          @statuses = []
+          next
+        end
+
         limit     = params[:limit].present? ? [params[:limit].to_i, PAGE_SIZE_MAX].min : PAGE_SIZE
         @statuses = filtered_statuses.without_reblogs.limit(limit)
         @statuses = cache_collection(@statuses, Status)

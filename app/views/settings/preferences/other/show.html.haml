@@ -11,11 +11,17 @@
     = f.input :setting_noindex, as: :boolean, wrapper: :with_label
 
   .fields-group
+    = f.input :setting_norss, as: :boolean, wrapper: :with_label
+
+  .fields-group
     = f.input :setting_aggregate_reblogs, as: :boolean, wrapper: :with_label, recommended: true
 
   - unless Setting.hide_followers_count
     .fields-group
       = f.input :setting_hide_followers_count, as: :boolean, wrapper: :with_label, glitch_only: true
+
+  .fields-group
+    = f.input :setting_norss, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_norss.title'), hint: t('admin.settings.default_norss.desc_html')
 
   %h4= t 'preferences.posting_defaults'
 

@@ -33,6 +33,7 @@ class Form::AdminSettings
     show_domain_blocks
     show_domain_blocks_rationale
     noindex
+    norss
     outgoing_spoilers
     require_invite_text
     captcha_enabled
@@ -60,6 +61,7 @@ class Form::AdminSettings
     trendable_by_default
     trending_status_cw
     noindex
+    norss
     require_invite_text
     captcha_enabled
   ).freeze
