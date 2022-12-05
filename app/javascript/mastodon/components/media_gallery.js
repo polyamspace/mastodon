@@ -177,6 +177,7 @@ class Item extends React.PureComponent {
             style={{ objectPosition: `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
           />
+          {attachment.get('description') ? (<span className='media-gallery__gifv__label'>ALT</span>) : null}
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
