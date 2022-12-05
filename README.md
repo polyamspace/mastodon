@@ -31,3 +31,4 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Add account request text filter ([PR #2](https://github.com/polyamspace/mastodon/pull/2))
 - Add new sounds and allow user to select notification sound ([PR #3](https://github.com/polyamspace/mastodon/pull/3))
 - Remove frontend limit of featured tags ([PR #4](https://github.com/polyamspace/mastodon/pull/4))
+- Add visual indicator that image has alt text ([PR #5](https://github.com/polyamspace/mastodon/pull/5))
