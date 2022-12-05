@@ -76,7 +76,7 @@ if ! id "$MASTODONUSER" &>/dev/null; then
 fi
 
 # Check if remote exists and if not add it and checkout latest branch
-if ! git config remote.polyam.url > /dev/null;then
+if ! sudo -u "$MASTODONUSER" git config remote.polyam.url > /dev/null;then
     echo "Adding polyam remote..."
     sudo -u "$MASTODONUSER" git remote add polyam https://github.com/polyamspace/mastodon.git
     sudo -u "$MASTODONUSER" git fetch polyam
