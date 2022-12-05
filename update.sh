@@ -25,12 +25,13 @@ print_help()
     echo "-h                    print this help and exit"
     echo "-u [USER]             run commands as user"
     echo "-l                    use openssl-legacy-provider node option for openssl3 systems"
+    echo "--discard-changes     discard any local changes instead of stashing them"
     echo "--skip-migration      skip db migration"
     echo "--skip-precompile     skip precompiling assets"
 }
 
 OPTIONS=hu:l
-LONGOPTS=help,user:,legacy,skip-migration,skip-precompile
+LONGOPTS=help,user:,legacy,discard-changes,skip-migration,skip-precompile
 
 ! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 # Check if arguments have been parsed successfully
@@ -53,6 +54,9 @@ while true;do
             shift 2;;
         -l|--legacy)
             LEGACY=true
+            shift;;
+        --discard-changes)
+            DISCARD=true
             shift;;
         --skip-migration)
             SKIP_MIGRATION=true
@@ -87,6 +91,15 @@ fi
 # Fetch and pull new code from remote
 echo "Getting new code..."
 sudo -u "$MASTODONUSER" git fetch polyam
+
+if [[ ! "$DISCARD" ]];then
+    # Stash local changes. Safer than restore.
+    sudo -u "$MASTODONUSER" git stash
+else
+    # discards any local changes
+    sudo -u "$MASTODONUSER" git restore .
+fi
+
 sudo -u "$MASTODONUSER" git pull polyam
 
 # Install dependencies
