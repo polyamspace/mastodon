@@ -32,3 +32,6 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Add new sounds and allow user to select notification sound ([PR #3](https://github.com/polyamspace/mastodon/pull/3))
 - Remove frontend limit of featured tags ([PR #4](https://github.com/polyamspace/mastodon/pull/4))
 - Add visual indicator that image has alt text ([PR #5](https://github.com/polyamspace/mastodon/pull/5))
+- Fix missing link style in admin.scss ([upstream/#1999](https://github.com/glitch-soc/mastodon/pull/1999))
+- Fix Lint Code Base from failing ([4883cec](https://github.com/polyamspace/mastodon/commit/4883ceca81d5b7909e196727ce75c29fb1c5038f))
+- Fix Vagrantfile ([69de91a](https://github.com/polyamspace/mastodon/commit/69de91a94c3e2f19a5c55722c3cdd639a0a6fb9d))
