@@ -4,23 +4,11 @@ $no-columns-breakpoint: 600px;
 $sidebar-width: 240px;
 $content-width: 840px;
 
-
-
 .admin-wrapper {
   display: flex;
   justify-content: center;
   width: 100%;
   min-height: 100vh;
-
-  a {
-    color: $highlight-text-color;
-
-    &:hover,
-    &:active,
-    &:focus {
-      text-decoration: none;
-    }
-  }
 
   .sidebar-wrapper {
     min-height: 100vh;
@@ -1692,6 +1680,16 @@ a.sparkline {
   color: $primary-text-color;
   box-sizing: border-box;
   min-height: 100%;
+
+  a {
+    color: $highlight-text-color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
+    }
+  }
 
   p {
     margin-bottom: 20px;
