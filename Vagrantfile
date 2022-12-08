@@ -52,6 +52,12 @@ sudo apt-get install \
   zlib1g-dev \
   -y
 
+# Fix openssl
+wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.1.1-1ubuntu2.1~18.04.20_amd64.deb
+wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1-1ubuntu2.1~18.04.20_amd64.deb
+sudo dpkg -i libssl1.1_1.1.1-1ubuntu2.1~18.04.20_amd64.deb
+sudo dpkg -i libssl-dev_1.1.1-1ubuntu2.1~18.04.20_amd64.deb
+
 # Install rvm
 sudo apt-add-repository -y ppa:rael-gc/rvm
 sudo apt-get install rvm -y
@@ -75,7 +81,7 @@ sudo -u postgres createdb -U postgres mastodon_development
 cd /vagrant # This is where the host folder/repo is mounted
 
 # Install gems
-gem install bundler foreman
+gem install bundler foreman --no-document
 bundle install
 
 # Install node modules
@@ -98,7 +104,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "ubuntu/focal64"
+  config.vm.box = "ubuntu/jammy64"
 
   config.vm.provider :virtualbox do |vb|
     vb.name = "mastodon"
@@ -127,19 +133,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "mastodon.local"
 
   if defined?(VagrantPlugins::HostsUpdater)
-    config.vm.network :private_network, ip: "192.168.42.42", nictype: "virtio"
+    config.vm.network :private_network, ip: "192.168.56.42", nictype: "virtio"
     config.hostsupdater.remove_on_suspend = false
   end
 
   if config.vm.networks.any? { |type, options| type == :private_network }
-    config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['rw', 'actimeo=1']
+    config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['rw', 'tcp', 'actimeo=1']
   else
     config.vm.synced_folder ".", "/vagrant"
   end
 
-  # Otherwise, you can access the site at http://localhost:3000 and http://localhost:4000 , http://localhost:8080
-  config.vm.network :forwarded_port, guest: 3000, host: 3000
-  config.vm.network :forwarded_port, guest: 4000, host: 4000
+  # Otherwise, you can access the site at http://localhost:3001 and http://localhost:4001 , http://localhost:8080
+  config.vm.network :forwarded_port, guest: 3000, host: 3001
+  config.vm.network :forwarded_port, guest: 4000, host: 4001
   config.vm.network :forwarded_port, guest: 8080, host: 8080
 
   # Full provisioning script, only runs on first 'vagrant up' or with 'vagrant provision'
