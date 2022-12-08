@@ -13,6 +13,7 @@ const messages = defineMessages({
   heading: { id: 'column.heading', defaultMessage: 'Misc' },
   subheading: { id: 'column.subheading', defaultMessage: 'Miscellaneous options' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
+  followed_tags: { id: 'navigation_bar.followed_tags', defaultMessage: 'Followed hashtags' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
@@ -53,6 +54,7 @@ class gettingStartedMisc extends ImmutablePureComponent {
         <div className='scrollable'>
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
           <ColumnLink key='{i++}' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
+          <ColumnLink key='{i++}' icon='hashtag' text={intl.formatMessage(messages.followed_tags)} to='/followed_tags' />
           <ColumnLink key='{i++}' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />
           <ColumnLink key='{i++}' icon='users' text={intl.formatMessage(messages.featured_users)} onClick={this.openFeaturedAccountsModal} />
           <ColumnLink key='{i++}' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
