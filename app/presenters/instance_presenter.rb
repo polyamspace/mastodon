@@ -89,4 +89,8 @@ class InstancePresenter < ActiveModelSerializers::Model
   def mascot
     @mascot ||= Rails.cache.fetch('site_uploads/mascot') { SiteUpload.find_by(var: 'mascot') }
   end
+
+  def favicon
+    @favicon ||= Rails.cache.fetch('site_uploads/favicon') { SiteUpload.find_by(var: 'favicon') }
+  end
 end

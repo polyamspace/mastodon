@@ -38,7 +38,19 @@ class SiteUpload < ApplicationRecord
     }.freeze,
 
     mascot: {}.freeze,
+    favicon: {},
   }.freeze
+
+  # Feels a bit hacky, but adds required sizes to favicon and then freezes it.
+  %w(16 32 48 57 60 72 76 114 120 144 152 167 180 1024).each do |size|
+    STYLES[:favicon][:"#{size}"] = {
+      format: 'png',
+      geometry: "#{size}x#{size}#",
+      file_geometry_parser: FastGeometryParser,
+    }.freeze
+  end
+
+  STYLES[:favicon].freeze
 
   has_attached_file :file, styles: ->(file) { STYLES[file.instance.var.to_sym] }, convert_options: { all: '-coalesce +profile "!icc,*" +set modify-date +set create-date' }, processors: [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
 

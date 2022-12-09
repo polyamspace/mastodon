@@ -1,4 +1,5 @@
 !!! 5
+- # Uses: application_helper.rb
 %html{ lang: I18n.locale }
   %head
     %meta{ charset: 'utf-8' }/
@@ -11,13 +12,19 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    %link{ rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }/
+    %link{ rel: 'icon', href: favicon_path, type: favicon_type }/
 
     - %w(16 32 48).each do |size|
-      %link{ rel: 'icon', sizes: "#{size}x#{size}", href: asset_pack_path("media/icons/favicon-#{size}x#{size}.png"), type: 'image/png' }/
+      - if favicon?
+        %link{ rel: 'icon', sizes: "#{size}x#{size}", href: instance_presenter.favicon&.file&.url(:"#{size}"), type: 'image/png' }/
+      - else
+        %link{ rel: 'icon', sizes: "#{size}x#{size}", href: asset_pack_path("media/icons/favicon-#{size}x#{size}.png"), type: 'image/png' }/
 
     - %w(57 60 72 76 114 120 144 152 167 180 1024).each do |size|
-      %link{ rel: 'apple-touch-icon', sizes: "#{size}x#{size}", href: asset_pack_path("media/icons/apple-touch-icon-#{size}x#{size}.png") }/
+      - if favicon?
+        %link{ rel: 'apple-touch-icon', sizes: "#{size}x#{size}", href: instance_presenter.favicon&.file&.url(:"#{size}") }/
+      - else
+        %link{ rel: 'apple-touch-icon', sizes: "#{size}x#{size}", href: asset_pack_path("media/icons/apple-touch-icon-#{size}x#{size}.png") }/
 
     %link{ rel: 'mask-icon', href: asset_pack_path('media/images/logo-symbol-icon.svg'), color: '#6364FF' }/
     %link{ rel: 'manifest', href: manifest_path(format: :json) }/
