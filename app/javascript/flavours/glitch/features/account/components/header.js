@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { autoPlayGif, me, domain } from 'flavours/glitch/initial_state';
-import { preferencesLink, profileLink, accountAdminLink } from 'flavours/glitch/utils/backend_links';
+import { preferencesLink, profileLink, accountAdminLink, instanceAdminLink } from 'flavours/glitch/utils/backend_links';
 import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
 import IconButton from 'flavours/glitch/components/icon_button';
@@ -13,7 +13,7 @@ import Button from 'flavours/glitch/components/button';
 import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import AccountNoteContainer from '../containers/account_note_container';
-import { PERMISSION_MANAGE_USERS } from 'flavours/glitch/permissions';
+import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/glitch/permissions';
 import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
@@ -52,6 +52,7 @@ const messages = defineMessages({
   unendorse: { id: 'account.unendorse', defaultMessage: 'Don\'t feature on profile' },
   add_or_remove_from_list: { id: 'account.add_or_remove_from_list', defaultMessage: 'Add or Remove from lists' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
+  admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
   add_account_note: { id: 'account.add_account_note', defaultMessage: 'Add note for @{name}' },
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
@@ -155,7 +156,7 @@ class Header extends ImmutablePureComponent {
 
   render () {
     const { account, hidden, intl, domain } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn, permissions } = this.context.identity;
 
     if (!account) {
       return null;
@@ -292,9 +293,17 @@ class Header extends ImmutablePureComponent {
       }
     }
 
-    if (account.get('id') !== me && (this.context.identity.permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && accountAdminLink) {
+    if ((account.get('id') !== me && (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && accountAdminLink) || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION && instanceAdminLink)) {
       menu.push(null);
-      menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: accountAdminLink(account.get('id')) });
+      if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && accountAdminLink) {
+        menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: accountAdminLink(account.get('id')) });
+      }
+      if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION && instanceAdminLink) {
+        menu.push({
+          text: intl.formatMessage(messages.admin_domain, { domain: remoteDomain }),
+          href: instanceAdminLink(remoteDomain),
+        });
+      }
     }
 
     const content         = { __html: account.get('note_emojified') };
