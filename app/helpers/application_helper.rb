@@ -95,6 +95,18 @@ module ApplicationHelper
     end
   end
 
+  def favicon_path
+    instance_presenter.favicon ? instance_presenter.favicon&.file&.url : '/favicon.ico'
+  end
+
+  def favicon_type
+    instance_presenter.favicon ? instance_presenter.favicon.file.content_type : 'image/x-icon'
+  end
+
+  def favicon?
+    instance_presenter.favicon.present?
+  end
+
   def title
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end

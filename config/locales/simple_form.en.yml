@@ -81,6 +81,7 @@ en:
         closed_registrations_message: Displayed when sign-ups are closed
         content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
         custom_css: You can apply custom styles on the web version of Mastodon.
+        favicon: An image to use as favicon.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
         profile_directory: The profile directory lists all users who have opted-in to be discoverable.
@@ -239,6 +240,7 @@ en:
         closed_registrations_message: Custom message when sign-ups are not available
         content_cache_retention_period: Content cache retention period
         custom_css: Custom CSS
+        favicon: Server favicon
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period
         profile_directory: Enable profile directory

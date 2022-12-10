@@ -23,6 +23,7 @@ class Form::AdminSettings
     profile_directory
     hide_followers_count
     flavour_and_skin
+    favicon
     thumbnail
     mascot
     show_reblogs_in_public_timelines
@@ -72,6 +73,7 @@ class Form::AdminSettings
   ).freeze
 
   UPLOAD_KEYS = %i(
+    favicon
     thumbnail
     mascot
   ).freeze
