@@ -25,6 +25,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Add account request text filter ([PR #2](https://github.com/polyamspace/mastodon/pull/2))
 - Add dropdown menu item to open admin interface for remote domains ([PR #8](https://github.com/polyamspace/mastodon/pull/8))
 - Add setting to customise favicon ([PR #7](https://github.com/polyamspace/mastodon/pull/7))
+- Add admin user setting override ([PR #9](https://github.com/polyamspace/mastodon/pull/9))
 
 ### Features
 - Add exclusive lists ([PR #1](https://github.com/polyamspace/mastodon/pull/1))
