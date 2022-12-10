@@ -6,6 +6,7 @@ module Settings
       flavour
       skin
       noindex
+      show_application
     ).freeze
 
     def initialize(object)
