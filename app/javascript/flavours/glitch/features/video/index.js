@@ -552,7 +552,7 @@ class Video extends React.PureComponent {
 
       playerStyle.height = height;
     } else if (inline) {
-      return (<div className={computedClass} ref={this.setPlayerRef} tabindex={0}></div>);
+      return (<div className={computedClass} ref={this.setPlayerRef} tabindex={0} />);
     }
 
     let preload;

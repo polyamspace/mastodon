@@ -176,8 +176,7 @@ class Header extends ImmutablePureComponent {
 
     if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
       info.push(<span className='relationship-tag'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>);
-    }
-    else if (me !== account.get('id') && account.getIn(['relationship', 'blocking'])) {
+    } else if (me !== account.get('id') && account.getIn(['relationship', 'blocking'])) {
       info.push(<span className='relationship-tag'><FormattedMessage id='account.blocked' defaultMessage='Blocked' /></span>);
     }
 
@@ -375,7 +374,7 @@ class Header extends ImmutablePureComponent {
                     {fields.map((pair, i) => (
                       <dl key={i}>
                         <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
-   
+
                         <dd className={pair.get('verified_at') && 'verified'} title={pair.get('value_plain')}>
                           {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} className='translate' />
                         </dd>

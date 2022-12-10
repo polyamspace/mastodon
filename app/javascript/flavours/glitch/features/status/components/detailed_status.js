@@ -53,7 +53,7 @@ class DetailedStatus extends ImmutablePureComponent {
   handleAccountClick = (e) => {
     if (e.button === 0 && !(e.ctrlKey || e.altKey || e.metaKey) && this.context.router) {
       e.preventDefault();
-      let state = {...this.context.router.history.location.state};
+      let state = { ...this.context.router.history.location.state };
       state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
       this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`, state);
     }
@@ -64,7 +64,7 @@ class DetailedStatus extends ImmutablePureComponent {
   parseClick = (e, destination) => {
     if (e.button === 0 && !(e.ctrlKey || e.altKey || e.metaKey) && this.context.router) {
       e.preventDefault();
-      let state = {...this.context.router.history.location.state};
+      let state = { ...this.context.router.history.location.state };
       state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
       this.context.router.history.push(destination, state);
     }

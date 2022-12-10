@@ -126,7 +126,7 @@ class Audio extends React.PureComponent {
 
     this.visualizer.setCanvas(c);
   }
- 
+
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.handleResize, { passive: true });

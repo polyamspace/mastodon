@@ -153,7 +153,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
           ...rest,
           active: value && name === value,
           name,
-        })
+        }),
       ),
     };
   }

@@ -64,7 +64,7 @@ class BoostModal extends ImmutablePureComponent {
     if (e.button === 0) {
       e.preventDefault();
       this.props.onClose();
-      let state = {...this.context.router.history.location.state};
+      let state = { ...this.context.router.history.location.state };
       state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
       this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`, state);
     }
@@ -115,10 +115,10 @@ class BoostModal extends ImmutablePureComponent {
 
         <div className='boost-modal__action-bar'>
           <div>
-            { missingMediaDescription ?
-                <FormattedMessage id='boost_modal.missing_description' defaultMessage='This toot contains some media without description' />
+            {missingMediaDescription ?
+              <FormattedMessage id='boost_modal.missing_description' defaultMessage='This toot contains some media without description' />
               :
-                <FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='retweet' /></span> }} />
+              <FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='retweet' /></span> }} />
             }
           </div>
 

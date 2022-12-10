@@ -17,7 +17,7 @@ const messages = {
   'navigation_bar.info': 'Rozšířené informace',
   'navigation_bar.misc': 'Různé',
   'navigation_bar.keyboard_shortcuts': 'Klávesové zkratky',
-  'getting_started.onboarding': 'Ukaž mi to tu', 
+  'getting_started.onboarding': 'Ukaž mi to tu',
   'onboarding.skip': 'Přeskočit',
   'onboarding.next': 'Další',
   'onboarding.done': 'Hotovo',
@@ -54,7 +54,7 @@ const messages = {
   'settings.hicolor_privacy_icons.hint': 'Zobrazit ikony úrovně soukromí příspěvků v jasných, snadno rozlišitelných barvách',
   'settings.image_backgrounds': 'Obrázkové pozadí',
   'settings.image_backgrounds_media': 'Náhled médií ve sbalených příspěvcích',
-  'settings.image_backgrounds_media_hint': 'Pokud jsou k příspěvku přiložena média, použije se první z nich jako pozadí', 
+  'settings.image_backgrounds_media_hint': 'Pokud jsou k příspěvku přiložena média, použije se první z nich jako pozadí',
   'settings.image_backgrounds_users': 'Nastavit sbaleným příspěvkům obrázkové pozadí',
   'settings.inline_preview_cards': 'Zobrazit v časové ose náhledy externích odkazů',
   'settings.media': 'Média',
@@ -93,10 +93,10 @@ const messages = {
   'settings.show_content_type_choice': 'Zobrazit volbu formátu příspěvku',
   'settings.side_arm': 'Vedlejší odesílací tlačítko:',
   'settings.side_arm.none': 'Žádné',
-  'settings.side_arm_reply_mode': 'Při odpovídání na příspěvek by vedlejší odesílací tlačítko mělo:',  
+  'settings.side_arm_reply_mode': 'Při odpovídání na příspěvek by vedlejší odesílací tlačítko mělo:',
   'settings.side_arm_reply_mode.keep': 'Použít svou nastavenou úroveň soukromí',
   'settings.side_arm_reply_mode.copy': 'Použít úroveň soukromí příspěvku, na který odpovídáte',
-  'settings.side_arm_reply_mode.restrict': 'Zvýšit úroveň soukromí nejméně na úroveň příspěvku, na který odpovídáte',  
+  'settings.side_arm_reply_mode.restrict': 'Zvýšit úroveň soukromí nejméně na úroveň příspěvku, na který odpovídáte',
   'settings.content_warnings': 'Varování o obsahu',
   'settings.content_warnings_shared_state': 'Zobrazit/schovat všechny kopie naráz',
   'settings.content_warnings_shared_state_hint': 'Tlačítko varování o obsahu bude mít efekt na všechny kopie příspěvku naráz, stejně jako na běžném Mastodonu. Nebude pak možné automaticky sbalit jakoukoliv kopii příspěvku, která má rozbalené varování o obsahu',
@@ -113,10 +113,9 @@ const messages = {
   'settings.pop_in_position': 'Pozice plovoucího okna:',
   'settings.pop_in_left': 'Vlevo',
   'settings.pop_in_right': 'Vpravo',
- 
-  
+
   'status.collapse': 'Sbalit',
-  'status.uncollapse': 'Rozbalit',  
+  'status.uncollapse': 'Rozbalit',
   'status.in_reply_to': 'Tento příspěvek je odpověď',
   'status.has_preview_card': 'Obsahuje náhled odkazu',
   'status.has_pictures': 'Obsahuje obrázky',
@@ -155,25 +154,25 @@ const messages = {
   'advanced_options.threaded_mode.short': 'Režim vlákna',
   'advanced_options.threaded_mode.long': 'Po odeslání automaticky otevře pole pro odpověď',
   'advanced_options.threaded_mode.tooltip': 'Režim vlákna je zapnutý',
-  
+
   'home.column_settings.advanced': 'Pokročilé',
   'home.column_settings.filter_regex': 'Filtrovat podle regulárních výrazů',
-  
+
   'compose_form.poll.single_choice': 'Povolit jednu odpověď',
   'compose_form.poll.multiple_choices': 'Povolit více odpovědí',
-  
+
   'compose.content-type.plain': 'Prostý text',
   'content-type.change': 'Formát příspěvku',
   'compose_form.spoiler': 'Přidat varování o obsahu',
-  
+
   'direct.group_by_conversations': 'Seskupit do konverzací',
   'column.toot': 'Příspěvky a odpovědi',
   'confirmation_modal.do_not_ask_again': 'Příště se už neptat',
-  
+
   'keyboard_shortcuts.bookmark': 'Přidat do záložek',
   'keyboard_shortcuts.toggle_collapse': 'Sbalit/rozbalit příspěvek',
   'keyboard_shortcuts.secondary_toot': 'Odeslat příspěvek s druhotným nastavením soukromí',
-  
+
   'column.subheading': 'Různé',
 };
 
