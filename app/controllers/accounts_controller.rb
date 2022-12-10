@@ -24,7 +24,7 @@ class AccountsController < ApplicationController
       format.rss do
         expires_in 1.minute, public: true
 
-        if @account&.user&.setting_norss == true
+        if @account&.user&.setting_norss
           @statuses = []
           next
         end
