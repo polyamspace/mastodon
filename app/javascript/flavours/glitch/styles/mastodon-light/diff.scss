@@ -754,7 +754,8 @@ html {
     color: $white;
   }
 
-  &.close, &.close:hover {
+  &.close,
+  &.close:hover {
     background: $error-value-color;
     color: $primary-text-color;
   }

@@ -32,12 +32,12 @@
 .spoiler-input {
   height: 0;
   transform-origin: bottom;
-  opacity: 0.0;
+  opacity: 0;
 
   &.spoiler-input--visible {
     height: 36px;
     margin-bottom: 11px;
-    opacity: 1.0;
+    opacity: 1;
   }
 
   input {
@@ -59,8 +59,8 @@
       color: $dark-text-color;
     }
 
-    &:focus { outline: 0 }
-    @include single-column('screen and (max-width: 630px)') { font-size: 16px }
+    &:focus { outline: 0; }
+    @include single-column('screen and (max-width: 630px)') { font-size: 16px; }
   }
 }
 
@@ -90,7 +90,6 @@
 .compose-form__sensitive-button {
   padding: 10px;
   padding-top: 0;
-
   font-size: 14px;
   font-weight: 500;
 
@@ -98,7 +97,7 @@
     color: $highlight-text-color;
   }
 
-  input[type=checkbox] {
+  input[type="checkbox"] {
     display: none;
   }
 
@@ -159,7 +158,9 @@
   padding-top: 5px;
   overflow: hidden;
 
-  p, pre, blockquote {
+  p,
+  pre,
+  blockquote {
     margin-bottom: 20px;
     white-space: pre-wrap;
 
@@ -168,12 +169,17 @@
     }
   }
 
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     margin-top: 20px;
     margin-bottom: 20px;
   }
 
-  h1, h2 {
+  h1,
+  h2 {
     font-weight: 700;
     font-size: 18px;
   }
@@ -182,7 +188,9 @@
     font-size: 16px;
   }
 
-  h3, h4, h5 {
+  h3,
+  h4,
+  h5 {
     font-weight: 500;
   }
 
@@ -197,11 +205,13 @@
     }
   }
 
-  b, strong {
+  b,
+  strong {
     font-weight: 700;
   }
 
-  em, i {
+  em,
+  i {
     font-style: italic;
   }
 
@@ -215,7 +225,8 @@
     vertical-align: super;
   }
 
-  ul, ol {
+  ul,
+  ol {
     margin-left: 1em;
 
     p {
@@ -235,13 +246,13 @@
     color: $lighter-text-color;
     text-decoration: none;
 
-    &:hover { text-decoration: underline }
+    &:hover { text-decoration: underline; }
 
     &.mention {
       &:hover {
         text-decoration: none;
 
-        span { text-decoration: underline }
+        span { text-decoration: underline; }
       }
     }
   }
@@ -321,7 +332,7 @@
     font-size: 18px;
     line-height: 24px;
     text-align: center;
-    opacity: .8;
+    opacity: 0.8;
   }
 }
 
@@ -358,7 +369,7 @@
   &:hover,
   &:focus,
   &:active,
-  &.selected { background: darken($ui-secondary-color, 10%) }
+  &.selected { background: darken($ui-secondary-color, 10%); }
 
   > .account,
   > .emoji,
@@ -396,7 +407,7 @@
 
   & > .account.small {
     .display-name {
-      & > span { color: $lighter-text-color }
+      & > span { color: $lighter-text-color; }
     }
   }
 }
@@ -430,7 +441,7 @@
     background-repeat: no-repeat;
     overflow: hidden;
 
-    & > .close { mix-blend-mode: difference }
+    & > .close { mix-blend-mode: difference; }
   }
 
   .icon-button {
@@ -605,7 +616,7 @@
     flex: 1 1 auto;
     color: $lighter-text-color;
 
-    &:not(:first-child) { margin-left: 10px }
+    &:not(:first-child) { margin-left: 10px; }
 
     strong {
       display: block;
@@ -622,11 +633,11 @@
     .privacy-dropdown__option__content {
       color: $primary-text-color;
 
-      strong { color: $primary-text-color }
+      strong { color: $primary-text-color; }
     }
   }
 
-  &.active:hover { background: lighten($ui-highlight-color, 4%) }
+  &.active:hover { background: lighten($ui-highlight-color, 4%); }
 }
 
 .compose-form__publish {
