@@ -174,7 +174,7 @@ class ComposeForm extends ImmutablePureComponent {
       this.handleSubmit();
     }
 
-    if (e.keyCode == 13 && e.altKey) {
+    if (e.keyCode === 13 && e.altKey) {
       this.handleSecondarySubmit();
     }
   }

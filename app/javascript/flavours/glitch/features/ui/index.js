@@ -459,8 +459,8 @@ class UI extends React.Component {
   }
 
   componentDidUpdate (prevProps) {
-    if (this.props.unreadNotifications != prevProps.unreadNotifications ||
-        this.props.showFaviconBadge != prevProps.showFaviconBadge) {
+    if (this.props.unreadNotifications !== prevProps.unreadNotifications ||
+        this.props.showFaviconBadge !== prevProps.showFaviconBadge) {
       if (this.favicon) {
         try {
           this.favicon.badge(this.props.showFaviconBadge ? this.props.unreadNotifications : 0);
