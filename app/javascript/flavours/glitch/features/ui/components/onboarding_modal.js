@@ -49,7 +49,7 @@ const PageTwo = ({ intl, myAccount }) => (
           privacy='public'
           text='Awoo! #introductions'
           spoilerText=''
-          suggestions={ [] }
+          suggestions={[]}
         />
       </div>
     </div>

@@ -12,7 +12,7 @@ const textMatchesTarget = (text, origin, host) => {
   return (text === origin || text === host
           || text.startsWith(origin + '/') || text.startsWith(host + '/')
           || 'www.' + text === host || ('www.' + text).startsWith(host + '/'));
-}
+};
 
 const isLinkMisleading = (link) => {
   let linkTextParts = [];
@@ -168,8 +168,8 @@ class StatusContent extends React.PureComponent {
         link.setAttribute('title', link.href);
         link.classList.add('unhandled-link');
 
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener nofollow noreferrer');
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener nofollow noreferrer');
 
         try {
           if (tagLinks && isLinkMisleading(link)) {

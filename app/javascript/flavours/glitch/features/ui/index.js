@@ -264,6 +264,7 @@ class UI extends React.Component {
     hasComposingText: PropTypes.bool,
     hasMediaAttachments: PropTypes.bool,
     canUploadMore: PropTypes.bool,
+    hicolorPrivacyIcons: PropTypes.bool,
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
@@ -407,7 +408,7 @@ class UI extends React.Component {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
     }
 
-    this.favicon = new Favico({ animation:"none" });
+    this.favicon = new Favico({ animation: 'none' });
 
     // On first launch, redirect to the follow recommendations page
     if (signedIn && this.props.firstLaunch) {
@@ -458,8 +459,8 @@ class UI extends React.Component {
   }
 
   componentDidUpdate (prevProps) {
-    if (this.props.unreadNotifications != prevProps.unreadNotifications ||
-        this.props.showFaviconBadge != prevProps.showFaviconBadge) {
+    if (this.props.unreadNotifications !== prevProps.unreadNotifications ||
+        this.props.showFaviconBadge !== prevProps.showFaviconBadge) {
       if (this.favicon) {
         try {
           this.favicon.badge(this.props.showFaviconBadge ? this.props.unreadNotifications : 0);
@@ -657,11 +658,13 @@ class UI extends React.Component {
             <FormattedMessage
               id='moved_to_warning'
               defaultMessage='This account is marked as moved to {moved_to_link}, and may thus not accept new follows.'
-              values={{ moved_to_link: (
-                <PermaLink href={moved.get('url')} to={`/@${moved.get('acct')}`}>
-                  @{moved.get('acct')}
-                </PermaLink>
-              )}}
+              values={{
+                moved_to_link: (
+                  <PermaLink href={moved.get('url')} to={`/@${moved.get('acct')}`}>
+                    @{moved.get('acct')}
+                  </PermaLink>
+                ),
+              }}
             />
           </div>)}
 

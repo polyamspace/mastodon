@@ -67,16 +67,16 @@ class StatusIcons extends React.PureComponent {
     const { intl } = this.props;
 
     switch (mediaIcon) {
-      case 'link':
-        return intl.formatMessage(messages.previewCard);
-      case 'picture-o':
-        return intl.formatMessage(messages.pictures);
-      case 'tasks':
-        return intl.formatMessage(messages.poll);
-      case 'video-camera':
-        return intl.formatMessage(messages.video);
-      case 'music':
-        return intl.formatMessage(messages.audio);
+    case 'link':
+      return intl.formatMessage(messages.previewCard);
+    case 'picture-o':
+      return intl.formatMessage(messages.pictures);
+    case 'tasks':
+      return intl.formatMessage(messages.poll);
+    case 'video-camera':
+      return intl.formatMessage(messages.video);
+    case 'music':
+      return intl.formatMessage(messages.audio);
     }
   }
 
@@ -107,7 +107,7 @@ class StatusIcons extends React.PureComponent {
     return (
       <div className='status__info__icons'>
         {settings.get('language') && status.get('language') && <LanguageIcon language={status.get('language')} />}
-        {settings.get('reply') && status.get('in_reply_to_id', null) !== null ? 
+        {settings.get('reply') && status.get('in_reply_to_id', null) !== null ?
           status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? (
             <Icon
               className='status__reply-icon'
@@ -124,7 +124,7 @@ class StatusIcons extends React.PureComponent {
               aria-hidden='true'
               title={intl.formatMessage(messages.inReplyTo)}
             />
-        ) : null}
+          ) : null}
         {settings.get('local_only') && status.get('local_only') &&
           <Icon
             fixedWidth

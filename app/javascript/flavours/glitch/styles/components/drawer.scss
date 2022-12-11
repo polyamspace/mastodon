@@ -43,7 +43,7 @@
     }
   }
 
-  .react-swipeable-view-container & { height: 100% }
+  .react-swipeable-view-container & { height: 100%; }
 }
 
 .drawer--header {
@@ -84,12 +84,12 @@
   margin-bottom: 10px;
   flex: none;
 
-  @include limited-single-column('screen and (max-width: #{$no-gap-breakpoint})') { margin-bottom: 0 }
-  @include single-column('screen and (max-width: 630px)') { font-size: 16px }
+  @include limited-single-column('screen and (max-width: #{$no-gap-breakpoint})') { margin-bottom: 0; }
+  @include single-column('screen and (max-width: 630px)') { font-size: 16px; }
 }
 
 .search-popout {
-  @include search-popout();
+  @include search-popout;
 }
 
 .navigation-bar {

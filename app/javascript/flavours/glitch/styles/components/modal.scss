@@ -987,10 +987,10 @@
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 10px;
-
   font-size: 14px;
 
-  label, input {
+  label,
+  input {
     vertical-align: middle;
   }
 }
@@ -1280,7 +1280,7 @@
     text-decoration: none;
 
     &:hover {
-      text-decoration: underline
+      text-decoration: underline;
     }
   }
 }

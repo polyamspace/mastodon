@@ -54,7 +54,7 @@ export const defaultMediaVisibility = (status, settings) => {
   }
 
   return (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
-}
+};
 
 export default @injectIntl
 class Status extends ImmutablePureComponent {
@@ -297,7 +297,9 @@ class Status extends ImmutablePureComponent {
     if (this.node && this.props.getScrollPosition) {
       const position = this.props.getScrollPosition();
       if (position !== null && this.node.offsetTop < position.top) {
-         requestAnimationFrame(() => { this.props.updateScrollBottom(position.height - position.top); });
+        requestAnimationFrame(() => {
+          this.props.updateScrollBottom(position.height - position.top);
+        });
       }
     }
   }
@@ -356,7 +358,7 @@ class Status extends ImmutablePureComponent {
             status.getIn(['reblog', 'id'], status.get('id'))
           }`;
         }
-        let state = {...router.history.location.state};
+        let state = { ...router.history.location.state };
         state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
         router.history.push(destination, state);
       }
@@ -429,14 +431,14 @@ class Status extends ImmutablePureComponent {
   }
 
   handleHotkeyOpen = () => {
-    let state = {...this.context.router.history.location.state};
+    let state = { ...this.context.router.history.location.state };
     state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
     const status = this.props.status;
     this.context.router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`, state);
   }
 
   handleHotkeyOpenProfile = () => {
-    let state = {...this.context.router.history.location.state};
+    let state = { ...this.context.router.history.location.state };
     state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
     this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`, state);
   }

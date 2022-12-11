@@ -21,10 +21,11 @@ import { length } from 'stringz';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
-  missingDescriptionMessage: {  id: 'confirmations.missing_media_description.message',
-                                defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.' },
-  missingDescriptionConfirm: {  id: 'confirmations.missing_media_description.confirm',
-                                defaultMessage: 'Send anyway' },
+  missingDescriptionMessage: {
+    id: 'confirmations.missing_media_description.message',
+    defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.',
+  },
+  missingDescriptionConfirm: { id: 'confirmations.missing_media_description.confirm', defaultMessage: 'Send anyway' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
 });
 
@@ -88,7 +89,7 @@ class ComposeForm extends ImmutablePureComponent {
     return [
       this.props.spoiler? this.props.spoilerText: '',
       countableText(this.props.text),
-      this.props.advancedOptions && this.props.advancedOptions.get('do_not_federate') ? ' 👁️' : ''
+      this.props.advancedOptions && this.props.advancedOptions.get('do_not_federate') ? ' 👁️' : '',
     ].join('');
   }
 
@@ -173,7 +174,7 @@ class ComposeForm extends ImmutablePureComponent {
       this.handleSubmit();
     }
 
-    if (e.keyCode == 13 && e.altKey) {
+    if (e.keyCode === 13 && e.altKey) {
       this.handleSecondarySubmit();
     }
   }
@@ -216,7 +217,7 @@ class ComposeForm extends ImmutablePureComponent {
   //      - Replying to more than one user, selects any usernames past
   //        the first; this provides a convenient shortcut to drop
   //        everyone else from the conversation.
-   _updateFocusAndSelection = (prevProps) => {
+  _updateFocusAndSelection = (prevProps) => {
     const {
       textarea,
       spoilerText,

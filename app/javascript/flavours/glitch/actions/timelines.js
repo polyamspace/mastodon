@@ -55,7 +55,7 @@ export function updateTimeline(timeline, status, accept) {
       timeline,
       status,
       usePendingItems: preferPendingItems,
-      filtered
+      filtered,
     });
 
     if (timeline === 'home') {

@@ -96,7 +96,7 @@ class Audio extends React.PureComponent {
     const width  = this.player.offsetWidth;
     const height = this.props.fullscreen ? this.player.offsetHeight : (width / (16/9));
 
-    if (width && width != this.state.containerWidth) {
+    if (width && width !== this.state.containerWidth) {
       if (this.props.cacheWidth) {
         this.props.cacheWidth(width);
       }
@@ -126,7 +126,7 @@ class Audio extends React.PureComponent {
 
     this.visualizer.setCanvas(c);
   }
- 
+
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.handleResize, { passive: true });

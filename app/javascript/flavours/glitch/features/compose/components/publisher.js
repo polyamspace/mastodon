@@ -95,4 +95,5 @@ class Publisher extends ImmutablePureComponent {
       </div>
     );
   };
+
 }

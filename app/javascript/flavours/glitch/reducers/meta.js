@@ -15,8 +15,8 @@ export default function meta(state = initialState, action) {
   case STORE_HYDRATE:
     return state.merge(
       action.state.get('meta'))
-        .set('permissions', action.state.getIn(['role', 'permissions']))
-        .set('layout', layoutFromWindow(action.state.getIn(['local_settings', 'layout']))
+        .set('permissions', action.state.getIn(['role', 'permissions'])) //eslint-disable-line indent
+        .set('layout', layoutFromWindow(action.state.getIn(['local_settings', 'layout'])), //eslint-disable-line indent
       );
   case APP_LAYOUT_CHANGE:
     return state.set('layout', action.layout);

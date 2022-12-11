@@ -811,7 +811,7 @@ export function fetchPinnedAccounts() {
   return (dispatch, getState) => {
     dispatch(fetchPinnedAccountsRequest());
 
-    api(getState).get(`/api/v1/endorsements`, { params: { limit: 0 } }).then(response => {
+    api(getState).get('/api/v1/endorsements', { params: { limit: 0 } }).then(response => {
       dispatch(importFetchedAccounts(response.data));
       dispatch(fetchPinnedAccountsSuccess(response.data));
     }).catch(err => dispatch(fetchPinnedAccountsFail(err)));
@@ -873,7 +873,7 @@ export function changePinnedAccountsSuggestions(value) {
   return {
     type: PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CHANGE,
     value,
-  }
+  };
 };
 
 export function resetPinnedAccountsEditor() {

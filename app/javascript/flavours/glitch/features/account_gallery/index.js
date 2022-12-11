@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { lookupAccount, fetchAccount } from 'flavours/glitch/actions/accounts';
 import { expandAccountMediaTimeline } from 'flavours/glitch/actions/timelines';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
