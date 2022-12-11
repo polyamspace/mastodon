@@ -38,12 +38,12 @@ function mapStateToProps (state) {
   const sideArmRestrictedPrivacy = replyPrivacy ? privacyPreference(replyPrivacy, sideArmBasePrivacy) : null;
   let sideArmPrivacy = null;
   switch (state.getIn(['local_settings', 'side_arm_reply_mode'])) {
-    case 'copy':
-      sideArmPrivacy = replyPrivacy;
-      break;
-    case 'restrict':
-      sideArmPrivacy = sideArmRestrictedPrivacy;
-      break;
+  case 'copy':
+    sideArmPrivacy = replyPrivacy;
+    break;
+  case 'restrict':
+    sideArmPrivacy = sideArmRestrictedPrivacy;
+    break;
   }
   sideArmPrivacy = sideArmPrivacy || sideArmBasePrivacy;
   return {

@@ -23,7 +23,7 @@ const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   missingDescriptionMessage: {
     id: 'confirmations.missing_media_description.message',
-    defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.'
+    defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.',
   },
   missingDescriptionConfirm: { id: 'confirmations.missing_media_description.confirm', defaultMessage: 'Send anyway' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
@@ -89,7 +89,7 @@ class ComposeForm extends ImmutablePureComponent {
     return [
       this.props.spoiler? this.props.spoilerText: '',
       countableText(this.props.text),
-      this.props.advancedOptions && this.props.advancedOptions.get('do_not_federate') ? ' 👁️' : ''
+      this.props.advancedOptions && this.props.advancedOptions.get('do_not_federate') ? ' 👁️' : '',
     ].join('');
   }
 
