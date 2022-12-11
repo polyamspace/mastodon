@@ -31,6 +31,7 @@ defaults: &defaults
   system_font_ui: false
   system_emoji_font: false
   noindex: false
+  norss: false
   hide_followers_count: false
   flavour: 'glitch'
   skin: 'default'

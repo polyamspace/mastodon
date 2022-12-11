@@ -10,6 +10,7 @@ en:
         setting_default_content_type_plain: When writing toots, assume they are plain text with no special formatting, unless specified otherwise (default Mastodon behavior)
         setting_default_language: The language of your toots can be detected automatically, but it's not always accurate
         setting_hide_followers_count: Hide your followers count from everybody, including you. Some applications may display a negative followers count.
+        setting_norss: Mastodon offers an RSS feed of all public posts by default.
         setting_skin: Reskins the selected Mastodon flavour
     labels:
       defaults:
@@ -18,6 +19,7 @@ en:
         setting_default_content_type_markdown: Markdown
         setting_default_content_type_plain: Plain text
         setting_favourite_modal: Show confirmation dialog before favouriting (applies to Glitch flavour only)
+        setting_norss: Disable RSS feed for your public posts
         setting_hide_followers_count: Hide your followers count
         setting_skin: Skin
         setting_system_emoji_font: Use system's default font for emojis (applies to Glitch flavour only)
