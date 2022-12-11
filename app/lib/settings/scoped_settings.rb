@@ -7,6 +7,7 @@ module Settings
       skin
       noindex
       show_application
+      norss
     ).freeze
 
     def initialize(object)
