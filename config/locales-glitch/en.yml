@@ -1,9 +1,41 @@
 ---
 en:
   admin:
+    action_logs:
+      action_types:
+        create_registration_filter: Create Registration Text Filter
+        destroy_registration_filter: Destroy Registration Text Filter
+        update_registration_filter: Update Registration Text Filter
+      actions:
+        create_registration_filter_html: "%{name} blocked registrations with request text matching %{target}"
+        destroy_registration_filter_html: "%{name} unblocked registrations with request text matching %{target}"
+        update_registration_filter_html: "%{name} updated registration filter blocking request text matching %{target}"
     custom_emojis:
       batch_copy_error: 'An error occurred while copying some of the selected emoji: %{message}'
       batch_error: 'An error occurred: %{message}'
+    registration_filters:
+      add_new: Add new filter
+      created_msg: Registration text filter successfully created!
+      delete: Delete
+      description_html: Registration text filters allow you to automatically reject new user registrations based on their invite request text, that is their response to the “Why do you want to join?” prompt. This can be used to cut down on registration spam.
+      destroyed_msg: Registration text filter successfully destroyed!
+      edit:
+        title: Edit registration text filter
+      empty: No registration text filter found.
+      new:
+        create: Create registration text filter
+        title: New registration text filter
+      phrase: Keyword, phrase or regular expression
+      phrase_hint: Forbid registration of new users whose answer to the “Why do you want to join?” prompt contains text that matches this keyword, phrase or regular expression.
+      title: Registration text filters
+      type:
+        title: Filter type
+      types:
+        regexp: Regular Expression
+        regexp_hint: Use regular expressions if you want to filter registrations featuring more advanced patterns.
+        text: Simple text
+        text_hint: Use this for simple recurring keywords and if you do not know regular expressions.
+      updated_msg: Registration text filter successfully updated!
     settings:
       captcha_enabled:
         desc_html: This relies on external scripts from hCaptcha, which may be a security and privacy concern. In addition, <strong>this can make the registration process significantly less accessible to some (especially disabled) people</strong>. For these reasons, please consider alternative measures such as approval-based or invite-based registration.<br>Users that have been invited through a limited-use invite will not need to solve a CAPTCHA
@@ -30,6 +62,10 @@ en:
       hide_followers_count:
         desc_html: Do not show followers count on user profiles
         title: Hide followers count
+      registrations:
+        invite_text_filter:
+          desc_html: 'Regular expression used to automatically reject users based on their invite request text. This can be used to cut down on registration spam. For instance, to reject registrations refering to blockchains or featuring links, you can use the following filter: <code>blockchain|https://</code>'
+          title: Registration text filter
       show_reblogs_in_public_timelines:
         desc_html: Show public boosts of public toots in local and public timelines.
         title: Show boosts in public timelines
@@ -45,8 +81,12 @@ en:
       title: User verification
   generic:
     use_this: Use this
+  regex_validator:
+    invalid_regexp: 'error parsing regular expression: %{error}'
   settings:
     flavours: Flavours
   sounds:
     default: Boop
     laser: Laser
+  users:
+    invalid_invite_request_text: This text includes forbidden words or expressions
