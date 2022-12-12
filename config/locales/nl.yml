@@ -1454,9 +1454,6 @@ nl:
     strikes: Vastgestelde overtredingen
     two_factor_authentication: Tweestapsverificatie
     webauthn_authentication: Beveiligingssleutels
-  sounds:
-    default: Boop
-    laser: Laser
   statuses:
     attached:
       audio:

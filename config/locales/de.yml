@@ -1454,9 +1454,6 @@ de:
     strikes: Moderieren von Verstößen
     two_factor_authentication: Zwei-Faktor-Authentisierung (2FA)
     webauthn_authentication: Sicherheitsschlüssel
-  sounds:
-    default: Boop
-    laser: Laser
   statuses:
     attached:
       audio:
