@@ -46,7 +46,7 @@ de:
         title: Verlange von neuen Nutzer*innen ein CAPTCHA zu lösen, um ihren Account zu bestätigen
       default_norss:
         desc_html: Beeinflusst alle Nutzer*innen, die diese Einstellung nicht selbst geändert haben.
-        title: Deaktiviere standardmäßig RSS feed öffentlicher Beiträge für alle Nutzer*innen 
+        title: Deaktiviere standardmäßig RSS feed öffentlicher Beiträge für alle Nutzer*innen
       default_show_application:
         desc_html: Beeinflusst alle Nutzer*innen, die diese Einstellung nicht selbst geändert haben.
         title: Anwendung, die zum erstellen von Beiträgen genutzt wird, anzeigen
@@ -95,4 +95,3 @@ de:
     laser: Laser
   users:
     invalid_invite_request_text: Dieser Text enthält nicht erlaubte Wörter oder Ausdrücke
-
