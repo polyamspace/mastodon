@@ -7,9 +7,9 @@ en:
         destroy_registration_filter: Destroy Registration Text Filter
         update_registration_filter: Update Registration Text Filter
       actions:
-        create_registration_filter_html: "%{name} blocked registrations with request text matching %{target}"
-        destroy_registration_filter_html: "%{name} unblocked registrations with request text matching %{target}"
-        update_registration_filter_html: "%{name} updated registration filter blocking request text matching %{target}"
+        create_registration_filter_html: '%{name} blocked registrations with request text matching %{target}'
+        destroy_registration_filter_html: '%{name} unblocked registrations with request text matching %{target}'
+        update_registration_filter_html: '%{name} updated registration filter blocking request text matching %{target}'
     custom_emojis:
       batch_copy_error: 'An error occurred while copying some of the selected emoji: %{message}'
       batch_error: 'An error occurred: %{message}'
