@@ -14,6 +14,8 @@ en:
         setting_skin: Reskins the selected Mastodon flavour
       form_admin_settings:
         trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
+      invite:
+        comment: Optional. You can enter for whom the invite is for, or reason for creating it
     labels:
       defaults:
         setting_default_content_type: Default format for toots
