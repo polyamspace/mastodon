@@ -47,3 +47,6 @@ en:
     use_this: Use this
   settings:
     flavours: Flavours
+  sounds:
+    default: Boop
+    laser: Laser

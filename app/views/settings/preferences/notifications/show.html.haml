@@ -31,7 +31,7 @@
   %h4= t 'notifications.other_settings'
 
   .fields-group
-    = f.input :setting_notification_sound, collection: NotificationSounds.instance.names, label_method: lambda { |sound| t("sounds.#{sound}", default: sound) }, wrapper: :with_label, include_blank: false
+    = f.input :setting_notification_sound, collection: NotificationSounds.instance.names, label_method: lambda { |sound| t("sounds.#{sound}", default: sound) }, wrapper: :with_label, include_blank: false, glitch_only: true
 
   .fields-group
     = f.simple_fields_for :interactions, hash_to_object(current_user.settings.interactions) do |ff|

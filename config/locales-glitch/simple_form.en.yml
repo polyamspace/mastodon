@@ -21,6 +21,7 @@ en:
         setting_favourite_modal: Show confirmation dialog before favouriting (applies to Glitch flavour only)
         setting_norss: Disable RSS feed for your public posts
         setting_hide_followers_count: Hide your followers count
+        setting_notification_sound: Notification Sound
         setting_skin: Skin
         setting_system_emoji_font: Use system's default font for emojis (applies to Glitch flavour only)
       notification_emails:
