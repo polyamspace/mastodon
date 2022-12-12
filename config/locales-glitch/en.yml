@@ -52,6 +52,7 @@ en:
         title: Disclose application used to send posts
       discovery:
         rss: RSS
+        search: Search
       enable_keybase:
         desc_html: Allow your users to prove their identity via keybase
         title: Enable keybase integration
