@@ -12,6 +12,11 @@ en:
         setting_hide_followers_count: Hide your followers count from everybody, including you. Some applications may display a negative followers count.
         setting_norss: Mastodon offers an RSS feed of all public posts by default.
         setting_skin: Reskins the selected Mastodon flavour
+      form_admin_settings:
+        search_preview: Logged out visitors will be able to use the search bar.
+        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
+      invite:
+        comment: Optional. You can enter for whom the invite is for, or reason for creating it
     labels:
       defaults:
         setting_default_content_type: Default format for toots
@@ -24,6 +29,9 @@ en:
         setting_notification_sound: Notification Sound
         setting_skin: Skin
         setting_system_emoji_font: Use system's default font for emojis (applies to Glitch flavour only)
+      form_admin_settings:
+        search_preview: Allow unauthenticated access to search
+        trends_as_landing_page: Use trends as the landing page
       notification_emails:
         trending_tag: New trending tag requires review
         trending_link: New trending link requires review

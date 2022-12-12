@@ -643,8 +643,6 @@ en:
       privileges:
         administrator: Administrator
         administrator_description: Users with this permission will bypass every permission
-        change_max_use: Change Max Use
-        change_max_use_description: Allows users to change max uses of invites
         delete_user_data: Delete User Data
         delete_user_data_description: Allows users to delete other users' data without delay
         invite_users: Invite Users
@@ -714,7 +712,6 @@ en:
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
         profile_directory: Profile directory
         public_timelines: Public timelines
-        search: Search
         title: Discovery
         trends: Trends
       domain_blocks:

@@ -16,7 +16,7 @@
     = f.input :trends, as: :boolean, wrapper: :with_label
 
   .fields-group
-    = f.input :trends_as_landing_page, as: :boolean, wrapper: :with_label
+    = f.input :trends_as_landing_page, as: :boolean, wrapper: :with_label, glitch_only: true
 
   .fields-group
     = f.input :trendable_by_default, as: :boolean, wrapper: :with_label, recommended: :not_recommended
@@ -32,7 +32,7 @@
   %h4= t('admin.settings.discovery.search')
 
   .fields-group
-    = f.input :search_preview, as: :boolean, wrapper: :with_label
+    = f.input :search_preview, as: :boolean, wrapper: :with_label, glitch_only: true
 
   .fields-group
     = f.input :noindex, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_noindex.title'), hint: t('admin.settings.default_noindex.desc_html')

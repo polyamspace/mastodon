@@ -7,9 +7,9 @@ en:
         destroy_registration_filter: Destroy Registration Text Filter
         update_registration_filter: Update Registration Text Filter
       actions:
-        create_registration_filter_html: "%{name} blocked registrations with request text matching %{target}"
-        destroy_registration_filter_html: "%{name} unblocked registrations with request text matching %{target}"
-        update_registration_filter_html: "%{name} updated registration filter blocking request text matching %{target}"
+        create_registration_filter_html: '%{name} blocked registrations with request text matching %{target}'
+        destroy_registration_filter_html: '%{name} unblocked registrations with request text matching %{target}'
+        update_registration_filter_html: '%{name} updated registration filter blocking request text matching %{target}'
     custom_emojis:
       batch_copy_error: 'An error occurred while copying some of the selected emoji: %{message}'
       batch_error: 'An error occurred: %{message}'
@@ -36,6 +36,10 @@ en:
         text: Simple text
         text_hint: Use this for simple recurring keywords and if you do not know regular expressions.
       updated_msg: Registration text filter successfully updated!
+    roles:
+      privileges:
+        change_max_use: Change Max Use
+        change_max_use_description: Allows users to change max uses of invites
     settings:
       captcha_enabled:
         desc_html: This relies on external scripts from hCaptcha, which may be a security and privacy concern. In addition, <strong>this can make the registration process significantly less accessible to some (especially disabled) people</strong>. For these reasons, please consider alternative measures such as approval-based or invite-based registration.<br>Users that have been invited through a limited-use invite will not need to solve a CAPTCHA
@@ -48,6 +52,7 @@ en:
         title: Disclose application used to send posts
       discovery:
         rss: RSS
+        search: Search
       enable_keybase:
         desc_html: Allow your users to prove their identity via keybase
         title: Enable keybase integration
