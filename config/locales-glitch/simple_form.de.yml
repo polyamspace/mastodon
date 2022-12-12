@@ -1,0 +1,38 @@
+---
+de:
+  simple_form:
+    glitch_only: glitch-soc
+    hints:
+      defaults:
+        fields: Du kannst bis zu %{count} Einträge auf deinem Profil anzeigen
+        setting_default_content_type_html: Nehme beim erstellen von Beiträgen an, dass diese in HTML geschrieben sind, falls nicht anders angegeben.
+        setting_default_content_type_markdown: Nehme beim erstellen von Beiträgen an, dass diese in Markdown geschrieben sind, falls nicht anders angegeben.
+        setting_default_content_type_plain: Nehme beim erstellen von Beiträgen an, dass diese in Klartext geschrieben sind, falls nicht anders angegeben. (Standard)
+        setting_default_language: Die Sprache deiner Beiträge kann automatisch erkannt werden, aber die Erkennung ist nicht immer genau.
+        setting_hide_followers_count: Verstecke die Anzahl deiner Follower*innen vor allen, auch vor dir. Einige Apps könnten eine negative Anzahl zeigen.
+        setting_norss: Mastodon erstellt automatisch ein RSS feed all deiner öffentlichen Beträge.
+        setting_skin: Überschreibt den aktuell ausgewählten Flavour
+      form_admin_settings:
+        search_preview: Ausgeloggte Besucher*innen können die Suchfunktion nutzen.
+        trends_as_landing_page: Zeigt ausgeloggten Nutzer*innen oder Besucher*innen angesagte Inhalte statt der Serverbeschreibung. Trends müssen hierfür aktiviert sein.
+      invite:
+        comment: Optional. Du kannst eingeben für wen die Einladung ist oder den Grund der Erstellung.
+    labels:
+      defaults:
+        setting_default_content_type: Standardformat für Beiträge
+        setting_default_content_type_html: HTML
+        setting_default_content_type_markdown: Markdown
+        setting_default_content_type_plain: Klartext
+        setting_favourite_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag favorisiert wird (Nur mit Glitch Flavour verfügbar)
+        setting_norss: Deaktiviere RSS feed für deine öffentliche Beiträge
+        setting_hide_followers_count: Verstecke Anzahl der Follower*innen
+        setting_notification_sound: Benachrichtigungston
+        setting_skin: Skin
+        setting_system_emoji_font: Standardschriftart des Systems für Emojis verwenden (Nur mit Glitch Flavour verfügbar)
+      form_admin_settings:
+        search_preview: Nicht-authentifizierten Zugriff auf die Suchfunktion gestatten
+        trends_as_landing_page: Nutze Trends als Startseite
+      notification_emails:
+        trending_tag: Neuer angesagter Hashtag erfordert Überprüfung
+        trending_link: Neuer angesagter Link erfordert Überprüfung
+        trending_status: Neuer angesagter Beitrag erfordert Überprüfung

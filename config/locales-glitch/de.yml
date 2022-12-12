@@ -1,0 +1,98 @@
+---
+de:
+  admin:
+    action_logs:
+      action_types:
+        create_registration_filter: Erstelle Beitrittsfilter
+        destroy_registration_filter: Lösche Beitrittsfilter
+        update_registration_filter: Aktualisiere Beitrittsfilter
+      actions:
+        create_registration_filter_html: '%{name} erstellte neuen Beitrittsfilter %{target}'
+        destroy_registration_filter_html: '%{name} löschte Beitrittsfilter %{target}'
+        update_registration_filter_html: '%{name} aktualisierte Beitrittsfilter %{target}'
+    custom_emojis:
+      batch_copy_error: 'Ein Fehler trat beim Kopieren einiger ausgewählter Emojis auf: %{message}'
+      batch_error: 'Ein Fehler trat auf: %{message}'
+    registration_filters:
+      add_new: Erstelle neuen Filter
+      created_msg: Beitrittsfilter erfolgreich erstellt!
+      delete: Löschen
+      description_html: Beitrittsfilter erlauben dir automatisch neue Registrierungen aufgrund des Grundes des Beitritts, also die Antwort auf “Warum möchtest du beitreten?”, abzulehnen. Dies kann genutzt werden um Registrierungsspam zu verringern.
+      destroyed_msg: Beitrittsfilter erfolgreich gelöscht!
+      edit:
+        title: Bearbeite Beitrittsfilter
+      empty: Keine Beitrittsfilter gefunden.
+      new:
+        create: Erstelle Beitrittsfilter
+        title: Neuer Beitrittsfilter
+      phrase: Schlagwort, Ausdruck oder Regular Expression
+      phrase_hint: Verbiete die Registrierung von neuen Nutzer*innen, dessen Antwort auf die “Warum möchtest du beitreten?” Eingabe dieses Schlagwort, diesen Ausdruck oder Regular Expression enthält.
+      title: Filter für Beitrittsgrund
+      type:
+        title: Filter Art
+      types:
+        regexp: Regular Expression
+        regexp_hint: Nutze Regular Expressions wenn du erweiterte Schlagwörter verwenden möchtest.
+        text: Klartext
+        text_hint: Nutze dies für simple Schlagwörter und wenn du dich nicht mit Regular Expressions auskennst.
+      updated_msg: Beitrittsfilter erfolgreich bearbeitet!
+    roles:
+      privileges:
+        change_max_use: Ändere maximale Verwendung
+        change_max_use_description: Erlaubt Nutzer*innen die maximale Anzahl Verwendungen von Einladungen zu ändern.
+    settings:
+      captcha_enabled:
+        desc_html: Diese Funktion erfordert hCaptcha, was ein Sicherheits- oder Datenschutzrisiko darstellen kann. Außerdem <strong>kann dies die Registrierung weniger Barrierefrei (besonders für behinderte Personen) machen</strong>. Aus diesem Grund überlege dir bitte genau, ob du dies aktivieren möchtest.<br>Nutzer*innen, die sich mit einer Einladung mit begrenzter Nutzung registrieren, müssen kein CAPTCHA lösen
+        title: Verlange von neuen Nutzer*innen ein CAPTCHA zu lösen, um ihren Account zu bestätigen
+      default_norss:
+        desc_html: Beeinflusst alle Nutzer*innen, die diese Einstellung nicht selbst geändert haben.
+        title: Deaktiviere standardmäßig RSS feed öffentlicher Beiträge für alle Nutzer*innen 
+      default_show_application:
+        desc_html: Beeinflusst alle Nutzer*innen, die diese Einstellung nicht selbst geändert haben.
+        title: Anwendung, die zum erstellen von Beiträgen genutzt wird, anzeigen
+      discovery:
+        rss: RSS
+        search: Suche
+      enable_keybase:
+        desc_html: Erlaubt Nutzer*innen ihre Identität mit Keybase zu bestätigen.
+        title: Aktiviere Keybase Integration
+      flavour_and_skin:
+        title: Flavour and skin
+      other:
+        preamble: Verschiedene glitch-soc Einstellungen, die nicht in andere Kategorien passen.
+        title: Erweitert
+      outgoing_spoilers:
+        desc_html: Füge diese Inhaltswarnung zu ausgehenden Beiträgen hinzu. Dies ist nützlich, wenn dein Server sich auf Inhalte spezialisiert, die andere Server mit einer Inhaltswarnung versehen haben wollen. Anhänge werden auch mit einer Inhaltswarnung versehen.
+        title: Inhaltswarnung für ausgehende Beiträge
+      hide_followers_count:
+        desc_html: Zeige keine Anzahl der Follower*innen auf Profilen.
+        title: Verstecke Anzahl der Follower*innen
+      registrations:
+        invite_text_filter:
+          desc_html: 'Regular Expression, die genutzt wird, um automatisch Registrierungen abzulehnen. Dies kann genutzt werden, um Registrierungsspam zu verringern. Zum Beispiel kann der folgende Filter verwendet werden, um automatisch Registrierungen abzulehnen, die sich auf Blockchain beziehen oder Links enthalten: <code>blockchain|https://</code>'
+          title: Beitrittsfilter
+      show_reblogs_in_public_timelines:
+        desc_html: Zeige geteilte öffentliche Beiträge in der lokalen und föderierten Timeline.
+        title: Zeige geteilte Beiträge in öffentlichen Timelines
+      show_replies_in_public_timelines:
+        desc_html: Zusätlich zu öffentlichen Selbstantworten (Threads), zeige öffentliche Antworten in der lokalen und föderierten Timeline.
+        title: Zeige Antworten in öffentlichen Timelines
+      trending_status_cw:
+        desc_html: Wenn angesagte Beiträge aktiviert sind, erlaube Beiträge mit Inhaltswarnungen. Änderung dieser Einstellung ist nicht rückwirkend.
+        title: Erlaube Beiträge mit Inhaltswarnungen zu trenden
+  auth:
+    captcha_confirmation:
+      hint_html: Nur noch ein Schritt! Um deinen Account zu bestätigen erfordert dieser Server, dass du ein CAPTCHA löst. Du kannst den <a href="/about">Server Administrator kontaktieren</a> falls du Fragen hast oder Hilfe bei der Bestätigung brauchst.
+      title: Account Bestätigung
+  generic:
+    use_this: Nutze dies
+  regex_validator:
+    invalid_regexp: 'Fehler in Regular Expression: %{error}'
+  settings:
+    flavours: Flavours
+  sounds:
+    default: Boop
+    laser: Laser
+  users:
+    invalid_invite_request_text: Dieser Text enthält nicht erlaubte Wörter oder Ausdrücke
+
