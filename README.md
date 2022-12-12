@@ -20,10 +20,10 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 
 
 ### Admin features
-- Add option to limit max number of uses for invites to 1 ([c626e09](https://github.com/polyamspace/mastodon/commit/c626e09c3907e0f1a0b1d1f47aadb2dcb50efc29))
-- Add option to make landing page /about ([25131ba](https://github.com/polyamspace/mastodon/commit/25131baa59caad3976378a91278b6ba30c685274))
-- Add option to disable search for logged out users ([9bcf12b](https://github.com/polyamspace/mastodon/commit/9bcf12bf10e32d41b90f6b0d64613f096f8b8fe7))
-- Add account request text filter ([PR #2](https://github.com/polyamspace/mastodon/pull/2))
+- Add option to limit max number of uses for invites to 1 ([c626e09](https://github.com/polyamspace/mastodon/commit/c626e09c3907e0f1a0b1d1f47aadb2dcb50efc29), [47e57d0](https://github.com/polyamspace/mastodon/pull/13/commits/47e57d09c186196316f113f09150150ddfb9c991))
+- Add option to make landing page /about ([25131ba](https://github.com/polyamspace/mastodon/commit/25131baa59caad3976378a91278b6ba30c685274), [526d437](https://github.com/polyamspace/mastodon/pull/13/commits/526d437af2adda52d55701123b4f2e52aa007516))
+- Add option to disable search for logged out users ([9bcf12b](https://github.com/polyamspace/mastodon/commit/9bcf12bf10e32d41b90f6b0d64613f096f8b8fe7), [09c3650](https://github.com/polyamspace/mastodon/pull/13/commits/09c365022eb7afc80076653d0a852c1a9afcf2ac))
+- Add account request text filter ([PR #2](https://github.com/polyamspace/mastodon/pull/2), [9f55560](https://github.com/polyamspace/mastodon/pull/13/commits/9f55560d7ef3ce9e6a42b95faf59bb6529f41d01))
 - Add dropdown menu item to open admin interface for remote domains ([PR #8](https://github.com/polyamspace/mastodon/pull/8))
 - Add setting to customise favicon ([PR #7](https://github.com/polyamspace/mastodon/pull/7))
 - Add admin user setting override ([PR #9](https://github.com/polyamspace/mastodon/pull/9))
@@ -37,7 +37,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Add missing column header to about ([2c0af93](https://github.com/polyamspace/mastodon/commit/2c0af93e4e8d969861a978e8fc042b77b25faf6d))
 - Add role badges to web interface ([543301a](https://github.com/polyamspace/mastodon/commit/543301a5c09485f91a1ef976f5404182dd2d2354), [d86bef9](https://github.com/polyamspace/mastodon/commit/d86bef912d3a9e76ce79ed5778d83ad60780bcc0), [9edeb60](https://github.com/polyamspace/mastodon/commit/9edeb6087908e21a257854a7424c5e58148e4323))
 - Rename "Publish" to "Toot" ([7357b83](https://github.com/polyamspace/mastodon/commit/7357b8379f05182bf64b6f6e420cf5a93f91820e))
-- Re-add comments to invite form ([e22f6c6](https://github.com/polyamspace/mastodon/commit/e22f6c69aff4a450220e7c83b8181b7c60fbccd4))
+- Re-add comments to invite form ([e22f6c6](https://github.com/polyamspace/mastodon/commit/e22f6c69aff4a450220e7c83b8181b7c60fbccd4), [47e57d0](https://github.com/polyamspace/mastodon/pull/13/commits/47e57d09c186196316f113f09150150ddfb9c991))
 - Use a different icon for threads ([891b870](https://github.com/polyamspace/mastodon/commit/891b870cec03213a561593d83afad9f77b13beb3))
 - Add missing logout link to footer ([99bfd89](https://github.com/polyamspace/mastodon/commit/99bfd89dc9cc54e0c6073e449215e9ef63b84150))
 - Show instance description in about when available ([0084e59](https://github.com/polyamspace/mastodon/commit/0084e592f1cb8061738d5ea81e16a1292457c163))
