@@ -20,26 +20,26 @@
 .status__content a,
 .reply-indicator__content a {
   color: lighten($ui-highlight-color, 12%);
-  text-decoration: underline;
+  text-decoration: none;
 
   &.mention {
     text-decoration: none;
   }
 
   &.mention span {
-    text-decoration: underline;
+    text-decoration: none;
 
     &:hover,
     &:focus,
     &:active {
-      text-decoration: none;
+      text-decoration: underline;
     }
   }
 
   &:hover,
   &:focus,
   &:active {
-    text-decoration: none;
+    text-decoration: underline;
   }
 
   &.status__content__spoiler-link {
@@ -49,12 +49,12 @@
 }
 
 .status__content__read-more-button {
-  text-decoration: underline;
+  text-decoration: none;
 
   &:hover,
   &:focus,
   &:active {
-    text-decoration: none;
+    text-decoration: underline;
   }
 }
 
@@ -195,6 +195,13 @@ body.admin {
 
 .column-link {
   background: $purple3;
+
+  // Fix wrong hover color
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($purple3, 11%);
+  }
 }
 
 // link previews
@@ -469,6 +476,13 @@ a.mention,
   background: $purple2;
 }
 
+// settings
+
+// Fixes Account > Authorized Apps
+.applications-list__item {
+  background: $purple2;
+}
+
 // admin zone
 
 .admin-wrapper .content h2 {
@@ -476,6 +490,10 @@ a.mention,
 }
 
 .admin-wrapper .sidebar-wrapper {
+  background: $purple1;
+}
+
+.admin-wrapper .sidebar-wrapper__inner {
   background: $purple2;
 }
 
@@ -531,10 +549,111 @@ a.mention,
   background: $purple3;
 }
 
+// Fix table in Moderation > Accounts
+.table {
+  &.batch-table {
+    & > thead > tr > th {
+      background: $purple3;
+    }
+  }
+}
+
+.batch-table {
+  &__toolbar {
+    background: $purple2;
+  }
+
+  &__select-all {
+    background: $purple2;
+  }
+
+  &__row {
+    background: darken($purple2, 4%);
+
+    &:hover {
+      background: darken($purple2, 2%);
+    }
+
+    &:nth-child(even) {
+      background: $purple2;
+
+      &:hover {
+        background: lighten($purple2, 2%);
+      }
+    }
+  }
+}
+
+// Fix Audit Log
+.log-entry {
+  background: $purple2;
+}
+
+// Fix Administration > Announcements, reused by Rules, also fixes Filters
+.announcements-list,
+.filters-list {
+  &__item {
+    background: $purple2;
+  }
+}
+
+// Fix reports
+.report-card {
+  background: $purple2;
+
+  &__summary {
+    &__item {
+      &:hover {
+        background: lighten($purple2, 2%);
+      }
+    }
+  }
+}
+
+.report-reason-selector {
+  background: $purple2;
+}
+
+.report-notes {
+  &__item {
+    background: $purple2;
+
+    &:hover {
+      background-color: lighten($purple2, 4%);
+    }
+  }
+}
+
+.account-card {
+  background: $purple2;
+
+  &__header {
+    img {
+      background: darken($purple2, 8%);
+    }
+  }
+
+  &__title {
+    &__avatar {
+      img,
+      .account-avatar {
+        background: darken($purple2, 8%);
+      }
+    }
+  }
+
+  &__bio {
+    &::after {
+      background: linear-gradient(to left, $purple2, transparent);
+    }
+  }
+}
+
 // directory
 
-.accounts-table tbody td {
-  background: $purple3;
+// Fix wrong color in profile directory
+.filter-form {
+  background: $purple2;
 }
 
 .page-header {
@@ -606,15 +725,6 @@ a.mention,
 .status.status-direct:not(.read),
 .account {
   border-bottom: 1px solid lighten($purple2, 8%);
-}
-
-.drawer__inner__mastodon svg#hometownlogo {
-  fill: $ui-primary-color;
-}
-
-.audio-player,
-.audio-player .video-player__controls {
-  background: $ui-base-color;
 }
 
 .video-player__buttons button {
