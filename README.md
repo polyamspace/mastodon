@@ -13,6 +13,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Fix Lint Code Base from failing ([4883cec](https://github.com/polyamspace/mastodon/commit/4883ceca81d5b7909e196727ce75c29fb1c5038f))
 - Fix Vagrantfile ([69de91a](https://github.com/polyamspace/mastodon/commit/69de91a94c3e2f19a5c55722c3cdd639a0a6fb9d))
 - Fix most lint issues ([PR #10](https://github.com/polyamspace/mastodon/pull/10))
+- Fix being unable to react to announcements with keycap number sign emoji ([PR #17](https://github.com/polyamspace/mastodon/pull/17))
 
 
 ### Admin features
