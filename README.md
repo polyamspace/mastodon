@@ -47,3 +47,6 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Add visual indicator that image has alt text ([PR #5](https://github.com/polyamspace/mastodon/pull/5))
 - Fix missing link style in admin.scss ([upstream/#1999](https://github.com/glitch-soc/mastodon/pull/1999))
 - Add page for followed hashtags ([PR #6](https://github.com/polyamspace/mastodon/pull/6))
+
+### Themes
+- Fairy Floss ([PR #15](https://github.com/polyamspace/mastodon/pull/15))
