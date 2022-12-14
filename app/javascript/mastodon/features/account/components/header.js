@@ -355,7 +355,9 @@ class Header extends ImmutablePureComponent {
           <div className='account__header__tabs__name'>
             <h1>
               <span dangerouslySetInnerHTML={displayNameHtml} /> {badge} {roleBadge}
-              <small>@{acct} {lockedIcon}</small>
+              <small>
+                <span>@{acct}</span> {lockedIcon}
+              </small>
             </h1>
           </div>
 
