@@ -10,7 +10,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 
 import { maxChars } from 'flavours/glitch/initial_state';
-import { isMobile } from 'flavours/glitch/is_mobile';
 import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/glitch/utils/react_router';
 
 import AutosuggestInput from '../../../components/autosuggest_input';
@@ -63,13 +62,12 @@ class ComposeForm extends ImmutablePureComponent {
     onChangeSpoilerText: PropTypes.func,
     onPaste: PropTypes.func,
     onPickEmoji: PropTypes.func,
-    showSearch: PropTypes.bool,
+    autoFocus: PropTypes.bool,
     anyMedia: PropTypes.bool,
     isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
     advancedOptions: ImmutablePropTypes.map,
-    layout: PropTypes.string,
     media: ImmutablePropTypes.list,
     sideArm: PropTypes.string,
     sensitive: PropTypes.bool,
@@ -83,7 +81,7 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   static defaultProps = {
-    showSearch: false,
+    autoFocus: false,
   };
 
   state = {
@@ -247,7 +245,7 @@ class ComposeForm extends ImmutablePureComponent {
     let selectionEnd, selectionStart;
 
     //  Caret/selection handling.
-    if (focusDate !== prevProps.focusDate) {
+    if (focusDate && focusDate !== prevProps.focusDate) {
       switch (true) {
       case preselectDate !== prevProps.preselectDate && this.props.isInReply && preselectOnReply:
         selectionStart = text.search(/\s/) + 1;
@@ -280,7 +278,7 @@ class ComposeForm extends ImmutablePureComponent {
         if (spoilerText) {
           spoilerText.focus();
         }
-      } else {
+      } else if (prevProps.spoiler) {
         if (textarea) {
           textarea.focus();
         }
@@ -299,14 +297,13 @@ class ComposeForm extends ImmutablePureComponent {
       advancedOptions,
       intl,
       isSubmitting,
-      layout,
       onChangeSpoilerness,
       onClearSuggestions,
       onFetchSuggestions,
       onPaste,
       privacy,
       sensitive,
-      showSearch,
+      autoFocus,
       sideArm,
       spoiler,
       spoilerText,
@@ -359,7 +356,7 @@ class ComposeForm extends ImmutablePureComponent {
             onSuggestionsClearRequested={onClearSuggestions}
             onSuggestionSelected={this.handleSuggestionSelected}
             onPaste={onPaste}
-            autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
+            autoFocus={autoFocus}
             lang={this.props.lang}
           >
             <EmojiPickerDropdown onPickEmoji={handleEmojiPick} />
