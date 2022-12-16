@@ -124,37 +124,34 @@ class Search extends React.PureComponent {
 
     return (
       <div className='search'>
-        <label>
-          <span style={{ display: 'none' }}>{intl.formatMessage(messages.placeholder)}</span>
-          {signedIn || searchPreview ? (
-            <input
-              ref={this.setRef}
-              className='search__input'
-              type='text'
-              placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
-              value={value || ''}
-              onChange={this.handleChange}
-              onKeyUp={this.handleKeyUp}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-            />
-          ) : (
-            <input
-              ref={this.setRef}
-              className='search__input'
-              type='text'
-              placeholder={intl.formatMessage(messages.placeholderDisabled)}
-              readOnly
-            />
-          )}
-        </label>
+        {signedIn || searchPreview ? (
+          <input
+            ref={this.setRef}
+            className='search__input'
+            type='text'
+            placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
+            aria-label={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
+            value={value}
+            onChange={this.handleChange}
+            onKeyUp={this.handleKeyUp}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+          />
+        ) : (
+          <input
+            ref={this.setRef}
+            className='search__input'
+            type='text'
+            placeholder={intl.formatMessage(messages.placeholderDisabled)}
+            readOnly
+          />
+        )}
 
         <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
           <Icon id='search' className={hasValue ? '' : 'active'} />
           <Icon id='times-circle' className={hasValue ? 'active' : ''} aria-label={intl.formatMessage(messages.placeholder)} />
         </div>
-
-        <Overlay show={expanded && !hasValue} placement='bottom' target={this}>
+        <Overlay show={expanded && !hasValue} placement='bottom' target={this} container={this}>
           <SearchPopout />
         </Overlay>
       </div>
