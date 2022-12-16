@@ -7,6 +7,8 @@ import classnames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
 import { autoPlayGif, languages as preloadedLanguages, translationEnabled } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
+import { convertToChar } from 'flavours/glitch/utils/html';
+import highlightjs from 'highlight.js';
 
 const textMatchesTarget = (text, origin, host) => {
   return (text === origin || text === host
@@ -301,6 +303,27 @@ class StatusContent extends React.PureComponent {
     this.contentsNode = c;
   }
 
+  /**
+   * Highlights code in code tags.\
+   * Uses highlight.js to convert content inside code tags to span elements with class attributes
+   * @param {String} content - String containing html code tags
+   * @returns content with highlighted code inside code tags, or content if not found
+   */
+  highlightCode (content) {
+    // RegEx matches every code tag or block and replaces them with highlighted code if lang defined
+    return content.replace(/((?:<pre>)?<code(?: title="(\w+)?")?>)(.+?)(<\/code>(?:<\/pre>)?)/g, (match, startTags, lang, code, endTags) => {
+      // Unknown, invalid or no language, return content with stripped title
+      if (highlightjs.getLanguage(lang) === undefined) return `${startTags.replace(/<code .+>/g, '<code>')}${code}${endTags}`;
+
+      // Construct a new string replacing content
+      // convertChar is used to convert html entities to their symbols, otherwise something like && would be shown as &amp;&amp;
+      // replace <br> tags with new line, as the highlighter sees them as part of the code
+      // run highlighter on replaced code and re-add <br> tags.
+      // the resulting string becomes: <pre><code title="lang"> + HighlightedCode + </code></pre>
+      return startTags+highlightjs.highlightAuto(convertToChar(code.replace(/<br>/g, '\n')), [lang]).value.replace(/\n/g, '<br>')+endTags;
+    });
+  }
+
   render () {
     const {
       status,
@@ -317,7 +340,7 @@ class StatusContent extends React.PureComponent {
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const renderTranslate = translationEnabled && this.context.identity.signedIn && this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && status.get('language') !== null && intl.locale !== status.get('language');
 
-    const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : status.get('contentHtml') };
+    const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : this.highlightCode(status.get('contentHtml')) };
     const spoilerContent = { __html: status.get('spoilerHtml') };
     const lang = status.get('translation') ? intl.locale : status.get('language');
     const classNames = classnames('status__content', {
