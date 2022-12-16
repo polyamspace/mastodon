@@ -153,7 +153,8 @@ class Sanitize
     MASTODON_OUTGOING ||= freeze_config MASTODON_STRICT.merge(
       attributes: merge(
         MASTODON_STRICT[:attributes],
-        'a' => %w(href rel class title target)
+        'a' => %w(href rel class title target),
+        'code' => %w(title)
       ),
 
       add_attributes: {},
