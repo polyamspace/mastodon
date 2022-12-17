@@ -408,7 +408,7 @@
       text-overflow: ellipsis;
       padding-top: 0;
 
-      &:after {
+      &::after {
         content: "";
         position: absolute;
         top: 0;
@@ -424,11 +424,11 @@
       }
     }
 
-    &:focus > .status__content:after {
+    &:focus > .status__content::after {
       background: linear-gradient(rgba(lighten($ui-base-color, 4%), 0), rgba(lighten($ui-base-color, 4%), 1));
     }
 
-    &.status-direct > .status__content:after {
+    &.status-direct > .status__content::after {
       background: linear-gradient(rgba(lighten($ui-base-color, 8%), 0), rgba(lighten($ui-base-color, 8%), 1));
     }
 
