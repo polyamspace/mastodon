@@ -86,6 +86,11 @@ de:
       title: Account Bestätigung
   generic:
     use_this: Nutze dies
+  notification_mailer:
+    reaction:
+      body: '%{name} hat auf deinen Beitrag reagiert:'
+      subject: '%{name} hat auf deinen Beitrag reagiert'
+      title: Neue Reaktion
   regex_validator:
     invalid_regexp: 'Fehler in Regular Expression: %{error}'
   settings:

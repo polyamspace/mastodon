@@ -29,6 +29,7 @@ de:
         setting_notification_sound: Benachrichtigungston
         setting_skin: Skin
         setting_system_emoji_font: Standardschriftart des Systems für Emojis verwenden (Nur mit Glitch Flavour verfügbar)
+        setting_visible_reactions: Anzahl der sichtbaren Emoji-Reaktionen
       form_admin_settings:
         search_preview: Nicht-authentifizierten Zugriff auf die Suchfunktion gestatten
         trends_as_landing_page: Nutze Trends als Startseite
