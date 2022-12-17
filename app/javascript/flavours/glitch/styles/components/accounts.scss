@@ -771,6 +771,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+
   &__message {
     color: $darker-text-color;
     padding: 8px 0;
@@ -781,6 +782,7 @@
     text-align: center;
     margin-bottom: 16px;
   }
+
   &__action {
     display: flex;
     justify-content: space-between;
