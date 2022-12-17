@@ -44,6 +44,7 @@ class UserSettingsDecorator
     user.settings['use_pending_items']   = use_pending_items_preference if change?('setting_use_pending_items')
     user.settings['trends']              = trends_preference if change?('setting_trends')
     user.settings['crop_images']         = crop_images_preference if change?('setting_crop_images')
+    user.settings['visible_reactions']   = visible_reactions_preference if change?('setting_visible_reactions')
     user.settings['always_send_emails']  = always_send_emails_preference if change?('setting_always_send_emails')
     user.settings['notification_sound']  = notification_sound_preference if change?('setting_notification_sound')
   end
@@ -164,6 +165,10 @@ class UserSettingsDecorator
     boolean_cast_setting 'setting_crop_images'
   end
 
+  def visible_reactions_preference
+    integer_cast_setting('setting_visible_reactions', 0)
+  end
+
   def always_send_emails_preference
     boolean_cast_setting 'setting_always_send_emails'
   end
@@ -174,6 +179,15 @@ class UserSettingsDecorator
 
   def boolean_cast_setting(key)
     ActiveModel::Type::Boolean.new.cast(settings[key])
+  end
+
+  def integer_cast_setting(key, min = nil, max = nil)
+    i = ActiveModel::Type::Integer.new.cast(settings[key])
+    # the cast above doesn't return a number if passed the string "e"
+    i = 0 unless i.is_a? Numeric
+    return min if !min.nil? && i < min
+    return max if !max.nil? && i > max
+    i
   end
 
   def coerced_settings(key)
