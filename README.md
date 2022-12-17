@@ -29,6 +29,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Add exclusive lists ([PR #1](https://github.com/polyamspace/mastodon/pull/1))
 - Add new sounds and allow user to select notification sound ([PR #3](https://github.com/polyamspace/mastodon/pull/3))
 - Add setting to disable RSS feed ([PR #11](https://github.com/polyamspace/mastodon/pull/11))
+- Add syntax highlighting to code blocks ([PR #20](https://github.com/polyamspace/mastodon/pull/20))
 
 ### UI changes
 - Add missing column header to about ([2c0af93](https://github.com/polyamspace/mastodon/commit/2c0af93e4e8d969861a978e8fc042b77b25faf6d))
