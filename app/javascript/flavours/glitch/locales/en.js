@@ -43,7 +43,7 @@ const messages = {
   'home.column_settings.show_direct': 'Show DMs',
 
   'notification.markForDeletion': 'Mark for deletion',
-  'notification.reaction': '{name} reacted to your post',
+  'notification.reaction': '{name} reacted to your toot',
   'notifications.clear': 'Clear all my notifications',
   'notifications.column_settings.reaction': 'Reactions:',
   'notifications.marked_clear_confirmation': 'Are you sure you want to permanently clear all selected notifications?',
@@ -59,11 +59,11 @@ const messages = {
   'compose.attach': 'Attach...',
 
   'advanced_options.local-only.short': 'Local-only',
-  'advanced_options.local-only.long': 'Do not post to other instances',
-  'advanced_options.local-only.tooltip': 'This post is local-only',
+  'advanced_options.local-only.long': 'Do not toot to other instances',
+  'advanced_options.local-only.tooltip': 'This toot is local-only',
   'advanced_options.icon_title': 'Advanced options',
   'advanced_options.threaded_mode.short': 'Threaded mode',
-  'advanced_options.threaded_mode.long': 'Automatically opens a reply on posting',
+  'advanced_options.threaded_mode.long': 'Automatically opens a reply after tooting',
   'advanced_options.threaded_mode.tooltip': 'Threaded mode enabled',
 
   'tooltips.reactions': 'Reactions',
