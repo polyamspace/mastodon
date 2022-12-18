@@ -43,7 +43,7 @@ const messages = {
   'home.column_settings.show_direct': 'Show DMs',
 
   'notification.markForDeletion': 'Mark for deletion',
-  'notification.reaction': '{name} reacted to your post',
+  'notification.reaction': '{name} reacted to your toot',
   'notifications.clear': 'Clear all my notifications',
   'notifications.column_settings.reaction': 'Reactions:',
   'notifications.marked_clear_confirmation': 'Are you sure you want to permanently clear all selected notifications?',
