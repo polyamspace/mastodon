@@ -43,7 +43,6 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Replace "Get the app" with "Documentation" in footer ([b991737](https://github.com/polyamspace/mastodon/commit/b99173737d85ba5a0f881d688f8203c44646c4f1))
 - Remove frontend limit of featured tags ([PR #4](https://github.com/polyamspace/mastodon/pull/4))
 - Add visual indicator that image has alt text ([PR #5](https://github.com/polyamspace/mastodon/pull/5))
-- Fix missing link style in admin.scss ([upstream/#1999](https://github.com/glitch-soc/mastodon/pull/1999))
 - Add page for followed hashtags ([PR #6](https://github.com/polyamspace/mastodon/pull/6))
 - Add styling for glitch-soc label to vanilla flavour ([PR #16](https://github.com/polyamspace/mastodon/pull/16))
 - Rename "post" to "toot" ([PR #23](https://github.com/polyamspace/mastodon/pull/23))
@@ -52,4 +51,5 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Fairy Floss ([PR #15](https://github.com/polyamspace/mastodon/pull/15))
 
 ## Changes now included in upstream
+- Fix missing link style in admin.scss ([upstream/#2007](https://github.com/glitch-soc/mastodon/pull/2007), originally [3675b0b](https://github.com/polyamspace/mastodon/commit/3675b0b21612441c6dfc33265c44b7059b319f44))
 - Fix being unable to react to announcements with keycap number sign emoji ([upstream #2004](https://github.com/glitch-soc/mastodon/pull/2004), originally [PR #17](https://github.com/polyamspace/mastodon/pull/17))
