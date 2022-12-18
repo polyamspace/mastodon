@@ -47,6 +47,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Fix missing link style in admin.scss ([upstream/#1999](https://github.com/glitch-soc/mastodon/pull/1999))
 - Add page for followed hashtags ([PR #6](https://github.com/polyamspace/mastodon/pull/6))
 - Add styling for glitch-soc label to vanilla flavour ([PR #16](https://github.com/polyamspace/mastodon/pull/16))
+- Rename "post" to "toot" ([PR #23](https://github.com/polyamspace/mastodon/pull/23))
 
 ### Themes
 - Fairy Floss ([PR #15](https://github.com/polyamspace/mastodon/pull/15))
