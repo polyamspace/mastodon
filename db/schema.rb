@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_17_125117) do
+ActiveRecord::Schema.define(version: 2022_12_18_014608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1245,9 +1245,9 @@ ActiveRecord::Schema.define(version: 2022_12_17_125117) do
   add_foreign_key "status_edits", "statuses", on_delete: :cascade
   add_foreign_key "status_pins", "accounts", name: "fk_d4cb435b62", on_delete: :cascade
   add_foreign_key "status_pins", "statuses", on_delete: :cascade
-  add_foreign_key "status_reactions", "accounts"
-  add_foreign_key "status_reactions", "custom_emojis"
-  add_foreign_key "status_reactions", "statuses"
+  add_foreign_key "status_reactions", "accounts", on_delete: :cascade
+  add_foreign_key "status_reactions", "custom_emojis", on_delete: :cascade
+  add_foreign_key "status_reactions", "statuses", on_delete: :cascade
   add_foreign_key "status_stats", "statuses", on_delete: :cascade
   add_foreign_key "status_trends", "accounts", on_delete: :cascade
   add_foreign_key "status_trends", "statuses", on_delete: :cascade
