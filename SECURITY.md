@@ -1,5 +1,13 @@
 # Security Policy
 
+If you believe you've identified a vulnerability specific to polyam.space or its features, please send a detailed description to <polyam.space@proton.me>
+
+Otherwise, please refer to the vanilla policy below:
+
+<blockquote>
+
+# Security Policy
+
 If you believe you've identified a security vulnerability in Mastodon (a bug that allows something to happen that shouldn't be possible), you can reach us at <security@joinmastodon.org>.
 
 You should *not* report such issues on GitHub or in other public spaces to give us time to publish a fix for the issue without exposing Mastodon's users to increased risk.
@@ -15,3 +23,5 @@ A "vulnerability in Mastodon" is a vulnerability in the code distributed through
 | 4.0.x   | Yes       |
 | 3.5.x   | Yes       |
 | < 3.5   | No        |
+
+</blockquote>
