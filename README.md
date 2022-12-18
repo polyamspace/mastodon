@@ -13,7 +13,6 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Fix Lint Code Base from failing ([4883cec](https://github.com/polyamspace/mastodon/commit/4883ceca81d5b7909e196727ce75c29fb1c5038f), [bdea73c](https://github.com/polyamspace/mastodon/commit/bdea73c2eea74b704583859b27c7438db5739ac6))
 - Fix Vagrantfile ([69de91a](https://github.com/polyamspace/mastodon/commit/69de91a94c3e2f19a5c55722c3cdd639a0a6fb9d))
 - Fix most lint issues ([PR #10](https://github.com/polyamspace/mastodon/pull/10), [PR #22](https://github.com/polyamspace/mastodon/pull/22))
-- Fix being unable to react to announcements with keycap number sign emoji ([PR #17](https://github.com/polyamspace/mastodon/pull/17))
 
 
 ### Admin features
@@ -51,3 +50,6 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 
 ### Themes
 - Fairy Floss ([PR #15](https://github.com/polyamspace/mastodon/pull/15))
+
+## Changes now included in upstream
+- Fix being unable to react to announcements with keycap number sign emoji ([upstream #2004](https://github.com/glitch-soc/mastodon/pull/2004), originally [PR #17](https://github.com/polyamspace/mastodon/pull/17))
