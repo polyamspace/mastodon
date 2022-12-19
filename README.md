@@ -46,6 +46,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Add page for followed hashtags ([PR #6](https://github.com/polyamspace/mastodon/pull/6))
 - Add styling for glitch-soc label to vanilla flavour ([PR #16](https://github.com/polyamspace/mastodon/pull/16))
 - Rename "post" to "toot" ([PR #23](https://github.com/polyamspace/mastodon/pull/23))
+- Replace emoji picker emoji with a blobcat ([PR #24](https://github.com/polyamspace/mastodon/pull/24))
 
 ### Themes
 - Fairy Floss ([PR #15](https://github.com/polyamspace/mastodon/pull/15))
