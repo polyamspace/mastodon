@@ -294,6 +294,10 @@ body.admin {
         background: linear-gradient(rgba($purple2, 0), rgba($purple2, 1));
       }
     }
+
+    &:focus > .status__content::after {
+      background: linear-gradient(rgba(lighten($purple2, 4%), 0), rgba(lighten($purple2, 4%), 1));
+    }
   }
 }
 
@@ -308,6 +312,10 @@ body.admin {
       &::after {
         background: linear-gradient(rgba($purple1, 0), rgba($purple1, 1));
       }
+    }
+
+    &:focus > .status__content::after {
+      background: linear-gradient(rgba(lighten($ui-base-color, 12%), 0), rgba(lighten($ui-base-color, 12%), 1));
     }
   }
 }
