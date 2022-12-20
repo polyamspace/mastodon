@@ -20,6 +20,7 @@ import { Helmet } from 'react-helmet';
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
+  request_follow: { id: 'account.request_follow', defaultMessage: 'Request follow' },
   cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Withdraw follow request' },
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
@@ -197,7 +198,7 @@ class Header extends ImmutablePureComponent {
       } else if (account.getIn(['relationship', 'requested'])) {
         actionBtn = <Button className={classNames('logo-button', { 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']), 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
+        actionBtn = <Button className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']), 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : account.get('locked') ? messages.request_follow : messages.follow)} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }
