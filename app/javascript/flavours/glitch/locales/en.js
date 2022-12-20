@@ -181,6 +181,7 @@ const messages = {
   'account_note.glitch_placeholder': 'No comment provided',
   'account.joined': 'Joined {date}',
   'account.follows': 'Follows',
+  'account.request_follow': 'Request follow',
 
   'home.column_settings.advanced': 'Advanced',
   'home.column_settings.filter_regex': 'Filter out by regular expressions',
