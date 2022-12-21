@@ -23,6 +23,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Add dropdown menu item to open admin interface for remote domains ([PR #8](https://github.com/polyamspace/mastodon/pull/8))
 - Add setting to customise favicon ([PR #7](https://github.com/polyamspace/mastodon/pull/7))
 - Add admin user setting override ([PR #9](https://github.com/polyamspace/mastodon/pull/9))
+- Add setting to overwrite publish button text ([PR #27](https://github.com/polyamspace/mastodon/pull/27))
 
 ### Features
 - Add exclusive lists ([PR #1](https://github.com/polyamspace/mastodon/pull/1))
