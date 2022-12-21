@@ -5,6 +5,7 @@ import React from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
 import { length } from 'stringz';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { publishButtonText as customPublishButtonText } from 'flavours/glitch/initial_state';
 
 //  Components.
 import Button from 'flavours/glitch/components/button';
@@ -56,17 +57,18 @@ class Publisher extends ImmutablePureComponent {
     const privacyIcons = { direct: 'envelope', private: 'lock', public: 'globe', unlisted: 'unlock' };
 
     let publishText;
+    let publishButtonText = customPublishButtonText || intl.formatMessage(messages.publish);
     if (isEditing) {
       publishText = intl.formatMessage(messages.saveChanges);
     } else if (privacy === 'private' || privacy === 'direct') {
       const iconId = privacyIcons[privacy];
       publishText = (
         <span>
-          <Icon id={iconId} /> {intl.formatMessage(messages.publish)}
+          <Icon id={iconId} /> {publishButtonText}
         </span>
       );
     } else {
-      publishText = privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
+      publishText = privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: publishButtonText }) : publishButtonText;
     }
 
     return (
@@ -79,7 +81,7 @@ class Publisher extends ImmutablePureComponent {
               onClick={onSecondarySubmit}
               style={{ padding: null }}
               text={<Icon id={privacyIcons[sideArm]} />}
-              title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${sideArm}.short` })}`}
+              title={`${publishButtonText}: ${intl.formatMessage({ id: `privacy.${sideArm}.short` })}`}
             />
           </div>
         ) : null}
@@ -87,7 +89,7 @@ class Publisher extends ImmutablePureComponent {
           <Button
             className='primary'
             text={publishText}
-            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${privacy}.short` })}`}
+            title={`${publishButtonText}: ${intl.formatMessage({ id: `privacy.${privacy}.short` })}`}
             onClick={this.handleSubmit}
             disabled={disabled}
           />

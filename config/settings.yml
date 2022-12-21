@@ -87,6 +87,7 @@ defaults: &defaults
   backups_retention_period: 7
   search_preview: false
   invite_text_filter: ''
+  publish_button_text: ''
 
 development:
   <<: *defaults
