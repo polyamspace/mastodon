@@ -13,6 +13,7 @@ en:
         setting_norss: Mastodon offers an RSS feed of all public toots by default.
         setting_skin: Reskins the selected Mastodon flavour
       form_admin_settings:
+        publish_button_text: Overrides the text of the publish button.
         search_preview: Logged out visitors will be able to use the search bar.
         trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       invite:
@@ -31,6 +32,7 @@ en:
         setting_system_emoji_font: Use system's default font for emojis (applies to Glitch flavour only)
         setting_visible_reactions: Number of visible emoji reactions
       form_admin_settings:
+        publish_button_text: Publish button text
         search_preview: Allow unauthenticated access to search
         trends_as_landing_page: Use trends as the landing page
       notification_emails:

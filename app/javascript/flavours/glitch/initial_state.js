@@ -86,6 +86,7 @@
  * @property {number} visible_reactions
  * @property {boolean} translation_enabled
  * @property {object} local_settings
+ * @property {string} publish_button_text
  */
 
 /**
@@ -150,6 +151,7 @@ export const version = getMeta('version');
 export const visibleReactions = getMeta('visible_reactions');
 export const translationEnabled = getMeta('translation_enabled');
 export const languages = initialState?.languages;
+export const publishButtonText = getMeta('publish_button_text');
 
 // Glitch-soc-specific settings
 export const maxChars = (initialState && initialState.max_toot_chars) || 500;
