@@ -53,11 +53,9 @@ en:
       discovery:
         rss: RSS
         search: Search
-      enable_keybase:
-        desc_html: Allow your users to prove their identity via keybase
-        title: Enable keybase integration
       flavour_and_skin:
-        title: Flavour and skin
+        desc_html: Do not show followers count on user profiles
+        title: Hide followers count
       other:
         preamble: Various glitch-soc settings not fitting in other categories.
         title: Other

@@ -36,6 +36,6 @@ en:
         search_preview: Allow unauthenticated access to search
         trends_as_landing_page: Use trends as the landing page
       notification_emails:
-        trending_tag: New trending tag requires review
         trending_link: New trending link requires review
         trending_status: New trending toot requires review
+        trending_tag: New trending tag requires review
