@@ -44,6 +44,7 @@ class Form::AdminSettings
     content_cache_retention_period
     backups_retention_period
     search_preview
+    publish_button_text
   ).freeze
 
   INTEGER_KEYS = %i(
