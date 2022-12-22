@@ -1,0 +1,11 @@
+---
+fr:
+  admin:
+    settings:
+      outgoing_spoilers:
+        desc_html: Ajouter un avertissement de contenu à tous les messages lorsqu'ils sont fédérés s'ils n'en possèdent pas déjà. Cela peut être utile si votre serveur est spécialisé dans un type de contenu sur lequel les autres serveurs pourraient vouloir un Avertissement de Contenu. Les médias seront également marqués comme sensibles.
+        title: Avertissement de contenu pour les messages sortants
+  appearance:
+    localization:
+      glitch_guide_link: https://fr.crowdin.com/project/glitch-soc
+      glitch_guide_link_text: Et c'est pareil avec glitch-soc !
