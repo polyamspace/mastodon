@@ -54,8 +54,7 @@ en:
         rss: RSS
         search: Search
       flavour_and_skin:
-        desc_html: Do not show followers count on user profiles
-        title: Hide followers count
+        title: Flavour and skin
       hide_followers_count:
         desc_html: Do not show followers count on user profiles
         title: Hide followers count
@@ -65,10 +64,6 @@ en:
       outgoing_spoilers:
         desc_html: When federating toots, add this content warning to toots that do not have one. It is useful if your server is specialized in content other servers might want to have under a Content Warning. Media will also be marked as sensitive.
         title: Content warning for outgoing toots
-      registrations:
-        invite_text_filter:
-          desc_html: 'Regular expression used to automatically reject users based on their invite request text. This can be used to cut down on registration spam. For instance, to reject registrations refering to blockchains or featuring links, you can use the following filter: <code>blockchain|https://</code>'
-          title: Registration text filter
       show_reblogs_in_public_timelines:
         desc_html: Show public boosts of public toots in local and public timelines.
         title: Show boosts in public timelines
