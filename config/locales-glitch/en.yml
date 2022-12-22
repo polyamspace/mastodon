@@ -7,9 +7,9 @@ en:
         destroy_registration_filter: Destroy Registration Text Filter
         update_registration_filter: Update Registration Text Filter
       actions:
-        create_registration_filter_html: '%{name} blocked registrations with request text matching %{target}'
-        destroy_registration_filter_html: '%{name} unblocked registrations with request text matching %{target}'
-        update_registration_filter_html: '%{name} updated registration filter blocking request text matching %{target}'
+        create_registration_filter_html: "%{name} blocked registrations with request text matching %{target}"
+        destroy_registration_filter_html: "%{name} unblocked registrations with request text matching %{target}"
+        update_registration_filter_html: "%{name} updated registration filter blocking request text matching %{target}"
     custom_emojis:
       batch_copy_error: 'An error occurred while copying some of the selected emoji: %{message}'
       batch_error: 'An error occurred: %{message}'
@@ -53,24 +53,17 @@ en:
       discovery:
         rss: RSS
         search: Search
-      enable_keybase:
-        desc_html: Allow your users to prove their identity via keybase
-        title: Enable keybase integration
       flavour_and_skin:
         title: Flavour and skin
+      hide_followers_count:
+        desc_html: Do not show followers count on user profiles
+        title: Hide followers count
       other:
         preamble: Various glitch-soc settings not fitting in other categories.
         title: Other
       outgoing_spoilers:
         desc_html: When federating toots, add this content warning to toots that do not have one. It is useful if your server is specialized in content other servers might want to have under a Content Warning. Media will also be marked as sensitive.
         title: Content warning for outgoing toots
-      hide_followers_count:
-        desc_html: Do not show followers count on user profiles
-        title: Hide followers count
-      registrations:
-        invite_text_filter:
-          desc_html: 'Regular expression used to automatically reject users based on their invite request text. This can be used to cut down on registration spam. For instance, to reject registrations refering to blockchains or featuring links, you can use the following filter: <code>blockchain|https://</code>'
-          title: Registration text filter
       show_reblogs_in_public_timelines:
         desc_html: Show public boosts of public toots in local and public timelines.
         title: Show boosts in public timelines

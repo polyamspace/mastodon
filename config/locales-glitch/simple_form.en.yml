@@ -25,8 +25,8 @@ en:
         setting_default_content_type_markdown: Markdown
         setting_default_content_type_plain: Plain text
         setting_favourite_modal: Show confirmation dialog before favouriting (applies to Glitch flavour only)
-        setting_norss: Disable RSS feed for your public toots
         setting_hide_followers_count: Hide your followers count
+        setting_norss: Disable RSS feed for your public toots
         setting_notification_sound: Notification Sound
         setting_skin: Skin
         setting_system_emoji_font: Use system's default font for emojis (applies to Glitch flavour only)
@@ -36,6 +36,6 @@ en:
         search_preview: Allow unauthenticated access to search
         trends_as_landing_page: Use trends as the landing page
       notification_emails:
-        trending_tag: New trending tag requires review
         trending_link: New trending link requires review
         trending_status: New trending toot requires review
+        trending_tag: New trending tag requires review
