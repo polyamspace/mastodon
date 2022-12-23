@@ -1,3 +1,9 @@
 module.exports = {
-  singleQuote: true
+  singleQuote: true,
+  overrides: [{
+    files: 'config/i18n-tasks.yml',
+    options: {
+      printWidth: 90
+    }
+  }]
 }
