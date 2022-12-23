@@ -616,6 +616,13 @@
   width: 23.15px;
 }
 
+.status__action-bar-timestamp {
+  flex-grow: 1;
+  text-align: end;
+  display: flex;
+  overflow: hidden;
+}
+
 .detailed-status__action-bar-dropdown {
   flex: 1 1 auto;
   display: flex;

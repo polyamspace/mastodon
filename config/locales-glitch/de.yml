@@ -1,1 +1,93 @@
+---
 de:
+  admin:
+    action_logs:
+      action_types:
+        create_registration_filter: Erstelle Beitrittsfilter
+        destroy_registration_filter: Entferne Beitrittsfilter
+        update_registration_filter: Aktualisiere Beitrittsfilter
+      actions:
+        create_registration_filter_html: "%{name} erstellte einen neuen Beitrittsfilter %{target}"
+        destroy_registration_filter_html: "%{name} entfernte Beitrittsfilter %{target}"
+        update_registration_filter_html: "%{name} aktualisierte Beitrittsfilter %{target}"
+    custom_emojis:
+      batch_copy_error: 'Fehler ist beim Kopieren einiger der ausgewählten Emoji aufgetreten: %{message}'
+      batch_error: 'Ein Fehler ist aufgetreten: %{message}'
+    registration_filters:
+      add_new: Erstelle neuen Filter
+      created_msg: Beitrittsfilter erfolgreich erstellt!
+      delete: Entfernen
+      description_html: Beitrittsfilter erlauben dir automatisch neue Registrierungen aufgrund des Grundes des Beitritts, also die Antwort auf “Warum möchtest du beitreten?”, abzulehnen. Dies kann genutzt werden um Registrierungsspam zu verringern.
+      destroyed_msg: Beitrittsfilter erfolgreich entfernt!
+      edit:
+        title: Bearbeite Beitrittsfilter
+      empty: Keine Beitrittsfilter gefunden.
+      new:
+        create: Erstelle Beitrittsfilter
+        title: Neuer Beitrittsfilter
+      phrase: Schlagwort, Ausdruck oder Regular Expression
+      phrase_hint: Verbiete die Registrierung von neuen Nutzer*innen, dessen Antwort auf die “Warum möchtest du beitreten?” Eingabe dieses Schlagwort, diesen Ausdruck oder Regular Expression enthält.
+      title: Filter für Beitrittsgrund
+      type:
+        title: Filter Art
+      types:
+        regexp: Regular Expression
+        regexp_hint: Nutze Regular Expressions wenn du erweiterte Schlagwörter verwenden möchtest.
+        text: Klartext
+        text_hint: Nutze dies für simple Schlagwörter und wenn du dich nicht mit Regular Expressions auskennst.
+      updated_msg: Beitrittsfilter erfolgreich bearbeitet!
+    roles:
+      privileges:
+        change_max_use: Ändere maximale Verwendung
+        change_max_use_description: Erlaubt Nutzer*innen die maximale Anzahl Verwendungen von Einladungen zu ändern.
+    settings:
+      captcha_enabled:
+        desc_html: Dies beruht auf externen Skripts von hCaptcha, was Sicherheits- und Datenschutz-Bedenken auslösen kann. Zusätzlich <strong>kann das den Registrierungsprozess für manche (besonders behinderte) Leute signifikant weniger zugänglich machen</strong>. Aus diesen Gründen, bitte ziehe alternative Maßnahmen, wie Zulassungs- oder Einladungs-basierte Registrierung, in Erwägung.<br>Nutzer, die durch eine Einladung mit eingeschränkter Verwendungsanzahl eingeladen wurden, werden kein CAPTCHA lösen müssen
+        title: Neue Benutzer sollen ein CAPTCHA lösen müssen, um ihr Konto zu bestätigen
+      default_show_application:
+        desc_html: Beeinflusst alle Nutzer*innen, die diese Einstellung nicht selbst geändert haben.
+        title: Anwendung, die zum erstellen von Beiträgen genutzt wird, anzeigen
+      discovery:
+        rss: RSS
+        search: Suche
+      flavour_and_skin:
+        title: Variante und Skin
+      hide_followers_count:
+        desc_html: Follower nicht auf Nutzerprofilen anzeigen
+        title: Anzahl der Follower verbergen
+      other:
+        preamble: Verschiedene glitch-soc-Einstellungen, die nicht in andere Kategorien passen.
+        title: Sonstiges
+      outgoing_spoilers:
+        desc_html: Füge diese Inhaltswarnung bei föderierten Toots hinzu, wenn sie noch keine haben. Nützlich, wenn dein Server auf bestimmte Inhalte spezialisiert ist, die andere Server hinter einer Inhaltswarnung haben wollen. Medien werden auch als empfindlich markiert werden.
+        title: Inhaltswarnung für ausgehende Toots
+      show_reblogs_in_public_timelines:
+        desc_html: Zeige öffentlich geteilte Toots in lokalen und öffentlichen Timelines.
+        title: Zeige geteilte Toots in öffentlichen Timelines
+      show_replies_in_public_timelines:
+        desc_html: Neben öffentlichen Selbst-Antworten (Threads), öffentliche Antworten in lokalen und öffentlichen Timelines anzeigen.
+        title: Antworten in öffentlichen Timelines anzeigen
+      trending_status_cw:
+        desc_html: Erlaube Posts mit Inhaltswarnungen zu trenden, wenn angesagte Beiträge aktiviert sind. Änderungen an dieser Einstellung sind nicht rückwirkend.
+        title: Erlaube Posts mit Inhaltswarnungen zu trenden
+  appearance:
+    localization:
+      glitch_guide_link: https://crowdin.com/project/glitch-soc
+      glitch_guide_link_text: Und auch für glitch-soc!
+  auth:
+    captcha_confirmation:
+      hint_html: Nur noch ein weiterer Schritt! Um dein Konto zu bestätigen, erfordert dieser Server das Lösen eines CAPTCHA von dir. Bei Fragen oder Problemen mit der Bestätigung kannst du <a href="/about/more">den Server-Administrator kontaktieren</a>.
+      title: Benutzer-Verifizierung
+  generic:
+    use_this: Benutze das
+  notification_mailer:
+    reaction:
+      body: "%{name} hat auf deinen Beitrag reagiert:"
+      subject: "%{name} hat auf deinen Beitrag reagiert"
+      title: Neue Reaktion
+  regex_validator:
+    invalid_regexp: 'Fehler in Regular Expression: %{error}'
+  settings:
+    flavours: Varianten
+  users:
+    invalid_invite_request_text: Dieser Text enthält nicht erlaubte Wörter oder Ausdrücke
