@@ -203,7 +203,7 @@ class ActionBar extends React.PureComponent {
             });
           }
         }
-        if ((permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
+        if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
           if (instanceAdminLink !== undefined) {
             const domain = status.getIn(['account', 'acct']).split('@')[1];
             menu.push({
