@@ -51,6 +51,7 @@ class DetailedStatus extends ImmutablePureComponent {
     onReactionAdd: PropTypes.func.isRequired,
     onReactionRemove: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    onOpenAltText: PropTypes.func.isRequired,
   };
 
   state = {
@@ -81,6 +82,12 @@ class DetailedStatus extends ImmutablePureComponent {
 
   handleOpenVideo = (options) => {
     this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), options);
+  }
+
+  handleAltClick = (index) => {
+    const { status } = this.props;
+
+    this.props.onOpenAltText(status.get('id'), status.getIn(['media_attachments', index ? index : 0]));
   }
 
   _measureHeight (heightJustChanged) {
@@ -183,6 +190,7 @@ class DetailedStatus extends ImmutablePureComponent {
             blurhash={attachment.get('blurhash')}
             height={150}
             onToggleVisibility={this.props.onToggleMediaVisibility}
+            onOpenAltText={this.props.onOpenAltText}
           />,
         );
         mediaIcons.push('music');
@@ -204,6 +212,7 @@ class DetailedStatus extends ImmutablePureComponent {
             autoplay
             visible={this.props.showMedia}
             onToggleVisibility={this.props.onToggleMediaVisibility}
+            onOpenAltText={this.props.onOpenAltText}
           />,
         );
         mediaIcons.push('video-camera');
@@ -219,6 +228,7 @@ class DetailedStatus extends ImmutablePureComponent {
             onOpenMedia={this.props.onOpenMedia}
             visible={this.props.showMedia}
             onToggleVisibility={this.props.onToggleMediaVisibility}
+            onOpenAltText={this.props.onOpenAltText}
           />,
         );
         mediaIcons.push('picture-o');

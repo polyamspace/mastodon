@@ -200,6 +200,7 @@
   "status.react": "React",
   "status.sensitive_toggle": "Click to view",
   "status.uncollapse": "Uncollapse",
+  "video.alt": "Show alt-text",
   "web_app_crash.change_your_settings": "Change your {settings}",
   "web_app_crash.content": "You could try any of the following:",
   "web_app_crash.debug_info": "Debug information",
