@@ -44,6 +44,7 @@ class Item extends React.PureComponent {
     displayWidth: PropTypes.number,
     visible: PropTypes.bool.isRequired,
     autoplay: PropTypes.bool,
+    onAltClick: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -90,6 +91,15 @@ class Item extends React.PureComponent {
       onClick(index);
     }
 
+    e.stopPropagation();
+  }
+
+  handleAltClick = (e) => {
+    const { index, onAltClick } = this.props;
+
+    onAltClick(index);
+
+    // Prevents opening of media modal
     e.stopPropagation();
   }
 
@@ -150,6 +160,7 @@ class Item extends React.PureComponent {
     }
 
     let thumbnail = '';
+    let altButton = (<button type='button' className='media-gallery__alt__button' onClick={this.handleAltClick}><span>ALT</span></button>);
 
     if (attachment.get('type') === 'unknown') {
       return (
@@ -198,7 +209,10 @@ class Item extends React.PureComponent {
             style={{ objectPosition: letterbox ? null : `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
           />
-          {attachment.get('description') ? (<span className='media-gallery__gifv__label'>ALT</span>) : null}
+          {attachment.get('description') ? (
+            <div className='media-gallery__label-container'>
+              {altButton}
+            </div>) : null}
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
@@ -221,7 +235,10 @@ class Item extends React.PureComponent {
             muted
           />
 
-          <span className='media-gallery__gifv__label'>GIF</span>
+          <div className='media-gallery__label-container'>
+            <span className='media-gallery__gifv__label'>GIF</span>
+            {attachment.get('description') ? altButton : null}
+          </div>
         </div>
       );
     }
@@ -260,6 +277,7 @@ class MediaGallery extends React.PureComponent {
     visible: PropTypes.bool,
     autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
+    onOpenAltText: PropTypes.func,
   };
 
   static defaultProps = {
@@ -314,6 +332,10 @@ class MediaGallery extends React.PureComponent {
     this.props.onOpenMedia(this.props.media, index);
   }
 
+  handleAltClick = (index) => {
+    this.props.onOpenAltText(index);
+  }
+
   handleRef = (node) => {
     this.node = node;
 
@@ -365,9 +387,9 @@ class MediaGallery extends React.PureComponent {
     }
 
     if (this.isStandaloneEligible()) {
-      children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} displayWidth={width} visible={visible} />;
+      children = <Item standalone autoplay={autoplay} onClick={this.handleClick} onAltClick={this.handleAltClick} attachment={media.get(0)} displayWidth={width} visible={visible} />;
     } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} size={size} letterbox={letterbox} displayWidth={width} visible={visible || uncached} />);
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} onAltClick={this.handleAltClick} attachment={attachment} index={i} size={size} letterbox={letterbox} displayWidth={width} visible={visible || uncached} />);
     }
 
     if (uncached) {

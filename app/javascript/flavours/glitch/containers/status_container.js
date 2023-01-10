@@ -219,6 +219,10 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     dispatch(openModal('VIDEO', { statusId, media, options }));
   },
 
+  onOpenAltText (statusId, media) {
+    dispatch(openModal('ALTTEXT', { statusId, media }));
+  },
+
   onBlock (status) {
     const account = status.get('account');
     dispatch(initBlockModal(account));

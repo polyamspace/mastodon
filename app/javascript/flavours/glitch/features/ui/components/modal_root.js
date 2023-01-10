@@ -16,6 +16,7 @@ import ConfirmationModal from './confirmation_modal';
 import FocalPointModal from './focal_point_modal';
 import DeprecatedSettingsModal from './deprecated_settings_modal';
 import ImageModal from './image_modal';
+import AltTextModal from './alttext_modal';
 import {
   OnboardingModal,
   MuteModal,
@@ -60,6 +61,7 @@ const MODAL_COMPONENTS = {
   'SUBSCRIBED_LANGUAGES': SubscribedLanguagesModal,
   'INTERACTION': InteractionModal,
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
+  'ALTTEXT': () => Promise.resolve({ default: AltTextModal }),
 };
 
 export default class ModalRoot extends React.PureComponent {
