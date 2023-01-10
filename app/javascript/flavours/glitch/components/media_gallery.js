@@ -97,6 +97,10 @@ class Item extends React.PureComponent {
   handleAltClick = (e) => {
     const { index, onAltClick } = this.props;
 
+    // prevent image to open in a new tab
+    e.preventDefault();
+
+    // open modal
     onAltClick(index);
 
     // Prevents opening of media modal
