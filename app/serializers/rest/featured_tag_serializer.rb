@@ -17,10 +17,6 @@ class REST::FeaturedTagSerializer < ActiveModel::Serializer
     object.display_name
   end
 
-  def statuses_count
-    object.statuses_count.to_s
-  end
-
   def last_status_at
     object.last_status_at&.to_date&.iso8601
   end
