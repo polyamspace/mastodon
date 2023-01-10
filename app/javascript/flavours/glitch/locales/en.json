@@ -187,7 +187,6 @@
   "settings.tag_misleading_links.hint": "Add a visual indication with the link target host to every link not mentioning it explicitly",
   "settings.wide_view": "Wide view (Desktop mode only)",
   "settings.wide_view_hint": "Stretches columns to better fill the available space.",
-  "status.admin_domain": "Open moderation interface for {domain}",
   "status.collapse": "Collapse",
   "status.has_audio": "Features attached audio files",
   "status.has_pictures": "Features attached pictures",
