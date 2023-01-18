@@ -15,7 +15,6 @@ en:
       form_admin_settings:
         publish_button_text: Overrides the text of the publish button.
         search_preview: Logged out visitors will be able to use the search bar.
-        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       invite:
         comment: Optional. You can enter for whom the invite is for, or reason for creating it
     labels:
@@ -34,7 +33,6 @@ en:
       form_admin_settings:
         publish_button_text: Publish button text
         search_preview: Allow unauthenticated access to search
-        trends_as_landing_page: Use trends as the landing page
       notification_emails:
         trending_link: New trending link requires review
         trending_status: New trending toot requires review
