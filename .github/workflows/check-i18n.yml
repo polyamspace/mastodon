@@ -2,9 +2,9 @@ name: Check i18n
 
 on:
   push:
-    branches: [main, v4.0.x]
+    branches: [main, v4.1.x]
   pull_request:
-    branches: [main, v4.0.x]
+    branches: [main, v4.1.x]
 
 env:
   RAILS_ENV: test

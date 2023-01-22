@@ -84,8 +84,8 @@ if ! sudo -u "$MASTODONUSER" git config remote.polyam.url > /dev/null;then
     echo "Adding polyam remote..."
     sudo -u "$MASTODONUSER" git remote add polyam https://github.com/polyamspace/mastodon.git
     sudo -u "$MASTODONUSER" git fetch polyam
-    echo "Checking out polyam/v4.0.x..."
-    sudo -u "$MASTODONUSER" git checkout polyam/v4.0.x
+    echo "Checking out polyam/v4.1.x..."
+    sudo -u "$MASTODONUSER" git checkout polyam/v4.1.x
 fi
 
 # Fetch and pull new code from remote
