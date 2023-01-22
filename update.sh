@@ -24,14 +24,17 @@ print_help()
     echo "Options:"
     echo "-h                    print this help and exit"
     echo "-u [USER]             run commands as user"
+    echo "-b [BRANCH]           branch to pull"
     echo "-l                    use openssl-legacy-provider node option for openssl3 systems"
     echo "--discard-changes     discard any local changes instead of stashing them"
     echo "--skip-migration      skip db migration"
     echo "--skip-precompile     skip precompiling assets"
 }
 
-OPTIONS=hu:l
-LONGOPTS=help,user:,legacy,discard-changes,skip-migration,skip-precompile
+BRANCH=v4.1.x
+
+OPTIONS=hu:b:l
+LONGOPTS=help,user:,branch:,legacy,discard-changes,skip-migration,skip-precompile
 
 ! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 # Check if arguments have been parsed successfully
@@ -51,6 +54,9 @@ while true;do
             exit;;
         -u|--user)
             MASTODONUSER="$2"
+            shift 2;;
+        -b|--branch)
+            BRANCH="$2"
             shift 2;;
         -l|--legacy)
             LEGACY=true
@@ -79,17 +85,14 @@ if ! id "$MASTODONUSER" &>/dev/null; then
     exit 2
 fi
 
-# Check if remote exists and if not add it and checkout latest branch
+# Check if remote exists and if not add it
 if ! sudo -u "$MASTODONUSER" git config remote.polyam.url > /dev/null;then
     echo "Adding polyam remote..."
     sudo -u "$MASTODONUSER" git remote add polyam https://github.com/polyamspace/mastodon.git
-    sudo -u "$MASTODONUSER" git fetch polyam
-    echo "Checking out polyam/v4.1.x..."
-    sudo -u "$MASTODONUSER" git checkout polyam/v4.1.x
 fi
 
 # Fetch and pull new code from remote
-echo "Getting new code..."
+echo "Fetching new code..."
 sudo -u "$MASTODONUSER" git fetch polyam
 
 if [[ ! "$DISCARD" ]];then
@@ -98,6 +101,12 @@ if [[ ! "$DISCARD" ]];then
 else
     # discards any local changes
     sudo -u "$MASTODONUSER" git restore .
+fi
+
+# Switch to branch if it differs from current branch
+if [[ "$(sudo -u "$MASTODONUSER" git branch --show-current)" != "$BRANCH" ]]; then
+    echo "Checking out polyam/$BRANCH..."
+    sudo -u "$MASTODONUSER" git checkout polyam/"$BRANCH"
 fi
 
 sudo -u "$MASTODONUSER" git pull polyam
