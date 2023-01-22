@@ -109,7 +109,7 @@ if [[ "$(sudo -u "$MASTODONUSER" git branch --show-current)" != "$BRANCH" ]]; th
     sudo -u "$MASTODONUSER" git checkout polyam/"$BRANCH"
 fi
 
-sudo -u "$MASTODONUSER" git pull polyam
+sudo -u "$MASTODONUSER" git pull polyam "$BRANCH"
 
 # Install dependencies
 echo "Installing dependencies..."
