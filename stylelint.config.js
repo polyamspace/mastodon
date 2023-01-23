@@ -4,8 +4,6 @@ module.exports = {
     'app/javascript/styles/mastodon/reset.scss',
     'app/javascript/flavours/glitch/styles/reset.scss',
     'app/javascript/styles/win95.scss',
-    'app/javascript/flavours/glitch/styles/highlight.scss',
-    'app/javascript/flavours/glitch/styles/mastodon-light/highlight.scss',
     'node_modules/**/*',
     'vendor/**/*',
   ],
