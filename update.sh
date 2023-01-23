@@ -103,13 +103,14 @@ else
     sudo -u "$MASTODONUSER" git restore .
 fi
 
-# Switch to branch if it differs from current branch
+# Switch to branch if it differs from current branch, otherwise pull updates
 if [[ "$(sudo -u "$MASTODONUSER" git branch --show-current)" != "$BRANCH" ]]; then
     echo "Checking out polyam/$BRANCH..."
-    sudo -u "$MASTODONUSER" git checkout polyam/"$BRANCH"
+    sudo -u "$MASTODONUSER" git checkout polyam/"$BRANCH" -t
+else
+    echo "Pulling updates..."
+    sudo -u "$MASTODONUSER" git pull polyam
 fi
-
-sudo -u "$MASTODONUSER" git pull polyam "$BRANCH"
 
 # Install dependencies
 echo "Installing dependencies..."
