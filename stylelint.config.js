@@ -6,6 +6,10 @@ module.exports = {
     'app/javascript/styles/win95.scss',
     'node_modules/**/*',
     'vendor/**/*',
+    'public/packs/**/*',
+    'public/packs-test/**/*',
+    'public/assets/**/*',
+    'coverage/**/*',
   ],
   rules: {
     'at-rule-empty-line-before': null,
