@@ -178,7 +178,8 @@ class Video extends React.PureComponent {
     this.video = c;
 
     if (this.video) {
-      this.setState({ volume: this.video.volume, muted: this.video.muted });
+      this.video.volume = this.state.volume;
+      this.video.muted = this.state.muted;
     }
   }
 
