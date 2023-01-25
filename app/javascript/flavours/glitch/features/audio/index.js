@@ -61,7 +61,7 @@ class Audio extends React.PureComponent {
     duration: null,
     paused: true,
     muted: false,
-    volume: 1,
+    volume: 0.5,
     dragging: false,
     revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
   };
@@ -119,8 +119,8 @@ class Audio extends React.PureComponent {
     this.audio = c;
 
     if (this.audio) {
-      this.audio.volume = 1;
-      this.audio.muted = false;
+      this.audio.volume = this.state.volume;
+      this.audio.muted = this.state.muted;
     }
   }
 
