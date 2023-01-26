@@ -16,16 +16,6 @@ class REST::AccountSerializer < ActiveModel::Serializer
   attribute :silenced, key: :limited, if: :silenced?
   attribute :noindex, if: :local?
 
-  class RoleSerializer < ActiveModel::Serializer
-    attributes :id, :name, :color
-
-    def id
-      object.id.to_s
-    end
-  end
-
-  has_one :role, serializer: RoleSerializer, if: :local?
-
   class AccountDecorator < SimpleDelegator
     def self.model_name
       Account.model_name
@@ -35,6 +25,16 @@ class REST::AccountSerializer < ActiveModel::Serializer
       false
     end
   end
+
+  class RoleSerializer < ActiveModel::Serializer
+    attributes :id, :name, :color
+
+    def id
+      object.id.to_s
+    end
+  end
+
+  has_many :roles, serializer: RoleSerializer, if: :local?
 
   class FieldSerializer < ActiveModel::Serializer
     include FormattingHelper
@@ -128,12 +128,16 @@ class REST::AccountSerializer < ActiveModel::Serializer
     object.silenced?
   end
 
-  def noindex
-    object.user_prefers_noindex?
+  def roles
+    if object.suspended?
+      []
+    else
+      [object.user.role].compact.filter { |role| role.highlighted? }
+    end
   end
 
-  def role
-    object.user.role unless object.suspended? || !object.user&.role&.highlighted? 
+  def noindex
+    object.user_prefers_noindex?
   end
 
   delegate :suspended?, :silenced?, :local?, to: :object
