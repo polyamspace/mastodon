@@ -308,7 +308,7 @@ class Header extends ImmutablePureComponent {
     const isLocal         = account.get('acct').indexOf('@') === -1;
     const acct            = isLocal && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
     const isIndexable     = !account.get('noindex');
-    const role            = account.get('role');
+    const role            = account.getIn(['roles', 0]);
 
     let badge, roleBadge;
 
