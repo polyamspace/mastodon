@@ -313,9 +313,8 @@ class Header extends ImmutablePureComponent {
     const isLocal         = account.get('acct').indexOf('@') === -1;
     const acct            = isLocal && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
     const isIndexable     = !account.get('noindex');
-    const role            = account.getIn(['roles', 0]);
 
-    let badge, roleBadge;
+    let badge;
 
     if (account.get('bot')) {
       badge = (<div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div>);
@@ -325,9 +324,10 @@ class Header extends ImmutablePureComponent {
       badge = null;
     }
 
-    if (role) {
-      roleBadge = (<div className={classNames('account-role', `user-role-${role.get('id')}`)}>{role.get('name')}</div>);
-    } else roleBadge = null;
+    let roleBadge = null;
+    if (account.getIn(['roles', 0])) {
+      roleBadge = (<div key='role' className={`account-role user-role-${account.getIn(['roles', 0, 'id'])}`}>{account.getIn(['roles', 0, 'name'])}</div>);
+    }
 
     return (
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
@@ -345,6 +345,7 @@ class Header extends ImmutablePureComponent {
           <div className='account__header__tabs'>
             <a className='avatar' href={account.get('avatar')} rel='noopener noreferrer' target='_blank' onClick={this.handleAvatarClick}>
               <Avatar account={suspended || hidden ? undefined : account} size={90} />
+              {roleBadge}
             </a>
 
             {!suspended && (
@@ -363,7 +364,7 @@ class Header extends ImmutablePureComponent {
 
           <div className='account__header__tabs__name'>
             <h1>
-              <span dangerouslySetInnerHTML={displayNameHtml} /> {badge} {roleBadge}
+              <span dangerouslySetInnerHTML={displayNameHtml} /> {badge}
               <small>
                 <span>@{acct}</span> {lockedIcon}
               </small>
