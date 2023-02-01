@@ -287,6 +287,33 @@ body.admin {
 .status {
   border-bottom: 1px solid lighten($purple2, 8%);
 
+  &.light {
+    .status__relative-time {
+      color: $darker-text-color;
+    }
+
+    .status__content {
+      color: $primary-text-color;
+
+      a.status__content__spoiler-link {
+        color: $inverted-text-color;
+        background: lighten($ui-base-color, 30%);
+
+        &:hover {
+          background: lighten($ui-base-color, 33%);
+        }
+      }
+    }
+
+    .display-name {
+      color: $dark-text-color;
+
+      strong {
+        color: $primary-text-color;
+      }
+    }
+  }
+
   // Collapsed toots
   &.collapsed {
     .status__content {
@@ -419,7 +446,8 @@ a.mention,
 }
 
 .dropdown-menu,
-.dropdown-menu__item a {
+.dropdown-menu__item a,
+.dropdown-menu__item button {
   background: $purple4;
 }
 
@@ -523,6 +551,149 @@ a.mention,
 
 .nothing-here {
   background: $purple2;
+}
+
+// modals
+
+.mute-modal,
+.block-modal,
+.boost-modal,
+.confirmation-modal {
+  background: lighten($purple2, 8%);
+  color: $primary-text-color;
+
+  &__action-bar {
+    background: $purple2;
+
+    & > div {
+      color: $darker-text-color;
+    }
+  }
+
+  .setting-toggle__label {
+    color: $primary-text-color;
+  }
+
+  .status__content__spoiler-link {
+    color: $inverted-text-color;
+  }
+}
+
+.actions-modal {
+  background: lighten($purple2, 8%);
+  color: $primary-text-color;
+
+  .status {
+    background: $purple2;
+  }
+
+  ul {
+    li:not(:empty) {
+      a {
+        color: $primary-text-color;
+      }
+    }
+  }
+}
+
+.compare-history-modal {
+  background: $purple2;
+  color: $primary-text-color;
+
+  .status__content {
+    color: $primary-text-color;
+
+    hr {
+      background-color: $purple3;
+    }
+  }
+}
+
+// Also applies to filter-modal
+.report-dialog-modal {
+  background: lighten($purple2, 8%);
+  color: $primary-text-color;
+
+  &__lead {
+    color: $darker-text-color;
+
+    a {
+      color: $ui-highlight-color;
+    }
+  }
+
+  &__statuses {
+    background: $purple2;
+    color: $primary-text-color;
+  }
+
+  .status__content,
+  .status__content p {
+    color: $primary-text-color;
+  }
+
+  .status__content__spoiler-link {
+    color: $inverted-text-color;
+    background: $ui-primary-color;
+
+    &:hover {
+      background: lighten($ui-base-color, 33%);
+    }
+  }
+
+  .poll__option.dialog-option {
+    & > .poll__option__text {
+      color: $primary-text-color;
+
+      strong {
+        color: $primary-text-color;
+      }
+
+      .detailed-status__display-name {
+        color: $darker-text-color;
+      }
+
+    }
+  }
+
+  .dialog-option .poll__input {
+
+    &:focus,
+    &:hover {
+      border-color: lighten($ui-base-color, 33%);
+    }
+  }
+
+  .button.button-secondary {
+    color: $primary-text-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: darken($primary-text-color, 15%);
+      color: darken($primary-text-color, 15%);
+    }
+  }
+
+  // specific to filter-modal
+
+  .emoji-mart-scroll,
+  .emoji-mart-search {
+    background: $purple2;
+    color: $primary-text-color;
+    
+    input {
+      color: $primary-text-color;
+    }
+  }
+
+  .language-dropdown__dropdown__results__item {
+    color: $primary-text-color;
+
+    &:hover {
+      background: lighten($ui-base-color, 4%);
+    }
+  }
 }
 
 // settings
