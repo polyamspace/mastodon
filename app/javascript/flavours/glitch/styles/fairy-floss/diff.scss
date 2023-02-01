@@ -652,12 +652,10 @@ a.mention,
       .detailed-status__display-name {
         color: $darker-text-color;
       }
-
     }
   }
 
   .dialog-option .poll__input {
-
     &:focus,
     &:hover {
       border-color: lighten($ui-base-color, 33%);
@@ -681,7 +679,7 @@ a.mention,
   .emoji-mart-search {
     background: $purple2;
     color: $primary-text-color;
-    
+
     input {
       color: $primary-text-color;
     }
