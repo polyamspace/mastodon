@@ -50,6 +50,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Replace emoji picker emoji with a blobcat ([PR #24](https://github.com/polyamspace/mastodon/pull/24))
 - Replace "Follow" with "Request follow" for locked accounts ([PR #26](https://github.com/polyamspace/mastodon/pull/26))
 - Add timestamp to all announcements ([PR #39](https://github.com/polyamspace/mastodon/pull/39))
+- Enhance domain blocks and profile directory CSS ([PR #48](https://github.com/polyamspace/mastodon/pull/48))
 
 ### Themes
 - Fairy Floss ([PR #15](https://github.com/polyamspace/mastodon/pull/15))
