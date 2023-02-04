@@ -21,7 +21,7 @@ class ActionBar extends React.PureComponent {
       return false;
     }
     return !location.pathname.match(/\/(followers|following)\/?$/);
-  }
+  };
 
   render () {
     const { account, intl } = this.props;

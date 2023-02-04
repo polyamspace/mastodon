@@ -31,7 +31,7 @@ export default class LocalSettingsPageItem extends React.PureComponent {
     if (options && options.length > 0) onChange(item, target.value);
     else if (placeholder) onChange(item, target.value);
     else onChange(item, target.checked);
-  }
+  };
 
   render () {
     const { handleChange } = this;

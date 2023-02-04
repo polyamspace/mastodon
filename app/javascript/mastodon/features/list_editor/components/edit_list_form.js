@@ -38,16 +38,16 @@ class ListForm extends React.PureComponent {
 
   handleChange = e => {
     this.props.onChange(e.target.value);
-  }
+  };
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.onSubmit();
-  }
+  };
 
   handleClick = () => {
     this.props.onSubmit();
-  }
+  };
 
   handleToggle = e => {
     this.props.onToggle(e.target.checked);

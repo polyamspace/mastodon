@@ -25,8 +25,14 @@ const messages = defineMessages({
     id: 'confirmations.missing_media_description.message',
     defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.',
   },
-  missingDescriptionConfirm: { id: 'confirmations.missing_media_description.confirm', defaultMessage: 'Send anyway' },
-  missingDescriptionEdit:    { id: 'confirmations.missing_media_description.edit', defaultMessage: 'Edit media' },
+  missingDescriptionConfirm: {
+    id: 'confirmations.missing_media_description.confirm',
+    defaultMessage: 'Send anyway',
+  },
+  missingDescriptionEdit: {
+    id: 'confirmations.missing_media_description.edit',
+    defaultMessage: 'Edit media',
+  },
 });
 
 //  State mapping.
@@ -72,7 +78,7 @@ function mapStateToProps (state) {
     isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
     lang: state.getIn(['compose', 'language']),
   };
-};
+}
 
 //  Dispatch mapping.
 const mapDispatchToProps = (dispatch, { intl }) => ({
@@ -124,7 +130,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       onConfirm: () => {
         if (overriddenVisibility) {
           dispatch(changeComposeVisibility(overriddenVisibility));
-        };
+        }
         dispatch(submitCompose(routerHistory));
       },
       secondary: intl.formatMessage(messages.missingDescriptionEdit),

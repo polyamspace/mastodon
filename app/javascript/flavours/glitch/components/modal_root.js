@@ -29,7 +29,7 @@ export default class ModalRoot extends React.PureComponent {
          && !!this.props.children && !this.props.noEsc) {
       this.props.onClose();
     }
-  }
+  };
 
   handleKeyDown = (e) => {
     if (e.key === 'Tab') {
@@ -50,7 +50,7 @@ export default class ModalRoot extends React.PureComponent {
         e.preventDefault();
       }
     }
-  }
+  };
 
   componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);
@@ -126,11 +126,11 @@ export default class ModalRoot extends React.PureComponent {
 
   getSiblings = () => {
     return Array(...this.node.parentElement.childNodes).filter(node => node !== this.node);
-  }
+  };
 
   setRef = ref => {
     this.node = ref;
-  }
+  };
 
   render () {
     const { children, onClose } = this.props;

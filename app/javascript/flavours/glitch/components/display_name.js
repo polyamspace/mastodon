@@ -28,7 +28,7 @@ export default class DisplayName extends React.PureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-original');
     }
-  }
+  };
 
   handleMouseLeave = ({ currentTarget }) => {
     if (autoPlayGif) {
@@ -41,7 +41,7 @@ export default class DisplayName extends React.PureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-static');
     }
-  }
+  };
 
   render() {
     const { account, className, inline, localDomain, others, onAccountClick } = this.props;

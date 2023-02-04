@@ -29,7 +29,7 @@ export default class Permalink extends React.PureComponent {
         this.context.router.history.push(this.props.to, state);
       }
     }
-  }
+  };
 
   render () {
     const {

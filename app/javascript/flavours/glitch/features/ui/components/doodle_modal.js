@@ -279,7 +279,7 @@ class DoodleModal extends ImmutablePureComponent {
     this.swapped = false;
     window.addEventListener('keyup', this.handleKeyUp, false);
     window.addEventListener('keydown', this.handleKeyDown, false);
-  };
+  }
 
   /**
    * Tear component down

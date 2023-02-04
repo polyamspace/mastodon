@@ -61,7 +61,7 @@ class StatusIcons extends React.PureComponent {
       setCollapsed(!collapsed);
       e.preventDefault();
     }
-  }
+  };
 
   mediaIconTitleText (mediaIcon) {
     const { intl } = this.props;
