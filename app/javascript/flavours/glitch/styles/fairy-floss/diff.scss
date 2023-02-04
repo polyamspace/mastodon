@@ -255,16 +255,6 @@ body.admin {
   color: $mint;
 }
 
-.react-toggle--checked .react-toggle-track,
-.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background: $pink;
-}
-
-.react-toggle-track,
-.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background: $purple2;
-}
-
 .column-header__collapsible-inner,
 .column-header__button.active,
 .column-header__button.active:hover,
