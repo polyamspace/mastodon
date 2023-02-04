@@ -560,6 +560,19 @@ a.mention,
     }
   }
 
+  &__cancel-button,
+  &__secondary-button {
+    color: $primary-text-color;
+    background: darken($ui-highlight-color, 3%);
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $primary-text-color;
+      background: $ui-highlight-color;
+    }
+  }
+
   .setting-toggle__label {
     color: $primary-text-color;
   }
