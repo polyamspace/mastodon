@@ -36,4 +36,4 @@ export function hydrateStore(rawState) {
     dispatch(importFetchedAccounts(Object.values(rawState.accounts)));
     dispatch(saveSettings());
   };
-};
+}

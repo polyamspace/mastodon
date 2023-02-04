@@ -64,7 +64,7 @@ class Header extends ImmutablePureComponent {
     this.props.onLogout();
 
     return false;
-  }
+  };
 
   render () {
     const { intl, columns, unreadNotifications, showNotificationsBadge, onSettingsClick } = this.props;
@@ -131,6 +131,6 @@ class Header extends ImmutablePureComponent {
         ><Icon id='sign-out' /></a>
       </nav>
     );
-  };
+  }
 
 }

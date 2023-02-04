@@ -27,7 +27,7 @@ export default class MovedNote extends ImmutablePureComponent {
     }
 
     e.stopPropagation();
-  }
+  };
 
   render () {
     const { from, to } = this.props;

@@ -58,7 +58,7 @@ class BoostModal extends ImmutablePureComponent {
   handleReblog = () => {
     this.props.onReblog(this.props.status, this.props.privacy);
     this.props.onClose();
-  }
+  };
 
   handleAccountClick = (e) => {
     if (e.button === 0) {
@@ -68,7 +68,7 @@ class BoostModal extends ImmutablePureComponent {
       state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
       this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`, state);
     }
-  }
+  };
 
   _findContainer = () => {
     return document.getElementsByClassName('modal-root__container')[0];
@@ -76,7 +76,7 @@ class BoostModal extends ImmutablePureComponent {
 
   setRef = (c) => {
     this.button = c;
-  }
+  };
 
   render () {
     const { status, missingMediaDescription, privacy, intl } = this.props;

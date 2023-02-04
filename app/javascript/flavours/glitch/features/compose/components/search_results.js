@@ -136,6 +136,6 @@ class SearchResults extends ImmutablePureComponent {
         {hashtags}
       </div>
     );
-  };
+  }
 
 }

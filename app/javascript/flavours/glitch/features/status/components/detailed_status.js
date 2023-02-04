@@ -67,7 +67,7 @@ class DetailedStatus extends ImmutablePureComponent {
     }
 
     e.stopPropagation();
-  }
+  };
 
   parseClick = (e, destination) => {
     if (e.button === 0 && !(e.ctrlKey || e.altKey || e.metaKey) && this.context.router) {
@@ -78,11 +78,11 @@ class DetailedStatus extends ImmutablePureComponent {
     }
 
     e.stopPropagation();
-  }
+  };
 
   handleOpenVideo = (options) => {
     this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), options);
-  }
+  };
 
   handleAltClick = (index) => {
     const { status } = this.props;
@@ -103,7 +103,7 @@ class DetailedStatus extends ImmutablePureComponent {
   setRef = c => {
     this.node = c;
     this._measureHeight();
-  }
+  };
 
   componentDidUpdate (prevProps, prevState) {
     this._measureHeight(prevState.height !== this.state.height);
@@ -111,7 +111,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
   handleChildUpdate = () => {
     this._measureHeight();
-  }
+  };
 
   handleModalLink = e => {
     e.preventDefault();
@@ -125,12 +125,12 @@ class DetailedStatus extends ImmutablePureComponent {
     }
 
     window.open(href, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
-  }
+  };
 
   handleTranslate = () => {
     const { onTranslate, status } = this.props;
     onTranslate(status);
-  }
+  };
 
   render () {
     const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;

@@ -110,7 +110,7 @@ class Header extends ImmutablePureComponent {
 
   openEditProfile = () => {
     window.open(profileLink, '_blank');
-  }
+  };
 
   handleMouseEnter = ({ currentTarget }) => {
     if (autoPlayGif) {
@@ -123,7 +123,7 @@ class Header extends ImmutablePureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-original');
     }
-  }
+  };
 
   handleMouseLeave = ({ currentTarget }) => {
     if (autoPlayGif) {
@@ -136,14 +136,14 @@ class Header extends ImmutablePureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-static');
     }
-  }
+  };
 
   handleAvatarClick = e => {
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.props.onOpenAvatar();
     }
-  }
+  };
 
   handleShare = () => {
     const { account } = this.props;
@@ -154,7 +154,7 @@ class Header extends ImmutablePureComponent {
     }).catch((e) => {
       if (e.name !== 'AbortError') console.error(e);
     });
-  }
+  };
 
   render () {
     const { account, hidden, intl, domain } = this.props;

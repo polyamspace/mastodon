@@ -12,11 +12,11 @@ class Spoilers extends React.PureComponent {
 
   state = {
     hidden: true,
-  }
+  };
 
   handleSpoilerClick = () => {
     this.setState({ hidden: !this.state.hidden });
-  }
+  };
 
   render () {
     const { spoilerText, children } = this.props;

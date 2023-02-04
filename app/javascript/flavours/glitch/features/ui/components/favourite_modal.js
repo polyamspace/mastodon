@@ -38,7 +38,7 @@ class FavouriteModal extends ImmutablePureComponent {
   handleFavourite = () => {
     this.props.onFavourite(this.props.status);
     this.props.onClose();
-  }
+  };
 
   handleAccountClick = (e) => {
     if (e.button === 0) {
@@ -48,11 +48,11 @@ class FavouriteModal extends ImmutablePureComponent {
       state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
       this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`, state);
     }
-  }
+  };
 
   setRef = (c) => {
     this.button = c;
-  }
+  };
 
   render () {
     const { status, intl } = this.props;

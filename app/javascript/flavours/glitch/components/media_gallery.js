@@ -61,14 +61,14 @@ class Item extends React.PureComponent {
     if (this.hoverToPlay()) {
       e.target.play();
     }
-  }
+  };
 
   handleMouseLeave = (e) => {
     if (this.hoverToPlay()) {
       e.target.pause();
       e.target.currentTime = 0;
     }
-  }
+  };
 
   getAutoPlay() {
     return this.props.autoplay || autoPlayGif;
@@ -92,7 +92,7 @@ class Item extends React.PureComponent {
     }
 
     e.stopPropagation();
-  }
+  };
 
   handleAltClick = (e) => {
     const { index, onAltClick } = this.props;
@@ -109,7 +109,7 @@ class Item extends React.PureComponent {
 
   handleImageLoad = () => {
     this.setState({ loaded: true });
-  }
+  };
 
   render () {
     const { attachment, index, size, standalone, letterbox, displayWidth, visible } = this.props;
@@ -330,11 +330,11 @@ class MediaGallery extends React.PureComponent {
     } else {
       this.setState({ visible: !this.state.visible });
     }
-  }
+  };
 
   handleClick = (index) => {
     this.props.onOpenMedia(this.props.media, index);
-  }
+  };
 
   handleAltClick = (index) => {
     this.props.onOpenAltText(index);
@@ -346,7 +346,7 @@ class MediaGallery extends React.PureComponent {
     if (this.node) {
       this._setDimensions();
     }
-  }
+  };
 
   _setDimensions () {
     const width = this.node.offsetWidth;
