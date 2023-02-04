@@ -1,29 +1,3 @@
-@import 'boost';
-@import 'accounts';
-@import 'domains';
-@import 'status';
-@import 'modal';
-@import 'compose_form';
-@import 'columns';
-@import 'regeneration_indicator';
-@import 'directory';
-@import 'search';
-@import 'emoji';
-@import 'doodle';
-@import 'drawer';
-@import 'media';
-@import 'sensitive';
-@import 'lists';
-@import 'emoji_picker';
-@import 'local_settings';
-@import 'error_boundary';
-@import 'single_column';
-@import 'announcements';
-@import 'explore';
-@import 'signed_out';
-@import 'privacy_policy';
-@import 'about';
-
 .app-body {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -1834,3 +1808,30 @@ noscript {
   30% { opacity: 0.75; }
   100% { opacity: 1; }
 }
+
+/* stylelint-disable no-invalid-position-at-import-rule -- Abiding to rule causes wrong styling */
+@import 'boost';
+@import 'accounts';
+@import 'domains';
+@import 'status';
+@import 'modal';
+@import 'compose_form';
+@import 'columns';
+@import 'regeneration_indicator';
+@import 'directory';
+@import 'search';
+@import 'emoji';
+@import 'doodle';
+@import 'drawer';
+@import 'media';
+@import 'sensitive';
+@import 'lists';
+@import 'emoji_picker';
+@import 'local_settings';
+@import 'error_boundary';
+@import 'single_column';
+@import 'announcements';
+@import 'explore';
+@import 'signed_out';
+@import 'privacy_policy';
+@import 'about';
