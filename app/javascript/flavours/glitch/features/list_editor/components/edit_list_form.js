@@ -1,14 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeListEditorTitle, changeListEditorIsExclusive, submitListEditor } from 'flavours/glitch/actions/lists';
+import { changeListEditorTitle, submitListEditor } from 'flavours/glitch/actions/lists';
 import IconButton from 'flavours/glitch/components/icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
-import Toggle from 'react-toggle';
 
 const messages = defineMessages({
   title: { id: 'lists.edit.submit', defaultMessage: 'Change title' },
-  exclusive: { id: 'lists.is-exclusive', defaultMessage: 'Exclusive?' },
 });
 
 const mapStateToProps = state => ({
@@ -19,7 +17,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onChange: value => dispatch(changeListEditorTitle(value)),
   onSubmit: () => dispatch(submitListEditor(false)),
-  onToggle: value => dispatch(changeListEditorIsExclusive(value)),
 });
 
 export default @connect(mapStateToProps, mapDispatchToProps)
@@ -33,7 +30,6 @@ class ListForm extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    onToggle: PropTypes.func.isRequired,
   };
 
   handleChange = e => {
@@ -49,12 +45,8 @@ class ListForm extends React.PureComponent {
     this.props.onSubmit();
   };
 
-  handleToggle = e => {
-    this.props.onToggle(e.target.checked);
-  }
-
   render () {
-    const { value, disabled, intl, isExclusive } = this.props;
+    const { value, disabled, intl } = this.props;
 
     const title = intl.formatMessage(messages.title);
 
@@ -65,11 +57,6 @@ class ListForm extends React.PureComponent {
           value={value}
           onChange={this.handleChange}
         />
-
-        <label htmlFor='is-exclusive-checkbox'>
-          <Toggle className='is-exclusive-checkbox' defaultChecked={isExclusive} onChange={this.handleToggle} />
-          {intl.formatMessage(messages.exclusive)}
-        </label>
 
         <IconButton
           disabled={disabled}
