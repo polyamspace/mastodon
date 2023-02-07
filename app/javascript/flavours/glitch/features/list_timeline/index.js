@@ -17,6 +17,7 @@ import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import RadioButton from 'flavours/glitch/components/radio_button';
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
+import Toggle from 'react-toggle';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -141,12 +142,19 @@ class ListTimeline extends React.PureComponent {
     this.props.dispatch(updateList(id, undefined, false, undefined, target.value));
   };
 
+  handleExclusiveChange = e => {
+    const { dispatch } = this.props;
+    const { id } = this.props.params;
+    dispatch(updateList(id, undefined, false, e.target.checked, undefined));
+  };
+
   render () {
     const { hasUnread, columnId, multiColumn, list, intl } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
     const replies_policy = list ? list.get('replies_policy') : undefined;
+    const isExclusive = list ? list.get('is_exclusive') : undefined;
 
     if (typeof list === 'undefined') {
       return (
@@ -187,6 +195,15 @@ class ListTimeline extends React.PureComponent {
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
           </div>
+
+          {isExclusive !== undefined && (
+            <div className='setting-toggle'>
+              <Toggle id={`list-${id}-exclusive`} defaultChecked={isExclusive} onChange={this.handleExclusiveChange} />
+              <label htmlFor={`list-${id}-exclusive`} className='setting-toggle__label'>
+                <FormattedMessage id='lists.exclusive' defaultMessage='Hide users on this list from home timeline' />
+              </label>
+            </div>
+          )}
 
           { replies_policy !== undefined && (
             <div role='group' aria-labelledby={`list-${id}-replies-policy`}>
