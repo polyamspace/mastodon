@@ -26,7 +26,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Add setting to overwrite publish button text ([PR #27](https://github.com/polyamspace/mastodon/pull/27))
 
 ### Features
-- Add exclusive lists ([PR #1](https://github.com/polyamspace/mastodon/pull/1))
+- Add exclusive lists ([PR #1](https://github.com/polyamspace/mastodon/pull/1), [PR #51](https://github.com/polyamspace/mastodon/pull/51))
 - Add new sounds and allow user to select notification sound ([PR #3](https://github.com/polyamspace/mastodon/pull/3))
 - Add setting to disable RSS feed ([PR #11](https://github.com/polyamspace/mastodon/pull/11))
 - Add syntax highlighting to code blocks ([PR #20](https://github.com/polyamspace/mastodon/pull/20))
