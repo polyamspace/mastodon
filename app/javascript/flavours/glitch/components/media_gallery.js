@@ -105,7 +105,7 @@ class Item extends React.PureComponent {
 
     // Prevents opening of media modal
     e.stopPropagation();
-  }
+  };
 
   handleImageLoad = () => {
     this.setState({ loaded: true });
@@ -338,7 +338,7 @@ class MediaGallery extends React.PureComponent {
 
   handleAltClick = (index) => {
     this.props.onOpenAltText(index);
-  }
+  };
 
   handleRef = (node) => {
     this.node = node;

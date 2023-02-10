@@ -470,7 +470,7 @@ class Audio extends React.PureComponent {
   handleAltClick = () => {
     this.audio.pause();
     this.props.onOpenAltText();
-  }
+  };
 
   render () {
     const { src, intl, alt, editable, autoPlay, sensitive, blurhash } = this.props;

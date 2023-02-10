@@ -88,7 +88,7 @@ class DetailedStatus extends ImmutablePureComponent {
     const { status } = this.props;
 
     this.props.onOpenAltText(status.get('id'), status.getIn(['media_attachments', index ? index : 0]));
-  }
+  };
 
   _measureHeight (heightJustChanged) {
     if (this.props.measureHeight && this.node) {
