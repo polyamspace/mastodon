@@ -133,7 +133,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
   handleEmojiPick = data => {
     this.props.onReactionAdd(this.props.status.get('id'), data.native.replace(/:/g, ''), data.imageUrl);
-  }
+  };
 
   handleReblogClick = e => {
     const { signedIn } = this.context.identity;
@@ -238,7 +238,7 @@ class StatusActionBar extends ImmutablePureComponent {
     this.props.onFilter();
   };
 
-  handleNoOp = () => {} // hack for reaction add button
+  handleNoOp = () => {}; // hack for reaction add button
 
   render () {
     const { status, relationship, intl, withDismiss, withCounters, scrollKey } = this.props;

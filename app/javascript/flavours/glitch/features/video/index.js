@@ -532,7 +532,7 @@ class Video extends React.PureComponent {
   handleAltClick = () => {
     this.video.pause();
     this.props.onOpenAltText();
-  }
+  };
 
   getFrameRate () {
     if (this.props.frameRate && isNaN(this.props.frameRate)) {

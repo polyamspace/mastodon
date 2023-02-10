@@ -35,11 +35,11 @@ class PrivacyPolicy extends React.PureComponent {
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   render () {
     const { intl, multiColumn } = this.props;

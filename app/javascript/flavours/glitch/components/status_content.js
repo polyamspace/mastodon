@@ -350,7 +350,7 @@ class StatusContent extends React.PureComponent {
 
     // return content with highlighted code
     return wrapper.innerHTML;
-  };
+  }
 
   render () {
     const {

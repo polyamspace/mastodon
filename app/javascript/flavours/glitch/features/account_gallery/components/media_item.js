@@ -64,7 +64,7 @@ export default class MediaItem extends ImmutablePureComponent {
 
     // Prevent media modal from opening
     e.stopPropagation();
-  }
+  };
 
   render () {
     const { attachment, displayWidth } = this.props;

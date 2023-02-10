@@ -111,11 +111,11 @@ class About extends React.PureComponent {
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   render () {
     const { multiColumn, intl, server, extendedDescription, domainBlocks } = this.props;

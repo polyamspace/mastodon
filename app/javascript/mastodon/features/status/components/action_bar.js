@@ -97,7 +97,7 @@ class ActionBar extends React.PureComponent {
 
   handleEmojiPick = data => {
     this.props.onReactionAdd(this.props.status.get('id'), data.native.replace(/:/g, ''));
-  }
+  };
 
   handleBookmarkClick = (e) => {
     this.props.onBookmark(this.props.status, e);
@@ -187,7 +187,7 @@ class ActionBar extends React.PureComponent {
     navigator.clipboard.writeText(url);
   };
 
-  handleNoOp = () => {} // hack for reaction add button
+  handleNoOp = () => {}; // hack for reaction add button
 
   render () {
     const { status, relationship, intl } = this.props;
