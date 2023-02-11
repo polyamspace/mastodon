@@ -161,7 +161,7 @@ class AccountGallery extends ImmutablePureComponent {
     const statusId = attachment.getIn(['status', 'id']);
 
     dispatch(openModal('ALTTEXT', { media: attachment, statusId }));
-  }
+  };
 
   handleRef = c => {
     if (c) {
