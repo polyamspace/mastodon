@@ -51,6 +51,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Replace "Follow" with "Request follow" for locked accounts ([PR #26](https://github.com/polyamspace/mastodon/pull/26))
 - Add timestamp to all announcements ([PR #39](https://github.com/polyamspace/mastodon/pull/39))
 - Enhance domain blocks and profile directory CSS ([PR #48](https://github.com/polyamspace/mastodon/pull/48))
+- Remove `contain: strict;` from empty-column-indicator ([PR #58](https://github.com/polyamspace/mastodon/pull/58))
 
 ### Themes
 - Fairy Floss ([PR #15](https://github.com/polyamspace/mastodon/pull/15))
