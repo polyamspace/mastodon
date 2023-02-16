@@ -14,6 +14,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Fix most lint issues ([PR #10](https://github.com/polyamspace/mastodon/pull/10), [PR #22](https://github.com/polyamspace/mastodon/pull/22), [PR #49](https://github.com/polyamspace/mastodon/pull/49))
 - Remove serialisation of statuses_count ([PR #36](https://github.com/polyamspace/mastodon/pull/36))
 - Add additional paths to stylelint ignoreFiles ([PR #44](https://github.com/polyamspace/mastodon/pull/44))
+- Reset language to default when cancelling a reply ([PR #61](https://github.com/polyamspace/mastodon/pull/61))
 
 
 ### Admin features
