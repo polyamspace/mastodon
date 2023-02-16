@@ -52,6 +52,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Add timestamp to all announcements ([PR #39](https://github.com/polyamspace/mastodon/pull/39))
 - Enhance domain blocks and profile directory CSS ([PR #48](https://github.com/polyamspace/mastodon/pull/48))
 - Remove `contain: strict;` from empty-column-indicator ([PR #58](https://github.com/polyamspace/mastodon/pull/58))
+- Add missing `bindToDocument` attribute to account_timeline ([PR #59](https://github.com/polyamspace/mastodon/pull/59))
 
 ### Themes
 - Fairy Floss ([PR #15](https://github.com/polyamspace/mastodon/pull/15))
