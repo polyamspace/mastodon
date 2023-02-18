@@ -329,8 +329,12 @@
   }
 
   @keyframes fade {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   opacity: 1;
@@ -393,9 +397,14 @@
       right: 0;
       top: 0;
       bottom: 0;
-      background-image: linear-gradient(to bottom, rgba($base-shadow-color, 0.75), rgba($base-shadow-color, 0.65) 24px, rgba($base-shadow-color, 0.8));
+      background-image: linear-gradient(
+        to bottom,
+        rgba($base-shadow-color, 0.75),
+        rgba($base-shadow-color, 0.65) 24px,
+        rgba($base-shadow-color, 0.8)
+      );
       pointer-events: none;
-      content: "";
+      content: '';
     }
 
     .display-name:hover .display-name__html {
@@ -408,14 +417,17 @@
       text-overflow: ellipsis;
       padding-top: 0;
 
-      &::after {
-        content: "";
+      &:after {
+        content: '';
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        background: linear-gradient(rgba($ui-base-color, 0), rgba($ui-base-color, 1));
+        background: linear-gradient(
+          rgba($ui-base-color, 0),
+          rgba($ui-base-color, 1)
+        );
         pointer-events: none;
       }
 
@@ -423,13 +435,17 @@
         text-decoration: none;
       }
     }
-
-    &:focus > .status__content::after {
-      background: linear-gradient(rgba(lighten($ui-base-color, 4%), 0), rgba(lighten($ui-base-color, 4%), 1));
+    &:focus > .status__content:after {
+      background: linear-gradient(
+        rgba(lighten($ui-base-color, 4%), 0),
+        rgba(lighten($ui-base-color, 4%), 1)
+      );
     }
-
-    &.status-direct > .status__content::after {
-      background: linear-gradient(rgba(lighten($ui-base-color, 8%), 0), rgba(lighten($ui-base-color, 8%), 1));
+    &.status-direct > .status__content:after {
+      background: linear-gradient(
+        rgba(lighten($ui-base-color, 8%), 0),
+        rgba(lighten($ui-base-color, 8%), 1)
+      );
     }
 
     .notification__message {
@@ -1094,7 +1110,7 @@ a.status-card.compact:hover {
 
   &.unread {
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;

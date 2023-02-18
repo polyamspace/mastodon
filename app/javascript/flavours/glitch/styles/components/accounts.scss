@@ -30,7 +30,9 @@
     border: 0;
     padding: 0;
 
-    & > .account__avatar-wrapper { margin: 0 8px 0 0; }
+    & > .account__avatar-wrapper {
+      margin: 0 8px 0 0;
+    }
 
     & > .display-name {
       height: 24px;
@@ -386,7 +388,7 @@
       &::before,
       &::after {
         display: block;
-        content: "";
+        content: '';
         position: absolute;
         bottom: 0;
         left: 50%;
