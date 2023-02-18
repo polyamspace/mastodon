@@ -370,7 +370,7 @@ body > [data-popper-placement] {
 
 .ellipsis {
   &::after {
-    content: "…";
+    content: '…';
   }
 }
 
@@ -480,11 +480,11 @@ body > [data-popper-placement] {
   justify-content: center;
   flex-direction: column;
   scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE 10+ */
+  -ms-overflow-style: none; /* IE 10+ */
 
   * {
     scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE 10+ */
+    -ms-overflow-style: none; /* IE 10+ */
   }
 
   &::-webkit-scrollbar,
@@ -950,7 +950,8 @@ body > [data-popper-placement] {
     overflow-y: auto;
   }
 
-  @supports (display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) {
+    // hack to fix Chrome <57
     contain: strict;
   }
 
@@ -971,7 +972,8 @@ body > [data-popper-placement] {
 }
 
 .scrollable.fullscreen {
-  @supports (display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) {
+    // hack to fix Chrome <57
     contain: none;
   }
 }
@@ -1014,7 +1016,8 @@ body > [data-popper-placement] {
   transition: background-color 0.2s ease;
 }
 
-.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled)
+  .react-toggle-track {
   background-color: darken($ui-base-color, 10%);
 }
 
@@ -1022,7 +1025,8 @@ body > [data-popper-placement] {
   background-color: darken($ui-highlight-color, 2%);
 }
 
-.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled)
+  .react-toggle-track {
   background-color: $ui-highlight-color;
 }
 
@@ -1795,9 +1799,15 @@ noscript {
 }
 
 @keyframes flicker {
-  0% { opacity: 1; }
-  30% { opacity: 0.75; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* stylelint-disable no-invalid-position-at-import-rule -- Abiding to rule causes wrong styling */
