@@ -332,6 +332,7 @@
     0% {
       opacity: 0;
     }
+
     100% {
       opacity: 1;
     }
@@ -417,7 +418,7 @@
       text-overflow: ellipsis;
       padding-top: 0;
 
-      &:after {
+      &::after {
         content: '';
         position: absolute;
         top: 0;
@@ -435,13 +436,15 @@
         text-decoration: none;
       }
     }
-    &:focus > .status__content:after {
+
+    &:focus > .status__content::after {
       background: linear-gradient(
         rgba(lighten($ui-base-color, 4%), 0),
         rgba(lighten($ui-base-color, 4%), 1)
       );
     }
-    &.status-direct > .status__content:after {
+
+    &.status-direct > .status__content::after {
       background: linear-gradient(
         rgba(lighten($ui-base-color, 8%), 0),
         rgba(lighten($ui-base-color, 8%), 1)
