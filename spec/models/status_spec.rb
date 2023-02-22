@@ -194,6 +194,22 @@ RSpec.describe Status do
     end
   end
 
+  describe '#reactions_count' do
+    it 'is the number of reactions' do
+      Fabricate(:status_reaction, account: bob, status: subject)
+      Fabricate(:status_reaction, account: alice, status: subject)
+
+      expect(subject.reactions_count).to eq 2
+    end
+
+    it 'is decremented when reaction is removed' do
+      reaction = Fabricate(:status_reaction, account: bob, status: subject)
+      expect(subject.reactions_count).to eq 1
+      reaction.destroy
+      expect(subject.reactions_count).to eq 0
+    end
+  end
+
   describe '#proper' do
     it 'is itself for original statuses' do
       expect(subject.proper).to eq subject
