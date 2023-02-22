@@ -961,6 +961,7 @@ ActiveRecord::Schema.define(version: 2023_05_05_100107) do
     t.bigint "replies_count", default: 0, null: false
     t.bigint "reblogs_count", default: 0, null: false
     t.bigint "favourites_count", default: 0, null: false
+    t.bigint "reactions_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["status_id"], name: "index_status_stats_on_status_id", unique: true
