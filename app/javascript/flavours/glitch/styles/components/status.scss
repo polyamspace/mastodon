@@ -461,7 +461,7 @@
   }
 
   .notification__message {
-    margin: -10px 0 10px 0;
+    margin: -10px 0 10px;
   }
 
   .reactions-bar--empty {
@@ -1117,7 +1117,6 @@ a.status-card.compact:hover {
       position: absolute;
       top: 0;
       left: 0;
-      pointer-events: 0;
       width: 100%;
       height: 100%;
       border-left: 4px solid $highlight-text-color;

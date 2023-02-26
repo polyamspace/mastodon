@@ -81,6 +81,7 @@
 
     input[type='text'] {
       font-size: 14px;
+      color: $inverted-text-color;
       outline: 0;
       font-family: inherit;
       background: $simple-background-color;
@@ -111,7 +112,6 @@
     box-sizing: border-box;
     width: 18px;
     height: 18px;
-    flex: 0 0 auto;
     margin-inline-end: 10px;
     top: -1px;
     border-radius: 50%;
