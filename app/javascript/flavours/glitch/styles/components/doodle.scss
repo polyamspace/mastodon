@@ -1,4 +1,4 @@
-$doodle-bg: #d9e1e8;
+$doodle-background: #d9e1e8;
 
 .doodle-modal {
   @extend .boost-modal;
@@ -7,11 +7,11 @@ $doodle-bg: #d9e1e8;
 }
 
 .doodle-modal__container {
-  background: $doodle-bg;
+  background: $doodle-background;
   text-align: center;
   line-height: 0; // remove weird gap under canvas
   canvas {
-    border: 5px solid $doodle-bg;
+    border: 5px solid $doodle-background;
   }
 }
 
