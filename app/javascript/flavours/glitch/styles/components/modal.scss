@@ -613,6 +613,10 @@
     color: $inverted-text-color;
   }
 
+  .status__content code {
+    color: $primary-text-color;
+  }
+
   .status__content__spoiler-link {
     color: $primary-text-color;
     background: $ui-primary-color;
