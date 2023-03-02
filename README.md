@@ -2,7 +2,7 @@
 
 >   Mastodon, but better!
 
-This project is a fork of [glitch-soc](https://github.com/glitch-soc/mastodon), which itself is a fork of Mastodon.  
+This project is a fork of [glitch-soc](https://github.com/glitch-soc/mastodon), which itself is a fork of Mastodon.
 
 So here's the deal: we all work on this code, and anyone who uses that does so absolutely at their own risk. can you dig it?
 
@@ -53,7 +53,7 @@ So here's the deal: we all work on this code, and anyone who uses that does so a
 - Enhance domain blocks and profile directory CSS ([PR #48](https://github.com/polyamspace/mastodon/pull/48))
 - Remove `contain: strict;` from empty-column-indicator ([PR #58](https://github.com/polyamspace/mastodon/pull/58))
 - Fix scrolling to top in simple UI when viewing accounts ([PR #59](https://github.com/polyamspace/mastodon/pull/59), [PR #60](https://github.com/polyamspace/mastodon/pull/60))
-
+- Add background to code blocks ([PR #67](https://github.com/polyamspace/mastodon/pull/67))
 ### Themes
 - Fairy Floss ([PR #15](https://github.com/polyamspace/mastodon/pull/15))
 
