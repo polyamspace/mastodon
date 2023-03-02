@@ -160,6 +160,23 @@
     ol {
       list-style-type: decimal;
     }
+
+    code {
+      background: darken($ui-base-color, 4%);
+      border-radius: 3px;
+      padding: 0 0.3em;
+    }
+
+    pre {
+      background: darken($ui-base-color, 4%);
+      border-radius: 3px;
+      padding: 0.5em;
+    }
+
+    pre code {
+      // prevent padding of code tags inside pre
+      padding: 0;
+    }
   }
 
   a {
@@ -434,6 +451,11 @@
 
       a:hover {
         text-decoration: none;
+      }
+
+      pre,
+      code {
+        padding: 0;
       }
     }
 
