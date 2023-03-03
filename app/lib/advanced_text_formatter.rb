@@ -8,6 +8,8 @@ class AdvancedTextFormatter < TextFormatter
     end
 
     def block_code(code, language)
+      # Check that language only contains allowed characters when not nil
+      language = language.match(/^[a-zA-Z0-9.#+-]+$/) unless language.nil?
       # Looks wrong, but sets title to language correctly. One downside is, it adds an empty attribute when no lang specified.
       <<~HTML
         <pre><code data-codelang="#{language}">#{ERB::Util.h(code).gsub("\n", '<br/>')}</code></pre>
