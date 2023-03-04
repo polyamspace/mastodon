@@ -80,6 +80,9 @@
     }
 
     input[type='text'] {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
       font-size: 14px;
       color: $inverted-text-color;
       outline: 0;
