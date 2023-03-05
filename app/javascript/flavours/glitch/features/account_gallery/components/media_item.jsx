@@ -90,6 +90,7 @@ export default class MediaItem extends ImmutablePureComponent {
           <img
             src={attachment.get('preview_url') || attachment.getIn(['account', 'avatar_static'])}
             alt={attachment.get('description')}
+            lang={status.get('language')}
             onLoad={this.handleImageLoad}
           />
         );
@@ -109,6 +110,7 @@ export default class MediaItem extends ImmutablePureComponent {
           <img
             src={attachment.get('preview_url')}
             alt={attachment.get('description')}
+            lang={status.get('language')}
             style={{ objectPosition: `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
           />
@@ -119,6 +121,7 @@ export default class MediaItem extends ImmutablePureComponent {
             className='media-gallery__item-gifv-thumbnail'
             aria-label={attachment.get('description')}
             title={attachment.get('description')}
+            lang={status.get('language')}
             role='application'
             src={attachment.get('url')}
             onMouseEnter={this.handleMouseEnter}

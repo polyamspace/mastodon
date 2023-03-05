@@ -102,6 +102,7 @@ class Video extends React.PureComponent {
     frameRate: PropTypes.string,
     src: PropTypes.string.isRequired,
     alt: PropTypes.string,
+    lang: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     sensitive: PropTypes.bool,
@@ -546,7 +547,7 @@ class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
+    const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, lang, letterbox, fullwidth, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
     const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const playerStyle = {};
@@ -611,6 +612,7 @@ class Video extends React.PureComponent {
           tabIndex='0'
           aria-label={alt}
           title={alt}
+          lang={lang}
           width={width}
           height={height}
           volume={volume}
