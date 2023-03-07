@@ -2,6 +2,7 @@
 en:
   simple_form:
     glitch_only: glitch-soc
+    polyam_only: polyam-glitch
     hints:
       defaults:
         fields: You can have up to %{count} items displayed as a table on your profile

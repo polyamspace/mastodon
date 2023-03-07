@@ -25,7 +25,7 @@
     = f.input :trending_status_cw, as: :boolean, wrapper: :with_label, label: t('admin.settings.trending_status_cw.title'), hint: t('admin.settings.trending_status_cw.desc_html'), glitch_only: true
 
   .fields-group
-    = f.input :trending_status_sensitive, as: :boolean, wrapper: :with_label, label: t('admin.settings.trending_status_sensitive.title'), hint: t('admin.settings.trending_status_sensitive.desc_html'), glitch_only: true
+    = f.input :trending_status_sensitive, as: :boolean, wrapper: :with_label, label: t('admin.settings.trending_status_sensitive.title'), hint: t('admin.settings.trending_status_sensitive.desc_html'), polyam_only: true
 
   %h4= t('admin.settings.discovery.public_timelines')
 
@@ -35,7 +35,7 @@
   %h4= t('admin.settings.discovery.search')
 
   .fields-group
-    = f.input :search_preview, as: :boolean, wrapper: :with_label, glitch_only: true
+    = f.input :search_preview, as: :boolean, wrapper: :with_label, polyam_only: true
 
   .fields-group
     = f.input :noindex, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_noindex.title'), hint: t('admin.settings.default_noindex.desc_html')
@@ -43,7 +43,7 @@
   %h4= t('admin.settings.discovery.rss')
 
   .fields-group
-    = f.input :norss, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_norss.title'), hint: t('admin.settings.default_norss.desc_html'), glitch_only: true
+    = f.input :norss, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_norss.title'), hint: t('admin.settings.default_norss.desc_html'), polyam_only: true
 
   %h4= t('admin.settings.discovery.publish_statistics')
 
