@@ -32,6 +32,7 @@ class Form::AdminSettings
     trends_as_landing_page
     trendable_by_default
     trending_status_cw
+    trending_status_sensitive
     show_application
     show_domain_blocks
     show_domain_blocks_rationale
@@ -69,6 +70,7 @@ class Form::AdminSettings
     trends_as_landing_page
     trendable_by_default
     trending_status_cw
+    trending_status_sensitive
     noindex
     norss
     require_invite_text

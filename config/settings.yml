@@ -43,6 +43,7 @@ defaults: &defaults
   trends_as_landing_page: false
   trendable_by_default: false
   trending_status_cw: true
+  trending_status_sensitive: true
   crop_images: true
   visible_reactions: 6
   notification_emails:
