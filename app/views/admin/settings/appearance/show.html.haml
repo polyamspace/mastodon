@@ -28,7 +28,7 @@
           = t('admin.site_uploads.delete')
 
   .fields-group
-    = f.input :publish_button_text, wrapper: :with_block_label
+    = f.input :publish_button_text, wrapper: :with_block_label, polyam_only: true
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
