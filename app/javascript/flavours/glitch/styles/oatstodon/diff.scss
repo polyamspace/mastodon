@@ -210,11 +210,15 @@ nav,
   }
 
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
+    background: $ui-base-color;
     color: $white;
   }
 }
 
+.icon-with-badge__badge,
 .column-link__badge {
   background-color: $accent;
   animation-name: flash;
@@ -226,6 +230,7 @@ nav,
 .column-header,
 .column-header__button,
 .column-header__button.active,
+.column-header__button.active:hover,
 .column-header__back-button,
 .column-header__collapsible-inner {
   background: $background-brighter;
