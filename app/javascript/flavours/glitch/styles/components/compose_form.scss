@@ -138,6 +138,11 @@
   flex: 0 2 auto;
 }
 
+.reply-indicator__reply-to {
+  font-size: 12px;
+  color: $inverted-text-color;
+}
+
 .reply-indicator__header {
   margin-bottom: 5px;
   overflow: hidden;

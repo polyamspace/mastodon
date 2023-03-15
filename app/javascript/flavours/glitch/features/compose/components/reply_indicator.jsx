@@ -16,6 +16,10 @@ const messages = defineMessages({
     defaultMessage: 'Cancel',
     id: 'reply_indicator.cancel',
   },
+  replyTo: {
+    defaultMessage: 'Replying to:',
+    id: 'reply_indicator.reply_to',
+  },
 });
 
 
@@ -50,6 +54,7 @@ class ReplyIndicator extends ImmutablePureComponent {
     //  The result.
     return (
       <article className='reply-indicator'>
+        <span className='reply-indicator__reply-to'>{intl.formatMessage(messages.replyTo)}</span>
         <header className='reply-indicator__header'>
           <IconButton
             className='reply-indicator__cancel'
