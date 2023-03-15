@@ -306,14 +306,26 @@ nav,
 
   &__section-headline {
     background: $background-brighter;
+    color: $accent;
     border-bottom: none;
 
-    a.active {
-      color: $accent;
+    .active {
+      border-bottom: 3px solid $accent;
+    }
 
-      &::before,
-      &::after {
-        border-color: transparent transparent $ui-base-color;
+    a {
+      &:hover {
+        color: $white;
+      }
+
+      &.active {
+        color: $accent;
+
+        &::before,
+        &::after {
+          display: none;
+          border-color: transparent transparent $ui-base-color;
+        }
       }
     }
 
@@ -430,11 +442,12 @@ nav,
     max-height: 100%;
   }
 
+  // Fix colors
+
   &__reply-to {
     color: $secondary-text-color;
   }
 
-  // Fix colors
   &__header > .account.small {
     color: $primary-text-color;
   }
@@ -442,7 +455,6 @@ nav,
   &__content {
     color: $primary-text-color;
 
-    // NOTE: This should be fixed with glitch-soc rich text scss refactor
     blockquote {
       color: $darker-text-color;
       border-left: 3px solid $darker-text-color;
