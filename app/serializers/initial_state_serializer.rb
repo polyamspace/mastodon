@@ -49,7 +49,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       timeline_preview: Setting.timeline_preview,
       activity_api_enabled: Setting.activity_api_enabled,
       single_user_mode: Rails.configuration.x.single_user_mode,
-      translation_enabled: TranslationService.configured?,
       trends_as_landing_page: Setting.trends_as_landing_page,
       search_preview: Setting.search_preview,
       publish_button_text: Setting.publish_button_text,

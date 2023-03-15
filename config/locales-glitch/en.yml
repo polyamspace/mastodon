@@ -27,6 +27,7 @@ en:
         title: New registration text filter
       phrase: Keyword, phrase or regular expression
       phrase_hint: Forbid registration of new users whose answer to the “Why do you want to join?” prompt contains text that matches this keyword, phrase or regular expression.
+      text: Text
       title: Registration text filters
       type:
         title: Filter type
@@ -86,6 +87,9 @@ en:
       title: User verification
   generic:
     use_this: Use this
+  invites:
+    table:
+      comment: Comment
   notification_mailer:
     reaction:
       body: "%{name} reacted to your toot:"
