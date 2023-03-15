@@ -18,6 +18,15 @@ hr {
   &:focus {
     background-color: $accent-bright;
   }
+
+  &.button-secondary {
+    &:hover,
+    &:active,
+    &:focus {
+      color: $white;
+      border-color: transparent;
+    }
+  }
 }
 
 .icon-button {
@@ -763,8 +772,8 @@ nav,
     &:hover,
     &:focus,
     &:active {
-      border-color: darken($primary-text-color, 15%);
-      color: darken($primary-text-color, 15%);
+      border-color: transparent;
+      color: $white;
     }
   }
 
