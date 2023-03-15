@@ -426,6 +426,14 @@ nav,
   transition: max-height 1s;
   background: $background-brighter;
 
+  &:hover {
+    max-height: 100%;
+  }
+
+  &__reply-to {
+    color: $secondary-text-color;
+  }
+
   // Fix colors
   &__header > .account.small {
     color: $primary-text-color;
@@ -440,16 +448,6 @@ nav,
       border-left: 3px solid $darker-text-color;
     }
   }
-}
-
-.reply-indicator:hover {
-  max-height: 100%;
-}
-
-.reply-indicator::before {
-  content: 'Replying to:';
-  font-size: 12px;
-  color: $secondary-text-color;
 }
 
 // emoji picker
