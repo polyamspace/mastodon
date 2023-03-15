@@ -84,6 +84,26 @@ hr {
 
 }
 
+.reactions-bar {
+  &__item {
+    background: $ui-base-color;
+    color: $primary-text-color;
+
+    &:hover {
+      background: rgba($accent-secondary, 0.1);
+    }
+
+    &.active {
+      background: rgba($accent-secondary, 0.25);
+      color: $accent-secondary;
+
+      .reactions-bar__item__count {
+        color: $accent;
+      }
+    }
+  }
+}
+
 .dropdown-menu {
   background: $ui-base-color;
 
