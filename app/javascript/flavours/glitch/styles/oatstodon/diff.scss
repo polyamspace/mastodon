@@ -185,21 +185,34 @@ nav,
 // columns
 .column-header,
 .column-back-button,
-.navigation-panel .column-link:nth-child(1),
-.navigation-panel .column-link:nth-child(10),
 .navigation-bar {
   border-radius: $border-radius $border-radius 0 0;
 }
 
 .column > .scrollable,
-.getting-started,
-.navigation-panel .column-link:nth-child(8),
-.navigation-panel .column-link:nth-child(11) {
+.getting-started {
   border-radius: 0 0 $border-radius $border-radius;
 }
 
 .column-link {
   background: $ui-base-color;
+
+  // Applies bottom corners roundening to Lists and App settings
+  &:nth-last-of-type(1),
+  &:nth-of-type(10) {
+    border-radius: 0 0 $border-radius $border-radius;
+  }
+
+  // Applies top corners roundening to Home and Preferences
+  &:nth-of-type(1),
+  &:nth-of-type(11) {
+    border-radius: $border-radius $border-radius 0 0;
+  }
+
+
+  &:hover {
+    color: $white;
+  }
 }
 
 .column-link__badge {
