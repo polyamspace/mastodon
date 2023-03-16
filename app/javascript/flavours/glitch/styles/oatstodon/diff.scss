@@ -380,14 +380,14 @@ a.mention.hashtag {
     border-radius: $border-radius;
   }
 
-  &__inner,
-  &--header {
+  &__inner {
     background: $ui-base-color;
-    color: $primary-text-color;
   }
 }
 
 .drawer--header {
+  background: $ui-base-color;
+  color: $primary-text-color;
   border-radius: $border-radius;
 
   a {
@@ -418,6 +418,10 @@ a.mention.hashtag {
   background: $ui-base-color;
   color: $primary-text-color;
   border-radius: $border-radius;
+
+  .acct {
+    color: $primary-text-color;
+  }
 }
 
 // glitch mascot
