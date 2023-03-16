@@ -5,20 +5,13 @@ require 'pundit/rspec'
 
 RSpec.describe RegistrationFilterPolicy do
   let(:subject) { described_class }
-  let(:admin)   { Fabricate(:user, admin: true).account }
-  let(:mod)     { Fabricate(:user, moderator: true).account }
+  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
   let(:john)    { Fabricate(:user).account }
 
   permissions :index? do
     context 'admin' do
       it 'permits' do
         expect(subject).to permit(admin, RegistrationFilter)
-      end
-    end
-
-    context 'moderator' do
-      it 'permits' do
-        expect(subject).to permit(mod, RegistrationFilter)
       end
     end
 
@@ -33,12 +26,6 @@ RSpec.describe RegistrationFilterPolicy do
     context 'admin' do
       it 'permits' do
         expect(subject).to permit(admin, RegistrationFilter)
-      end
-    end
-
-    context 'moderator' do
-      it 'denies' do
-        expect(subject).to_not permit(mod, RegistrationFilter)
       end
     end
 
