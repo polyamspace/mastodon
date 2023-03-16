@@ -401,6 +401,10 @@ a.mention.hashtag {
   }
 }
 
+.search__input {
+  background: $background-brighter;
+}
+
 .search-popout {
   background: $ui-base-color;
   color: $primary-text-color;
