@@ -90,7 +90,17 @@ hr {
       }
     }
   }
+}
 
+.detailed-status {
+  &__action-bar {
+    border-top: none;
+    border-bottom: none;
+  }
+}
+
+.conversation {
+  border-bottom: none;
 }
 
 .reactions-bar {
