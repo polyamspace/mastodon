@@ -858,6 +858,12 @@ a.mention.hashtag {
       background: $background-brighter;
     }
   }
+
+  .content-wrapper,
+  .sidebar-wrapper--empty {
+    background: $background;
+  }
+
   .sidebar {
     ul a {
       background: $background-brighter;
