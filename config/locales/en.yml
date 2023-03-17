@@ -1196,8 +1196,6 @@ en:
       index:
         hint: This filter applies to select individual toots regardless of other criteria. You can add more toots to this filter from the web interface.
         title: Filtered toots
-  footer:
-    trending_now: Trending now
   generic:
     all: All
     all_items_on_page_selected_html:
