@@ -855,25 +855,20 @@ a.mention.hashtag {
 
   .sidebar-wrapper {
     &__inner {
-      background: $background-brighter;
+      background: $background;
     }
-  }
-
-  .content-wrapper,
-  .sidebar-wrapper--empty {
-    background: $background;
   }
 
   .sidebar {
     ul a {
-      background: $background-brighter;
+      background: $background;
 
       &:hover {
-        background: $background-brighter;
+        background: $background;
       }
 
       &.selected {
-        background: $background-brighter;
+        background: $background;
       }
     }
 
