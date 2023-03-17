@@ -19,15 +19,15 @@ $classic-secondary-color: #d9e1e8;    // Pattens Blue
 $classic-highlight-color: #6364ff;    // Brand purple
 
 // text color
-$primary-text-color: #d9e1e8 !default; // oatstodon text-color
-$secondary-text-color: #606984 !default; // oatstodon text-color-secondary
-$action-button-color: #3e5b54 !default; // oatstodon accent-color-secondary
+$primary-text-color: $text !default; // oatstodon text-color
+$secondary-text-color: $text-secondary !default; // oatstodon text-color-secondary
+$action-button-color: $accent-secondary !default; // oatstodon accent-color-secondary
 $dark-text-color: lighten($classic-base-color, 26%) !default; // default Mastodon color
 $lighter-text-color: $secondary-text-color !default;
 
 // UI
-$ui-base-color: #121225 !default; // oatstodon background-color
-$ui-highlight-color: #27b791 !default; // oatstodon accent-color
+$ui-base-color: $background !default; // oatstodon background-color
+$ui-highlight-color: $accent !default; // oatstodon accent-color
 
 // Border
 $border-radius: 5px !default;
