@@ -828,3 +828,77 @@ a.mention.hashtag {
     background: $accent-secondary;
   }
 }
+
+// admin interface
+
+.admin-wrapper {
+  .content {
+    h2,
+    h3 {
+      color: $primary-text-color;
+    }
+
+    h4 {
+      border-bottom: none;
+    }
+  }
+
+  .sidebar-wrapper {
+    &__inner {
+      background: $background-brighter;
+    }
+  }
+  .sidebar {
+    ul a {
+      background: $background-brighter;
+
+      &:hover {
+        background: $background-brighter;
+      }
+
+      &.selected {
+        background: $background-brighter;
+      }
+    }
+
+    ul {
+      .simple-navigation-active-leaf a {
+        background: $accent;
+
+        &:hover {
+          background: $accent-bright;
+        }
+      }
+    }
+  }
+}
+
+.announcements-list,
+.filters-list {
+  &__item {
+    &__title {
+      color: $primary-text-color;
+    }
+
+    a.announcements-list__item__title {
+      &:hover,
+      &:active,
+      &:focus {
+        color: $white;
+      }
+    }
+  }
+}
+
+.table {
+  &.horizontal-table {
+    & > tbody > tr > th,
+    & > tbody > tr > td {
+      border: none;
+    }
+
+    & > tbody > tr {
+      border: 1px solid lighten($ui-base-color, 8%);
+    }
+  }
+}
