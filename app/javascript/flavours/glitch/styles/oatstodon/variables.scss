@@ -1,0 +1,33 @@
+$white: #ffffff;
+
+// Oatstodon colors
+$text: #d9e1e8;
+$text-secondary: #606984;
+
+$background: #121225;
+$background-brighter: #16162f;
+$app-background: #080811;
+
+$accent: #27b791;
+$accent-secondary: #3e5b54;
+$accent-bright: #5cc1a2;
+
+// Values from the classic Mastodon UI
+$classic-base-color: #282c37;         // Midnight Express
+$classic-primary-color: #9baec8;      // Echo Blue
+$classic-secondary-color: #d9e1e8;    // Pattens Blue
+$classic-highlight-color: #6364ff;    // Brand purple
+
+// text color
+$primary-text-color: $text !default; // oatstodon text-color
+$secondary-text-color: $text-secondary !default; // oatstodon text-color-secondary
+$action-button-color: $accent-secondary !default; // oatstodon accent-color-secondary
+$dark-text-color: lighten($classic-base-color, 26%) !default; // default Mastodon color
+$lighter-text-color: $secondary-text-color !default;
+
+// UI
+$ui-base-color: $background !default; // oatstodon background-color
+$ui-highlight-color: $accent !default; // oatstodon accent-color
+
+// Border
+$border-radius: 5px !default;
