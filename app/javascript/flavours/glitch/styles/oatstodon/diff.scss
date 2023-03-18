@@ -19,6 +19,10 @@ hr {
     background-color: $accent-bright;
   }
 
+  &:disabled {
+    background-color: $ui-primary-color;
+  }
+
   &.button-secondary {
     &:hover,
     &:active,
