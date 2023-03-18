@@ -8,7 +8,7 @@ import classnames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
 import { autoPlayGif, languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
-import highlightjs from 'highlight.js';
+import { highlightCode } from 'flavours/glitch/utils/html';
 
 const textMatchesTarget = (text, origin, host) => {
   return (text === origin || text === host
@@ -309,56 +309,6 @@ class StatusContent extends React.PureComponent {
     this.contentsNode = c;
   };
 
-  /**
-   * Highlights code in code tags.\
-   * Uses highlight.js to convert content inside code tags to span elements with class attributes
-   * @param {String} content - String containing html code tags
-   * @returns content with highlighted code inside code tags, or content if not found
-   */
-  highlightCode (content) {
-    // highlightJS complains when unescaped html is given
-    highlightjs.configure({ ignoreUnescapedHTML: true });
-
-    // Create a new temporary element to work on
-    const wrapper = document.createElement('div');
-    wrapper.innerHTML = content;
-
-    // Get code elements and run highlightJS on each.
-    wrapper.querySelectorAll('code')
-      .forEach((code) => {
-        // Get language from data attribute containing code language of code element
-        let lang = highlightjs.getLanguage(code.dataset.codelang);
-
-        // Check if lang is a valid language
-        if (lang !== undefined) {
-          // Set codelang as class attribute, since highlightElement cannot be given a language
-          // highlightJS will read this attribute and use it to highlight in the proper language
-          code.setAttribute('class', code.dataset.codelang);
-
-          // Set title attribute to language name, i.e. "js" will become "Javascript"
-          code.setAttribute('title', lang.name);
-
-          // Replace <br> as highlightJS removes them, messing up formatting
-          let brTags = Array.from(code.getElementsByTagName('br'));
-          for (let br of brTags) {
-            br.replaceWith('\n');
-          }
-
-          // Highlight the code element
-          highlightjs.highlightElement(code);
-
-          // highlightJS adds own class attribute, remove it again to not mess up styling
-          code.removeAttribute('class');
-        } else {
-          // Remove data attribute as it's not a valid language.
-          delete code.dataset.codelang;
-        }
-      });
-
-    // return content with highlighted code
-    return wrapper.innerHTML;
-  }
-
   render () {
     const {
       status,
@@ -377,7 +327,7 @@ class StatusContent extends React.PureComponent {
     const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
     const renderTranslate = this.props.onTranslate && this.context.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && targetLanguages?.includes(contentLocale);
 
-    const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : this.highlightCode(status.get('contentHtml')) };
+    const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : highlightCode(status.get('contentHtml')) };
     const spoilerContent = { __html: status.get('spoilerHtml') };
     const lang = status.get('translation') ? intl.locale : status.get('language');
     const classNames = classnames('status__content', {

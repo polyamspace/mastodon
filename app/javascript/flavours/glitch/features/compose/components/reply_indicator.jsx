@@ -10,6 +10,8 @@ import AccountContainer from 'flavours/glitch/containers/account_container';
 import IconButton from 'flavours/glitch/components/icon_button';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 
+import { highlightCode } from 'flavours/glitch/utils/html';
+
 //  Messages.
 const messages = defineMessages({
   cancel: {
@@ -72,7 +74,7 @@ class ReplyIndicator extends ImmutablePureComponent {
         </header>
         <div
           className='reply-indicator__content translate'
-          dangerouslySetInnerHTML={{ __html: content || '' }}
+          dangerouslySetInnerHTML={{ __html: highlightCode(content) || '' }}
         />
         {attachments.size > 0 && (
           <AttachmentList
