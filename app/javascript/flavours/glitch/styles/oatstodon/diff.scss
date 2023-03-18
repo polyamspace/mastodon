@@ -10,29 +10,6 @@ hr {
   opacity: 0;
 }
 
-.button {
-  background-color: $accent;
-
-  &:active,
-  &:hover,
-  &:focus {
-    background-color: $accent-bright;
-  }
-
-  &:disabled {
-    background-color: $ui-primary-color;
-  }
-
-  &.button-secondary {
-    &:hover,
-    &:active,
-    &:focus {
-      color: $white;
-      border-color: transparent;
-    }
-  }
-}
-
 .icon-button {
   &.inverted {
     color: $accent-secondary;
@@ -805,7 +782,6 @@ a.mention.hashtag {
     &:hover,
     &:focus,
     &:active {
-      border-color: transparent;
       color: $white;
     }
   }
