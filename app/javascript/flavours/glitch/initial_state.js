@@ -151,6 +151,8 @@ export const visibleReactions = getMeta('visible_reactions');
 export const languages = initialState?.languages;
 export const publishButtonText = getMeta('publish_button_text');
 export const statusPageUrl = getMeta('status_page_url');
+export const showReblogsPublicTimelines = getMeta('show_reblogs_in_public_timelines');
+export const showRepliesPublicTimelines = getMeta('show_replies_in_public_timelines');
 
 // Glitch-soc-specific settings
 export const maxChars = (initialState && initialState.max_toot_chars) || 500;

@@ -86,12 +86,22 @@ const initialState = ImmutableMap({
   }),
 
   community: ImmutableMap({
+    shows: ImmutableMap({
+      reblog: true,
+      reply: true,
+    }),
+
     regex: ImmutableMap({
       body: '',
     }),
   }),
 
   public: ImmutableMap({
+    shows: ImmutableMap({
+      reblog: true,
+      reply: true,
+    }),
+
     regex: ImmutableMap({
       body: '',
     }),
