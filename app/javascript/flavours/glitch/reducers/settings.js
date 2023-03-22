@@ -24,6 +24,7 @@ const initialState = ImmutableMap({
     shows: ImmutableMap({
       reblog: true,
       reply: true,
+      thread: true,
       direct: true,
     }),
 
