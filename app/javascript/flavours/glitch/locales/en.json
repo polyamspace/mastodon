@@ -57,6 +57,7 @@
   "home.column_settings.advanced": "Advanced",
   "home.column_settings.filter_regex": "Filter out by regular expressions",
   "home.column_settings.show_direct": "Show DMs",
+  "home.column_settings.show_threads": "Show threads",
   "home.settings": "Column settings",
   "keyboard_shortcuts.bookmark": "to bookmark",
   "keyboard_shortcuts.secondary_toot": "to send toot using secondary privacy setting",

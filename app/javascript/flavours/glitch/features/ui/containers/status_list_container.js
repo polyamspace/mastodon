@@ -41,6 +41,10 @@ const makeGetStatusIds = (pending = false) => createSelector([
       showStatus = showStatus && (statusForId.get('in_reply_to_id') === null || statusForId.get('in_reply_to_account_id') === me || statusForId.get('in_reply_to_account_id') === statusForId.get('account'));
     }
 
+    if (columnSettings.getIn(['shows', 'thread']) === false) {
+      showStatus = showStatus && statusForId.get('in_reply_to_account_id') !== statusForId.get('account');
+    }
+
     if (columnSettings.getIn(['shows', 'direct']) === false) {
       showStatus = showStatus && statusForId.get('visibility') !== 'direct';
     }

@@ -35,6 +35,10 @@ class ColumnSettings extends React.PureComponent {
         </div>
 
         <div className='column-settings__row'>
+          <SettingToggle prefix='home_timeline' settings={settings} settingPath={['shows', 'thread']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_threads' defaultMessage='Show threads' />} />
+        </div>
+
+        <div className='column-settings__row'>
           <SettingToggle prefix='home_timeline' settings={settings} settingPath={['shows', 'direct']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_direct' defaultMessage='Show DMs' />} />
         </div>
 
