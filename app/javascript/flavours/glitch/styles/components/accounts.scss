@@ -12,10 +12,12 @@
     text-decoration: none;
     font-size: 14px;
 
-    &--with-note {
-      strong {
-        display: inline;
-      }
+    .display-name {
+      margin-bottom: 4px;
+    }
+
+    .display-name strong {
+      display: inline;
     }
   }
 
@@ -807,4 +809,17 @@
 
 .account-memorial-banner__message {
   margin-bottom: 0;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  color: $valid-value-color;
+  gap: 4px;
+
+  a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: none;
+  }
 }
