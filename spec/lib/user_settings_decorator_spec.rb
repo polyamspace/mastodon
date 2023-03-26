@@ -35,6 +35,13 @@ describe UserSettingsDecorator do
       expect(user.settings['default_sensitive']).to be true
     end
 
+    it 'updates the user settings value for alt text reminder' do
+      values = { 'setting_alt_text_reminder' => '0' }
+
+      settings.update(values)
+      expect(user.settings['alt_text_reminder']).to eq false
+    end
+
     it 'updates the user settings value for unfollow modal' do
       values = { 'setting_unfollow_modal' => '0' }
 

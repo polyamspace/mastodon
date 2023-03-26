@@ -548,7 +548,8 @@ a.mention,
 .mute-modal,
 .block-modal,
 .boost-modal,
-.confirmation-modal {
+.confirmation-modal,
+.alt-text-warning-modal {
   background: lighten($purple2, 8%);
   color: $primary-text-color;
 
