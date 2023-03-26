@@ -28,6 +28,7 @@ defaults: &defaults
   reduce_motion: false
   disable_swiping: false
   show_application: false
+  alt_text_reminder: true
   system_font_ui: false
   system_emoji_font: false
   noindex: false
