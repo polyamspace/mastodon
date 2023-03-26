@@ -32,6 +32,7 @@ import {
   InteractionModal,
   SubscribedLanguagesModal,
   ClosedRegistrationsModal,
+  AltTextWarningModal,
 } from 'flavours/glitch/features/ui/util/async-components';
 import { Helmet } from 'react-helmet';
 
@@ -62,6 +63,7 @@ const MODAL_COMPONENTS = {
   'INTERACTION': InteractionModal,
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
   'ALTTEXT': () => Promise.resolve({ default: AltTextModal }),
+  'ALT_TEXT_WARNING': AltTextWarningModal,
 };
 
 export default class ModalRoot extends React.PureComponent {
