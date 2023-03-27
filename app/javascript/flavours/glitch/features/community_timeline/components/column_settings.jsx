@@ -11,7 +11,6 @@ const messages = defineMessages({
   settings: { id: 'home.settings', defaultMessage: 'Column settings' },
 });
 
-export default @injectIntl
 class ColumnSettings extends React.PureComponent {
 
   static propTypes = {
@@ -42,3 +41,5 @@ class ColumnSettings extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(ColumnSettings);

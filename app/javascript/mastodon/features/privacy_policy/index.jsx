@@ -11,7 +11,6 @@ const messages = defineMessages({
   title: { id: 'privacy_policy.title', defaultMessage: 'Privacy Policy' },
 });
 
-export default @injectIntl
 class PrivacyPolicy extends React.PureComponent {
 
   static propTypes = {
@@ -74,3 +73,5 @@ class PrivacyPolicy extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(PrivacyPolicy);

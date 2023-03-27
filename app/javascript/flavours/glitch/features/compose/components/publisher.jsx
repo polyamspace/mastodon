@@ -27,7 +27,6 @@ const messages = defineMessages({
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
 });
 
-export default @injectIntl
 class Publisher extends ImmutablePureComponent {
 
   static propTypes = {
@@ -99,3 +98,5 @@ class Publisher extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(Publisher);

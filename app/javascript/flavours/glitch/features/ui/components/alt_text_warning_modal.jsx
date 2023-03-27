@@ -15,8 +15,6 @@ const mapDispatchToProps = dispatch => {
 
 // This modal is displayed when a user attempts to submit a post with an image
 // or video file that has no alt text.
-export default @connect(null, mapDispatchToProps)
-@injectIntl
 class AltTextWarningModal extends React.PureComponent {
 
   static propTypes = {
@@ -73,3 +71,5 @@ class AltTextWarningModal extends React.PureComponent {
   }
 
 }
+
+export default connect(null, mapDispatchToProps)(injectIntl(AltTextWarningModal));
