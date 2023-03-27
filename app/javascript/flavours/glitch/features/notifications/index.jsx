@@ -92,8 +92,6 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default @connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
 class Notifications extends React.PureComponent {
 
   static contextTypes = {
@@ -381,3 +379,5 @@ class Notifications extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Notifications));

@@ -25,7 +25,6 @@ const messages = defineMessages({
 });
 
 
-export default @injectIntl
 class ReplyIndicator extends ImmutablePureComponent {
 
   static propTypes = {
@@ -87,3 +86,5 @@ class ReplyIndicator extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(ReplyIndicator);
