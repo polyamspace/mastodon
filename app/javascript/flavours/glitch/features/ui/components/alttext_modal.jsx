@@ -5,8 +5,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import Button from 'flavours/glitch/components/button';
 import { injectIntl, FormattedMessage } from 'react-intl';
 
-@injectIntl
-export default class AltTextModal extends ImmutablePureComponent {
+class AltTextModal extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -36,3 +35,5 @@ export default class AltTextModal extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(AltTextModal);
