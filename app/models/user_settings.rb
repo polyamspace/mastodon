@@ -12,6 +12,7 @@ class UserSettings
   setting :flavour, default: -> { ::Setting.flavour }
   setting :skin, default: -> { ::Setting.skin }
   setting :noindex, default: -> { ::Setting.noindex }
+  setting :norss, default: -> { ::Setting.norss }
   setting :show_application, default: true
   setting :default_language, default: nil
   setting :default_sensitive, default: false
@@ -31,11 +32,14 @@ class UserSettings
     setting :reblog_modal, default: false
     setting :unfollow_modal, default: true
     setting :favourite_modal, default: false
+    setting :alt_text_reminder, default: true
     setting :reduce_motion, default: false
     setting :expand_content_warnings, default: false
     setting :display_media, default: 'default', in: %w(default show_all hide_all)
     setting :auto_play, default: false
     setting :use_system_emoji_font, default: false
+    setting :visible_reactions, default: 6
+    setting :notification_sound, default: nil
   end
 
   namespace :notification_emails do

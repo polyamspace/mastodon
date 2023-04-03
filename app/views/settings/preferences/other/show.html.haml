@@ -34,7 +34,7 @@
       = ff.input :default_sensitive, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_default_sensitive'), hint: I18n.t('simple_form.hints.defaults.setting_default_sensitive')
 
     .fields-group
-      = ff.input :alt_text_reminder, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_alt_text_reminder'), hint: I18n.t('simple_form.hints.defaults.setting_alt_text_reminder'), polyam_only: true
+      = ff.input :'web.alt_text_reminder', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_alt_text_reminder'), hint: I18n.t('simple_form.hints.defaults.setting_alt_text_reminder'), polyam_only: true
 
     .fields-group
       = ff.input :show_application, wrapper: :with_label, recommended: true, label: I18n.t('simple_form.labels.defaults.setting_show_application'), hint: I18n.t('simple_form.hints.defaults.setting_show_application')

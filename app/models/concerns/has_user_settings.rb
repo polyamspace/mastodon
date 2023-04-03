@@ -43,6 +43,10 @@ module HasUserSettings
     settings['web.favourite_modal']
   end
 
+  def setting_alt_text_reminder
+    settings['web.alt_text_reminder']
+  end
+
   def setting_reduce_motion
     settings['web.reduce_motion']
   end
@@ -57,6 +61,10 @@ module HasUserSettings
 
   def setting_noindex
     settings['noindex']
+  end
+
+  def setting_norss
+    settings['norss']
   end
 
   def setting_flavour
@@ -81,6 +89,10 @@ module HasUserSettings
 
   def setting_aggregate_reblogs
     settings['aggregate_reblogs']
+  end
+
+  def setting_visible_reactions
+    integer_cast_setting('web.visible_reactions', 0)
   end
 
   def setting_show_application
@@ -127,6 +139,10 @@ module HasUserSettings
     settings['hide_followers_count']
   end
 
+  def setting_notification_sound
+    settings['web.notification_sound']
+  end
+
   def allows_report_emails?
     settings['notification_emails.report']
   end
@@ -169,5 +185,14 @@ module HasUserSettings
 
   def hide_all_media?
     settings['web.display_media'] == 'hide_all'
+  end
+
+  def integer_cast_setting(key, min = nil, max = nil)
+    i = ActiveModel::Type::Integer.new.cast(settings[key])
+    # the cast above doesn't return a number if passed the string "e"
+    i = 0 unless i.is_a? Numeric
+    return min if !min.nil? && i < min
+    return max if !max.nil? && i > max
+    i
   end
 end
