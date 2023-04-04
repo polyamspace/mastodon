@@ -29,4 +29,27 @@ module.exports = {
     'scss/dollar-variable-empty-line-before': null,
     'scss/no-global-function-names': null,
   },
+  overrides: [
+    {
+      files: [
+        'app/javascript/styles/fairy-floss/diff.scss',
+        'app/javascript/flavours/glitch/styles/fairy-floss/diff.scss',
+      ],
+      rules: {
+        'selector-no-vendor-prefix': null,
+      },
+    },
+    {
+      files: ['app/javascript/flavours/glitch/styles/**/*.scss'],
+      rules: {
+        'scss/at-extend-no-missing-placeholder': null,
+      },
+    },
+    {
+      files: ['app/javascript/flavours/glitch/styles/accessibility.scss'],
+      rules: {
+        'font-family-no-missing-generic-family-keyword': null,
+      },
+    },
+  ],
 };
