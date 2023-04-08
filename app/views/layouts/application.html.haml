@@ -1,5 +1,5 @@
 !!! 5
-- # Uses: application_helper.rb
+-# Uses: application_helper.rb
 %html{ lang: I18n.locale }
   %head
     %meta{ charset: 'utf-8' }/
@@ -46,7 +46,7 @@
 
     = yield :header_tags
 
-    -#  These must come after :header_tags to ensure our initial state has been defined.
+    -# These must come after :header_tags to ensure our initial state has been defined.
     = render partial: 'layouts/theme', object: @core
     = render partial: 'layouts/theme', object: @theme
 
