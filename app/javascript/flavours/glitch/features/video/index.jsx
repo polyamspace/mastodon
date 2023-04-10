@@ -608,7 +608,7 @@ class Video extends React.PureComponent {
           preload={preload}
           loop
           role='button'
-          tabIndex='0'
+          tabIndex={0}
           aria-label={alt}
           title={alt}
           lang={lang}
@@ -637,7 +637,7 @@ class Video extends React.PureComponent {
 
             <span
               className={classNames('video-player__seek__handle', { active: dragging })}
-              tabIndex='0'
+              tabIndex={0}
               style={{ left: `${progress}%` }}
               onKeyDown={this.handleVideoKeyDown}
             />
@@ -653,7 +653,7 @@ class Video extends React.PureComponent {
 
                 <span
                   className={classNames('video-player__volume__handle')}
-                  tabIndex='0'
+                  tabIndex={0}
                   style={{ left: `${volume * 100}%` }}
                 />
               </div>

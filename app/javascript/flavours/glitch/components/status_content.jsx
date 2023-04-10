@@ -388,7 +388,7 @@ class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className={classNames} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className={classNames} tabIndex={0} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p
             style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}
           >
@@ -425,14 +425,14 @@ class StatusContent extends React.PureComponent {
           className={classNames}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
-          tabIndex='0'
+          tabIndex={0}
         >
           <div
             ref={this.setContentsRef}
             key={`contents-${tagLinks}-${rewriteMentions}`}
             dangerouslySetInnerHTML={content}
             className='status__content__text translate'
-            tabIndex='0'
+            tabIndex={0}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
             lang={lang}
@@ -446,14 +446,14 @@ class StatusContent extends React.PureComponent {
       return (
         <div
           className='status__content'
-          tabIndex='0'
+          tabIndex={0}
         >
           <div
             ref={this.setContentsRef}
             key={`contents-${tagLinks}`}
             className='status__content__text translate'
             dangerouslySetInnerHTML={content}
-            tabIndex='0'
+            tabIndex={0}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
             lang={lang}
