@@ -14,6 +14,10 @@ module Admin
       @registration_filter = RegistrationFilter.new
     end
 
+    def edit
+      authorize @registration_filter, :update?
+    end
+
     def create
       authorize :registration_filter, :create?
 
@@ -26,10 +30,6 @@ module Admin
       else
         render :new
       end
-    end
-
-    def edit
-      authorize @registration_filter, :update?
     end
 
     def update

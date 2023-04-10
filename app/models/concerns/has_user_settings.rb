@@ -193,6 +193,7 @@ module HasUserSettings
     i = 0 unless i.is_a? Numeric
     return min if !min.nil? && i < min
     return max if !max.nil? && i > max
+
     i
   end
 end

@@ -407,6 +407,7 @@ class FeedManager
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
     return true  if crutches[:languages][status.account_id].present? && status.language.present? && !crutches[:languages][status.account_id].include?(status.language)
+
     # exclusive list feature
     unless timeline_type == :list
       # find all exclusive lists

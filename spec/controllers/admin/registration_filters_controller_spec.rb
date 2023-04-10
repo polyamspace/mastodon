@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::RegistrationFiltersController, type: :controller do
+RSpec.describe Admin::RegistrationFiltersController do
   render_views
 
   before do

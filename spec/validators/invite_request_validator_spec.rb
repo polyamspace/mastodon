@@ -10,7 +10,7 @@ describe InviteRequestValidator do
 
   describe '#validate' do
     context 'when invite request text does not match any filter' do
-      let(:request_text)    { 'I am just a prospective new user wanting to try out Mastodon. My website is https://allaboutbitcoin.org/' }
+      let(:request_text) { 'I am just a prospective new user wanting to try out Mastodon. My website is https://allaboutbitcoin.org/' }
 
       it 'does not add any error' do
         subject.validate(invite_request)

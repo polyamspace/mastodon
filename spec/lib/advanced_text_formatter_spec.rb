@@ -56,7 +56,7 @@ RSpec.describe AdvancedTextFormatter do
         let(:text) { "test\n\n```c++\nint main(void) {\n  return 0; // https://joinmastodon.org/foo\n}\n```\n" }
 
         it 'formats code using <pre> and <code> with data containing set language' do
-          is_expected.to include '<pre><code data-codelang="c++">int main'
+          expect(subject).to include '<pre><code data-codelang="c++">int main'
         end
       end
 
