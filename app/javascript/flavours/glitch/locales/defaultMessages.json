@@ -83,10 +83,6 @@
       {
         "defaultMessage": "React",
         "id": "status.react"
-      },
-      {
-        "defaultMessage": "Open moderation interface for {domain}",
-        "id": "status.admin_domain"
       }
     ],
     "path": "app/javascript/flavours/glitch/components/status_action_bar.json"
@@ -237,14 +233,6 @@
         "id": "account.request_follow"
       },
       {
-        "defaultMessage": "Followed hashtags",
-        "id": "navigation_bar.followed_tags"
-      },
-      {
-        "defaultMessage": "Open moderation interface for {domain}",
-        "id": "status.admin_domain"
-      },
-      {
         "defaultMessage": "Add note for @{name}",
         "id": "account.add_account_note"
       },
@@ -267,6 +255,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Show alt-text",
+        "id": "video.alt"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/audio/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Filter out by regular expressions",
         "id": "home.column_settings.filter_regex"
       },
@@ -280,15 +277,6 @@
       }
     ],
     "path": "app/javascript/flavours/glitch/features/community_timeline/components/column_settings.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Followed hashtags",
-        "id": "navigation_bar.followed_tags"
-      }
-    ],
-    "path": "app/javascript/flavours/glitch/features/compose/components/action_bar.json"
   },
   {
     "descriptors": [
@@ -381,6 +369,15 @@
       }
     ],
     "path": "app/javascript/flavours/glitch/features/compose/components/poll_form.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Replying to:",
+        "id": "reply_indicator.reply_to"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/compose/components/reply_indicator.json"
   },
   {
     "descriptors": [
@@ -478,19 +475,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Followed hashtags",
-        "id": "followed_tags"
-      },
-      {
-        "defaultMessage": "You have not followed any hashtags yet. When you do, they will show up here.",
-        "id": "empty_column.followed_tags"
-      }
-    ],
-    "path": "app/javascript/flavours/glitch/features/followed_tags/index.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "Misc",
         "id": "column.heading"
       },
@@ -549,6 +533,10 @@
         "id": "home.settings"
       },
       {
+        "defaultMessage": "Show threads",
+        "id": "home.column_settings.show_threads"
+      },
+      {
         "defaultMessage": "Show DMs",
         "id": "home.column_settings.show_direct"
       },
@@ -579,11 +567,11 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Exclusive?",
-        "id": "lists.is-exclusive"
+        "defaultMessage": "Hide users on this list from home timeline",
+        "id": "lists.exclusive"
       }
     ],
-    "path": "app/javascript/flavours/glitch/features/list_editor/components/edit_list_form.json"
+    "path": "app/javascript/flavours/glitch/features/list_timeline/index.json"
   },
   {
     "descriptors": [
@@ -1031,13 +1019,22 @@
       {
         "defaultMessage": "React",
         "id": "status.react"
-      },
-      {
-        "defaultMessage": "Open moderation interface for {domain}",
-        "id": "status.admin_domain"
       }
     ],
     "path": "app/javascript/flavours/glitch/features/status/components/action_bar.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Your attachments are missing a description!",
+        "id": "compose_form.alt_text_warning.header"
+      },
+      {
+        "defaultMessage": "Descriptions are for users who are deaf, hard of hearing, blind, or have low vision that prevent them from seeing or hearing an image, video, or audio file. It's recommended that you provide a description for all attached media files so everyone can enjoy using Mastodon.",
+        "id": "compose_form.alt_text_warning.message"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/ui/components/alt_text_warning_modal.json"
   },
   {
     "descriptors": [
@@ -1206,12 +1203,17 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Show alt-text",
+        "id": "video.alt"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/video/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "React",
         "id": "status.react"
-      },
-      {
-        "defaultMessage": "Open moderation interface for {domain}",
-        "id": "status.admin_domain"
       }
     ],
     "path": "app/javascript/mastodon/components/status_action_bar.json"
@@ -1221,26 +1223,9 @@
       {
         "defaultMessage": "Request follow",
         "id": "account.request_follow"
-      },
-      {
-        "defaultMessage": "Followed hashtags",
-        "id": "navigation_bar.followed_tags"
-      },
-      {
-        "defaultMessage": "Open moderation interface for {domain}",
-        "id": "status.admin_domain"
       }
     ],
     "path": "app/javascript/mastodon/features/account/components/header.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Followed hashtags",
-        "id": "navigation_bar.followed_tags"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/compose/components/action_bar.json"
   },
   {
     "descriptors": [
@@ -1254,33 +1239,20 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Followed hashtags",
-        "id": "followed_tags"
-      },
-      {
-        "defaultMessage": "You have not followed any hashtags yet. When you do, they will show up here.",
-        "id": "empty_column.followed_tags"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/followed_tags/index.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Followed hashtags",
-        "id": "navigation_bar.followed_tags"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/getting_started/index.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "Exclusive?",
         "id": "lists.is-exclusive"
       }
     ],
     "path": "app/javascript/mastodon/features/list_editor/components/edit_list_form.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Hide users on this list from home timeline",
+        "id": "lists.exclusive"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/list_timeline/index.json"
   },
   {
     "descriptors": [
@@ -1314,13 +1286,22 @@
       {
         "defaultMessage": "React",
         "id": "status.react"
-      },
-      {
-        "defaultMessage": "Open moderation interface for {domain}",
-        "id": "status.admin_domain"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/action_bar.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Your attachments are missing a description!",
+        "id": "compose_form.alt_text_warning.header"
+      },
+      {
+        "defaultMessage": "Descriptions are for users who are deaf, hard of hearing, blind, or have low vision that prevent them from seeing or hearing an image, video, or audio file. It's recommended that you provide a description for all attached media files so everyone can enjoy using Mastodon.",
+        "id": "compose_form.alt_text_warning.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/alt_text_warning_modal.json"
   },
   {
     "descriptors": [
