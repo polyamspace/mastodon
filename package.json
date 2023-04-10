@@ -6,7 +6,7 @@
   },
   "scripts": {
     "postversion": "git push --tags",
-    "build:development": "cross-env RAILS_ENV=development NODE_ENV=development NODE_OPTIONS=--openssl-legacy-provider ./bin/webpack",
+    "build:development": "cross-env RAILS_ENV=development NODE_ENV=development ./bin/webpack",
     "build:production": "cross-env RAILS_ENV=production NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider ./bin/webpack",
     "manage:translations": "node ./config/webpack/translationRunner.js",
     "start": "node ./streaming/index.js",
@@ -38,7 +38,6 @@
     "@github/webauthn-json": "^2.1.1",
     "@rails/ujs": "^6.1.7",
     "abortcontroller-polyfill": "^1.7.5",
-    "array-includes": "^3.1.6",
     "arrow-key-navigation": "^1.2.0",
     "atrament": "0.2.4",
     "autoprefixer": "^10.4.14",
@@ -204,7 +203,7 @@
     "react-test-renderer": "^16.14.0",
     "stylelint": "^15.3.0",
     "stylelint-config-standard-scss": "^7.0.1",
-    "typescript": "^4.9.5",
+    "typescript": "^5.0.3",
     "webpack-dev-server": "^3.11.3",
     "yargs": "^17.7.1"
   },

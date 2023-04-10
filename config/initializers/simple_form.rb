@@ -22,6 +22,7 @@ end
 module GlitchOnlyComponent
   def glitch_only(_wrapper_options = nil)
     return unless options[:glitch_only]
+
     options[:label_text] = ->(raw_label_text, _required_label_text, _label_present) { safe_join([raw_label_text, ' ', content_tag(:span, I18n.t('simple_form.glitch_only'), class: 'glitch_only')]) }
     nil
   end
@@ -30,6 +31,7 @@ end
 module PolyamOnlyComponent
   def polyam_only(_wrapper_options = nil)
     return unless options[:polyam_only]
+
     options[:label_text] = ->(raw_label_text, _required_label_text, _label_present) { safe_join([raw_label_text, ' ', content_tag(:span, I18n.t('simple_form.polyam_only'), class: 'polyam_only')]) }
     nil
   end

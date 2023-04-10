@@ -18,6 +18,7 @@ class AdvancedTextFormatter < TextFormatter
 
     def autolink(link, link_type)
       return link if link_type == :email
+
       @format_link.call(link)
     end
   end

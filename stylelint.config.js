@@ -19,7 +19,6 @@ module.exports = {
     'no-descending-specificity': null,
     'no-duplicate-selectors': null,
     'number-max-precision': 8,
-    'property-no-unknown': null,
     'property-no-vendor-prefix': null,
     'selector-class-pattern': null,
     'selector-id-pattern': null,
@@ -49,6 +48,18 @@ module.exports = {
       files: ['app/javascript/flavours/glitch/styles/accessibility.scss'],
       rules: {
         'font-family-no-missing-generic-family-keyword': null,
+      },
+    },
+    {
+      'files': ['app/javascript/styles/mailer.scss'],
+      rules: {
+        'property-no-unknown': [
+          true,
+          {
+            ignoreProperties: [
+              '/^mso-/',
+            ] },
+        ],
       },
     },
   ],

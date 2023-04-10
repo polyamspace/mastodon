@@ -1,6 +1,6 @@
-#  Glitch Polyam Edition  #
+# Glitch Polyam Edition
 
->   Mastodon, but better!
+> Mastodon, but better!
 
 This project is a fork of [glitch-soc](https://github.com/glitch-soc/mastodon), which itself is a fork of Mastodon. \
 A list of changes can be found [on the wiki](https://github.com/polyamspace/mastodon/wiki)

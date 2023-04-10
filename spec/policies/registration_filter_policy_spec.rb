@@ -9,13 +9,13 @@ RSpec.describe RegistrationFilterPolicy do
   let(:john)    { Fabricate(:user).account }
 
   permissions :index? do
-    context 'admin' do
+    context 'when user is admin' do
       it 'permits' do
         expect(subject).to permit(admin, RegistrationFilter)
       end
     end
 
-    context 'not staff' do
+    context 'when user is regular user' do
       it 'denies' do
         expect(subject).to_not permit(john, RegistrationFilter)
       end
@@ -23,13 +23,13 @@ RSpec.describe RegistrationFilterPolicy do
   end
 
   permissions :create?, :destroy?, :update? do
-    context 'admin' do
+    context 'when user is admin' do
       it 'permits' do
         expect(subject).to permit(admin, RegistrationFilter)
       end
     end
 
-    context 'not admin' do
+    context 'when user is not admin' do
       it 'denies' do
         expect(subject).to_not permit(john, RegistrationFilter)
       end

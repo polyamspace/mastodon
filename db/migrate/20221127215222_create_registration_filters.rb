@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateRegistrationFilters < ActiveRecord::Migration[6.1]
   def change
     create_table :registration_filters do |t|
