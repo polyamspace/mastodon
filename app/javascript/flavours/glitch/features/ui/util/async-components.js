@@ -78,6 +78,10 @@ export function Following () {
   return import(/* webpackChunkName: "flavours/glitch/async/following" */'flavours/glitch/features/following');
 }
 
+export function Featured () {
+  return import(/* webpackChunkName: "flavours/glitch/async/featured" */'flavours/glitch/features/featured');
+}
+
 export function Reblogs () {
   return import(/* webpackChunkName: "flavours/glitch/async/reblogs" */'flavours/glitch/features/reblogs');
 }
