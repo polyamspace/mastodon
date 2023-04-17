@@ -548,7 +548,7 @@ a.mention.hashtag {
 
     blockquote {
       color: $darker-text-color;
-      border-left: 3px solid $darker-text-color;
+      border-inline-start-color: $darker-text-color;
     }
   }
 }
