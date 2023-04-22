@@ -55,6 +55,7 @@ import {
   FollowRecommendations,
   About,
   PrivacyPolicy,
+  Featured,
 } from './util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import initialState, { me, owner, singleUserMode, showTrends, trendsAsLanding } from '../../initial_state';
@@ -217,6 +218,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path={['/accounts/:id/followers', '/users/:acct/followers', '/@:acct/followers']} component={Followers} content={children} />
           <WrappedRoute path={['/accounts/:id/following', '/users/:acct/following', '/@:acct/following']} component={Following} content={children} />
           <WrappedRoute path={['/@:acct/media', '/accounts/:id/media']} component={AccountGallery} content={children} />
+          <WrappedRoute path={['/@:acct/featured', '/accounts/:id/featured']} component={Featured} content={children} />
           <WrappedRoute path='/@:acct/:statusId' exact component={Status} content={children} />
           <WrappedRoute path='/@:acct/:statusId/reblogs' component={Reblogs} content={children} />
           <WrappedRoute path='/@:acct/:statusId/favourites' component={Favourites} content={children} />

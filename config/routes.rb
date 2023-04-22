@@ -117,6 +117,7 @@ Rails.application.routes.draw do
   constraints(username: /[^@\/.]+/) do
     get '/@:username', to: 'accounts#show', as: :short_account
     get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
+    get '/@:username/featured', to: 'accounts#show', as: :short_account_featured
     get '/@:username/media', to: 'accounts#show', as: :short_account_media
     get '/@:username/tagged/:tag', to: 'accounts#show', as: :short_account_tag
   end

@@ -475,6 +475,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "This user doesn't feature any hashtags yet.",
+        "id": "account.featured_tags.empty"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/featured/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Misc",
         "id": "column.heading"
       },
