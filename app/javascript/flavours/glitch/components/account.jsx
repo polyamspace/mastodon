@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
@@ -14,11 +13,11 @@ import { me } from 'flavours/glitch/initial_state';
 import { Avatar } from './avatar';
 import { FollowersCounter } from './counters';
 import { DisplayName } from './display_name';
-import { Icon } from './icon';
 import { IconButton } from './icon_button';
 import Permalink from './permalink';
 import { RelativeTimestamp } from './relative_timestamp';
 import { ShortNumber } from './short_number';
+import VerifiedBadge from './verified_badge';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -31,26 +30,6 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
 });
-
-class VerifiedBadge extends PureComponent {
-
-  static propTypes = {
-    link: PropTypes.string.isRequired,
-    verifiedAt: PropTypes.string.isRequired,
-  };
-
-  render () {
-    const { link } = this.props;
-
-    return (
-      <span className='verified-badge'>
-        <Icon id='check' className='verified-badge__mark' />
-        <span dangerouslySetInnerHTML={{ __html: link }} />
-      </span>
-    );
-  }
-
-}
 
 class Account extends ImmutablePureComponent {
 

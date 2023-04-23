@@ -51,6 +51,7 @@ import {
   COMPOSE_CHANGE_MEDIA_DESCRIPTION,
   COMPOSE_CHANGE_MEDIA_FOCUS,
   COMPOSE_SET_STATUS,
+  COMPOSE_FOCUS,
 } from 'flavours/glitch/actions/compose';
 import { REDRAFT } from 'flavours/glitch/actions/statuses';
 import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
@@ -662,6 +663,8 @@ export default function compose(state = initialState, action) {
     return state.update('poll', poll => poll.set('expires_in', action.expiresIn).set('multiple', action.isMultiple));
   case COMPOSE_LANGUAGE_CHANGE:
     return state.set('language', action.language);
+  case COMPOSE_FOCUS:
+    return state.set('focusDate', new Date());
   default:
     return state;
   }
