@@ -368,6 +368,11 @@
   &.active {
     opacity: 1;
   }
+
+  &:focus {
+    outline: 0;
+    background-color: $highlight-text-color;
+  }
 }
 
 .media-modal__close {

@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import SwipeableViews from 'react-swipeable-views';
+
 import Column from 'flavours/glitch/components/column';
 import ColumnBackButton from 'flavours/glitch/components/column_back_button';
 import { Icon } from 'flavours/glitch/components/icon';
@@ -16,8 +18,9 @@ import { me, domain } from 'flavours/glitch/initial_state';
 
 import ArrowSmallRight from './components/arrow_small_right';
 
+
 const messages = defineMessages({
-  shareableMessage: { id: 'onboarding.share.message', defaultMessage: 'I\'m {username} on Mastodon! Come follow me at {url}' },
+  shareableMessage: { id: 'onboarding.share.message', defaultMessage: 'I\'m {username} on #Mastodon! Come follow me at {url}' },
 });
 
 const mapStateToProps = state => ({
@@ -85,6 +88,60 @@ class CopyPasteText extends React.PureComponent {
 
 }
 
+class TipCarousel extends React.PureComponent {
+
+  static propTypes = {
+    children: PropTypes.node,
+  };
+
+  state = {
+    index: 0,
+  };
+
+  handleSwipe = index => {
+    this.setState({ index });
+  };
+
+  handleChangeIndex = e => {
+    this.setState({ index: Number(e.currentTarget.getAttribute('data-index')) });
+  };
+
+  handleKeyDown = e => {
+    switch(e.key) {
+    case 'ArrowLeft':
+      e.preventDefault();
+      this.setState(({ index }, { children }) => ({ index: Math.abs(index - 1) % children.length }));
+      break;
+    case 'ArrowRight':
+      e.preventDefault();
+      this.setState(({ index }, { children }) => ({ index: (index + 1) % children.length }));
+      break;
+    }
+  };
+
+  render () {
+    const { children } = this.props;
+    const { index } = this.state;
+
+    return (
+      <div className='tip-carousel' tabIndex='0' onKeyDown={this.handleKeyDown}>
+        <SwipeableViews onChangeIndex={this.handleSwipe} index={index} enableMouseEvents tabIndex='-1'>
+          {children}
+        </SwipeableViews>
+
+        <div className='media-modal__pagination'>
+          {children.map((_, i) => (
+            <button key={i} className={classNames('media-modal__page-dot', { active: i === index })} data-index={i} onClick={this.handleChangeIndex}>
+              {i + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+}
+
 class Share extends React.PureComponent {
 
   static propTypes = {
@@ -109,6 +166,12 @@ class Share extends React.PureComponent {
           </div>
 
           <CopyPasteText value={intl.formatMessage(messages.shareableMessage, { username: `@${account.get('username')}@${domain}`, url })} />
+
+          <TipCarousel>
+            <div><p className='onboarding__lead'><FormattedMessage id='onboarding.tips.verification' defaultMessage='<strong>Did you know?</strong> You can verify your account by putting a link to your Mastodon profile on your own website and adding the website to your profile. No fees or documents necessary!' values={{ strong: chunks => <strong>{chunks}</strong> }} /></p></div>
+            <div><p className='onboarding__lead'><FormattedMessage id='onboarding.tips.migration' defaultMessage='<strong>Did you know?</strong> If you feel like {domain} is not a great server choice for you in the future, you can move to another Mastodon server without losing your followers. You can even host your own server!' values={{ domain, strong: chunks => <strong>{chunks}</strong> }} /></p></div>
+            <div><p className='onboarding__lead'><FormattedMessage id='onboarding.tips.2fa' defaultMessage='<strong>Did you know?</strong> You can secure your account by setting up two-factor authentication in your account settings. It works with any TOTP app of your choice, no phone number necessary!' values={{ strong: chunks => <strong>{chunks}</strong> }} /></p></div>
+          </TipCarousel>
 
           <p className='onboarding__lead'><FormattedMessage id='onboarding.share.next_steps' defaultMessage='Possible next steps:' /></p>
 
