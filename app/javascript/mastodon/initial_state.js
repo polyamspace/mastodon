@@ -92,6 +92,8 @@
  * @property {Record<string, Account>} accounts
  * @property {InitialStateLanguage[]} languages
  * @property {InitialStateMeta} meta
+ * @property {number} max_toot_chars
+ * @property {number} max_reactions
  */
 
 const element = document.getElementById('initial-state');
