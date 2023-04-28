@@ -163,9 +163,10 @@ export function resetCompose() {
   };
 }
 
-export const focusCompose = () => (dispatch, getState) => {
+export const focusCompose = (defaultText = '') => (dispatch, getState) => {
   dispatch({
     type: COMPOSE_FOCUS,
+    defaultText,
   });
 
   ensureComposeIsVisible(getState);

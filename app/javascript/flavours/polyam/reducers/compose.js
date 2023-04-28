@@ -739,7 +739,7 @@ export const composeReducer = (state = initialState, action) => {
   case COMPOSE_LANGUAGE_CHANGE:
     return state.set('language', action.language);
   case COMPOSE_FOCUS:
-    return state.set('focusDate', new Date()).set('highlighted', true);
+    return state.set('focusDate', new Date()).update('text', text => text.length > 0 ? text : action.defaultText).set('highlighted', true);
   case removeHighlight.type:
     return state.set('highlighted', false);
   case COMPOSE_CHANGE_MEDIA_ORDER:
