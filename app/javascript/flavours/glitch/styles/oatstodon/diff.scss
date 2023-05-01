@@ -71,6 +71,10 @@ hr {
       }
     }
   }
+
+  &--first-in-thread {
+    border-top: none;
+  }
 }
 
 .detailed-status {
@@ -102,6 +106,15 @@ hr {
       }
     }
   }
+}
+
+.notification-follow,
+.notification-follow-request {
+  border-bottom: none;
+}
+
+.notification__report {
+  border-bottom: none;
 }
 
 .dropdown-menu {
@@ -302,6 +315,8 @@ a.mention.hashtag {
 }
 
 .account {
+  border-bottom: none;
+
   &__action-bar,
   &__action-bar__tab {
     border: none;
