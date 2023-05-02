@@ -407,14 +407,8 @@ class FeedManager
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
     return true  if crutches[:languages][status.account_id].present? && status.language.present? && !crutches[:languages][status.account_id].include?(status.language)
-
-    # exclusive list feature
-    unless timeline_type == :list
-      # find all exclusive lists
-      lists = List.where(account_id: receiver_id, is_exclusive: true)
-      # is account on an exclusive list, filter from home
-      return true if ListAccount.where(list: lists, account_id: status.account_id).exists?
-    end
+    # Filter toot if author is on an exclusive list
+    return true if crutches[:exclusive][status.account_id].present? && timeline_type != :list
 
     check_for_blocks = crutches[:active_mentions][status.id] || []
     check_for_blocks.concat([status.account_id])
@@ -620,6 +614,8 @@ class FeedManager
     crutches[:muting]          = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
     crutches[:domain_blocking] = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
     crutches[:blocked_by]      = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
+    # Get accounts on exclusive lists which match authors of toots
+    crutches[:exclusive]       = ListAccount.where(list: List.where(account_id: receiver_id, is_exclusive: true), account_id: statuses.map(&:account_id).compact).pluck(:account_id).index_with(true)
 
     crutches
   end
