@@ -160,6 +160,22 @@ RSpec.describe FeedManager do
         status = Fabricate(:status, text: 'Hallo Welt', account: bob, language: 'de')
         expect(FeedManager.instance.filter?(:home, status, alice)).to be false
       end
+
+      it 'returns true for account on exclusive list' do
+        list = Fabricate(:list, account: alice, is_exclusive: true)
+        alice.follow!(bob)
+        list.accounts << bob
+        status = Fabricate(:status, text: 'Hello world', account: bob)
+        expect(FeedManager.instance.filter?(:home, status, alice)).to be true
+      end
+
+      it 'returns false for account on non-exclusive list' do
+        list = Fabricate(:list, account: alice)
+        alice.follow!(bob)
+        list.accounts << bob
+        status = Fabricate(:status, text: 'Hello world', account: bob)
+        expect(FeedManager.instance.filter?(:home, status, alice)).to be false
+      end
     end
 
     context 'for mentions feed' do
