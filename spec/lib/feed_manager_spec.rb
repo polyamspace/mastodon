@@ -162,7 +162,7 @@ RSpec.describe FeedManager do
       end
 
       it 'returns true for account on exclusive list' do
-        list = Fabricate(:list, account: alice, is_exclusive: true)
+        list = Fabricate(:list, account: alice, exclusive: true)
         alice.follow!(bob)
         list.accounts << bob
         status = Fabricate(:status, text: 'Hello world', account: bob)

@@ -150,10 +150,10 @@ export const createListFail = error => ({
   error,
 });
 
-export const updateList = (id, title, shouldReset, is_exclusive, replies_policy) => (dispatch, getState) => {
+export const updateList = (id, title, shouldReset, exclusive, replies_policy) => (dispatch, getState) => {
   dispatch(updateListRequest(id));
 
-  api(getState).put(`/api/v1/lists/${id}`, { title, replies_policy, is_exclusive }).then(({ data }) => {
+  api(getState).put(`/api/v1/lists/${id}`, { title, replies_policy, exclusive }).then(({ data }) => {
     dispatch(updateListSuccess(data));
 
     if (shouldReset) {
