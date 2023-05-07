@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import { lookupAccount, fetchAccount } from 'flavours/glitch/actions/accounts';
 import { expandAccountMediaTimeline } from 'flavours/glitch/actions/timelines';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
@@ -15,6 +14,7 @@ import HeaderContainer from 'flavours/glitch/features/account_timeline/container
 import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 import LoadMore from 'flavours/glitch/components/load_more';
 import { openModal } from 'flavours/glitch/actions/modal';
+import { FormattedMessage } from 'react-intl';
 import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
 import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 
@@ -72,8 +72,8 @@ class AccountGallery extends ImmutablePureComponent {
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     isAccount: PropTypes.bool,
-    multiColumn: PropTypes.bool,
     suspended: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   state = {

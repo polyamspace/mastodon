@@ -46,18 +46,6 @@ module.exports = {
       },
     },
     {
-      files: ['app/javascript/flavours/glitch/styles/**/*.scss'],
-      rules: {
-        'scss/at-extend-no-missing-placeholder': null,
-      },
-    },
-    {
-      files: ['app/javascript/flavours/glitch/styles/accessibility.scss'],
-      rules: {
-        'font-family-no-missing-generic-family-keyword': null,
-      },
-    },
-    {
       'files': ['app/javascript/styles/mailer.scss'],
       rules: {
         'property-no-unknown': [

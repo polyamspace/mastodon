@@ -312,7 +312,7 @@ class MediaGallery extends React.PureComponent {
     }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate () {
     if (this.node) {
       this.handleResize();
     }

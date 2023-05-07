@@ -62,6 +62,7 @@ export default class DisplayName extends React.PureComponent {
     if (others && others.size > 0) {
       displayName = others.take(2).map(a => (
         <a
+          key={a.get('id')}
           href={a.get('url')}
           target='_blank'
           onClick={(e) => onAccountClick(a.get('acct'), e)}
