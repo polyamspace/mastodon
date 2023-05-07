@@ -17,7 +17,7 @@ import { IconButton } from './icon_button';
 import Permalink from './permalink';
 import { RelativeTimestamp } from './relative_timestamp';
 import { ShortNumber } from './short_number';
-import VerifiedBadge from './verified_badge';
+import { VerifiedBadge } from './verified_badge';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -166,7 +166,7 @@ class Account extends ImmutablePureComponent {
     const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
 
     if (firstVerifiedField) {
-      verification = <VerifiedBadge link={firstVerifiedField.get('value')} verifiedAt={firstVerifiedField.get('verified_at')} />;
+      verification = <VerifiedBadge link={firstVerifiedField.get('value')} />;
     }
 
     return small ? (
