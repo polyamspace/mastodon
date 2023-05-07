@@ -38,7 +38,6 @@ class NavigationPanel extends React.Component {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     onOpenSettings: PropTypes.func,
-    intl: PropTypes.object.isRequired,
   };
 
   render() {
