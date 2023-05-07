@@ -5,14 +5,13 @@ import React from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
 import { length } from 'stringz';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { publishButtonText as customPublishButtonText } from 'flavours/glitch/initial_state';
 
 //  Components.
 import Button from 'flavours/glitch/components/button';
 import Icon from 'flavours/glitch/components/icon';
 
 //  Utils.
-import { maxChars } from 'flavours/glitch/initial_state';
+import { maxChars, publishButtonText as customPublishButtonText } from 'flavours/glitch/initial_state';
 
 //  Messages.
 const messages = defineMessages({
