@@ -139,6 +139,9 @@ class Status extends ImmutablePureComponent {
     'expanded',
     'unread',
     'pictureInPicture',
+    'previousId',
+    'nextInReplyToId',
+    'rootId',
   ];
 
   updateOnStates = [
@@ -284,7 +287,7 @@ class Status extends ImmutablePureComponent {
 
   //  Hack to fix timeline jumps on second rendering when auto-collapsing
   //  or on subsequent rendering when a preview card has been fetched
-  getSnapshotBeforeUpdate (prevProps, prevState) {
+  getSnapshotBeforeUpdate() {
     if (!this.props.getScrollPosition) return null;
 
     const { muted, hidden, status, settings } = this.props;
@@ -299,7 +302,7 @@ class Status extends ImmutablePureComponent {
     }
   }
 
-  componentDidUpdate (prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     if (snapshot !== null && this.props.updateScrollBottom && this.node.offsetTop < snapshot.top) {
       this.props.updateScrollBottom(snapshot.height - snapshot.top);
     }
@@ -469,7 +472,7 @@ class Status extends ImmutablePureComponent {
     this.props.onMoveDown(this.props.containerId || this.props.id, e.target.getAttribute('data-featured'));
   };
 
-  handleHotkeyCollapse = e => {
+  handleHotkeyCollapse = () => {
     if (!this.props.settings.getIn(['collapsed', 'enabled']))
       return;
 
@@ -513,7 +516,6 @@ class Status extends ImmutablePureComponent {
     const {
       handleRef,
       parseClick,
-      setExpansion,
       setCollapsed,
     } = this;
     const { router } = this.context;
@@ -538,7 +540,7 @@ class Status extends ImmutablePureComponent {
       rootId,
       ...other
     } = this.props;
-    const { isCollapsed, forceFilter } = this.state;
+    const { isCollapsed } = this.state;
     let background = null;
     let attachments = null;
 
