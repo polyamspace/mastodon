@@ -24,6 +24,10 @@ const messages = defineMessages({
     id: 'compose_form.publish_loud',
   },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
+  public: { id: 'privacy.public.short', defaultMessage: 'Public' },
+  unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  private: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 
 class Publisher extends ImmutablePureComponent {
@@ -69,6 +73,13 @@ class Publisher extends ImmutablePureComponent {
       publishText = privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: publishButtonText }) : publishButtonText;
     }
 
+    const privacyNames = {
+      public: messages.public,
+      unlisted: messages.unlisted,
+      private: messages.private,
+      direct: messages.direct,
+    };
+
     return (
       <div className={computedClass}>
         {sideArm && !isEditing && sideArm !== 'none' ? (
@@ -79,7 +90,7 @@ class Publisher extends ImmutablePureComponent {
               onClick={onSecondarySubmit}
               style={{ padding: null }}
               text={<Icon id={privacyIcons[sideArm]} />}
-              title={`${publishButtonText}: ${intl.formatMessage({ id: `privacy.${sideArm}.short` })}`}
+              title={`${publishButtonText}: ${intl.formatMessage(privacyNames[sideArm])}`}
             />
           </div>
         ) : null}
@@ -87,7 +98,7 @@ class Publisher extends ImmutablePureComponent {
           <Button
             className='primary'
             text={publishText}
-            title={`${publishButtonText}: ${intl.formatMessage({ id: `privacy.${privacy}.short` })}`}
+            title={`${publishButtonText}: ${intl.formatMessage(privacyNames[privacy])}`}
             onClick={this.handleSubmit}
             disabled={disabled}
           />
