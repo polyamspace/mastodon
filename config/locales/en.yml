@@ -628,13 +628,13 @@ en:
       statuses_description_html: Offending content will be cited in communication with the reported account
       summary:
         action_preambles:
-          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
-          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s toots. This will:'
+          mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s toots as <strong>sensitive</strong>. This will:'
           silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
           suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
         actions:
-          delete_html: Remove the offending posts
-          mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          delete_html: Remove the offending toots
+          mark_as_sensitive_html: Mark the offending toots' media as sensitive
           silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
           suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
         close_report: 'Mark report #%{id} as resolved'
@@ -771,7 +771,7 @@ en:
         remove_from_report: Remove from report
         report: Report
       deleted: Deleted
-      favourites: Favourites
+      favourites: Favorites
       history: Version history
       in_reply_to: Replying to
       language: Language
@@ -852,14 +852,14 @@ en:
       statuses:
         allow: Allow toot
         allow_account: Allow author
-        description_html: These are toots that your server knows about that are currently being shared and favourited a lot at the moment. It can help your new and returning users to find more people to follow. No toots are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual toots.
+        description_html: These are toots that your server knows about that are currently being shared and favorited a lot at the moment. It can help your new and returning users to find more people to follow. No toots are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual toots.
         disallow: Disallow toot
         disallow_account: Disallow author
         no_status_selected: No trending toots were changed as none were selected
         not_discoverable: Author has not opted-in to being discoverable
         shared_by:
-          one: Shared or favourited one time
-          other: Shared and favourited %{friendly_count} times
+          one: Shared or favorited one time
+          other: Shared and favorited %{friendly_count} times
         title: Trending toots
       tags:
         current_score: Current score %{score}
@@ -1337,9 +1337,9 @@ en:
       sign_up:
         subject: "%{name} signed up"
     favourite:
-      body: 'Your toot was favourited by %{name}:'
-      subject: "%{name} favourited your toot"
-      title: New favourite
+      body: 'Your toot was favorited by %{name}:'
+      subject: "%{name} favorited your toot"
+      title: New favorite
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
@@ -1572,10 +1572,10 @@ en:
     enabled_hint: Automatically deletes your toots once they reach a specified age threshold, unless they match one of the exceptions below
     exceptions: Exceptions
     explanation: Because deleting toots is an expensive operation, this is done slowly over time when the server is not otherwise busy. For this reason, your toots may be deleted a while after they reach the age threshold.
-    ignore_favs: Ignore favourites
+    ignore_favs: Ignore favorites
     ignore_reblogs: Ignore boosts
     interaction_exceptions: Exceptions based on interactions
-    interaction_exceptions_explanation: Note that there is no guarantee for toots to be deleted if they go below the favourite or boost threshold after having once gone over them.
+    interaction_exceptions_explanation: Note that there is no guarantee for toots to be deleted if they go below the favorite or boost threshold after having once gone over them.
     keep_direct: Keep direct messages
     keep_direct_hint: Doesn't delete any of your direct messages
     keep_media: Keep toots with media attachments
@@ -1586,8 +1586,8 @@ en:
     keep_polls_hint: Doesn't delete any of your polls
     keep_self_bookmark: Keep toots you bookmarked
     keep_self_bookmark_hint: Doesn't delete your own toots if you have bookmarked them
-    keep_self_fav: Keep toots you favourited
-    keep_self_fav_hint: Doesn't delete your own toots if you have favourited them
+    keep_self_fav: Keep toots you favorited
+    keep_self_fav_hint: Doesn't delete your own toots if you have favorited them
     min_age:
       '1209600': 2 weeks
       '15778476': 6 months
@@ -1598,8 +1598,8 @@ en:
       '63113904': 2 years
       '7889238': 3 months
     min_age_label: Age threshold
-    min_favs: Keep toots favourited at least
-    min_favs_hint: Doesn't delete any of your toots that has received at least this amount of favourites. Leave blank to delete toots regardless of their number of favourites
+    min_favs: Keep toots favorited at least
+    min_favs_hint: Doesn't delete any of your toots that has received at least this number of favorites. Leave blank to delete toots regardless of their number of favorites
     min_reblogs: Keep toots boosted at least
     min_reblogs_hint: Doesn't delete any of your toots that has been boosted at least this number of times. Leave blank to delete toots regardless of their number of boosts
   stream_entries:
