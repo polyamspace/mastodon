@@ -524,6 +524,27 @@ describe AccountInteractions do
     end
   end
 
+  describe '#reacted?' do
+    subject { account.reacted?(status, '👍') }
+
+    let(:status) { Fabricate(:status, account: account) }
+
+    # FIXME: This fails
+    context 'reacted' do
+      let(:reaction) { Fabricate(:status_reaction, account: account, status: status) }
+
+      it 'returns true' do
+        expect(subject).to be true
+      end
+    end
+
+    context 'not reacted' do
+      it 'returns false' do
+        expect(subject).to be false
+      end
+    end
+  end
+
   describe '#reblogged?' do
     subject { account.reblogged?(status) }
 
