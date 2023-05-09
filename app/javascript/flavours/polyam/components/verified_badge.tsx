@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import { Icon } from './icon';
