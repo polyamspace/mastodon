@@ -37,7 +37,7 @@ class StatusReaction < ApplicationRecord
   def increment_cache_counters
     status.increment_count!(:reactions_count)
   end
-  
+
   def decrement_cache_counters
     return if association(:status).loaded? && status.marked_for_destruction?
 
