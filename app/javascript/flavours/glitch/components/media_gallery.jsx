@@ -115,12 +115,10 @@ class Item extends React.PureComponent {
   render () {
     const { attachment, lang, index, size, standalone, letterbox, displayWidth, visible } = this.props;
 
+    let badges = [], thumbnail;
+
     let width  = 50;
     let height = 100;
-    let top    = 'auto';
-    let left   = 'auto';
-    let bottom = 'auto';
-    let right  = 'auto';
 
     if (size === 1) {
       width = 100;
@@ -130,46 +128,13 @@ class Item extends React.PureComponent {
       height = 50;
     }
 
-    if (size === 2) {
-      if (index === 0) {
-        right = '2px';
-      } else {
-        left = '2px';
-      }
-    } else if (size === 3) {
-      if (index === 0) {
-        right = '2px';
-      } else if (index > 0) {
-        left = '2px';
-      }
-
-      if (index === 1) {
-        bottom = '2px';
-      } else if (index > 1) {
-        top = '2px';
-      }
-    } else if (size === 4) {
-      if (index === 0 || index === 2) {
-        right = '2px';
-      }
-
-      if (index === 1 || index === 3) {
-        left = '2px';
-      }
-
-      if (index < 2) {
-        bottom = '2px';
-      } else {
-        top = '2px';
-      }
+    if (attachment.get('description')?.length > 0) {
+      badges.push(<button type='button' className='media-gallery__alt__button' onClick={this.handleAltClick}><span>ALT</span></button>);//(<span key='alt' className='media-gallery__gifv__label'>ALT</span>);
     }
-
-    let thumbnail = '';
-    let altButton = (<button type='button' className='media-gallery__alt__button' onClick={this.handleAltClick}><span>ALT</span></button>);
 
     if (attachment.get('type') === 'unknown') {
       return (
-        <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+        <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
           <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={attachment.get('description')} lang={lang} target='_blank' rel='noopener noreferrer'>
             <Blurhash
               hash={attachment.get('blurhash')}
@@ -215,14 +180,12 @@ class Item extends React.PureComponent {
             style={{ objectPosition: letterbox ? null : `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
           />
-          {attachment.get('description') ? (
-            <div className='media-gallery__label-container'>
-              {altButton}
-            </div>) : null}
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
       const autoPlay = this.getAutoPlay();
+
+      badges.push(<span key='gif' className='media-gallery__gifv__label'>GIF</span>);
 
       thumbnail = (
         <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
@@ -241,17 +204,12 @@ class Item extends React.PureComponent {
             loop
             muted
           />
-
-          <div className='media-gallery__label-container'>
-            <span className='media-gallery__gifv__label'>GIF</span>
-            {attachment.get('description') ? altButton : null}
-          </div>
         </div>
       );
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone, letterbox })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+      <div className={classNames('media-gallery__item', { standalone, letterbox, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
         <Blurhash
           hash={attachment.get('blurhash')}
           dummy={!useBlurhash}
@@ -259,7 +217,14 @@ class Item extends React.PureComponent {
             'media-gallery__preview--hidden': visible && this.state.loaded,
           })}
         />
+
         {visible && thumbnail}
+
+        {badges && (
+          <div className='media-gallery__item__badges'>
+            {badges}
+          </div>
+        )}
       </div>
     );
   }
@@ -385,12 +350,10 @@ class MediaGallery extends React.PureComponent {
 
     const computedClass = classNames('media-gallery', { 'full-width': fullwidth });
 
-    if (this.isStandaloneEligible() && width) {
-      style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
-    } else if (width) {
-      style.height = width / (16/9);
+    if (this.isStandaloneEligible()) { // TODO: cropImages setting
+      style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
     } else {
-      return (<div className={computedClass} ref={this.handleRef} />);
+      style.aspectRatio = '16 / 9';
     }
 
     if (this.isStandaloneEligible()) {
