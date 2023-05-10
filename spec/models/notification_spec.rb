@@ -36,7 +36,7 @@ RSpec.describe Notification do
       end
     end
 
-    context 'activity is react' do
+    context 'when Activity is react' do
       let(:activity) { reaction }
 
       it 'returns status' do
