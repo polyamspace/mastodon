@@ -527,10 +527,10 @@ describe AccountInteractions do
   describe '#reacted?' do
     subject { account.reacted?(status, '👍') }
 
-    let(:status) { Fabricate(:status, account: account, status_reactions: reaction) }
+    let(:status) { Fabricate(:status, account: account, status_reactions: reactions) }
 
     context 'when reacted' do
-      let(:reaction) { [Fabricate(:status_reaction, account: account)] }
+      let(:reactions) { [Fabricate(:status_reaction, account: account)] }
 
       it 'returns true' do
         expect(subject).to be true
@@ -538,7 +538,8 @@ describe AccountInteractions do
     end
 
     context 'when not reacted' do
-      let(:reaction) { [] }
+      let(:reactions) { [] }
+
       it 'returns false' do
         expect(subject).to be false
       end
