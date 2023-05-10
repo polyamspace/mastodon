@@ -29,7 +29,7 @@ RSpec.describe ReactService, type: :service do
       subject.call(sender, status, '👍')
     end
 
-    it 'creates a reactions' do
+    it 'creates a reaction' do
       expect(status.reactions.first).to_not be_nil
     end
 
