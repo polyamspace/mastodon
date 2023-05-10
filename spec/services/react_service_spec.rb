@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ReactService, type: :service do
-  subject { ReactService.new }
+  subject { described_class.new }
 
   let(:sender) { Fabricate(:account, username: 'alice') }
 
