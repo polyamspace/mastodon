@@ -115,6 +115,7 @@ RSpec.describe Notification do
         ]
       end
 
+      # rubocop:disable RSpec/MultipleExpectations
       it 'preloads target status' do
         # mention
         expect(subject[0].type).to eq :mention
@@ -193,6 +194,7 @@ RSpec.describe Notification do
         expect(subject[7].target_status.association(:account)).to be_loaded
         expect(subject[7].target_status).to eq reaction.status
       end
+      # rubocop:enable RSpec/MultipleExpectations
     end
   end
 end
