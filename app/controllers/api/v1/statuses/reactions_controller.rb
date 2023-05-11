@@ -13,7 +13,9 @@ class Api::V1::Statuses::ReactionsController < Api::BaseController
   end
 
   def destroy
-    react = current_account.status_reactions.find_by(status_id: params[:status_id], name: params[:id])
+    name, domain = params[:id].split('@')
+    custom_emoji = CustomEmoji.find_by(shortcode: name, domain: domain)
+    react = current_account.status_reactions.find_by(status_id: params[:status_id], name: name, custom_emoji: custom_emoji)
 
     if react
       @status = react.status
