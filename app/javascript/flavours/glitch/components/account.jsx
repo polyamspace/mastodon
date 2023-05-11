@@ -7,12 +7,12 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { Skeleton } from 'flavours/glitch/components/skeleton';
 import { me } from 'flavours/glitch/initial_state';
 
 import { Avatar } from './avatar';
 import { FollowersCounter } from './counters';
 import { DisplayName } from './display_name';
+import { EmptyAccount } from './empty_account';
 import { IconButton } from './icon_button';
 import Permalink from './permalink';
 import { RelativeTimestamp } from './relative_timestamp';
@@ -94,20 +94,7 @@ class Account extends ImmutablePureComponent {
     } = this.props;
 
     if (!account) {
-      return (
-        <div className={classNames('account', { 'account--minimal': minimal })}>
-          <div className='account__wrapper'>
-            <div className='account__display-name'>
-              <div className='account__avatar-wrapper'><Skeleton width={size} height={size} /></div>
-
-              <div>
-                <DisplayName />
-                <Skeleton width='7ch' />
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+      return <EmptyAccount size={size} minimal={minimal} />;
     }
 
     if (hidden) {
