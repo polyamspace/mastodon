@@ -120,10 +120,11 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
     return if name.nil?
 
     status = status_from_uri(target_uri)
+    name = name.delete(':')
 
     return if status.nil? || !status.account.local?
 
-    if @account.reacted?(status, name.delete(':'))
+    if @account.reacted?(status, name)
       reaction = status.status_reactions.where(account: @account, name: name).first
       reaction&.destroy
     else
