@@ -403,7 +403,7 @@ class Announcements extends ImmutablePureComponent {
 
   /**
    * Finds the index of the first unread announcement
-   * @returns index of first unread announcement or 0
+   * @returns {number} index of first unread announcement or 0
    */
   _findFirstUnread () {
     const index = this.props.announcements.findIndex((item) => !item.get('read'));

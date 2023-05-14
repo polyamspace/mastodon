@@ -9,8 +9,8 @@ export const unescapeHTML = (html) => {
 /**
  * Highlights code in code tags.\
  * Uses highlight.js to convert content inside code tags to span elements with class attributes
- * @param {String} content - String containing html code tags
- * @returns content with highlighted code inside code tags, or content if not found
+ * @param {string} content - String containing html code tags
+ * @returns {string} content with highlighted code inside code tags, or content if not found
  */
 export const highlightCode = (content) => {
   // highlightJS complains when unescaped html is given
