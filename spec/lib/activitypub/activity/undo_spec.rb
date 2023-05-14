@@ -158,22 +158,77 @@ RSpec.describe ActivityPub::Activity::Undo do
     context 'with Like' do
       let(:status) { Fabricate(:status) }
 
-      let(:object_json) do
-        {
-          id: 'bar',
-          type: 'Like',
-          actor: ActivityPub::TagManager.instance.uri_for(sender),
-          object: ActivityPub::TagManager.instance.uri_for(status),
-        }
+      context 'when a regular like' do
+        let(:object_json) do
+          {
+            id: 'bar',
+            type: 'Like',
+            actor: ActivityPub::TagManager.instance.uri_for(sender),
+            object: ActivityPub::TagManager.instance.uri_for(status),
+          }
+        end
+
+        before do
+          Fabricate(:favourite, account: sender, status: status)
+        end
+
+        it 'deletes favourite from sender to status' do
+          subject.perform
+          expect(sender.favourited?(status)).to be false
+        end
       end
 
-      before do
-        Fabricate(:favourite, account: sender, status: status)
-      end
+      context 'when a reaction' do
+        let(:object_json) do
+          {
+            id: 'bar',
+            type: 'Like',
+            _misskey_reaction: +'👍',
+            actor: ActivityPub::TagManager.instance.uri_for(sender),
+            object: ActivityPub::TagManager.instance.uri_for(status),
+          }
+        end
 
-      it 'deletes favourite from sender to status' do
-        subject.perform
-        expect(sender.favourited?(status)).to be false
+        before do
+          Fabricate(:status_reaction, account: sender, status: status)
+        end
+
+        it 'deletes reaction from sender to status' do
+          subject.perform
+          expect(sender.reacted?(status, object_json['_misskey_reaction'])).to be false
+        end
+
+        context 'with custom emoji' do
+          let(:object_json) do
+            {
+              id: 'bar',
+              type: 'EmojiReact',
+              content: +':tinking:',
+              tag: [
+                {
+                  type: 'Emoji',
+                  icon: {
+                    url: 'http://example.com/emoji.png',
+                  },
+                  name: 'tinking',
+                },
+              ],
+              actor: ActivityPub::TagManager.instance.uri_for(sender),
+              object: ActivityPub::TagManager.instance.uri_for(status),
+            }
+          end
+
+          let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: 'tinking', domain: sender.domain) }
+
+          before do
+            Fabricate(:status_reaction, account: sender, status: status, name: custom_emoji.shortcode, custom_emoji: custom_emoji)
+          end
+
+          it 'deletes reaction from sender to status' do
+            subject.perform
+            expect(sender.reacted?(status, 'tinking', custom_emoji)).to be false
+          end
+        end
       end
     end
 
@@ -184,7 +239,7 @@ RSpec.describe ActivityPub::Activity::Undo do
         {
           id: 'bar',
           type: 'EmojiReact',
-          content: '👍',
+          content: +'👍',
           actor: ActivityPub::TagManager.instance.uri_for(sender),
           object: ActivityPub::TagManager.instance.uri_for(status),
         }
@@ -195,32 +250,41 @@ RSpec.describe ActivityPub::Activity::Undo do
       end
 
       it 'deletes reaction from sender to status' do
+        expect(sender.reacted?(status, '👍')).to be true
         subject.perform
         expect(sender.reacted?(status, '👍')).to be false
       end
-    end
 
-    context 'with EmojiReact containing custom emoji' do
-      let(:status) { Fabricate(:status) }
-      let(:custom_emoji) { Fabricate(:custom_emoji) }
+      context 'when containing a custom emoji' do
+        let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: 'tinking', domain: sender.domain) }
 
-      let(:object_json) do
-        {
-          id: 'bar',
-          type: 'EmojiReact',
-          content: ":#{custom_emoji.shortcode}:",
-          actor: ActivityPub::TagManager.instance.uri_for(sender),
-          object: ActivityPub::TagManager.instance.uri_for(status),
-        }
-      end
+        let(:object_json) do
+          {
+            id: 'bar',
+            type: 'EmojiReact',
+            content: +':tinking:',
+            tag: [
+              {
+                type: 'Emoji',
+                icon: {
+                  url: 'http://example.com/emoji.png',
+                },
+                name: 'tinking',
+              },
+            ],
+            actor: ActivityPub::TagManager.instance.uri_for(sender),
+            object: ActivityPub::TagManager.instance.uri_for(status),
+          }
+        end
 
-      before do
-        Fabricate(:status_reaction, account: sender, status: status, custom_emoji: custom_emoji)
-      end
+        before do
+          Fabricate(:status_reaction, account: sender, status: status, name: 'tinking', custom_emoji: custom_emoji)
+        end
 
-      it 'deletes reaction from sender to status' do
-        subject.perform
-        expect(sender.reacted?(status, custom_emoji.shortcode)).to be false
+        it 'deletes reaction from sender to status' do
+          subject.perform
+          expect(sender.reacted?(status, 'tinking', custom_emoji)).to be false
+        end
       end
     end
   end

@@ -528,12 +528,23 @@ describe AccountInteractions do
     subject { account.reacted?(status, '👍') }
 
     let(:status) { Fabricate(:status, account: account, status_reactions: reactions) }
+    let(:custom_emoji) { Fabricate(:custom_emoji) }
 
     context 'when reacted' do
       let(:reactions) { [Fabricate(:status_reaction, account: account)] }
 
       it 'returns true' do
         expect(subject).to be true
+      end
+
+      context 'with custom emoji' do
+        subject { account.reacted?(status, custom_emoji.shortcode, custom_emoji) }
+
+        let(:reactions) { [Fabricate(:status_reaction, account: account, name: custom_emoji.shortcode, custom_emoji: custom_emoji)] }
+
+        it 'returns true' do
+          expect(subject).to be true
+        end
       end
     end
 
@@ -542,6 +553,14 @@ describe AccountInteractions do
 
       it 'returns false' do
         expect(subject).to be false
+      end
+
+      context 'with custom emoji' do
+        subject { account.reacted?(status, custom_emoji.shortcode, custom_emoji) }
+
+        it 'returns false' do
+          expect(subject).to be false
+        end
       end
     end
   end
