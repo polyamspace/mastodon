@@ -64,7 +64,7 @@
  * @property {number} max_reactions
  * @property {string=} me
  * @property {string=} moved_to_account_id
- * @property {string=} notification_sound
+ * @property {unknown} notification_sound
  * @property {string=} owner
  * @property {boolean} profile_directory
  * @property {boolean} registrations_open

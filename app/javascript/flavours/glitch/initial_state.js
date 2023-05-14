@@ -65,7 +65,7 @@
  * @property {number} max_reactions
  * @property {string=} me
  * @property {string=} moved_to_account_id
- * @property {string=} notification_sound
+ * @property {unknown} notification_sound
  * @property {string=} owner
  * @property {boolean} profile_directory
  * @property {boolean} registrations_open
@@ -112,7 +112,6 @@ const initialState = element?.textContent && JSON.parse(element.textContent);
 // Glitch-soc-specific “local settings”
 if (initialState) {
   try {
-    // @ts-expect-error
     initialState.local_settings = JSON.parse(localStorage.getItem('mastodon-settings'));
   } catch (e) {
     initialState.local_settings = {};

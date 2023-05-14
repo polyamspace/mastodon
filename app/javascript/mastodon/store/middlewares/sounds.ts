@@ -1,6 +1,13 @@
-import { notificationSound } from '../initial_state';
+import { notificationSound } from 'mastodon/initial_state';
+import { Middleware, AnyAction } from 'redux';
+import { RootState } from '..';
 
-const createAudio = sources => {
+interface AudioSource {
+  src: string;
+  type: string;
+}
+
+const createAudio = (sources: AudioSource[]) => {
   const audio = new Audio();
   sources.forEach(({ type, src }) => {
     const source = document.createElement('source');
@@ -11,7 +18,7 @@ const createAudio = sources => {
   return audio;
 };
 
-const play = audio => {
+const play = (audio: HTMLAudioElement) => {
   if (!audio.paused) {
     audio.pause();
     if (typeof audio.fastSeek === 'function') {
@@ -24,8 +31,11 @@ const play = audio => {
   audio.play();
 };
 
-export default function soundsMiddleware() {
-  const soundCache = {
+export const soundsMiddleware = (): Middleware<
+  Record<string, never>,
+  RootState
+> => {
+  const soundCache: { [key: string]: HTMLAudioElement } = {
     notificationSound: createAudio(!notificationSound ?
       [{
         src: '/sounds/boop.ogg',
@@ -33,14 +43,16 @@ export default function soundsMiddleware() {
       }, {
         src: '/sounds/boop.mp3',
         type: 'audio/mpeg',
-      }] : notificationSound),
+      }] : notificationSound as AudioSource[]),
   };
 
-  return () => next => action => {
-    if (action.meta && action.meta.sound && soundCache[action.meta.sound]) {
-      play(soundCache[action.meta.sound]);
+  return () => (next) => (action: AnyAction) => {
+    const sound = action?.meta?.sound;
+
+    if (sound && soundCache[sound]) {
+      play(soundCache[sound]);
     }
 
     return next(action);
   };
-}
+};
