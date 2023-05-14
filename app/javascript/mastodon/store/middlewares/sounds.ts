@@ -36,14 +36,20 @@ export const soundsMiddleware = (): Middleware<
   RootState
 > => {
   const soundCache: { [key: string]: HTMLAudioElement } = {
-    notificationSound: createAudio(!notificationSound ?
-      [{
-        src: '/sounds/boop.ogg',
-        type: 'audio/ogg',
-      }, {
-        src: '/sounds/boop.mp3',
-        type: 'audio/mpeg',
-      }] : notificationSound as AudioSource[]),
+    notificationSound: createAudio(
+      !notificationSound
+        ? [
+            {
+              src: '/sounds/boop.ogg',
+              type: 'audio/ogg',
+            },
+            {
+              src: '/sounds/boop.mp3',
+              type: 'audio/mpeg',
+            },
+          ]
+        : (notificationSound as AudioSource[])
+    ),
   };
 
   return () => (next) => (action: AnyAction) => {
