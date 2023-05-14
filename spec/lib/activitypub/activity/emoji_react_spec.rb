@@ -21,30 +21,6 @@ RSpec.describe ActivityPub::Activity::EmojiReact do
     }.with_indifferent_access
   end
 
-  let(:json_custom_emoji) do
-    {
-      '@context': 'https://www.w3.org/ns/activitystreams',
-      id: 'foo',
-      type: 'EmojiReact',
-      content: ":#{custom_emoji.shortcode}:",
-      tag: ['Emoji', custom_emoji],
-      actor: ActivityPub::TagManager.instance.uri_for(sender),
-      object: ActivityPub::TagManager.instance.uri_for(status),
-    }.with_indifferent_access
-  end
-
-  let(:json_remote_custom_emoji) do
-    {
-      '@context': 'https://www.w3.org/ns/activitystreams',
-      id: 'foo',
-      type: 'EmojiReact',
-      content: ":#{remote_custom_emoji.shortcode}:",
-      tag: ['Emoji', remote_custom_emoji],
-      actor: ActivityPub::TagManager.instance.uri_for(sender),
-      object: ActivityPub::TagManager.instance.uri_for(status),
-    }.with_indifferent_access
-  end
-
   describe '#perform' do
     context 'with an emoji' do
       subject { described_class.new(json, sender) }
@@ -54,31 +30,71 @@ RSpec.describe ActivityPub::Activity::EmojiReact do
       end
 
       it 'creates a reaction from sender to status' do
-        expect(sender.reacted?(status, '👍')).to be true
+        expect(sender.reacted?(status, json['content'])).to be true
       end
     end
 
     context 'with a custom emoji' do
-      subject { described_class.new(json_custom_emoji, sender) }
+      subject { described_class.new(json, sender) }
+
+      let(:json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'EmojiReact',
+          content: ":#{custom_emoji.shortcode}:",
+          tag: [
+            {
+              type: 'Emoji',
+              icon: {
+                url: custom_emoji.uri,
+              },
+              name: custom_emoji.shortcode,
+            },
+          ],
+          actor: ActivityPub::TagManager.instance.uri_for(sender),
+          object: ActivityPub::TagManager.instance.uri_for(status),
+        }.with_indifferent_access
+      end
 
       before do
         subject.perform
       end
 
       it 'creates a reaction from sender to status' do
-        expect(sender.reacted?(status, custom_emoji.shortcode)).to be true
+        expect(sender.reacted?(status, custom_emoji.shortcode, custom_emoji)).to be true
       end
     end
 
     context 'with a remote custom emoji' do
-      subject { described_class.new(json_remote_custom_emoji, remote_sender) }
+      subject { described_class.new(json, remote_sender) }
+
+      let(:json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'EmojiReact',
+          content: ":#{remote_custom_emoji.shortcode}:",
+          tag: [
+            {
+              type: 'Emoji',
+              icon: {
+                url: remote_custom_emoji.uri,
+              },
+              name: remote_custom_emoji.shortcode,
+            },
+          ],
+          actor: ActivityPub::TagManager.instance.uri_for(sender),
+          object: ActivityPub::TagManager.instance.uri_for(status),
+        }.with_indifferent_access
+      end
 
       before do
         subject.perform
       end
 
       it 'creates a reaction from sender to status' do
-        expect(remote_sender.reacted?(status, remote_custom_emoji.shortcode)).to be true
+        expect(remote_sender.reacted?(status, remote_custom_emoji.shortcode, remote_custom_emoji)).to be true
       end
     end
   end
