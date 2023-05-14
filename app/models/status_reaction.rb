@@ -26,8 +26,8 @@ class StatusReaction < ApplicationRecord
 
   private
 
-  # Sets custom_emoji to nil if disabled, or to a custom_emoji when given a valid shortcode, but no custom_emoji object
+  # Sets custom_emoji to nil if custom emoji is disabled
   def set_custom_emoji
-    self.custom_emoji = CustomEmoji.find_by(disabled: false, shortcode: name, domain: account.domain) if name.present?
+    self.custom_emoji = CustomEmoji.find_by(disabled: false, shortcode: name, domain: custom_emoji.domain) if name.present? && custom_emoji.present?
   end
 end
