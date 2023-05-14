@@ -118,7 +118,7 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
   end
 
   def undo_emoji_react
-    name = @object['content']  || @object['_misskey_reaction']
+    name = @object['content'] || @object['_misskey_reaction']
     tags = @object['tag']
     return if name.nil?
 
