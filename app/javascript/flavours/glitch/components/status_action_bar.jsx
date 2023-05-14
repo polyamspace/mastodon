@@ -7,7 +7,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me, maxReactions } from 'flavours/glitch/initial_state';
 import { RelativeTimestamp } from './relative_timestamp';
-import { accountAdminLink, statusAdminLink } from 'flavours/glitch/utils/backend_links';
+import { accountAdminLink, instanceAdminLink, statusAdminLink } from 'flavours/glitch/utils/backend_links';
 import classNames from 'classnames';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/glitch/permissions';
 import EmojiPickerDropdown from '../features/compose/containers/emoji_picker_dropdown_container';
