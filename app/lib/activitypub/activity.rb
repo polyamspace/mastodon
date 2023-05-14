@@ -179,13 +179,14 @@ class ActivityPub::Activity
     nil
   end
 
-  # Ensure all emojis declared in the activity's tags are
+  # Ensure emoji declared in the activity's tags are
   # present in the database and downloaded to the local cache.
   # Required by EmojiReact and Like for emoji reactions.
   def process_emoji_tags(tags)
-    as_array(tags).each do |tag|
-      process_single_emoji tag if tag['type'] == 'Emoji'
-    end
+    emoji_tag = as_array(tags).find { |tag| tag['type'] == 'Emoji' }
+    return if emoji_tag.nil?
+
+    process_single_emoji emoji_tag
   end
 
   def process_single_emoji(tag)
