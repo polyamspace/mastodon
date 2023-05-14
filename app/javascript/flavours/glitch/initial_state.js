@@ -112,6 +112,7 @@ const initialState = element?.textContent && JSON.parse(element.textContent);
 // Glitch-soc-specific “local settings”
 if (initialState) {
   try {
+    // @ts-expect-error
     initialState.local_settings = JSON.parse(localStorage.getItem('mastodon-settings'));
   } catch (e) {
     initialState.local_settings = {};
