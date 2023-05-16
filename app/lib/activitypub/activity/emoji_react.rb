@@ -8,12 +8,10 @@ class ActivityPub::Activity::EmojiReact < ActivityPub::Activity
               !original_status.account.local? ||
               delete_arrived_first?(@json['id'])
 
-    custom_emoji = nil
     if /^:.*:$/.match?(name)
-      process_emoji_tags(@json['tag'])
-
       name.delete! ':'
-      custom_emoji = CustomEmoji.find_by(shortcode: name, domain: @account.domain)
+      custom_emoji = process_emoji_tags(name, @json['tag'])
+
       return if custom_emoji.nil?
     end
 

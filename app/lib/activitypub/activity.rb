@@ -182,21 +182,18 @@ class ActivityPub::Activity
   # Ensure emoji declared in the activity's tags are
   # present in the database and downloaded to the local cache.
   # Required by EmojiReact and Like for emoji reactions.
-  def process_emoji_tags(tags)
-    emoji_tag = as_array(tags).find { |tag| tag['type'] == 'Emoji' }
-    return if emoji_tag.nil?
+  def process_emoji_tags(name, tags)
+    tag = as_array(tags).find { |x| x['type'] == 'Emoji' }
+    return if tag.nil?
 
-    process_single_emoji emoji_tag
-  end
-
-  def process_single_emoji(tag)
     custom_emoji_parser = ActivityPub::Parser::CustomEmojiParser.new(tag)
-    return if custom_emoji_parser.shortcode.blank? || custom_emoji_parser.image_remote_url.blank?
+    return if custom_emoji_parser.shortcode.blank? || custom_emoji_parser.image_remote_url.blank? || !name.eql?(custom_emoji_parser.shortcode)
 
     emoji = CustomEmoji.find_by(shortcode: custom_emoji_parser.shortcode, domain: @account.domain)
-    return unless emoji.nil? ||
-                  custom_emoji_parser.image_remote_url != emoji.image_remote_url ||
-                  (custom_emoji_parser.updated_at && custom_emoji_parser.updated_at >= emoji.updated_at)
+
+    return emoji unless emoji.nil? ||
+                        custom_emoji_parser.image_remote_url != emoji.image_remote_url ||
+                        (custom_emoji_parser.updated_at && custom_emoji_parser.updated_at >= emoji.updated_at)
 
     begin
       emoji ||= CustomEmoji.new(domain: @account.domain,
@@ -206,6 +203,8 @@ class ActivityPub::Activity
       emoji.save
     rescue Seahorse::Client::NetworkingError => e
       Rails.logger.warn "Error fetching emoji: #{e}"
+      return
     end
+    emoji
   end
 end

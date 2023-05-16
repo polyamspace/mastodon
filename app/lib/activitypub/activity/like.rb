@@ -5,7 +5,7 @@ class ActivityPub::Activity::Like < ActivityPub::Activity
     original_status = status_from_uri(object_uri)
     return if original_status.nil? || !original_status.account.local? || delete_arrived_first?(@json['id'])
 
-    return if maybe_process_misskey_reaction(original_status)
+    return if maybe_process_misskey_reaction
 
     return if @account.favourited?(original_status)
 
@@ -17,16 +17,15 @@ class ActivityPub::Activity::Like < ActivityPub::Activity
 
   # Misskey delivers reactions as likes with the emoji in _misskey_reaction
   # see https://misskey-hub.net/ns.html#misskey-reaction for details
-  def maybe_process_misskey_reaction(original_status)
+  def maybe_process_misskey_reaction
+    original_status = status_from_uri(object_uri)
     name = @json['_misskey_reaction']
     return false if name.nil?
 
-    custom_emoji = nil
     if /^:.*:$/.match?(name)
-      process_emoji_tags(@json['tag'])
-
       name.delete! ':'
-      custom_emoji = CustomEmoji.find_by(shortcode: name, domain: @account.domain)
+      custom_emoji = process_emoji_tags(name, @json['tag'])
+
       return false if custom_emoji.nil? # invalid custom emoji, treat it as a regular like
     end
     return true if @account.reacted?(original_status, name, custom_emoji)

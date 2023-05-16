@@ -119,22 +119,17 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
 
   def undo_emoji_react
     name = @object['content'] || @object['_misskey_reaction']
-    tags = @object['tag']
     return if name.nil?
 
     status = status_from_uri(target_uri)
-    name.delete! ':'
 
     return if status.nil? || !status.account.local?
 
-    custom_emoji = nil
-    emoji_tag = as_array(tags).find { |tag| tag['type'] == 'Emoji' }
+    if /^:.*:$/.match?(name)
+      name.delete! ':'
+      custom_emoji = process_emoji_tags(name, @object['tag'])
 
-    if emoji_tag
-      custom_emoji_parser = ActivityPub::Parser::CustomEmojiParser.new(emoji_tag)
-      return if custom_emoji_parser.shortcode.blank? || custom_emoji_parser.image_remote_url.blank?
-
-      custom_emoji = CustomEmoji.find_by(shortcode: custom_emoji_parser.shortcode, domain: @account.domain)
+      return if custom_emoji.nil?
     end
 
     if @account.reacted?(status, name, custom_emoji)
