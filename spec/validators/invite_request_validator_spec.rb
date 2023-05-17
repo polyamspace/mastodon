@@ -3,10 +3,13 @@
 require 'rails_helper'
 
 describe InviteRequestValidator do
-  let!(:whole_word_filter) { Fabricate(:registration_filter, phrase: 'whole-word', type: :text, whole_word: true) }
-  let!(:not_whole_word)    { Fabricate(:registration_filter, phrase: 'find-it-anywhere', type: :text, whole_word: false) }
-  let!(:regexp_filter)     { Fabricate(:registration_filter, phrase: 'https://.*/.*\.exe', type: :regexp) }
-  let(:invite_request)     { double(text: request_text, persisted?: false, errors: double(add: nil)) }
+  let(:invite_request) { double(text: request_text, persisted?: false, errors: double(add: nil)) }
+
+  before do
+    Fabricate(:registration_filter, phrase: 'whole-word', type: :text, whole_word: true)
+    Fabricate(:registration_filter, phrase: 'find-it-anywhere', type: :text, whole_word: false)
+    Fabricate(:registration_filter, phrase: 'https://.*/.*\.exe', type: :regexp)
+  end
 
   describe '#validate' do
     context 'when invite request text does not match any filter' do

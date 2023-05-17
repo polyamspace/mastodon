@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::Activity::Undo < ActivityPub::Activity
+class ActivityPub::Activity::Undo < ActivityPub::Activity # rubocop:disable Metrics/ClassLength
   def perform
     case @object['type']
     when 'Announce'
