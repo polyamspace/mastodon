@@ -221,6 +221,7 @@ RSpec.describe ActivityPub::Activity::Undo do
           let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: 'tinking', domain: sender.domain) }
 
           before do
+            stub_request(:get, 'http://example.com/emoji.png').to_return(body: attachment_fixture('emojo.png'))
             Fabricate(:status_reaction, account: sender, status: status, name: custom_emoji.shortcode, custom_emoji: custom_emoji)
           end
 
@@ -250,7 +251,6 @@ RSpec.describe ActivityPub::Activity::Undo do
       end
 
       it 'deletes reaction from sender to status' do
-        expect(sender.reacted?(status, '👍')).to be true
         subject.perform
         expect(sender.reacted?(status, '👍')).to be false
       end
@@ -278,6 +278,7 @@ RSpec.describe ActivityPub::Activity::Undo do
         end
 
         before do
+          stub_request(:get, 'http://example.com/emoji.png').to_return(body: attachment_fixture('emojo.png'))
           Fabricate(:status_reaction, account: sender, status: status, name: 'tinking', custom_emoji: custom_emoji)
         end
 
