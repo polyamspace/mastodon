@@ -125,23 +125,7 @@ RSpec.describe StatusPolicy, type: :model do
     end
   end
 
-  permissions :favourite? do
-    it 'grants access when viewer is not blocked' do
-      follow         = Fabricate(:follow)
-      status.account = follow.target_account
-
-      expect(subject).to permit(follow.account, status)
-    end
-
-    it 'denies when viewer is blocked' do
-      block          = Fabricate(:block)
-      status.account = block.target_account
-
-      expect(subject).to_not permit(block.account, status)
-    end
-  end
-
-  permissions :react? do
+  permissions :favourite?, :react? do
     it 'grants access when viewer is not blocked' do
       follow         = Fabricate(:follow)
       status.account = follow.target_account
