@@ -2,6 +2,6 @@
 
 class PolyamAddExclusiveToLists < ActiveRecord::Migration[6.1]
   def change
-    add_column :lists, :exclusive, :boolean, default: false
+    add_column :lists, :exclusive, :boolean, default: false # rubocop:disable Rails/ThreeStateBooleanColumn
   end
 end
