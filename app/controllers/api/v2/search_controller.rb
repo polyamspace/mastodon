@@ -6,6 +6,7 @@ class Api::V2::SearchController < Api::BaseController
   RESULTS_LIMIT = (ENV['MAX_SEARCH_RESULTS'] || 20).to_i
 
   before_action -> { authorize_if_got_token! :read, :'read:search' }
+  before_action :require_user!, if: :require_auth?
   before_action :validate_search_params!
 
   def index
@@ -40,5 +41,9 @@ class Api::V2::SearchController < Api::BaseController
 
   def search_params
     params.permit(:type, :offset, :min_id, :max_id, :account_id)
+  end
+
+  def require_auth?
+    !Setting.search_preview
   end
 end

@@ -29,6 +29,7 @@ RSpec.describe Api::V2::SearchController do
       let(:search_params) {}
 
       before do
+        Setting.search_preview = true
         get :index, params: search_params
       end
 
