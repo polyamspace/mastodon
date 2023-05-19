@@ -88,6 +88,9 @@ en:
   generic:
     use_this: Use this
   invites:
+    errors:
+      daily_limit_reached: Daily limit of created invites reached
+      limit_reached: Maximum number of active invites reached
     table:
       comment: Comment
   notification_mailer:
