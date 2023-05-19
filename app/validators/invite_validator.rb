@@ -5,7 +5,7 @@ class InviteValidator < ActiveModel::Validator
   DAILY_LIMIT = (ENV['MAX_DAILY_INVITES'] || 20).to_i
 
   def validate(invite)
-    return if invite.user.can?(:manage_invites)
+    return if invite.user.can?(:bypass_invite_limits)
 
     invite.errors.add(:base, I18n.t('invites.errors.limit_reached')) if limit_reached?(invite)
     invite.errors.add(:base, I18n.t('invites.errors.daily_limit_reached')) if daily_limit_reached?(invite)

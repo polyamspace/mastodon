@@ -25,8 +25,8 @@ describe InviteValidator do
         expect(errors).to have_received(:add)
       end
 
-      context 'when user has manage invite permission' do
-        let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+      context 'when user can bypass limits' do
+        let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Moderator')) }
 
         it 'does not add error' do
           subject.validate(invite)
@@ -47,8 +47,8 @@ describe InviteValidator do
         expect(errors).to have_received(:add)
       end
 
-      context 'when user has manage invite permission' do
-        let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+      context 'when user can bypass limits' do
+        let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Moderator')) }
 
         it 'does not add error' do
           subject.validate(invite)
