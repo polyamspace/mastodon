@@ -36,7 +36,8 @@ class UserRole < ApplicationRecord
     manage_roles: (1 << 17),
     manage_user_access: (1 << 18),
     delete_user_data: (1 << 19),
-    bypass_invite_limits: (1 << 20),
+    legacy_bypass_invite_limits: (1 << 20),
+    bypass_invite_limits: (1 << 50),
   }.freeze
 
   module Flags
