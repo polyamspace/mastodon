@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
   isLoading: state.getIn(['suggestions', 'isLoading']),
 });
 
-class Follows extends React.PureComponent {
+class Follows extends PureComponent {
 
   static propTypes = {
     onBack: PropTypes.func,
