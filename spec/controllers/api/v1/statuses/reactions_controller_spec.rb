@@ -27,7 +27,7 @@ describe Api::V1::Statuses::ReactionsController do
         end
 
         it 'updates the reactions count' do
-          expect(status.reactions.count).to eq 1
+          expect(status.status_reactions.count).to eq 1
         end
 
         it 'updates the reacted attribute' do
@@ -69,7 +69,7 @@ describe Api::V1::Statuses::ReactionsController do
         end
 
         it 'updates the reactions count' do
-          expect(status.reactions.count).to eq 0
+          expect(status.status_reactions.count).to eq 0
         end
 
         it 'updates the reacted attribute' do
