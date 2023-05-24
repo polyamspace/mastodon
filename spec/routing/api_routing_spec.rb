@@ -53,6 +53,11 @@ describe 'API routes' do
         .to route_to('api/v1/statuses/favourited_by_accounts#index', status_id: '123')
     end
 
+    it 'routes reacted_by' do
+      expect(get('/api/v1/statuses/123/reacted_by'))
+        .to route_to('api/v1/statuses/reacted_by_accounts#index', status_id: '123')
+    end
+
     it 'routes reblog' do
       expect(post('/api/v1/statuses/123/reblog'))
         .to route_to('api/v1/statuses/reblogs#create', status_id: '123')

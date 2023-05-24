@@ -145,6 +145,7 @@ class DetailedStatus extends ImmutablePureComponent {
     let reblogIcon = 'retweet';
     let favouriteLink = '';
     let edited = '';
+    let reactionLink = '';
 
     //  Depending on user settings, some media are considered as parts of the
     //  contents (affected by CW) while other will be displayed outside of the
@@ -313,6 +314,26 @@ class DetailedStatus extends ImmutablePureComponent {
       );
     }
 
+    if (this.context.router) {
+      reactionLink = (
+        <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reactions`} className='detailed-status__link'>
+          <Icon id='plus' />
+          <span className='detailed-status__reactions'>
+            <AnimatedNumber value={status.get('reactions_count')} />
+          </span>
+        </Link>
+      );
+    } else {
+      reactionLink = (
+        <a href={`/interact/${status.get('id')}?type=reaction`} className='detailed-status__link' onClick={this.handleModalLink}>
+          <Icon id='plus' />
+          <span className='detailed-status__reactions'>
+            <AnimatedNumber value={status.get('reactions_count')} />
+          </span>
+        </a>
+      );
+    }
+
     return (
       <div style={outerStyle}>
         <div ref={this.setRef} className={classNames('detailed-status', `detailed-status-${status.get('visibility')}`, { compact })} data-status-by={status.getIn(['account', 'acct'])}>
@@ -348,7 +369,7 @@ class DetailedStatus extends ImmutablePureComponent {
           <div className='detailed-status__meta'>
             <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener noreferrer'>
               <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
-            </a>{edited}{visibilityLink}{applicationLink}{reblogLink} · {favouriteLink}
+            </a>{edited}{visibilityLink}{applicationLink}{reblogLink} · {favouriteLink} · {reactionLink}
           </div>
         </div>
       </div>

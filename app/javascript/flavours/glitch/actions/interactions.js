@@ -51,6 +51,10 @@ export const REACTION_REMOVE_REQUEST = 'REACTION_REMOVE_REQUEST';
 export const REACTION_REMOVE_SUCCESS = 'REACTION_REMOVE_SUCCESS';
 export const REACTION_REMOVE_FAIL    = 'REACTION_REMOVE_FAIL';
 
+export const REACTIONS_FETCH_REQUEST = 'REACTIONS_FETCH_REQUEST';
+export const REACTIONS_FETCH_SUCCESS = 'REACTIONS_FETCH_SUCCESS';
+export const REACTIONS_FETCH_FAIL    = 'REACTIONS_FETCH_FAIL';
+
 export function reblog(status, visibility) {
   return function (dispatch, getState) {
     dispatch(reblogRequest(status));
@@ -333,6 +337,41 @@ export function fetchFavouritesFail(id, error) {
   };
 }
 
+export function fetchReactions(id) {
+  return (dispatch, getState) => {
+    dispatch(fetchReactionsRequest(id));
+
+    api(getState).get(`/api/v1/statuses/${id}/reacted_by`).then(response => {
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(fetchReactionsSuccess(id, response.data));
+    }).catch(error => {
+      dispatch(fetchReactionsFail(id, error));
+    });
+  };
+}
+
+export function fetchReactionsRequest(id) {
+  return {
+    type: REACTIONS_FETCH_REQUEST,
+    id,
+  };
+}
+
+export function fetchReactionsSuccess(id, accounts) {
+  return {
+    type: REACTIONS_FETCH_SUCCESS,
+    id,
+    accounts,
+  };
+}
+
+export function fetchReactionsFail(id, error) {
+  return {
+    type: REACTIONS_FETCH_FAIL,
+    error,
+  };
+}
+
 export function pin(status) {
   return (dispatch, getState) => {
     dispatch(pinRequest(status));
@@ -469,8 +508,9 @@ export const removeReactionSuccess = (statusId, name) => ({
   name,
 });
 
-export const removeReactionFail = (statusId, name) => ({
+export const removeReactionFail = (statusId, name, error) => ({
   type: REACTION_REMOVE_FAIL,
   id: statusId,
   name,
+  error,
 });

@@ -10,6 +10,7 @@ namespace :api, format: false do
       scope module: :statuses do
         resources :reblogged_by, controller: :reblogged_by_accounts, only: :index
         resources :favourited_by, controller: :favourited_by_accounts, only: :index
+        resources :reacted_by, controller: :reacted_by_accounts, only: :index
         resource :reblog, only: :create
         post :unreblog, to: 'reblogs#destroy'
 

@@ -26,6 +26,7 @@ import {
 import {
   REBLOGS_FETCH_SUCCESS,
   FAVOURITES_FETCH_SUCCESS,
+  REACTIONS_FETCH_SUCCESS,
 } from 'flavours/glitch/actions/interactions';
 import {
   BLOCKS_FETCH_REQUEST,
@@ -133,6 +134,8 @@ export default function userLists(state = initialState, action) {
     return state.setIn(['reblogged_by', action.id], ImmutableList(action.accounts.map(item => item.id)));
   case FAVOURITES_FETCH_SUCCESS:
     return state.setIn(['favourited_by', action.id], ImmutableList(action.accounts.map(item => item.id)));
+  case REACTIONS_FETCH_SUCCESS:
+    return state.setIn(['reacted_by', action.id], ImmutableList(action.accounts.map(item => item.id)));
   case NOTIFICATIONS_UPDATE:
     return action.notification.type === 'follow_request' ? normalizeFollowRequest(state, action.notification) : state;
   case FOLLOW_REQUESTS_FETCH_SUCCESS:
