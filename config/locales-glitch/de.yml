@@ -36,10 +36,6 @@ de:
         text: Klartext
         text_hint: Nutze dies für simple Schlagwörter und wenn du dich nicht mit Regular Expressions auskennst.
       updated_msg: Beitrittsfilter erfolgreich bearbeitet!
-    roles:
-      privileges:
-        change_max_use: Ändere maximale Verwendung
-        change_max_use_description: Erlaubt Nutzer*innen die maximale Anzahl Verwendungen von Einladungen zu ändern.
     settings:
       captcha_enabled:
         desc_html: Dies beruht auf externen Skripts von hCaptcha, was Sicherheits- und Datenschutz-Bedenken auslösen kann. Zusätzlich <strong>kann das den Registrierungsprozess für manche (besonders behinderte) Leute signifikant weniger zugänglich machen</strong>. Aus diesen Gründen, bitte ziehe alternative Maßnahmen, wie Zulassungs- oder Einladungs-basierte Registrierung, in Erwägung.<br>Nutzer, die durch eine Einladung mit eingeschränkter Verwendungsanzahl eingeladen wurden, werden kein CAPTCHA lösen müssen
