@@ -90,6 +90,10 @@ export function Favourites () {
   return import(/* webpackChunkName: "flavours/glitch/async/favourites" */'flavours/glitch/features/favourites');
 }
 
+export function Reactions () {
+  return import(/*webpackChunkName: "flavours/glitch/async/reactions" */'flavours/glitch/features/reactions');
+}
+
 export function FollowRequests () {
   return import(/* webpackChunkName: "flavours/glitch/async/follow_requests" */'flavours/glitch/features/follow_requests');
 }

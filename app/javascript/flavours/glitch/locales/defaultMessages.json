@@ -1038,6 +1038,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Reacted by",
+        "id": "column.reacted_by"
+      },
+      {
+        "defaultMessage": "No one has reacted to this toot yet. When someone does, they will show up here.",
+        "id": "status.reactions.empty"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/reactions/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Boosted by",
         "id": "column.reblogged_by"
       }
