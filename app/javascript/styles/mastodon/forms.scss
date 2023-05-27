@@ -138,6 +138,10 @@ code {
     line-height: 22px;
     color: $secondary-text-color;
     margin-bottom: 30px;
+
+    a {
+      color: $highlight-text-color;
+    }
   }
 
   .rules-list {
@@ -1052,6 +1056,10 @@ code {
   &:not(.field_with_errors) {
     display: none;
   }
+}
+
+.simple_form .h-captcha {
+  text-align: center;
 }
 
 .permissions-list {

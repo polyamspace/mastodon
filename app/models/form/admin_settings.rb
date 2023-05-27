@@ -47,6 +47,7 @@ class Form::AdminSettings
     search_preview
     publish_button_text
     status_page_url
+    captcha_enabled
   ).freeze
 
   INTEGER_KEYS = %i(
