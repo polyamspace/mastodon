@@ -615,7 +615,7 @@ class FeedManager
     crutches[:domain_blocking] = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
     crutches[:blocked_by]      = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
     # Get accounts on exclusive lists which match authors of toots
-    crutches[:exclusive]       = ListAccount.where(list: List.where(account_id: receiver_id, exclusive: true), account_id: statuses.map(&:account_id).compact).pluck(:account_id).index_with(true)
+    crutches[:exclusive]       = ListAccount.where(list: List.where(account_id: receiver_id, exclusive: true), account_id: statuses.filter_map(&:account_id)).pluck(:account_id).index_with(true)
 
     crutches
   end
