@@ -109,13 +109,6 @@
     grid-column: span 2;
   }
 
-  &.standalone {
-    .media-gallery__item-gifv-thumbnail {
-      transform: none;
-      top: 0;
-    }
-  }
-
   .full-width & {
     border-radius: 0;
   }
@@ -174,8 +167,6 @@
   cursor: zoom-in;
   height: 100%;
   width: 100%;
-  position: relative;
-  z-index: 1;
   object-fit: contain;
   user-select: none;
 
@@ -468,6 +459,8 @@
   border-radius: 4px;
   box-sizing: border-box;
   color: $white;
+  display: flex;
+  align-items: center;
 
   &.editable {
     border-radius: 0;
@@ -510,9 +503,6 @@
   &.inline {
     video {
       object-fit: contain;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
     }
   }
 

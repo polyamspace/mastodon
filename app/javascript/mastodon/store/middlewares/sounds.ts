@@ -1,6 +1,8 @@
+import type { Middleware, AnyAction } from 'redux';
+
 import { notificationSound } from 'mastodon/initial_state';
-import { Middleware, AnyAction } from 'redux';
-import { RootState } from '..';
+
+import type { RootState } from '..';
 
 interface AudioSource {
   src: string;
@@ -28,7 +30,7 @@ const play = (audio: HTMLAudioElement) => {
     }
   }
 
-  audio.play();
+  void audio.play();
 };
 
 export const soundsMiddleware = (): Middleware<
@@ -52,13 +54,15 @@ export const soundsMiddleware = (): Middleware<
     ),
   };
 
-  return () => (next) => (action: AnyAction) => {
-    const sound = action?.meta?.sound;
+  return () =>
+    (next) =>
+    (action: AnyAction & { meta?: { sound?: string } }) => {
+      const sound = action?.meta?.sound;
 
-    if (sound && soundCache[sound]) {
-      play(soundCache[sound]);
-    }
+      if (sound && soundCache[sound]) {
+        play(soundCache[sound]);
+      }
 
-    return next(action);
-  };
+      return next(action);
+    };
 };

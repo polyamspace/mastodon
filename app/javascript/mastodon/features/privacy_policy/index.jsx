@@ -5,7 +5,7 @@ import { FormattedMessage, FormattedDate, injectIntl, defineMessages } from 'rea
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import api from 'mastodon/api';
-import Skeleton from 'mastodon/components/skeleton';
+import { Skeleton } from 'mastodon/components/skeleton';
 
 const messages = defineMessages({
   title: { id: 'privacy_policy.title', defaultMessage: 'Privacy Policy' },
