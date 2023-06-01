@@ -1,9 +1,12 @@
-import { PureComponent } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
-import Button from '../../../components/button';
+
+import { connect } from 'react-redux';
+
 import { closeModal } from '../../../actions/modal';
+import Button from '../../../components/button';
 
 const makeMapStateToProps = () => {
   const mapStateToProps = state => ({

@@ -1,9 +1,12 @@
-import { PureComponent } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
-import Button from 'flavours/glitch/components/button';
+
+import { connect } from 'react-redux';
+
 import { closeModal } from 'flavours/glitch/actions/modal';
+import Button from 'flavours/glitch/components/button';
 
 const mapDispatchToProps = dispatch => {
   return {

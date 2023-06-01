@@ -10,8 +10,8 @@ import { connect } from 'react-redux';
 
 import { Icon } from 'flavours/glitch/components/icon';
 import { autoPlayGif, languages as preloadedLanguages } from 'flavours/glitch/initial_state';
-import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
 import { highlightCode } from 'flavours/glitch/utils/html';
+import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
 
 import Permalink from './permalink';
 
