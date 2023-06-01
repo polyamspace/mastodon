@@ -1,9 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
-import Button from 'flavours/glitch/components/button';
+
+import { connect } from 'react-redux';
+
 import { closeModal } from 'flavours/glitch/actions/modal';
+import Button from 'flavours/glitch/components/button';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -15,7 +18,7 @@ const mapDispatchToProps = dispatch => {
 
 // This modal is displayed when a user attempts to submit a post with an image
 // or video file that has no alt text.
-class AltTextWarningModal extends React.PureComponent {
+class AltTextWarningModal extends PureComponent {
 
   static propTypes = {
     onClose: PropTypes.func.isRequired,

@@ -1,14 +1,19 @@
-import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { autoPlayGif, reduceMotion } from '../initial_state';
-import spring from 'react-motion/lib/spring';
-import TransitionMotion from 'react-motion/lib/TransitionMotion';
+import { PureComponent } from 'react';
+
 import classNames from 'classnames';
-import React from 'react';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import TransitionMotion from 'react-motion/lib/TransitionMotion';
+import spring from 'react-motion/lib/spring';
+
 import unicodeMapping from '../features/emoji/emoji_unicode_mapping_light';
-import { AnimatedNumber } from './animated_number';
+import { autoPlayGif, reduceMotion } from '../initial_state';
 import { assetHost } from '../utils/config';
+
+import { AnimatedNumber } from './animated_number';
 
 export default class StatusReactions extends ImmutablePureComponent {
 
@@ -126,7 +131,7 @@ class Reaction extends ImmutablePureComponent {
 
 }
 
-class Emoji extends React.PureComponent {
+class Emoji extends PureComponent {
 
   static propTypes = {
     emoji: PropTypes.string.isRequired,

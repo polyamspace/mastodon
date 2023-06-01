@@ -1,9 +1,11 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import Button from 'flavours/glitch/components/button';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import Button from 'flavours/glitch/components/button';
 
 class AltTextModal extends ImmutablePureComponent {
 

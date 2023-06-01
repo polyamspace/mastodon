@@ -1,22 +1,25 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
-import { fetchFeaturedTags } from 'flavours/glitch/actions/featured_tags';
-import { lookupAccount, fetchAccount } from 'flavours/glitch/actions/accounts';
+
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+
+import { List as ImmutableList } from 'immutable';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import Column from 'flavours/glitch/features/ui/components/column';
+import { connect } from 'react-redux';
+
+import { lookupAccount, fetchAccount } from 'flavours/glitch/actions/accounts';
+import { fetchFeaturedTags } from 'flavours/glitch/actions/featured_tags';
+import Hashtag from 'flavours/glitch/components/hashtag';
+import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import ProfileColumnHeader from 'flavours/glitch/features/account/components/profile_column_header';
 import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
 import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
-import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
-import { getAccountHidden } from 'flavours/glitch/selectors';
+import Column from 'flavours/glitch/features/ui/components/column';
 import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
-import { List as ImmutableList } from 'immutable';
-import Hashtag from 'flavours/glitch/components/hashtag';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
+import { getAccountHidden } from 'flavours/glitch/selectors';
+
+import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
 
 const messages = defineMessages({
   lastStatusAt: { id: 'account.featured_tags.last_status_at', defaultMessage: 'Last post on {date}' },
