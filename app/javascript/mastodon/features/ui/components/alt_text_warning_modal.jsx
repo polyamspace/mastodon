@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage } from 'react-intl';
@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => {
 
 // This modal is displayed when a user attempts to submit a post with an image
 // or video file that has no alt text.
-class AltTextWarningModal extends React.PureComponent {
+class AltTextWarningModal extends PureComponent {
 
   static propTypes = {
     onClose: PropTypes.func.isRequired,

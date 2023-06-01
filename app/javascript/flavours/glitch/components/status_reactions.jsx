@@ -5,7 +5,7 @@ import { autoPlayGif, reduceMotion } from '../initial_state';
 import spring from 'react-motion/lib/spring';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import classNames from 'classnames';
-import React from 'react';
+import { PureComponent } from 'react';
 import unicodeMapping from '../features/emoji/emoji_unicode_mapping_light';
 import { AnimatedNumber } from './animated_number';
 import { assetHost } from '../utils/config';
@@ -126,7 +126,7 @@ class Reaction extends ImmutablePureComponent {
 
 }
 
-class Emoji extends React.PureComponent {
+class Emoji extends PureComponent {
 
   static propTypes = {
     emoji: PropTypes.string.isRequired,
