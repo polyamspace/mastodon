@@ -1,14 +1,19 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, injectIntl } from 'react-intl';
-import Permalink from './permalink';
-import { connect } from 'react-redux';
+
 import classnames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
 import { Icon } from 'flavours/glitch/components/icon';
 import { autoPlayGif, languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
 import { highlightCode } from 'flavours/glitch/utils/html';
+
+import Permalink from './permalink';
 
 const textMatchesTarget = (text, origin, host) => {
   return (text === origin || text === host
@@ -64,7 +69,7 @@ const isLinkMisleading = (link) => {
   return !(textMatchesTarget(text, origin, host) || textMatchesTarget(text.toLowerCase(), origin, host));
 };
 
-class TranslateButton extends React.PureComponent {
+class TranslateButton extends PureComponent {
 
   static propTypes = {
     translation: ImmutablePropTypes.map,
@@ -105,7 +110,7 @@ const mapStateToProps = state => ({
   languages: state.getIn(['server', 'translationLanguages', 'items']),
 });
 
-class StatusContent extends React.PureComponent {
+class StatusContent extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,

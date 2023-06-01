@@ -1,7 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import SettingText from 'flavours/glitch/components/setting_text';
 import SettingToggle from 'flavours/glitch/features/notifications/components/setting_toggle';
 import { showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/glitch/initial_state';
@@ -10,7 +13,7 @@ const messages = defineMessages({
   filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
 });
 
-class ColumnSettings extends React.PureComponent {
+class ColumnSettings extends PureComponent {
 
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
