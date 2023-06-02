@@ -11,7 +11,7 @@ import Button from 'flavours/glitch/components/button';
 const mapDispatchToProps = dispatch => {
   return {
     onClose() {
-      dispatch(closeModal());
+      dispatch(closeModal({ modalType: 'ALT_TEXT_WARNING', ignoreFocus: false }));
     },
   };
 };
