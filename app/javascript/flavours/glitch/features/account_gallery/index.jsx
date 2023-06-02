@@ -172,7 +172,7 @@ class AccountGallery extends ImmutablePureComponent {
     const { dispatch } = this.props;
     const statusId = attachment.getIn(['status', 'id']);
 
-    dispatch(openModal('ALTTEXT', { media: attachment, statusId }));
+    dispatch(openModal({ modalType: 'ALTTEXT', modalProps: { media: attachment, statusId } }));
   };
 
   handleRef = c => {
