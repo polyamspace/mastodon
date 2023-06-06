@@ -693,10 +693,10 @@
 .compose-form__highlightable {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   flex: 0 1 auto;
   border-radius: 4px;
   transition: box-shadow 300ms linear;
+  min-height: 0;
 
   &.active {
     transition: none;
