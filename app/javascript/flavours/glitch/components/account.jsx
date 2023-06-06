@@ -141,11 +141,9 @@ class Account extends ImmutablePureComponent {
 
     let buttons;
 
-    if (onActionClick) {
-      if (actionIcon) {
-        buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
-      }
-    } else if (account.get('id') !== me && !small && account.get('relationship', null) !== null) {
+    if (actionIcon && onActionClick) {
+      buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
+    } else if (!actionIcon && account.get('id') !== me && !small && account.get('relationship', null) !== null) {
       const following = account.getIn(['relationship', 'following']);
       const requested = account.getIn(['relationship', 'requested']);
       const blocking  = account.getIn(['relationship', 'blocking']);

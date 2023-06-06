@@ -70,6 +70,7 @@
 
 .account__wrapper {
   display: flex;
+  align-items: center;
 }
 
 .account__avatar-wrapper {
@@ -161,6 +162,9 @@
   height: 18px;
   padding: 10px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .account__header__wrapper {
