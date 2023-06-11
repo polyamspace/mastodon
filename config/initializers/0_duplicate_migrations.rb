@@ -14,7 +14,7 @@
 # we decided monkey-patching Rails' Migrator to completely ignore the duplicate,
 # keeping only the one that has run, or an arbitrary one.
 
-ALLOWED_DUPLICATES = [2018_04_10_220657, 2018_08_31_171112].freeze
+ALLOWED_DUPLICATES = [2018_04_10_220657, 2018_08_31_171112, 2023_05_05_093749, 2023_06_05_085710].freeze
 
 module ActiveRecord
   class Migrator

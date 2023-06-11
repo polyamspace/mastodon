@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This migration is a duplicate of 20230505093749 and may get ignored.
+# This migration is a duplicate of 20230605085710 and may get ignored.
 # See: config/initializers/0_duplicate_migrations.rb
 
 require Rails.root.join('lib', 'mastodon', 'migration_helpers')
