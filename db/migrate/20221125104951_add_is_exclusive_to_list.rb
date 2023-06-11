@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
+require Rails.root.join('lib', 'mastodon', 'migration_helpers')
+
 class AddIsExclusiveToList < ActiveRecord::Migration[6.1]
-  def change
-    add_column :lists, :is_exclusive, :boolean, default: false # rubocop:disable Rails/ThreeStateBooleanColumn
+  include Mastodon::MigrationHelpers
+
+  disable_ddl_transaction!
+
+  def up
+    safety_assured { add_column_with_default :lists, :is_exclusive, :boolean, default: false, allow_null: false }
+  end
+
+  def down
+    remove_column :lists, :is_exclusive
   end
 end

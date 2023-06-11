@@ -382,6 +382,15 @@ en:
       undo: Disallow federation with domain
     domain_blocks:
       add_new: Add new domain block
+      confirm_suspension:
+        cancel: Cancel
+        confirm: Suspend
+        permanent_action: Undoing the suspension will not restore any data or relationship.
+        preamble_html: You are about to suspend <strong>%{domain}</strong> and its subdomains.
+        remove_all_data: This will remove all content, media, and profile data for this domain's accounts from your server.
+        stop_communication: Your server will stop communicating with these servers.
+        title: Confirm domain block for %{domain}
+        undo_relationships: This will undo any follow relationship between accounts of these servers and yours.
       created_msg: Domain block is now being processed
       destroyed_msg: Domain block has been undone
       domain: Domain
@@ -1022,8 +1031,11 @@ en:
     rules:
       accept: Accept
       back: Back
+      invited_by: 'You can join %{domain} thanks to the invitation you have received from:'
       preamble: These are set and enforced by the %{domain} moderators.
+      preamble_invited: Before you proceed, please consider the ground rules set by the moderators of %{domain}.
       title: Some ground rules.
+      title_invited: You've been invited.
     security: Security
     set_new_password: Set new password
     setup:
@@ -1257,13 +1269,13 @@ en:
       overwrite_long: Replace current records with the new ones
     overwrite_preambles:
       blocking_html: You are about to <strong>replace your block list</strong> with up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
-      bookmarks_html: You are about to <strong>replace your bookmarks</strong> with up to <strong>%{total_items} posts</strong> from <strong>%{filename}</strong>.
+      bookmarks_html: You are about to <strong>replace your bookmarks</strong> with up to <strong>%{total_items} toots</strong> from <strong>%{filename}</strong>.
       domain_blocking_html: You are about to <strong>replace your domain block list</strong> with up to <strong>%{total_items} domains</strong> from <strong>%{filename}</strong>.
       following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
       muting_html: You are about to <strong>replace your list of muted accounts</strong> with up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
     preambles:
       blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
-      bookmarks_html: You are about to add up to <strong>%{total_items} posts</strong> from <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
+      bookmarks_html: You are about to add up to <strong>%{total_items} toots</strong> from <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
       domain_blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} domains</strong> from <strong>%{filename}</strong>.
       following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
       muting_html: You are about to <strong>mute</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
