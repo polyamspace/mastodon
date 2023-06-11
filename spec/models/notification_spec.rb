@@ -67,7 +67,7 @@ RSpec.describe Notification do
     end
 
     it 'returns :reaction for a Reaction' do
-      notification = Notification.new(activity: StatusReaction.new)
+      notification = described_class.new(activity: StatusReaction.new)
       expect(notification.type).to eq :reaction
     end
   end

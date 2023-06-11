@@ -203,7 +203,7 @@ RSpec.describe FeedManager do
         alice.follow!(bob)
         list.accounts << bob
         status = Fabricate(:status, text: 'Hello world', account: bob)
-        expect(FeedManager.instance.filter?(:home, status, alice)).to be true
+        expect(described_class.instance.filter?(:home, status, alice)).to be true
       end
 
       it 'returns false for account on non-exclusive list' do
@@ -211,7 +211,7 @@ RSpec.describe FeedManager do
         alice.follow!(bob)
         list.accounts << bob
         status = Fabricate(:status, text: 'Hello world', account: bob)
-        expect(FeedManager.instance.filter?(:home, status, alice)).to be false
+        expect(described_class.instance.filter?(:home, status, alice)).to be false
       end
     end
 
