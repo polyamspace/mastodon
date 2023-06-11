@@ -150,10 +150,10 @@ class ListTimeline extends PureComponent {
     dispatch(updateList(id, undefined, false, undefined, target.value));
   };
 
-  handleExclusiveChange = e => {
+  onExclusiveToggle = ({ target }) => {
     const { dispatch } = this.props;
     const { id } = this.props.params;
-    dispatch(updateList(id, undefined, false, e.target.checked, undefined));
+    dispatch(updateList(id, undefined, false, target.checked, undefined));
   };
 
   render () {
@@ -200,14 +200,12 @@ class ListTimeline extends PureComponent {
             </button>
           </div>
 
-          {isExclusive !== undefined && (
-            <div className='setting-toggle'>
-              <Toggle id={`list-${id}-exclusive`} defaultChecked={isExclusive} onChange={this.handleExclusiveChange} />
-              <label htmlFor={`list-${id}-exclusive`} className='setting-toggle__label'>
-                <FormattedMessage id='lists.exclusive' defaultMessage='Hide users on this list from home timeline' />
-              </label>
-            </div>
-          )}
+          <div className='setting-toggle'>
+            <Toggle id={`list-${id}-exclusive`} defaultChecked={isExclusive} onChange={this.onExclusiveToggle} />
+            <label htmlFor={`list-${id}-exclusive`} className='setting-toggle__label'>
+              <FormattedMessage id='lists.exclusive' defaultMessage='Hide these posts from home' />
+            </label>
+          </div>
 
           { replies_policy !== undefined && (
             <div role='group' aria-labelledby={`list-${id}-replies-policy`}>
