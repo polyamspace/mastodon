@@ -75,6 +75,18 @@ hr {
   &--first-in-thread {
     border-top: none;
   }
+
+  &.status-direct {
+    background: lighten($ui-base-color, 8%);
+  }
+}
+
+.focusable {
+  &:focus {
+    &.status.status-direct {
+      background: lighten($ui-base-color, 12%);
+    }
+  }
 }
 
 .detailed-status {
