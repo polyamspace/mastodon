@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { lookupAccount, fetchAccount } from 'flavours/glitch/actions/accounts';
 import { fetchFeaturedTags } from 'flavours/glitch/actions/featured_tags';
 import Hashtag from 'flavours/glitch/components/hashtag';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import ProfileColumnHeader from 'flavours/glitch/features/account/components/profile_column_header';
 import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
