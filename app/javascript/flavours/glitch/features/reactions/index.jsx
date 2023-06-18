@@ -16,10 +16,6 @@ import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import Column from 'flavours/glitch/features/ui/components/column';
 
-
-
-
-
 const messages = defineMessages({
   heading: { id: 'column.reacted_by', defaultMessage: 'Reacted by' },
   refresh: { id: 'refresh', defaultMessage: 'Refresh' },
