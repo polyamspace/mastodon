@@ -15,6 +15,7 @@ en:
       batch_error: 'An error occurred: %{message}'
       category_hint: Optional. Assign the emoji to a category.
       visible_in_picker: Show in emoji picker
+      visible_in_picker_hint: Makes this emoji available in the emoji picker and API.
     registration_filters:
       add_new: Add new filter
       created_msg: Registration text filter successfully created!

@@ -11,7 +11,7 @@
   .fields-group
     = f.input :image, wrapper: :with_label, input_html: { accept: CustomEmoji::IMAGE_MIME_TYPES.join(' ') }, hint: t('admin.custom_emojis.image_hint', size: number_to_human_size(CustomEmoji::LOCAL_LIMIT))
   .fields-group
-    = f.input :visible_in_picker, as: :boolean, wrapper: :with_label, label: t('admin.custom_emojis.visible_in_picker'), polyam_only: true
+    = f.input :visible_in_picker, as: :boolean, wrapper: :with_label, label: t('admin.custom_emojis.visible_in_picker'), hint: t('admin.custom_emojis.visible_in_picker_hint'), polyam_only: true
 
   .actions
     = f.button :button, t('admin.custom_emojis.upload'), type: :submit
