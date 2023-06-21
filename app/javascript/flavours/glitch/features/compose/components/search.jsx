@@ -22,7 +22,7 @@ const messages = defineMessages({
 class SearchPopout extends PureComponent {
 
   render () {
-    const extraInformation = searchEnabled ? <FormattedMessage id='search_popout.tips.full_text' defaultMessage='Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.' /> : <FormattedMessage id='search_popout.tips.text' defaultMessage='Simple text returns matching display names, usernames and hashtags' />;
+    const extraInformation = searchEnabled ? <FormattedMessage id='search_popout.tips.full_text' defaultMessage='Simple text returns toots you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.' /> : <FormattedMessage id='search_popout.tips.text' defaultMessage='Simple text returns matching display names, usernames and hashtags' />;
     return (
       <div className='search-popout'>
         <h4><FormattedMessage id='search_popout.search_format' defaultMessage='Advanced search format' /></h4>
@@ -31,7 +31,7 @@ class SearchPopout extends PureComponent {
           <li><em>#example</em> <FormattedMessage id='search_popout.tips.hashtag' defaultMessage='hashtag' /></li>
           <li><em>@username@domain</em> <FormattedMessage id='search_popout.tips.user' defaultMessage='user' /></li>
           <li><em>URL</em> <FormattedMessage id='search_popout.tips.user' defaultMessage='user' /></li>
-          <li><em>URL</em> <FormattedMessage id='search_popout.tips.status' defaultMessage='status' /></li>
+          <li><em>URL</em> <FormattedMessage id='search_popout.tips.status' defaultMessage='toot' /></li>
         </ul>
 
         {extraInformation}

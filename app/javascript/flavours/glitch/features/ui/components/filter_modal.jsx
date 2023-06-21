@@ -121,7 +121,7 @@ class FilterModal extends ImmutablePureComponent {
       <div className='modal-root__modal report-dialog-modal'>
         <div className='report-modal__target'>
           <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={20} />
-          <FormattedMessage id='filter_modal.title.status' defaultMessage='Filter a post' />
+          <FormattedMessage id='filter_modal.title.status' defaultMessage='Filter a toot' />
         </div>
 
         <div className='report-dialog-modal__container'>

@@ -47,7 +47,7 @@ const messages = defineMessages({
     id: 'compose.content-type.html',
   },
   local_only_long: {
-    defaultMessage: 'Do not post to other instances',
+    defaultMessage: 'Do not toot to other instances',
     id: 'advanced_options.local-only.long',
   },
   local_only_short: {
@@ -67,7 +67,7 @@ const messages = defineMessages({
     id: 'compose_form.spoiler',
   },
   threaded_mode_long: {
-    defaultMessage: 'Automatically opens a reply on posting',
+    defaultMessage: 'Automatically opens a reply on tooting',
     id: 'advanced_options.threaded_mode.long',
   },
   threaded_mode_short: {

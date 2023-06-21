@@ -14,7 +14,7 @@ import StatusList from 'flavours/glitch/components/status_list';
 import Column from 'flavours/glitch/features/ui/components/column';
 
 const messages = defineMessages({
-  heading: { id: 'column.pins', defaultMessage: 'Pinned post' },
+  heading: { id: 'column.pins', defaultMessage: 'Pinned toot' },
 });
 
 const mapStateToProps = state => ({

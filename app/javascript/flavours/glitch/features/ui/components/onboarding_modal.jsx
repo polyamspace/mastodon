@@ -60,7 +60,7 @@ const PageTwo = ({ myAccount }) => (
       </div>
     </div>
 
-    <p><FormattedMessage id='onboarding.page_two.compose' defaultMessage='Write posts from the compose column. You can upload images, change privacy settings, and add content warnings with the icons below.' /></p>
+    <p><FormattedMessage id='onboarding.page_two.compose' defaultMessage='Write toots from the compose column. You can upload images, change privacy settings, and add content warnings with the icons below.' /></p>
   </div>
 );
 
@@ -101,7 +101,7 @@ const PageFour = ({ domain, intl }) => (
       <div className='row'>
         <div>
           <div className='figure non-interactive'><ColumnHeader icon='home' type={intl.formatMessage(messages.home_title)} /></div>
-          <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='The home timeline shows posts from people you follow.' /></p>
+          <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='The home timeline shows toots from people you follow.' /></p>
         </div>
 
         <div>
@@ -120,7 +120,7 @@ const PageFour = ({ domain, intl }) => (
         </div>
       </div>
 
-      <p><FormattedMessage id='onboarding.page_five.public_timelines' defaultMessage='The local timeline shows public posts from everyone on {domain}. The federated timeline shows public posts from everyone who people on {domain} follow. These are the Public Timelines, a great way to discover new people.' values={{ domain }} /></p>
+      <p><FormattedMessage id='onboarding.page_five.public_timelines' defaultMessage='The local timeline shows public toots from everyone on {domain}. The federated timeline shows public toots from everyone who people on {domain} follow. These are the Public Timelines, a great way to discover new people.' values={{ domain }} /></p>
     </div>
   </div>
 );

@@ -11,7 +11,7 @@ import { Icon } from 'flavours/glitch/components/icon';
 //  Messages.
 const messages = defineMessages({
   localOnly: {
-    defaultMessage: 'This post is local-only',
+    defaultMessage: 'This toot is local-only',
     id: 'advanced_options.local-only.tooltip',
   },
   threadedMode: {

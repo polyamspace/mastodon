@@ -58,20 +58,20 @@ class Thanks extends PureComponent {
         {account.getIn(['relationship', 'following']) && (
           <>
             <h4 className='report-dialog-modal__subtitle'><FormattedMessage id='report.unfollow' defaultMessage='Unfollow @{name}' values={{ name: account.get('username') }} /></h4>
-            <p className='report-dialog-modal__lead'><FormattedMessage id='report.unfollow_explanation' defaultMessage='You are following this account. To not see their posts in your home feed anymore, unfollow them.' /></p>
+            <p className='report-dialog-modal__lead'><FormattedMessage id='report.unfollow_explanation' defaultMessage='You are following this account. To not see their toots in your home feed anymore, unfollow them.' /></p>
             <Button secondary onClick={this.handleUnfollowClick}><FormattedMessage id='account.unfollow' defaultMessage='Unfollow' /></Button>
             <hr />
           </>
         )}
 
         <h4 className='report-dialog-modal__subtitle'><FormattedMessage id='account.mute' defaultMessage='Mute @{name}' values={{ name: account.get('username') }} /></h4>
-        <p className='report-dialog-modal__lead'><FormattedMessage id='report.mute_explanation' defaultMessage='You will not see their posts. They can still follow you and see your posts and will not know that they are muted.' /></p>
+        <p className='report-dialog-modal__lead'><FormattedMessage id='report.mute_explanation' defaultMessage='You will not see their toots. They can still follow you and see your toots and will not know that they are muted.' /></p>
         <Button secondary onClick={this.handleMuteClick}>{!account.getIn(['relationship', 'muting']) ? <FormattedMessage id='report.mute' defaultMessage='Mute' /> : <FormattedMessage id='account.muted' defaultMessage='Muted' />}</Button>
 
         <hr />
 
         <h4 className='report-dialog-modal__subtitle'><FormattedMessage id='account.block' defaultMessage='Block @{name}' values={{ name: account.get('username') }} /></h4>
-        <p className='report-dialog-modal__lead'><FormattedMessage id='report.block_explanation' defaultMessage='You will not see their posts. They will not be able to see your posts or follow you. They will be able to tell that they are blocked.' /></p>
+        <p className='report-dialog-modal__lead'><FormattedMessage id='report.block_explanation' defaultMessage='You will not see their toots. They will not be able to see your toots or follow you. They will be able to tell that they are blocked.' /></p>
         <Button secondary onClick={this.handleBlockClick}>{!account.getIn(['relationship', 'blocking']) ? <FormattedMessage id='report.block' defaultMessage='Block' /> : <FormattedMessage id='account.blocked' defaultMessage='Blocked' />}</Button>
 
         <div className='flex-spacer' />

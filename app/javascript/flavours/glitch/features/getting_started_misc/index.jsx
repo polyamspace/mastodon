@@ -21,7 +21,7 @@ const messages = defineMessages({
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Blocked domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   show_me_around: { id: 'getting_started.onboarding', defaultMessage: 'Show me around' },
-  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
+  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
   keyboard_shortcuts: { id: 'navigation_bar.keyboard_shortcuts', defaultMessage: 'Keyboard shortcuts' },
   featured_users: { id: 'navigation_bar.featured_users', defaultMessage: 'Featured users' },
 });

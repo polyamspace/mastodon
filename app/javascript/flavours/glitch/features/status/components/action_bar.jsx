@@ -25,7 +25,7 @@ const messages = defineMessages({
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
   reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost with original visibility' },
   cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
-  cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
+  cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This toot cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   react: { id: 'status.react', defaultMessage: 'React' },
   bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
@@ -40,9 +40,9 @@ const messages = defineMessages({
   unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
   embed: { id: 'status.embed', defaultMessage: 'Embed' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
-  admin_status: { id: 'status.admin_status', defaultMessage: 'Open this post in the moderation interface' },
+  admin_status: { id: 'status.admin_status', defaultMessage: 'Open this toot in the moderation interface' },
   admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
-  copy: { id: 'status.copy', defaultMessage: 'Copy link to post' },
+  copy: { id: 'status.copy', defaultMessage: 'Copy link to toot' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
 });
 

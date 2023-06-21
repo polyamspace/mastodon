@@ -8,8 +8,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import Hashtag from 'flavours/glitch/components/hashtag';
 
 const messages = defineMessages({
-  lastStatusAt: { id: 'account.featured_tags.last_status_at', defaultMessage: 'Last post on {date}' },
-  empty: { id: 'account.featured_tags.last_status_never', defaultMessage: 'No posts' },
+  lastStatusAt: { id: 'account.featured_tags.last_status_at', defaultMessage: 'Last toot on {date}' },
+  empty: { id: 'account.featured_tags.last_status_never', defaultMessage: 'No toots' },
 });
 
 class FeaturedTags extends ImmutablePureComponent {

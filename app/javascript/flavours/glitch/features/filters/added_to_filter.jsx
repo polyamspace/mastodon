@@ -53,7 +53,7 @@ class AddedToFilter extends PureComponent {
           <p className='report-dialog-modal__lead'>
             <FormattedMessage
               id='filter_modal.added.context_mismatch_explanation'
-              defaultMessage='This filter category does not apply to the context in which you have accessed this post. If you want the post to be filtered in this context too, you will have to edit the filter.'
+              defaultMessage='This filter category does not apply to the context in which you have accessed this toot. If you want the toot to be filtered in this context too, you will have to edit the filter.'
             />
           </p>
         </>
@@ -75,7 +75,7 @@ class AddedToFilter extends PureComponent {
         <p className='report-dialog-modal__lead'>
           <FormattedMessage
             id='filter_modal.added.short_explanation'
-            defaultMessage='This post has been added to the following filter category: {title}.'
+            defaultMessage='This toot has been added to the following filter category: {title}.'
             values={{ title: filter.get('title') }}
           />
         </p>

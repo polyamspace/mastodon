@@ -38,7 +38,7 @@ class Statuses extends PureComponent {
 
     return (
       <>
-        <h3 className='report-dialog-modal__title'><FormattedMessage id='report.statuses.title' defaultMessage='Are there any posts that back up this report?' /></h3>
+        <h3 className='report-dialog-modal__title'><FormattedMessage id='report.statuses.title' defaultMessage='Are there any toots that back up this report?' /></h3>
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.statuses.subtitle' defaultMessage='Select all that apply' /></p>
 
         <div className='report-dialog-modal__statuses'>

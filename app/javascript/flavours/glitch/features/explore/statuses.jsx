@@ -46,7 +46,7 @@ class Statuses extends PureComponent {
     return (
       <>
         <DismissableBanner id='explore/statuses'>
-          <FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These posts from this and other servers in the decentralized network are gaining traction on this server right now.' />
+          <FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These toots from this and other servers in the decentralized network are gaining traction on this server right now.' />
         </DismissableBanner>
 
         <StatusList

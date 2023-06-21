@@ -68,7 +68,7 @@ class EmbedModal extends ImmutablePureComponent {
 
         <div className='report-modal__container embed-modal__container' style={{ display: 'block' }}>
           <p className='hint'>
-            <FormattedMessage id='embed.instructions' defaultMessage='Embed this status on your website by copying the code below.' />
+            <FormattedMessage id='embed.instructions' defaultMessage='Embed this toot on your website by copying the code below.' />
           </p>
 
           <input

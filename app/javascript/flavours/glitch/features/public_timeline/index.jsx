@@ -147,7 +147,7 @@ class PublicTimeline extends PureComponent {
         </ColumnHeader>
 
         <DismissableBanner id='public_timeline'>
-          <FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on this and other servers of the decentralized network that this server knows about.' />
+          <FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public toots from people on this and other servers of the decentralized network that this server knows about.' />
         </DismissableBanner>
 
         <StatusListContainer

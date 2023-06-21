@@ -22,8 +22,8 @@ import { getAccountHidden } from 'flavours/glitch/selectors';
 import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
 
 const messages = defineMessages({
-  lastStatusAt: { id: 'account.featured_tags.last_status_at', defaultMessage: 'Last post on {date}' },
-  empty: { id: 'account.featured_tags.last_status_never', defaultMessage: 'No posts' },
+  lastStatusAt: { id: 'account.featured_tags.last_status_at', defaultMessage: 'Last toot on {date}' },
+  empty: { id: 'account.featured_tags.last_status_never', defaultMessage: 'No toots' },
 });
 
 const mapStateToProps = (state, { params: { acct, id } }) => {

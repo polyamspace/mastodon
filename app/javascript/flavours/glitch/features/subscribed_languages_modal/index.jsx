@@ -106,7 +106,7 @@ class SubscribedLanguagesModal extends ImmutablePureComponent {
         </div>
 
         <div className='report-dialog-modal__container'>
-          <p className='report-dialog-modal__lead'><FormattedMessage id='subscribed_languages.lead' defaultMessage='Only posts in selected languages will appear on your home and list timelines after the change. Select none to receive posts in all languages.' /></p>
+          <p className='report-dialog-modal__lead'><FormattedMessage id='subscribed_languages.lead' defaultMessage='Only toots in selected languages will appear on your home and list timelines after the change. Select none to receive toots in all languages.' /></p>
 
           <div>
             {availableLanguages.union(selectedLanguages).delete(null).map(value => this.renderItem(value))}

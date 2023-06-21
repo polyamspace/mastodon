@@ -61,7 +61,7 @@ class ActionBar extends PureComponent {
         <div className='account__action-bar'>
           <div className='account__action-bar-links'>
             <NavLink isActive={this.isStatusesPageActive} activeClassName='active' className='account__action-bar__tab' to={`/@${account.get('acct')}`}>
-              <FormattedMessage id='account.posts' defaultMessage='Posts' />
+              <FormattedMessage id='account.posts' defaultMessage='Toots' />
               <strong><FormattedNumber value={account.get('statuses_count')} /></strong>
             </NavLink>
 

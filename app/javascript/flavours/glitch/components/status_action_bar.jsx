@@ -32,11 +32,11 @@ const messages = defineMessages({
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
   reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost with original visibility' },
   cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
-  cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
+  cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This toot cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   react: { id: 'status.react', defaultMessage: 'React' },
   bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
-  open: { id: 'status.open', defaultMessage: 'Expand this status' },
+  open: { id: 'status.open', defaultMessage: 'Expand this toot' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
@@ -49,7 +49,7 @@ const messages = defineMessages({
   copy: { id: 'status.copy', defaultMessage: 'Copy link to post' },
   hide: { id: 'status.hide', defaultMessage: 'Hide toot' },
   edited: { id: 'status.edited', defaultMessage: 'Edited {date}' },
-  filter: { id: 'status.filter', defaultMessage: 'Filter this post' },
+  filter: { id: 'status.filter', defaultMessage: 'Filter this toot' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
 });
 

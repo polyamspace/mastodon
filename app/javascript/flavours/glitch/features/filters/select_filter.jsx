@@ -174,7 +174,7 @@ class SelectFilter extends PureComponent {
 
     return (
       <>
-        <h3 className='report-dialog-modal__title'><FormattedMessage id='filter_modal.select_filter.title' defaultMessage='Filter this post' /></h3>
+        <h3 className='report-dialog-modal__title'><FormattedMessage id='filter_modal.select_filter.title' defaultMessage='Filter this toot' /></h3>
         <p className='report-dialog-modal__lead'><FormattedMessage id='filter_modal.select_filter.subtitle' defaultMessage='Use an existing category or create a new one' /></p>
 
         <div className='emoji-mart-search'>

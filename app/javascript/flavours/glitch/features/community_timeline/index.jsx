@@ -143,7 +143,7 @@ class CommunityTimeline extends PureComponent {
         </ColumnHeader>
 
         <DismissableBanner id='community_timeline'>
-          <FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} />
+          <FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public toots from people whose accounts are hosted by {domain}.' values={{ domain }} />
         </DismissableBanner>
 
         <StatusListContainer

@@ -20,7 +20,7 @@ const messages = defineMessages({
   violation_description: { id: 'report.reasons.violation_description', defaultMessage: 'You are aware that it breaks specific rules' },
   other: { id: 'report.reasons.other', defaultMessage: 'It\'s something else' },
   other_description: { id: 'report.reasons.other_description', defaultMessage: 'The issue does not fit into other categories' },
-  status: { id: 'report.category.title_status', defaultMessage: 'post' },
+  status: { id: 'report.category.title_status', defaultMessage: 'toot' },
   account: { id: 'report.category.title_account', defaultMessage: 'profile' },
 });
 

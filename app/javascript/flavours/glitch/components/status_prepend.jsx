@@ -41,7 +41,7 @@ export default class StatusPrepend extends PureComponent {
     switch (type) {
     case 'featured':
       return (
-        <FormattedMessage id='status.pinned' defaultMessage='Pinned post' />
+        <FormattedMessage id='status.pinned' defaultMessage='Pinned toot' />
       );
     case 'reblogged_by':
       return (
@@ -55,7 +55,7 @@ export default class StatusPrepend extends PureComponent {
       return (
         <FormattedMessage
           id='notification.favourite'
-          defaultMessage='{name} favourited your status'
+          defaultMessage='{name} favourited your toot'
           values={{ name : link }}
         />
       );
@@ -63,7 +63,7 @@ export default class StatusPrepend extends PureComponent {
       return (
         <FormattedMessage
           id='notification.reaction'
-          defaultMessage='{name} reacted to your status'
+          defaultMessage='{name} reacted to your toot'
           values={{ name: link }}
         />
       );
@@ -71,7 +71,7 @@ export default class StatusPrepend extends PureComponent {
       return (
         <FormattedMessage
           id='notification.reblog'
-          defaultMessage='{name} boosted your status'
+          defaultMessage='{name} boosted your toot'
           values={{ name : link }}
         />
       );
@@ -79,7 +79,7 @@ export default class StatusPrepend extends PureComponent {
       return (
         <FormattedMessage
           id='notification.status'
-          defaultMessage='{name} just posted'
+          defaultMessage='{name} just tooted'
           values={{ name: link }}
         />
       );
@@ -103,7 +103,7 @@ export default class StatusPrepend extends PureComponent {
       return (
         <FormattedMessage
           id='notification.update'
-          defaultMessage='{name} edited a post'
+          defaultMessage='{name} edited a toot'
           values={{ name: link }}
         />
       );

@@ -97,7 +97,7 @@ class LocalSettingsPage extends PureComponent {
           ]}
           onChange={onChange}
         >
-          <FormattedMessage id='settings.rewrite_mentions' defaultMessage='Rewrite mentions in displayed statuses' />
+          <FormattedMessage id='settings.rewrite_mentions' defaultMessage='Rewrite mentions in displayed toots' />
         </LocalSettingsPageItem>
         <section>
           <h2><FormattedMessage id='settings.notifications_opts' defaultMessage='Notifications options' /></h2>
@@ -283,7 +283,7 @@ class LocalSettingsPage extends PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.content_warnings_shared_state' defaultMessage='Show/hide content of all copies at once' />
-          <span className='hint'><FormattedMessage id='settings.content_warnings_shared_state_hint' defaultMessage='Reproduce upstream Mastodon behavior by having the Content Warning button affect all copies of a post at once. This will prevent automatic collapsing of any copy of a toot with unfolded CW' /></span>
+          <span className='hint'><FormattedMessage id='settings.content_warnings_shared_state_hint' defaultMessage='Reproduce upstream Mastodon behavior by having the Content Warning button affect all copies of a toot at once. This will prevent automatic collapsing of any copy of a toot with unfolded CW' /></span>
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
@@ -341,7 +341,7 @@ class LocalSettingsPage extends PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.enable_collapsed' defaultMessage='Enable collapsed toots' />
-          <span className='hint'><FormattedMessage id='settings.enable_collapsed_hint' defaultMessage='Collapsed posts have parts of their contents hidden to take up less screen space. This is distinct from the Content Warning feature' /></span>
+          <span className='hint'><FormattedMessage id='settings.enable_collapsed_hint' defaultMessage='Collapsed toots have parts of their contents hidden to take up less screen space. This is distinct from the Content Warning feature' /></span>
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
@@ -445,7 +445,7 @@ class LocalSettingsPage extends PureComponent {
             dependsOn={[['collapsed', 'enabled']]}
           >
             <FormattedMessage id='settings.image_backgrounds_media' defaultMessage='Preview collapsed toot media' />
-            <span className='hint'><FormattedMessage id='settings.image_backgrounds_media_hint' defaultMessage='If the post has any media attachment, use the first one as a background' /></span>
+            <span className='hint'><FormattedMessage id='settings.image_backgrounds_media_hint' defaultMessage='If the toot has any media attachment, use the first one as a background' /></span>
           </LocalSettingsPageItem>
         </section>
       </div>

@@ -14,7 +14,7 @@ const messages = defineMessages({
   private_long: { id: 'privacy.private.long', defaultMessage: 'Visible for followers only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Visible for mentioned users only' },
-  change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
+  change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust toot privacy' },
 });
 
 class PrivacyDropdown extends PureComponent {
