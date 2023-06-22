@@ -23,6 +23,7 @@
   "follow_recommendations.done": "Concluído",
   "follow_recommendations.heading": "Siga pessoas das quais gostaria de ver publicações! Aqui estão algumas sugestões.",
   "follow_recommendations.lead": "As publicações das pessoas que segue serão exibidos em ordem cronológica na sua página inicial. Não tenha medo de cometer erros, você pode deixar de seguir as pessoas tão facilmente a qualquer momento!",
+  "footer.documentation": "Documentação",
   "onboarding.page_one.federation": "{domain} is an \"instance\" of Mastodon. Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.",
   "onboarding.page_six.github": "{domain} runs on Glitchsoc. Glitchsoc is a friendly {fork} of {Mastodon}. Glitchsoc is fully compatible with all Mastodon apps and instances. Glitchsoc is free open-source software. You can report bugs, request features, or contribute to the code on {github}.",
   "settings.content_warnings": "Content warnings",
