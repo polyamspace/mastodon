@@ -20,14 +20,14 @@ import FollowRequestContainer from '../containers/follow_request_container';
 import Report from './report';
 
 const messages = defineMessages({
-  favourite: { id: 'notification.favourite', defaultMessage: '{name} favourited your status' },
-  reaction: { id: 'notification.reaction', defaultMessage: '{name} reacted to your status' },
+  favourite: { id: 'notification.favourite', defaultMessage: '{name} favourited your toot' },
+  reaction: { id: 'notification.reaction', defaultMessage: '{name} reacted to your toot' },
   follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
   ownPoll: { id: 'notification.own_poll', defaultMessage: 'Your poll has ended' },
   poll: { id: 'notification.poll', defaultMessage: 'A poll you have voted in has ended' },
-  reblog: { id: 'notification.reblog', defaultMessage: '{name} boosted your status' },
-  status: { id: 'notification.status', defaultMessage: '{name} just posted' },
-  update: { id: 'notification.update', defaultMessage: '{name} edited a post' },
+  reblog: { id: 'notification.reblog', defaultMessage: '{name} boosted your toot' },
+  status: { id: 'notification.status', defaultMessage: '{name} just tooted' },
+  update: { id: 'notification.update', defaultMessage: '{name} edited a toot' },
   adminSignUp: { id: 'notification.admin.sign_up', defaultMessage: '{name} signed up' },
   adminReport: { id: 'notification.admin.report', defaultMessage: '{name} reported {target}' },
 });
@@ -199,7 +199,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
+              <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your toot' values={{ name: link }} />
             </span>
           </div>
 
@@ -231,7 +231,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.reaction' defaultMessage='{name} reacted to your status' values={{ name: link }} />
+              <FormattedMessage id='notification.reaction' defaultMessage='{name} reacted to your toot' values={{ name: link }} />
             </span>
           </div>
 
@@ -263,7 +263,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
+              <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your toot' values={{ name: link }} />
             </span>
           </div>
 
@@ -299,7 +299,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.status' defaultMessage='{name} just posted' values={{ name: link }} />
+              <FormattedMessage id='notification.status' defaultMessage='{name} just tooted' values={{ name: link }} />
             </span>
           </div>
 
@@ -336,7 +336,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.update' defaultMessage='{name} edited a post' values={{ name: link }} />
+              <FormattedMessage id='notification.update' defaultMessage='{name} edited a toot' values={{ name: link }} />
             </span>
           </div>
 

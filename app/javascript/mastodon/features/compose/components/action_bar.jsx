@@ -9,7 +9,7 @@ import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 
 const messages = defineMessages({
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
-  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
+  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },

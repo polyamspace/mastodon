@@ -203,7 +203,7 @@ class ListTimeline extends PureComponent {
           <div className='setting-toggle'>
             <Toggle id={`list-${id}-exclusive`} defaultChecked={isExclusive} onChange={this.onExclusiveToggle} />
             <label htmlFor={`list-${id}-exclusive`} className='setting-toggle__label'>
-              <FormattedMessage id='lists.exclusive' defaultMessage='Hide these posts from home' />
+              <FormattedMessage id='lists.exclusive' defaultMessage='Hide these toots from home' />
             </label>
           </div>
 
@@ -226,7 +226,7 @@ class ListTimeline extends PureComponent {
           scrollKey={`list_timeline-${columnId}`}
           timelineId={`list:${id}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list post new statuses, they will appear here.' />}
+          emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list publish new toots, they will appear here.' />}
           bindToDocument={!multiColumn}
         />
 

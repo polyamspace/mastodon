@@ -106,23 +106,23 @@ class InteractionModal extends PureComponent {
     switch(type) {
     case 'reply':
       icon = <Icon id='reply' />;
-      title = <FormattedMessage id='interaction_modal.title.reply' defaultMessage="Reply to {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on Mastodon, you can respond to this post.' />;
+      title = <FormattedMessage id='interaction_modal.title.reply' defaultMessage="Reply to {name}'s toot" values={{ name }} />;
+      actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on Mastodon, you can respond to this toot.' />;
       break;
     case 'reblog':
       icon = <Icon id='retweet' />;
-      title = <FormattedMessage id='interaction_modal.title.reblog' defaultMessage="Boost {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on Mastodon, you can boost this post to share it with your own followers.' />;
+      title = <FormattedMessage id='interaction_modal.title.reblog' defaultMessage="Boost {name}'s toot" values={{ name }} />;
+      actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on Mastodon, you can boost this toot to share it with your own followers.' />;
       break;
     case 'favourite':
       icon = <Icon id='star' />;
-      title = <FormattedMessage id='interaction_modal.title.favourite' defaultMessage="Favourite {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on Mastodon, you can favourite this post to let the author know you appreciate it and save it for later.' />;
+      title = <FormattedMessage id='interaction_modal.title.favourite' defaultMessage="Favourite {name}'s toot" values={{ name }} />;
+      actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on Mastodon, you can favourite this toot to let the author know you appreciate it and save it for later.' />;
       break;
     case 'follow':
       icon = <Icon id='user-plus' />;
       title = <FormattedMessage id='interaction_modal.title.follow' defaultMessage='Follow {name}' values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.follow' defaultMessage='With an account on Mastodon, you can follow {name} to receive their posts in your home feed.' values={{ name }} />;
+      actionDescription = <FormattedMessage id='interaction_modal.description.follow' defaultMessage='With an account on Mastodon, you can follow {name} to receive their toots in your home feed.' values={{ name }} />;
       break;
     }
 

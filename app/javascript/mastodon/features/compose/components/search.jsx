@@ -257,7 +257,7 @@ class Search extends PureComponent {
       const couldBeStatusSearch = searchEnabled;
 
       if (couldBeStatusSearch) {
-        options.push({ key: 'status-search', label: <FormattedMessage id='search.quick_action.status_search' defaultMessage='Posts matching {x}' values={{ x: <mark>{trimmedValue}</mark> }} />, action: this.handleStatusSearch });
+        options.push({ key: 'status-search', label: <FormattedMessage id='search.quick_action.status_search' defaultMessage='Toots matching {x}' values={{ x: <mark>{trimmedValue}</mark> }} />, action: this.handleStatusSearch });
       }
 
       const couldBeUserSearch = true;
