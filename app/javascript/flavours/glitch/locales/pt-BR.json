@@ -72,8 +72,6 @@
   "layout.hint.desktop": "Use o layout de várias colunas independentemente da configuração \"Habilitar interface web avançada\" ou do tamanho da tela.",
   "layout.hint.single": "Use o layout de uma coluna independentemente da configuração \"Habilitar interface web avançada\" ou do tamanho da tela.",
   "layout.single": "Celular",
-  "lists.exclusive": "Hide users on this list from home timeline",
-  "lists.is-exclusive": "Exclusive?",
   "media_gallery.sensitive": "Sensível",
   "moved_to_warning": "Esta conta foi como movida para {moved_to_link} e, portanto, pode não aceitar novos seguidores.",
   "navigation_bar.app_settings": "Configurações do aplicativo",

@@ -72,8 +72,6 @@
   "layout.hint.desktop": "Utiliser la mise en page en plusieurs colonnes indépendamment de l'option \"Activer l'interface Web avancée\" ou de la taille d'écran.",
   "layout.hint.single": "Utiliser la mise en page à colonne unique indépendamment de l'option \"Activer l'interface Web avancée\" ou de la taille d'écran.",
   "layout.single": "Téléphone",
-  "lists.exclusive": "Hide users on this list from home timeline",
-  "lists.is-exclusive": "Exclusive?",
   "media_gallery.sensitive": "Sensible",
   "moved_to_warning": "Ce compte a déménagé vers {moved_to_link} et ne peut donc plus accepter de nouveaux abonné·e·s.",
   "navigation_bar.app_settings": "Paramètres de l'application",

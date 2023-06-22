@@ -72,8 +72,6 @@
   "layout.hint.desktop": "Das mehrspaltige Layout verwenden, unabhängig von der Einstellung \"Erweitertes Webinterface verwenden\".",
   "layout.hint.single": "Das einspaltige Layout verwenden, unabhängig von der Einstellung \"Erweitertes Webinterface verwenden\".",
   "layout.single": "Mobil",
-  "lists.exclusive": "Hide users on this list from home timeline",
-  "lists.is-exclusive": "Exclusive?",
   "media_gallery.sensitive": "Empfindlich",
   "moved_to_warning": "Dieses Konto ist als verschoben zu {moved_to_link} markiert und akzeptiert daher keine neuen Follower.",
   "navigation_bar.app_settings": "App-Einstellungen",

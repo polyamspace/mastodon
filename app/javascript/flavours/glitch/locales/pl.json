@@ -70,8 +70,6 @@
   "layout.hint.desktop": "Użyj układu wielokolumnowego niezależnie od ustawienia „Włącz zaawansowany interfejs użytkownika” i rozmiaru ekranu.",
   "layout.hint.single": "Użyj układu jednokolumnowego niezależnie od ustawienia „Włącz zaawansowany interfejs użytkownika” i rozmiaru ekranu.",
   "layout.single": "Mobilny",
-  "lists.exclusive": "Hide users on this list from home timeline",
-  "lists.is-exclusive": "Exclusive?",
   "media_gallery.sensitive": "Zawartość wrażliwa",
   "moved_to_warning": "To konto oznaczone jest jako przeniesione do {moved_to_link} i może z tego powodu nie akceptować nowych obserwujących.",
   "navigation_bar.app_settings": "Ustawienia aplikacji",

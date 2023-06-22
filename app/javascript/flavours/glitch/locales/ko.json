@@ -72,8 +72,6 @@
   "layout.hint.desktop": "“고급 웹 인터페이스 활성화” 설정이나 화면 크기에 관계 없이 멀티 컬럼 레이아웃을 사용합니다.",
   "layout.hint.single": "“고급 웹 인터페이스 활성화” 설정이나 화면 크기에 관계 없이 싱글 컬럼 레이아웃을 사용합니다.",
   "layout.single": "모바일",
-  "lists.exclusive": "Hide users on this list from home timeline",
-  "lists.is-exclusive": "Exclusive?",
   "media_gallery.sensitive": "민감함",
   "moved_to_warning": "이 계정은 {moved_to_link}로 이동한 것으로 표시되었고, 새 팔로우를 받지 않는 것 같습니다.",
   "navigation_bar.app_settings": "앱 설정",

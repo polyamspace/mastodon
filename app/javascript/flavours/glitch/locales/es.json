@@ -72,8 +72,6 @@
   "layout.hint.desktop": "Utiliza el diseño multi-columna sin importar \"Habilitar interface web avanzada\" o el tamaño de la pantalla.",
   "layout.hint.single": "Utiliza el diseño de una columna sin importar \"Habilitar interface web avanzada\" o el tamaño de la pantalla.",
   "layout.single": "Móvil",
-  "lists.exclusive": "Hide users on this list from home timeline",
-  "lists.is-exclusive": "Exclusive?",
   "media_gallery.sensitive": "Sensible",
   "moved_to_warning": "Esta cuenta está marcada como movida a {moved_to_link}, y por lo tanto no aceptará nuevos seguimientos.",
   "navigation_bar.app_settings": "Ajustes de la aplicación",
