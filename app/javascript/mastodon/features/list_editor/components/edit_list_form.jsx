@@ -10,7 +10,6 @@ import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({
   title: { id: 'lists.edit.submit', defaultMessage: 'Change title' },
-  exclusive: { id: 'lists.is-exclusive', defaultMessage: 'Exclusive?' },
 });
 
 const mapStateToProps = state => ({
@@ -28,7 +27,6 @@ class ListForm extends PureComponent {
   static propTypes = {
     value: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
-    isExclusive: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,

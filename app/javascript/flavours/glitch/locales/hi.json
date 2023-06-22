@@ -16,6 +16,7 @@
   "follow_recommendations.done": "पूर्ण",
   "follow_recommendations.heading": "उन लोगों का अनुसरण करें जिनकी पोस्ट आप देखना चाहते हैं! यहाँ कुछ सुझाव हैं।",
   "follow_recommendations.lead": "आपके द्वारा फ़ॉलो किए जाने वाले लोगों के पोस्ट आपके होम फ़ीड पर कालानुक्रमिक क्रम में दिखाई देंगे। गलतियाँ करने से न डरें, आप किसी भी समय लोगों को उतनी ही आसानी से अनफ़ॉलो कर सकते हैं!",
+  "footer.documentation": "प्रलेखन",
   "onboarding.page_one.federation": "{domain} is an \"instance\" of Mastodon. Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.",
   "onboarding.page_six.github": "{domain} runs on Glitchsoc. Glitchsoc is a friendly {fork} of {Mastodon}. Glitchsoc is fully compatible with all Mastodon apps and instances. Glitchsoc is free open-source software. You can report bugs, request features, or contribute to the code on {github}.",
   "settings.content_warnings": "Content warnings",
