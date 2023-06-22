@@ -14,7 +14,7 @@ import { maxChars, publishButtonText as customPublishButtonText } from 'flavours
 
 const messages = defineMessages({
   publish: {
-    defaultMessage: 'Publish',
+    defaultMessage: 'Toot',
     id: 'compose_form.publish',
   },
   publishLoud: {

@@ -66,7 +66,7 @@ class AltTextWarningModal extends PureComponent {
             <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
           </Button>
           <Button onClick={this.handleClick} ref={this.setRef} className='confirmation-modal__cancel-button'>
-            <FormattedMessage id='compose_form.publish' defaultMessage='Publish' />
+            <FormattedMessage id='compose_form.publish' defaultMessage='Toot' />
           </Button>
         </div>
       </div>

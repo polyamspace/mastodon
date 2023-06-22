@@ -229,7 +229,7 @@ class ListTimeline extends PureComponent {
           scrollKey={`list_timeline-${columnId}`}
           timelineId={`list:${id}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list toots new toots, they will appear here.' />}
+          emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list publish new toots, they will appear here.' />}
           bindToDocument={!multiColumn}
         />
 
