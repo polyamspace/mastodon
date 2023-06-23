@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -48,6 +48,7 @@ class Account extends ImmutablePureComponent {
     actionTitle: PropTypes.string,
     defaultAction: PropTypes.string,
     onActionClick: PropTypes.func,
+    withBio: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -83,6 +84,7 @@ class Account extends ImmutablePureComponent {
     const {
       account,
       hidden,
+      withBio,
       intl,
       small,
       onActionClick,
@@ -196,6 +198,15 @@ class Account extends ImmutablePureComponent {
             </div>
             : null}
         </div>
+
+        {withBio && (account.get('note').length > 0 ? (
+          <div
+            className='account__note translate'
+            dangerouslySetInnerHTML={{ __html: account.get('note_emojified') }}
+          />
+        ) : (
+          <div className='account__note account__note--missing'><FormattedMessage id='account.no_bio' defaultMessage='No description provided.' /></div>
+        ))}
       </div>
     );
   }
