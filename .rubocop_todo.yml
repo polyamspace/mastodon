@@ -441,11 +441,6 @@ RSpec/SubjectStub:
     - 'spec/services/unallow_domain_service_spec.rb'
     - 'spec/validators/blacklisted_email_validator_spec.rb'
 
-# Configuration parameters: IgnoreNameless, IgnoreSymbolicNames.
-RSpec/VerifiedDoubles:
-  Exclude:
-    - 'spec/validators/invite_request_validator_spec.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Rails/ApplicationController:
   Exclude:

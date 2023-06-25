@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe InviteRequestValidator do
-  let(:invite_request) { double(text: request_text, persisted?: false, errors: double(add: nil)) }
+  let(:invite_request) { instance_double(UserInviteRequest, text: request_text, persisted?: false, errors: instance_double(ActiveModel::Errors, add: nil)) }
 
   before do
     Fabricate(:registration_filter, phrase: 'whole-word', type: :text, whole_word: true)
