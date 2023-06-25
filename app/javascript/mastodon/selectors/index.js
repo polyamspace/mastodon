@@ -145,3 +145,7 @@ export const makeCustomEmojiMap = createSelector(
     ImmutableMap(),
   ),
 );
+
+export const getStatusList = createSelector([
+  (state, type) => state.getIn(['status_lists', type, 'items']),
+], (items) => items.toList());
