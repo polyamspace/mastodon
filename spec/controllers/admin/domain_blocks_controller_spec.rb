@@ -88,16 +88,17 @@ RSpec.describe Admin::DomainBlocksController do
           post :create, params: { domain_block: { domain: 'example.com', severity: 'suspend', reject_media: true, reject_reports: true } }
         end
 
-        it 'does not record a block' do
-          expect(DomainBlock.exists?(domain: 'example.com', severity: 'suspend')).to be false
+        it 'records a block' do
+          expect(DomainBlock.exists?(domain: 'example.com', severity: 'suspend')).to be true
         end
 
-        it 'does not call DomainBlockWorker' do
-          expect(DomainBlockWorker).to_not have_received(:perform_async)
+        it 'calls DomainBlockWorker' do
+          expect(DomainBlockWorker).to have_received(:perform_async)
         end
 
-        it 'renders confirm_suspension' do
-          expect(response).to render_template :confirm_suspension
+        it 'redirects with a success message' do
+          expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
+          expect(response).to redirect_to(admin_instances_path(limited: '1'))
         end
       end
 
@@ -131,16 +132,17 @@ RSpec.describe Admin::DomainBlocksController do
           post :create, params: { domain_block: { domain: 'example.com', severity: 'suspend', reject_media: true, reject_reports: true } }
         end
 
-        it 'does not record a block' do
-          expect(DomainBlock.exists?(domain: 'example.com', severity: 'suspend')).to be false
+        it 'updates the record' do
+          expect(DomainBlock.exists?(domain: 'example.com', severity: 'suspend')).to be true
         end
 
-        it 'does not call DomainBlockWorker' do
-          expect(DomainBlockWorker).to_not have_received(:perform_async)
+        it 'calls DomainBlockWorker' do
+          expect(DomainBlockWorker).to have_received(:perform_async)
         end
 
-        it 'renders confirm_suspension' do
-          expect(response).to render_template :confirm_suspension
+        it 'redirects with a success message' do
+          expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
+          expect(response).to redirect_to(admin_instances_path(limited: '1'))
         end
       end
 

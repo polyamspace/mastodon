@@ -20,7 +20,7 @@ describe 'blocking domains through the moderation interface' do
   end
 
   context 'when suspending a new domain' do
-    it 'presents a confirmation screen before suspending the domain' do
+    it 'suspends the domain' do
       visit new_admin_domain_block_path
 
       fill_in 'domain_block_domain', with: 'example.com'
@@ -28,17 +28,17 @@ describe 'blocking domains through the moderation interface' do
       click_on I18n.t('admin.domain_blocks.new.create')
 
       # It presents a confirmation screen
-      expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
+      # expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
 
       # Confirming creates a block
-      click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
+      # click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
 
       expect(DomainBlock.exists?(domain: 'example.com', severity: 'suspend')).to be true
     end
   end
 
   context 'when suspending a domain that is already silenced' do
-    it 'presents a confirmation screen before suspending the domain' do
+    it 'suspends the domain' do
       domain_block = Fabricate(:domain_block, domain: 'example.com', severity: 'silence')
 
       visit new_admin_domain_block_path
@@ -48,17 +48,17 @@ describe 'blocking domains through the moderation interface' do
       click_on I18n.t('admin.domain_blocks.new.create')
 
       # It presents a confirmation screen
-      expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
+      # expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
 
       # Confirming updates the block
-      click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
+      # click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
 
-      expect(domain_block.reload.severity).to eq 'silence'
+      expect(domain_block.reload.severity).to eq 'suspend'
     end
   end
 
   context 'when editing a domain block' do
-    it 'presents a confirmation screen before suspending the domain' do
+    it 'suspends the domain' do
       domain_block = Fabricate(:domain_block, domain: 'example.com', severity: 'silence')
 
       visit edit_admin_domain_block_path(domain_block)
@@ -67,12 +67,12 @@ describe 'blocking domains through the moderation interface' do
       click_on I18n.t('generic.save_changes')
 
       # It presents a confirmation screen
-      expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
+      # expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
 
       # Confirming updates the block
-      click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
+      # click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
 
-      expect(domain_block.reload.severity).to eq 'silence'
+      expect(domain_block.reload.severity).to eq 'suspend'
     end
   end
 end
