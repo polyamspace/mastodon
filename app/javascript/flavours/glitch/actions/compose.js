@@ -145,12 +145,12 @@ export function resetCompose() {
   };
 }
 
-export const focusCompose = routerHistory => dispatch => {
+export const focusCompose = routerHistory => (dispatch, getState) => {
   dispatch({
     type: COMPOSE_FOCUS,
   });
 
-  ensureComposeIsVisible(routerHistory);
+  ensureComposeIsVisible(getState, routerHistory);
 };
 
 export function mentionCompose(account, routerHistory) {
