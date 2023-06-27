@@ -15,10 +15,11 @@
   .filter-subset
     %strong= t('admin.instances.moderation.title')
     %ul
-      %li= filter_link_to t('admin.instances.moderation.all'), limited: nil
+      %li= filter_link_to t('admin.instances.moderation.all'), limited: nil, suspended: nil
 
       - unless whitelist_mode?
-        %li= filter_link_to t('admin.instances.moderation.limited'), limited: '1'
+        %li= filter_link_to t('admin.instances.moderation.limited'), limited: '1', suspended: nil
+        %li= filter_link_to t('admin.instances.moderation.suspended'), limited: nil, suspended: '1'
 
   .filter-subset
     %strong= t('admin.instances.availability.title')

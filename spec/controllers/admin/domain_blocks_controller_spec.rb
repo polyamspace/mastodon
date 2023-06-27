@@ -98,7 +98,7 @@ RSpec.describe Admin::DomainBlocksController do
 
         it 'redirects with a success message' do
           expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
-          expect(response).to redirect_to(admin_instances_path(limited: '1'))
+          expect(response).to redirect_to(admin_instances_path(suspended: '1'))
         end
       end
 
@@ -117,7 +117,7 @@ RSpec.describe Admin::DomainBlocksController do
 
         it 'redirects with a success message' do
           expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
-          expect(response).to redirect_to(admin_instances_path(limited: '1'))
+          expect(response).to redirect_to(admin_instances_path(suspended: '1'))
         end
       end
     end
@@ -142,7 +142,7 @@ RSpec.describe Admin::DomainBlocksController do
 
         it 'redirects with a success message' do
           expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
-          expect(response).to redirect_to(admin_instances_path(limited: '1'))
+          expect(response).to redirect_to(admin_instances_path(suspended: '1'))
         end
       end
 
@@ -161,7 +161,7 @@ RSpec.describe Admin::DomainBlocksController do
 
         it 'redirects with a success message' do
           expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
-          expect(response).to redirect_to(admin_instances_path(limited: '1'))
+          expect(response).to redirect_to(admin_instances_path(suspended: '1'))
         end
       end
     end

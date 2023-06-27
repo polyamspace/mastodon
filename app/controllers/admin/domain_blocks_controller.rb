@@ -51,7 +51,12 @@ module Admin
       if @domain_block.save
         DomainBlockWorker.perform_async(@domain_block.id)
         log_action :create, @domain_block
-        redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+
+        if @domain_block.severity == 'suspend'
+          redirect_to admin_instances_path(suspended: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+        else
+          redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+        end
       else
         render :new
       end
@@ -68,7 +73,12 @@ module Admin
       if @domain_block.save
         DomainBlockWorker.perform_async(@domain_block.id, @domain_block.severity_previously_changed?)
         log_action :update, @domain_block
-        redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+
+        if @domain_block.severity == 'suspend'
+          redirect_to admin_instances_path(suspended: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+        else
+          redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+        end
       else
         render :edit
       end
@@ -78,7 +88,12 @@ module Admin
       authorize @domain_block, :destroy?
       UnblockDomainService.new.call(@domain_block)
       log_action :destroy, @domain_block
-      redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.destroyed_msg')
+
+      if @domain_block.severity == 'suspend'
+        redirect_to admin_instances_path(suspended: '1'), notice: I18n.t('admin.domain_blocks.destroyed_msg')
+      else
+        redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.destroyed_msg')
+      end
     end
 
     private
