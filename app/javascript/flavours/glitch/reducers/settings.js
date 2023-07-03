@@ -88,23 +88,22 @@ const initialState = ImmutableMap({
     }),
   }),
 
-  community: ImmutableMap({
-    shows: ImmutableMap({
-      reblog: true,
-      reply: true,
-    }),
+  firehose: ImmutableMap({
+    onlyMedia: false,
+    allowLocalOnly: true,
 
     regex: ImmutableMap({
       body: '',
     }),
   }),
 
-  public: ImmutableMap({
-    shows: ImmutableMap({
-      reblog: true,
-      reply: true,
+  community: ImmutableMap({
+    regex: ImmutableMap({
+      body: '',
     }),
+  }),
 
+  public: ImmutableMap({
     regex: ImmutableMap({
       body: '',
     }),
