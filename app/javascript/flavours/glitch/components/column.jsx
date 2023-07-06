@@ -18,7 +18,7 @@ export default class Column extends PureComponent {
   };
 
   scrollTop () {
-    const scrollable = this.props.bindToDocument ? document.scrollingElement : this.node.querySelector('.scrollable');
+    const scrollable = this.props.bindToDocument ? document.scrollingElement : this.node.querySelector('.scrollable:not(.scrollable--flex)');
 
     if (!scrollable) {
       return;
