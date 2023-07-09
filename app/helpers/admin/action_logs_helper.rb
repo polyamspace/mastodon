@@ -34,7 +34,7 @@ module Admin::ActionLogsHelper
         I18n.t('admin.action_logs.deleted_account')
       end
     when 'RegistrationFilter'
-      link_to log.human_identifier, admin_registration_filters_path(log.target_id)
+      link_to log.human_identifier, edit_admin_registration_filter_path(log.target_id)
     end
   end
 end
