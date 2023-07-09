@@ -15,6 +15,8 @@ module Admin::ActionLogsHelper
       link_to log.human_identifier, admin_roles_path(log.target_id)
     when 'Report'
       link_to "##{log.human_identifier.presence || log.target_id}", admin_report_path(log.target_id)
+    when 'DomainBlock'
+      link_to log.human_identifier, admin_instance_path(log.human_identifier.presence)
     when 'DomainAllow', 'EmailDomainBlock', 'UnavailableDomain'
       link_to log.human_identifier, "https://#{log.human_identifier.presence}"
     when 'Status'
@@ -23,7 +25,7 @@ module Admin::ActionLogsHelper
       link_to log.human_identifier, disputes_strike_path(log.target_id)
     when 'Announcement'
       link_to truncate(log.human_identifier), edit_admin_announcement_path(log.target_id)
-    when 'DomainBlock', 'IpBlock', 'Instance', 'CustomEmoji'
+    when 'IpBlock', 'Instance', 'CustomEmoji'
       log.human_identifier
     when 'CanonicalEmailBlock'
       content_tag(:samp, (log.human_identifier.presence || '')[0...7], title: log.human_identifier)
