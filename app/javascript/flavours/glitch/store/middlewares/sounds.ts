@@ -54,7 +54,16 @@ export const soundsMiddleware = (): Middleware<
               type: 'audio/mpeg',
             },
           ]
-        : (notificationSound as AudioSource[])
+        : [
+            {
+              src: `${assetHost}${(notificationSound[0] as AudioSource).src}`,
+              type: (notificationSound[0] as AudioSource).type,
+            },
+            {
+              src: `${assetHost}${(notificationSound[1] as AudioSource).src}`,
+              type: (notificationSound[1] as AudioSource).type,
+            },
+          ]
     );
   });
 
