@@ -44,7 +44,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       mascot: instance_presenter.mascot&.file&.url,
       favicon: instance_presenter.favicon&.file&.url,
       profile_directory: Setting.profile_directory,
-      trends: Setting.trends,
+      trends_enabled: Setting.trends,
       registrations_open: Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode,
       timeline_preview: Setting.timeline_preview,
       activity_api_enabled: Setting.activity_api_enabled,
@@ -69,9 +69,9 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:advanced_layout]   = object.current_account.user.setting_advanced_layout
       store[:use_blurhash]      = object.current_account.user.setting_use_blurhash
       store[:use_pending_items] = object.current_account.user.setting_use_pending_items
-      store[:trends]            = Setting.trends && object.current_account.user.setting_trends
       store[:default_content_type] = object.current_account.user.setting_default_content_type
       store[:system_emoji_font] = object.current_account.user.setting_system_emoji_font
+      store[:show_trends]       = Setting.trends && object.current_account.user.setting_trends
       store[:crop_images]       = object.current_account.user.setting_crop_images
       store[:notification_sound] = NotificationSounds.instance.by_name(object.current_account.user.setting_notification_sound)
       store[:visible_reactions] = object.current_account.user.setting_visible_reactions
