@@ -63,7 +63,7 @@ export const soundsMiddleware = (): Middleware<
               src: `${assetHost}${(notificationSound[1] as AudioSource).src}`,
               type: (notificationSound[1] as AudioSource).type,
             },
-          ]
+          ],
     );
   });
 
