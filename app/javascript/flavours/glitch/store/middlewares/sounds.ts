@@ -39,7 +39,7 @@ export const soundsMiddleware = (): Middleware<
   Record<string, never>,
   RootState
 > => {
-  const soundCache: { [key: string]: HTMLAudioElement } = {};
+  const soundCache: Record<string, HTMLAudioElement> = {};
 
   void ready(() => {
     soundCache.notificationSound = createAudio(
@@ -63,16 +63,16 @@ export const soundsMiddleware = (): Middleware<
               src: `${assetHost}${(notificationSound[1] as AudioSource).src}`,
               type: (notificationSound[1] as AudioSource).type,
             },
-          ]
+          ],
     );
   });
 
   return () =>
     (next) =>
     (action: AnyAction & { meta?: { sound?: string } }) => {
-      const sound = action?.meta?.sound;
+      const sound = action.meta?.sound;
 
-      if (sound && soundCache[sound]) {
+      if (sound && Object.hasOwn(soundCache, sound)) {
         play(soundCache[sound]);
       }
 

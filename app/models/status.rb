@@ -304,7 +304,7 @@ class Status < ApplicationRecord
       end
     end
 
-    ActiveRecord::Associations::Preloader.new.preload(records, :custom_emoji)
+    ActiveRecord::Associations::Preloader.new(records: records, associations: :custom_emoji)
     records
   end
 
