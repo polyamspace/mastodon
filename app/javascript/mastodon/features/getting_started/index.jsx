@@ -144,7 +144,7 @@ class GettingStarted extends ImmutablePureComponent {
 
           {!multiColumn && <div className='flex-spacer' />}
 
-          <LinkFooter />
+          <LinkFooter multiColumn />
         </div>
 
         {(multiColumn && showTrends) && <TrendsContainer />}
