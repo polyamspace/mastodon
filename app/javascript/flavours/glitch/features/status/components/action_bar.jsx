@@ -208,7 +208,7 @@ class ActionBar extends PureComponent {
             }
           }
           if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
-            if (instanceAdminLink != undefined) {
+            if (instanceAdminLink !== undefined) {
               const domain = status.getIn(['account', 'acct']).split('@')[1];
               menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: instanceAdminLink(domain) });
             }
