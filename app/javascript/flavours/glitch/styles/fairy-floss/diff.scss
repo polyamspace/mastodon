@@ -459,11 +459,15 @@ a.mention,
   background: $purple1;
 }
 
+// Upstream changed dropdown menu, so this looks off
+
+/*
 .dropdown-menu,
 .dropdown-menu__item a,
 .dropdown-menu__item button {
   background: $purple4;
 }
+*/
 
 .dropdown-menu__item a {
   &:hover,
@@ -718,6 +722,17 @@ a.mention,
 
     &:hover {
       background: lighten($ui-base-color, 4%);
+    }
+  }
+}
+
+.embed-modal {
+  background: lighten($purple2, 8%);
+  color: $primary-text-color;
+
+  &__container {
+    .hint {
+      color: $primary-text-color;
     }
   }
 }
