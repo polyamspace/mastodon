@@ -722,6 +722,17 @@ a.mention,
   }
 }
 
+.embed-modal {
+  background: lighten($purple2, 8%);
+  color: $primary-text-color;
+
+  &__container {
+    .hint {
+      color: $primary-text-color;
+    }
+  }
+}
+
 // settings
 
 // Fixes Account > Authorized Apps
