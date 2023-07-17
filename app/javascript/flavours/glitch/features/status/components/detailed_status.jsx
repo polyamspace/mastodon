@@ -81,7 +81,9 @@ class DetailedStatus extends ImmutablePureComponent {
   };
 
   handleOpenVideo = (options) => {
-    this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), options);
+    const { status } = this.props;
+    const lang = status.getIn(['translation', 'language']) || status.get('language');
+    this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), lang, options);
   };
 
   handleAltClick = (index) => {
