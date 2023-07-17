@@ -485,7 +485,7 @@ class Video extends PureComponent {
   handleOpenVideo = () => {
     this.video.pause();
 
-    this.props.onOpenVideo(this.props.lang, {
+    this.props.onOpenVideo({
       startTime: this.video.currentTime,
       autoPlay: !this.state.paused,
       defaultVolume: this.state.volume,
