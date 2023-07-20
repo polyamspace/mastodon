@@ -33,6 +33,14 @@ export async function loadLocale() {
       `flavours/glitch/locales/${locale}.json`
     ) as LocaleData['messages'];
 
-    setLocale({ messages: { ...upstreamLocaleData, ...localeData }, locale });
+    const polyamLocaleData = await import(
+      /* webpackMode: "lazy" */
+      /* webpackChunkName: "locales/polyam/[request]" */
+      /* webpackInclude: /\.json$/ */
+      /* webpackPreload: true */
+      `flavours/polyam/locales/${locale}.json`
+    ) as LocaleData['messages'];
+
+    setLocale({ messages: { ...upstreamLocaleData, ...localeData, ...polyamLocaleData }, locale });
   });
 }
