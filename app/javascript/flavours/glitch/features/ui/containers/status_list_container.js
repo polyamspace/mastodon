@@ -8,6 +8,18 @@ import { scrollTopTimeline, loadPending } from 'flavours/glitch/actions/timeline
 import StatusList from 'flavours/glitch/components/status_list';
 import { me } from 'flavours/glitch/initial_state';
 
+const normalizeTimelineId = timelineId => {
+  if (timelineId.startsWith('public:')) {
+    return 'public';
+  }
+
+  if (timelineId.startsWith('community:')) {
+    return 'community';
+  }
+
+  return timelineId;
+};
+
 const getRegex = createSelector([
   (state, { regex }) => regex,
 ], (rawRegex) => {
@@ -21,8 +33,25 @@ const getRegex = createSelector([
   return regex;
 });
 
+// Settings can both be in column params and in state
+// This destinction didn't matter before the introduction of the firehose column
+// Not sure if oversight or on purpose, but multiple community and public timelines can be pinned, which should each have their own settings
+// There is no distinct timelineId for the firehose column, so an additional prop is parsed which indicates settings should be loaded from firehose
+const getSettings = createSelector([
+  (state, { firehose }) => firehose,
+  (state, { columnId }) => columnId,
+  (state, { type }) => type,
+  (state) => state,
+], (firehose, columnId, type, state) => {
+  const uuid = columnId;
+  const columns = state.getIn(['settings', 'columns']);
+  const index = columns.findIndex(c => c.get('uuid') === uuid);
+
+  return (uuid && index >= 0) ? columns.get(index).get('params') : firehose ? state.getIn(['settings', 'firehose'], ImmutableMap()) : state.getIn(['settings', normalizeTimelineId(type)], ImmutableMap())
+})
+
 const makeGetStatusIds = (pending = false) => createSelector([
-  (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
+  getSettings,
   (state, { type }) => state.getIn(['timelines', type, pending ? 'pendingItems' : 'items'], ImmutableList()),
   (state)           => state.get('statuses'),
   getRegex,
@@ -64,8 +93,8 @@ const makeMapStateToProps = () => {
   const getStatusIds = makeGetStatusIds();
   const getPendingStatusIds = makeGetStatusIds(true);
 
-  const mapStateToProps = (state, { timelineId, regex }) => ({
-    statusIds: getStatusIds(state, { type: timelineId, regex }),
+  const mapStateToProps = (state, { firehose = false, columnId, timelineId, regex }) => ({
+    statusIds: getStatusIds(state, { firehose: firehose, columnId: columnId, type: timelineId, regex }),
     lastId:    state.getIn(['timelines', timelineId, 'items'])?.last(),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], true),
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),

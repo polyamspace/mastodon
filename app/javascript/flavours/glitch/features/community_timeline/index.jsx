@@ -151,6 +151,7 @@ class CommunityTimeline extends PureComponent {
           emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
           bindToDocument={!multiColumn}
           regex={this.props.regex}
+          columnId={columnId}
         />
 
         <Helmet>
