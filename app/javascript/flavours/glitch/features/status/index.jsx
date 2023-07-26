@@ -76,6 +76,7 @@ const messages = defineMessages({
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
   tootHeading: { id: 'account.posts_with_replies', defaultMessage: 'Posts and replies' },
+  refresh: { id: 'refresh', defaultMessage: 'Refresh' },
 });
 
 const makeMapStateToProps = () => {
@@ -645,6 +646,10 @@ class Status extends ImmutablePureComponent {
     this.column = c;
   };
 
+  handleRefresh = () => {
+    this.props.dispatch(fetchStatus(this.props.params.statusId));
+  };
+
   componentDidUpdate (prevProps) {
     if (this.props.params.statusId && (this.props.params.statusId !== prevProps.params.statusId || prevProps.ancestorsIds.size < this.props.ancestorsIds.size)) {
       const { status, ancestorsIds } = this.props;
@@ -713,6 +718,30 @@ class Status extends ImmutablePureComponent {
       openMedia: this.handleHotkeyOpenMedia,
     };
 
+    const extraButtons = []
+
+    // Refresh button
+    extraButtons.push(
+      <button
+        className='column-header__button'
+        title={intl.formatMessage(messages.refresh)}
+        aria-label={intl.formatMessage(messages.refresh)}
+        onClick={this.handleRefresh}>
+        <Icon id='refresh' />
+      </button>
+    )
+
+    // Reveal button
+    extraButtons.push(
+      <button
+        className='column-header__button'
+        title={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)}
+        aria-label={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)}
+        onClick={this.handleToggleAll}>
+        <Icon id={!isExpanded ? 'eye-slash' : 'eye'} />
+      </button>
+    )
+
     return (
       <Column bindToDocument={!multiColumn} ref={this.setColumnRef} label={intl.formatMessage(messages.detailedStatus)}>
         <ColumnHeader
@@ -721,9 +750,7 @@ class Status extends ImmutablePureComponent {
           onClick={this.handleHeaderClick}
           showBackButton
           multiColumn={multiColumn}
-          extraButton={(
-            <button className='column-header__button' title={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={!isExpanded ? 'eye-slash' : 'eye'} /></button>
-          )}
+          extraButton={extraButtons}
         />
 
         <ScrollContainer scrollKey='thread'>
