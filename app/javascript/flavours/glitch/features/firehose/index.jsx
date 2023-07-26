@@ -12,7 +12,7 @@ import { connectPublicStream, connectCommunityStream } from 'flavours/glitch/act
 import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/glitch/actions/timelines';
 import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
 import SettingText from 'flavours/glitch/components/setting_text';
-import initialState, { domain } from 'flavours/glitch/initial_state';
+import initialState, { domain, showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/glitch/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
 
 import Column from '../../components/column';
@@ -46,6 +46,8 @@ const ColumnSettings = () => {
   return (
     <div>
       <div className='column-settings__row'>
+        {showReblogsPublicTimelines && <SettingToggle settings={settings} settingPath={['shows', 'reblog']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_reblogs' defaultMessage='Show boosts' />} />}
+        {showRepliesPublicTimelines && <SettingToggle settings={settings} settingPath={['shows', 'reply']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_replies' defaultMessage='Show replies' />} />}
         <SettingToggle
           settings={settings}
           settingPath={['onlyMedia']}
@@ -82,21 +84,24 @@ const Firehose = ({ feedType, multiColumn }) => {
   const allowLocalOnly = useAppSelector((state) => state.getIn(['settings', 'firehose', 'allowLocalOnly']));
   const regex = useAppSelector((state) => state.getIn(['settings', 'firehose', 'regex', 'body']));
 
+  const showReblogs = useAppSelector((state) => state.getIn(['settings', 'firehose', 'shows', 'reblog'], true));
+  const showReplies = useAppSelector((state) => state.getIn(['settings', 'firehose', 'shows', 'reply'], true));
+
   const handlePin = useCallback(
     () => {
       switch(feedType) {
       case 'community':
-        dispatch(addColumn('COMMUNITY', { other: { onlyMedia }, regex: { body: regex } }));
+        dispatch(addColumn('COMMUNITY', { other: { onlyMedia }, regex: { body: regex }, shows: { reblog: showReblogs, reply: showReplies} }));
         break;
       case 'public':
-        dispatch(addColumn('PUBLIC', { other: { onlyMedia, allowLocalOnly }, regex: { body: regex }  }));
+        dispatch(addColumn('PUBLIC', { other: { onlyMedia, allowLocalOnly }, regex: { body: regex }, shows: { reblog: showReblogs, reply: showReplies}  }));
         break;
       case 'public:remote':
-        dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true }, regex: { body: regex }  }));
+        dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true }, regex: { body: regex }, shows: { reblog: showReblogs, reply: showReplies}  }));
         break;
       }
     },
-    [dispatch, onlyMedia, feedType, allowLocalOnly, regex],
+    [dispatch, onlyMedia, feedType, allowLocalOnly, regex, showReblogs, showReplies],
   );
 
   const handleLoadMore = useCallback(
@@ -212,6 +217,7 @@ const Firehose = ({ feedType, multiColumn }) => {
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           regex={regex}
+          firehose
         />
       </div>
 

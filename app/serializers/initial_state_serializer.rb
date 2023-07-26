@@ -53,6 +53,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       search_preview: Setting.search_preview,
       publish_button_text: Setting.publish_button_text,
       status_page_url: Setting.status_page_url,
+      show_reblogs_in_public_timelines: Setting.show_reblogs_in_public_timelines,
+      show_replies_in_public_timelines: Setting.show_replies_in_public_timelines,
     }
 
     if object.current_account
