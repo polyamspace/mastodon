@@ -134,7 +134,7 @@ const Firehose = ({ feedType, multiColumn }) => {
       }
       break;
     case 'public':
-      dispatch(expandPublicTimeline({ onlyMedia }));
+      dispatch(expandPublicTimeline({ onlyMedia, allowLocalOnly }));
       if (signedIn) {
         disconnect = dispatch(connectPublicStream({ onlyMedia, allowLocalOnly }));
       }
