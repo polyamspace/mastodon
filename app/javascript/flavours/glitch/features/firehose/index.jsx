@@ -78,14 +78,14 @@ const Firehose = ({ feedType, multiColumn }) => {
   const { signedIn } = useIdentity();
   const columnRef = useRef(null);
 
-  const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
-  const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
-
   const allowLocalOnly = useAppSelector((state) => state.getIn(['settings', 'firehose', 'allowLocalOnly']));
   const regex = useAppSelector((state) => state.getIn(['settings', 'firehose', 'regex', 'body']));
 
   const showReblogs = useAppSelector((state) => state.getIn(['settings', 'firehose', 'shows', 'reblog'], true));
   const showReplies = useAppSelector((state) => state.getIn(['settings', 'firehose', 'shows', 'reply'], true));
+
+  const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
+  const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
 
   const handlePin = useCallback(
     () => {
