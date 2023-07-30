@@ -15,7 +15,7 @@ import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subh
 const messages = defineMessages({
   heading: { id: 'column.heading', defaultMessage: 'Misc' },
   subheading: { id: 'column.subheading', defaultMessage: 'Miscellaneous options' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   followed_tags: { id: 'navigation_bar.followed_tags', defaultMessage: 'Followed hashtags' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Blocked domains' },

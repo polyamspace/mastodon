@@ -68,7 +68,7 @@ const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
-  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
+  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned.' },
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
   statusTitleWithAttachments: { id: 'status.title.with_attachments', defaultMessage: '{user} posted {attachmentCount, plural, one {an attachment} other {# attachments}}' },
@@ -195,8 +195,8 @@ class Status extends ImmutablePureComponent {
     status: ImmutablePropTypes.map,
     isLoading: PropTypes.bool,
     settings: ImmutablePropTypes.map.isRequired,
-    ancestorsIds: ImmutablePropTypes.list,
-    descendantsIds: ImmutablePropTypes.list,
+    ancestorsIds: ImmutablePropTypes.list.isRequired,
+    descendantsIds: ImmutablePropTypes.list.isRequired,
     intl: PropTypes.object.isRequired,
     askReplyConfirmation: PropTypes.bool,
     multiColumn: PropTypes.bool,
@@ -220,16 +220,6 @@ class Status extends ImmutablePureComponent {
   componentDidMount () {
     attachFullscreenListener(this.onFullScreenChange);
     this.props.dispatch(fetchStatus(this.props.params.statusId));
-
-    const { status, ancestorsIds } = this.props;
-
-    if (status && ancestorsIds && ancestorsIds.size > 0) {
-      const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size - 1];
-
-      window.requestAnimationFrame(() => {
-        element.scrollIntoView(true);
-      });
-    }
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -308,7 +298,7 @@ class Status extends ImmutablePureComponent {
         modalProps: {
           type: 'favourite',
           accountId: status.getIn(['account', 'id']),
-          url: status.get('url'),
+          url: status.get('uri'),
         },
       }));
     }
@@ -359,7 +349,7 @@ class Status extends ImmutablePureComponent {
         modalProps: {
           type: 'reply',
           accountId: status.getIn(['account', 'id']),
-          url: status.get('url'),
+          url: status.get('uri'),
         },
       }));
     }
@@ -393,7 +383,7 @@ class Status extends ImmutablePureComponent {
         modalProps: {
           type: 'reblog',
           accountId: status.getIn(['account', 'id']),
-          url: status.get('url'),
+          url: status.get('uri'),
         },
       }));
     }
@@ -651,16 +641,22 @@ class Status extends ImmutablePureComponent {
   };
 
   componentDidUpdate (prevProps) {
-    if (this.props.params.statusId && (this.props.params.statusId !== prevProps.params.statusId || prevProps.ancestorsIds.size < this.props.ancestorsIds.size)) {
-      const { status, ancestorsIds } = this.props;
+    const { status, ancestorsIds, multiColumn } = this.props;
 
-      if (status && ancestorsIds && ancestorsIds.size > 0) {
-        const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size - 1];
+    if (status && (ancestorsIds.size > prevProps.ancestorsIds.size || prevProps.status?.get('id') !== status.get('id'))) {
+      window.requestAnimationFrame(() => {
+        this.node?.querySelector('.detailed-status__wrapper')?.scrollIntoView(true);
 
-        window.requestAnimationFrame(() => {
-          element.scrollIntoView(true);
-        });
-      }
+        // In the single-column interface, `scrollIntoView` will put the post behind the header,
+        // so compensate for that.
+        if (!multiColumn) {
+          const offset = document.querySelector('.column-header__wrapper')?.getBoundingClientRect()?.bottom;
+          if (offset) {
+            const scrollingElement = document.scrollingElement || document.body;
+            scrollingElement.scrollBy(0, -offset);
+          }
+        }
+      });
     }
   }
 
@@ -723,22 +719,26 @@ class Status extends ImmutablePureComponent {
     // Refresh button
     extraButtons.push(
       <button
+        type='button'
         className='column-header__button'
         title={intl.formatMessage(messages.refresh)}
         aria-label={intl.formatMessage(messages.refresh)}
-        onClick={this.handleRefresh}>
-        <Icon id='refresh' />
+        onClick={this.handleRefresh}
+        >
+          <Icon id='refresh' />
       </button>
     )
 
     // Reveal button
     extraButtons.push(
       <button
+        type='button'
         className='column-header__button'
         title={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)}
         aria-label={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)}
-        onClick={this.handleToggleAll}>
-        <Icon id={!isExpanded ? 'eye-slash' : 'eye'} />
+        onClick={this.handleToggleAll}
+        >
+          <Icon id={!isExpanded ? 'eye-slash' : 'eye'} />
       </button>
     )
 
@@ -754,11 +754,11 @@ class Status extends ImmutablePureComponent {
         />
 
         <ScrollContainer scrollKey='thread'>
-          <div className={classNames('scrollable', 'detailed-status__wrapper', { fullscreen })} ref={this.setRef}>
+          <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
             {ancestors}
 
             <HotKeys handlers={handlers}>
-              <div className='focusable' tabIndex={0} aria-label={textForScreenReader(intl, status, false, isExpanded)}>
+              <div className={classNames('focusable', 'detailed-status__wrapper', `detailed-status__wrapper-${status.get('visibility')}`)} tabIndex={0} aria-label={textForScreenReader(intl, status, false, isExpanded)}>
                 <DetailedStatus
                   key={`details-${status.get('id')}`}
                   status={status}
