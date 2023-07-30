@@ -201,9 +201,8 @@ en:
         setting_always_send_emails: Always send e-mail notifications
         setting_auto_play_gif: Auto-play animated GIFs
         setting_boost_modal: Show confirmation dialog before boosting
-        setting_crop_images: Crop images in non-expanded toots to 16x9
-        setting_default_language: Toot language
-        setting_default_privacy: Toot privacy
+        setting_default_language: Tooting language
+        setting_default_privacy: Tooting privacy
         setting_default_sensitive: Always mark media as sensitive
         setting_delete_modal: Show confirmation dialog before deleting a toot
         setting_disable_swiping: Disable swiping motions

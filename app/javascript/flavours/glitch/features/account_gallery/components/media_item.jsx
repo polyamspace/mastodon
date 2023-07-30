@@ -144,8 +144,8 @@ export default class MediaItem extends ImmutablePureComponent {
         <div className='media-gallery__gifv'>
           {content}
 
-          <div className='media-gallery__label-container'>
-            {label && <span className='media-gallery__gifv__label'>{label}</span>}
+          <div className='media-gallery__item__badges'>
+            {label && (<span className='media-gallery__gifv__label'>{label}</span>)}
             {attachment.get('description') ? altButton : null}
           </div>
         </div>
