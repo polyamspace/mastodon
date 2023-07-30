@@ -84,6 +84,7 @@ en:
     localization:
       glitch_guide_link: https://crowdin.com/project/glitch-soc
       glitch_guide_link_text: And likewise for glitch-soc!
+    toot_layout: Toot layout
   auth:
     captcha_confirmation:
       hint_html: Just one more step! To confirm your account, this server requires you to solve a CAPTCHA. You can <a href="/about/more">contact the server administrator</a> if you have questions or need assistance with confirming your account.
