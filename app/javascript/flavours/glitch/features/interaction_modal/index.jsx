@@ -13,7 +13,7 @@ import { openModal, closeModal } from 'flavours/glitch/actions/modal';
 import api from 'flavours/glitch/api';
 import Button from 'flavours/glitch/components/button';
 import { Icon } from 'flavours/glitch/components/icon';
-import { registrationsOpen } from 'flavours/glitch/initial_state';
+import { registrationsOpen, peersApiEnabled } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server, e.g. mastodon.social' },
@@ -204,7 +204,7 @@ class LoginForm extends React.PureComponent {
       return;
     }
 
-    if (domain.length === 0) {
+    if (domain.length === 0 || !peersApiEnabled) {
       this.setState({ options: [], networkOptions: [], isLoading: false });
       return;
     }

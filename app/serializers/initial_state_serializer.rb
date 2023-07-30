@@ -55,6 +55,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       status_page_url: Setting.status_page_url,
       show_reblogs_in_public_timelines: Setting.show_reblogs_in_public_timelines,
       show_replies_in_public_timelines: Setting.show_replies_in_public_timelines,
+      peers_api_enabled: Setting.peers_api_enabled,
     }
 
     if object.current_account

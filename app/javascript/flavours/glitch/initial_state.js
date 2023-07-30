@@ -93,6 +93,7 @@
  * @property {string} default_content_type
  * @property {boolean} show_reblogs_in_public_timelines
  * @property {boolean} show_replies_in_public_timelines
+ * @property {boolean} peers_api_enabled
  */
 
 /** @type {string} */
@@ -175,6 +176,7 @@ export const publishButtonText = getMeta('publish_button_text');
 export const statusPageUrl = getMeta('status_page_url');
 export const showReblogsPublicTimelines = getMeta('show_reblogs_in_public_timelines');
 export const showRepliesPublicTimelines = getMeta('show_replies_in_public_timelines');
+export const peersApiEnabled = getMeta('peers_api_enabled');
 
 // Glitch-soc-specific settings
 export const maxChars = (initialState && initialState.max_toot_chars) || 500;
