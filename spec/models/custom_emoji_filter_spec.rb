@@ -9,6 +9,7 @@ RSpec.describe CustomEmojiFilter do
     let!(:custom_emoji_domain_a) { Fabricate(:custom_emoji, domain: 'a') }
     let!(:custom_emoji_domain_b) { Fabricate(:custom_emoji, domain: 'b') }
     let!(:custom_emoji_domain_nil) { Fabricate(:custom_emoji, domain: nil, shortcode: 'hoge') }
+    let!(:custom_emoji_domain_nil_disabled) { Fabricate(:custom_emoji, domain: nil, disabled: true) }
 
     context 'when params have values' do
       context 'when local' do
@@ -16,7 +17,7 @@ RSpec.describe CustomEmojiFilter do
 
         it 'returns ActiveRecord::Relation' do
           expect(subject).to be_a(ActiveRecord::Relation)
-          expect(subject).to contain_exactly(custom_emoji_domain_nil)
+          expect(subject).to contain_exactly(custom_emoji_domain_nil, custom_emoji_domain_nil_disabled)
         end
       end
 
@@ -47,6 +48,26 @@ RSpec.describe CustomEmojiFilter do
         end
       end
 
+      context 'with availability' do
+        context 'when disabled' do
+          let(:params) { { availability: 'disabled' } }
+
+          it 'returns ActiveRecord::Relation' do
+            expect(subject).to be_a(ActiveRecord::Relation)
+            expect(subject).to contain_exactly(custom_emoji_domain_nil_disabled)
+          end
+        end
+
+        context 'when enabled' do
+          let(:params) { { availability: 'enabled' } }
+
+          it 'returns ActiveRecord::Relation' do
+            expect(subject).to be_a(ActiveRecord::Relation)
+            expect(subject).to contain_exactly(custom_emoji_domain_a, custom_emoji_domain_b, custom_emoji_domain_nil)
+          end
+        end
+      end
+
       context 'when some other case' do
         let(:params) { { else: 'else' } }
 
@@ -63,7 +84,7 @@ RSpec.describe CustomEmojiFilter do
 
       it 'returns ActiveRecord::Relation' do
         expect(subject).to be_a(ActiveRecord::Relation)
-        expect(subject).to contain_exactly(custom_emoji_domain_a, custom_emoji_domain_b, custom_emoji_domain_nil)
+        expect(subject).to contain_exactly(custom_emoji_domain_a, custom_emoji_domain_b, custom_emoji_domain_nil, custom_emoji_domain_nil_disabled)
       end
     end
   end

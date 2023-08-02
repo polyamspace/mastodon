@@ -21,6 +21,13 @@
         - else
           = filter_link_to t('admin.accounts.location.remote'), remote: '1', local: nil
 
+  .filter-subset
+    %strong= t('admin.instances.availability.title')
+    %ul
+      %li= filter_link_to t('admin.accounts.location.all'), availability: nil
+      %li= filter_link_to t('admin.custom_emojis.enabled'), availability: 'enabled'
+      %li= filter_link_to t('admin.custom_emojis.disabled'), availability: 'disabled'
+
 = form_tag admin_custom_emojis_url, method: 'GET', class: 'simple_form' do
   .fields-group
     - CustomEmojiFilter::KEYS.each do |key|

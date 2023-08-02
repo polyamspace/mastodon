@@ -6,6 +6,7 @@ class CustomEmojiFilter
     remote
     by_domain
     shortcode
+    availability
   ).freeze
 
   attr_reader :params
@@ -38,8 +39,21 @@ class CustomEmojiFilter
       CustomEmoji.where(domain: value.strip.downcase)
     when 'shortcode'
       CustomEmoji.search(value.strip)
+    when 'availability'
+      availability_scope(value)
     else
       raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
+    end
+  end
+
+  def availability_scope(value)
+    case value
+    when 'enabled'
+      CustomEmoji.where(disabled: false)
+    when 'disabled'
+      CustomEmoji.where(disabled: true)
+    else
+      raise Mastodon::InvalidParameterError, "Unknown availability: #{value}"
     end
   end
 end
