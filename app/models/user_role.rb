@@ -36,19 +36,22 @@ class UserRole < ApplicationRecord
     manage_roles: (1 << 17),
     manage_user_access: (1 << 18),
     delete_user_data: (1 << 19),
-    bypass_invite_limits: (1 << 50),
+    invite_with_limits: (1 << 20),
+    legacy_invite_with_limits: (1 << 50),
   }.freeze
 
   module Flags
     NONE = 0
-    ALL  = FLAGS.values.reduce(&:|)
+    ALL  = FLAGS.values.reduce(&:|) & ~FLAGS[:invite_with_limits]
 
-    DEFAULT = FLAGS[:invite_users]
+    DEFAULT = FLAGS[:invite_with_limits]
+
+    UNPRIVILEGED = DEFAULT | FLAGS[:invite_users]
 
     CATEGORIES = {
       invites: %i(
         invite_users
-        bypass_invite_limits
+        invite_with_limits
       ).freeze,
 
       moderation: %w(
@@ -147,7 +150,7 @@ class UserRole < ApplicationRecord
 
     # Otherwise, compute permissions based on special conditions
     @computed_permissions ||= begin
-      permissions = self.class.everyone.permissions | self.permissions
+      permissions = name == 'Moderator' || name == 'Admin' ? self.permissions : self.class.everyone.permissions | self.permissions
 
       if permissions & FLAGS[:administrator] == FLAGS[:administrator]
         Flags::ALL
@@ -189,6 +192,6 @@ class UserRole < ApplicationRecord
   end
 
   def validate_dangerous_permissions
-    errors.add(:permissions_as_keys, :dangerous) if everyone? && (Flags::DEFAULT | FLAGS[:bypass_invite_limits]) & permissions != permissions
+    errors.add(:permissions_as_keys, :dangerous) if everyone? && Flags::UNPRIVILEGED & permissions != permissions
   end
 end

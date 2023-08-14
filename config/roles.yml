@@ -7,7 +7,7 @@ moderator:
     - manage_users
     - manage_reports
     - manage_taxonomies
-    - bypass_invite_limits
+    - invite_users
 admin:
   name: Admin
   position: 100
@@ -29,7 +29,7 @@ admin:
     - manage_custom_emojis
     - manage_webhooks
     - manage_roles
-    - bypass_invite_limits
+    - invite_users
 owner:
   name: Owner
   position: 1000

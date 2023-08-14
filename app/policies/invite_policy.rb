@@ -10,7 +10,7 @@ class InvitePolicy < ApplicationPolicy
   end
 
   def unrestricted?
-    role.can?(:bypass_invite_limits)
+    !role.can?(:invite_with_limits)
   end
 
   def deactivate_all?
