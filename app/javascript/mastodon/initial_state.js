@@ -85,6 +85,7 @@
  * @property {string} version
  * @property {number} visible_reactions
  * @property {string} publish_button_text
+ * @property {string} sso_redirect
  */
 
 /**
@@ -153,6 +154,7 @@ export const languages = initialState?.languages;
 export const publishButtonText = getMeta('publish_button_text');
 // @ts-expect-error
 export const statusPageUrl = getMeta('status_page_url');
+export const sso_redirect = getMeta('sso_redirect');
 
 // Glitch-soc-specific settings
 export const maxChars = (initialState && initialState.max_toot_chars) || 500;
