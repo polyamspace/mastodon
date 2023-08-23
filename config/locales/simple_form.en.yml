@@ -3,7 +3,7 @@ en:
   simple_form:
     hints:
       account:
-        discoverable: Your public posts and profile may be featured or recommended in various areas of Mastodon and your profile may be suggested to other users.
+        discoverable: Your public toots and profile may be featured or recommended in various areas of Mastodon and your profile may be suggested to other users.
         display_name: Your full name or your fun name.
         fields: Your homepage, pronouns, age, anything you want.
         note: 'You can @mention other people or #hashtags.'
@@ -122,7 +122,7 @@ en:
         webauthn: If it's an USB key be sure to insert it and, if necessary, tap it.
       settings:
         indexable: Your profile page may appear in search results on Google, Bing, and others.
-        show_application: You will always be able to see which app published your post regardless.
+        show_application: You will always be able to see which app published your toot regardless.
       tag:
         name: You can only change the casing of the letters, for example, to make it more readable
       user:
@@ -140,7 +140,7 @@ en:
         url: Where events will be sent to
     labels:
       account:
-        discoverable: Feature profile and posts in discovery algorithms
+        discoverable: Feature profile and toots in discovery algorithms
         fields:
           name: Label
           value: Content
@@ -296,7 +296,7 @@ en:
         text: Rule
       settings:
         indexable: Include profile page in search engines
-        show_application: Display from which app you sent a post
+        show_application: Display from which app you sent a toot
       tag:
         listable: Allow this hashtag to appear in searches and suggestions
         name: Hashtag
