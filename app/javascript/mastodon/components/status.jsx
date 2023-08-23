@@ -22,6 +22,7 @@ import { displayMedia, visibleReactions } from '../initial_state';
 import { Avatar } from './avatar';
 import { AvatarOverlay } from './avatar_overlay';
 import { DisplayName } from './display_name';
+import { HashtagBar } from './hashtag_bar';
 import { RelativeTimestamp } from './relative_timestamp';
 import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
@@ -584,6 +585,8 @@ class Status extends ImmutablePureComponent {
             />
 
             {media}
+
+            <HashtagBar hashtags={status.get('tags')} text={status.get('content')} />
 
             <StatusReactions
               statusId={status.get('id')}
