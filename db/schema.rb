@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_11_103651) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_23_141504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -953,7 +953,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_11_103651) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id", "status_id", "name", "custom_emoji_id"], name: "index_status_reactions_on_account_id_and_status_id", unique: true
-    t.index ["account_id"], name: "index_status_reactions_on_account_id"
     t.index ["custom_emoji_id"], name: "index_status_reactions_on_custom_emoji_id"
     t.index ["status_id"], name: "index_status_reactions_on_status_id"
   end
