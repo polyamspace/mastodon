@@ -60,8 +60,7 @@ export default class LocalSettingsPageItem extends PureComponent {
               name={id}
               id={optionId}
               value={opt.value}
-              onBlur={handleChange}
-              onChange={handleChange}
+              onClick={handleChange}
               checked={currentValue === opt.value}
               disabled={!enabled}
               {...inputProps}
