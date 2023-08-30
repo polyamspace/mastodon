@@ -9,7 +9,6 @@ de:
         setting_default_content_type_plain: Beim Schreiben von Toots annehmen, dass sie in Klartext ohne spezielle Formatierung geschrieben sind, sofern nicht anders angegeben (standardmäßiges Mastodon-Verhalten)
         setting_default_language: Die Sprache deiner Toots kann automatisch erkannt werden, aber sie ist nicht immer korrekt
         setting_enable_rss: Mastodon erstellt automatisch ein RSS feed aller öffentlichen Toots.
-        setting_hide_followers_count: Verberge deine Follower-Anzahl vor allen, einschließlich dir. Manche Anwendungen könnten eine negative Follower-Anzahl anzeigen.
         setting_skin: Verändert die ausgewählte Mastodon-Variante
       form_admin_settings:
         publish_button_text: Überschreibt den Text des Toot-buttons.
@@ -25,7 +24,6 @@ de:
         setting_default_content_type_plain: Unformatierter Text
         setting_enable_rss: Aktiviere RSS Feed von deinen Toots
         setting_favourite_modal: Bestätigungsdialog vor dem Favorisieren anzeigen (gilt nur für Glitch-Variante)
-        setting_hide_followers_count: Anzahl der Follower verbergen
         setting_notification_sound: Benachrichtigungston
         setting_skin: Skin
         setting_system_emoji_font: Systemschriftart für Emojis verwenden (nur für Glitch-Variante)
