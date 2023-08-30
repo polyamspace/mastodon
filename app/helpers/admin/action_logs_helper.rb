@@ -16,7 +16,11 @@ module Admin::ActionLogsHelper
     when 'Report'
       link_to "##{log.human_identifier.presence || log.target_id}", admin_report_path(log.target_id)
     when 'DomainBlock'
-      link_to log.human_identifier, admin_instance_path(log.human_identifier.presence)
+      if log.human_identifier.present?
+        link_to log.human_identifier, admin_instance_path(log.human_identifier)
+      else
+        log.human_identifier
+      end
     when 'DomainAllow', 'EmailDomainBlock', 'UnavailableDomain'
       link_to log.human_identifier, "https://#{log.human_identifier.presence}"
     when 'Status'
