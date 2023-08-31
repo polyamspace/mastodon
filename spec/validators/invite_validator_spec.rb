@@ -38,7 +38,7 @@ describe InviteValidator do
     context 'when daily limit is reached' do
       before do
         20.times do
-          Fabricate(:invite, user: user, expires_at: 10.minutes.ago.utc)
+          Fabricate(:invite, user: user, expires_at: 10.minutes.ago)
         end
       end
 
