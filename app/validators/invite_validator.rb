@@ -3,6 +3,7 @@
 class InviteValidator < ActiveModel::Validator
   LIMIT = (ENV['MAX_ACTIVE_INVITES'] || 5).to_i
   DAILY_LIMIT = (ENV['MAX_DAILY_INVITES'] || 20).to_i
+  MIN_ACCOUNT_AGE = (ENV['MIN_DAYS_BEFORE_INVITE'] || 7).to_i.days
 
   def validate(invite)
     return if invite.user.can?(:bypass_invite_limits)
@@ -18,6 +19,6 @@ class InviteValidator < ActiveModel::Validator
   end
 
   def daily_limit_reached?(invite)
-    invite.user.invites.where('created_at >= ?', (Time.now.utc - 24.hours)).count >= DAILY_LIMIT
+    invite.user.invites.where(created_at: 1.day.ago...).count >= DAILY_LIMIT
   end
 end
