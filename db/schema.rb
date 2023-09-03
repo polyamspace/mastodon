@@ -921,6 +921,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_141504) do
     t.index ["var"], name: "index_site_uploads_on_var", unique: true
   end
 
+  create_table "software_updates", force: :cascade do |t|
+    t.string "version", null: false
+    t.boolean "urgent", default: false, null: false
+    t.integer "type", default: 0, null: false
+    t.string "release_notes", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["version"], name: "index_software_updates_on_version", unique: true
+  end
+
   create_table "status_edits", force: :cascade do |t|
     t.bigint "status_id", null: false
     t.bigint "account_id"
