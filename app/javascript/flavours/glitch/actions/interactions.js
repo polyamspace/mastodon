@@ -65,6 +65,10 @@ export const REACTIONS_FETCH_REQUEST = 'REACTIONS_FETCH_REQUEST';
 export const REACTIONS_FETCH_SUCCESS = 'REACTIONS_FETCH_SUCCESS';
 export const REACTIONS_FETCH_FAIL    = 'REACTIONS_FETCH_FAIL';
 
+export const REACTIONS_EXPAND_REQUEST = 'REACTIONS_EXPAND_REQUEST';
+export const REACTIONS_EXPAND_SUCCESS = 'REACTIONS_EXPAND_SUCCESS';
+export const REACTIONS_EXPAND_FAIL   = 'REACTIONS_EXPAND_FAIL';
+
 export function reblog(status, visibility) {
   return function (dispatch, getState) {
     dispatch(reblogRequest(status));
@@ -446,8 +450,10 @@ export function fetchReactions(id) {
     dispatch(fetchReactionsRequest(id));
 
     api(getState).get(`/api/v1/statuses/${id}/reacted_by`).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedAccounts(response.data));
-      dispatch(fetchReactionsSuccess(id, response.data));
+      dispatch(fetchReactionsSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
       dispatch(fetchReactionsFail(id, error));
     });
@@ -461,17 +467,60 @@ export function fetchReactionsRequest(id) {
   };
 }
 
-export function fetchReactionsSuccess(id, accounts) {
+export function fetchReactionsSuccess(id, accounts, next) {
   return {
     type: REACTIONS_FETCH_SUCCESS,
     id,
     accounts,
+    next,
   };
 }
 
 export function fetchReactionsFail(id, error) {
   return {
     type: REACTIONS_FETCH_FAIL,
+    id,
+    error,
+  };
+}
+
+export function expandReactions(id) {
+  return (dispatch, getState) => {
+    const url = getState().getIn(['user_lists', 'reacted_by', id, 'next'])
+    if (url === null) return;
+
+    dispatch(expandReactionsRequest(id));
+
+    api(getState).get(url).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(expandReactionsSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => dispatch(expandReactionsFail(id, error)));
+  };
+}
+
+export function expandReactionsRequest(id) {
+  return {
+    type: REACTIONS_EXPAND_REQUEST,
+    id,
+  };
+}
+
+export function expandReactionsSuccess(id, accounts, next) {
+  return {
+    type: REACTIONS_EXPAND_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+}
+
+export function expandReactionsFail(id, error) {
+  return {
+    type: REACTIONS_EXPAND_FAIL,
+    id,
     error,
   };
 }
