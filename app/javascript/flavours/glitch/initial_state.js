@@ -107,6 +107,7 @@ export const hasMultiColumnPath = initialPath === '/'
  * @typedef InitialState
  * @property {Record<string, Account>} accounts
  * @property {InitialStateLanguage[]} languages
+ * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
  * @property {object} local_settings
  * @property {number} max_toot_chars
@@ -173,6 +174,7 @@ export const version = getMeta('version');
 export const visibleReactions = getMeta('visible_reactions');
 export const languages = initialState?.languages;
 export const publishButtonText = getMeta('publish_button_text');
+export const criticalUpdatesPending = initialState?.critical_updates_pending;
 export const statusPageUrl = getMeta('status_page_url');
 export const showReblogsPublicTimelines = getMeta('show_reblogs_in_public_timelines');
 export const showRepliesPublicTimelines = getMeta('show_replies_in_public_timelines');
