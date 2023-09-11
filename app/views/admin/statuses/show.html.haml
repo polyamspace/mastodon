@@ -41,6 +41,9 @@
       %tr
         %th= t('admin.statuses.favourites')
         %td= friendly_number_to_human @status.favourites_count
+      %tr
+        %th= t('admin.statuses.reactions')
+        %td= friendly_number_to_human @status.reactions_count
 
 %hr.spacer/
 

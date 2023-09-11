@@ -83,6 +83,8 @@ en:
       trending_status_sensitive:
         desc_html: When trending toots are enable, allow toots with sensitive media to be elibible. Changes to this setting are not retroactive.
         title: Allow toots with sensitive media to trend
+    statuses:
+      reactions: Reactions
   appearance:
     localization:
       glitch_guide_link: https://crowdin.com/project/glitch-soc
