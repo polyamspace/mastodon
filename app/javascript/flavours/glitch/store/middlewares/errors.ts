@@ -6,7 +6,7 @@ import type { RootState } from '..';
 
 const defaultFailSuffix = 'FAIL';
 
-export const errorsMiddleware: Middleware<Record<string, never>, RootState> =
+export const errorsMiddleware: Middleware<unknown, RootState> =
   ({ dispatch }) =>
   (next) =>
   (action: AnyAction & { skipAlert?: boolean; skipNotFound?: boolean }) => {
