@@ -8,6 +8,7 @@ class NotifyService < BaseService
     admin.sign_up
     update
     poll
+    status
     reaction
   ).freeze
 
