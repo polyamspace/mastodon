@@ -14,5 +14,6 @@
   "status.is_thread": "This toot is part of a thread",
   "status.react": "React",
   "status.reactions.empty": "No one has reacted to this toot yet. When someone does, they will show up here.",
+  "suggestions.dismiss": "Dismiss suggestion",
   "video.alt": "Show alt-text"
 }
