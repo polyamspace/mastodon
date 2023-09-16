@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def default_prerelease
-      'beta3'
+      'rc1'
     end
 
     def prerelease
@@ -25,7 +25,7 @@ module Mastodon
     end
 
     def build_metadata
-      ['glitch+polyam', ENV.fetch('MASTODON_VERSION_METADATA', nil)].compact.join('.')
+      ['glitch', 'polyam', ENV.fetch('MASTODON_VERSION_METADATA', nil)].compact_blank.join('.')
     end
 
     def to_a
