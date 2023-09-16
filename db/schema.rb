@@ -571,6 +571,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_150100) do
     t.integer "replies_policy", default: 0, null: false
     t.boolean "exclusive", default: false, null: false
     t.index ["account_id"], name: "index_lists_on_account_id"
+    t.check_constraint "exclusive IS NOT NULL", name: "lists_exclusive_null"
   end
 
   create_table "login_activities", force: :cascade do |t|
@@ -813,22 +814,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_150100) do
     t.bigint "status_id", null: false
   end
 
-  create_table "reactions", force: :cascade do |t|
-    t.string "emoji"
-    t.bigint "status_id", null: false
-    t.bigint "account_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_id"], name: "index_reactions_on_account_id"
-    t.index ["status_id"], name: "index_reactions_on_status_id"
-  end
-
   create_table "registration_filters", force: :cascade do |t|
     t.text "phrase", default: "", null: false
     t.integer "type", default: 0, null: false
     t.boolean "whole_word", default: true, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relays", force: :cascade do |t|
@@ -962,8 +953,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_150100) do
     t.bigint "status_id", null: false
     t.string "name", default: "", null: false
     t.bigint "custom_emoji_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["account_id", "status_id", "name", "custom_emoji_id"], name: "index_status_reactions_on_account_id_and_status_id", unique: true
     t.index ["custom_emoji_id"], name: "index_status_reactions_on_custom_emoji_id"
     t.index ["status_id"], name: "index_status_reactions_on_status_id"
@@ -974,9 +965,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_150100) do
     t.bigint "replies_count", default: 0, null: false
     t.bigint "reblogs_count", default: 0, null: false
     t.bigint "favourites_count", default: 0, null: false
-    t.bigint "reactions_count", default: 0, null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.bigint "reactions_count", default: 0, null: false
     t.index ["status_id"], name: "index_status_stats_on_status_id", unique: true
   end
 
@@ -1277,8 +1268,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_150100) do
   add_foreign_key "polls", "accounts", on_delete: :cascade
   add_foreign_key "polls", "statuses", on_delete: :cascade
   add_foreign_key "preview_card_trends", "preview_cards", on_delete: :cascade
-  add_foreign_key "reactions", "accounts"
-  add_foreign_key "reactions", "statuses"
   add_foreign_key "report_notes", "accounts", on_delete: :cascade
   add_foreign_key "report_notes", "reports", on_delete: :cascade
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", name: "fk_bca45b75fd", on_delete: :nullify
