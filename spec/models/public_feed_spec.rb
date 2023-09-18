@@ -41,6 +41,28 @@ RSpec.describe PublicFeed do
       expect(subject).to_not include(silenced_status.id)
     end
 
+    it 'filters out statuses only boosted by silenced accounts' do
+      silenced_account = Fabricate(:account, silenced: true)
+      remote = Fabricate(:account, domain: 'example.com')
+      status = Fabricate(:status, account: account)
+      remote_status = Fabricate(:status, account: remote)
+      Fabricate(:status, account: silenced_account, reblog: remote_status)
+
+      expect(subject).to include(status.id)
+      expect(subject).to_not include(remote_status.id)
+    end
+
+    it 'filters out statuses only replied to by silenced accounts' do
+      silenced_account = Fabricate(:account, silenced: true)
+      remote = Fabricate(:account, domain: 'example.com')
+      status = Fabricate(:status, account: account)
+      remote_status = Fabricate(:status, account: remote)
+      Fabricate(:status, account: silenced_account, thread: remote_status)
+
+      expect(subject).to include(status.id)
+      expect(subject).to_not include(remote_status.id)
+    end
+
     context 'without local_only option' do
       subject { described_class.new(viewer).get(20).map(&:id) }
 
@@ -235,6 +257,26 @@ RSpec.describe PublicFeed do
         blocked_status = Fabricate(:status, account: blocked)
 
         expect(subject).to_not include(blocked_status.id)
+      end
+
+      it 'excludes statuses only reblogged by muted account' do
+        muted = Fabricate(:account)
+        remote = Fabricate(:account, domain: 'example.com')
+        @account.mute!(muted)
+        remote_status = Fabricate(:status, account: remote)
+        Fabricate(:status, account: muted, reblog: remote_status)
+
+        expect(subject).to_not include(remote_status.id)
+      end
+
+      it 'excludes statuses only replied to by muted account' do
+        muted = Fabricate(:account)
+        remote = Fabricate(:account, domain: 'example.com')
+        @account.mute!(muted)
+        remote_status = Fabricate(:status, account: remote)
+        Fabricate(:status, account: muted, thread: remote_status)
+
+        expect(subject).to_not include(remote_status.id)
       end
 
       context 'with language preferences' do
