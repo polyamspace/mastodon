@@ -31,8 +31,6 @@ class PublicFeed
     scope.merge!(media_only_scope) if media_only?
     scope.merge!(language_scope) if account&.chosen_languages.present?
 
-    scope.merge!(without_interacted_by_muted_or_silenced(scope.dup))
-
     scope.cache_ids.to_a_paginated_by_id(limit, max_id: max_id, since_id: since_id, min_id: min_id)
   end
 
@@ -102,22 +100,6 @@ class PublicFeed
 
   def language_scope
     Status.where(language: account.chosen_languages)
-  end
-
-  # Check statuses in given scope and only return statuses which were not only boosted or replied to by muted, blocked or silenced accounts
-  # Does not filter local toots
-  def without_interacted_by_muted_or_silenced(scope)
-    excluded_ids = [account&.excluded_from_timeline_account_ids, Account.silenced.pluck(&:id)].compact.reduce([], :|)
-    included_statuses = []
-    scope.each do |status|
-      next included_statuses.push(status) if status.local?
-
-      replies = Status.where(in_reply_to_id: status.id, account_id: excluded_ids)
-      reblogs = Status.where(reblog_of_id: status.id, account_id: excluded_ids)
-      included_statuses.push(status) unless (status.replies_count.positive? && replies.count == status.replies_count) || (status.reblogs_count.positive? && reblogs.count == status.reblogs_count)
-    end
-
-    Status.where(id: included_statuses.map(&:id))
   end
 
   def account_filters_scope
