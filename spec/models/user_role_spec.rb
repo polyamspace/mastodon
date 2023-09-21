@@ -135,7 +135,7 @@ RSpec.describe UserRole do
     end
 
     it 'has default permissions' do
-      expect(subject.permissions).to eq UserRole::FLAGS[:invite_users]
+      expect(subject.permissions).to eq UserRole::FLAGS[:invite_with_limits]
     end
 
     it 'has negative position' do

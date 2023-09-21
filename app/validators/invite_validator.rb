@@ -6,7 +6,7 @@ class InviteValidator < ActiveModel::Validator
   MIN_ACCOUNT_AGE = (ENV['MIN_DAYS_BEFORE_INVITE'] || 7).to_i.days
 
   def validate(invite)
-    return if invite.user.can?(:bypass_invite_limits)
+    return unless invite.user.can?(:invite_with_limits)
 
     invite.errors.add(:base, I18n.t('invites.errors.limit_reached')) if limit_reached?(invite)
     invite.errors.add(:base, I18n.t('invites.errors.daily_limit_reached')) if daily_limit_reached?(invite)
