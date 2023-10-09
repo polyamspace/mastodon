@@ -47,8 +47,8 @@ const getSettings = createSelector([
   const columns = state.getIn(['settings', 'columns']);
   const index = columns.findIndex(c => c.get('uuid') === uuid);
 
-  return (uuid && index >= 0) ? columns.get(index).get('params') : firehose ? state.getIn(['settings', 'firehose'], ImmutableMap()) : state.getIn(['settings', normalizeTimelineId(type)], ImmutableMap())
-})
+  return (uuid && index >= 0) ? columns.get(index).get('params') : firehose ? state.getIn(['settings', 'firehose'], ImmutableMap()) : state.getIn(['settings', normalizeTimelineId(type)], ImmutableMap());
+});
 
 const makeGetStatusIds = (pending = false) => createSelector([
   getSettings,

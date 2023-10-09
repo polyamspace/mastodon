@@ -486,7 +486,7 @@ export function fetchReactionsFail(id, error) {
 
 export function expandReactions(id) {
   return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'reacted_by', id, 'next'])
+    const url = getState().getIn(['user_lists', 'reacted_by', id, 'next']);
     if (url === null) return;
 
     dispatch(expandReactionsRequest(id));
