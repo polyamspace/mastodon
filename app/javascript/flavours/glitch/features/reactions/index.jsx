@@ -111,4 +111,4 @@ class Reactions extends ImmutablePureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(Reactions))
+export default connect(mapStateToProps)(injectIntl(Reactions));
