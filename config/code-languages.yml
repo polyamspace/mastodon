@@ -1,15 +1,11 @@
+# Note: Valid languages must not include spaces.
 languages:
   - 1c
   - abnf
   - accesslog
-  - ada
-  - arduino
-  - ino
-  - armasm
-  - arm
-  - avrasm
   - actionscript
   - as
+  - ada
   - angelscript
   - asc
   - apache
@@ -17,58 +13,84 @@ languages:
   - applescript
   - osascript
   - arcade
+  - arduino
+  - ino
+  - armasm
+  - arm
+  - xml
+  - html
+  - xhtml
+  - rss
+  - atom
+  - xjb
+  - xsd
+  - xsl
+  - plist
+  - wsf
+  - svg
   - asciidoc
   - adoc
   - aspectj
   - autohotkey
+  - ahk
   - autoit
+  - avrasm
   - awk
-  - mawk
-  - nawk
-  - gawk
+  - axapta
+  - x++
   - bash
   - sh
-  - zsh
   - basic
   - bnf
   - brainfuck
   - bf
-  - c#
-  - csharp
-  - cs
   - c
   - h
-  - c++
-  - cpp
-  - hpp
-  - cc
-  - hh
-  - h++
-  - cxx
-  - hxx
   - cal
-  - cos
-  - cls
-  - cmake
-  - cmake.in
-  - coq
-  - csp
-  - css
   - capnproto
   - capnp
+  - ceylon
+  - clean
+  - icl
+  - dcl
   - clojure
   - clj
+  - edn
+  - clojure-repl
+  - cmake
+  - cmake.in
   - coffeescript
   - coffee
   - cson
   - iced
+  - coq
+  - cos
+  - cls
+  - cpp
+  - cc
+  - c++
+  - h++
+  - hpp
+  - hh
+  - hxx
+  - cxx
   - crmsh
   - crm
   - pcmk
   - crystal
   - cr
+  - csharp
+  - cs
+  - c#
+  - csp
+  - css
   - d
+  - markdown
+  - md
+  - mkdown
+  - mkd
   - dart
+  - delphi
   - dpr
   - dfm
   - pas
@@ -78,8 +100,8 @@ languages:
   - django
   - jinja
   - dns
-  - zone
   - bind
+  - zone
   - dockerfile
   - docker
   - dos
@@ -91,92 +113,103 @@ languages:
   - dst
   - ebnf
   - elixir
+  - ex
+  - exs
   - elm
+  - ruby
+  - rb
+  - gemspec
+  - podspec
+  - thor
+  - irb
+  - erb
+  - erlang-repl
   - erlang
   - erl
   - excel
-  - xls
   - xlsx
-  - f#
-  - fsharp
-  - fs
+  - xls
   - fix
+  - flix
   - fortran
   - f90
   - f95
-  - gcode
-  - nc
+  - fsharp
+  - fs
+  - f#
   - gams
   - gms
   - gauss
   - gss
+  - gcode
+  - nc
   - gherkin
+  - feature
+  - glsl
+  - gml
   - go
   - golang
   - golo
-  - gololang
   - gradle
   - graphql
+  - gql
   - groovy
-  - xml
-  - html
-  - xhtml
-  - rss
-  - atom
-  - xjb
-  - xsd
-  - xsl
-  - plist
-  - svg
-  - http
-  - https
   - haml
   - handlebars
   - hbs
   - html.hbs
   - html.handlebars
+  - htmlbars
   - haskell
   - hs
   - haxe
   - hx
+  - hsp
+  - http
+  - https
   - hy
   - hylang
-  - ini
-  - toml
   - inform7
   - i7
+  - ini
+  - toml
   - irpf90
-  - json
+  - isbl
   - java
   - jsp
   - javascript
   - js
   - jsx
+  - mjs
+  - cjs
+  - jboss-cli
+  - wildfly-cli
+  - json
   - julia
   - julia-repl
+  - jldoctest
   - kotlin
   - kt
-  - latex
-  - tex
-  - leaf
+  - kts
   - lasso
   - ls
   - lassoscript
-  - less
+  - latex
+  - tex
   - ldif
+  - leaf
+  - less
   - lisp
   - livecodeserver
   - livescript
   - ls
+  - llvm
+  - lsl
   - lua
   - makefile
   - mk
   - mak
   - make
-  - markdown
-  - md
-  - mkdown
-  - mkd
   - mathematica
   - mma
   - wl
@@ -184,110 +217,127 @@ languages:
   - maxima
   - mel
   - mercury
-  - mips
+  - m
+  - moo
   - mipsasm
+  - mips
   - mizar
+  - perl
+  - pl
+  - pm
   - mojolicious
   - monkey
   - moonscript
   - moon
   - n1ql
-  - nsis
+  - nestedtext
+  - nt
   - nginx
   - nginxconf
   - nim
-  - nimrod
   - nix
-  - ocaml
-  - ml
+  - nixos
+  - node-repl
+  - nsis
   - objectivec
   - mm
   - objc
   - obj-c
   - obj-c++
   - objective-c++
-  - glsl
+  - ocaml
+  - ml
   - openscad
   - scad
-  - ruleslanguage
   - oxygene
+  - parser3
   - pf
   - pf.conf
-  - php
-  - parser3
-  - perl
-  - pl
-  - pm
-  - plaintext
-  - txt
-  - text
-  - pony
   - pgsql
   - postgres
   - postgresql
+  - php
+  - php-template
+  - plaintext
+  - text
+  - txt
+  - pony
   - powershell
+  - pwsh
   - ps
   - ps1
   - processing
+  - pde
+  - profile
   - prolog
   - properties
-  - proto
   - protobuf
+  - proto
   - puppet
   - pp
+  - purebasic
+  - pb
+  - pbi
   - python
   - py
   - gyp
-  - profile
+  - ipython
   - python-repl
   - pycon
   - q
   - k
-  - kdp
+  - kdb
   - qml
+  - qt
   - r
   - reasonml
   - re
   - rib
-  - rsl
   - roboconf
   - graph
   - instances
-  - ruby
-  - rb
-  - gemspec
-  - podspec
-  - thor
-  - irb
+  - routeros
+  - mikrotik
+  - rsl
+  - ruleslanguage
   - rust
   - rs
   - sas
-  - scss
-  - sql
-  - p21
-  - step
-  - stp
   - scala
   - scheme
+  - scm
   - scilab
   - sci
+  - scss
   - shell
   - console
+  - shellsession
   - smali
   - smalltalk
   - st
   - sml
   - ml
+  - sqf
+  - sql
   - stan
-  - stanfunx
+  - stanfuncs
   - stata
+  - do
+  - ado
+  - step21
+  - p21
+  - step
+  - stp
   - stylus
   - styl
   - subunit
   - swift
+  - taggerscript
+  - yaml
+  - yml
+  - tap
   - tcl
   - tk
-  - tap
   - thrift
   - tp
   - twig
@@ -297,17 +347,20 @@ languages:
   - tsx
   - mts
   - cts
+  - vala
   - vbnet
   - vb
   - vbscript
   - vbs
-  - vhdl
-  - vala
+  - vbscript-html
   - verilog
   - v
+  - sv
+  - svh
+  - vhdl
   - vim
-  - axapta
-  - x++
+  - wasm
+  - wren
   - x86asm
   - xl
   - tao
@@ -315,7 +368,5 @@ languages:
   - xpath
   - xq
   - xqm
-  - yml
-  - yaml
   - zephir
   - zep
