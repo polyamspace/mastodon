@@ -12,7 +12,7 @@ import { HotKeys } from 'react-hotkeys';
 import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
 import PollContainer from 'flavours/glitch/containers/poll_container';
 import NotificationOverlayContainer from 'flavours/glitch/features/notifications/containers/overlay_container';
-import { displayMedia, visibleReactions } from 'flavours/glitch/initial_state';
+import { displayMedia, visibleReactions, domain } from 'flavours/glitch/initial_state';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
 
 import Card from '../features/status/components/card';
@@ -605,17 +605,20 @@ class Status extends ImmutablePureComponent {
     const connectToRoot = rootId && rootId === status.get('in_reply_to_id');
     const connectReply = nextInReplyToId && nextInReplyToId === status.get('id');
     const matchedFilters = status.get('matched_filters');
+    const hidden_by_moderator = status.get('hidden_by_moderator');
 
-    if (this.state.forceFilter === undefined ? matchedFilters : this.state.forceFilter) {
+    if (this.state.forceFilter === undefined ? (hidden_by_moderator ? hidden_by_moderator : matchedFilters) : this.state.forceFilter) {
       const minHandlers = this.props.muted ? {} : {
         moveUp: this.handleHotkeyMoveUp,
         moveDown: this.handleHotkeyMoveDown,
       };
 
+      const message = hidden_by_moderator ? <FormattedMessage id='status.hidden_by_moderator' defaultMessage='This toot has been hidden by the moderators of {domain}.' values={{ domain }} /> : <><FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.</>;
+
       return (
         <HotKeys handlers={minHandlers}>
           <div className='status__wrapper status__wrapper--filtered focusable' tabIndex={0} ref={this.handleRef}>
-            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.
+            {message}
             {' '}
             <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
               <FormattedMessage id='status.show_filter_reason' defaultMessage='Show anyway' />
@@ -863,7 +866,7 @@ class Status extends ImmutablePureComponent {
               status={status}
               account={status.get('account')}
               showReplyCount={settings.get('show_reply_count')}
-              onFilter={matchedFilters ? this.handleFilterClick : null}
+              onFilter={matchedFilters || hidden_by_moderator ? this.handleFilterClick : null}
               {...other}
             />
           ) : null}
