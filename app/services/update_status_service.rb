@@ -112,6 +112,7 @@ class UpdateStatusService < BaseService
     @status.text         = @options[:text].presence || @options.delete(:spoiler_text) || '' if @options.key?(:text)
     @status.spoiler_text = @options[:spoiler_text] || '' if @options.key?(:spoiler_text)
     @status.sensitive    = @options[:sensitive] || @options[:spoiler_text].present? if @options.key?(:sensitive) || @options.key?(:spoiler_text)
+    @status.hidden_by_moderator = @options[:hidden_by_moderator] if @options.key?(:hidden_by_moderator) && @account_id == Account.representative.id
     @status.language     = valid_locale_cascade(@options[:language], @status.language, @status.account.user&.preferred_posting_language, I18n.default_locale)
     @status.content_type = @options[:content_type] || @status.content_type
 
