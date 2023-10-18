@@ -9,6 +9,10 @@ class REST::FilterSerializer < ActiveModel::Serializer
     object.id.to_s
   end
 
+  def title
+    object.id == CustomFilter.instance_filter.id ? I18n.t('filters.instance_filter.title') : object.title
+  end
+
   def rules_requested?
     instance_options[:rules_requested]
   end
