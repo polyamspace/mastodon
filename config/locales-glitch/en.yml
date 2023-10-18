@@ -94,6 +94,9 @@ en:
         title: Allow toots with sensitive media to trend
     statuses:
       reactions: Reactions
+    strikes:
+      actions:
+        hide_statuses: "%{name} has hidden %{target}'s toots"
   admin_mailer:
     new_appeal:
       actions:
@@ -134,5 +137,13 @@ en:
   sounds:
     default: Boop
     laser: Laser
+  user_mailer:
+    warning:
+      explanation:
+        hide_statuses: Some of your toots have been found to violate one or more community guidelines and have been subsequently hidden by the moderators of %{instance}.
+      subject:
+        hide_statuses: Your toots on %{acct} have been hidden
+      title:
+        hide_statuses: Toots hidden
   users:
     invalid_invite_request_text: This text includes forbidden words or expressions
