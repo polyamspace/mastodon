@@ -65,7 +65,7 @@ class CustomFilter < ApplicationRecord
   def self.instance_filter
     CustomFilter.find(-99)
   rescue ActiveRecord::RecordNotFound
-    CustomFilter.create!(id: -99, account_id: Account.representative.id, context: %w(public thread account), phrase: 'Hidden by moderators')
+    CustomFilter.create!(id: -99, account_id: Account.representative.id, context: VALID_CONTEXTS, phrase: 'Hidden by moderators')
   end
 
   def self.cached_filters_for(account_id)
