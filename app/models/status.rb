@@ -29,7 +29,6 @@
 #  edited_at                    :datetime
 #  trendable                    :boolean
 #  ordered_media_attachment_ids :bigint(8)        is an Array
-#  hidden_by_moderator          :boolean          default(FALSE), not null
 #
 
 class Status < ApplicationRecord
@@ -266,6 +265,10 @@ class Status < ApplicationRecord
 
   def reported?
     @reported ||= Report.where(target_account: account).unresolved.where('? = ANY(status_ids)', id).exists?
+  end
+
+  def hidden_by_moderator?
+    CustomFilter.instance_filter.statuses.where(status_id: id).exists?
   end
 
   def emojis

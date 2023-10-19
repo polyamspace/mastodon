@@ -54,9 +54,7 @@ class ApproveAppealService < BaseService
   end
 
   def undo_hide_statuses!
-    representative_account = Account.representative
     @strike.statuses.each do |status|
-      UpdateStatusService.new.call(status, representative_account.id, hidden_by_moderator: false)
       CustomFilter.instance_filter.statuses.delete!(status_id: status.id)
     end
   end

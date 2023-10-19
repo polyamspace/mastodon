@@ -161,6 +161,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
     object.reactions(current_user&.account)
   end
 
+  def hidden_by_moderator
+    object.hidden_by_moderator?
+  end
+
   private
 
   def relationships

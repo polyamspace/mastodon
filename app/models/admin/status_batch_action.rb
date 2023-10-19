@@ -72,20 +72,10 @@ class Admin::StatusBatchAction
   end
 
   def handle_hide!
-    representative_account = Account.representative
-
-    # Can't use a transaction here because UpdateStatusService queues
-    # Sidekiq jobs
     statuses.find_each do |status|
       next if status.discarded?
 
       authorize([:admin, status], :update?)
-
-      if target_account.local?
-        UpdateStatusService.new.call(status, representative_account.id, hidden_by_moderator: true)
-      else
-        status.update(hidden_by_moderator: true)
-      end
 
       CustomFilter.instance_filter.statuses.create!(status_id: status.id)
 
