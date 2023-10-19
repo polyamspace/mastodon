@@ -58,6 +58,8 @@ class SearchQueryTransformer < Parslet::Transform
       case @flags['in']
       when 'all'
         [PublicStatusesIndex, StatusesIndex]
+      when 'public'
+        [PublicStatusesIndex]
       else
         [StatusesIndex]
       end
