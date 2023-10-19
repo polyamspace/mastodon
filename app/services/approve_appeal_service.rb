@@ -55,7 +55,7 @@ class ApproveAppealService < BaseService
 
   def undo_hide_statuses!
     @strike.statuses.each do |status|
-      CustomFilter.instance_filter.statuses.delete!(status_id: status.id)
+      CustomFilter.instance_filter.statuses.delete(CustomFilter.instance_filter.statuses.where(status_id: status.id))
     end
   end
 
