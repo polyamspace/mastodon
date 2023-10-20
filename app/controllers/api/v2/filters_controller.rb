@@ -35,7 +35,7 @@ class Api::V2::FiltersController < Api::BaseController
   private
 
   def set_filters
-    @filters = current_account.custom_filters.includes(:keywords)
+    @filters = CustomFilter.includes(:keywords).where(account_id: [current_account.id, CustomFilter.instance_filter.account_id])
   end
 
   def set_filter

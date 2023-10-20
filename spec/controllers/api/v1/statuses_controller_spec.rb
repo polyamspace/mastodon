@@ -70,6 +70,29 @@ RSpec.describe Api::V1::StatusesController do
         end
       end
 
+      context 'when post is explicitly filtered by moderators' do
+        let(:status) { Fabricate(:status, text: 'hello world') }
+
+        before do
+          CustomFilter.instance_filter.statuses.create!(status_id: status.id)
+        end
+
+        it 'returns filter information', :aggregate_failures do
+          get :show, params: { id: status.id }
+          json = body_as_json
+
+          expect(response).to have_http_status(200)
+          expect(json[:filtered][0]).to include({
+            filter: a_hash_including({
+              id: CustomFilter.instance_filter.id.to_s,
+              title: 'Hidden by moderators',
+              filter_action: 'warn',
+            }),
+            status_matches: [status.id.to_s],
+          })
+        end
+      end
+
       context 'when reblog includes filtered terms' do
         let(:status) { Fabricate(:status, reblog: Fabricate(:status, text: 'this toot is about that banned word')) }
 

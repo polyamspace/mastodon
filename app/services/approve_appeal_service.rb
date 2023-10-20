@@ -35,6 +35,8 @@ class ApproveAppealService < BaseService
       undo_silence!
     when 'suspend'
       undo_suspend!
+    when 'hide_statuses'
+      undo_hide_statuses!
     end
   end
 
@@ -49,6 +51,12 @@ class ApproveAppealService < BaseService
 
   def undo_delete_statuses!
     # Cannot be undone
+  end
+
+  def undo_hide_statuses!
+    @strike.statuses.each do |status|
+      CustomFilter.instance_filter.statuses.delete(CustomFilter.instance_filter.statuses.where(status_id: status.id))
+    end
   end
 
   def undo_mark_statuses_as_sensitive!

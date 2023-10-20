@@ -6,7 +6,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
              :uri, :url, :replies_count, :reblogs_count,
-             :favourites_count, :reactions_count, :edited_at
+             :favourites_count, :reactions_count, :edited_at, :hidden_by_moderators
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
@@ -159,6 +159,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   def reactions
     object.reactions(current_user&.account)
+  end
+
+  def hidden_by_moderators
+    object.hidden_by_moderators?
   end
 
   private

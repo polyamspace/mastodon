@@ -43,6 +43,15 @@ en:
         text: Simple text
         text_hint: Use this for simple recurring keywords and if you do not know regular expressions.
       updated_msg: Registration text filter successfully updated!
+    reports:
+      actions:
+        hide_description_html: The reported toots will be hidden and a strike will be recorded to help you escalate on future infractions by the same account.
+      hide_and_resolve: Hide toots
+      summary:
+        action_preambles:
+          hide_html: 'You are about to <strong>hide</strong> some of <strong>@%{acct}</strong>''s toots. This will:'
+        actions:
+          hide_html: Hide the offending toots behind a warning
     roles:
       privileges:
         bypass_invite_limits: Bypass invite restrictions
@@ -85,6 +94,13 @@ en:
         title: Allow toots with sensitive media to trend
     statuses:
       reactions: Reactions
+    strikes:
+      actions:
+        hide_statuses: "%{name} has hidden %{target}'s toots"
+  admin_mailer:
+    new_appeal:
+      actions:
+        hide_statuses: to hide their toots
   appearance:
     localization:
       glitch_guide_link: https://crowdin.com/project/glitch-soc
@@ -94,6 +110,13 @@ en:
     captcha_confirmation:
       hint_html: Just one more step! To confirm your account, this server requires you to solve a CAPTCHA. You can <a href="/about/more">contact the server administrator</a> if you have questions or need assistance with confirming your account.
       title: User verification
+  disputes:
+    strikes:
+      title_actions:
+        hide_statuses: Toot hiding
+  filters:
+    instance_filter:
+      title: Hidden by moderators
   generic:
     use_this: Use this
   invites:
@@ -114,5 +137,13 @@ en:
   sounds:
     default: Boop
     laser: Laser
+  user_mailer:
+    warning:
+      explanation:
+        hide_statuses: Some of your toots have been found to violate one or more community guidelines and have been subsequently hidden by the moderators of %{instance}.
+      subject:
+        hide_statuses: Your toots on %{acct} have been hidden
+      title:
+        hide_statuses: Toots hidden
   users:
     invalid_invite_request_text: This text includes forbidden words or expressions
