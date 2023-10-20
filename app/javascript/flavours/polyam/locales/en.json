@@ -11,7 +11,7 @@
   "notifications.filter.reactions": "Reactions",
   "reply_indicator.reply_to": "Replying to:",
   "search.disabled": "Search disabled",
-  "status.hidden_by_moderator": "This toot has been hidden by the moderators of {domain}.",
+  "status.hidden_by_moderators": "This toot has been hidden by the moderators of {domain}.",
   "status.is_thread": "This toot is part of a thread",
   "status.react": "React",
   "status.reactions.empty": "No one has reacted to this toot yet. When someone does, they will show up here.",

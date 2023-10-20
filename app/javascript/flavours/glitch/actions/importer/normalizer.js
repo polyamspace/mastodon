@@ -75,7 +75,7 @@ export function normalizeStatus(status, normalOldStatus, settings) {
     normalStatus.contentHtml = normalOldStatus.get('contentHtml');
     normalStatus.spoilerHtml = normalOldStatus.get('spoilerHtml');
     normalStatus.hidden = normalOldStatus.get('hidden');
-    normalStatus.hidden_by_moderator = normalOldStatus.get('hidden_by_moderator');
+    normalStatus.hidden_by_moderators = normalOldStatus.get('hidden_by_moderators');
 
     if (normalOldStatus.get('translation')) {
       normalStatus.translation = normalOldStatus.get('translation');

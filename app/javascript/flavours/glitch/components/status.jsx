@@ -605,15 +605,15 @@ class Status extends ImmutablePureComponent {
     const connectToRoot = rootId && rootId === status.get('in_reply_to_id');
     const connectReply = nextInReplyToId && nextInReplyToId === status.get('id');
     const matchedFilters = status.get('matched_filters');
-    const hidden_by_moderator = status.get('hidden_by_moderator');
+    const hidden_by_moderators = status.get('hidden_by_moderators');
 
-    if (this.state.forceFilter === undefined ? (hidden_by_moderator ? hidden_by_moderator : matchedFilters) : this.state.forceFilter) {
+    if (this.state.forceFilter === undefined ? (hidden_by_moderators ? hidden_by_moderators : matchedFilters) : this.state.forceFilter) {
       const minHandlers = this.props.muted ? {} : {
         moveUp: this.handleHotkeyMoveUp,
         moveDown: this.handleHotkeyMoveDown,
       };
 
-      const message = hidden_by_moderator ? <FormattedMessage id='status.hidden_by_moderator' defaultMessage='This toot has been hidden by the moderators of {domain}.' values={{ domain }} /> : <><FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.</>;
+      const message = hidden_by_moderators ? <FormattedMessage id='status.hidden_by_moderators' defaultMessage='This toot has been hidden by the moderators of {domain}.' values={{ domain }} /> : <><FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.</>;
 
       return (
         <HotKeys handlers={minHandlers}>
@@ -866,7 +866,7 @@ class Status extends ImmutablePureComponent {
               status={status}
               account={status.get('account')}
               showReplyCount={settings.get('show_reply_count')}
-              onFilter={matchedFilters || hidden_by_moderator ? this.handleFilterClick : null}
+              onFilter={matchedFilters || hidden_by_moderators ? this.handleFilterClick : null}
               {...other}
             />
           ) : null}

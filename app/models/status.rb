@@ -267,7 +267,7 @@ class Status < ApplicationRecord
     @reported ||= Report.where(target_account: account).unresolved.where('? = ANY(status_ids)', id).exists?
   end
 
-  def hidden_by_moderator?
+  def hidden_by_moderators?
     CustomFilter.instance_filter.statuses.where(status_id: id).exists?
   end
 

@@ -143,7 +143,7 @@ describe Admin::Reports::ActionsController do
 
         it 'marks the non-deleted as hidden' do
           subject
-          expect(reported_status.reload.hidden_by_moderator?).to be true
+          expect(reported_status.reload.hidden_by_moderators?).to be true
         end
       end
 
