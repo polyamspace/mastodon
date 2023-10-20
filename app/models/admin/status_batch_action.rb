@@ -77,7 +77,7 @@ class Admin::StatusBatchAction
 
       authorize([:admin, status], :update?)
 
-      CustomFilter.instance_filter.statuses.create!(status_id: status.id)
+      CustomFilter.instance_filter.statuses.find_or_create_by(status_id: status.id)
 
       log_action(:update, status)
 
