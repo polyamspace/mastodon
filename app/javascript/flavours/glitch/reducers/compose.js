@@ -127,6 +127,7 @@ const initialState = ImmutableMap({
     adaptiveStroke: true,
     smoothing: false,
   }),
+  last_status_in_thread: null,
 });
 
 const initialPoll = ImmutableMap({
@@ -186,6 +187,7 @@ function clearAll(state) {
     map.update('media_attachments', list => list.clear());
     map.set('poll', null);
     map.set('idempotencyKey', uuid());
+    map.set('last_status_in_thread', null);
   });
 }
 
@@ -202,7 +204,7 @@ function continueThread (state, status) {
       map.set('spoiler_text', '');
     }
     map.set('is_submitting', false);
-    map.set('in_reply_to', status.id);
+    map.set('in_reply_to', state.get('last_status_in_thread') == null ? status.id : state.get('last_status_in_thread'));
     map.update(
       'advanced_options',
       map => map.merge(new ImmutableMap({ do_not_federate: status.local_only })),
@@ -215,6 +217,8 @@ function continueThread (state, status) {
     map.set('focusDate', new Date());
     map.set('caretPosition', null);
     map.set('preselectDate', new Date());
+    map.set('id', null);
+    map.set('last_status_in_thread', status.id);
   });
 }
 
@@ -466,6 +470,7 @@ export default function compose(state = initialState, action) {
         map => map.mergeWith(overwrite, state.get('default_advanced_options')),
       );
       map.set('idempotencyKey', uuid());
+      map.set('last_status_in_thread', null);
     });
   case COMPOSE_SUBMIT_REQUEST:
     return state.set('is_submitting', true);
