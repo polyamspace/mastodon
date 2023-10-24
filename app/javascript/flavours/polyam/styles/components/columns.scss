@@ -104,6 +104,11 @@ $ui-header-height: 55px;
     .button-tertiary {
       flex-shrink: 1;
     }
+
+    .icon {
+      width: 22px;
+      height: 22px;
+    }
   }
 }
 
@@ -117,14 +122,6 @@ $ui-header-height: 55px;
   @media screen and (min-width: $no-gap-breakpoint) {
     padding-top: 10px;
     top: 0;
-  }
-
-  .tabs-bar {
-    margin-bottom: 0;
-
-    @media screen and (min-width: $no-gap-breakpoint) {
-      margin-bottom: 10px;
-    }
   }
 }
 
@@ -181,6 +178,8 @@ $ui-header-height: 55px;
   padding: 15px;
   margin: 0;
   z-index: 3;
+  display: flex;
+  align-items: center;
 
   &:hover {
     text-decoration: underline;
@@ -188,6 +187,8 @@ $ui-header-height: 55px;
 }
 
 .column-header__back-button {
+  display: flex;
+  align-items: center;
   background: lighten($ui-base-color, 4%);
   border: 0;
   font-family: inherit;
@@ -233,7 +234,9 @@ $ui-header-height: 55px;
 .column-link {
   background: lighten($ui-base-color, 8%);
   color: $primary-text-color;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-size: 16px;
   padding: 15px;
   text-decoration: none;
@@ -283,11 +286,6 @@ $ui-header-height: 55px;
       background: transparent;
     }
   }
-}
-
-.column-link__icon {
-  display: inline-block;
-  margin-inline-end: 5px;
 }
 
 .column-subheading {
@@ -346,6 +344,9 @@ $ui-header-height: 55px;
   outline: 0;
 
   & > button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     margin: 0;
     border: 0;
     padding: 15px;
@@ -415,6 +416,9 @@ $ui-header-height: 55px;
 }
 
 .column-header__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: lighten($ui-base-color, 4%);
   border: 0;
   color: $darker-text-color;
@@ -465,6 +469,7 @@ $ui-header-height: 55px;
     text-align: center;
     padding: 10px 5px;
     font-size: 14px;
+    display: block;
   }
 
   b {
@@ -589,11 +594,6 @@ $ui-header-height: 55px;
     color: $error-red;
     text-decoration: underline;
   }
-}
-
-.column-header__icon {
-  display: inline-block;
-  margin-inline-end: 5px;
 }
 
 .column-settings__pillbar {

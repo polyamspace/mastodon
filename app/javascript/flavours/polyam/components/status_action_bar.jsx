@@ -217,6 +217,7 @@ class StatusActionBar extends ImmutablePureComponent {
     let menu = [];
     let reblogIcon = 'retweet';
     let replyIcon;
+    let replyIconComponent;
     let replyTitle;
 
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
@@ -286,11 +287,14 @@ class StatusActionBar extends ImmutablePureComponent {
       }
     }
 
+    // TODO: Replace undefined with proper icons
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
+      replyIconComponent = undefined;
       replyTitle = intl.formatMessage(messages.reply);
     } else {
       replyIcon = 'reply-all';
+      replyIconComponent = undefined;
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
@@ -328,6 +332,7 @@ class StatusActionBar extends ImmutablePureComponent {
           className='status__action-bar-button'
           title={replyTitle}
           icon={replyIcon}
+          iconComponent={replyIconComponent}
           onClick={this.handleReplyClick}
           counter={showReplyCount ? status.get('replies_count') : undefined}
           obfuscateCount
@@ -339,17 +344,15 @@ class StatusActionBar extends ImmutablePureComponent {
 
         {filterButton}
 
-        <div className='status__action-bar-dropdown'>
-          <DropdownMenuContainer
-            scrollKey={scrollKey}
-            status={status}
-            items={menu}
-            icon='ellipsis-h'
-            size={18}
-            direction='right'
-            ariaLabel={intl.formatMessage(messages.more)}
-          />
-        </div>
+        <DropdownMenuContainer
+          scrollKey={scrollKey}
+          status={status}
+          items={menu}
+          icon='ellipsis-h'
+          size={18}
+          direction='right'
+          ariaLabel={intl.formatMessage(messages.more)}
+        />
 
         <div className='status__action-bar-spacer' />
         <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>

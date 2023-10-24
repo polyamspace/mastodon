@@ -1,14 +1,16 @@
-import { PureComponent } from 'react';
+import { PureComponent, createRef } from 'react';
 
 import classNames from 'classnames';
 
 import { AnimatedNumber } from './animated_number';
+import type { IconProp } from './icon';
 import { Icon } from './icon';
 
 interface Props {
   className?: string;
   title: string;
   icon: string;
+  iconComponent?: IconProp;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
@@ -34,6 +36,8 @@ interface States {
   deactivate: boolean;
 }
 export class IconButton extends PureComponent<Props, States> {
+  buttonRef = createRef<HTMLButtonElement>();
+
   static defaultProps = {
     size: 18,
     active: false,
@@ -42,6 +46,7 @@ export class IconButton extends PureComponent<Props, States> {
     overlay: false,
     tabIndex: 0,
     ariaHidden: false,
+    iconComponent: undefined, // TODO: Remove once used
   };
 
   state = {
@@ -111,6 +116,7 @@ export class IconButton extends PureComponent<Props, States> {
       disabled,
       expanded,
       icon,
+      iconComponent,
       inverted,
       overlay,
       tabIndex,
@@ -137,9 +143,10 @@ export class IconButton extends PureComponent<Props, States> {
       style.width = 'auto';
     }
 
+    // TODO: Remove fixedWidth if not needed
     let contents = (
       <>
-        <Icon id={icon} fixedWidth aria-hidden='true' />{' '}
+        <Icon id={icon} icon={iconComponent} fixedWidth aria-hidden='true' />{' '}
         {typeof counter !== 'undefined' && (
           <span className='icon-button__counter'>
             <AnimatedNumber value={counter} obfuscate={obfuscateCount} />
@@ -172,6 +179,7 @@ export class IconButton extends PureComponent<Props, States> {
         style={style}
         tabIndex={tabIndex}
         disabled={disabled}
+        ref={this.buttonRef}
       >
         {contents}
       </button>

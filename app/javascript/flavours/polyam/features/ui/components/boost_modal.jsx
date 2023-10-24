@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { changeBoostPrivacy } from 'flavours/polyam/actions/boosts';
 import AttachmentList from 'flavours/polyam/components/attachment_list';
 import { Icon }  from 'flavours/polyam/components/icon';
-import VisibilityIcon from 'flavours/polyam/components/status_visibility_icon';
+import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 import PrivacyDropdown from 'flavours/polyam/features/compose/components/privacy_dropdown';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 

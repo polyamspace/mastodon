@@ -8,7 +8,7 @@ import { DisplayName } from 'flavours/polyam/components/display_name';
 import MediaAttachments from 'flavours/polyam/components/media_attachments';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
 import StatusContent from 'flavours/polyam/components/status_content';
-import VisibilityIcon from 'flavours/polyam/components/status_visibility_icon';
+import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 
 import Option from './option';
 

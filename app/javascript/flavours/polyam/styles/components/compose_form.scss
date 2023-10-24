@@ -414,6 +414,11 @@
     padding: 10px;
     font-family: inherit;
 
+    .icon {
+      width: 15px;
+      height: 15px;
+    }
+
     &:hover,
     &:focus,
     &:active {
@@ -458,6 +463,11 @@
   .fa {
     font-size: 34px;
     margin-inline-end: 10px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
   }
 
   span {
@@ -510,6 +520,11 @@
 .compose-form__buttons {
   display: flex;
   flex: 0 0 auto;
+  gap: 2px;
+
+  .icon-button {
+    height: 100%;
+  }
 
   & .icon-button,
   & .text-icon-button {
@@ -538,22 +553,6 @@
 .character-counter__wrapper {
   align-self: center;
   margin-inline-end: 4px;
-}
-
-.privacy-dropdown.active {
-  .privacy-dropdown__value {
-    background: $simple-background-color;
-    border-radius: 4px 4px 0 0;
-  }
-
-  &.top .privacy-dropdown__value {
-    border-radius: 0 0 4px 4px;
-  }
-
-  .privacy-dropdown__dropdown {
-    display: block;
-    box-shadow: var(--dropdown-shadow);
-  }
 }
 
 .privacy-dropdown__dropdown {
@@ -661,6 +660,9 @@
         font-weight: 500;
         padding: 10px;
         border-radius: 4px;
+        display: flex;
+        gap: 6px;
+        align-items: center;
 
         &:focus,
         &:active,

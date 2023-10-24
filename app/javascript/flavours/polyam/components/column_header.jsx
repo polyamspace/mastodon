@@ -57,6 +57,7 @@ class ColumnHeader extends PureComponent {
     intl: PropTypes.object.isRequired,
     title: PropTypes.node,
     icon: PropTypes.string,
+    iconComponent: PropTypes.func,
     active: PropTypes.bool,
     multiColumn: PropTypes.bool,
     extraButton: PropTypes.node,
@@ -107,7 +108,7 @@ class ColumnHeader extends PureComponent {
   };
 
   render () {
-    const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
+    const { title, icon, iconComponent, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -177,7 +178,7 @@ class ColumnHeader extends PureComponent {
       );
     }
 
-    const hasTitle = icon && title;
+    const hasTitle = (icon || iconComponent) && title;
 
     const component = (
       <div className={wrapperClassName}>

@@ -305,6 +305,16 @@
     color: $highlight-text-color;
   }
 
+  .icon {
+    color: $highlight-text-color;
+    width: 18px;
+    height: 18px;
+  }
+
+  .icon-star {
+    color: $gold-star;
+  }
+
   > span {
     display: block;
     overflow: hidden;
@@ -854,5 +864,10 @@
     color: inherit;
     font-weight: 500;
     text-decoration: none;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
   }
 }

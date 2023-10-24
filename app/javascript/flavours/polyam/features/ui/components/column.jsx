@@ -13,6 +13,7 @@ export default class Column extends PureComponent {
     heading: PropTypes.string,
     alwaysShowBackButton: PropTypes.bool,
     icon: PropTypes.string,
+    iconComponent: PropTypes.func,
     children: PropTypes.node,
     active: PropTypes.bool,
     hideHeadingOnMobile: PropTypes.bool,
@@ -52,13 +53,13 @@ export default class Column extends PureComponent {
   };
 
   render () {
-    const { heading, icon, children, active, hideHeadingOnMobile, alwaysShowBackButton, name } = this.props;
+    const { heading, icon, iconComponent, children, active, hideHeadingOnMobile, alwaysShowBackButton, name } = this.props;
 
     const showHeading = heading && (!hideHeadingOnMobile || (hideHeadingOnMobile && !isMobile(window.innerWidth)));
 
     const columnHeaderId = showHeading && heading.replace(/ /g, '-');
     const header = showHeading && (
-      <ColumnHeader icon={icon} active={active} title={heading} onClick={this.handleHeaderClick} columnHeaderId={columnHeaderId} showBackButton={alwaysShowBackButton} />
+      <ColumnHeader icon={icon} iconComponent={iconComponent} active={active} title={heading} onClick={this.handleHeaderClick} columnHeaderId={columnHeaderId} showBackButton={alwaysShowBackButton} />
     );
     return (
       <div

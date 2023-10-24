@@ -28,6 +28,12 @@
     color: $dark-text-color;
   }
 
+  .search .icon {
+    top: 9px;
+    inset-inline-end: 10px;
+    color: $dark-text-color;
+  }
+
   .search .fa-times-circle {
     top: 12px;
   }
