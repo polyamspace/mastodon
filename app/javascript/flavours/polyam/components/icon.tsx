@@ -29,7 +29,7 @@ export const Icon: React.FC<Props> = ({
   if (!IconComponent) {
     // Disable throwing errors as IconComponent will always be undefined currently
     if (!isProduction()) {
-      //throw new Error(`<Icon id="${id}"> is missing an "icon" prop.`);
+      //throw new Error(`<Icon id="${id}" className="${className}"> is missing an "icon" prop.`);
     }
 
     // Return old icons for now as Material icons won't be implemented

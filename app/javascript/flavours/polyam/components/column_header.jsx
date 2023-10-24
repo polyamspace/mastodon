@@ -185,7 +185,7 @@ class ColumnHeader extends PureComponent {
         <h1 className={buttonClassName}>
           {hasTitle && (
             <button onClick={this.handleTitleClick}>
-              <Icon id={icon} fixedWidth className='column-header__icon' />
+              <Icon id={icon} icon={iconComponent} fixedWidth className='column-header__icon' />
               {title}
             </button>
           )}
