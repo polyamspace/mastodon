@@ -9,7 +9,7 @@ defaults: &defaults
   site_terms: ''
   site_contact_username: ''
   site_contact_email: ''
-  registrations_mode: 'open'
+  registrations_mode: 'approved'
   profile_directory: true
   closed_registrations_message: ''
   timeline_preview: false
@@ -45,7 +45,7 @@ defaults: &defaults
   show_domain_blocks: 'disabled'
   show_domain_blocks_rationale: 'disabled'
   outgoing_spoilers: ''
-  require_invite_text: false
+  require_invite_text: true
   backups_retention_period: 7
   search_preview: false
   invite_text_filter: ''
