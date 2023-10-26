@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { fetchLists } from 'flavours/polyam/actions/lists';
-import ColumnBackButtonSlim from 'flavours/polyam/components/column_back_button_slim';
+import { ColumnBackButtonSlim } from 'flavours/polyam/components/column_back_button';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import Column from 'flavours/polyam/features/ui/components/column';

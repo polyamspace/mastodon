@@ -6,7 +6,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import { openModal } from 'flavours/polyam/actions/modal';
-import ColumnBackButtonSlim from 'flavours/polyam/components/column_back_button_slim';
+import { ColumnBackButtonSlim } from 'flavours/polyam/components/column_back_button';
 import Column from 'flavours/polyam/features/ui/components/column';
 import ColumnLink from 'flavours/polyam/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/polyam/features/ui/components/column_subheading';

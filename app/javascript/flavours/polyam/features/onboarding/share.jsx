@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import SwipeableViews from 'react-swipeable-views';
 
 import Column from 'flavours/polyam/components/column';
-import ColumnBackButton from 'flavours/polyam/components/column_back_button';
+import { ColumnBackButton } from 'flavours/polyam/components/column_back_button';
 import { Icon } from 'flavours/polyam/components/icon';
 import { me, domain } from 'flavours/polyam/initial_state';
 
@@ -147,18 +147,17 @@ class Share extends React.PureComponent {
   static propTypes = {
     onBack: PropTypes.func,
     account: ImmutablePropTypes.map,
-    multiColumn: PropTypes.bool,
     intl: PropTypes.object,
   };
 
   render () {
-    const { onBack, account, multiColumn, intl } = this.props;
+    const { onBack, account, intl } = this.props;
 
     const url = (new URL(`/@${account.get('username')}`, document.baseURI)).href;
 
     return (
       <Column>
-        <ColumnBackButton multiColumn={multiColumn} onClick={onBack} />
+        <ColumnBackButton onClick={onBack} />
 
         <div className='scrollable privacy-policy'>
           <div className='column-title'>

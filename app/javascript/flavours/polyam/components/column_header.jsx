@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
-import { createPortal } from 'react-dom';
 
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
@@ -8,6 +7,7 @@ import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 
 import { Icon }  from 'flavours/polyam/components/icon';
+import { ButtonInTabsBar } from 'flavours/polyam/features/ui/util/columns_context';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 const messages = defineMessages({
@@ -195,22 +195,12 @@ class ColumnHeader extends PureComponent {
       </div>
     );
 
-    if (multiColumn || placeholder) {
+    if (placeholder) {
       return component;
     } else {
-      // The portal container and the component may be rendered to the DOM in
-      // the same React render pass, so the container might not be available at
-      // the time `render()` is called.
-      const container = document.getElementById('tabs-bar__portal');
-      if (container === null) {
-        // The container wasn't available, force a re-render so that the
-        // component can eventually be inserted in the container and not scroll
-        // with the rest of the area.
-        this.forceUpdate();
-        return component;
-      } else {
-        return createPortal(component, container);
-      }
+      return (<ButtonInTabsBar>
+        {component}
+      </ButtonInTabsBar>);
     }
   }
 

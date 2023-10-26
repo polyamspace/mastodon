@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import { ColumnBackButtonSlim } from '../../components/column_back_button';
 import ScrollableList from '../../components/scrollable_list';
 import { me } from '../../initial_state';
 import Column from '../ui/components/column';

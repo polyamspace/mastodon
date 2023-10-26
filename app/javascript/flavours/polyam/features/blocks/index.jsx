@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import { ColumnBackButtonSlim } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import AccountContainer from '../../containers/account_container';
