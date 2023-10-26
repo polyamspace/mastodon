@@ -7,4 +7,5 @@ Fabricator(:user) do
   confirmed_at { Time.zone.now }
   current_sign_in_at { Time.zone.now }
   agreement true
+  invite_request { Fabricate.build(:user_invite_request, user: nil) }
 end
