@@ -8,7 +8,6 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as ReactIcon } from '@material-symbols/svg-600/outlined/add.svg';
 import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
 import { ReactComponent as FlagIcon } from '@material-symbols/svg-600/outlined/flag-fill.svg';
 import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
@@ -31,7 +30,6 @@ import Report from './report';
 
 const messages = defineMessages({
   favourite: { id: 'notification.favourite', defaultMessage: '{name} favorited your status' },
-  reaction: { id: 'notification.reaction', defaultMessage: '{name} reacted to your status' },
   follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
   ownPoll: { id: 'notification.own_poll', defaultMessage: 'Your poll has ended' },
   poll: { id: 'notification.poll', defaultMessage: 'A poll you have voted in has ended' },
@@ -209,38 +207,6 @@ class Notification extends ImmutablePureComponent {
             muted
             withDismiss
             hidden={!!this.props.hidden}
-            getScrollPosition={this.props.getScrollPosition}
-            updateScrollBottom={this.props.updateScrollBottom}
-            cachedMediaWidth={this.props.cachedMediaWidth}
-            cacheMediaWidth={this.props.cacheMediaWidth}
-          />
-        </div>
-      </HotKeys>
-    );
-  }
-
-  renderReaction (notification, link) {
-    const { intl, unread } = this.props;
-
-    return (
-      <HotKeys handlers={this.getHandlers()}>
-        <div className={classNames('notification notification-reaction focusable', { unread })} tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.reaction, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
-          <div className='notification__message'>
-            <div className='notification__favourite-icon-wrapper'>
-              <Icon id='plus' icon={ReactIcon} fixedWidth />
-            </div>
-
-            <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.reaction' defaultMessage='{name} reacted to your status' values={{ name: link }} />
-            </span>
-          </div>
-
-          <StatusContainer
-            id={notification.get('status')}
-            account={notification.get('account')}
-            muted
-            withDismiss
-            hidden={this.props.hidden}
             getScrollPosition={this.props.getScrollPosition}
             updateScrollBottom={this.props.updateScrollBottom}
             cachedMediaWidth={this.props.cachedMediaWidth}
@@ -455,8 +421,6 @@ class Notification extends ImmutablePureComponent {
       return this.renderMention(notification);
     case 'favourite':
       return this.renderFavourite(notification, link);
-    case 'reaction':
-      return this.renderReaction(notification, link);
     case 'reblog':
       return this.renderReblog(notification, link);
     case 'status':

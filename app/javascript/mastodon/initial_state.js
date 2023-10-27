@@ -60,7 +60,6 @@
  * @property {boolean} limited_federation_mode
  * @property {string} locale
  * @property {string | null} mascot
- * @property {number} max_reactions
  * @property {string=} me
  * @property {string=} moved_to_account_id
  * @property {{src: string, type: string}[]} notification_sound
@@ -83,7 +82,6 @@
  * @property {boolean} use_blurhash
  * @property {boolean=} use_pending_items
  * @property {string} version
- * @property {number} visible_reactions
  * @property {string} publish_button_text
  * @property {string} sso_redirect
  */
@@ -95,7 +93,6 @@
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
  * @property {number} max_toot_chars
- * @property {number} max_reactions
  */
 
 const element = document.getElementById('initial-state');
@@ -129,7 +126,6 @@ export const expandSpoilers = getMeta('expand_spoilers');
 export const forceSingleColumn = !getMeta('advanced_layout');
 export const limitedFederationMode = getMeta('limited_federation_mode');
 export const mascot = getMeta('mascot');
-export const maxReactions = (initialState && initialState.max_reactions) || 1;
 export const me = getMeta('me');
 export const movedToAccountId = getMeta('moved_to_account_id');
 export const notificationSound = getMeta('notification_sound');
@@ -151,7 +147,6 @@ export const unfollowModal = getMeta('unfollow_modal');
 export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
-export const visibleReactions = getMeta('visible_reactions');
 export const languages = initialState?.languages;
 export const publishButtonText = getMeta('publish_button_text');
 export const criticalUpdatesPending = initialState?.critical_updates_pending;
