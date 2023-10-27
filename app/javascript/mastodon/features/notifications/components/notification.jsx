@@ -8,6 +8,7 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as ReactIcon } from '@material-symbols/svg-600/outlined/add.svg';
 import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
 import { ReactComponent as FlagIcon } from '@material-symbols/svg-600/outlined/flag-fill.svg';
 import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
@@ -226,7 +227,7 @@ class Notification extends ImmutablePureComponent {
         <div className={classNames('notification notification-reaction focusable', { unread })} tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.reaction, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
-              <Icon id='plus' fixedWidth />
+              <Icon id='plus' icon={ReactIcon} fixedWidth />
             </div>
 
             <span title={notification.get('created_at')}>
