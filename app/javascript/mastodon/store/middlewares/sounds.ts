@@ -1,6 +1,5 @@
 import type { Middleware, AnyAction } from 'redux';
 
-import { notificationSound } from 'mastodon/initial_state';
 import ready from 'mastodon/ready';
 import { assetHost } from 'mastodon/utils/config';
 
@@ -39,29 +38,16 @@ export const soundsMiddleware = (): Middleware<unknown, RootState> => {
   const soundCache: Record<string, HTMLAudioElement> = {};
 
   void ready(() => {
-    soundCache.notificationSound = createAudio(
-      !notificationSound
-        ? [
-            {
-              src: `${assetHost}/sounds/boop.ogg`,
-              type: 'audio/ogg',
-            },
-            {
-              src: `${assetHost}/sounds/boop.mp3`,
-              type: 'audio/mpeg',
-            },
-          ]
-        : [
-            {
-              src: `${assetHost}${(notificationSound[0] as AudioSource).src}`,
-              type: (notificationSound[0] as AudioSource).type,
-            },
-            {
-              src: `${assetHost}${(notificationSound[1] as AudioSource).src}`,
-              type: (notificationSound[1] as AudioSource).type,
-            },
-          ],
-    );
+    soundCache.boop = createAudio([
+      {
+        src: `${assetHost}/sounds/boop.ogg`,
+        type: 'audio/ogg',
+      },
+      {
+        src: `${assetHost}/sounds/boop.mp3`,
+        type: 'audio/mpeg',
+      },
+    ]);
   });
 
   return () =>

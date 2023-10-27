@@ -62,7 +62,6 @@
  * @property {string | null} mascot
  * @property {string=} me
  * @property {string=} moved_to_account_id
- * @property {{src: string, type: string}[]} notification_sound
  * @property {string=} owner
  * @property {boolean} profile_directory
  * @property {boolean} registrations_open
@@ -128,7 +127,6 @@ export const limitedFederationMode = getMeta('limited_federation_mode');
 export const mascot = getMeta('mascot');
 export const me = getMeta('me');
 export const movedToAccountId = getMeta('moved_to_account_id');
-export const notificationSound = getMeta('notification_sound');
 export const owner = getMeta('owner');
 export const profile_directory = getMeta('profile_directory');
 export const reduceMotion = getMeta('reduce_motion');
