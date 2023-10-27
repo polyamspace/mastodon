@@ -3,7 +3,6 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
-import { ReactComponent as ReactIcon } from '@material-symbols/svg-600/outlined/add.svg';
 import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
 import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
 import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
@@ -16,7 +15,6 @@ import { Icon }  from 'mastodon/components/icon';
 const tooltips = defineMessages({
   mentions: { id: 'notifications.filter.mentions', defaultMessage: 'Mentions' },
   favourites: { id: 'notifications.filter.favourites', defaultMessage: 'Favorites' },
-  reactions: { id: 'notifications.filter.reactions', defaultMessage: 'Reactions' },
   boosts: { id: 'notifications.filter.boosts', defaultMessage: 'Boosts' },
   polls: { id: 'notifications.filter.polls', defaultMessage: 'Poll results' },
   follows: { id: 'notifications.filter.follows', defaultMessage: 'Follows' },
@@ -83,13 +81,6 @@ class FilterBar extends PureComponent {
           title={intl.formatMessage(tooltips.favourites)}
         >
           <Icon id='star' icon={StarIcon} />
-        </button>
-        <button
-          className={selectedFilter === 'reaction' ? 'active' : ''}
-          onClick={this.onClick('reaction')}
-          title={intl.formatMessage(tooltips.reactions)}
-        >
-          <Icon id='plus' icon={ReactIcon} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'reblog' ? 'active' : ''}
