@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
-import { ColumnBackButtonSlim } from '../../components/column_back_button';
 import ScrollableList from '../../components/scrollable_list';
 import { me } from '../../initial_state';
 import Column from '../ui/components/column';
@@ -67,8 +66,7 @@ class FollowRequests extends ImmutablePureComponent {
     );
 
     return (
-      <Column bindToDocument={!multiColumn} name='follow-requests' icon='user-plus' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
+      <Column bindToDocument={!multiColumn} name='follow-requests' icon='user-plus' heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='follow_requests'
           onLoadMore={this.handleLoadMore}

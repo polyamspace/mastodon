@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import { fetchMutes, expandMutes } from '../../actions/mutes';
-import { ColumnBackButtonSlim } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import AccountContainer from '../../containers/account_container';
@@ -61,8 +60,7 @@ class Mutes extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.mutes' defaultMessage="You haven't muted any users yet." />;
 
     return (
-      <Column bindToDocument={!multiColumn} name='mutes' icon='volume-off' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
+      <Column bindToDocument={!multiColumn} name='mutes' icon='volume-off' heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='mutes'
           onLoadMore={this.handleLoadMore}
