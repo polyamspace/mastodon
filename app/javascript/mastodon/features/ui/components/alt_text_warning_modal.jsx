@@ -34,10 +34,6 @@ class AltTextWarningModal extends PureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  componentDidMount() {
-    this.button.focus();
-  }
-
   handleClick = () => {
     this.props.onSubmitCompose();
     this.props.onClose();
@@ -45,10 +41,6 @@ class AltTextWarningModal extends PureComponent {
 
   handleCancel = () => {
     this.props.onClose();
-  };
-
-  setRef = (c) => {
-    this.button = c;
   };
 
   render () {
@@ -73,7 +65,7 @@ class AltTextWarningModal extends PureComponent {
           <Button onClick={this.handleCancel}>
             <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
           </Button>
-          <Button onClick={this.handleClick} ref={this.setRef} className='confirmation-modal__cancel-button'>
+          <Button onClick={this.handleClick} autoFocus className='confirmation-modal__cancel-button'>
             <FormattedMessage id='compose_form.publish' defaultMessage='Publish' />
           </Button>
         </div>
