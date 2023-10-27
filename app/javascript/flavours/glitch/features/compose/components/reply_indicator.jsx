@@ -1,4 +1,3 @@
-//  Package imports.
 import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';
@@ -6,23 +5,15 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-//  Components.
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import { highlightCode } from 'flavours/glitch/utils/html';
-//  Messages.
-const messages = defineMessages({
-  cancel: {
-    defaultMessage: 'Cancel',
-    id: 'reply_indicator.cancel',
-  },
-  replyTo: {
-    defaultMessage: 'Replying to:',
-    id: 'reply_indicator.reply_to',
-  },
-});
 
+const messages = defineMessages({
+  cancel: { id: 'reply_indicator.cancel', defaultMessage: 'Cancel' },
+  replyTo: { id: 'reply_indicator.reply_to', defaultMessage: 'Replying to:' },
+});
 
 class ReplyIndicator extends ImmutablePureComponent {
 

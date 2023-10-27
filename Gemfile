@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '>= 3.0.0'
 
 gem 'puma', '~> 6.3'
-gem 'rails', '~> 7.0'
+gem 'rails', '~> 7.1.1'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
 gem 'rack', '~> 2.2.7'
@@ -197,7 +197,6 @@ gem 'connection_pool', require: false
 gem 'xorcist', '~> 1.1'
 
 gem 'cocoon', '~> 1.2'
-gem 'psych', '< 4'
 
 gem 'net-http', '~> 0.3.2'
 gem 'rubyzip', '~> 2.3'
