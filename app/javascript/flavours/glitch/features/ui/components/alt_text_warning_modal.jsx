@@ -6,7 +6,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { closeModal } from 'flavours/glitch/actions/modal';
-import Button from 'flavours/glitch/components/button';
+import { Button } from 'flavours/glitch/components/button';
 
 const mapDispatchToProps = dispatch => {
   return {

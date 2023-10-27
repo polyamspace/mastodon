@@ -6,7 +6,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { closeModal } from '../../../actions/modal';
-import Button from '../../../components/button';
+import { Button } from '../../../components/button';
 
 const makeMapStateToProps = () => {
   const mapStateToProps = state => ({
