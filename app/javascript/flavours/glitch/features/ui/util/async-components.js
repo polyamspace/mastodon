@@ -162,10 +162,6 @@ export function EmbedModal () {
   return import(/* webpackChunkName: "flavours/glitch/async/embed_modal" */'flavours/glitch/features/ui/components/embed_modal');
 }
 
-export function AltTextWarningModal () {
-  return import(/* webpackChunkName: "flavours/glitch/async/alt_text_warning_modal" */'flavours/glitch/features/ui/components/alt_text_warning_modal');
-}
-
 export function GettingStartedMisc () {
   return import(/* webpackChunkName: "flavours/glitch/async/getting_started_misc" */'flavours/glitch/features/getting_started_misc');
 }

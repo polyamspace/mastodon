@@ -43,10 +43,6 @@ module HasUserSettings
     settings['web.favourite_modal']
   end
 
-  def setting_alt_text_reminder
-    settings['web.alt_text_reminder']
-  end
-
   def setting_reduce_motion
     settings['web.reduce_motion']
   end

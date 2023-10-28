@@ -166,7 +166,7 @@ export function directCompose(account, routerHistory) {
   };
 }
 
-export function submitCompose(routerHistory, checkAltText = true) {
+export function submitCompose(routerHistory) {
   return function (dispatch, getState) {
     let status     = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
@@ -180,20 +180,6 @@ export function submitCompose(routerHistory, checkAltText = true) {
 
     if (getState().getIn(['compose', 'advanced_options', 'do_not_federate'])) {
       status = status + ' 👁️';
-    }
-
-    // If the user has image description reminders enabled and any media attached to
-    // the compose form, check for image description.
-    if (checkAltText && getState().getIn(['compose', 'alt_text_reminder']) && media.size > 0) {
-      // If there are any attachments that are missing descriptions, display the warning modal.
-      if (media.some((attach) => attach.get('description') === null || attach.get('description') === '')) {
-        dispatch(openModal({ modalType: 'ALT_TEXT_WARNING', modalProps: {
-          onSubmitCompose: () => {
-            dispatch(submitCompose(routerHistory, false));
-          },
-        }}));
-        return;
-      }
     }
 
     dispatch(submitComposeRequest());

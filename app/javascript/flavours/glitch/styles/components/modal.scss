@@ -420,8 +420,7 @@
 .actions-modal,
 .mute-modal,
 .block-modal,
-.compare-history-modal,
-.alt-text-warning-modal {
+.compare-history-modal {
   background: lighten($ui-secondary-color, 8%);
   color: $inverted-text-color;
   border-radius: 8px;
@@ -491,8 +490,7 @@
 .boost-modal__action-bar,
 .confirmation-modal__action-bar,
 .mute-modal__action-bar,
-.block-modal__action-bar,
-.alt-text-warning-modal__action-bar {
+.block-modal__action-bar {
   display: flex;
   justify-content: space-between;
   background: $ui-secondary-color;
@@ -508,19 +506,6 @@
 
   .button {
     flex: 0 0 auto;
-  }
-}
-
-.alt-text-warning-modal {
-  &__title {
-    font-size: 21px;
-    line-height: 26px;
-    font-weight: 700;
-    margin-bottom: 15px;
-
-    @media screen and (height <= 800px) {
-      font-size: 18px;
-    }
   }
 }
 
@@ -1017,8 +1002,7 @@
 .confirmation-modal__container,
 .mute-modal__container,
 .block-modal__container,
-.report-modal__target,
-.alt-text-warning-modal__container {
+.report-modal__target {
   padding: 30px;
   font-size: 16px;
 
