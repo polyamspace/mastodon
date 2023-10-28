@@ -7,7 +7,6 @@ import { Helmet } from 'react-helmet';
 
 import api from 'mastodon/api';
 import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
 import { Skeleton } from 'mastodon/components/skeleton';
 
 const messages = defineMessages({
@@ -35,26 +34,12 @@ class PrivacyPolicy extends PureComponent {
     });
   }
 
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
-
-  setRef = c => {
-    this.column = c;
-  };
-
   render () {
     const { intl, multiColumn } = this.props;
     const { isLoading, content, lastUpdated } = this.state;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
-        <ColumnHeader
-          icon='user-secret'
-          title={intl.formatMessage(messages.title)}
-          onClick={this.handleHeaderClick}
-          multiColumn={multiColumn}
-        />
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <div className='scrollable privacy-policy'>
           <div className='column-title'>
             <h3><FormattedMessage id='privacy_policy.title' defaultMessage='Privacy Policy' /></h3>
