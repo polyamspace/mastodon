@@ -674,8 +674,7 @@ a.mention.hashtag {
 .mute-modal,
 .block-modal,
 .boost-modal,
-.confirmation-modal,
-.alt-text-warning-modal {
+.confirmation-modal {
   background: lighten($ui-base-color, 8%);
   color: $primary-text-color;
 
