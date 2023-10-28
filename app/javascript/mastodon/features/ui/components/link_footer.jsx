@@ -87,12 +87,6 @@ class LinkFooter extends PureComponent {
           )}
           {DividingCircle}
           <Link to='/privacy-policy' target={multiColumn ? '_blank' : undefined}><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
-          {signedIn && (
-            <>
-              {DividingCircle}
-              <Link to='/auth/sign_out' onClick={this.handleLogoutClick}><FormattedMessage id='navigation_bar.logout' defaultMessage='Logout' /></Link>
-            </>
-          )}
         </p>
 
         <p>
@@ -100,7 +94,7 @@ class LinkFooter extends PureComponent {
           {' '}
           <a href='https://joinmastodon.org' target='_blank'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
           {DividingCircle}
-          <a href='https://docs.joinmastodon.org/' target='_blank'><FormattedMessage id='footer.documentation' defaultMessage='Documentation' /></a>
+          <a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='footer.get_app' defaultMessage='Get the app' /></a>
           {DividingCircle}
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
           {DividingCircle}
