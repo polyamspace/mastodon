@@ -617,7 +617,7 @@ export default function compose(state = initialState, action) {
     });
   case COMPOSE_SET_STATUS:
     do_not_federate = !!action.status.get('local_only');
-    text = action.raw_text || unescapeHTML(expandMentions(action.status));
+    text = action.text || unescapeHTML(expandMentions(action.status));
     if (do_not_federate) text = text.replace(/ ?👁\ufe0f?\u200b?$/, '');
     return state.withMutations(map => {
       map.set('id', action.status.get('id'));
