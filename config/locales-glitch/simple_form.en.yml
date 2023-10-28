@@ -4,7 +4,6 @@ en:
     glitch_only: glitch-soc
     hints:
       defaults:
-        setting_alt_text_reminder: A reminder will be presented when attempting to toot media without an image description
         setting_default_content_type_html: When writing toots, assume they are written in raw HTML, unless specified otherwise
         setting_default_content_type_markdown: When writing toots, assume they are using Markdown for rich text formatting, unless specified otherwise
         setting_default_content_type_plain: When writing toots, assume they are plain text with no special formatting, unless specified otherwise (default Mastodon behavior)
@@ -19,7 +18,7 @@ en:
         comment: Optional. You can enter for whom the invite is for, or reason for creating it
     labels:
       defaults:
-        setting_alt_text_reminder: Display reminder to add image descriptions when tooting media
+        setting_alt_text_reminder: Show confirmation dialog before tooting media without descriptions (applies to Glitch flavour only)
         setting_default_content_type: Default format for toots
         setting_default_content_type_html: HTML
         setting_default_content_type_markdown: Markdown
