@@ -11,6 +11,7 @@ import type {
 import { createBrowserHistory } from 'history';
 
 import { layoutFromWindow } from 'flavours/polyam/is_mobile';
+import { isDevelopment } from 'flavours/polyam/utils/environment';
 
 interface MastodonLocationState {
   fromMastodon?: boolean;
@@ -39,7 +40,7 @@ function normalizePath(
   } else if (
     location.state !== undefined &&
     state !== undefined &&
-    process.env.NODE_ENV === 'development'
+    isDevelopment()
   ) {
     // eslint-disable-next-line no-console
     console.log(

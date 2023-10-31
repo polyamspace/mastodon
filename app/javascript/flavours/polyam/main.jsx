@@ -7,6 +7,8 @@ import * as perf from 'flavours/polyam/performance';
 import ready from 'flavours/polyam/ready';
 import { store } from 'flavours/polyam/store';
 
+import { isProduction } from './utils/environment';
+
 /**
  * @returns {Promise<void>}
  */
@@ -21,7 +23,7 @@ function main() {
     root.render(<Mastodon {...props} />);
     store.dispatch(setupBrowserNotifications());
 
-    if (process.env.NODE_ENV === 'production' && me && 'serviceWorker' in navigator) {
+    if (isProduction() && me && 'serviceWorker' in navigator) {
       const { Workbox } = await import('workbox-window');
       const wb = new Workbox('/sw.js');
       /** @type {ServiceWorkerRegistration} */
