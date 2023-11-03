@@ -1,6 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 
 import { createAppAsyncThunk } from 'flavours/polyam/store/typed_functions';
+import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
 
 import api from '../api';
 
@@ -9,8 +10,7 @@ export const submitAccountNote = createAppAsyncThunk(
   async (_, { getState }) => {
     const id = getState().account_notes.getIn(['edit', 'account_id']) as string;
 
-    // TODO: replace `unknown` with `ApiRelationshipJSON` when it is merged
-    const response = await api(getState).post<unknown>(
+    const response = await api(getState).post<ApiRelationshipJSON>(
       `/api/v1/accounts/${id}/note`,
       {
         comment: getState().account_notes.getIn(['edit', 'comment']) as string,

@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 
+import type { Account } from 'flavours/polyam/models/account';
+
 import { useHovering } from '../hooks/useHovering';
 import { autoPlayGif } from '../initial_state';
-import type { Account } from '../types/resources';
 
 interface Props {
   account: Account | undefined;

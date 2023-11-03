@@ -22,7 +22,7 @@ class NotificationFollow extends ImmutablePureComponent {
   static propTypes = {
     hidden: PropTypes.bool,
     id: PropTypes.string.isRequired,
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
     notification: ImmutablePropTypes.map.isRequired,
     unread: PropTypes.bool,
     ...WithRouterPropTypes,

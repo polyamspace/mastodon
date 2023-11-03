@@ -280,6 +280,7 @@ module.exports = {
         {
           target: 'app/javascript/flavours/polyam/',
           from: ['app/javascript/mastodon/', 'app/javascript/flavours/glitch/'],
+          except: ['./api_types'],
           message: 'Import from flavours/polyam/ instead'
         }]
       }

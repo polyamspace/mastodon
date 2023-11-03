@@ -11,7 +11,7 @@ import { Icon } from 'flavours/polyam/components/icon';
 class ActionBar extends PureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
   };
 
   isStatusesPageActive = (match, location) => {

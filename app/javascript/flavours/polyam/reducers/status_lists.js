@@ -1,8 +1,8 @@
 import { Map as ImmutableMap, OrderedSet as ImmutableOrderedSet } from 'immutable';
 
 import {
-  ACCOUNT_BLOCK_SUCCESS,
-  ACCOUNT_MUTE_SUCCESS,
+  blockAccountSuccess,
+  muteAccountSuccess,
 } from '../actions/accounts';
 import {
   BOOKMARKED_STATUSES_FETCH_REQUEST,
@@ -39,8 +39,6 @@ import {
   TRENDS_STATUSES_EXPAND_SUCCESS,
   TRENDS_STATUSES_EXPAND_FAIL,
 } from '../actions/trends';
-
-
 
 const initialState = ImmutableMap({
   favourites: ImmutableMap({
@@ -142,9 +140,9 @@ export default function statusLists(state = initialState, action) {
     return prependOneToList(state, 'pins', action.status);
   case UNPIN_SUCCESS:
     return removeOneFromList(state, 'pins', action.status);
-  case ACCOUNT_BLOCK_SUCCESS:
-  case ACCOUNT_MUTE_SUCCESS:
-    return state.updateIn(['trending', 'items'], ImmutableOrderedSet(), list => list.filterNot(statusId => action.statuses.getIn([statusId, 'account']) === action.relationship.id));
+  case blockAccountSuccess.type:
+  case muteAccountSuccess.type:
+    return state.updateIn(['trending', 'items'], ImmutableOrderedSet(), list => list.filterNot(statusId => action.payload.statuses.getIn([statusId, 'account']) === action.payload.relationship.id));
   default:
     return state;
   }
