@@ -135,7 +135,7 @@ class Item extends PureComponent {
     }
 
     if (attachment.get('description')?.length > 0) {
-      badges.push(<button type='button' className='media-gallery__alt__button' onClick={this.handleAltClick}><span>ALT</span></button>);//(<span key='alt' className='media-gallery__gifv__label'>ALT</span>);
+      badges.push(<button key='alt' type='button' className='media-gallery__alt__button' onClick={this.handleAltClick}><span>ALT</span></button>);
     }
 
     const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
