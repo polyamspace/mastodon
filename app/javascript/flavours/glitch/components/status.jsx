@@ -646,7 +646,7 @@ class Status extends ImmutablePureComponent {
     attachments = status.get('media_attachments');
 
     if (pictureInPicture.get('inUse')) {
-      media.push(<PictureInPicturePlaceholder />);
+      media.push(<PictureInPicturePlaceholder key='pip-placeholder' />);
       mediaIcons.push('video-camera');
     } else if (attachments.size > 0) {
       const language = status.getIn(['translation', 'language']) || status.get('language');
@@ -656,6 +656,7 @@ class Status extends ImmutablePureComponent {
           <AttachmentList
             compact
             media={status.get('media_attachments')}
+            key='media-unknown'
           />,
         );
       } else if (attachments.getIn([0, 'type']) === 'audio') {
@@ -663,7 +664,7 @@ class Status extends ImmutablePureComponent {
         const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
 
         media.push(
-          <Bundle fetchComponent={Audio} loading={this.renderLoadingAudioPlayer} >
+          <Bundle key='bundle-audio' fetchComponent={Audio} loading={this.renderLoadingAudioPlayer} >
             {Component => (
               <Component
                 src={attachment.get('url')}
@@ -693,7 +694,7 @@ class Status extends ImmutablePureComponent {
         const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
 
         media.push(
-          <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
+          <Bundle key='bundle-video' fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
             {Component => (<Component
               preview={attachment.get('preview_url')}
               frameRate={attachment.getIn(['meta', 'original', 'frame_rate'])}
@@ -717,7 +718,7 @@ class Status extends ImmutablePureComponent {
         mediaIcons.push('video-camera');
       } else {  //  Media type is 'image' or 'gifv'
         media.push(
-          <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
+          <Bundle key='bundle-gallery' fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
             {Component => (
               <Component
                 media={attachments}
@@ -749,6 +750,7 @@ class Status extends ImmutablePureComponent {
           card={status.get('card')}
           compact
           sensitive={status.get('sensitive')}
+          key='media-card'
         />,
       );
       mediaIcons.push('link');
@@ -756,7 +758,7 @@ class Status extends ImmutablePureComponent {
 
     if (status.get('poll')) {
       const language = status.getIn(['translation', 'language']) || status.get('language');
-      contentMedia.push(<PollContainer pollId={status.get('poll')} lang={language} />);
+      contentMedia.push(<PollContainer key='media-poll' pollId={status.get('poll')} lang={language} />);
       contentMediaIcons.push('tasks');
     }
 
