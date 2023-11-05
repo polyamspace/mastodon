@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch, { account }) => ({
   },
 
   onChangeAccountNote(comment) {
-    dispatch(changeAccountNoteComment(comment));
+    dispatch(changeAccountNoteComment({ comment }));
   },
 });
 

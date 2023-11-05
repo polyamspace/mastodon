@@ -2,11 +2,9 @@ import { Map as ImmutableMap } from 'immutable';
 
 import {
   ACCOUNT_NOTE_INIT_EDIT,
-  ACCOUNT_NOTE_CANCEL,
-  ACCOUNT_NOTE_CHANGE_COMMENT,
-  ACCOUNT_NOTE_SUBMIT_REQUEST,
-  ACCOUNT_NOTE_SUBMIT_FAIL,
-  ACCOUNT_NOTE_SUBMIT_SUCCESS,
+  cancelAccountNote,
+  changeAccountNoteComment,
+  submitAccountNote,
 } from '../actions/account_notes';
 
 const initialState = ImmutableMap({
@@ -25,14 +23,14 @@ export default function account_notes(state = initialState, action) {
       state.setIn(['edit', 'account_id'], action.account.get('id'));
       state.setIn(['edit', 'comment'], action.comment);
     });
-  case ACCOUNT_NOTE_CHANGE_COMMENT:
-    return state.setIn(['edit', 'comment'], action.comment);
-  case ACCOUNT_NOTE_SUBMIT_REQUEST:
+  case changeAccountNoteComment.type:
+    return state.setIn(['edit', 'comment'], action.payload.comment);
+  case submitAccountNote.pending.type:
     return state.setIn(['edit', 'isSubmitting'], true);
-  case ACCOUNT_NOTE_SUBMIT_FAIL:
+  case submitAccountNote.rejected.type:
     return state.setIn(['edit', 'isSubmitting'], false);
-  case ACCOUNT_NOTE_SUBMIT_SUCCESS:
-  case ACCOUNT_NOTE_CANCEL:
+  case submitAccountNote.fulfilled.type:
+  case cancelAccountNote.type:
     return state.withMutations((state) => {
       state.setIn(['edit', 'isSubmitting'], false);
       state.setIn(['edit', 'account_id'], null);
