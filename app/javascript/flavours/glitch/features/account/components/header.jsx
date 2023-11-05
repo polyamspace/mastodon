@@ -181,15 +181,15 @@ class Header extends ImmutablePureComponent {
     let menu        = [];
 
     if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
-      info.push(<span className='relationship-tag'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>);
+      info.push(<span key='follows-you' className='relationship-tag'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>);
     } else if (me !== account.get('id') && account.getIn(['relationship', 'blocking'])) {
-      info.push(<span className='relationship-tag'><FormattedMessage id='account.blocked' defaultMessage='Blocked' /></span>);
+      info.push(<span key='blocked' className='relationship-tag'><FormattedMessage id='account.blocked' defaultMessage='Blocked' /></span>);
     }
 
     if (me !== account.get('id') && account.getIn(['relationship', 'muting'])) {
-      info.push(<span className='relationship-tag'><FormattedMessage id='account.muted' defaultMessage='Muted' /></span>);
+      info.push(<span key='muted' className='relationship-tag'><FormattedMessage id='account.muted' defaultMessage='Muted' /></span>);
     } else if (me !== account.get('id') && account.getIn(['relationship', 'domain_blocking'])) {
-      info.push(<span className='relationship-tag'><FormattedMessage id='account.domain_blocked' defaultMessage='Domain blocked' /></span>);
+      info.push(<span key='domain-blocked' className='relationship-tag'><FormattedMessage id='account.domain_blocked' defaultMessage='Domain blocked' /></span>);
     }
 
     if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {

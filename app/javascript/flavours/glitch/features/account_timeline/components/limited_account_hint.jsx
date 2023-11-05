@@ -37,4 +37,4 @@ class LimitedAccountHint extends PureComponent {
 
 }
 
-export default connect(() => {}, mapDispatchToProps)(LimitedAccountHint);
+export default connect(null, mapDispatchToProps)(LimitedAccountHint);
