@@ -689,3 +689,17 @@
     }
   }
 }
+
+.compose-form__highlightable {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  border-radius: 4px;
+  transition: box-shadow 300ms linear;
+  min-height: 0;
+
+  &.active {
+    transition: none;
+    box-shadow: 0 0 0 6px rgba(lighten($highlight-text-color, 8%), 0.7);
+  }
+}

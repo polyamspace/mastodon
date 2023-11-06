@@ -13,6 +13,7 @@ import spring from 'react-motion/lib/spring';
 import { mountCompose, unmountCompose, cycleElefriendCompose } from 'flavours/glitch/actions/compose';
 import Column from 'flavours/glitch/components/column';
 import { mascot } from 'flavours/glitch/initial_state';
+import { isMobile } from 'flavours/glitch/is_mobile';
 
 import Motion from '../ui/util/optional_motion';
 
@@ -21,6 +22,7 @@ import HeaderContainer from './containers/header_container';
 import NavigationContainer from './containers/navigation_container';
 import SearchContainer from './containers/search_container';
 import SearchResultsContainer from './containers/search_results_container';
+
 
 const messages = defineMessages({
   compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new post' },
@@ -86,7 +88,7 @@ class Compose extends PureComponent {
             <div className='drawer__inner'>
               <NavigationContainer />
 
-              <ComposeFormContainer />
+              <ComposeFormContainer autoFocus={!isMobile(window.innerWidth)} />
 
               <div className='drawer__inner__mastodon'>
                 {mascot ? <img alt='' draggable='false' src={mascot} /> : <button className='mastodon' onClick={onClickElefriend} />}

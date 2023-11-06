@@ -1,24 +1,23 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { Skeleton } from 'flavours/glitch/components/skeleton';
 import { me } from 'flavours/glitch/initial_state';
 
 import { Avatar } from './avatar';
 import { FollowersCounter } from './counters';
 import { DisplayName } from './display_name';
-import { Icon } from './icon';
+import { EmptyAccount } from './empty_account';
 import { IconButton } from './icon_button';
 import Permalink from './permalink';
 import { RelativeTimestamp } from './relative_timestamp';
 import { ShortNumber } from './short_number';
+import { VerifiedBadge } from './verified_badge';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -31,26 +30,6 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
 });
-
-class VerifiedBadge extends PureComponent {
-
-  static propTypes = {
-    link: PropTypes.string.isRequired,
-    verifiedAt: PropTypes.string.isRequired,
-  };
-
-  render () {
-    const { link } = this.props;
-
-    return (
-      <span className='verified-badge'>
-        <Icon id='check' className='verified-badge__mark' />
-        <span dangerouslySetInnerHTML={{ __html: link }} />
-      </span>
-    );
-  }
-
-}
 
 class Account extends ImmutablePureComponent {
 
@@ -69,6 +48,7 @@ class Account extends ImmutablePureComponent {
     actionTitle: PropTypes.string,
     defaultAction: PropTypes.string,
     onActionClick: PropTypes.func,
+    withBio: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -104,6 +84,7 @@ class Account extends ImmutablePureComponent {
     const {
       account,
       hidden,
+      withBio,
       intl,
       small,
       onActionClick,
@@ -115,20 +96,7 @@ class Account extends ImmutablePureComponent {
     } = this.props;
 
     if (!account) {
-      return (
-        <div className={classNames('account', { 'account--minimal': minimal })}>
-          <div className='account__wrapper'>
-            <div className='account__display-name'>
-              <div className='account__avatar-wrapper'><Skeleton width={size} height={size} /></div>
-
-              <div>
-                <DisplayName />
-                <Skeleton width='7ch' />
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+      return <EmptyAccount size={size} minimal={minimal} />;
     }
 
     if (hidden) {
@@ -187,8 +155,17 @@ class Account extends ImmutablePureComponent {
     const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
 
     if (firstVerifiedField) {
-      verification = <VerifiedBadge link={firstVerifiedField.get('value')} verifiedAt={firstVerifiedField.get('verified_at')} />;
+      verification = <VerifiedBadge link={firstVerifiedField.get('value')} />;
     }
+
+    let accountNote = withBio && (account.get('note').length > 0 ? (
+      <div
+        className='account__note translate'
+        dangerouslySetInnerHTML={{ __html: account.get('note_emojified') }}
+      />
+    ) : (
+      <div className='account__note account__note--missing'><FormattedMessage id='account.no_bio' defaultMessage='No description provided.' /></div>
+    ));
 
     return small ? (
       <Permalink
@@ -217,11 +194,12 @@ class Account extends ImmutablePureComponent {
 
             <div className='account__contents'>
               <DisplayName account={account} />
-              {!minimal && (
+              {false && !minimal && (
                 <div className='account__details'>
                   <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} /> {verification} {muteTimeRemaining}
                 </div>
               )}
+              {!minimal && accountNote}
             </div>
           </Permalink>
           {buttons ?
@@ -230,6 +208,8 @@ class Account extends ImmutablePureComponent {
             </div>
             : null}
         </div>
+
+        {minimal && accountNote}
       </div>
     );
   }
