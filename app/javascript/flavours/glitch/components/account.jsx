@@ -73,6 +73,7 @@ class Account extends ImmutablePureComponent {
 
   static defaultProps = {
     size: 36,
+    minimal: true,
   };
 
   handleFollow = () => {
@@ -223,7 +224,7 @@ class Account extends ImmutablePureComponent {
               )}
             </div>
           </Permalink>
-          {buttons && !minimal ?
+          {buttons ?
             <div className='account__relationship'>
               {buttons}
             </div>
