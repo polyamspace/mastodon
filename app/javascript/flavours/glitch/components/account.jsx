@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
+
+import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -9,11 +12,13 @@ import { Skeleton } from 'flavours/glitch/components/skeleton';
 import { me } from 'flavours/glitch/initial_state';
 
 import { Avatar } from './avatar';
+import { FollowersCounter } from './counters';
 import { DisplayName } from './display_name';
+import { Icon } from './icon';
 import { IconButton } from './icon_button';
 import Permalink from './permalink';
 import { RelativeTimestamp } from './relative_timestamp';
-
+import { ShortNumber } from './short_number';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -27,6 +32,26 @@ const messages = defineMessages({
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
 });
 
+class VerifiedBadge extends PureComponent {
+
+  static propTypes = {
+    link: PropTypes.string.isRequired,
+    verifiedAt: PropTypes.string.isRequired,
+  };
+
+  render () {
+    const { link } = this.props;
+
+    return (
+      <span className='verified-badge'>
+        <Icon id='check' className='verified-badge__mark' />
+        <span dangerouslySetInnerHTML={{ __html: link }} />
+      </span>
+    );
+  }
+
+}
+
 class Account extends ImmutablePureComponent {
 
   static propTypes = {
@@ -38,6 +63,7 @@ class Account extends ImmutablePureComponent {
     onMuteNotifications: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     hidden: PropTypes.bool,
+    minimal: PropTypes.bool,
     small: PropTypes.bool,
     actionIcon: PropTypes.string,
     actionTitle: PropTypes.string,
@@ -47,6 +73,7 @@ class Account extends ImmutablePureComponent {
 
   static defaultProps = {
     size: 36,
+    minimal: true,
   };
 
   handleFollow = () => {
@@ -84,15 +111,20 @@ class Account extends ImmutablePureComponent {
       actionTitle,
       defaultAction,
       size,
+      minimal,
     } = this.props;
 
     if (!account) {
       return (
-        <div className='account'>
+        <div className={classNames('account', { 'account--minimal': minimal })}>
           <div className='account__wrapper'>
             <div className='account__display-name'>
-              <div className='account__avatar-wrapper'><Skeleton width={36} height={36} /></div>
-              <DisplayName />
+              <div className='account__avatar-wrapper'><Skeleton width={size} height={size} /></div>
+
+              <div>
+                <DisplayName />
+                <Skeleton width='7ch' />
+              </div>
             </div>
           </div>
         </div>
@@ -110,11 +142,9 @@ class Account extends ImmutablePureComponent {
 
     let buttons;
 
-    if (onActionClick) {
-      if (actionIcon) {
-        buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
-      }
-    } else if (account.get('id') !== me && !small && account.get('relationship', null) !== null) {
+    if (actionIcon && onActionClick) {
+      buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
+    } else if (!actionIcon && account.get('id') !== me && !small && account.get('relationship', null) !== null) {
       const following = account.getIn(['relationship', 'following']);
       const requested = account.getIn(['relationship', 'requested']);
       const blocking  = account.getIn(['relationship', 'blocking']);
@@ -146,9 +176,18 @@ class Account extends ImmutablePureComponent {
       }
     }
 
-    let mute_expires_at;
+    let muteTimeRemaining;
+
     if (account.get('mute_expires_at')) {
-      mute_expires_at =  <div><RelativeTimestamp timestamp={account.get('mute_expires_at')} futureDate /></div>;
+      muteTimeRemaining = <>· <RelativeTimestamp timestamp={account.get('mute_expires_at')} futureDate /></>;
+    }
+
+    let verification;
+
+    const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
+
+    if (firstVerifiedField) {
+      verification = <VerifiedBadge link={firstVerifiedField.get('value')} verifiedAt={firstVerifiedField.get('verified_at')} />;
     }
 
     return small ? (
@@ -169,12 +208,21 @@ class Account extends ImmutablePureComponent {
         />
       </Permalink>
     ) : (
-      <div className='account'>
+      <div className={classNames('account', { 'account--minimal': minimal })}>
         <div className='account__wrapper'>
           <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
-            <div className='account__avatar-wrapper'><Avatar account={account} size={size} /></div>
-            {mute_expires_at}
-            <DisplayName account={account} />
+            <div className='account__avatar-wrapper'>
+              <Avatar account={account} size={size} />
+            </div>
+
+            <div className='account__contents'>
+              <DisplayName account={account} />
+              {!minimal && (
+                <div className='account__details'>
+                  <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} /> {verification} {muteTimeRemaining}
+                </div>
+              )}
+            </div>
           </Permalink>
           {buttons ?
             <div className='account__relationship'>

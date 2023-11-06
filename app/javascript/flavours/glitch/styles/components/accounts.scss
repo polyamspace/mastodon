@@ -12,9 +12,23 @@
     text-decoration: none;
     font-size: 14px;
 
-    &--with-note {
-      strong {
-        display: inline;
+    .display-name {
+      margin-bottom: 4px;
+    }
+
+    .display-name strong {
+      display: inline;
+    }
+  }
+
+  &--minimal {
+    .account__display-name {
+      .display-name {
+        margin-bottom: 0;
+      }
+
+      .display-name strong {
+        display: block;
       }
     }
   }
@@ -56,6 +70,7 @@
 
 .account__wrapper {
   display: flex;
+  align-items: center;
 }
 
 .account__avatar-wrapper {
@@ -147,6 +162,9 @@
   height: 18px;
   padding: 10px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .account__header__wrapper {
@@ -807,4 +825,33 @@
 
 .account-memorial-banner__message {
   margin-bottom: 0;
+}
+
+.account__contents {
+  overflow: hidden;
+}
+
+.account__details {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1em;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  color: $valid-value-color;
+  gap: 4px;
+  white-space: nowrap;
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: none;
+  }
 }
