@@ -355,12 +355,14 @@ body > [data-popper-placement] {
   &.activate {
     & > .fa-star {
       animation: spring-rotate-in 1s linear;
+      transform-origin: 50% 55%;
     }
   }
 
   &.deactivate {
     & > .fa-star {
       animation: spring-rotate-out 1s linear;
+      transform-origin: 50% 55%;
     }
   }
 }
