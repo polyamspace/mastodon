@@ -158,6 +158,15 @@ class Account extends ImmutablePureComponent {
       verification = <VerifiedBadge link={firstVerifiedField.get('value')} />;
     }
 
+    let accountNote = withBio && (account.get('note').length > 0 ? (
+      <div
+        className='account__note translate'
+        dangerouslySetInnerHTML={{ __html: account.get('note_emojified') }}
+      />
+    ) : (
+      <div className='account__note account__note--missing'><FormattedMessage id='account.no_bio' defaultMessage='No description provided.' /></div>
+    ));
+
     return small ? (
       <Permalink
         className='account small'
@@ -185,11 +194,12 @@ class Account extends ImmutablePureComponent {
 
             <div className='account__contents'>
               <DisplayName account={account} />
-              {!minimal && (
+              {false && !minimal && (
                 <div className='account__details'>
                   <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} /> {verification} {muteTimeRemaining}
                 </div>
               )}
+              {!minimal && accountNote}
             </div>
           </Permalink>
           {buttons ?
@@ -199,14 +209,7 @@ class Account extends ImmutablePureComponent {
             : null}
         </div>
 
-        {withBio && (account.get('note').length > 0 ? (
-          <div
-            className='account__note translate'
-            dangerouslySetInnerHTML={{ __html: account.get('note_emojified') }}
-          />
-        ) : (
-          <div className='account__note account__note--missing'><FormattedMessage id='account.no_bio' defaultMessage='No description provided.' /></div>
-        ))}
+        {minimal && accountNote}
       </div>
     );
   }
