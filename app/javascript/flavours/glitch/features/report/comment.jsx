@@ -109,7 +109,7 @@ const Comment = ({ comment, domain, statusIds, isRemote, isSubmitting, selectedD
 Comment.propTypes = {
   comment: PropTypes.string.isRequired,
   domain: PropTypes.string,
-  statusIds: ImmutablePropTypes.list.isRequired,
+  statusIds: ImmutablePropTypes.set.isRequired,
   isRemote: PropTypes.bool,
   isSubmitting: PropTypes.bool,
   selectedDomains: ImmutablePropTypes.set.isRequired,

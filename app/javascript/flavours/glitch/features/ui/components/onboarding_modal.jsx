@@ -5,6 +5,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet} from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
@@ -50,12 +51,16 @@ const PageTwo = ({ myAccount }) => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
       <div className='pseudo-drawer'>
-        <DrawerAccount account={myAccount} />
+        <DrawerAccount account={myAccount} onLogout={noop} />
         <ComposeForm
           privacy='public'
           text='Awoo! #introductions'
           spoilerText=''
-          suggestions={[]}
+          suggestions={new ImmutableList()}
+          advancedOptions={new ImmutableMap()}
+          onPaste={noop}
+          onFetchSuggestions={noop}
+          onClearSuggestions={noop}
         />
       </div>
     </div>
@@ -78,11 +83,14 @@ const PageThree = ({ myAccount }) => (
         onSubmit={noop}
         onClear={noop}
         onShow={noop}
-        recent={{}}
+        onForgetSearchResult={noop}
+        onClickSearchResult={noop}
+        onOpenURL={noop}
+        recent={new OrderedSet()}
       />
 
       <div className='pseudo-drawer'>
-        <DrawerAccount account={myAccount} />
+        <DrawerAccount account={myAccount} onLogout={noop} />
       </div>
     </div>
 
