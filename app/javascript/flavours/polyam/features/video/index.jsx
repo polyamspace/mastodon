@@ -14,6 +14,7 @@ import { Icon }  from 'flavours/polyam/components/icon';
 import { playerSettings } from 'flavours/polyam/settings';
 
 import { displayMedia, useBlurhash } from '../../initial_state';
+import { currentMedia, setCurrentMedia } from '../../reducers/media_attachments';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 
 const messages = defineMessages({
@@ -179,6 +180,7 @@ class Video extends PureComponent {
   };
 
   handlePause = () => {
+    this.video.pause();
     this.setState({ paused: true });
   };
 
@@ -342,11 +344,32 @@ class Video extends PureComponent {
   };
 
   togglePlay = () => {
-    if (this.state.paused) {
-      this.setState({ paused: false }, () => this.video.play());
-    } else {
-      this.setState({ paused: true }, () => this.video.pause());
+    const videos = document.querySelectorAll('video');
+
+    videos.forEach((video) => {
+      const button = video.nextElementSibling;
+      button.addEventListener('click', () => {
+        if (video.paused) {
+          videos.forEach((e) => {
+            if (e !== video) {
+              e.pause();
+            }
+          });
+          video.play();
+          this.setState({ paused: false });
+        } else {
+          video.pause();
+          this.setState({ paused: true });
+        }
+      });
+    });
+
+    if (currentMedia !== null) {
+      currentMedia.pause();
     }
+
+    this.video.play();
+    setCurrentMedia(this.video);
   };
 
   toggleFullscreen = () => {

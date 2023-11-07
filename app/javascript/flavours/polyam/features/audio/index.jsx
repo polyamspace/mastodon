@@ -14,6 +14,7 @@ import { formatTime, getPointerPosition, fileNameFromURL } from 'flavours/polyam
 
 import { Blurhash } from '../../components/blurhash';
 import { displayMedia, useBlurhash } from '../../initial_state';
+import { currentMedia, setCurrentMedia } from '../../reducers/media_attachments';
 
 import Visualizer from './visualizer';
 
@@ -167,15 +168,32 @@ class Audio extends PureComponent {
   }
 
   togglePlay = () => {
-    if (!this.audioContext) {
-      this._initAudioContext();
+    const audios = document.querySelectorAll('audio');
+
+    audios.forEach((audio) => {
+      const button = audio.previousElementSibling;
+      button.addEventListener('click', () => {
+        if(audio.paused) {
+          audios.forEach((e) => {
+            if (e !== audio) {
+              e.pause();
+            }
+          });
+          audio.play();
+          this.setState({ paused: false });
+        } else {
+          audio.pause();
+          this.setState({ paused: true });
+        }
+      });
+    });
+
+    if (currentMedia !== null) {
+      currentMedia.pause();
     }
 
-    if (this.state.paused) {
-      this.setState({ paused: false }, () => this.audio.play());
-    } else {
-      this.setState({ paused: true }, () => this.audio.pause());
-    }
+    this.audio.play();
+    setCurrentMedia(this.audio);
   };
 
   handleResize = debounce(() => {
@@ -197,6 +215,7 @@ class Audio extends PureComponent {
   };
 
   handlePause = () => {
+    this.audio.pause();
     this.setState({ paused: true });
 
     if (this.audioContext) {
