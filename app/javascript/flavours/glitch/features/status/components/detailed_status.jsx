@@ -173,17 +173,18 @@ class DetailedStatus extends ImmutablePureComponent {
     const language = status.getIn(['translation', 'language']) || status.get('language');
 
     if (pictureInPicture.get('inUse')) {
-      media.push(<PictureInPicturePlaceholder />);
+      media.push(<PictureInPicturePlaceholder key='pip-placeholder' />);
       mediaIcons.push('video-camera');
     } else if (status.get('media_attachments').size > 0) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
-        media.push(<AttachmentList media={status.get('media_attachments')} />);
+        media.push(<AttachmentList key='media-unknown' media={status.get('media_attachments')} />);
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
         const attachment = status.getIn(['media_attachments', 0]);
         const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
 
         media.push(
           <Audio
+            key='media-audio'
             src={attachment.get('url')}
             alt={description}
             lang={language}
@@ -207,6 +208,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
         media.push(
           <Video
+            key='media-video'
             preview={attachment.get('preview_url')}
             frameRate={attachment.getIn(['meta', 'original', 'frame_rate'])}
             blurhash={attachment.get('blurhash')}
@@ -229,6 +231,7 @@ class DetailedStatus extends ImmutablePureComponent {
       } else {
         media.push(
           <MediaGallery
+            key='media-gallery'
             standalone
             sensitive={status.get('sensitive')}
             media={status.get('media_attachments')}
@@ -245,12 +248,12 @@ class DetailedStatus extends ImmutablePureComponent {
         mediaIcons.push('picture-o');
       }
     } else if (status.get('card')) {
-      media.push(<Card sensitive={status.get('sensitive')} onOpenMedia={this.props.onOpenMedia} card={status.get('card')} />);
+      media.push(<Card key='media-card' sensitive={status.get('sensitive')} onOpenMedia={this.props.onOpenMedia} card={status.get('card')} />);
       mediaIcons.push('link');
     }
 
     if (status.get('poll')) {
-      contentMedia.push(<PollContainer pollId={status.get('poll')} lang={status.get('language')} />);
+      contentMedia.push(<PollContainer key='media-poll' pollId={status.get('poll')} lang={status.get('language')} />);
       contentMediaIcons.push('tasks');
     }
 
