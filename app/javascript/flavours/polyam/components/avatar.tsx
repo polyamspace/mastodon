@@ -47,7 +47,7 @@ export const Avatar: React.FC<Props> = ({
       style={style}
       data-avatar-of={account && `@${account.get('acct')}`}
       role='img'
-      aria-label={account?.get('acct')}
+      aria-label=''
     />
   );
 };
