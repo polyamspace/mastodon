@@ -65,6 +65,10 @@
     background-color: $ui-button-focus-background-color;
   }
 
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
+  }
+
   &--destructive {
     &:active,
     &:focus,
@@ -157,8 +161,6 @@
   border-radius: 4px;
   background: transparent;
   cursor: pointer;
-  transition: all 100ms ease-in;
-  transition-property: background-color, color;
   text-decoration: none;
 
   a {
@@ -171,22 +173,16 @@
   &:focus {
     color: lighten($action-button-color, 7%);
     background-color: rgba($action-button-color, 0.15);
-    transition: all 200ms ease-out;
-    transition-property: background-color, color;
   }
 
-  &:focus {
-    background-color: rgba($action-button-color, 0.3);
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
   }
 
   &.disabled {
     color: darken($action-button-color, 13%);
     background-color: transparent;
     cursor: default;
-  }
-
-  &.active {
-    color: $highlight-text-color;
   }
 
   &.copyable {
@@ -196,16 +192,6 @@
   &.copied {
     background: $valid-value-color;
     transition: none;
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
   }
 
   &.inverted {
@@ -218,21 +204,28 @@
       background-color: rgba($lighter-text-color, 0.15);
     }
 
-    &:focus {
-      background-color: rgba($lighter-text-color, 0.3);
+    &:focus-visible {
+      outline: $ui-button-icon-focus-outline;
     }
 
     &.disabled {
       color: lighten($lighter-text-color, 7%);
       background-color: transparent;
     }
+  }
 
-    &.active {
+  &.active {
+    color: $highlight-text-color;
+
+    &:hover,
+    &:active,
+    &:focus {
       color: $highlight-text-color;
+      background-color: transparent;
+    }
 
-      &.disabled {
-        color: lighten($highlight-text-color, 13%);
-      }
+    &.disabled {
+      color: lighten($highlight-text-color, 13%);
     }
   }
 
@@ -282,21 +275,16 @@
   cursor: pointer;
   padding: 0 3px;
   white-space: nowrap;
-  outline: 0;
-  transition: all 100ms ease-in;
-  transition-property: background-color, color;
 
   &:hover,
   &:active,
   &:focus {
     color: darken($lighter-text-color, 7%);
     background-color: rgba($lighter-text-color, 0.15);
-    transition: all 200ms ease-out;
-    transition-property: background-color, color;
   }
 
-  &:focus {
-    background-color: rgba($lighter-text-color, 0.3);
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
   }
 
   &.disabled {
@@ -307,16 +295,13 @@
 
   &.active {
     color: $highlight-text-color;
-  }
 
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
+    &:hover,
+    &:active,
+    &:focus {
+      color: $highlight-text-color;
+      background-color: transparent;
+    }
   }
 }
 
@@ -557,7 +542,7 @@ body > [data-popper-placement] {
     font-size: inherit;
     line-height: inherit;
 
-    &:focus {
+    &:focus-visible {
       outline: 1px dotted;
     }
   }
