@@ -656,6 +656,7 @@ class Status extends ImmutablePureComponent {
           <AttachmentList
             compact
             media={status.get('media_attachments')}
+            collapsed={isCollapsed}
             key='media-unknown'
           />,
         );
@@ -758,7 +759,7 @@ class Status extends ImmutablePureComponent {
 
     if (status.get('poll')) {
       const language = status.getIn(['translation', 'language']) || status.get('language');
-      contentMedia.push(<PollContainer key='media-poll' pollId={status.get('poll')} lang={language} />);
+      contentMedia.push(<PollContainer key='media-poll' pollId={status.get('poll')} collapsed={isCollapsed} lang={language} />);
       contentMediaIcons.push('tasks');
     }
 
@@ -852,6 +853,7 @@ class Status extends ImmutablePureComponent {
             disabled={!history}
             tagLinks={settings.get('tag_misleading_links')}
             rewriteMentions={settings.get('rewrite_mentions')}
+            collapsed={isCollapsed}
           />
 
           <StatusReactions
