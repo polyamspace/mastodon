@@ -853,6 +853,7 @@ class Status extends ImmutablePureComponent {
             disabled={!history}
             tagLinks={settings.get('tag_misleading_links')}
             rewriteMentions={settings.get('rewrite_mentions')}
+            collapsed={isCollapsed}
           />
 
           <StatusReactions

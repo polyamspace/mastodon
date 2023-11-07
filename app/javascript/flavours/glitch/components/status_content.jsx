@@ -150,7 +150,7 @@ class StatusContent extends PureComponent {
 
   _updateStatusLinks () {
     const node = this.contentsNode;
-    const { tagLinks, rewriteMentions } = this.props;
+    const { tagLinks, rewriteMentions, collapsed } = this.props;
 
     if (!node) {
       return;
@@ -160,6 +160,14 @@ class StatusContent extends PureComponent {
 
     for (var i = 0; i < links.length; ++i) {
       let link = links[i];
+
+      // Fix scrolling in collapsed toots when focusing links by preventing them to be focusable
+      if (collapsed) {
+        link.setAttribute('tabindex', -1);
+      } else {
+        link.removeAttribute('tabindex');
+      }
+
       if (link.classList.contains('status-link')) {
         continue;
       }
