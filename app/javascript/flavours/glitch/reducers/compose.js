@@ -52,6 +52,7 @@ import {
   COMPOSE_CHANGE_MEDIA_FOCUS,
   COMPOSE_SET_STATUS,
   COMPOSE_FOCUS,
+  removeHighlight,
 } from 'flavours/glitch/actions/compose';
 import { REDRAFT } from 'flavours/glitch/actions/statuses';
 import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
@@ -128,6 +129,7 @@ const initialState = ImmutableMap({
     smoothing: false,
   }),
   last_status_in_thread: null,
+  highlighted: false,
 });
 
 const initialPoll = ImmutableMap({
@@ -664,7 +666,9 @@ export default function compose(state = initialState, action) {
   case COMPOSE_LANGUAGE_CHANGE:
     return state.set('language', action.language);
   case COMPOSE_FOCUS:
-    return state.set('focusDate', new Date());
+    return state.set('focusDate', new Date()).set('highlighted', true);
+  case removeHighlight.type:
+    return state.set('highlighted', false);
   default:
     return state;
   }

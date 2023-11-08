@@ -13,6 +13,7 @@ import {
   selectComposeSuggestion,
   submitCompose,
   uploadCompose,
+  removeHighlight,
 } from 'flavours/glitch/actions/compose';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 import {
@@ -77,6 +78,7 @@ function mapStateToProps (state) {
     preselectOnReply: state.getIn(['local_settings', 'preselect_on_reply']),
     isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
     lang: state.getIn(['compose', 'language']),
+    highlighted: state.getIn(['compose', 'highlighted']),
   };
 }
 
@@ -121,6 +123,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onChangeVisibility(value) {
     dispatch(changeComposeVisibility(value));
+  },
+
+  onRemoveHighlight() {
+    dispatch(removeHighlight());
   },
 
   onMediaDescriptionConfirm(routerHistory, mediaId, overriddenVisibility = null) {
