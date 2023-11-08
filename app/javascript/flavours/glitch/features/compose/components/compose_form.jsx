@@ -77,15 +77,13 @@ class ComposeForm extends ImmutablePureComponent {
     onChangeSpoilerness: PropTypes.func,
     onChangeVisibility: PropTypes.func,
     onMediaDescriptionConfirm: PropTypes.func,
+    highlighted: PropTypes.bool,
+    onRemoveHighlight: PropTypes.func,
     ...WithOptionalRouterPropTypes
   };
 
   static defaultProps = {
     autoFocus: false,
-  };
-
-  state = {
-    highlighted: false,
   };
 
   handleChange = (e) => {
@@ -241,6 +239,8 @@ class ComposeForm extends ImmutablePureComponent {
       text,
       preselectOnReply,
       singleColumn,
+      highlighted,
+      onRemoveHighlight,
     } = this.props;
     let selectionEnd, selectionStart;
 
@@ -264,8 +264,7 @@ class ComposeForm extends ImmutablePureComponent {
         Promise.resolve().then(() => {
           textarea.setSelectionRange(selectionStart, selectionEnd);
           textarea.focus();
-          this.setState({highlighted: true});
-          this.timeout = setTimeout(() => this.setState({highlighted: false}), 700);
+          if (highlighted) this.timeout = setTimeout(() => onRemoveHighlight(), 700);
           if (!singleColumn) textarea.scrollIntoView();
         }).catch(console.error);
       }
@@ -310,8 +309,8 @@ class ComposeForm extends ImmutablePureComponent {
       suggestions,
       spoilersAlwaysOn,
       isEditing,
+      highlighted
     } = this.props;
-    const { highlighted } = this.state;
 
     const countText = this.getFulltextForCharacterCounting();
 
