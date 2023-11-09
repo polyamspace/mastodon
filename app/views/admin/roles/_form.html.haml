@@ -11,9 +11,29 @@
     .fields-group
       = form.input :position, wrapper: :with_label, input_html: { max: current_user.role.position - 1 }
 
-  .fields-group
-    = form.input :color, wrapper: :with_label, input_html: { placeholder: '#000000', type: 'color' }
+  .fields-row
+    .fields-row__column.fields-row__column-6
+      .fields-group
+        = form.input :color, wrapper: :with_label, input_html: { placeholder: '#000000', type: 'color' }
 
+    -# haml-lint:disable InlineStyles
+    .fields-row__column.fields-row__column-6
+      .user-role__preview
+        :ruby
+          default_style = !form.object.color.empty? ? "background-color: #{form.object.color}19; border-color: #{form.object.color}80;" : ''
+          default_dark = "background-color: rgba(217, 225, 232, 0.1); border-color: rgba(217, 225, 232, 0.5);"
+          default_light = "background-color: rgba(40, 44, 55, 0.1); border-color: rgba(40, 44, 55, 0.5);"
+        .item.dark
+          .avatar
+            .account-role{ :style => !default_style.empty? ? default_style : default_dark, :id => 'user-role-preview-1' }= form.object.name
+        .item.light
+          .avatar
+            .account-role{ :style => !default_style.empty? ? default_style : default_light, :id => 'user-role-preview-2' }= form.object.name
+        - if current_user.setting_skin != 'default' && current_user.setting_skin != 'mastodon-light'
+          .item.current
+            .avatar
+              .account-role{ :style => default_style, :id => 'user-role-preview-3' }= form.object.name
+    -# haml-lint:enable InlineStyles
   %hr.spacer/
 
   .fields-group
