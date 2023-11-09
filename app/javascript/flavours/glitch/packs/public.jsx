@@ -231,6 +231,24 @@ function main() {
       }
     });
   });
+
+  // User role preview
+  Rails.delegate(document, '#user_role_color', 'change', ({ target }) => {
+    for (let i=1; i<=3; i++) {
+      const preview = document.getElementById(`user-role-preview-${i}`);
+
+      preview.style.backgroundColor = `${target.value}19`;
+      preview.style.borderColor = `${target.value}80`;
+    }
+  });
+
+  Rails.delegate(document, '#user_role_name', 'change', ({ target }) => {
+    for (let i=1; i<=3; i++) {
+      const preview = document.getElementById(`user-role-preview-${i}`);
+
+      preview.innerText = target.value;
+    }
+  });
 }
 
 loadPolyfills()

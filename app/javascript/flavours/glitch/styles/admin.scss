@@ -1004,6 +1004,51 @@ a.name-tag,
 
 .user-role {
   color: var(--user-role-accent);
+
+  &__preview {
+    display: flex;
+    justify-content: flex-end;
+
+    .avatar {
+      width: 94px;
+    }
+
+    .item {
+      padding: 12px 15px;
+    }
+
+    .account-role {
+      margin: 0 2px;
+      padding: 4px 0;
+      box-sizing: border-box;
+      min-width: 90px;
+      text-align: center;
+    }
+
+    .current {
+      background-color: lighten($ui-base-color, 4%);
+
+      .account-role {
+        color: $ui-secondary-color;
+      }
+    }
+
+    .dark {
+      background-color: lighten($classic-base-color, 4%);
+
+      .account-role {
+        color: $classic-secondary-color;
+      }
+    }
+
+    .light {
+      background-color: lighten($classic-secondary-color, 4%);
+
+      .account-role {
+        color: $classic-base-color;
+      }
+    }
+  }
 }
 
 .announcements-list,
