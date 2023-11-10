@@ -1030,9 +1030,11 @@ a.name-tag,
 
       .account-role {
         color: $ui-secondary-color;
-        background-color: var(--user-role-background, rgba($ui-secondary-color, 0.1));
+        background-color: var(
+          --user-role-background,
+          rgba($ui-secondary-color, 0.1)
+        );
         border-color: var(--user-role-border, rgba($ui-secondary-color, 0.5));
-
       }
     }
 
@@ -1041,9 +1043,14 @@ a.name-tag,
 
       .account-role {
         color: $classic-secondary-color;
-        background-color: var(--user-role-background, rgba($classic-secondary-color, 0.1));
-        border-color: var(--user-role-border, rgba($classic-secondary-color, 0.5));
-
+        background-color: var(
+          --user-role-background,
+          rgba($classic-secondary-color, 0.1)
+        );
+        border-color: var(
+          --user-role-border,
+          rgba($classic-secondary-color, 0.5)
+        );
       }
     }
 
@@ -1052,7 +1059,10 @@ a.name-tag,
 
       .account-role {
         color: $classic-base-color;
-        background-color: var(--user-role-background, rgba($classic-base-color, 0.1));
+        background-color: var(
+          --user-role-background,
+          rgba($classic-base-color, 0.1)
+        );
         border-color: var(--user-role-border, rgba($classic-base-color, 0.5));
       }
     }
