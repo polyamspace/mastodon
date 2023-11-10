@@ -237,8 +237,8 @@ function main() {
     for (let i=1; i<=3; i++) {
       const preview = document.getElementById(`user-role-preview-${i}`);
 
-      preview.style.backgroundColor = `${target.value}19`;
-      preview.style.borderColor = `${target.value}80`;
+      preview.style.backgroundColor = `${target.value}39`;
+      preview.style.borderColor = target.value;
     }
   });
 
