@@ -326,7 +326,7 @@ class DetailedStatus extends ImmutablePureComponent {
       );
     }
 
-    if (this.context.router) {
+    if (this.props.history) {
       reactionLink = (
         <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reactions`} className='detailed-status__link'>
           <Icon id='plus' />
