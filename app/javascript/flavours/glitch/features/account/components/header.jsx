@@ -331,11 +331,6 @@ class Header extends ImmutablePureComponent {
       badges.push(<Badge key={`role-badge-${role.get('id')}`} className={`user-role-${role.get('id')}`} label={<span>{role.get('name')}</span>} />);
     });
 
-    let pinnedBadge = null;
-    if (account.getIn(['roles', 0])) {
-      pinnedBadge = (<Badge key='pinned-badge' icon={null} className={`pinned user-role-${account.getIn(['roles', 0, 'id'])}`} label={<span>{account.getIn(['roles', 0, 'name'])}</span>} />);
-    }
-
     return (
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         {!(suspended || hidden || account.get('moved')) && account.getIn(['relationship', 'requested_by']) && <FollowRequestNoteContainer account={account} />}
@@ -352,7 +347,6 @@ class Header extends ImmutablePureComponent {
           <div className='account__header__tabs'>
             <a className='avatar' href={account.get('avatar')} rel='noopener noreferrer' target='_blank' onClick={this.handleAvatarClick}>
               <Avatar account={suspended || hidden ? undefined : account} size={90} />
-              {pinnedBadge}
             </a>
 
             {!suspended && (
