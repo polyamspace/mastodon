@@ -221,8 +221,9 @@
   display: inline-flex;
   padding: 4px;
   padding-inline-end: 8px;
-  border: 1px solid $highlight-text-color;
-  color: $highlight-text-color;
+  border: 1px solid var(--user-role-border, rgba($ui-secondary-color, 0.5));
+  background-color: var(--user-role-background, rgba($ui-secondary-color, 0.1));
+  color: $ui-secondary-color;
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.5px;
