@@ -895,7 +895,7 @@ a.status-card {
 .status-card__content {
   flex: 1 1 auto;
   overflow: hidden;
-  padding: 15px;
+  padding: 0 8px;
   box-sizing: border-box;
   max-width: 100%;
 }
@@ -934,7 +934,7 @@ a.status-card {
 
 .status-card__image {
   flex: 0 0 auto;
-  width: 120px;
+  width: 90px;
   aspect-ratio: 1;
   background: lighten($ui-base-color, 8%);
   position: relative;
@@ -984,6 +984,10 @@ a.status-card {
 .status-card.expanded .status-card__image {
   width: 100%;
   aspect-ratio: auto;
+}
+
+.status-card.expanded .status-card__content {
+  padding: 15px;
 }
 
 .status-card__image,

@@ -48,7 +48,12 @@ export default class Card extends PureComponent {
   static propTypes = {
     card: ImmutablePropTypes.map,
     onOpenMedia: PropTypes.func.isRequired,
+    compact: PropTypes.bool,
     sensitive: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    compact: false,
   };
 
   state = {
@@ -108,7 +113,7 @@ export default class Card extends PureComponent {
   }
 
   render () {
-    const { card } = this.props;
+    const { card, compact } = this.props;
     const { embedded, revealed } = this.state;
 
     if (card === null) {
@@ -218,7 +223,7 @@ export default class Card extends PureComponent {
     }
 
     return (
-      <a href={card.get('url')} className={classNames('status-card', { expanded: largeImage })} target='_blank' rel='noopener noreferrer' ref={this.setRef}>
+      <a href={card.get('url')} className={classNames('status-card', { expanded: !compact && largeImage })} target='_blank' rel='noopener noreferrer' ref={this.setRef}>
         {embed}
         {description}
       </a>
