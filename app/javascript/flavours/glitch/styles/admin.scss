@@ -1008,21 +1008,10 @@ a.name-tag,
   &__preview {
     display: flex;
     justify-content: flex-end;
-
-    .avatar {
-      width: 94px;
-    }
+    flex-direction: column;
 
     .item {
       padding: 12px 15px;
-    }
-
-    .account-role {
-      margin: 0 2px;
-      padding: 4px 0;
-      box-sizing: border-box;
-      min-width: 90px;
-      text-align: center;
     }
 
     .current {
