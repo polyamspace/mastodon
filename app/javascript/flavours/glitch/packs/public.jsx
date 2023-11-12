@@ -246,7 +246,7 @@ function main() {
     for (let i=1; i<=3; i++) {
       const preview = document.getElementById(`user-role-preview-${i}`);
 
-      preview.innerText = target.value;
+      preview.getElementsByTagName('span')[0].innerText = target.value;
     }
   });
 }
