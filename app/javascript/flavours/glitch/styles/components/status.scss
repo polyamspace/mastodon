@@ -829,6 +829,9 @@ a.status-card {
   &:hover,
   &:focus,
   &:active {
+    // Fix underline being white
+    text-decoration-color: $highlight-text-color;
+
     .status-card__title,
     .status-card__host,
     .status-card__author,
