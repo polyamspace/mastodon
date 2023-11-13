@@ -28,7 +28,7 @@
               = person_icon
               %span= form.object.name
           - if current_user.setting_skin != 'default' && current_user.setting_skin != 'mastodon-light'
-            .item.current
+            .item.account__header__bar
               .account-role{ class: "user-role-#{form.object.id}", :id => 'user-role-preview-3' }
                 = person_icon
                 %span= form.object.name

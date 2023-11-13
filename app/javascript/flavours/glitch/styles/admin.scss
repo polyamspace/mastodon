@@ -1012,19 +1012,7 @@ a.name-tag,
 
     .item {
       padding: 12px 15px;
-    }
-
-    .current {
-      background-color: lighten($ui-base-color, 4%);
-
-      .account-role {
-        color: $ui-secondary-color;
-        background-color: var(
-          --user-role-background,
-          rgba($ui-secondary-color, 0.1)
-        );
-        border-color: var(--user-role-border, rgba($ui-secondary-color, 0.5));
-      }
+      border: none;
     }
 
     .dark {
