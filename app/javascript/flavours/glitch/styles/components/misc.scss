@@ -231,13 +231,14 @@
 
   &.overlayed {
     box-sizing: content-box;
-    background: rgba($base-overlay-background, 0.6);
-    color: rgba($primary-text-color, 0.7);
+    background: rgba($black, 0.65);
+    backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+    color: rgba($white, 0.7);
     border-radius: 4px;
     padding: 2px;
 
     &:hover {
-      background: rgba($base-overlay-background, 0.9);
+      background: rgba($black, 0.9);
     }
   }
 
