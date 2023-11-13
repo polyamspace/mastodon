@@ -246,22 +246,13 @@ body.admin {
 }
 
 // link previews
-
-.status-card.compact {
-  border-color: darken($purple5, 8%);
-  background: $purple5;
-}
-
-.status-card__image {
-  background: $purple3;
-}
-
-.status-card__content {
-  background: $purple5;
-
+// TODO: Remove on refactor
+a.status-card,
+.status-card a {
   &:hover,
+  &:active,
   &:focus {
-    background: darken($purple5, 4%);
+    text-decoration-color: $ui-highlight-color;
   }
 }
 
