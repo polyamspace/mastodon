@@ -12,9 +12,9 @@ import spring from 'react-motion/lib/spring';
 
 import { mountCompose, unmountCompose, cycleElefriendCompose } from 'flavours/glitch/actions/compose';
 import Column from 'flavours/glitch/components/column';
-import { mascot } from 'flavours/glitch/initial_state';
-import { isMobile } from 'flavours/glitch/is_mobile';
 
+import { mascot } from '../../initial_state';
+import { isMobile } from '../../is_mobile';
 import Motion from '../ui/util/optional_motion';
 
 import ComposeFormContainer from './containers/compose_form_container';
