@@ -83,13 +83,9 @@ class Search extends PureComponent {
   };
 
   handleClear = e => {
-    const {
-      onClear,
-      submitted,
-      value,
-    } = this.props;
+    const { value, submitted, onClear } = this.props;
 
-    e.preventDefault();  //  Prevents focus change ??
+    e.preventDefault();
 
     if (value.length > 0 || submitted) {
       onClear();
@@ -161,6 +157,7 @@ class Search extends PureComponent {
           search.forget(e);
         }
       }
+
       break;
     }
   };
@@ -353,6 +350,7 @@ class Search extends PureComponent {
           <Icon id='search' className={hasValue ? '' : 'active'} />
           <Icon id='times-circle' className={hasValue ? 'active' : ''} />
         </div>
+
         <div className='search__popout'>
           {options.length === 0 && (
             <>
@@ -372,6 +370,7 @@ class Search extends PureComponent {
               </div>
             </>
           )}
+
           {options.length > 0 && (
             <>
               <h4><FormattedMessage id='search_popout.quick_actions' defaultMessage='Quick actions' /></h4>
