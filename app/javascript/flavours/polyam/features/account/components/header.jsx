@@ -14,9 +14,11 @@ import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
 import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import MoreVertIcon from '@/awesome-icons/solid/ellipsis-vertical.svg?react';
 import LockIcon from '@/awesome-icons/solid/lock.svg?react';
+import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'flavours/polyam/components/badge';
 import { Button } from 'flavours/polyam/components/button';
+import { CopyIconButton } from 'flavours/polyam/components/copy_icon_button';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
@@ -49,6 +51,7 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
   share: { id: 'account.share', defaultMessage: 'Share @{name}\'s profile' },
+  copy: { id: 'account.copy', defaultMessage: 'Copy link to profile' },
   media: { id: 'account.media', defaultMessage: 'Media' },
   blockDomain: { id: 'account.block_domain', defaultMessage: 'Block domain {domain}' },
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
@@ -176,11 +179,10 @@ class Header extends ImmutablePureComponent {
     const isRemote     = account.get('acct') !== account.get('username');
     const remoteDomain = isRemote ? account.get('acct').split('@')[1] : null;
 
-    let info        = [];
-    let actionBtn   = '';
-    let bellBtn     = '';
-    let lockedIcon  = '';
-    let menu        = [];
+    let actionBtn, bellBtn, lockedIcon, shareBtn;
+
+    let info = [];
+    let menu = [];
 
     if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
       info.push(<span key='follows-you' className='relationship-tag'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>);
@@ -196,6 +198,12 @@ class Header extends ImmutablePureComponent {
 
     if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
       bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell' : 'bell-o'} iconComponent={account.getIn(['relationship', 'notifying']) ? NotificationsIcon : NotificationsRegularIcon} size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
+    }
+
+    if ('share' in navigator) {
+      shareBtn = <IconButton className='optional' iconComponent={ShareIcon} title={intl.formatMessage(messages.share, { name: account.get('username') })} onClick={this.handleShare} />;
+    } else {
+      shareBtn = <CopyIconButton className='optional' title={intl.formatMessage(messages.copy)} value={account.get('url')} />;
     }
 
     if (me !== account.get('id')) {
@@ -232,11 +240,6 @@ class Header extends ImmutablePureComponent {
 
     if (isRemote) {
       menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: account.get('url') });
-      menu.push(null);
-    }
-
-    if ('share' in navigator && !suspended) {
-      menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
       menu.push(null);
     }
 
@@ -351,10 +354,10 @@ class Header extends ImmutablePureComponent {
 
             <div className='account__header__tabs__buttons'>
               {!hidden && bellBtn}
+              {!hidden && shareBtn}
               <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' iconComponent={MoreVertIcon} size={24} direction='right' />
               {!hidden && actionBtn}
             </div>
-
           </div>
 
           <div className='account__header__tabs__name'>
