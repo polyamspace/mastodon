@@ -31,7 +31,6 @@ export const Profile = () => {
   const [avatar, setAvatar] = useState(null);
   const [header, setHeader] = useState(null);
   const [discoverable, setDiscoverable] = useState(account.get('discoverable'));
-  const [indexable, setIndexable] = useState(account.get('indexable'));
   const [isSaving, setIsSaving] = useState(false);
   const [errors, setErrors] = useState();
   const avatarFileRef = createRef();
@@ -51,10 +50,6 @@ export const Profile = () => {
   const handleDiscoverableChange = useCallback(e => {
     setDiscoverable(e.target.checked);
   }, [setDiscoverable]);
-
-  const handleIndexableChange = useCallback(e => {
-    setIndexable(e.target.checked);
-  }, [setIndexable]);
 
   const handleAvatarChange = useCallback(e => {
     setAvatar(e.target?.files?.[0]);
@@ -76,12 +71,12 @@ export const Profile = () => {
       avatar,
       header,
       discoverable,
-      indexable,
+      indexable: discoverable
     })).then(() => history.push('/start/follows')).catch(err => {
       setIsSaving(false);
       setErrors(err.response.data.details);
     });
-  }, [dispatch, displayName, note, avatar, header, discoverable, indexable, history]);
+  }, [dispatch, displayName, note, avatar, header, discoverable, history]);
 
   return (
     <>
@@ -139,17 +134,19 @@ export const Profile = () => {
               <textarea id='note' value={note} onChange={handleNoteChange} maxLength={500} />
             </div>
           </div>
+
+          <label className='app-form__toggle'>
+            <div className='app-form__toggle__label'>
+              <strong><FormattedMessage id='onboarding.profile.discoverable' defaultMessage='Feature profile and posts in discovery algorithms' /></strong>
+              <span className='hint'><FormattedMessage id='onboarding.profile.discoverable_hint' defaultMessage='When you opt in to discoverability on Mastodon, your posts may appear in search results and trending, and your profile may be suggested to people with similar interests to you.' /></span>
+            </div>
+            <div className='app-form__toggle__toggle'>
+              <div>
+                <Toggle checked={discoverable} onChange={handleDiscoverableChange} />
+              </div>
+            </div>
+          </label>
         </div>
-
-        <label className='report-dialog-modal__toggle'>
-          <Toggle checked={discoverable} onChange={handleDiscoverableChange} />
-          <FormattedMessage id='onboarding.profile.discoverable' defaultMessage='Feature profile and posts in discovery algorithms' />
-        </label>
-
-        <label className='report-dialog-modal__toggle'>
-          <Toggle checked={indexable} onChange={handleIndexableChange} />
-          <FormattedMessage id='onboarding.profile.indexable' defaultMessage='Include public posts in search results' />
-        </label>
 
         <div className='onboarding__footer'>
           <Button block onClick={handleSubmit} disabled={isSaving}>{isSaving ? <LoadingIndicator /> : <FormattedMessage id='onboarding.profile.save_and_continue' defaultMessage='Save and continue' />}</Button>

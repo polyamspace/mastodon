@@ -482,7 +482,7 @@
   "onboarding.follows.lead": "Your home feed is the primary way to experience Mastodon. The more people you follow, the more active and interesting it will be. To get you started, here are some suggestions:",
   "onboarding.follows.title": "Personalize your home feed",
   "onboarding.profile.discoverable": "Make my profile discoverable",
-  "onboarding.profile.discoverable_hint": "When you opt in to discoverability on Mastodon, your posts may appear in search results and trending, and your profile may be suggested to people with similar interests to you.",
+  "onboarding.profile.discoverable_hint": "When you opt in to discoverability on Mastodon, your toots may appear in search results and trending, and your profile may be suggested to people with similar interests to you.",
   "onboarding.profile.display_name": "Display name",
   "onboarding.profile.display_name_hint": "Your full name or your fun name…",
   "onboarding.profile.lead": "You can always complete this later in the settings, where even more customization options are available.",
