@@ -1,3 +1,17 @@
+// Animations
+
+@keyframes flash {
+  from {
+    background: $accent;
+  }
+
+  to {
+    background: $accent-secondary;
+  }
+}
+
+// General
+
 html {
   scrollbar-color: $background-brighter rgba(0, 0, 0, 10%);
 }
@@ -6,9 +20,408 @@ body {
   background-color: $app-background;
 }
 
+// Makes horizontal lines invisible
 hr {
   opacity: 0;
 }
+
+// Uses simple-background and should be white. Used in modals and column settings
+.react-toggle-thumb {
+  background-color: darken($white, 2%);
+}
+
+// Columns
+
+.column > .scrollable,
+.getting-started {
+  border-radius: 0 0 $border-radius $border-radius;
+}
+
+.column-link {
+  background: $ui-base-color;
+
+  // TODO: Due to limitations of the selectors, the item before and after <hr> are missing border-radius
+  // Applies bottom corners roundening to Lists and App settings
+  &:nth-last-of-type(1) {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+
+  // Applies top corners roundening to Home and Preferences
+  &:nth-of-type(1) {
+    border-top-right-radius: $border-radius;
+    border-top-left-radius: $border-radius;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $ui-base-color;
+    color: $white;
+  }
+}
+
+.column-header {
+  background-color: $background-brighter;
+  border-radius: $border-radius $border-radius 0 0;
+
+  &__button,
+  &__back-button {
+    background-color: $background-brighter;
+    border-radius: $border-radius;
+  }
+
+  &__button {
+    &.active,
+    &.active:hover {
+      background: $background-brighter;
+    }
+
+    &:last-child {
+      border-start-end-radius: $border-radius;
+    }
+  }
+
+  &__collapsible-inner {
+    background-color: $background-brighter;
+  }
+}
+
+// Slim button
+.column-back-button {
+  background-color: $background-brighter;
+  border-radius: $border-radius $border-radius 0 0;
+}
+
+// Form in edit/add list
+.column-inline-form {
+  background-color: $background-brighter;
+}
+
+.announcements {
+  background-color: $background-brighter;
+}
+
+// Notification category and account page
+.notification__filter-bar,
+.account__section-headline {
+  background-color: $background-brighter;
+  border-bottom: none;
+
+  a,
+  button {
+    &.active {
+      color: $accent;
+    }
+  }
+
+  // Makes text in account section brighter on hover
+  a:not(.active):hover {
+    color: $white;
+  }
+
+  // Makes icons in notification bar jump up on hover
+  button:not(.active):hover {
+    top: -3px;
+  }
+}
+
+// Animates follow request count
+.icon-with-badge__badge,
+.column-link__badge {
+  background-color: $accent;
+  animation-name: flash;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+// Compose
+
+.navigation-bar {
+  // Add background and border-radius in simple UI
+  background: $ui-base-color;
+  border-radius: $border-radius;
+
+  // Account handle
+  .acct {
+    color: $primary-text-color;
+  }
+}
+
+.drawer {
+  & > div {
+    border-radius: $border-radius;
+  }
+
+  &__header {
+    background-color: $ui-base-color;
+    color: $primary-text-color;
+    border-radius: $border-radius;
+
+    a {
+      border-radius: $border-radius;
+
+      &:hover,
+      &:focus {
+        background-color: rgba($accent-secondary, 0.1);
+        color: $accent;
+      }
+    }
+  }
+
+  // Compose area
+  &__inner {
+    background-color: $background;
+  }
+}
+
+// Fix glitch mascot
+.mbstobon-0,
+.mbstobon-1,
+.mbstobon-2,
+.mbstobon-3 {
+  .drawer__inner__mastodon {
+    background-color: $background;
+  }
+}
+
+// Fixes white corners in simple UI
+.compose-panel {
+  .compose-form {
+    &__autosuggest-wrapper {
+      background-color: transparent;
+    }
+  }
+}
+
+.compose-form {
+  &__buttons-wrapper {
+    background-color: $simple-background-color;
+  }
+
+  &__poll-wrapper {
+    // Arrows in select
+    select {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color($arrow-color)}'/></svg>");
+    }
+
+    .icon-button {
+      // Uses simple-background but should be darker white
+      &.disabled {
+        color: darken($white, 14%);
+      }
+    }
+  }
+
+  &__warning {
+    background-color: $background-brighter;
+  }
+}
+
+.reply-indicator {
+  max-height: 38px;
+  overflow-y: hidden;
+  transition: max-height 1s;
+  background: $background-brighter;
+
+  &:hover {
+    max-height: 100%;
+  }
+}
+
+// Make character counter more readable
+.character-counter {
+  color: $primary-text-color;
+}
+
+// Emoji picker
+
+.emoji-mart-bar:first-child {
+  background: $background;
+  border-bottom: none;
+}
+
+.emoji-mart-anchor {
+  color: $accent-secondary;
+
+  &:hover {
+    color: darken($accent-secondary, 4%);
+  }
+}
+
+// Restore default, since color added to emoji-mart-anchor
+.emoji-mart-anchor-selected {
+  color: $highlight-text-color;
+
+  &:hover {
+    color: darken($highlight-text-color, 4%);
+  }
+}
+
+.emoji-mart-search {
+  input {
+    background: $background;
+    border-color: $app-background;
+  }
+}
+
+.emoji-mart-search-icon {
+  svg {
+    fill: $primary-text-color;
+  }
+}
+
+// Language Dropdown
+
+.language-dropdown {
+  &__dropdown {
+    &__results {
+      &__item {
+        &:focus,
+        &:active,
+        &:hover {
+          background-color: lighten($simple-background-color, 8%);
+        }
+
+        &.active {
+          background-color: lighten($simple-background-color, 8%);
+
+          &:hover {
+            background-color: lighten($simple-background-color, 12%);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Privacy and Options Dropdown
+
+.privacy-dropdown {
+  &__option {
+    &:hover,
+    &.active {
+      background-color: lighten($simple-background-color, 8%);
+
+      &:hover {
+        background-color: lighten($simple-background-color, 8%);
+      }
+    }
+
+    &.active:hover {
+      background-color: lighten($simple-background-color, 12%);
+    }
+  }
+}
+
+// Dropdown
+
+.dropdown-menu {
+  background-color: $ui-base-color;
+
+  &__container {
+    &__header {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+  }
+
+  &__separator {
+    border-bottom: none;
+  }
+}
+
+// Toots
+
+.status {
+  border-bottom: none;
+
+  &__content {
+    a {
+      color: $accent;
+    }
+
+    &__spoiler-link {
+      background-color: $accent-secondary;
+
+      &:hover {
+        background-color: lighten($accent-secondary, 3%);
+      }
+    }
+
+    .status__content__spoiler-link {
+      background-color: $accent-secondary;
+
+      &:focus,
+      &:hover {
+        background-color: lighten($accent-secondary, 3%);
+      }
+    }
+  }
+
+  // Used in modals
+  &.light {
+    // Style the same as default
+    .status__content {
+      a.status__content__spoiler-link {
+        background-color: $accent-secondary;
+
+        &:hover,
+        &:focus {
+          background-color: lighten($accent-secondary, 3%);
+        }
+      }
+    }
+  }
+
+  &--first-in-thread {
+    border-top: none;
+  }
+}
+
+.detailed-status {
+  &__action-bar {
+    border-top: none;
+    border-bottom: none;
+  }
+}
+
+.conversation {
+  border-bottom: none;
+}
+
+.notification-follow,
+.notification-follow-request {
+  border-bottom: none;
+}
+
+.notification__report {
+  border-bottom: none;
+}
+
+// Technically also announcements
+.reactions-bar {
+  &__item {
+    background-color: $ui-base-color;
+    color: $primary-text-color;
+
+    &:hover {
+      background-color: rgba($accent-secondary, 0.1);
+    }
+
+    &.active {
+      background-color: rgba($accent-secondary, 0.25);
+      color: $accent-secondary;
+
+      .reactions-bar__item__count {
+        color: $accent;
+      }
+    }
+  }
+}
+
+// Buttons
 
 .icon-button {
   &.inverted {
@@ -19,6 +432,11 @@ hr {
     &:focus {
       background: rgba($accent-secondary, 0.25);
       color: $accent-secondary;
+    }
+
+    // Restore brighter color when active
+    &.active {
+      color: $accent;
     }
   }
 
@@ -38,853 +456,162 @@ hr {
   }
 }
 
-.status__content__spoiler-link {
-  background: $accent-secondary;
-
-  &:hover {
-    background: lighten($accent-secondary, 3%);
-  }
-}
-
-.status__content {
-  .status__content__spoiler-link {
-    background: $accent-secondary;
-
-    &:focus,
-    &:hover {
-      background: lighten($accent-secondary, 3%);
-    }
-  }
-}
-
-.status {
-  border-bottom: none;
-
-  &.light {
-    .status__content {
-      color: $primary-text-color;
-    }
-
-    .display-name {
-      strong {
-        color: $primary-text-color;
-      }
-    }
-  }
-
-  &--first-in-thread {
-    border-top: none;
-  }
-
-  &.status-direct {
-    background: lighten($ui-base-color, 8%);
-  }
-
-  &.collapsed {
-    &.status-direct > .status__content::after {
-      background: linear-gradient(
-        rgba(lighten($ui-base-color, 8%), 0),
-        rgba(lighten($ui-base-color, 8%), 1)
-      );
-    }
-  }
-}
-
-.focusable {
-  &:focus {
-    &.status.status-direct {
-      background: lighten($ui-base-color, 12%);
-    }
-  }
-}
-
-.detailed-status {
-  &__action-bar {
-    border-top: none;
-    border-bottom: none;
-  }
-}
-
-.conversation {
-  border-bottom: none;
-}
-
-.reactions-bar {
-  &__item {
-    background: $ui-base-color;
-    color: $primary-text-color;
-
-    &:hover {
-      background: rgba($accent-secondary, 0.1);
-    }
-
-    &.active {
-      background: rgba($accent-secondary, 0.25);
-      color: $accent-secondary;
-
-      .reactions-bar__item__count {
-        color: $accent;
-      }
-    }
-  }
-}
-
-.notification-follow,
-.notification-follow-request {
-  border-bottom: none;
-}
-
-.notification__report {
-  border-bottom: none;
-}
-
-.dropdown-menu {
-  background: $ui-base-color;
-
-  &__container__header {
-    color: $primary-text-color;
-  }
-
-  &__item {
-    color: $primary-text-color;
-
-    a,
-    button {
-      background: $ui-base-color;
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: $primary-text-color;
-      }
-    }
-  }
-
-  &__separator {
-    opacity: 0;
-  }
-
-  // Do the following two even work?
-  &__arrow {
-    border-bottom-color: $ui-base-color;
-  }
-
-  &__arrow.top {
-    border-top-color: $ui-base-color;
-  }
-}
-
-a.mention,
-a.mention.hashtag {
-  color: $accent;
-}
-
-// local settings
-
-.glitch.local-settings {
-  // fixes white outline in navigation
-  background: $ui-base-color;
-
-  &__page {
-    background: $background-brighter;
-    border-bottom: none;
-    color: $primary-text-color;
-  }
-
-  &__navigation,
-  &__navigation__item {
-    background: $ui-base-color;
-    color: $primary-text-color;
-  }
-
-  &__navigation__item {
-    border-top: none;
-    border-bottom: none;
-
-    &:hover {
-      background: $background-brighter;
-    }
-  }
-}
-
-// columns
-
-.column-back-button {
-  border-radius: $border-radius $border-radius 0 0;
-}
-
-.column > .scrollable,
-.getting-started {
-  border-radius: 0 0 $border-radius $border-radius;
-}
-
-.column-link {
-  background: $ui-base-color;
-
-  // Applies bottom corners roundening to Lists and App settings
-  &:nth-last-of-type(1),
-  &:nth-of-type(10) {
-    border-radius: 0 0 $border-radius $border-radius;
-  }
-
-  // Applies top corners roundening to Home and Preferences
-  &:nth-of-type(1),
-  &:nth-of-type(11) {
-    border-radius: $border-radius $border-radius 0 0;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    background: $ui-base-color;
-    color: $white;
-  }
-}
-
-.icon-with-badge__badge,
-.column-link__badge {
-  background-color: $accent;
-  animation-name: flash;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate-reverse;
-}
-
-.column-header {
-  background: $background-brighter;
-  border-bottom: none;
-  border-radius: $border-radius $border-radius 0 0;
-
-  &.active {
-    .column-header__icon {
-      text-shadow: 0 0 10px rgba($accent, 0.4);
-    }
-  }
-
-  &__button {
-    background: $background-brighter;
-
-    &.active,
-    &.active:hover {
-      background: $background-brighter;
-    }
-  }
-
-  &__back-button {
-    background: $background-brighter;
-  }
-
-  &__collapsible-inner {
-    background: $background-brighter;
-  }
-
-  &__wrapper {
-    &:active {
-      box-shadow: 0 1px 0 rgba($accent, 0.3);
-
-      &::before {
-        background: radial-gradient(
-          ellipse,
-          rgba($accent, 0.23) 0%,
-          rgba($accent, 0) 60%
-        );
-      }
-    }
-  }
-}
-
-.announcements {
-  background: $background-brighter;
-}
-
-.notification__filter-bar {
-  background: $background-brighter;
-  border-bottom: none;
-
-  & > button {
-    background: $background-brighter;
-    border-bottom: none;
-  }
-
-  a.active {
-    color: $accent;
-
-    &::before,
-    &::after {
-      border-color: transparent transparent $ui-base-color;
-    }
-  }
-
-  button.active {
-    border-bottom: 3px solid $accent;
-    color: $accent;
-
-    &::after,
-    &::before {
-      opacity: 0;
-      border-color: transparent transparent $ui-base-color;
-    }
-  }
-
-  button:not(.active):hover {
-    top: -3px;
-  }
-}
+// Icons
 
 .notification__favourite-icon-wrapper .fa.star-icon {
   color: $accent;
 }
 
+// Account page
+
 .account {
   border-bottom: none;
 
-  &__action-bar,
-  &__action-bar__tab {
-    border: none;
+  &__action-bar {
+    border-top: none;
+    border-bottom: none;
+
+    &__tab {
+      border-inline-start: none;
+    }
   }
 
   &__disclaimer,
   &__action-bar-links {
-    background: $background-brighter;
+    background-color: $background-brighter;
   }
 
   &__header {
     &__bar {
-      border-top: none;
       border-bottom: none;
-      background: $background-brighter;
+      background-color: $background-brighter;
     }
 
-    &__fields,
-    &__fields dl,
-    &__bio &__fields {
-      border-top: none;
+    &__bio {
+      .account__header__fields {
+        border-top: none;
+      }
+    }
+
+    &__fields {
       border-bottom: none;
-    }
+      border-top: none;
 
-    &__fields dt {
-      color: $primary-text-color;
-    }
-  }
-
-  &__section-headline {
-    background: $background-brighter;
-    color: $accent;
-    border-bottom: none;
-
-    .active {
-      border-bottom: 3px solid $accent;
-    }
-
-    a {
-      &:hover {
-        color: $white;
-      }
-
-      &.active {
-        color: $accent;
-
-        &::before,
-        &::after {
-          display: none;
-          border-color: transparent transparent $ui-base-color;
-        }
-      }
-    }
-
-    button.active {
-      color: $accent;
-
-      &::before,
-      &::after {
-        border-color: transparent transparent $ui-base-color;
-      }
-    }
-  }
-}
-
-// compose
-
-.drawer {
-  & > div {
-    border-radius: $border-radius;
-  }
-
-  &__inner {
-    background: $ui-base-color;
-  }
-}
-
-.drawer__header {
-  background: $ui-base-color;
-  color: $primary-text-color;
-  border-radius: $border-radius;
-
-  a {
-    border-radius: $border-radius;
-
-    &:hover,
-    &:focus {
-      background: rgba($accent-secondary, 0.1);
-      color: $accent;
-    }
-  }
-}
-
-.search__input {
-  background: $background-brighter;
-}
-
-.search-popout {
-  background: $ui-base-color;
-  color: $primary-text-color;
-
-  em {
-    color: $accent;
-  }
-}
-
-.navigation-bar {
-  background: $ui-base-color;
-  color: $primary-text-color;
-  border-radius: $border-radius;
-
-  .acct {
-    color: $primary-text-color;
-  }
-}
-
-// glitch mascot
-
-.drawer__inner__mastodon {
-  background: $ui-base-color
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>')
-    no-repeat bottom / 100% auto;
-}
-
-@for $i from 0 through 3 {
-  .mbstobon-#{$i} .drawer__inner__mastodon {
-    @if $i == 3 {
-      background:
-        url('~flavours/glitch/images/wave-drawer.png')
-          no-repeat
-          bottom /
-          100%
-          auto,
-        $ui-base-color;
-    } @else {
-      background:
-        url('~flavours/glitch/images/wave-drawer-glitched.png')
-          no-repeat
-          bottom /
-          100%
-          auto,
-        $ui-base-color;
-    }
-
-    & > .mastodon {
-      background: url('~flavours/glitch/images/mbstobon-ui-#{$i}.png')
-        no-repeat
-        left
-        bottom /
-        contain;
-
-      @if $i != 3 {
-        filter: contrast(50%) brightness(50%);
-      }
-    }
-  }
-}
-
-// Fixes white corners in simpleUI
-.compose-panel .compose-form__autosuggest-wrapper {
-  background: transparent;
-}
-
-.compose-form {
-  &__buttons-wrapper {
-    background: $background-brighter;
-  }
-
-  &__poll-wrapper select {
-    background-color: $background-brighter;
-    color: $primary-text-color;
-  }
-
-  &__modifiers {
-    background: $background-brighter;
-    color: $primary-text-color;
-  }
-
-  .spoiler-input__input,
-  .autosuggest-textarea label .autosuggest-textarea__textarea,
-  .poll__option input,
-  &__autosuggest-wrapper {
-    background: $background-brighter;
-    color: $primary-text-color;
-  }
-
-  // Restore default color for better readability
-  &__upload {
-    .icon-button {
-      color: $classic-secondary-color;
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: lighten($classic-secondary-color, 7%);
-      }
-    }
-  }
-}
-
-.character-counter {
-  color: $primary-text-color;
-}
-
-.privacy-dropdown {
-  &__dropdown,
-  &.active .privacy-dropdown__value {
-    background: $background-brighter;
-    color: $primary-text-color;
-  }
-
-  &__option {
-    // icon color
-    color: $primary-text-color;
-
-    .privacy-dropdown__option__content {
-      strong {
+      dt {
         color: $primary-text-color;
       }
     }
   }
 }
 
-.reply-indicator {
-  max-height: 38px;
-  overflow-y: hidden;
-  transition: max-height 1s;
-  background: $background-brighter;
+// Modals
 
-  &:hover {
-    max-height: 100%;
-  }
-
-  // Fix colors
-
-  &__reply-to {
-    color: $secondary-text-color;
-  }
-
-  &__header > .account.small {
-    color: $primary-text-color;
-  }
-
-  &__content {
-    color: $primary-text-color;
-
-    blockquote {
-      color: $darker-text-color;
-      border-inline-start-color: $darker-text-color;
-    }
-  }
-}
-
-// emoji picker
-
-.emoji-mart-scroll,
-.emoji-mart-search,
-.emoji-mart-category-label > span,
-.emoji-picker-dropdown__menu,
-.emoji-picker-dropdown__modifiers__menu {
-  background: $ui-base-color;
-  color: $primary-text-color;
-}
-
-.emoji-mart-search {
-  input {
-    background: $background-brighter;
-    color: $primary-text-color;
-  }
-}
-
-.emoji-picker-dropdown__modifiers__menu {
-  button {
-    &:hover {
-      background: $background-brighter;
-    }
-  }
-}
-
-.emoji-mart-bar:first-child {
-  background: $background-brighter;
-  border-bottom: none;
-}
-
-.emoji-mart-anchor-bar {
-  background: $accent;
-}
-
-.emoji-mart-anchor {
-  color: $accent-secondary;
-
-  &:hover {
-    color: darken($accent-secondary, 4%);
-  }
-}
-
-// Copied from glitch-soc style. Doesn't get applied with above rule otherwise for some reason.
-.emoji-mart-anchor-selected {
-  color: $highlight-text-color;
-
-  &:hover {
-    color: darken($highlight-text-color, 4%);
-  }
-}
-
-// language dropdown
-
-.language-dropdown {
-  &__dropdown {
-    &__results {
-      &__item {
-        color: $primary-text-color;
-
-        &:focus,
-        &:active,
-        &:hover {
-          background: lighten($ui-base-color, 4%);
-        }
-
-        &.active {
-          color: $inverted-text-color;
-
-          .language-dropdown__dropdown__results__item__common-name {
-            color: $lighter-text-color;
-          }
-        }
-      }
-    }
-  }
-}
-
-// modals
-
+.doodle-modal,
+.boost-modal,
+.confirmation-modal,
+.report-modal,
+.actions-modal,
 .mute-modal,
 .block-modal,
-.boost-modal,
-.confirmation-modal {
-  background: lighten($ui-base-color, 8%);
-  color: $primary-text-color;
+.compare-history-modal,
+.report-dialog-modal {
+  background-color: lighten($ui-base-color, 8%);
 
   &__action-bar {
-    background: $ui-base-color;
-
-    & > div {
-      color: $darker-text-color;
-    }
-  }
-
-  &__cancel-button,
-  &__secondary-button {
-    color: $primary-text-color;
-    background: darken($ui-highlight-color, 3%);
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: $primary-text-color;
-      background: $ui-highlight-color;
-    }
-  }
-
-  .setting-toggle__label {
-    color: $primary-text-color;
-  }
-
-  .status__content__spoiler-link {
-    color: $inverted-text-color;
-  }
-}
-
-.actions-modal {
-  background: lighten($ui-base-color, 8%);
-  color: $primary-text-color;
-
-  .status {
-    background: $ui-base-color;
-  }
-
-  ul {
-    li:not(:empty) {
-      a {
-        color: $primary-text-color;
-      }
-    }
-  }
-}
-
-.compare-history-modal {
-  background: $ui-base-color;
-  color: $primary-text-color;
-
-  .status__content {
-    color: $primary-text-color;
-
-    hr {
-      background-color: $ui-base-lighter-color;
-    }
-  }
-}
-
-// media description modal
-.report-modal {
-  background: lighten($ui-base-color, 8%);
-
-  &__target {
-    background-color: lighten($ui-base-color, 8%);
-    color: $primary-text-color;
+    background-color: $ui-base-color;
   }
 
   &__comment {
-    background: lighten($ui-base-color, 8%);
-    color: $primary-text-color;
+    border-inline-end: none;
 
+    // Textarea in adding alt-text
     .setting-text {
-      background: $background-brighter;
-      color: $primary-text-color;
+      background-color: $simple-background-color;
 
-      &:hover,
-      &:focus,
-      &:active {
-        color: $primary-text-color;
-      }
-    }
-
-    .setting-text-label {
-      color: $primary-text-color;
-    }
-  }
-}
-
-// Also applies to filter-modal
-.report-dialog-modal {
-  background: lighten($ui-base-color, 8%);
-  color: $primary-text-color;
-
-  &__lead {
-    color: $darker-text-color;
-
-    a {
-      color: $ui-highlight-color;
-    }
-  }
-
-  &__statuses {
-    background: $ui-base-color;
-    color: $primary-text-color;
-  }
-
-  &__textarea {
-    background: $background-brighter;
-    color: $primary-text-color;
-  }
-
-  .status__content,
-  .status__content p {
-    color: $primary-text-color;
-  }
-
-  .status__content__spoiler-link {
-    color: $inverted-text-color;
-    background: $accent-secondary;
-
-    &:hover {
-      background: lighten($accent-secondary, 3%);
-    }
-  }
-
-  .poll__option.dialog-option {
-    & > .poll__option__text {
-      color: $primary-text-color;
-
-      strong {
-        color: $primary-text-color;
-      }
-
-      .detailed-status__display-name {
-        color: $darker-text-color;
+      &__wrapper {
+        border: none;
       }
     }
   }
 
-  .dialog-option .poll__input {
-    border-color: $primary-text-color;
+  &__container {
+    border-color: $ui-base-lighter-color;
 
-    &:active,
-    &:focus,
-    &:hover {
-      border-color: lighten($ui-base-color, 33%);
-    }
-
-    &.active {
-      border-color: $primary-text-color;
+    // Arrows in select in mute modal
+    select {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color($arrow-color)}'/></svg>");
     }
   }
 
+  // Buttons in report modal after sending
   .button.button-secondary {
-    color: $primary-text-color;
-
     &:hover,
     &:focus,
     &:active {
-      color: $white;
+      border-color: $accent;
+      color: $accent;
     }
   }
 
-  // specific to filter-modal
+  // Compare history modal uses .report-modal__target
+  .report-modal__target,
+  &__target {
+    border-color: $ui-base-lighter-color;
+  }
 
-  .emoji-mart-scroll,
-  .emoji-mart-search {
-    background: $ui-base-color;
-    color: $primary-text-color;
+  .status__content {
+    // Make horizontal line in history modal visible again
+    hr {
+      opacity: 1;
+      background-color: $ui-base-lighter-color;
+    }
 
-    input {
+    &__spoiler-link {
       color: $primary-text-color;
     }
   }
 
-  .language-dropdown__dropdown__results__item {
-    color: $primary-text-color;
+  // Borders in report modal between categories, rules and toots
+  .poll__option.dialog-option {
+    border-color: $ui-base-lighter-color;
+  }
 
-    &:hover {
-      background: lighten($ui-base-color, 4%);
+  // Checkmark in checkboxes
+  .dialog-option .poll__input {
+    color: $ui-base-color;
+  }
+}
+
+.glitch.local-settings {
+  background-color: $ui-base-color;
+
+  &__navigation {
+    background-color: $background-brighter;
+
+    &__item {
+      background-color: $background-brighter;
+      border-top: none;
+      border-bottom: none;
+
+      &:hover {
+        background-color: $ui-base-color;
+      }
     }
   }
 }
 
-.embed-modal {
-  &__container {
-    .hint {
-      color: $primary-text-color;
-    }
-  }
+// Settings
+
+// Uses simple-background and should be white
+.qr-code {
+  background-color: $white;
 }
 
-// Animations
-
-@keyframes flash {
-  from {
-    background: $accent;
-  }
-
-  to {
-    background: $accent-secondary;
+.simple_form {
+  select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color($arrow-color)}'/></svg>");
   }
 }
-
-// admin interface
 
 .admin-wrapper {
   .content {
@@ -898,26 +625,19 @@ a.mention.hashtag {
     }
   }
 
-  .sidebar-wrapper {
-    &__inner {
-      background: $background;
-    }
-  }
-
   .sidebar {
-    ul a {
-      background: $background;
-
-      &:hover {
-        background: $background;
-      }
-
-      &.selected {
-        background: $background;
-      }
-    }
-
     ul {
+      a {
+        &:hover {
+          background: $ui-base-color;
+        }
+
+        &.selected {
+          background: $ui-base-color;
+        }
+      }
+
+      // Still highlight selected element
       .simple-navigation-active-leaf a {
         background: $accent;
 
@@ -925,10 +645,15 @@ a.mention.hashtag {
           background: $accent-bright;
         }
       }
+
+      ul {
+        background-color: $ui-base-color;
+      }
     }
   }
 }
 
+// Fix text color in lists like rules, announcements etc
 .announcements-list,
 .filters-list {
   &__item {
@@ -948,11 +673,13 @@ a.mention.hashtag {
 
 .table {
   &.horizontal-table {
+    // Removes lines in blocked domain view
     & > tbody > tr > th,
     & > tbody > tr > td {
       border: none;
     }
 
+    // Lines between table elements
     & > tbody > tr {
       border: 1px solid lighten($ui-base-color, 8%);
     }

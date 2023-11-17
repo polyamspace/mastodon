@@ -18,7 +18,7 @@ $red-bookmark: $warning-red;
 
 // Oatstodon colors
 $text: #d9e1e8;
-$text-secondary: #606984;
+$text-secondary: #606984; // Is actually just dark-text-color
 
 $background: #121225;
 $background-brighter: #16162f;
@@ -34,6 +34,8 @@ $classic-primary-color: #9baec8; // Echo Blue
 $classic-secondary-color: #d9e1e8; // Pattens Blue
 $classic-highlight-color: #6364ff; // Brand purple
 
+$simple-background-color: $background-brighter !default;
+
 // text color
 $primary-text-color: $text !default; // oatstodon text-color
 $secondary-text-color: $text-secondary !default; // oatstodon text-color-secondary
@@ -42,15 +44,20 @@ $dark-text-color: lighten(
   $classic-base-color,
   26%
 ) !default; // default Mastodon color
-$lighter-text-color: $secondary-text-color !default;
+$darker-text-color: $classic-primary-color !default;
+
+// Color inverted colors the same as regular colors
+$inverted-text-color: $primary-text-color !default;
+$light-text-color: $dark-text-color !default;
+$lighter-text-color: $darker-text-color !default;
 
 // UI
 $ui-base-color: $background !default; // oatstodon background-color
 $ui-highlight-color: $accent !default; // oatstodon accent-color
 
 $ui-button-color: $white !default;
-$ui-button-background-color: darken($ui-highlight-color, 3%) !default;
-$ui-button-focus-background-color: $ui-highlight-color !default;
+$ui-button-background-color: darken($accent, 12%) !default;
+$ui-button-focus-background-color: darken($accent, 8%) !default;
 
 $ui-button-secondary-color: $grey-100 !default;
 $ui-button-secondary-border-color: $grey-100 !default;
@@ -67,3 +74,6 @@ $ui-button-destructive-focus-background-color: $red-600 !default;
 
 // Border
 $border-radius: 5px !default;
+
+// Arrows in select elements
+$arrow-color: $accent-secondary !default;
