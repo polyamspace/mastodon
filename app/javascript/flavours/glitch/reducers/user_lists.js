@@ -35,6 +35,12 @@ import {
   FOLLOW_REQUESTS_EXPAND_FAIL,
   FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
   FOLLOW_REQUEST_REJECT_SUCCESS,
+  PINNED_ACCOUNTS_FETCH_REQUEST,
+  PINNED_ACCOUNTS_FETCH_SUCCESS,
+  PINNED_ACCOUNTS_FETCH_FAIL,
+  PINNED_ACCOUNTS_EXPAND_REQUEST,
+  PINNED_ACCOUNTS_EXPAND_SUCCESS,
+  PINNED_ACCOUNTS_EXPAND_FAIL,
 } from '../actions/accounts';
 import {
   BLOCKS_FETCH_REQUEST,
@@ -230,6 +236,16 @@ export default function userLists(state = initialState, action) {
     return state.setIn(['featured_tags', action.id, 'isLoading'], true);
   case FEATURED_TAGS_FETCH_FAIL:
     return state.setIn(['featured_tags', action.id, 'isLoading'], false);
+  case PINNED_ACCOUNTS_FETCH_REQUEST:
+  case PINNED_ACCOUNTS_EXPAND_REQUEST:
+    return state.setIn(['featured_accounts', action.id, 'isLoading'], true);
+  case PINNED_ACCOUNTS_FETCH_FAIL:
+  case PINNED_ACCOUNTS_EXPAND_FAIL:
+    return state.setIn(['featured_accounts', action.id, 'isLoading'], false);
+  case PINNED_ACCOUNTS_FETCH_SUCCESS:
+    return normalizeList(state, ['featured_accounts', action.id], action.accounts, action.next);
+  case PINNED_ACCOUNTS_EXPAND_SUCCESS:
+    return appendToList(state, ['featured_accounts', action.id], action.accounts, action.next);
   default:
     return state;
   }
