@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { me } from 'flavours/glitch/initial_state';
+import { me } from '../initial_state';
 
 import { Avatar } from './avatar';
 import { FollowersCounter } from './counters';
