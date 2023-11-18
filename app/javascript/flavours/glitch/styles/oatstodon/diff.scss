@@ -219,6 +219,21 @@ hr {
   }
 }
 
+.autosuggest-textarea {
+  &__suggestions {
+    background-color: $simple-background-color;
+
+    &__item {
+      &:hover,
+      &:focus,
+      &:active,
+      &.selected {
+        background-color: lighten($simple-background-color, 8%);
+      }
+    }
+  }
+}
+
 .reply-indicator {
   max-height: 38px;
   overflow-y: hidden;
