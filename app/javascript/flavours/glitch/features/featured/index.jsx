@@ -39,11 +39,12 @@ const Featured = ({ params, multiColumn, type }) => {
   const acct = useAppSelector((state) => state.getIn(['accounts', accountId, 'acct']));
   const remoteUrl = useAppSelector((state) => state.getIn(['accounts', accountId, 'url']));
   const isAccount = useAppSelector((state) => !!(state.getIn(['accounts', accountId])));
-  const featuredItems = useAppSelector((state) => state.getIn(['user_lists', showTags ? 'featured_tags' : 'featured_accounts', accountId, 'items'], ImmutableList()));
-  const isLoading = useAppSelector((state) => !accountId || state.getIn(['user_lists', showTags ? 'featured_tags' : 'featured_accounts', accountId, 'isLoading'], true));
-  const hasMore = useAppSelector((state) => !accountId || state.getIn(['user_lists', showTags ? 'featured_tags' : 'featured_accounts', accountId, 'next'], false));
   const suspended = useAppSelector((state) => state.getIn(['accounts', accountId, 'suspended'], false));
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
+  // Featured tags are still returned for limited accounts, preventing the limited account hint from showing, so explicitely set an empty list
+  const featuredItems = useAppSelector((state) => !hidden ? state.getIn(['user_lists', showTags ? 'featured_tags' : 'featured_accounts', accountId, 'items'], ImmutableList()) : ImmutableList());
+  const isLoading = useAppSelector((state) => !accountId || state.getIn(['user_lists', showTags ? 'featured_tags' : 'featured_accounts', accountId, 'isLoading'], true));
+  const hasMore = useAppSelector((state) => !accountId || !!state.getIn(['user_lists', showTags ? 'featured_tags' : 'featured_accounts', accountId, 'next']));
 
   const handleHeaderClick = useCallback(() => columnRef.current?.scrollTop(), []);
 
@@ -78,9 +79,6 @@ const Featured = ({ params, multiColumn, type }) => {
 
   let emptyMessage;
 
-  /*NOTE: Limited account hint will never show, most likely because featured tags are still returned for limited accounts,
-     *      while other requests return empty data.
-     */
   if (suspended) {
     emptyMessage = <FormattedMessage id='empty_column.account_suspended' defaultMessage='Account suspended' />;
   } else if (hidden) {
