@@ -163,7 +163,7 @@ class Header extends ImmutablePureComponent {
           </div>
         )}
         {!(hideTabs || hidden) && featured && (
-          <div className='account__section-headline'>
+          <div className='account__section-headline featured'>
             <NavLink isActive={this.isFeaturedPageActive} exact to={`/@${account.get('acct')}/featured/tags`}><FormattedMessage id='explore.trending_tags' defaultMessage='Hashtags' /></NavLink>
             <NavLink exact to={`/@${account.get('acct')}/featured/accounts`}><FormattedMessage id='explore.suggested_follows' defaultMessage='People' /></NavLink>
           </div>
