@@ -1,4 +1,6 @@
 {
+  "account.featured": "Featured",
+  "account.featured_accounts.empty": "This user doesn't feature any accounts yet.",
   "account.featured_tags.empty": "This user doesn't feature any hashtags yet.",
   "account.request_follow": "Request follow",
   "column.reacted_by": "Reacted by",

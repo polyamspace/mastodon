@@ -82,6 +82,10 @@ export const PINNED_ACCOUNTS_FETCH_REQUEST = 'PINNED_ACCOUNTS_FETCH_REQUEST';
 export const PINNED_ACCOUNTS_FETCH_SUCCESS = 'PINNED_ACCOUNTS_FETCH_SUCCESS';
 export const PINNED_ACCOUNTS_FETCH_FAIL    = 'PINNED_ACCOUNTS_FETCH_FAIL';
 
+export const PINNED_ACCOUNTS_EXPAND_REQUEST = 'PINNED_ACCOUNTS_EXPAND_REQUEST';
+export const PINNED_ACCOUNTS_EXPAND_SUCCESS = 'PINNED_ACCOUNTS_EXPAND_SUCCESS';
+export const PINNED_ACCOUNTS_EXPAND_FAIL    = 'PINNED_ACCOUNTS_EXPAND_FAIL';
+
 export const PINNED_ACCOUNTS_SUGGESTIONS_FETCH_REQUEST  = 'PINNED_ACCOUNTS_SUGGESTIONS_FETCH_REQUEST';
 export const PINNED_ACCOUNTS_SUGGESTIONS_FETCH_SUCCESS  = 'PINNED_ACCOUNTS_SUGGESTIONS_FETCH_SUCCESS';
 export const PINNED_ACCOUNTS_SUGGESTIONS_FETCH_FAIL     = 'PINNED_ACCOUNTS_SUGGESTIONS_FETCH_FAIL';
@@ -741,10 +745,13 @@ export function rejectFollowRequestFail(id, error) {
 
 export function pinAccount(id) {
   return (dispatch, getState) => {
+    const me = getState().getIn(['meta', 'me']);
+
     dispatch(pinAccountRequest(id));
 
     api(getState).post(`/api/v1/accounts/${id}/pin`).then(response => {
       dispatch(pinAccountSuccess(response.data));
+      dispatch(fetchPinnedAccounts(me));
     }).catch(error => {
       dispatch(pinAccountFail(error));
     });
@@ -753,10 +760,13 @@ export function pinAccount(id) {
 
 export function unpinAccount(id) {
   return (dispatch, getState) => {
+    const me = getState().getIn(['meta', 'me']);
+
     dispatch(unpinAccountRequest(id));
 
     api(getState).post(`/api/v1/accounts/${id}/unpin`).then(response => {
       dispatch(unpinAccountSuccess(response.data));
+      dispatch(fetchPinnedAccounts(me));
     }).catch(error => {
       dispatch(unpinAccountFail(error));
     });
@@ -810,37 +820,89 @@ export const revealAccount = id => ({
   id,
 });
 
-export function fetchPinnedAccounts() {
+export function fetchPinnedAccounts(id, limit = 0) {
   return (dispatch, getState) => {
-    dispatch(fetchPinnedAccountsRequest());
+    dispatch(fetchPinnedAccountsRequest(id));
 
-    api(getState).get('/api/v1/endorsements', { params: { limit: 0 } }).then(response => {
+    api(getState).get(`/api/v1/accounts/${id}/pinned`, { params: { limit } }).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
       dispatch(importFetchedAccounts(response.data));
-      dispatch(fetchPinnedAccountsSuccess(response.data));
-    }).catch(err => dispatch(fetchPinnedAccountsFail(err)));
+      dispatch(fetchPinnedAccountsSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(err => dispatch(fetchPinnedAccountsFail(id, err)));
   };
 }
 
-export function fetchPinnedAccountsRequest() {
+export function fetchPinnedAccountsRequest(id) {
   return {
     type: PINNED_ACCOUNTS_FETCH_REQUEST,
+    id,
   };
 }
 
-export function fetchPinnedAccountsSuccess(accounts, next) {
+export function fetchPinnedAccountsSuccess(id, accounts, next) {
   return {
     type: PINNED_ACCOUNTS_FETCH_SUCCESS,
+    id,
     accounts,
     next,
   };
 }
 
-export function fetchPinnedAccountsFail(error) {
+export function fetchPinnedAccountsFail(id, error) {
   return {
     type: PINNED_ACCOUNTS_FETCH_FAIL,
+    id,
     error,
   };
 }
+
+export const expandPinnedAccounts = (id) => {
+  return (dispatch, getState) => {
+    const url = getState().getIn(['user_lists', 'featured_accounts', id, 'next']);
+
+    if (url === null) {
+      return;
+    }
+
+    dispatch(expandPinnedAccountsRequest(id));
+
+    api(getState).get(url).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(expandPinnedAccountsSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => {
+      dispatch(expandPinnedAccountsFail(id, error));
+    });
+  };
+};
+
+export const expandPinnedAccountsRequest = (id) => {
+  return {
+    type: PINNED_ACCOUNTS_EXPAND_REQUEST,
+    id,
+  };
+};
+
+export const expandPinnedAccountsSuccess = (id, accounts, next) => {
+  return {
+    type: PINNED_ACCOUNTS_EXPAND_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+};
+
+export const expandPinnedAccountsFail = (id, error) => {
+  return {
+    type: PINNED_ACCOUNTS_EXPAND_FAIL,
+    id,
+    error,
+  };
+};
 
 export function fetchPinnedAccountsSuggestions(q) {
   return (dispatch, getState) => {

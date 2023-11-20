@@ -11,16 +11,25 @@ import spring from 'react-motion/lib/spring';
 import { fetchPinnedAccounts, clearPinnedAccountsSuggestions, resetPinnedAccountsEditor } from 'flavours/glitch/actions/accounts';
 import Motion from 'flavours/glitch/features/ui/util/optional_motion';
 
+import { LoadingIndicator } from '../../components/loading_indicator';
+import { me } from '../../initial_state';
+
 import AccountContainer from './containers/account_container';
 import SearchContainer from './containers/search_container';
 
-const mapStateToProps = state => ({
-  accountIds: state.getIn(['pinnedAccountsEditor', 'accounts', 'items']),
-  searchAccountIds: state.getIn(['pinnedAccountsEditor', 'suggestions', 'items']),
-});
+
+const mapStateToProps = state => {
+  const myAccount = state.getIn(['accounts', me]);
+
+  return {
+    myAccount,
+    accountIds: state.getIn(['user_lists', 'featured_accounts', myAccount.get('id'), 'items']),
+    searchAccountIds: state.getIn(['pinnedAccountsEditor', 'suggestions', 'items']),
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  onInitialize: () => dispatch(fetchPinnedAccounts()),
+  onInitialize: (myAccount) => dispatch(fetchPinnedAccounts(myAccount.get('id'))),
   onClear: () => dispatch(clearPinnedAccountsSuggestions()),
   onReset: () => dispatch(resetPinnedAccountsEditor()),
 });
@@ -34,13 +43,14 @@ class PinnedAccountsEditor extends ImmutablePureComponent {
     onClear: PropTypes.func.isRequired,
     onReset: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
+    myAccount: ImmutablePropTypes.map.isRequired,
     accountIds: ImmutablePropTypes.list.isRequired,
     searchAccountIds: ImmutablePropTypes.list.isRequired,
   };
 
   componentDidMount () {
-    const { onInitialize } = this.props;
-    onInitialize();
+    const { onInitialize, myAccount } = this.props;
+    onInitialize(myAccount);
   }
 
   componentWillUnmount () {
@@ -51,6 +61,12 @@ class PinnedAccountsEditor extends ImmutablePureComponent {
   render () {
     const { accountIds, searchAccountIds, onClear } = this.props;
     const showSearch = searchAccountIds.size > 0;
+
+    if (!accountIds) {
+      return (
+        <LoadingIndicator />
+      );
+    }
 
     return (
       <div className='modal-root__modal list-editor'>
