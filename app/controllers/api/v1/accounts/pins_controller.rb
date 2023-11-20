@@ -90,7 +90,7 @@ class Api::V1::Accounts::PinsController < Api::BaseController
   end
 
   def limit
-    params[:limit].to_i
+    params[:limit].to_i || DEFAULT_ACCOUNTS_LIMIT
   end
 
   def unlimited?

@@ -58,7 +58,7 @@ const Featured = ({ params, multiColumn, type }) => {
     } else {
       if (!isAccount) dispatch(fetchAccount(accountId));
       dispatch(fetchFeaturedTags(accountId));
-      dispatch(fetchPinnedAccounts(accountId, 10));
+      dispatch(fetchPinnedAccounts(accountId, undefined));
     }
 
   }, [dispatch, showTags, isAccount, accountId, params]);
