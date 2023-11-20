@@ -192,7 +192,7 @@ export function getHashtagBarForStatus(status: StatusLike) {
 
   return {
     statusContentProps,
-    hashtagBar: <HashtagBar hashtags={hashtagsInBar} />,
+    hashtagBar: <HashtagBar key='hashtag-bar' hashtags={hashtagsInBar} />,
   };
 }
 
