@@ -22,7 +22,7 @@ import { VerifiedBadge } from './verified_badge';
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
+  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   mute_notifications: { id: 'account.mute_notifications', defaultMessage: 'Mute notifications from @{name}' },
@@ -43,7 +43,6 @@ class Account extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     hidden: PropTypes.bool,
     minimal: PropTypes.bool,
-    small: PropTypes.bool,
     actionIcon: PropTypes.string,
     actionTitle: PropTypes.string,
     defaultAction: PropTypes.string,
@@ -81,19 +80,7 @@ class Account extends ImmutablePureComponent {
   };
 
   render () {
-    const {
-      account,
-      hidden,
-      withBio,
-      intl,
-      small,
-      onActionClick,
-      actionIcon,
-      actionTitle,
-      defaultAction,
-      size,
-      minimal,
-    } = this.props;
+    const { account, intl, hidden, withBio, onActionClick, actionIcon, actionTitle, defaultAction, size, minimal } = this.props;
 
     if (!account) {
       return <EmptyAccount size={size} minimal={minimal} />;
@@ -110,9 +97,11 @@ class Account extends ImmutablePureComponent {
 
     let buttons;
 
-    if (actionIcon && onActionClick) {
-      buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
-    } else if (!actionIcon && account.get('id') !== me && !small && account.get('relationship', null) !== null) {
+    if (onActionClick) {
+      if (actionIcon) {
+        buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
+      }
+    } else if (account.get('id') !== me && account.get('relationship', null) !== null) {
       const following = account.getIn(['relationship', 'following']);
       const requested = account.getIn(['relationship', 'requested']);
       const blocking  = account.getIn(['relationship', 'blocking']);
@@ -167,24 +156,7 @@ class Account extends ImmutablePureComponent {
       <div className='account__note account__note--missing'><FormattedMessage id='account.no_bio' defaultMessage='No description provided.' /></div>
     ));
 
-    return small ? (
-      <Permalink
-        className='account small'
-        href={account.get('url')}
-        to={`/@${account.get('acct')}`}
-      >
-        <div className='account__avatar-wrapper'>
-          <Avatar
-            account={account}
-            size={24}
-          />
-        </div>
-        <DisplayName
-          account={account}
-          inline
-        />
-      </Permalink>
-    ) : (
+    return (
       <div className={classNames('account', { 'account--minimal': minimal })}>
         <div className='account__wrapper'>
           <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
