@@ -4,19 +4,21 @@
 base_locale: en
 data:
   read:
-    - config/locales-glitch/%{locale}.yml
-    - config/locales-glitch/*.%{locale}.yml
+    - config/locales-polyam/%{locale}.yml
+    - config/locales-polyam/*.%{locale}.yml
 
   write:
     - [
         '{devise, simple_form, doorkeeper}.*',
-        'config/locales-glitch/\1.%{locale}.yml',
+        'config/locales-polyam/\1.%{locale}.yml',
       ]
-    - config/locales-glitch/%{locale}.yml
+    - config/locales-polyam/%{locale}.yml
 
   external:
     - config/locales/%{locale}.yml
     - config/locales/**/*.%{locale}.yml
+    - config/locales-glitch/%{locale}.yml
+    - config/locales-glitch/**/*.%{locale}.yml
 
   yaml:
     write:
