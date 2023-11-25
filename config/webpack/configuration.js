@@ -27,7 +27,7 @@ flavourFiles.forEach((flavourFile) => {
   data.name = basename(dirname(flavourFile));
   data.skin = {};
   // Skip vanilla flavour
-  if (data.name === 'vanilla') return;
+  if (data.name === 'vanilla' && env.ENABLE_VANILLA !== 'true') return;
   if (!data.pack_directory) {
     data.pack_directory = dirname(flavourFile);
   }
