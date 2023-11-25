@@ -155,7 +155,7 @@ export function Video () {
 }
 
 export function Audio () {
-  return import(/* webpackChunkName: "features/glitch/async/audio" */'flavours/polyam/features/audio');
+  return import(/* webpackChunkName: "features/polyam/async/audio" */'flavours/polyam/features/audio');
 }
 
 export function EmbedModal () {
@@ -167,7 +167,7 @@ export function GettingStartedMisc () {
 }
 
 export function ListAdder () {
-  return import(/* webpackChunkName: "features/glitch/async/list_adder" */'flavours/polyam/features/list_adder');
+  return import(/* webpackChunkName: "features/polyam/async/list_adder" */'flavours/polyam/features/list_adder');
 }
 
 export function Tesseract () {
@@ -175,11 +175,11 @@ export function Tesseract () {
 }
 
 export function Directory () {
-  return import(/* webpackChunkName: "features/glitch/async/directory" */'flavours/polyam/features/directory');
+  return import(/* webpackChunkName: "features/polyam/async/directory" */'flavours/polyam/features/directory');
 }
 
 export function Onboarding () {
-  return import(/* webpackChunkName: "features/glitch/async/onboarding" */'flavours/polyam/features/onboarding');
+  return import(/* webpackChunkName: "features/polyam/async/onboarding" */'flavours/polyam/features/onboarding');
 }
 
 export function CompareHistoryModal () {
@@ -207,9 +207,9 @@ export function ClosedRegistrationsModal () {
 }
 
 export function About () {
-  return import(/*webpackChunkName: "features/glitch/async/about" */'flavours/polyam/features/about');
+  return import(/*webpackChunkName: "features/polyam/async/about" */'flavours/polyam/features/about');
 }
 
 export function PrivacyPolicy () {
-  return import(/*webpackChunkName: "features/glitch/async/privacy_policy" */'flavours/polyam/features/privacy_policy');
+  return import(/*webpackChunkName: "features/polyam/async/privacy_policy" */'flavours/polyam/features/privacy_policy');
 }
