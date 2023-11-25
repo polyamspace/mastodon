@@ -1,0 +1,19 @@
+---
+de:
+  simple_form:
+    hints:
+      defaults:
+        setting_enable_rss: Mastodon erstellt automatisch ein RSS feed aller öffentlichen Toots.
+      form_admin_settings:
+        publish_button_text: Überschreibt den Text des Toot-buttons.
+        search_preview: Ausgeloggte Benutzer*innen können die Suchfunktion nutzen.
+      invite:
+        comment: Optional. Du kannst angeben für wen diese Einladung ist, oder den Grund der Erstellung.
+    labels:
+      defaults:
+        setting_enable_rss: Aktiviere RSS Feed von deinen Toots
+        setting_notification_sound: Benachrichtigungston
+        setting_visible_reactions: Anzahl der sichtbaren Emoji-Reaktionen
+      form_admin_settings:
+        publish_button_text: Toot-button Text
+        search_preview: Erlaube nicht-authentifizierten Zugriff auf die Suchfunktion

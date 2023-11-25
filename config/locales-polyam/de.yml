@@ -1,0 +1,48 @@
+---
+de:
+  admin:
+    action_logs:
+      action_types:
+        create_registration_filter: Erstelle Beitrittsfilter
+        destroy_registration_filter: Entferne Beitrittsfilter
+        update_registration_filter: Aktualisiere Beitrittsfilter
+      actions:
+        create_registration_filter_html: "%{name} erstellte einen neuen Beitrittsfilter %{target}"
+        destroy_registration_filter_html: "%{name} entfernte Beitrittsfilter %{target}"
+        update_registration_filter_html: "%{name} aktualisierte Beitrittsfilter %{target}"
+    registration_filters:
+      add_new: Erstelle neuen Filter
+      created_msg: Beitrittsfilter erfolgreich erstellt!
+      delete: Entfernen
+      description_html: Beitrittsfilter erlauben dir automatisch neue Registrierungen aufgrund des Grundes des Beitritts, also die Antwort auf “Warum möchtest du beitreten?”, abzulehnen. Dies kann genutzt werden um Registrierungsspam zu verringern.
+      destroyed_msg: Beitrittsfilter erfolgreich entfernt!
+      edit:
+        title: Bearbeite Beitrittsfilter
+      empty: Keine Beitrittsfilter gefunden.
+      new:
+        create: Erstelle Beitrittsfilter
+        title: Neuer Beitrittsfilter
+      phrase: Schlagwort, Ausdruck oder Regular Expression
+      phrase_hint: Verbiete die Registrierung von neuen Nutzer*innen, dessen Antwort auf die “Warum möchtest du beitreten?” Eingabe dieses Schlagwort, diesen Ausdruck oder Regular Expression enthält.
+      title: Filter für Beitrittsgrund
+      type:
+        title: Filter Art
+      types:
+        regexp: Regular Expression
+        regexp_hint: Nutze Regular Expressions wenn du erweiterte Schlagwörter verwenden möchtest.
+        text: Klartext
+        text_hint: Nutze dies für simple Schlagwörter und wenn du dich nicht mit Regular Expressions auskennst.
+      updated_msg: Beitrittsfilter erfolgreich bearbeitet!
+    settings:
+      discovery:
+        rss: RSS
+        search: Suche
+  notification_mailer:
+    reaction:
+      body: "%{name} hat auf deinen Beitrag reagiert:"
+      subject: "%{name} hat auf deinen Beitrag reagiert"
+      title: Neue Reaktion
+  regex_validator:
+    invalid_regexp: 'Fehler in Regular Expression: %{error}'
+  users:
+    invalid_invite_request_text: Dieser Text enthält nicht erlaubte Wörter oder Ausdrücke
