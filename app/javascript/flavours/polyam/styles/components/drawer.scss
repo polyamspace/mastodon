@@ -272,7 +272,7 @@
   .mbstobon-#{$i} .drawer__inner__mastodon {
     @if $i == 3 {
       background:
-        url('~flavours/glitch/images/wave-drawer.png')
+        url('~flavours/polyam/images/wave-drawer.png')
           no-repeat
           bottom /
           100%
@@ -280,7 +280,7 @@
         lighten($ui-base-color, 13%);
     } @else {
       background:
-        url('~flavours/glitch/images/wave-drawer-glitched.png')
+        url('~flavours/polyam/images/wave-drawer-glitched.png')
           no-repeat
           bottom /
           100%
@@ -289,7 +289,7 @@
     }
 
     & > .mastodon {
-      background: url('~flavours/glitch/images/mbstobon-ui-#{$i}.png')
+      background: url('~flavours/polyam/images/mbstobon-ui-#{$i}.png')
         no-repeat
         left
         bottom /
