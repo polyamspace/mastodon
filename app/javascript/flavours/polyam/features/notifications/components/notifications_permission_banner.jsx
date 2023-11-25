@@ -5,11 +5,11 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { requestBrowserPermission } from 'flavours/glitch/actions/notifications';
-import { changeSetting } from 'flavours/glitch/actions/settings';
-import { Button } from 'flavours/glitch/components/button';
-import { Icon }  from 'flavours/glitch/components/icon';
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import { requestBrowserPermission } from 'flavours/polyam/actions/notifications';
+import { changeSetting } from 'flavours/polyam/actions/settings';
+import { Button } from 'flavours/polyam/components/button';
+import { Icon }  from 'flavours/polyam/components/icon';
+import { IconButton } from 'flavours/polyam/components/icon_button';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

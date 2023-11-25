@@ -10,15 +10,15 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { HotKeys } from 'react-hotkeys';
 
-import AttachmentList from 'flavours/glitch/components/attachment_list';
-import AvatarComposite from 'flavours/glitch/components/avatar_composite';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import Permalink from 'flavours/glitch/components/permalink';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
-import StatusContent from 'flavours/glitch/components/status_content';
-import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
-import { autoPlayGif } from 'flavours/glitch/initial_state';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import AttachmentList from 'flavours/polyam/components/attachment_list';
+import AvatarComposite from 'flavours/polyam/components/avatar_composite';
+import { IconButton } from 'flavours/polyam/components/icon_button';
+import Permalink from 'flavours/polyam/components/permalink';
+import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
+import StatusContent from 'flavours/polyam/components/status_content';
+import DropdownMenuContainer from 'flavours/polyam/containers/dropdown_menu_container';
+import { autoPlayGif } from 'flavours/polyam/initial_state';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },

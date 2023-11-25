@@ -8,10 +8,10 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { fetchSuggestions, dismissSuggestion } from 'flavours/glitch/actions/suggestions';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import AccountCard from 'flavours/glitch/features/directory/components/account_card';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { fetchSuggestions, dismissSuggestion } from 'flavours/polyam/actions/suggestions';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import AccountCard from 'flavours/polyam/features/directory/components/account_card';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 const mapStateToProps = state => ({
   suggestions: state.getIn(['suggestions', 'items']),

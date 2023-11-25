@@ -2,11 +2,11 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { replyCompose } from 'flavours/glitch/actions/compose';
-import { markConversationRead, deleteConversation } from 'flavours/glitch/actions/conversations';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { muteStatus, unmuteStatus, hideStatus, revealStatus } from 'flavours/glitch/actions/statuses';
-import { makeGetStatus } from 'flavours/glitch/selectors';
+import { replyCompose } from 'flavours/polyam/actions/compose';
+import { markConversationRead, deleteConversation } from 'flavours/polyam/actions/conversations';
+import { openModal } from 'flavours/polyam/actions/modal';
+import { muteStatus, unmuteStatus, hideStatus, revealStatus } from 'flavours/polyam/actions/statuses';
+import { makeGetStatus } from 'flavours/polyam/selectors';
 
 import Conversation from '../components/conversation';
 

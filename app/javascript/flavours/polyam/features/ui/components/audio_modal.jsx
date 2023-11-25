@@ -4,8 +4,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import Audio from 'flavours/glitch/features/audio';
-import Footer from 'flavours/glitch/features/picture_in_picture/components/footer';
+import Audio from 'flavours/polyam/features/audio';
+import Footer from 'flavours/polyam/features/picture_in_picture/components/footer';
 
 const mapStateToProps = (state, { statusId }) => ({
   status: state.getIn(['statuses', statusId]),

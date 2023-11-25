@@ -6,14 +6,14 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
-import { addColumn } from 'flavours/glitch/actions/columns';
-import { changeSetting } from 'flavours/glitch/actions/settings';
-import { connectPublicStream, connectCommunityStream } from 'flavours/glitch/actions/streaming';
-import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/glitch/actions/timelines';
-import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
-import SettingText from 'flavours/glitch/components/setting_text';
-import initialState, { domain, showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/glitch/initial_state';
-import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
+import { addColumn } from 'flavours/polyam/actions/columns';
+import { changeSetting } from 'flavours/polyam/actions/settings';
+import { connectPublicStream, connectCommunityStream } from 'flavours/polyam/actions/streaming';
+import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/polyam/actions/timelines';
+import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
+import SettingText from 'flavours/polyam/components/setting_text';
+import initialState, { domain, showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/polyam/initial_state';
+import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';

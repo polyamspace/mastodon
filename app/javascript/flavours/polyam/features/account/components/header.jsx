@@ -9,16 +9,16 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { Badge, AutomatedBadge, GroupBadge } from 'flavours/glitch/components/badge';
-import { Button } from 'flavours/glitch/components/button';
-import { Icon } from 'flavours/glitch/components/icon';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
-import { autoPlayGif, me, domain } from 'flavours/glitch/initial_state';
-import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/glitch/permissions';
-import { preferencesLink, profileLink, accountAdminLink, instanceAdminLink } from 'flavours/glitch/utils/backend_links';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { Avatar } from 'flavours/polyam/components/avatar';
+import { Badge, AutomatedBadge, GroupBadge } from 'flavours/polyam/components/badge';
+import { Button } from 'flavours/polyam/components/button';
+import { Icon } from 'flavours/polyam/components/icon';
+import { IconButton } from 'flavours/polyam/components/icon_button';
+import DropdownMenuContainer from 'flavours/polyam/containers/dropdown_menu_container';
+import { autoPlayGif, me, domain } from 'flavours/polyam/initial_state';
+import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/polyam/permissions';
+import { preferencesLink, profileLink, accountAdminLink, instanceAdminLink } from 'flavours/polyam/utils/backend_links';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import AccountNoteContainer from '../containers/account_note_container';
 import FollowRequestNoteContainer from '../containers/follow_request_note_container';

@@ -7,9 +7,9 @@ import { connect } from 'react-redux';
 
 import fuzzysort from 'fuzzysort';
 
-import { Icon }  from 'flavours/glitch/components/icon';
-import { toServerSideType } from 'flavours/glitch/utils/filters';
-import { loupeIcon, deleteIcon } from 'flavours/glitch/utils/icons';
+import { Icon }  from 'flavours/polyam/components/icon';
+import { toServerSideType } from 'flavours/polyam/utils/filters';
+import { loupeIcon, deleteIcon } from 'flavours/polyam/utils/icons';
 
 const messages = defineMessages({
   search: { id: 'filter_modal.select_filter.search', defaultMessage: 'Search or create' },

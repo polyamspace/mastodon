@@ -4,16 +4,16 @@ import { createPortal } from 'react-dom';
 
 import { fromJS } from 'immutable';
 
-import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
-import MediaGallery from 'flavours/glitch/components/media_gallery';
-import ModalRoot from 'flavours/glitch/components/modal_root';
-import Poll from 'flavours/glitch/components/poll';
-import Audio from 'flavours/glitch/features/audio';
-import Card from 'flavours/glitch/features/status/components/card';
-import MediaModal from 'flavours/glitch/features/ui/components/media_modal';
-import Video from 'flavours/glitch/features/video';
-import { IntlProvider } from 'flavours/glitch/locales';
-import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
+import { ImmutableHashtag as Hashtag } from 'flavours/polyam/components/hashtag';
+import MediaGallery from 'flavours/polyam/components/media_gallery';
+import ModalRoot from 'flavours/polyam/components/modal_root';
+import Poll from 'flavours/polyam/components/poll';
+import Audio from 'flavours/polyam/features/audio';
+import Card from 'flavours/polyam/features/status/components/card';
+import MediaModal from 'flavours/polyam/features/ui/components/media_modal';
+import Video from 'flavours/polyam/features/video';
+import { IntlProvider } from 'flavours/polyam/locales';
+import { getScrollbarWidth } from 'flavours/polyam/utils/scrollbar';
 
 const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
 

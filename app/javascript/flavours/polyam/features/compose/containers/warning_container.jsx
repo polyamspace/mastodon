@@ -4,9 +4,9 @@ import { FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { me } from 'flavours/glitch/initial_state';
-import { profileLink, privacyPolicyLink } from 'flavours/glitch/utils/backend_links';
-import { HASHTAG_PATTERN_REGEX } from 'flavours/glitch/utils/hashtags';
+import { me } from 'flavours/polyam/initial_state';
+import { profileLink, privacyPolicyLink } from 'flavours/polyam/utils/backend_links';
+import { HASHTAG_PATTERN_REGEX } from 'flavours/polyam/utils/hashtags';
 
 import Warning from '../components/warning';
 

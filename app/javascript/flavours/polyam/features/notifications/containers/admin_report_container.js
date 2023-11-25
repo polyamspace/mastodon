@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { makeGetReport } from 'flavours/glitch/selectors';
+import { makeGetReport } from 'flavours/polyam/selectors';
 
 import AdminReport from '../components/admin_report';
 

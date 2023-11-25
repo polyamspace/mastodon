@@ -8,10 +8,10 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { TimelineHint } from 'flavours/glitch/components/timeline_hint';
-import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
-import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
-import { getAccountHidden } from 'flavours/glitch/selectors';
+import { TimelineHint } from 'flavours/polyam/components/timeline_hint';
+import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
+import { normalizeForLookup } from 'flavours/polyam/reducers/accounts_map';
+import { getAccountHidden } from 'flavours/polyam/selectors';
 
 import {
   lookupAccount,

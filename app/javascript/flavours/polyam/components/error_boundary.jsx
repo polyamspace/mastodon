@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import StackTrace from 'stacktrace-js';
 
-import { version, source_url } from 'flavours/glitch/initial_state';
+import { version, source_url } from 'flavours/polyam/initial_state';
 
 export default class ErrorBoundary extends PureComponent {
 

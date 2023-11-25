@@ -5,9 +5,9 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { Icon } from 'flavours/glitch/components/icon';
-import { LoadMore } from 'flavours/glitch/components/load_more';
-import { SearchSection } from 'flavours/glitch/features/explore/components/search_section';
+import { Icon } from 'flavours/polyam/components/icon';
+import { LoadMore } from 'flavours/polyam/components/load_more';
+import { SearchSection } from 'flavours/polyam/features/explore/components/search_section';
 
 import { ImmutableHashtag as Hashtag } from '../../../components/hashtag';
 import AccountContainer from '../../../containers/account_container';

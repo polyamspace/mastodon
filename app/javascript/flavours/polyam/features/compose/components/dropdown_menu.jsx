@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { supportsPassiveEvents } from 'detect-passive-events';
 
 //  Components.
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/polyam/components/icon';
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 

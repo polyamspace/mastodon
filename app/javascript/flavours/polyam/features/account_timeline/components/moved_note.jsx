@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { Icon } from 'flavours/glitch/components/icon';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { Icon } from 'flavours/polyam/components/icon';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import AvatarOverlay from '../../../components/avatar_overlay';
 import { DisplayName } from '../../../components/display_name';

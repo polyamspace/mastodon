@@ -3,8 +3,8 @@ import { defineMessages } from 'react-intl';
 
 import { List as ImmutableList } from 'immutable';
 
-import { compareId } from 'flavours/glitch/compare_id';
-import { usePendingItems as preferPendingItems } from 'flavours/glitch/initial_state';
+import { compareId } from 'flavours/polyam/compare_id';
+import { usePendingItems as preferPendingItems } from 'flavours/polyam/initial_state';
 
 import api, { getLinks } from '../api';
 import { unescapeHTML } from '../utils/html';

@@ -11,11 +11,11 @@ import { connect } from 'react-redux';
 
 import ReactSwipeableViews from 'react-swipeable-views';
 
-import Permalink from 'flavours/glitch/components/permalink';
-import ComposeForm from 'flavours/glitch/features/compose/components/compose_form';
-import DrawerAccount from 'flavours/glitch/features/compose/components/navigation_bar';
-import Search from 'flavours/glitch/features/compose/components/search';
-import { me, source_url } from 'flavours/glitch/initial_state';
+import Permalink from 'flavours/polyam/components/permalink';
+import ComposeForm from 'flavours/polyam/features/compose/components/compose_form';
+import DrawerAccount from 'flavours/polyam/features/compose/components/navigation_bar';
+import Search from 'flavours/polyam/features/compose/components/search';
+import { me, source_url } from 'flavours/polyam/initial_state';
 
 import ColumnHeader from './column_header';
 

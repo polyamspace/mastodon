@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { expandSearch } from 'flavours/glitch/actions/search';
-import { fetchSuggestions, dismissSuggestion } from 'flavours/glitch/actions/suggestions';
+import { expandSearch } from 'flavours/polyam/actions/search';
+import { fetchSuggestions, dismissSuggestion } from 'flavours/polyam/actions/suggestions';
 
 import SearchResults from '../components/search_results';
 

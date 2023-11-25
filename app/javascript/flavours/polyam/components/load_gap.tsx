@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/polyam/components/icon';
 
 const messages = defineMessages({
   load_more: { id: 'status.load_more', defaultMessage: 'Load more' },

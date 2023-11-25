@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { omit } from 'lodash';
 
-import { withOptionalRouter, WithOptionalRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { withOptionalRouter, WithOptionalRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 class Permalink extends PureComponent {
 

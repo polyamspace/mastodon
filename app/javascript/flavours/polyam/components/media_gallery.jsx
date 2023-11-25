@@ -10,7 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { debounce } from 'lodash';
 
-import { Blurhash } from 'flavours/glitch/components/blurhash';
+import { Blurhash } from 'flavours/polyam/components/blurhash';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
 

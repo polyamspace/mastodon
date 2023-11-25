@@ -8,7 +8,7 @@ import {
   openURL,
   clickSearchResult,
   forgetSearchResult,
-} from 'flavours/glitch/actions/search';
+} from 'flavours/polyam/actions/search';
 
 import Search from '../components/search';
 

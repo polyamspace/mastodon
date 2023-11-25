@@ -4,9 +4,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { getAverageFromBlurhash } from 'flavours/glitch/blurhash';
-import Footer from 'flavours/glitch/features/picture_in_picture/components/footer';
-import Video from 'flavours/glitch/features/video';
+import { getAverageFromBlurhash } from 'flavours/polyam/blurhash';
+import Footer from 'flavours/polyam/features/picture_in_picture/components/footer';
+import Video from 'flavours/polyam/features/video';
 
 const mapStateToProps = (state, { statusId }) => ({
   status: state.getIn(['statuses', statusId]),

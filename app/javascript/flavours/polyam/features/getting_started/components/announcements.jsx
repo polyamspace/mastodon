@@ -13,14 +13,14 @@ import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 import ReactSwipeableViews from 'react-swipeable-views';
 
-import { AnimatedNumber } from 'flavours/glitch/components/animated_number';
-import { Icon }  from 'flavours/glitch/components/icon';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import EmojiPickerDropdown from 'flavours/glitch/features/compose/containers/emoji_picker_dropdown_container';
-import { unicodeMapping } from 'flavours/glitch/features/emoji/emoji_unicode_mapping_light';
-import { autoPlayGif, reduceMotion, disableSwiping, mascot } from 'flavours/glitch/initial_state';
-import { assetHost } from 'flavours/glitch/utils/config';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { AnimatedNumber } from 'flavours/polyam/components/animated_number';
+import { Icon }  from 'flavours/polyam/components/icon';
+import { IconButton } from 'flavours/polyam/components/icon_button';
+import EmojiPickerDropdown from 'flavours/polyam/features/compose/containers/emoji_picker_dropdown_container';
+import { unicodeMapping } from 'flavours/polyam/features/emoji/emoji_unicode_mapping_light';
+import { autoPlayGif, reduceMotion, disableSwiping, mascot } from 'flavours/polyam/initial_state';
+import { assetHost } from 'flavours/polyam/utils/config';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
 
 const messages = defineMessages({

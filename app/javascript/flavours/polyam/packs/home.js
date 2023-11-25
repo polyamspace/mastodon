@@ -1,7 +1,7 @@
 import 'packs/public-path';
-import { loadLocale } from 'flavours/glitch/locales';
-import main from "flavours/glitch/main";
-import { loadPolyfills } from 'flavours/glitch/polyfills';
+import { loadLocale } from 'flavours/polyam/locales';
+import main from "flavours/polyam/main";
+import { loadPolyfills } from 'flavours/polyam/polyfills';
 
 loadPolyfills()
   .then(loadLocale)

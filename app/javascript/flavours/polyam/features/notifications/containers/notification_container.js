@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { mentionCompose } from 'flavours/glitch/actions/compose';
-import { makeGetNotification } from 'flavours/glitch/selectors';
+import { mentionCompose } from 'flavours/polyam/actions/compose';
+import { makeGetNotification } from 'flavours/polyam/selectors';
 
 import Notification from '../components/notification';
 

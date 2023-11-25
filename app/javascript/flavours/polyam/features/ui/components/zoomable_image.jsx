@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import { IconButton } from 'flavours/polyam/components/icon_button';
 
 const messages = defineMessages({
   compress: { id: 'lightbox.compress', defaultMessage: 'Compress image view box' },

@@ -1,6 +1,6 @@
 import 'packs/public-path';
 import Rails from '@rails/ujs';
-import 'flavours/glitch/styles/index.scss';
+import 'flavours/polyam/styles/index.scss';
 
 Rails.start();
 

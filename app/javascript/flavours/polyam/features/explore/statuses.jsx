@@ -11,11 +11,11 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 
-import { fetchTrendingStatuses, expandTrendingStatuses } from 'flavours/glitch/actions/trends';
-import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
-import StatusList from 'flavours/glitch/components/status_list';
-import { getStatusList } from 'flavours/glitch/selectors';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { fetchTrendingStatuses, expandTrendingStatuses } from 'flavours/polyam/actions/trends';
+import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
+import StatusList from 'flavours/polyam/components/status_list';
+import { getStatusList } from 'flavours/polyam/selectors';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 const mapStateToProps = state => ({
   statusIds: getStatusList(state, 'trending'),

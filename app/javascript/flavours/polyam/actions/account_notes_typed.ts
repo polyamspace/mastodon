@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { createAppAsyncThunk } from 'flavours/glitch/store/typed_functions';
+import { createAppAsyncThunk } from 'flavours/polyam/store/typed_functions';
 
 import api from '../api';
 

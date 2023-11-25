@@ -9,12 +9,12 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { submitSearch, expandSearch } from 'flavours/glitch/actions/search';
-import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
-import { Icon } from 'flavours/glitch/components/icon';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import Account from 'flavours/glitch/containers/account_container';
-import Status from 'flavours/glitch/containers/status_container';
+import { submitSearch, expandSearch } from 'flavours/polyam/actions/search';
+import { ImmutableHashtag as Hashtag } from 'flavours/polyam/components/hashtag';
+import { Icon } from 'flavours/polyam/components/icon';
+import ScrollableList from 'flavours/polyam/components/scrollable_list';
+import Account from 'flavours/polyam/containers/account_container';
+import Status from 'flavours/polyam/containers/status_container';
 
 import { SearchSection } from './components/search_section';
 

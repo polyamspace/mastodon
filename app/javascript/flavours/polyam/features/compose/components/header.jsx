@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { Icon } from 'flavours/glitch/components/icon';
-import { signOutLink } from 'flavours/glitch/utils/backend_links';
-import { conditionalRender } from 'flavours/glitch/utils/react_helpers';
+import { Icon } from 'flavours/polyam/components/icon';
+import { signOutLink } from 'flavours/polyam/utils/backend_links';
+import { conditionalRender } from 'flavours/polyam/utils/react_helpers';
 
 const messages = defineMessages({
   community: {

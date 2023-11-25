@@ -8,10 +8,10 @@ import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { Icon }  from 'flavours/glitch/components/icon';
-import { domain, searchEnabled, searchPreview } from 'flavours/glitch/initial_state';
-import { HASHTAG_REGEX } from 'flavours/glitch/utils/hashtags';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { Icon }  from 'flavours/polyam/components/icon';
+import { domain, searchEnabled, searchPreview } from 'flavours/polyam/initial_state';
+import { HASHTAG_REGEX } from 'flavours/polyam/utils/hashtags';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },

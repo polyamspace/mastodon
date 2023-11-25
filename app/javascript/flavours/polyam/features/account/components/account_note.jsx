@@ -7,7 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import Textarea from 'react-textarea-autosize';
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/polyam/components/icon';
 
 const messages = defineMessages({
   placeholder: { id: 'account_note.glitch_placeholder', defaultMessage: 'No comment provided' },

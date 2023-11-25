@@ -1,7 +1,7 @@
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
-import { ACCOUNT_REVEAL } from 'flavours/glitch/actions/accounts';
-import { ACCOUNT_IMPORT, ACCOUNTS_IMPORT } from 'flavours/glitch/actions/importer';
+import { ACCOUNT_REVEAL } from 'flavours/polyam/actions/accounts';
+import { ACCOUNT_IMPORT, ACCOUNTS_IMPORT } from 'flavours/polyam/actions/importer';
 
 const initialState = ImmutableMap();
 

@@ -7,12 +7,12 @@ import {
   DIRECTORY_EXPAND_REQUEST,
   DIRECTORY_EXPAND_SUCCESS,
   DIRECTORY_EXPAND_FAIL,
-} from 'flavours/glitch/actions/directory';
+} from 'flavours/polyam/actions/directory';
 import {
   FEATURED_TAGS_FETCH_REQUEST,
   FEATURED_TAGS_FETCH_SUCCESS,
   FEATURED_TAGS_FETCH_FAIL,
-} from 'flavours/glitch/actions/featured_tags';
+} from 'flavours/polyam/actions/featured_tags';
 
 import {
   FOLLOWERS_FETCH_REQUEST,

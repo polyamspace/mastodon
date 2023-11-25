@@ -7,8 +7,8 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
-import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
-import { domain } from 'flavours/glitch/initial_state';
+import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
+import { domain } from 'flavours/polyam/initial_state';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { connectCommunityStream } from '../../actions/streaming';

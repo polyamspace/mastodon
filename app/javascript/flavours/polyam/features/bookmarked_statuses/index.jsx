@@ -10,12 +10,12 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { fetchBookmarkedStatuses, expandBookmarkedStatuses } from 'flavours/glitch/actions/bookmarks';
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import StatusList from 'flavours/glitch/components/status_list';
-import Column from 'flavours/glitch/features/ui/components/column';
-import { getStatusList } from 'flavours/glitch/selectors';
+import { fetchBookmarkedStatuses, expandBookmarkedStatuses } from 'flavours/polyam/actions/bookmarks';
+import { addColumn, removeColumn, moveColumn } from 'flavours/polyam/actions/columns';
+import ColumnHeader from 'flavours/polyam/components/column_header';
+import StatusList from 'flavours/polyam/components/status_list';
+import Column from 'flavours/polyam/features/ui/components/column';
+import { getStatusList } from 'flavours/polyam/selectors';
 
 const messages = defineMessages({
   heading: { id: 'column.bookmarks', defaultMessage: 'Bookmarks' },

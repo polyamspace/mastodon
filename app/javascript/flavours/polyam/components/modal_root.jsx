@@ -6,7 +6,7 @@ import 'wicg-inert';
 import { multiply } from 'color-blend';
 import { createBrowserHistory } from 'history';
 
-import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/glitch/utils/react_router';
+import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/polyam/utils/react_router';
 
 class ModalRoot extends PureComponent {
 

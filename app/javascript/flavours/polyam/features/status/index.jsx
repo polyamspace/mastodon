@@ -14,12 +14,12 @@ import { createSelector } from 'reselect';
 
 import { HotKeys } from 'react-hotkeys';
 
-import { Icon }  from 'flavours/glitch/components/icon';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import ScrollContainer from 'flavours/glitch/containers/scroll_container';
-import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
-import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { Icon }  from 'flavours/polyam/components/icon';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import ScrollContainer from 'flavours/polyam/containers/scroll_container';
+import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
+import { autoUnfoldCW } from 'flavours/polyam/utils/content_warning';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import { initBlockModal } from '../../actions/blocks';
 import { initBoostModal } from '../../actions/boosts';

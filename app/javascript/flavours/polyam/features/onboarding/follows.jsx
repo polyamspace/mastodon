@@ -6,12 +6,12 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { fetchSuggestions } from 'flavours/glitch/actions/suggestions';
-import { markAsPartial } from 'flavours/glitch/actions/timelines';
-import Column from 'flavours/glitch/components/column';
-import ColumnBackButton from 'flavours/glitch/components/column_back_button';
-import { EmptyAccount } from 'flavours/glitch/components/empty_account';
-import Account from 'flavours/glitch/containers/account_container';
+import { fetchSuggestions } from 'flavours/polyam/actions/suggestions';
+import { markAsPartial } from 'flavours/polyam/actions/timelines';
+import Column from 'flavours/polyam/components/column';
+import ColumnBackButton from 'flavours/polyam/components/column_back_button';
+import { EmptyAccount } from 'flavours/polyam/components/empty_account';
+import Account from 'flavours/polyam/containers/account_container';
 
 const mapStateToProps = state => ({
   suggestions: state.getIn(['suggestions', 'items']),

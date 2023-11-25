@@ -10,13 +10,13 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { fetchReactions, expandReactions } from 'flavours/glitch/actions/interactions';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import { Icon } from 'flavours/glitch/components/icon';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import AccountContainer from 'flavours/glitch/containers/account_container';
-import Column from 'flavours/glitch/features/ui/components/column';
+import { fetchReactions, expandReactions } from 'flavours/polyam/actions/interactions';
+import ColumnHeader from 'flavours/polyam/components/column_header';
+import { Icon } from 'flavours/polyam/components/icon';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import ScrollableList from 'flavours/polyam/components/scrollable_list';
+import AccountContainer from 'flavours/polyam/containers/account_container';
+import Column from 'flavours/polyam/features/ui/components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.reacted_by', defaultMessage: 'Reacted by' },

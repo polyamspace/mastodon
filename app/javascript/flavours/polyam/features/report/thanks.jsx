@@ -10,8 +10,8 @@ import {
   unfollowAccount,
   muteAccount,
   blockAccount,
-} from 'flavours/glitch/actions/accounts';
-import { Button } from 'flavours/glitch/components/button';
+} from 'flavours/polyam/actions/accounts';
+import { Button } from 'flavours/polyam/components/button';
 
 const mapStateToProps = () => ({});
 

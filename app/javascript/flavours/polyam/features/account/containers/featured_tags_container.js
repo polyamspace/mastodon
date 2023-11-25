@@ -1,7 +1,7 @@
 import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 
-import { makeGetAccount } from 'flavours/glitch/selectors';
+import { makeGetAccount } from 'flavours/polyam/selectors';
 
 import FeaturedTags from '../components/featured_tags';
 

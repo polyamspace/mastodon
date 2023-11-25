@@ -8,16 +8,16 @@ import { Provider as ReduxProvider } from 'react-redux';
 
 import { ScrollContext } from 'react-router-scroll-4';
 
-import { fetchCustomEmojis } from 'flavours/glitch/actions/custom_emojis';
-import { checkDeprecatedLocalSettings } from 'flavours/glitch/actions/local_settings';
-import { hydrateStore } from 'flavours/glitch/actions/store';
-import { connectUserStream } from 'flavours/glitch/actions/streaming';
-import ErrorBoundary from 'flavours/glitch/components/error_boundary';
-import { Router } from 'flavours/glitch/components/router';
-import UI from 'flavours/glitch/features/ui';
-import initialState, { title as siteTitle } from 'flavours/glitch/initial_state';
-import { IntlProvider } from 'flavours/glitch/locales';
-import { store } from 'flavours/glitch/store';
+import { fetchCustomEmojis } from 'flavours/polyam/actions/custom_emojis';
+import { checkDeprecatedLocalSettings } from 'flavours/polyam/actions/local_settings';
+import { hydrateStore } from 'flavours/polyam/actions/store';
+import { connectUserStream } from 'flavours/polyam/actions/streaming';
+import ErrorBoundary from 'flavours/polyam/components/error_boundary';
+import { Router } from 'flavours/polyam/components/router';
+import UI from 'flavours/polyam/features/ui';
+import initialState, { title as siteTitle } from 'flavours/polyam/initial_state';
+import { IntlProvider } from 'flavours/polyam/locales';
+import { store } from 'flavours/polyam/store';
 
 const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
 

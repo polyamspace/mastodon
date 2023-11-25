@@ -2,10 +2,10 @@ import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { pinAccount, unpinAccount } from 'flavours/glitch/actions/accounts';
-import Account from 'flavours/glitch/features/list_editor/components/account';
-import { me } from 'flavours/glitch/initial_state';
-import { makeGetAccount } from 'flavours/glitch/selectors';
+import { pinAccount, unpinAccount } from 'flavours/polyam/actions/accounts';
+import Account from 'flavours/polyam/features/list_editor/components/account';
+import { me } from 'flavours/polyam/initial_state';
+import { makeGetAccount } from 'flavours/polyam/selectors';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();

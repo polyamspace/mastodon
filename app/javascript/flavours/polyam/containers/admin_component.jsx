@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { IntlProvider } from 'flavours/glitch/locales';
+import { IntlProvider } from 'flavours/polyam/locales';
 
 export default class AdminComponent extends PureComponent {
 

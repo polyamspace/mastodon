@@ -9,8 +9,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
 
-import { maxChars } from 'flavours/glitch/initial_state';
-import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/glitch/utils/react_router';
+import { maxChars } from 'flavours/polyam/initial_state';
+import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/polyam/utils/react_router';
 
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';

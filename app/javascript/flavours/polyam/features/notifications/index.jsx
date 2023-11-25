@@ -13,9 +13,9 @@ import { createSelector } from 'reselect';
 
 import { debounce } from 'lodash';
 
-import { compareId } from 'flavours/glitch/compare_id';
-import { Icon }  from 'flavours/glitch/components/icon';
-import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
+import { compareId } from 'flavours/polyam/compare_id';
+import { Icon }  from 'flavours/polyam/components/icon';
+import { NotSignedInIndicator } from 'flavours/polyam/components/not_signed_in_indicator';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { submitMarkers } from '../../actions/markers';

@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { fetchPoll, vote } from 'flavours/glitch/actions/polls';
-import Poll from 'flavours/glitch/components/poll';
+import { fetchPoll, vote } from 'flavours/polyam/actions/polls';
+import Poll from 'flavours/polyam/components/poll';
 
 const mapDispatchToProps = (dispatch, { pollId }) => ({
   refresh: debounce(

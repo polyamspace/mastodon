@@ -1,8 +1,8 @@
 import { Switch, Route } from 'react-router-dom';
 
-import AccountNavigation from 'flavours/glitch/features/account/navigation';
-import Trends from 'flavours/glitch/features/getting_started/containers/trends_container';
-import { showTrends } from 'flavours/glitch/initial_state';
+import AccountNavigation from 'flavours/polyam/features/account/navigation';
+import Trends from 'flavours/polyam/features/getting_started/containers/trends_container';
+import { showTrends } from 'flavours/polyam/initial_state';
 
 const DefaultNavigation: React.FC = () =>
   showTrends ? (

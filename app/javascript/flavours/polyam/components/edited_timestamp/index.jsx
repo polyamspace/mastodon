@@ -5,10 +5,10 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { openModal } from 'flavours/glitch/actions/modal';
-import { Icon }  from 'flavours/glitch/components/icon';
-import InlineAccount from 'flavours/glitch/components/inline_account';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
+import { openModal } from 'flavours/polyam/actions/modal';
+import { Icon }  from 'flavours/polyam/components/icon';
+import InlineAccount from 'flavours/polyam/components/inline_account';
+import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
 
 import DropdownMenu from './containers/dropdown_menu_container';
 

@@ -10,10 +10,10 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { HotKeys } from 'react-hotkeys';
 
-import { Icon } from 'flavours/glitch/components/icon';
-import Permalink from 'flavours/glitch/components/permalink';
-import AccountContainer from 'flavours/glitch/containers/account_container';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { Icon } from 'flavours/polyam/components/icon';
+import Permalink from 'flavours/polyam/components/permalink';
+import AccountContainer from 'flavours/polyam/containers/account_container';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import NotificationOverlayContainer from '../containers/overlay_container';
 

@@ -2,16 +2,16 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { initBlockModal } from 'flavours/glitch/actions/blocks';
-import { initBoostModal } from 'flavours/glitch/actions/boosts';
+import { initBlockModal } from 'flavours/polyam/actions/blocks';
+import { initBoostModal } from 'flavours/polyam/actions/boosts';
 import {
   replyCompose,
   mentionCompose,
   directCompose,
-} from 'flavours/glitch/actions/compose';
+} from 'flavours/polyam/actions/compose';
 import {
   initAddFilter,
-} from 'flavours/glitch/actions/filters';
+} from 'flavours/polyam/actions/filters';
 import {
   reblog,
   favourite,
@@ -23,12 +23,12 @@ import {
   unpin,
   addReaction,
   removeReaction,
-} from 'flavours/glitch/actions/interactions';
-import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { initMuteModal } from 'flavours/glitch/actions/mutes';
-import { deployPictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
-import { initReport } from 'flavours/glitch/actions/reports';
+} from 'flavours/polyam/actions/interactions';
+import { changeLocalSetting } from 'flavours/polyam/actions/local_settings';
+import { openModal } from 'flavours/polyam/actions/modal';
+import { initMuteModal } from 'flavours/polyam/actions/mutes';
+import { deployPictureInPicture } from 'flavours/polyam/actions/picture_in_picture';
+import { initReport } from 'flavours/polyam/actions/reports';
 import {
   muteStatus,
   unmuteStatus,
@@ -38,10 +38,10 @@ import {
   editStatus,
   translateStatus,
   undoStatusTranslation,
-} from 'flavours/glitch/actions/statuses';
-import Status from 'flavours/glitch/components/status';
-import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
-import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
+} from 'flavours/polyam/actions/statuses';
+import Status from 'flavours/polyam/components/status';
+import { boostModal, favouriteModal, deleteModal } from 'flavours/polyam/initial_state';
+import { makeGetStatus, makeGetPictureInPicture } from 'flavours/polyam/selectors';
 
 import { showAlertForError } from '../actions/alerts';
 

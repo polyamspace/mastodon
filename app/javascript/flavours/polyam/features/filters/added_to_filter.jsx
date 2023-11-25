@@ -6,8 +6,8 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { Button } from 'flavours/glitch/components/button';
-import { toServerSideType } from 'flavours/glitch/utils/filters';
+import { Button } from 'flavours/polyam/components/button';
+import { toServerSideType } from 'flavours/polyam/utils/filters';
 
 const mapStateToProps = (state, { filterId }) => ({
   filter: state.getIn(['filters', filterId]),

@@ -10,11 +10,11 @@ import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/glitch/actions/announcements';
-import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
-import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
-import AnnouncementsContainer from 'flavours/glitch/features/getting_started/containers/announcements_container';
-import { me, criticalUpdatesPending } from 'flavours/glitch/initial_state';
+import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/polyam/actions/announcements';
+import { IconWithBadge } from 'flavours/polyam/components/icon_with_badge';
+import { NotSignedInIndicator } from 'flavours/polyam/components/not_signed_in_indicator';
+import AnnouncementsContainer from 'flavours/polyam/features/getting_started/containers/announcements_container';
+import { me, criticalUpdatesPending } from 'flavours/polyam/initial_state';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { expandHomeTimeline } from '../../actions/timelines';

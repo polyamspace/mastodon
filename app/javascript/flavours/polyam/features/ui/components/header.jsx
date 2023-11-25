@@ -7,13 +7,13 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import { openModal } from 'flavours/glitch/actions/modal';
-import { fetchServer } from 'flavours/glitch/actions/server';
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { Icon } from 'flavours/glitch/components/icon';
-import { WordmarkLogo, SymbolLogo } from 'flavours/glitch/components/logo';
-import Permalink from 'flavours/glitch/components/permalink';
-import { registrationsOpen, me, sso_redirect } from 'flavours/glitch/initial_state';
+import { openModal } from 'flavours/polyam/actions/modal';
+import { fetchServer } from 'flavours/polyam/actions/server';
+import { Avatar } from 'flavours/polyam/components/avatar';
+import { Icon } from 'flavours/polyam/components/icon';
+import { WordmarkLogo, SymbolLogo } from 'flavours/polyam/components/logo';
+import Permalink from 'flavours/polyam/components/permalink';
+import { registrationsOpen, me, sso_redirect } from 'flavours/polyam/initial_state';
 
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { makeGetStatus } from 'flavours/glitch/selectors';
+import { makeGetStatus } from 'flavours/polyam/selectors';
 
 import StatusCheckBox from '../components/status_check_box';
 

@@ -9,9 +9,9 @@ import { connect } from 'react-redux';
 import Atrament from 'atrament'; // the doodling library
 import { debounce, mapValues } from 'lodash';
 
-import { doodleSet, uploadCompose } from 'flavours/glitch/actions/compose';
-import { Button } from 'flavours/glitch/components/button';
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import { doodleSet, uploadCompose } from 'flavours/polyam/actions/compose';
+import { Button } from 'flavours/polyam/components/button';
+import { IconButton } from 'flavours/polyam/components/icon_button';
 // palette nicked from MyPaint, CC0
 const palette = [
   ['rgb(  0,    0,    0)', 'Black'],

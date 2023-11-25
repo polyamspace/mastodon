@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import { openModal } from 'flavours/glitch/actions/modal';
-import { disabledAccountId, movedToAccountId, domain } from 'flavours/glitch/initial_state';
-import { logOut } from 'flavours/glitch/utils/log_out';
+import { openModal } from 'flavours/polyam/actions/modal';
+import { disabledAccountId, movedToAccountId, domain } from 'flavours/polyam/initial_state';
+import { logOut } from 'flavours/polyam/utils/log_out';
 
 const messages = defineMessages({
   logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },

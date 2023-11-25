@@ -10,9 +10,9 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import escapeTextContentForBrowser from 'escape-html';
 import spring from 'react-motion/lib/spring';
 
-import { Icon }  from 'flavours/glitch/components/icon';
-import emojify from 'flavours/glitch/features/emoji/emoji';
-import Motion from 'flavours/glitch/features/ui/util/optional_motion';
+import { Icon }  from 'flavours/polyam/components/icon';
+import emojify from 'flavours/polyam/features/emoji/emoji';
+import Motion from 'flavours/polyam/features/ui/util/optional_motion';
 
 import { RelativeTimestamp } from './relative_timestamp';
 

@@ -2,7 +2,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { privacyPreference } from 'flavours/glitch/utils/privacy_preference';
+import { privacyPreference } from 'flavours/polyam/utils/privacy_preference';
 
 import {
   changeCompose,

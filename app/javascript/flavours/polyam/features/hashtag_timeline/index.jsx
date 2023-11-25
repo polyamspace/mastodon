@@ -10,12 +10,12 @@ import { connect } from 'react-redux';
 
 import { isEqual } from 'lodash';
 
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { connectHashtagStream } from 'flavours/glitch/actions/streaming';
-import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/glitch/actions/tags';
-import { expandHashtagTimeline, clearTimeline } from 'flavours/glitch/actions/timelines';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
+import { addColumn, removeColumn, moveColumn } from 'flavours/polyam/actions/columns';
+import { connectHashtagStream } from 'flavours/polyam/actions/streaming';
+import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/polyam/actions/tags';
+import { expandHashtagTimeline, clearTimeline } from 'flavours/polyam/actions/timelines';
+import Column from 'flavours/polyam/components/column';
+import ColumnHeader from 'flavours/polyam/components/column_header';
 
 import StatusListContainer from '../ui/containers/status_list_container';
 

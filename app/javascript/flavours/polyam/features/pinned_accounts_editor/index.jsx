@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
 
 import spring from 'react-motion/lib/spring';
 
-import { fetchPinnedAccounts, clearPinnedAccountsSuggestions, resetPinnedAccountsEditor } from 'flavours/glitch/actions/accounts';
-import Motion from 'flavours/glitch/features/ui/util/optional_motion';
+import { fetchPinnedAccounts, clearPinnedAccountsSuggestions, resetPinnedAccountsEditor } from 'flavours/polyam/actions/accounts';
+import Motion from 'flavours/polyam/features/ui/util/optional_motion';
 
 import { LoadingIndicator } from '../../components/loading_indicator';
 import { me } from '../../initial_state';

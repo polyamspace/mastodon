@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import { fetchServer } from 'flavours/glitch/actions/server';
-import { ServerHeroImage } from 'flavours/glitch/components/server_hero_image';
-import { ShortNumber } from 'flavours/glitch/components/short_number';
-import { Skeleton } from 'flavours/glitch/components/skeleton';
-import Account from 'flavours/glitch/containers/account_container';
-import { domain } from 'flavours/glitch/initial_state';
+import { fetchServer } from 'flavours/polyam/actions/server';
+import { ServerHeroImage } from 'flavours/polyam/components/server_hero_image';
+import { ShortNumber } from 'flavours/polyam/components/short_number';
+import { Skeleton } from 'flavours/polyam/components/skeleton';
+import Account from 'flavours/polyam/containers/account_container';
+import { domain } from 'flavours/polyam/initial_state';
 
 const messages = defineMessages({
   aboutActiveUsers: { id: 'server_banner.about_active_users', defaultMessage: 'People using this server during the last 30 days (Monthly Active Users)' },

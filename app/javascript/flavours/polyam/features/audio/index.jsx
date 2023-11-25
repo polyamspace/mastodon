@@ -9,8 +9,8 @@ import { is } from 'immutable';
 
 import { throttle, debounce } from 'lodash';
 
-import { Icon } from 'flavours/glitch/components/icon';
-import { formatTime, getPointerPosition, fileNameFromURL } from 'flavours/glitch/features/video';
+import { Icon } from 'flavours/polyam/components/icon';
+import { formatTime, getPointerPosition, fileNameFromURL } from 'flavours/polyam/features/video';
 
 import { Blurhash } from '../../components/blurhash';
 import { displayMedia, useBlurhash } from '../../initial_state';

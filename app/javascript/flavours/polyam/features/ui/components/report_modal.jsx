@@ -7,17 +7,17 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { fetchRelationships } from 'flavours/glitch/actions/accounts';
-import { submitReport } from 'flavours/glitch/actions/reports';
-import { fetchServer } from 'flavours/glitch/actions/server';
-import { expandAccountTimeline } from 'flavours/glitch/actions/timelines';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import Category from 'flavours/glitch/features/report/category';
-import Comment from 'flavours/glitch/features/report/comment';
-import Rules from 'flavours/glitch/features/report/rules';
-import Statuses from 'flavours/glitch/features/report/statuses';
-import Thanks from 'flavours/glitch/features/report/thanks';
-import { makeGetAccount } from 'flavours/glitch/selectors';
+import { fetchRelationships } from 'flavours/polyam/actions/accounts';
+import { submitReport } from 'flavours/polyam/actions/reports';
+import { fetchServer } from 'flavours/polyam/actions/server';
+import { expandAccountTimeline } from 'flavours/polyam/actions/timelines';
+import { IconButton } from 'flavours/polyam/components/icon_button';
+import Category from 'flavours/polyam/features/report/category';
+import Comment from 'flavours/polyam/features/report/comment';
+import Rules from 'flavours/polyam/features/report/rules';
+import Statuses from 'flavours/polyam/features/report/statuses';
+import Thanks from 'flavours/polyam/features/report/thanks';
+import { makeGetAccount } from 'flavours/polyam/selectors';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

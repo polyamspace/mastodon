@@ -2,8 +2,8 @@ import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { removeFromListEditor, addToListEditor } from 'flavours/glitch/actions/lists';
-import { makeGetAccount } from 'flavours/glitch/selectors';
+import { removeFromListEditor, addToListEditor } from 'flavours/polyam/actions/lists';
+import { makeGetAccount } from 'flavours/polyam/selectors';
 
 import Account from '../components/account';
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { openModal } from 'flavours/glitch/actions/modal';
+import { openModal } from 'flavours/polyam/actions/modal';
 
 import ColumnsArea from '../components/columns_area';
 

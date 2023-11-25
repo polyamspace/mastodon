@@ -2,8 +2,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect }   from 'react-redux';
 
-import { openModal } from 'flavours/glitch/actions/modal';
-import { logOut } from 'flavours/glitch/utils/log_out';
+import { openModal } from 'flavours/polyam/actions/modal';
+import { logOut } from 'flavours/polyam/utils/log_out';
 
 import Header from '../components/header';
 

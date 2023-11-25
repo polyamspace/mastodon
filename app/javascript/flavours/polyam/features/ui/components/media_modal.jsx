@@ -9,13 +9,13 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import ReactSwipeableViews from 'react-swipeable-views';
 
-import { getAverageFromBlurhash } from 'flavours/glitch/blurhash';
-import { GIFV } from 'flavours/glitch/components/gifv';
-import { Icon }  from 'flavours/glitch/components/icon';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import Footer from 'flavours/glitch/features/picture_in_picture/components/footer';
-import Video from 'flavours/glitch/features/video';
-import { disableSwiping } from 'flavours/glitch/initial_state';
+import { getAverageFromBlurhash } from 'flavours/polyam/blurhash';
+import { GIFV } from 'flavours/polyam/components/gifv';
+import { Icon }  from 'flavours/polyam/components/icon';
+import { IconButton } from 'flavours/polyam/components/icon_button';
+import Footer from 'flavours/polyam/features/picture_in_picture/components/footer';
+import Video from 'flavours/polyam/features/video';
+import { disableSwiping } from 'flavours/polyam/initial_state';
 
 import ImageLoader from './image_loader';
 

@@ -5,10 +5,10 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { DisplayName } from 'flavours/glitch/components/display_name';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
-import StatusContent from 'flavours/glitch/components/status_content';
+import { Avatar } from 'flavours/polyam/components/avatar';
+import { DisplayName } from 'flavours/polyam/components/display_name';
+import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
+import StatusContent from 'flavours/polyam/components/status_content';
 
 import { IconButton } from '../../../components/icon_button';
 

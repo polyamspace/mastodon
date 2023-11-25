@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { authorizeFollowRequest, rejectFollowRequest } from 'flavours/glitch/actions/accounts';
+import { authorizeFollowRequest, rejectFollowRequest } from 'flavours/polyam/actions/accounts';
 
 import FollowRequest from '../components/follow_request';
 

@@ -5,8 +5,8 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import api from 'flavours/glitch/api';
-import Hashtag from 'flavours/glitch/components/hashtag';
+import api from 'flavours/polyam/api';
+import Hashtag from 'flavours/polyam/components/hashtag';
 
 export default class Trends extends PureComponent {
 

@@ -6,15 +6,15 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { lookupAccount, fetchAccount } from 'flavours/glitch/actions/accounts';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { LoadMore } from 'flavours/glitch/components/load_more';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import ScrollContainer from 'flavours/glitch/containers/scroll_container';
-import ProfileColumnHeader from 'flavours/glitch/features/account/components/profile_column_header';
-import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
-import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
-import { getAccountGallery } from 'flavours/glitch/selectors';
+import { lookupAccount, fetchAccount } from 'flavours/polyam/actions/accounts';
+import { openModal } from 'flavours/polyam/actions/modal';
+import { LoadMore } from 'flavours/polyam/components/load_more';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import ScrollContainer from 'flavours/polyam/containers/scroll_container';
+import ProfileColumnHeader from 'flavours/polyam/features/account/components/profile_column_header';
+import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
+import { normalizeForLookup } from 'flavours/polyam/reducers/accounts_map';
+import { getAccountGallery } from 'flavours/polyam/selectors';
 
 import { expandAccountMediaTimeline } from '../../actions/timelines';
 import HeaderContainer from '../account_timeline/containers/header_container';

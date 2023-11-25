@@ -13,12 +13,12 @@ import Favico from 'favico.js';
 import { debounce } from 'lodash';
 import { HotKeys } from 'react-hotkeys';
 
-import { changeLayout } from 'flavours/glitch/actions/app';
-import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
-import PermaLink from 'flavours/glitch/components/permalink';
-import PictureInPicture from 'flavours/glitch/features/picture_in_picture';
-import { layoutFromWindow } from 'flavours/glitch/is_mobile';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { changeLayout } from 'flavours/polyam/actions/app';
+import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/polyam/actions/markers';
+import PermaLink from 'flavours/polyam/components/permalink';
+import PictureInPicture from 'flavours/polyam/features/picture_in_picture';
+import { layoutFromWindow } from 'flavours/polyam/is_mobile';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';

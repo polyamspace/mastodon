@@ -5,7 +5,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { fetchLists } from 'flavours/glitch/actions/lists';
+import { fetchLists } from 'flavours/polyam/actions/lists';
 
 import ColumnLink from './column_link';
 

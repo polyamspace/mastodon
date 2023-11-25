@@ -9,10 +9,10 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { Icon } from 'flavours/glitch/components/icon';
-import { autoPlayGif, languages as preloadedLanguages } from 'flavours/glitch/initial_state';
-import { highlightCode } from 'flavours/glitch/utils/html';
-import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
+import { Icon } from 'flavours/polyam/components/icon';
+import { autoPlayGif, languages as preloadedLanguages } from 'flavours/polyam/initial_state';
+import { highlightCode } from 'flavours/polyam/utils/html';
+import { decode as decodeIDNA } from 'flavours/polyam/utils/idna';
 
 import Permalink from './permalink';
 

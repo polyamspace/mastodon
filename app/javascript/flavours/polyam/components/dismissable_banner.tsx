@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import { bannerSettings } from 'flavours/glitch/settings';
+import { bannerSettings } from 'flavours/polyam/settings';
 
 import { IconButton } from './icon_button';
 

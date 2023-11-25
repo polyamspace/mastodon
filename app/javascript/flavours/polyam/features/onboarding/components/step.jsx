@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Check } from 'flavours/glitch/components/check';
-import { Icon } from 'flavours/glitch/components/icon';
+import { Check } from 'flavours/polyam/components/check';
+import { Icon } from 'flavours/polyam/components/icon';
 
 import ArrowSmallRight from './arrow_small_right';
 

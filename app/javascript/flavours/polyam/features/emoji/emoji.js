@@ -1,6 +1,6 @@
 import Trie from 'substring-trie';
 
-import { assetHost } from 'flavours/glitch/utils/config';
+import { assetHost } from 'flavours/polyam/utils/config';
 
 import { autoPlayGif, useSystemEmojiFont } from '../../initial_state';
 

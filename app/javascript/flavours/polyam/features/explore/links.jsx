@@ -8,10 +8,10 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { fetchTrendingLinks } from 'flavours/glitch/actions/trends';
-import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { fetchTrendingLinks } from 'flavours/polyam/actions/trends';
+import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import Story from './components/story';
 

@@ -3,7 +3,7 @@ import Immutable from 'immutable';
 import {
   BOOSTS_INIT_MODAL,
   BOOSTS_CHANGE_PRIVACY,
-} from 'flavours/glitch/actions/boosts';
+} from 'flavours/polyam/actions/boosts';
 
 const initialState = Immutable.Map({
   new: Immutable.Map({

@@ -5,8 +5,8 @@ import { FormattedMessage, FormattedNumber, FormattedDate } from 'react-intl';
 
 import classNames from 'classnames';
 
-import api from 'flavours/glitch/api';
-import { roundTo10 } from 'flavours/glitch/utils/numbers';
+import api from 'flavours/polyam/api';
+import { roundTo10 } from 'flavours/polyam/utils/numbers';
 
 const dateForCohort = cohort => {
   const timeZone = 'UTC';

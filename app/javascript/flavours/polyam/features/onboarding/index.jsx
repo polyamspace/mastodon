@@ -12,14 +12,14 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { fetchAccount } from 'flavours/glitch/actions/accounts';
-import { focusCompose } from 'flavours/glitch/actions/compose';
-import { closeOnboarding } from 'flavours/glitch/actions/onboarding';
-import Column from 'flavours/glitch/features/ui/components/column';
-import { me } from 'flavours/glitch/initial_state';
-import { makeGetAccount } from 'flavours/glitch/selectors';
-import { assetHost } from 'flavours/glitch/utils/config';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { fetchAccount } from 'flavours/polyam/actions/accounts';
+import { focusCompose } from 'flavours/polyam/actions/compose';
+import { closeOnboarding } from 'flavours/polyam/actions/onboarding';
+import Column from 'flavours/polyam/features/ui/components/column';
+import { me } from 'flavours/polyam/initial_state';
+import { makeGetAccount } from 'flavours/polyam/selectors';
+import { assetHost } from 'flavours/polyam/utils/config';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 import illustration from 'mastodon/../images/elephant_ui_conversation.svg';
 
 import ArrowSmallRight from './components/arrow_small_right';

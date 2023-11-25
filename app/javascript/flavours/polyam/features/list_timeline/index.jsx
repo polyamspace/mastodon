@@ -11,19 +11,19 @@ import { connect } from 'react-redux';
 
 import Toggle from 'react-toggle';
 
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { fetchList, deleteList, updateList } from 'flavours/glitch/actions/lists';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { connectListStream } from 'flavours/glitch/actions/streaming';
-import { expandListTimeline } from 'flavours/glitch/actions/timelines';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import { Icon }  from 'flavours/glitch/components/icon';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import { RadioButton } from 'flavours/glitch/components/radio_button';
-import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
-import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { addColumn, removeColumn, moveColumn } from 'flavours/polyam/actions/columns';
+import { fetchList, deleteList, updateList } from 'flavours/polyam/actions/lists';
+import { openModal } from 'flavours/polyam/actions/modal';
+import { connectListStream } from 'flavours/polyam/actions/streaming';
+import { expandListTimeline } from 'flavours/polyam/actions/timelines';
+import Column from 'flavours/polyam/components/column';
+import ColumnHeader from 'flavours/polyam/components/column_header';
+import { Icon }  from 'flavours/polyam/components/icon';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import { RadioButton } from 'flavours/polyam/components/radio_button';
+import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
+import StatusListContainer from 'flavours/polyam/features/ui/containers/status_list_container';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 
 const messages = defineMessages({

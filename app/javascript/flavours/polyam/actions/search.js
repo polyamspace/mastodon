@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { searchHistory } from 'flavours/glitch/settings';
+import { searchHistory } from 'flavours/polyam/settings';
 
 import api from '../api';
 

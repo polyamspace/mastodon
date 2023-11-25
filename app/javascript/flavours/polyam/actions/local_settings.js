@@ -1,4 +1,4 @@
-import { expandSpoilers, disableSwiping } from 'flavours/glitch/initial_state';
+import { expandSpoilers, disableSwiping } from 'flavours/polyam/initial_state';
 
 import { openModal } from './modal';
 

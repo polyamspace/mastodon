@@ -11,8 +11,8 @@ import Toggle from 'react-toggle';
 
 
 //  Components.
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import { pollLimits } from 'flavours/glitch/initial_state';
+import { IconButton } from 'flavours/polyam/components/icon_button';
+import { pollLimits } from 'flavours/polyam/initial_state';
 
 import DropdownContainer from '../containers/dropdown_container';
 import LanguageDropdown from '../containers/language_dropdown_container';

@@ -7,8 +7,8 @@ import classNames from 'classnames';
 
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 
-import api from 'flavours/glitch/api';
-import { Skeleton } from 'flavours/glitch/components/skeleton';
+import api from 'flavours/polyam/api';
+import { Skeleton } from 'flavours/polyam/components/skeleton';
 
 const percIncrease = (a, b) => {
   let percent;

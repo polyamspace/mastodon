@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
+import Column from 'flavours/polyam/components/column';
+import ColumnHeader from 'flavours/polyam/components/column_header';
 
 export default class ColumnLoading extends ImmutablePureComponent {
 

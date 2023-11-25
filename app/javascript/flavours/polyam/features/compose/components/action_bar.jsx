@@ -5,7 +5,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { preferencesLink, profileLink } from 'flavours/glitch/utils/backend_links';
+import { preferencesLink, profileLink } from 'flavours/polyam/utils/backend_links';
 
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 

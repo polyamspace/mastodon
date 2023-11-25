@@ -6,7 +6,7 @@ import {
   HASHTAG_FOLLOW_FAIL,
   HASHTAG_UNFOLLOW_REQUEST,
   HASHTAG_UNFOLLOW_FAIL,
-} from 'flavours/glitch/actions/tags';
+} from 'flavours/polyam/actions/tags';
 
 const initialState = ImmutableMap();
 

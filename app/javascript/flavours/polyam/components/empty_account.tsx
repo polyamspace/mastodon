@@ -2,8 +2,8 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { DisplayName } from 'flavours/glitch/components/display_name';
-import { Skeleton } from 'flavours/glitch/components/skeleton';
+import { DisplayName } from 'flavours/polyam/components/display_name';
+import { Skeleton } from 'flavours/polyam/components/skeleton';
 
 interface Props {
   size?: number;

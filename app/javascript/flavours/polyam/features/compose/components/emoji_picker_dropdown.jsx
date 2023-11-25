@@ -10,8 +10,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
-import { useSystemEmojiFont } from 'flavours/glitch/initial_state';
-import { assetHost } from 'flavours/glitch/utils/config';
+import { useSystemEmojiFont } from 'flavours/polyam/initial_state';
+import { assetHost } from 'flavours/polyam/utils/config';
 
 import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
 import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';

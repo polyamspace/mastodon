@@ -5,7 +5,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import SettingToggle from 'flavours/glitch/features/notifications/components/setting_toggle';
+import SettingToggle from 'flavours/polyam/features/notifications/components/setting_toggle';
 
 import SettingText from '../../../components/setting_text';
 

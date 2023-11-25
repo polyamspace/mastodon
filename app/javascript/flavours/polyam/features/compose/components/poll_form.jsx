@@ -8,10 +8,10 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import AutosuggestInput from 'flavours/glitch/components/autosuggest_input';
-import { Icon }  from 'flavours/glitch/components/icon';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import { pollLimits } from 'flavours/glitch/initial_state';
+import AutosuggestInput from 'flavours/polyam/components/autosuggest_input';
+import { Icon }  from 'flavours/polyam/components/icon';
+import { IconButton } from 'flavours/polyam/components/icon_button';
+import { pollLimits } from 'flavours/polyam/initial_state';
 
 const messages = defineMessages({
   option_placeholder: { id: 'compose_form.poll.option_placeholder', defaultMessage: 'Choice {number}' },

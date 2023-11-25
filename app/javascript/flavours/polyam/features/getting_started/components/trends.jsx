@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
+import { ImmutableHashtag as Hashtag } from 'flavours/polyam/components/hashtag';
 
 export default class Trends extends ImmutablePureComponent {
 

@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { Helmet } from 'react-helmet';
 
-import Base from 'flavours/glitch/components/modal_root';
+import Base from 'flavours/polyam/components/modal_root';
 import {
   OnboardingModal,
   MuteModal,
@@ -19,8 +19,8 @@ import {
   InteractionModal,
   SubscribedLanguagesModal,
   ClosedRegistrationsModal,
-} from 'flavours/glitch/features/ui/util/async-components';
-import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
+} from 'flavours/polyam/features/ui/util/async-components';
+import { getScrollbarWidth } from 'flavours/polyam/utils/scrollbar';
 
 import BundleContainer from '../containers/bundle_container';
 

@@ -5,11 +5,11 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { Blurhash } from 'flavours/glitch/components/blurhash';
-import { accountsCountRenderer } from 'flavours/glitch/components/hashtag';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
-import { ShortNumber } from 'flavours/glitch/components/short_number';
-import { Skeleton } from 'flavours/glitch/components/skeleton';
+import { Blurhash } from 'flavours/polyam/components/blurhash';
+import { accountsCountRenderer } from 'flavours/polyam/components/hashtag';
+import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
+import { ShortNumber } from 'flavours/polyam/components/short_number';
+import { Skeleton } from 'flavours/polyam/components/skeleton';
 
 export default class Story extends PureComponent {
 

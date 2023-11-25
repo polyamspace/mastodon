@@ -2,8 +2,8 @@
 import { Map as ImmutableMap } from 'immutable';
 
 //  Our imports.
-import { LOCAL_SETTING_CHANGE, LOCAL_SETTING_DELETE } from 'flavours/glitch/actions/local_settings';
-import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
+import { LOCAL_SETTING_CHANGE, LOCAL_SETTING_DELETE } from 'flavours/polyam/actions/local_settings';
+import { STORE_HYDRATE } from 'flavours/polyam/actions/store';
 
 const initialState = ImmutableMap({
   stretch   : true,

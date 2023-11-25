@@ -5,10 +5,10 @@ import { FormattedMessage, FormattedDate, injectIntl, defineMessages } from 'rea
 
 import { Helmet } from 'react-helmet';
 
-import api from 'flavours/glitch/api';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import { Skeleton } from 'flavours/glitch/components/skeleton';
+import api from 'flavours/polyam/api';
+import Column from 'flavours/polyam/components/column';
+import ColumnHeader from 'flavours/polyam/components/column_header';
+import { Skeleton } from 'flavours/polyam/components/skeleton';
 
 const messages = defineMessages({
   title: { id: 'privacy_policy.title', defaultMessage: 'Privacy Policy' },

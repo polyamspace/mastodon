@@ -3,7 +3,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { Check } from 'flavours/glitch/components/check';
+import { Check } from 'flavours/polyam/components/check';
 
 const ProgressIndicator = ({ steps, completed }) => (
   <div className='onboarding__progress-indicator'>

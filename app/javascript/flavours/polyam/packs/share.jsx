@@ -1,9 +1,9 @@
 import 'packs/public-path';
 import { createRoot } from 'react-dom/client';
 
-import ComposeContainer from 'flavours/glitch/containers/compose_container';
-import { loadPolyfills } from 'flavours/glitch/polyfills';
-import ready from 'flavours/glitch/ready';
+import ComposeContainer from 'flavours/polyam/containers/compose_container';
+import { loadPolyfills } from 'flavours/polyam/polyfills';
+import ready from 'flavours/polyam/ready';
 
 function loaded() {
   const mountNode = document.getElementById('mastodon-compose');

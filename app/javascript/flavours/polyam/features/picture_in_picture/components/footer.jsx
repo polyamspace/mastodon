@@ -9,14 +9,14 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { initBoostModal } from 'flavours/glitch/actions/boosts';
-import { replyCompose } from 'flavours/glitch/actions/compose';
-import { reblog, favourite, unreblog, unfavourite } from 'flavours/glitch/actions/interactions';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import { me, boostModal } from 'flavours/glitch/initial_state';
-import { makeGetStatus } from 'flavours/glitch/selectors';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { initBoostModal } from 'flavours/polyam/actions/boosts';
+import { replyCompose } from 'flavours/polyam/actions/compose';
+import { reblog, favourite, unreblog, unfavourite } from 'flavours/polyam/actions/interactions';
+import { openModal } from 'flavours/polyam/actions/modal';
+import { IconButton } from 'flavours/polyam/components/icon_button';
+import { me, boostModal } from 'flavours/polyam/initial_state';
+import { makeGetStatus } from 'flavours/polyam/selectors';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 const messages = defineMessages({
   reply: { id: 'status.reply', defaultMessage: 'Reply' },

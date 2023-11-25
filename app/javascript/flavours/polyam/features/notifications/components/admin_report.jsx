@@ -10,9 +10,9 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { HotKeys } from 'react-hotkeys';
 
-import { Icon } from 'flavours/glitch/components/icon';
-import Permalink from 'flavours/glitch/components/permalink';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { Icon } from 'flavours/polyam/components/icon';
+import Permalink from 'flavours/polyam/components/permalink';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import NotificationOverlayContainer from '../containers/overlay_container';
 

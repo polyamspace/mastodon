@@ -8,15 +8,15 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { AnimatedNumber } from 'flavours/glitch/components/animated_number';
-import AttachmentList from 'flavours/glitch/components/attachment_list';
-import EditedTimestamp from 'flavours/glitch/components/edited_timestamp';
-import { getHashtagBarForStatus } from 'flavours/glitch/components/hashtag_bar';
-import { Icon } from 'flavours/glitch/components/icon';
-import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
-import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
-import PollContainer from 'flavours/glitch/containers/poll_container';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { AnimatedNumber } from 'flavours/polyam/components/animated_number';
+import AttachmentList from 'flavours/polyam/components/attachment_list';
+import EditedTimestamp from 'flavours/polyam/components/edited_timestamp';
+import { getHashtagBarForStatus } from 'flavours/polyam/components/hashtag_bar';
+import { Icon } from 'flavours/polyam/components/icon';
+import PictureInPicturePlaceholder from 'flavours/polyam/components/picture_in_picture_placeholder';
+import VisibilityIcon from 'flavours/polyam/components/status_visibility_icon';
+import PollContainer from 'flavours/polyam/containers/poll_container';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';

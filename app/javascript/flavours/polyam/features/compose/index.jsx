@@ -10,8 +10,8 @@ import { connect } from 'react-redux';
 
 import spring from 'react-motion/lib/spring';
 
-import { mountCompose, unmountCompose, cycleElefriendCompose } from 'flavours/glitch/actions/compose';
-import Column from 'flavours/glitch/components/column';
+import { mountCompose, unmountCompose, cycleElefriendCompose } from 'flavours/polyam/actions/compose';
+import Column from 'flavours/polyam/components/column';
 
 import { mascot } from '../../initial_state';
 import { isMobile } from '../../is_mobile';

@@ -1,8 +1,8 @@
 import 'packs/public-path';
 import Rails from '@rails/ujs';
 
-import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
-import { loadPolyfills } from 'flavours/glitch/polyfills';
+import loadKeyboardExtensions from 'flavours/polyam/load_keyboard_extensions';
+import { loadPolyfills } from 'flavours/polyam/polyfills';
 import 'cocoon-js-vanilla';
 
 function main() {

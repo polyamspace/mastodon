@@ -10,7 +10,7 @@ import type {
 } from 'history';
 import { createBrowserHistory } from 'history';
 
-import { layoutFromWindow } from 'flavours/glitch/is_mobile';
+import { layoutFromWindow } from 'flavours/polyam/is_mobile';
 
 interface MastodonLocationState {
   fromMastodon?: boolean;

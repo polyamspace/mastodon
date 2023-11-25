@@ -5,9 +5,9 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import SettingText from 'flavours/glitch/components/setting_text';
-import SettingToggle from 'flavours/glitch/features/notifications/components/setting_toggle';
-import { showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/glitch/initial_state';
+import SettingText from 'flavours/polyam/components/setting_text';
+import SettingToggle from 'flavours/polyam/features/notifications/components/setting_toggle';
+import { showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/polyam/initial_state';
 
 const messages = defineMessages({
   filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },

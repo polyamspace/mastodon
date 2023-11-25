@@ -9,13 +9,13 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { fetchLists } from 'flavours/glitch/actions/lists';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import Column from 'flavours/glitch/features/ui/components/column';
-import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
-import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subheading';
+import { fetchLists } from 'flavours/polyam/actions/lists';
+import ColumnBackButtonSlim from 'flavours/polyam/components/column_back_button_slim';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import ScrollableList from 'flavours/polyam/components/scrollable_list';
+import Column from 'flavours/polyam/features/ui/components/column';
+import ColumnLink from 'flavours/polyam/features/ui/components/column_link';
+import ColumnSubheading from 'flavours/polyam/features/ui/components/column_subheading';
 
 import NewListForm from './components/new_list_form';
 

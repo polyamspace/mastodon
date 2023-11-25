@@ -7,9 +7,9 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
-import { Button } from 'flavours/glitch/components/button';
-import Column from 'flavours/glitch/components/column';
-import { autoPlayGif } from 'flavours/glitch/initial_state';
+import { Button } from 'flavours/polyam/components/button';
+import Column from 'flavours/polyam/components/column';
+import { autoPlayGif } from 'flavours/polyam/initial_state';
 
 class GIF extends PureComponent {
 

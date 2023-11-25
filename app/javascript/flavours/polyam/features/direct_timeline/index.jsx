@@ -7,13 +7,13 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { mountConversations, unmountConversations, expandConversations } from 'flavours/glitch/actions/conversations';
-import { connectDirectStream } from 'flavours/glitch/actions/streaming';
-import { expandDirectTimeline } from 'flavours/glitch/actions/timelines';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
+import { addColumn, removeColumn, moveColumn } from 'flavours/polyam/actions/columns';
+import { mountConversations, unmountConversations, expandConversations } from 'flavours/polyam/actions/conversations';
+import { connectDirectStream } from 'flavours/polyam/actions/streaming';
+import { expandDirectTimeline } from 'flavours/polyam/actions/timelines';
+import Column from 'flavours/polyam/components/column';
+import ColumnHeader from 'flavours/polyam/components/column_header';
+import StatusListContainer from 'flavours/polyam/features/ui/containers/status_list_container';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
 import ConversationsListContainer from './containers/conversations_list_container';

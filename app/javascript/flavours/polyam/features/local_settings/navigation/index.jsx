@@ -5,7 +5,7 @@ import { PureComponent } from 'react';
 import { injectIntl, defineMessages } from 'react-intl';
 
 //  Our imports
-import { preferencesLink } from 'flavours/glitch/utils/backend_links';
+import { preferencesLink } from 'flavours/polyam/utils/backend_links';
 
 import LocalSettingsNavigationItem from './item';
 

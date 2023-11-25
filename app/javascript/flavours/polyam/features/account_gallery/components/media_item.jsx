@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { Blurhash } from 'flavours/glitch/components/blurhash';
-import { Icon }  from 'flavours/glitch/components/icon';
-import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
+import { Blurhash } from 'flavours/polyam/components/blurhash';
+import { Icon }  from 'flavours/polyam/components/icon';
+import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/polyam/initial_state';
 
 export default class MediaItem extends ImmutablePureComponent {
 

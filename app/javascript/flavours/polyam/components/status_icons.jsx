@@ -8,8 +8,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 
 //  Mastodon imports.
-import { Icon } from 'flavours/glitch/components/icon';
-import { languages } from 'flavours/glitch/initial_state';
+import { Icon } from 'flavours/polyam/components/icon';
+import { languages } from 'flavours/polyam/initial_state';
 
 import { IconButton } from './icon_button';
 import VisibilityIcon from './status_visibility_icon';

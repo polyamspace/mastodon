@@ -6,8 +6,8 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { Icon } from 'flavours/glitch/components/icon';
-import { me } from 'flavours/glitch/initial_state';
+import { Icon } from 'flavours/polyam/components/icon';
+import { me } from 'flavours/polyam/initial_state';
 
 export default class StatusPrepend extends PureComponent {
 

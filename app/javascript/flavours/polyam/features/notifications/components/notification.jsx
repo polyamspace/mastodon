@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Our imports,
-import StatusContainer from 'flavours/glitch/containers/status_container';
+import StatusContainer from 'flavours/polyam/containers/status_container';
 
 import NotificationAdminReportContainer from '../containers/admin_report_container';
 import NotificationFollowRequestContainer from '../containers/follow_request_container';

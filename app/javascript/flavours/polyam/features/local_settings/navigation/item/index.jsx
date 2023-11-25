@@ -4,7 +4,7 @@ import { PureComponent } from 'react';
 
 import classNames from 'classnames';
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from 'flavours/polyam/components/icon';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 

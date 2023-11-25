@@ -1,7 +1,7 @@
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
-import { ACCOUNT_BLOCK_SUCCESS, ACCOUNT_MUTE_SUCCESS } from 'flavours/glitch/actions/accounts';
-import { DOMAIN_BLOCK_SUCCESS } from 'flavours/glitch/actions/domain_blocks';
+import { ACCOUNT_BLOCK_SUCCESS, ACCOUNT_MUTE_SUCCESS } from 'flavours/polyam/actions/accounts';
+import { DOMAIN_BLOCK_SUCCESS } from 'flavours/polyam/actions/domain_blocks';
 
 import {
   CONVERSATIONS_MOUNT,

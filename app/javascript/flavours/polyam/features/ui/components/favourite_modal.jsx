@@ -8,15 +8,15 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import AttachmentList from 'flavours/glitch/components/attachment_list';
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { Button } from 'flavours/glitch/components/button';
-import { DisplayName } from 'flavours/glitch/components/display_name';
-import { Icon } from 'flavours/glitch/components/icon';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
-import StatusContent from 'flavours/glitch/components/status_content';
-import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import AttachmentList from 'flavours/polyam/components/attachment_list';
+import { Avatar } from 'flavours/polyam/components/avatar';
+import { Button } from 'flavours/polyam/components/button';
+import { DisplayName } from 'flavours/polyam/components/display_name';
+import { Icon } from 'flavours/polyam/components/icon';
+import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
+import StatusContent from 'flavours/polyam/components/status_content';
+import VisibilityIcon from 'flavours/polyam/components/status_visibility_icon';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },

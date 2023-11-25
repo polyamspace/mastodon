@@ -5,8 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { changeListEditorTitle, submitListEditor } from 'flavours/glitch/actions/lists';
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import { changeListEditorTitle, submitListEditor } from 'flavours/polyam/actions/lists';
+import { IconButton } from 'flavours/polyam/components/icon_button';
 
 const messages = defineMessages({
   label: { id: 'lists.new.title_placeholder', defaultMessage: 'New list title' },

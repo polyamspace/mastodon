@@ -7,7 +7,7 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
-import { changeComposeSensitivity } from 'flavours/glitch/actions/compose';
+import { changeComposeSensitivity } from 'flavours/polyam/actions/compose';
 
 const messages = defineMessages({
   marked: {

@@ -2,7 +2,7 @@ import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import Search from 'flavours/glitch/features/list_editor/components/search';
+import Search from 'flavours/polyam/features/list_editor/components/search';
 
 import {
   fetchPinnedAccountsSuggestions,

@@ -10,12 +10,12 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
-import { fetchLists } from 'flavours/glitch/actions/lists';
-import { openModal } from 'flavours/glitch/actions/modal';
-import Column from 'flavours/glitch/features/ui/components/column';
-import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
-import { preferencesLink } from 'flavours/glitch/utils/backend_links';
+import { fetchFollowRequests } from 'flavours/polyam/actions/accounts';
+import { fetchLists } from 'flavours/polyam/actions/lists';
+import { openModal } from 'flavours/polyam/actions/modal';
+import Column from 'flavours/polyam/features/ui/components/column';
+import LinkFooter from 'flavours/polyam/features/ui/components/link_footer';
+import { preferencesLink } from 'flavours/polyam/utils/backend_links';
 
 import { me, showTrends } from '../../initial_state';
 import NavigationBar from '../compose/components/navigation_bar';

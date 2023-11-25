@@ -5,9 +5,9 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import AttachmentList from 'flavours/glitch/components/attachment_list';
-import { highlightCode } from 'flavours/glitch/utils/html';
-import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/glitch/utils/react_router';
+import AttachmentList from 'flavours/polyam/components/attachment_list';
+import { highlightCode } from 'flavours/polyam/utils/html';
+import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/polyam/utils/react_router';
 
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';

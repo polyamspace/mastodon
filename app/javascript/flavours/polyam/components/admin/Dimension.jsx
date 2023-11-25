@@ -3,9 +3,9 @@ import { PureComponent } from 'react';
 
 import { FormattedNumber } from 'react-intl';
 
-import api from 'flavours/glitch/api';
-import { Skeleton } from 'flavours/glitch/components/skeleton';
-import { roundTo10 } from 'flavours/glitch/utils/numbers';
+import api from 'flavours/polyam/api';
+import { Skeleton } from 'flavours/polyam/components/skeleton';
+import { roundTo10 } from 'flavours/polyam/utils/numbers';
 
 export default class Dimension extends PureComponent {
 

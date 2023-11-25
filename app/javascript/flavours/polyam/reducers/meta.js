@@ -1,8 +1,8 @@
 import { Map as ImmutableMap } from 'immutable';
 
-import { changeLayout } from 'flavours/glitch/actions/app';
-import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
-import { layoutFromWindow } from 'flavours/glitch/is_mobile';
+import { changeLayout } from 'flavours/polyam/actions/app';
+import { STORE_HYDRATE } from 'flavours/polyam/actions/store';
+import { layoutFromWindow } from 'flavours/polyam/is_mobile';
 
 const initialState = ImmutableMap({
   streaming_api_base_url: null,

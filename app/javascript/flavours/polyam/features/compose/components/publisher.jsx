@@ -8,9 +8,9 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
 
-import { Button } from 'flavours/glitch/components/button';
-import { Icon } from 'flavours/glitch/components/icon';
-import { maxChars, publishButtonText as customPublishButtonText } from 'flavours/glitch/initial_state';
+import { Button } from 'flavours/polyam/components/button';
+import { Icon } from 'flavours/polyam/components/icon';
+import { maxChars, publishButtonText as customPublishButtonText } from 'flavours/polyam/initial_state';
 
 const messages = defineMessages({
   publish: {

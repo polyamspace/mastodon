@@ -3,11 +3,11 @@ import { defineMessages } from 'react-intl';
 import axios from 'axios';
 import { throttle } from 'lodash';
 
-import api from 'flavours/glitch/api';
-import { search as emojiSearch } from 'flavours/glitch/features/emoji/emoji_mart_search_light';
-import { tagHistory } from 'flavours/glitch/settings';
-import { recoverHashtags } from 'flavours/glitch/utils/hashtag';
-import resizeImage from 'flavours/glitch/utils/resize_image';
+import api from 'flavours/polyam/api';
+import { search as emojiSearch } from 'flavours/polyam/features/emoji/emoji_mart_search_light';
+import { tagHistory } from 'flavours/polyam/settings';
+import { recoverHashtags } from 'flavours/polyam/utils/hashtag';
+import resizeImage from 'flavours/polyam/utils/resize_image';
 
 import { showAlert, showAlertForError } from './alerts';
 import { useEmoji } from './emojis';

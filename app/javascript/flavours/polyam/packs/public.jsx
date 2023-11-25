@@ -9,11 +9,11 @@ import axios from 'axios';
 import { createBrowserHistory }  from 'history';
 import { throttle } from 'lodash';
 
-import { timeAgoString }  from 'flavours/glitch/components/relative_timestamp';
-import emojify  from 'flavours/glitch/features/emoji/emoji';
-import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
-import { loadLocale, getLocale } from 'flavours/glitch/locales';
-import { loadPolyfills } from 'flavours/glitch/polyfills';
+import { timeAgoString }  from 'flavours/polyam/components/relative_timestamp';
+import emojify  from 'flavours/polyam/features/emoji/emoji';
+import loadKeyboardExtensions from 'flavours/polyam/load_keyboard_extensions';
+import { loadLocale, getLocale } from 'flavours/polyam/locales';
+import { loadPolyfills } from 'flavours/polyam/polyfills';
 
 const messages = defineMessages({
   usernameTaken: { id: 'username.taken', defaultMessage: 'That username is taken. Try another' },
@@ -120,7 +120,7 @@ function main() {
 
   const reactComponents = document.querySelectorAll('[data-component]');
   if (reactComponents.length > 0) {
-    import(/* webpackChunkName: "containers/media_container" */ 'flavours/glitch/containers/media_container')
+    import(/* webpackChunkName: "containers/media_container" */ 'flavours/polyam/containers/media_container')
       .then(({ default: MediaContainer }) => {
         [].forEach.call(reactComponents, (component) => {
           [].forEach.call(component.children, (child) => {

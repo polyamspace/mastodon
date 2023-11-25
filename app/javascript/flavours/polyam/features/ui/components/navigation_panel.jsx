@@ -3,10 +3,10 @@ import { Component } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { NavigationPortal } from 'flavours/glitch/components/navigation_portal';
-import { timelinePreview, trendsEnabled } from 'flavours/glitch/initial_state';
-import { transientSingleColumn } from 'flavours/glitch/is_mobile';
-import { preferencesLink } from 'flavours/glitch/utils/backend_links';
+import { NavigationPortal } from 'flavours/polyam/components/navigation_portal';
+import { timelinePreview, trendsEnabled } from 'flavours/polyam/initial_state';
+import { transientSingleColumn } from 'flavours/polyam/is_mobile';
+import { preferencesLink } from 'flavours/polyam/utils/backend_links';
 
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';

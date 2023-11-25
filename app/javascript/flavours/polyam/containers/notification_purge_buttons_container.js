@@ -4,13 +4,13 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 //  Our imports.
-import { openModal } from 'flavours/glitch/actions/modal';
+import { openModal } from 'flavours/polyam/actions/modal';
 import {
   deleteMarkedNotifications,
   enterNotificationClearingMode,
   markAllNotifications,
-} from 'flavours/glitch/actions/notifications';
-import NotificationPurgeButtons from 'flavours/glitch/components/notification_purge_buttons';
+} from 'flavours/polyam/actions/notifications';
+import NotificationPurgeButtons from 'flavours/polyam/components/notification_purge_buttons';
 
 const messages = defineMessages({
   clearMessage: { id: 'notifications.marked_clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all selected notifications?' },

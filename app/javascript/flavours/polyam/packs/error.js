@@ -1,5 +1,5 @@
 import 'packs/public-path';
-import ready from 'flavours/glitch/ready';
+import ready from 'flavours/polyam/ready';
 
 ready(() => {
   const image = document.querySelector('img');

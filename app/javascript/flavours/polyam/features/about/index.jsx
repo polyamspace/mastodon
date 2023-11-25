@@ -10,14 +10,14 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'flavours/glitch/actions/server';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import { Icon } from 'flavours/glitch/components/icon';
-import { ServerHeroImage } from 'flavours/glitch/components/server_hero_image';
-import { Skeleton } from 'flavours/glitch/components/skeleton';
-import Account from 'flavours/glitch/containers/account_container';
-import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
+import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'flavours/polyam/actions/server';
+import Column from 'flavours/polyam/components/column';
+import ColumnHeader from 'flavours/polyam/components/column_header';
+import { Icon } from 'flavours/polyam/components/icon';
+import { ServerHeroImage } from 'flavours/polyam/components/server_hero_image';
+import { Skeleton } from 'flavours/polyam/components/skeleton';
+import Account from 'flavours/polyam/containers/account_container';
+import LinkFooter from 'flavours/polyam/features/ui/components/link_footer';
 
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },

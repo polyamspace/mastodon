@@ -9,8 +9,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
-import { CircularProgress } from 'flavours/glitch/components/circular_progress';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { CircularProgress } from 'flavours/polyam/components/circular_progress';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import { IconButton } from './icon_button';
 

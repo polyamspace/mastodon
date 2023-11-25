@@ -8,11 +8,11 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { fetchTrendingHashtags } from 'flavours/glitch/actions/trends';
-import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
-import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { fetchTrendingHashtags } from 'flavours/polyam/actions/trends';
+import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
+import { ImmutableHashtag as Hashtag } from 'flavours/polyam/components/hashtag';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 const mapStateToProps = state => ({
   hashtags: state.getIn(['trends', 'tags', 'items']),

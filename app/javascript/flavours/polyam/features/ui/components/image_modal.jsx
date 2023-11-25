@@ -5,7 +5,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import { IconButton } from 'flavours/polyam/components/icon_button';
 
 import ImageLoader from './image_loader';
 

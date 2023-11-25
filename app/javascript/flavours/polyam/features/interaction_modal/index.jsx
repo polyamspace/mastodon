@@ -9,11 +9,11 @@ import { connect } from 'react-redux';
 
 import { throttle, escapeRegExp } from 'lodash';
 
-import { openModal, closeModal } from 'flavours/glitch/actions/modal';
-import api from 'flavours/glitch/api';
-import { Button } from 'flavours/glitch/components/button';
-import { Icon }  from 'flavours/glitch/components/icon';
-import { registrationsOpen, sso_redirect } from 'flavours/glitch/initial_state';
+import { openModal, closeModal } from 'flavours/polyam/actions/modal';
+import api from 'flavours/polyam/api';
+import { Button } from 'flavours/polyam/components/button';
+import { Icon }  from 'flavours/polyam/components/icon';
+import { registrationsOpen, sso_redirect } from 'flavours/polyam/initial_state';
 
 const messages = defineMessages({
   loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server, e.g. mastodon.social' },

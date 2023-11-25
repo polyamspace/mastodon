@@ -7,7 +7,7 @@ import {
   FOLLOWED_HASHTAGS_EXPAND_REQUEST,
   FOLLOWED_HASHTAGS_EXPAND_SUCCESS,
   FOLLOWED_HASHTAGS_EXPAND_FAIL,
-} from 'flavours/glitch/actions/tags';
+} from 'flavours/polyam/actions/tags';
 
 const initialState = ImmutableMap({
   items: ImmutableList(),

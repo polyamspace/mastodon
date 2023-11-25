@@ -9,8 +9,8 @@ import { supportsPassiveEvents } from 'detect-passive-events';
 import fuzzysort from 'fuzzysort';
 import Overlay from 'react-overlays/Overlay';
 
-import { languages as preloadedLanguages } from 'flavours/glitch/initial_state';
-import { loupeIcon, deleteIcon } from 'flavours/glitch/utils/icons';
+import { languages as preloadedLanguages } from 'flavours/polyam/initial_state';
+import { loupeIcon, deleteIcon } from 'flavours/polyam/utils/icons';
 
 import TextIconButton from './text_icon_button';
 

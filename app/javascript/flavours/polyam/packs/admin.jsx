@@ -1,15 +1,15 @@
 import 'packs/public-path';
 import { createRoot } from 'react-dom/client';
 
-import ready from 'flavours/glitch/ready';
+import ready from 'flavours/polyam/ready';
 
 ready(() => {
   [].forEach.call(document.querySelectorAll('[data-admin-component]'), element => {
     const componentName  = element.getAttribute('data-admin-component');
     const { ...componentProps } = JSON.parse(element.getAttribute('data-props'));
 
-    import('flavours/glitch/containers/admin_component').then(({ default: AdminComponent }) => {
-      return import('flavours/glitch/components/admin/' + componentName).then(({ default: Component }) => {
+    import('flavours/polyam/containers/admin_component').then(({ default: AdminComponent }) => {
+      return import('flavours/polyam/components/admin/' + componentName).then(({ default: Component }) => {
         const root = createRoot(element);
 
         root.render (

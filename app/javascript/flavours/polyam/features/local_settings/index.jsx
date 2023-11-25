@@ -6,8 +6,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 //  Our imports
-import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
-import { closeModal } from 'flavours/glitch/actions/modal';
+import { changeLocalSetting } from 'flavours/polyam/actions/local_settings';
+import { closeModal } from 'flavours/polyam/actions/modal';
 
 import LocalSettingsNavigation from './navigation';
 import LocalSettingsPage from './page';

@@ -3,9 +3,9 @@ import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 
-import { openModal } from 'flavours/glitch/actions/modal';
-import { registrationsOpen, sso_redirect } from 'flavours/glitch/initial_state';
-import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
+import { openModal } from 'flavours/polyam/actions/modal';
+import { registrationsOpen, sso_redirect } from 'flavours/polyam/initial_state';
+import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 const SignInBanner = () => {
   const dispatch = useAppDispatch();

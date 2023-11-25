@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { changeSetting } from 'flavours/glitch/actions/settings';
+import { changeSetting } from 'flavours/polyam/actions/settings';
 
 import ColumnSettings from '../components/column_settings';
 

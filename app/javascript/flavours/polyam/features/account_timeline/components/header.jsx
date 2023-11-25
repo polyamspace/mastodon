@@ -7,7 +7,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import ActionBar from '../../account/components/action_bar';
 import InnerHeader from '../../account/components/header';

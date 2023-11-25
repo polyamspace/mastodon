@@ -7,19 +7,19 @@ import { List as ImmutableList } from 'immutable';
 
 import { debounce } from 'lodash';
 
-import { lookupAccount, fetchAccount, fetchPinnedAccounts, expandPinnedAccounts } from 'flavours/glitch/actions/accounts';
-import { fetchFeaturedTags } from 'flavours/glitch/actions/featured_tags';
-import Hashtag from 'flavours/glitch/components/hashtag';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import Account from 'flavours/glitch/containers/account_container';
-import ProfileColumnHeader from 'flavours/glitch/features/account/components/profile_column_header';
-import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
-import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
-import Column from 'flavours/glitch/features/ui/components/column';
-import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
-import { getAccountHidden } from 'flavours/glitch/selectors';
-import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
+import { lookupAccount, fetchAccount, fetchPinnedAccounts, expandPinnedAccounts } from 'flavours/polyam/actions/accounts';
+import { fetchFeaturedTags } from 'flavours/polyam/actions/featured_tags';
+import Hashtag from 'flavours/polyam/components/hashtag';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import ScrollableList from 'flavours/polyam/components/scrollable_list';
+import Account from 'flavours/polyam/containers/account_container';
+import ProfileColumnHeader from 'flavours/polyam/features/account/components/profile_column_header';
+import HeaderContainer from 'flavours/polyam/features/account_timeline/containers/header_container';
+import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
+import Column from 'flavours/polyam/features/ui/components/column';
+import { normalizeForLookup } from 'flavours/polyam/reducers/accounts_map';
+import { getAccountHidden } from 'flavours/polyam/selectors';
+import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 
 import LimitedAccountHint from '../account_timeline/components/limited_account_hint';

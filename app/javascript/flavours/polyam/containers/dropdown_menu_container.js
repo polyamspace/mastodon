@@ -6,7 +6,7 @@ import DropdownMenu from '../components/dropdown_menu';
 import { isUserTouching } from '../is_mobile';
 
 /**
- * @param {import('flavours/glitch/store').RootState} state
+ * @param {import('flavours/polyam/store').RootState} state
  */
 const mapStateToProps = state => ({
   openDropdownId: state.dropdownMenu.openId,

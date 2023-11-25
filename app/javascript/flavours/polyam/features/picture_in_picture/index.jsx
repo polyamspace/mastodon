@@ -5,9 +5,9 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
-import { removePictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
-import Audio from 'flavours/glitch/features/audio';
-import Video from 'flavours/glitch/features/video';
+import { removePictureInPicture } from 'flavours/polyam/actions/picture_in_picture';
+import Audio from 'flavours/polyam/features/audio';
+import Video from 'flavours/polyam/features/video';
 
 import Footer from './components/footer';
 import Header from './components/header';

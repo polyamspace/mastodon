@@ -5,8 +5,8 @@ import {
   changeComposeContentType,
   addPoll,
   removePoll,
-} from 'flavours/glitch/actions/compose';
-import { openModal } from 'flavours/glitch/actions/modal';
+} from 'flavours/polyam/actions/compose';
+import { openModal } from 'flavours/polyam/actions/modal';
 
 import Options from '../components/options';
 

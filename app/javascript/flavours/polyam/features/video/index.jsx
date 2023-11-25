@@ -9,8 +9,8 @@ import { is } from 'immutable';
 
 import { throttle } from 'lodash';
 
-import { Blurhash } from 'flavours/glitch/components/blurhash';
-import { Icon }  from 'flavours/glitch/components/icon';
+import { Blurhash } from 'flavours/polyam/components/blurhash';
+import { Icon }  from 'flavours/polyam/components/icon';
 
 import { displayMedia, useBlurhash } from '../../initial_state';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';

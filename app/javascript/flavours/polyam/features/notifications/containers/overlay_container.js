@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 //  Our imports.
-import { markNotificationForDelete } from 'flavours/glitch/actions/notifications';
+import { markNotificationForDelete } from 'flavours/polyam/actions/notifications';
 
 import NotificationOverlay from '../components/overlay';
 

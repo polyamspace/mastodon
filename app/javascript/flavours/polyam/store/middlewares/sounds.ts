@@ -1,8 +1,8 @@
 import type { Middleware, AnyAction } from 'redux';
 
-import { notificationSound } from 'flavours/glitch/initial_state';
-import ready from 'flavours/glitch/ready';
-import { assetHost } from 'flavours/glitch/utils/config';
+import { notificationSound } from 'flavours/polyam/initial_state';
+import ready from 'flavours/polyam/ready';
+import { assetHost } from 'flavours/polyam/utils/config';
 
 import type { RootState } from '..';
 

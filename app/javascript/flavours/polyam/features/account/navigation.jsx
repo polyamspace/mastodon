@@ -3,8 +3,8 @@ import { PureComponent } from 'react';
 
 import { connect } from 'react-redux';
 
-import FeaturedTags from 'flavours/glitch/features/account/containers/featured_tags_container';
-import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
+import FeaturedTags from 'flavours/polyam/features/account/containers/featured_tags_container';
+import { normalizeForLookup } from 'flavours/polyam/reducers/accounts_map';
 
 const mapStateToProps = (state, { match: { params: { acct } } }) => {
   const accountId = state.getIn(['accounts_map', normalizeForLookup(acct)]);

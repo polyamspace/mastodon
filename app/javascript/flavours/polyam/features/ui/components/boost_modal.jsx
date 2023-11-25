@@ -9,12 +9,12 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { changeBoostPrivacy } from 'flavours/glitch/actions/boosts';
-import AttachmentList from 'flavours/glitch/components/attachment_list';
-import { Icon }  from 'flavours/glitch/components/icon';
-import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
-import PrivacyDropdown from 'flavours/glitch/features/compose/components/privacy_dropdown';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { changeBoostPrivacy } from 'flavours/polyam/actions/boosts';
+import AttachmentList from 'flavours/polyam/components/attachment_list';
+import { Icon }  from 'flavours/polyam/components/icon';
+import VisibilityIcon from 'flavours/polyam/components/status_visibility_icon';
+import PrivacyDropdown from 'flavours/polyam/features/compose/components/privacy_dropdown';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import { Avatar } from '../../../components/avatar';
 import { Button } from '../../../components/button';

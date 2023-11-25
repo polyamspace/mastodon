@@ -9,14 +9,14 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavours/glitch/actions/columns';
-import { fetchDirectory, expandDirectory } from 'flavours/glitch/actions/directory';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import { LoadMore } from 'flavours/glitch/components/load_more';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import { RadioButton } from 'flavours/glitch/components/radio_button';
-import ScrollContainer from 'flavours/glitch/containers/scroll_container';
+import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavours/polyam/actions/columns';
+import { fetchDirectory, expandDirectory } from 'flavours/polyam/actions/directory';
+import Column from 'flavours/polyam/components/column';
+import ColumnHeader from 'flavours/polyam/components/column_header';
+import { LoadMore } from 'flavours/polyam/components/load_more';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import { RadioButton } from 'flavours/polyam/components/radio_button';
+import ScrollContainer from 'flavours/polyam/containers/scroll_container';
 
 import AccountCard from './components/account_card';
 

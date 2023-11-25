@@ -3,12 +3,12 @@ import { PureComponent } from 'react';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { DisplayName } from 'flavours/glitch/components/display_name';
-import MediaAttachments from 'flavours/glitch/components/media_attachments';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
-import StatusContent from 'flavours/glitch/components/status_content';
-import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
+import { Avatar } from 'flavours/polyam/components/avatar';
+import { DisplayName } from 'flavours/polyam/components/display_name';
+import MediaAttachments from 'flavours/polyam/components/media_attachments';
+import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
+import StatusContent from 'flavours/polyam/components/status_content';
+import VisibilityIcon from 'flavours/polyam/components/status_visibility_icon';
 
 import Option from './option';
 

@@ -5,7 +5,7 @@ import { injectIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
-import api from 'flavours/glitch/api';
+import api from 'flavours/polyam/api';
 
 const messages = defineMessages({
   legal: { id: 'report.categories.legal', defaultMessage: 'Legal' },

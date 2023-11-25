@@ -3,8 +3,8 @@ import { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { makeGetAccount } from 'flavours/glitch/selectors';
+import { Avatar } from 'flavours/polyam/components/avatar';
+import { makeGetAccount } from 'flavours/polyam/selectors';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();

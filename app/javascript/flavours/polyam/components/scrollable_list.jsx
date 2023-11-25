@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import { throttle } from 'lodash';
 
-import ScrollContainer from 'flavours/glitch/containers/scroll_container';
+import ScrollContainer from 'flavours/polyam/containers/scroll_container';
 
 import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
@@ -26,7 +26,7 @@ const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 /**
  *
- * @param {import('flavours/glitch/store').RootState} state
+ * @param {import('flavours/polyam/store').RootState} state
  * @param {*} props
  */
 const mapStateToProps = (state, { scrollKey }) => {

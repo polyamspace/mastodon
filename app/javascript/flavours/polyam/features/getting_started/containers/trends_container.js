@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { fetchTrendingHashtags } from 'flavours/glitch/actions/trends';
+import { fetchTrendingHashtags } from 'flavours/polyam/actions/trends';
 
 import Trends from '../components/trends';
 

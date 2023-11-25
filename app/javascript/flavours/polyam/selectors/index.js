@@ -1,7 +1,7 @@
 import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 import { createSelector } from 'reselect';
 
-import { toServerSideType } from 'flavours/glitch/utils/filters';
+import { toServerSideType } from 'flavours/polyam/utils/filters';
 
 import { me } from '../initial_state';
 

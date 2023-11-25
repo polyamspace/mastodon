@@ -8,10 +8,10 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import Search from 'flavours/glitch/features/compose/containers/search_container';
-import { trendsEnabled } from 'flavours/glitch/initial_state';
+import Column from 'flavours/polyam/components/column';
+import ColumnHeader from 'flavours/polyam/components/column_header';
+import Search from 'flavours/polyam/features/compose/containers/search_container';
+import { trendsEnabled } from 'flavours/polyam/initial_state';
 
 import Links from './links';
 import SearchResults from './results';

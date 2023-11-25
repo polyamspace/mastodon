@@ -1,11 +1,11 @@
 import { createRoot } from 'react-dom/client';
 
-import { setupBrowserNotifications } from 'flavours/glitch/actions/notifications';
-import Mastodon from 'flavours/glitch/containers/mastodon';
-import { me } from 'flavours/glitch/initial_state';
-import * as perf from 'flavours/glitch/performance';
-import ready from 'flavours/glitch/ready';
-import { store } from 'flavours/glitch/store';
+import { setupBrowserNotifications } from 'flavours/polyam/actions/notifications';
+import Mastodon from 'flavours/polyam/containers/mastodon';
+import { me } from 'flavours/polyam/initial_state';
+import * as perf from 'flavours/polyam/performance';
+import ready from 'flavours/polyam/ready';
+import { store } from 'flavours/polyam/store';
 
 /**
  * @returns {Promise<void>}
@@ -34,7 +34,7 @@ function main() {
       }
 
       if (registration && 'Notification' in window && Notification.permission === 'granted') {
-        const registerPushNotifications = await import('flavours/glitch/actions/push_notifications');
+        const registerPushNotifications = await import('flavours/polyam/actions/push_notifications');
 
         store.dispatch(registerPushNotifications.register());
       }

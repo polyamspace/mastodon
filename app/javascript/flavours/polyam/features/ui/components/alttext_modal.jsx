@@ -5,7 +5,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { Button } from 'flavours/glitch/components/button';
+import { Button } from 'flavours/polyam/components/button';
 
 class AltTextModal extends ImmutablePureComponent {
 

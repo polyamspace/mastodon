@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 
-import { openDropdownMenu, closeDropdownMenu } from 'flavours/glitch/actions/dropdown_menu';
-import { fetchHistory } from 'flavours/glitch/actions/history';
-import DropdownMenu from 'flavours/glitch/components/dropdown_menu';
+import { openDropdownMenu, closeDropdownMenu } from 'flavours/polyam/actions/dropdown_menu';
+import { fetchHistory } from 'flavours/polyam/actions/history';
+import DropdownMenu from 'flavours/polyam/components/dropdown_menu';
 
 /**
  *
- * @param {import('flavours/glitch/store').RootState} state
+ * @param {import('flavours/polyam/store').RootState} state
  * @param {*} props
  */
 const mapStateToProps = (state, { statusId }) => ({

@@ -2,7 +2,7 @@ import { Map as ImmutableMap } from 'immutable';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { addReaction, removeReaction, dismissAnnouncement } from 'flavours/glitch/actions/announcements';
+import { addReaction, removeReaction, dismissAnnouncement } from 'flavours/polyam/actions/announcements';
 
 import Announcements from '../components/announcements';
 

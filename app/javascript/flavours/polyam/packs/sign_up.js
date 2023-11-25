@@ -1,7 +1,7 @@
 import 'packs/public-path';
 import axios from 'axios';
 
-import ready from 'flavours/glitch/ready';
+import ready from 'flavours/polyam/ready';
 
 ready(() => {
   setInterval(() => {

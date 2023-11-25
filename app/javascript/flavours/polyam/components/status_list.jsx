@@ -5,7 +5,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { debounce } from 'lodash';
 
-import RegenerationIndicator from 'flavours/glitch/components/regeneration_indicator';
+import RegenerationIndicator from 'flavours/polyam/components/regeneration_indicator';
 
 import StatusContainer from '../containers/status_container';
 

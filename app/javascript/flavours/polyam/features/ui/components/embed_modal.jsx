@@ -4,8 +4,8 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import api from 'flavours/glitch/api';
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import api from 'flavours/polyam/api';
+import { IconButton } from 'flavours/polyam/components/icon_button';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

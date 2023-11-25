@@ -8,11 +8,11 @@ import classNames from 'classnames';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { Blurhash } from 'flavours/glitch/components/blurhash';
-import { Icon } from 'flavours/glitch/components/icon';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
-import { useBlurhash } from 'flavours/glitch/initial_state';
-import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
+import { Blurhash } from 'flavours/polyam/components/blurhash';
+import { Icon } from 'flavours/polyam/components/icon';
+import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
+import { useBlurhash } from 'flavours/polyam/initial_state';
+import { decode as decodeIDNA } from 'flavours/polyam/utils/idna';
 
 const getHostname = url => {
   const parser = document.createElement('a');

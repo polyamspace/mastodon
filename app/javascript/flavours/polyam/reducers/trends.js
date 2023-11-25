@@ -7,7 +7,7 @@ import {
   TRENDS_LINKS_FETCH_REQUEST,
   TRENDS_LINKS_FETCH_SUCCESS,
   TRENDS_LINKS_FETCH_FAIL,
-} from 'flavours/glitch/actions/trends';
+} from 'flavours/polyam/actions/trends';
 
 const initialState = ImmutableMap({
   tags: ImmutableMap({
