@@ -1,6 +1,6 @@
 - content_for :header_tags do
   - if user_signed_in?
-    - if current_user.setting_flavour == 'vanilla'
+    - if current_user.setting_flavour == 'vanilla' && Themes.instance.flavours.include?('vanilla')
       = preload_pack_asset 'features/compose.js'
       = preload_pack_asset 'features/home_timeline.js'
       = preload_pack_asset 'features/notifications.js'
