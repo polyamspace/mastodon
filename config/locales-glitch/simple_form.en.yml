@@ -8,32 +8,19 @@ en:
         setting_default_content_type_markdown: When writing toots, assume they are using Markdown for rich text formatting, unless specified otherwise
         setting_default_content_type_plain: When writing toots, assume they are plain text with no special formatting, unless specified otherwise (default Mastodon behavior)
         setting_default_language: The language of your toots can be detected automatically, but it's not always accurate
-        setting_enable_rss: Mastodon offers an RSS feed of all public toots by default.
         setting_show_followers_count: Show your followers count on your profile. If you hide your followers count, it will be hidden even from yourself, and some applications may display a negative followers count.
         setting_skin: Reskins the selected Mastodon flavour
-      form_admin_settings:
-        publish_button_text: Overrides the text of the publish button.
-        search_preview: Logged out visitors will be able to use the search bar.
-      invite:
-        comment: Optional. You can enter for whom the invite is for, or reason for creating it
     labels:
       defaults:
         setting_default_content_type: Default format for toots
         setting_default_content_type_html: HTML
         setting_default_content_type_markdown: Markdown
         setting_default_content_type_plain: Plain text
-        setting_enable_rss: Enable RSS feed for your public toots
         setting_favourite_modal: Show confirmation dialog before favouriting (applies to Glitch flavour only)
-        setting_notification_sound: Notification Sound
         setting_show_followers_count: Show your followers count
         setting_skin: Skin
         setting_system_emoji_font: Use system's default font for emojis (applies to Glitch flavour only)
-        setting_visible_reactions: Number of visible emoji reactions
-      form_admin_settings:
-        publish_button_text: Publish button text
-        search_preview: Allow unauthenticated access to search
       notification_emails:
         trending_link: New trending link requires review
         trending_status: New trending toot requires review
         trending_tag: New trending tag requires review
-    polyam_only: polyam-glitch
