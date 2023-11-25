@@ -12,10 +12,9 @@ pack:
   home:
     filename: packs/home.js
     preload:
-      - flavours/glitch/async/compose
-      - flavours/glitch/async/getting_started
-      - flavours/glitch/async/home_timeline
-      - flavours/glitch/async/notifications
+      - flavours/polyam/async/compose
+      - flavours/polyam/async/home_timeline
+      - flavours/polyam/async/notifications
   mailer:
   modal:
   public: packs/public.jsx
@@ -30,11 +29,11 @@ pack:
 locales: locales
 
 #  (OPTIONAL) Which flavour to inherit locales from
-inherit_locales: vanilla
+inherit_locales: glitch
 
 #  (OPTIONAL) A file to use as the preview screenshot for the flavour,
 #  or an array thereof. These are the full path from `app/javascript/`.
-screenshot: flavours/glitch/images/glitch-preview.jpg
+#screenshot: flavours/glitch/images/glitch-preview.jpg
 
 #  (OPTIONAL) The directory which contains the pack files.
 #  Defaults to the theme directory (`app/javascript/themes/[theme]`),
