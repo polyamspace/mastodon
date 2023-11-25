@@ -1,0 +1,20 @@
+---
+en:
+  simple_form:
+    hints:
+      defaults:
+        setting_enable_rss: Mastodon offers an RSS feed of all public toots by default.
+      form_admin_settings:
+        publish_button_text: Overrides the text of the publish button.
+        search_preview: Logged out visitors will be able to use the search bar.
+      invite:
+        comment: Optional. You can enter for whom the invite is for, or reason for creating it
+    labels:
+      defaults:
+        setting_enable_rss: Enable RSS feed for your public toots
+        setting_notification_sound: Notification Sound
+        setting_visible_reactions: Number of visible emoji reactions
+      form_admin_settings:
+        publish_button_text: Publish button text
+        search_preview: Allow unauthenticated access to search
+    polyam_only: polyam-glitch

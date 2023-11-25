@@ -1,0 +1,110 @@
+---
+en:
+  admin:
+    action_logs:
+      action_types:
+        create_registration_filter: Create Registration Text Filter
+        destroy_registration_filter: Destroy Registration Text Filter
+        update_registration_filter: Update Registration Text Filter
+      actions:
+        create_registration_filter_html: "%{name} blocked registrations with request text matching %{target}"
+        destroy_registration_filter_html: "%{name} unblocked registrations with request text matching %{target}"
+        update_registration_filter_html: "%{name} updated registration filter blocking request text matching %{target}"
+    custom_emojis:
+      category_hint: Optional. Assign the emoji to a category.
+      visible_in_picker: Show in emoji picker
+      visible_in_picker_hint: Makes this emoji available in the emoji picker and API.
+    registration_filters:
+      add_new: Add new filter
+      created_msg: Registration text filter successfully created!
+      delete: Delete
+      description_html: Registration text filters allow you to automatically reject new user registrations based on their invite request text, that is their response to the “Why do you want to join?” prompt. This can be used to cut down on registration spam.
+      destroyed_msg: Registration text filter successfully destroyed!
+      edit:
+        title: Edit registration text filter
+      empty: No registration text filter found.
+      new:
+        create: Create registration text filter
+        title: New registration text filter
+      phrase: Keyword, phrase or regular expression
+      phrase_hint: Forbid registration of new users whose answer to the “Why do you want to join?” prompt contains text that matches this keyword, phrase or regular expression.
+      text: Text
+      title: Registration text filters
+      type:
+        title: Filter type
+      types:
+        regexp: Regular Expression
+        regexp_hint: Use regular expressions if you want to filter registrations featuring more advanced patterns.
+        text: Simple text
+        text_hint: Use this for simple recurring keywords and if you do not know regular expressions.
+      updated_msg: Registration text filter successfully updated!
+    reports:
+      actions:
+        hide_description_html: The reported toots will be hidden and a strike will be recorded to help you escalate on future infractions by the same account.
+      hide_and_resolve: Hide toots
+      summary:
+        action_preambles:
+          hide_html: 'You are about to <strong>hide</strong> some of <strong>@%{acct}</strong>''s toots. This will:'
+        actions:
+          hide_html: Hide the offending toots behind a warning
+    roles:
+      privileges:
+        bypass_invite_limits: Bypass invite restrictions
+        bypass_invite_limits_description: Allows users to create unlimited invites with unlimited uses
+    settings:
+      default_norss:
+        desc_html: Affects all users who have not changed this setting themselves
+        title: Opt users out of having an RSS feed of their public toots by default
+      default_show_application:
+        desc_html: Affects all users who have not changed this setting themselves
+        title: Disclose application used to send toots
+      discovery:
+        rss: RSS
+        search: Search
+      trending_status_sensitive:
+        desc_html: When trending toots are enable, allow toots with sensitive media to be elibible. Changes to this setting are not retroactive.
+        title: Allow toots with sensitive media to trend
+    statuses:
+      reactions: Reactions
+    strikes:
+      actions:
+        hide_statuses: "%{name} has hidden %{target}'s toots"
+  admin_mailer:
+    new_appeal:
+      actions:
+        hide_statuses: to hide their toots
+  appearance:
+    toot_layout: Toot layout
+  disputes:
+    strikes:
+      title_actions:
+        hide_statuses: Toot hiding
+  filters:
+    instance_filter:
+      title: Hidden by moderators
+  invites:
+    errors:
+      daily_limit_reached: Daily limit of created invites reached
+      limit_reached: Maximum number of active invites reached
+    table:
+      comment: Comment
+  notification_mailer:
+    reaction:
+      body: "%{name} reacted to your toot:"
+      subject: "%{name} reacted to your toot"
+      title: New reaction
+  regex_validator:
+    invalid_regexp: 'error parsing regular expression: %{error}'
+  sounds:
+    default: Boop
+    laser: Laser
+  user_mailer:
+    warning:
+      explanation:
+        hide_statuses: Some of your toots have been found to violate one or more community guidelines and have been subsequently hidden by the moderators of %{instance}.
+      subject:
+        hide_statuses: Your toots on %{acct} have been hidden
+      title:
+        hide_statuses: Toots hidden
+  users:
+    invalid_invite_request_text: This text includes forbidden words or expressions

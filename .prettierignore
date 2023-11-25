@@ -86,3 +86,13 @@ app/javascript/flavours/glitch/styles/reset.scss
 
 # Ignore win95 theme
 app/javascript/styles/win95.scss
+
+# Ignore polyam-glitch locale files
+/app/javascript/flavours/polyam/locales
+/config/locales-polyam
+
+# Ignore polyam-glitch vendored CSS reset
+app/javascript/flavours/polyam/styles/reset.scss
+
+# Ignore polyam-glitch emoji map file
+/app/javascript/flavours/polyam/features/emoji/emoji_map.json
