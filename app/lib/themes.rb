@@ -20,6 +20,9 @@ class Themes
       locales = []
       screenshots = []
 
+      # Skip vanilla flavour
+      next if name == 'vanilla' && ENV['ENABLE_VANILLA'] != 'true'
+
       if data['locales']
         Dir.glob(File.join(dir, data['locales'], '*.{js,json}')) do |locale|
           locale_name = File.basename(locale, File.extname(locale))
