@@ -1,0 +1,110 @@
+import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
+import classNames from 'classnames';
+
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { length } from 'stringz';
+
+import { Button } from 'flavours/polyam/components/button';
+import { Icon } from 'flavours/polyam/components/icon';
+import { maxChars, publishButtonText as customPublishButtonText } from 'flavours/polyam/initial_state';
+
+const messages = defineMessages({
+  publish: {
+    defaultMessage: 'Publish',
+    id: 'compose_form.publish',
+  },
+  publishLoud: {
+    defaultMessage: '{publish}!',
+    id: 'compose_form.publish_loud',
+  },
+  saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
+  public: { id: 'privacy.public.short', defaultMessage: 'Public' },
+  unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
+  direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
+});
+
+class Publisher extends ImmutablePureComponent {
+
+  static propTypes = {
+    countText: PropTypes.string,
+    disabled: PropTypes.bool,
+    intl: PropTypes.object.isRequired,
+    onSecondarySubmit: PropTypes.func,
+    onSubmit: PropTypes.func,
+    privacy: PropTypes.oneOf(['direct', 'private', 'unlisted', 'public']),
+    sideArm: PropTypes.oneOf(['none', 'direct', 'private', 'unlisted', 'public']),
+    isEditing: PropTypes.bool,
+  };
+
+  handleSubmit = () => {
+    this.props.onSubmit();
+  };
+
+  render () {
+    const { countText, disabled, intl, onSecondarySubmit, privacy, sideArm, isEditing } = this.props;
+
+    const diff = maxChars - length(countText || '');
+    const computedClass = classNames('compose-form__publish', {
+      disabled: disabled,
+      over: diff < 0,
+    });
+
+    const privacyIcons = { direct: 'envelope', private: 'lock', public: 'globe', unlisted: 'unlock' };
+
+    let publishText;
+    let publishButtonText = customPublishButtonText || intl.formatMessage(messages.publish);
+    if (isEditing) {
+      publishText = intl.formatMessage(messages.saveChanges);
+    } else if (privacy === 'private' || privacy === 'direct') {
+      const iconId = privacyIcons[privacy];
+      publishText = (
+        <span>
+          <Icon id={iconId} /> {publishButtonText}
+        </span>
+      );
+    } else {
+      publishText = privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: publishButtonText }) : publishButtonText;
+    }
+
+    const privacyNames = {
+      public: messages.public,
+      unlisted: messages.unlisted,
+      private: messages.private,
+      direct: messages.direct,
+    };
+
+    return (
+      <div className={computedClass}>
+        {sideArm && !isEditing && sideArm !== 'none' ? (
+          <div className='compose-form__publish-button-wrapper'>
+            <Button
+              className='side_arm'
+              disabled={disabled}
+              onClick={onSecondarySubmit}
+              style={{ padding: null }}
+              text={<Icon id={privacyIcons[sideArm]} />}
+              title={`${publishButtonText}: ${intl.formatMessage(privacyNames[sideArm])}`}
+            />
+          </div>
+        ) : null}
+        <div className='compose-form__publish-button-wrapper'>
+          <Button
+            className='primary'
+            text={publishText}
+            title={`${publishButtonText}: ${intl.formatMessage(privacyNames[privacy])}`}
+            onClick={this.handleSubmit}
+            disabled={disabled}
+          />
+        </div>
+      </div>
+    );
+  }
+
+}
+
+export default injectIntl(Publisher);

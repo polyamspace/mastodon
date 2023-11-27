@@ -1,0 +1,110 @@
+// FAIRY FLOSS VARIABLES
+
+// Purples
+$purple1: #2e2b3b;
+$purple2: #504b68;
+$purple3: #5f5676;
+$purple4: #c8c4d4;
+$purple5: #474059;
+$purpleicon: #ada6bf;
+$purpleborder: #5f5676;
+$purplescrollbar: #5a5475;
+$mint: #c2ffdf;
+$pink: #ffb8d1;
+$lemon: #fff683;
+$coral: #ff857f;
+$error: #f92672;
+
+// Commonly used web colors
+$black: #000000; // Black
+$white: #ffffff; // White
+$red-600: #b7253d !default; // Deep Carmine
+$red-500: #df405a !default; // Cerise
+$blurple-600: #563acc; // Iris
+$blurple-500: #6364ff; // Brand purple
+$blurple-400: #7477fd; // Medium slate blue
+$blurple-300: #858afa; // Faded Blue
+$grey-600: #4e4c5a; // Trout
+$grey-100: #dadaf3; // Topaz
+
+$success-green: #79bd9a !default; // Padua
+$warning-red: #ff5050 !default; // Sunset Orange
+
+$gold-star: $lemon !default;
+$error-red: $error !default;
+
+$red-bookmark: $warning-red;
+
+// Values from the classic Mastodon UI
+$classic-base-color: #282c37; // Midnight Express
+$classic-primary-color: #9baec8; // Echo Blue
+$classic-secondary-color: #d9e1e8; // Pattens Blue
+$classic-highlight-color: #6364ff; // Brand purple
+
+// Variables for defaults in UI
+$base-shadow-color: $black !default;
+$base-overlay-background: $black !default;
+$base-border-color: $white !default;
+$simple-background-color: $purple2 !default;
+$valid-value-color: $success-green !default;
+$error-value-color: $error-red !default;
+
+// Tell UI to use selected colors
+$ui-base-color: $purple2 !default; // Darkest
+$ui-base-lighter-color: lighten(
+  $ui-base-color,
+  26%
+) !default; // Lighter darkest
+$ui-primary-color: $purple4 !default; // Lighter
+$ui-secondary-color: $classic-secondary-color !default; // Lightest
+$ui-highlight-color: $coral !default;
+
+$ui-button-color: $white !default;
+$ui-button-background-color: darken($ui-highlight-color, 3%) !default;
+$ui-button-focus-background-color: $ui-highlight-color !default;
+$ui-button-focus-outline-color: $blurple-400 !default;
+$ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !default;
+
+$ui-button-secondary-color: $grey-100 !default;
+$ui-button-secondary-border-color: $grey-100 !default;
+$ui-button-secondary-focus-background-color: $grey-600 !default;
+$ui-button-secondary-focus-color: $white !default;
+
+$ui-button-tertiary-color: lighten($ui-highlight-color, 8%) !default;
+$ui-button-tertiary-border-color: lighten($ui-highlight-color, 8%) !default;
+$ui-button-tertiary-focus-background-color: $ui-highlight-color !default;
+$ui-button-tertiary-focus-color: $white !default;
+
+$ui-button-destructive-background-color: $red-500 !default;
+$ui-button-destructive-focus-background-color: $red-600 !default;
+
+$ui-button-icon-focus-outline: $ui-button-focus-outline !default;
+$ui-button-icon-hover-background-color: rgba(140, 141, 255, 40%) !default;
+
+// Variables for texts
+$primary-text-color: $white !default;
+$darker-text-color: $ui-primary-color !default;
+$dark-text-color: lighten($purpleicon, 8%) !default;
+$secondary-text-color: $ui-secondary-color !default;
+$highlight-text-color: $ui-highlight-color !default;
+$action-button-color: $purpleicon !default;
+
+// For texts on inverted backgrounds
+$inverted-text-color: $primary-text-color !default;
+$lighter-text-color: $darker-text-color !default;
+$light-text-color: $dark-text-color !default;
+
+// Language codes that uses CJK fonts
+$cjk-langs: ja, ko, zh-CN, zh-HK, zh-TW;
+
+// Variables for components
+$media-modal-media-max-width: 100%;
+
+// put margins on top and bottom of image to avoid the screen covered by image.
+$media-modal-media-max-height: 80%;
+
+$no-gap-breakpoint: 415px;
+
+$font-sans-serif: 'mastodon-font-sans-serif' !default;
+$font-display: 'mastodon-font-display' !default;
+$font-monospace: 'mastodon-font-monospace' !default;

@@ -257,6 +257,11 @@ module.exports = {
             group: 'internal',
             position: 'after',
           },
+          {
+            pattern: '{flavours/polyam/**}',
+            group: 'internal',
+            position: 'after',
+          },
         ],
         pathGroupsExcludedImportTypes: [],
       },
@@ -270,6 +275,12 @@ module.exports = {
           target: 'app/javascript/flavours/glitch/',
           from: 'app/javascript/mastodon/',
           message: 'Import from /flavours/glitch/ instead'
+        },
+        // Forbid imports from vanilla and glitch in polyam flavour
+        {
+          target: 'app/javascript/flavours/polyam/',
+          from: ['app/javascript/mastodon/', 'app/javascript/flavours/glitch/'],
+          message: 'Import from flavours/polyam/ instead'
         }]
       }
     ],

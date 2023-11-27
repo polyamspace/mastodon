@@ -1,0 +1,8 @@
+en:
+  flavours:
+    polyam:
+      description: The default flavour for polyam-glitch instances.
+      name: Polyam Edition
+  skins:
+    polyam:
+      default: Default

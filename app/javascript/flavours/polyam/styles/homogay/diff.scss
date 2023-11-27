@@ -1,0 +1,376 @@
+body {
+  background: $ui-base-darker-color;
+}
+
+.button {
+  text-shadow: 0 0 6px $faint-shadow-color;
+}
+
+.button:disabled {
+  background-color: $ui-button-disabled-background-color;
+}
+
+.icon-with-badge__badge {
+  text-shadow: 0 0 2px $base-shadow-color;
+}
+
+// hashtags in primary color
+.status__content a {
+  color: $highlight-text-color;
+}
+
+// compose panel
+.compose-panel .autosuggest-textarea label .autosuggest-textarea__textarea,
+.compose-form .autosuggest-input label .autosuggest-textarea__textarea,
+.compose-form__buttons-wrapper,
+.compose-form__warning,
+.spoiler-input input,
+.compose-form__modifiers,
+.reply-indicator {
+  background: $ui-base-semi-lighter-color;
+  color: $primary-text-color;
+}
+
+.compose-panel {
+  .compose-form__autosuggest-wrapper {
+    background-color: #fff0; // transparent background so it doesn't mess with border-radius
+    //    border-left: 1px solid $ui-base-lighter-color;
+    //    border-top: 1px solid $ui-base-lighter-color;
+    //    border-right: 1px solid $ui-base-lighter-color;
+    border-radius: $border-radius $border-radius 0 0;
+  }
+
+  //  .compose-form__buttons-wrapper {
+  //    border-left: 1px solid $ui-base-lighter-color;
+  //    border-right: 1px solid $ui-base-lighter-color;
+  //    border-bottom: 1px solid $ui-base-lighter-color;
+  //    border-radius: 0 0 $border-radius $border-radius;
+  //  }
+
+  .compose-form__poll-wrapper .icon-button {
+    color: $lighter-text-color;
+
+    &.disabled {
+      color: transparent;
+    }
+  }
+}
+
+.compose-form__poll-wrapper {
+  .button.button-secondary {
+    // this is the "add poll option" button.  its styles have been overridden
+    // to kinda make it look like a tertiary one, except whoever did this seems
+    // to have forgotten a bunch of stuff.  do some damage control.
+    color: $ui-button-tertiary-color;
+    border-color: $ui-button-tertiary-border-color;
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: $ui-button-tertiary-focus-color;
+      background-color: $ui-button-tertiary-focus-background-color;
+    }
+  }
+
+  select {
+    // s/o to whoever decided this is the way to colorize SVGs
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($simple-background-color, 14%))}'/></svg>")
+      no-repeat right 8px center / auto 16px;
+  }
+}
+
+// .spoiler-input input {
+//   border: 1px solid $ui-base-extra-light-color;
+// }
+
+.poll__option input[type='text']::placeholder {
+  color: $darker-text-color;
+}
+
+.poll__option input[type='text'],
+.compose-form__poll-wrapper select {
+  border: 1px solid $ui-base-extra-light-color;
+}
+
+.autosuggest-textarea__suggestions {
+  background: lighten($ui-base-color, 4%);
+}
+
+.autosuggest-textarea__suggestions__item.selected,
+.autosuggest-textarea__suggestions__item:hover {
+  background: $ui-highlight-color;
+}
+
+.compose-form__publish .compose-form__publish-button-wrapper button {
+  transition-duration: 50ms;
+  transition-timing-function: ease-in-out;
+  transition-property: background-color, color, transform;
+  transform-origin: center;
+
+  &:active {
+    transform: scale(96%);
+  }
+
+  &[disabled]:active {
+    transform: none;
+  }
+}
+
+.emoji-picker-dropdown__menu {
+  width: 286px;
+  box-shadow: 0 2px 8px 0 $base-shadow-color;
+}
+
+.emoji-mart-anchor {
+  padding: 12px 0;
+}
+
+.emoji-mart-bar:first-child {
+  background: $ui-base-extra-light-color;
+  border-bottom-color: #fff0;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+
+.emoji-mart-anchor:not(.emoji-mart-anchor-selected) {
+  color: $ui-button-tertiary-color;
+}
+
+.search__input {
+  background: $ui-base-semi-lighter-color;
+
+  //  border: 1px solid $ui-base-lighter-color;
+
+  &::placeholder {
+    color: $dark-text-color;
+  }
+}
+
+.emoji-button img {
+  // fancier "grayscale" mode for the emoji picker button
+  mix-blend-mode: luminosity;
+  opacity: 0.65;
+}
+
+.emoji-button:active,
+.emoji-button:focus,
+.emoji-button:hover {
+  img {
+    opacity: 1;
+    mix-blend-mode: normal;
+  }
+}
+
+// dropdowns
+.dropdown-menu,
+.dropdown-menu__item a,
+.dropdown-menu__item button {
+  background: $ui-base-lighter-color;
+}
+
+.dropdown-menu__arrow.top {
+  border-top-color: $ui-base-lighter-color;
+}
+
+.dropdown-menu__arrow.bottom {
+  border-bottom-color: $ui-base-lighter-color;
+}
+
+.language-dropdown__dropdown__results__item {
+  &:focus,
+  &:active,
+  &:hover {
+    background: $ui-base-extra-light-color;
+  }
+}
+
+// general modals
+.modal-root__modal {
+  background: $ui-base-color;
+}
+
+.report-modal__container {
+  border-top-color: $ui-base-lighter-color;
+}
+
+.report-modal__comment {
+  border-right-color: $ui-base-lighter-color;
+}
+
+.report-modal__comment .setting-text {
+  background: $ui-base-color;
+}
+
+.boost-modal__action-bar,
+.doodle-modal__action-bar,
+.confirmation-modal__action-bar,
+.mute-modal__action-bar,
+.block-modal__action-bar {
+  background: $ui-base-semi-lighter-color;
+}
+
+.confirmation-modal__secondary-button,
+.confirmation-modal__cancel-button,
+.mute-modal__cancel-button,
+.block-modal__cancel-button {
+  color: $primary-text-color;
+
+  &:hover {
+    color: $ui-highlight-color;
+  }
+}
+
+// app settings modal
+.glitch.local-settings {
+  background: $ui-base-color;
+}
+
+.glitch.local-settings__navigation,
+.glitch.local-settings__navigation__item {
+  background: $ui-base-semi-lighter-color;
+}
+
+.glitch.local-settings__navigation__item {
+  border-bottom-color: $ui-base-extra-light-color;
+
+  &.active,
+  &.active:hover {
+    background: $ui-highlight-color;
+  }
+
+  &:hover {
+    background: $ui-base-extra-light-color;
+  }
+}
+
+// border radius
+.button,
+.dropdown-menu,
+.account__avatar,
+.search__input,
+.spoiler-input input,
+.status-card,
+.language-dropdown__dropdown,
+.privacy-dropdown__dropdown,
+.poll__option input[type='text'],
+.compose-form__poll-wrapper select,
+.account__header__tabs__buttons .icon-button,
+.emoji-picker-dropdown__menu,
+.emoji-mart-search input,
+.boost-modal,
+.report-modal,
+.block-modal,
+.confirmation-modal,
+.actions-modal,
+.mute-modal,
+.compare-history-modal {
+  border-radius: $border-radius;
+}
+
+.dropdown-menu {
+  padding-top: $border-radius;
+  padding-bottom: $border-radius;
+}
+
+.emoji-mart-scroll {
+  margin-bottom: $border-radius;
+  padding-bottom: 0;
+}
+
+.column-header {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+
+  //  border-left: 1px solid $ui-base-lighter-color;
+  //  border-top: 1px solid $ui-base-lighter-color;
+  //  border-right: 1px solid $ui-base-lighter-color;
+}
+
+.column-header,
+.column-header__button,
+.search__input {
+  background: $ui-base-semi-lighter-color;
+}
+
+.column > .scrollable {
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+}
+
+// button fixes
+.button.button-tertiary {
+  &:active,
+  &:focus,
+  &:hover {
+    padding: 6.5px 18px 7.5px;
+  }
+}
+
+.column-link--transparent.active {
+  border-left: 4px solid $highlight-text-color;
+  padding-left: 11px;
+}
+
+// timed line
+// .status {
+//   border-bottom: 0; // no separators between posts
+// }
+
+// .column > .scrollable {
+//   border-left: 1px solid $ui-base-lighter-color;
+//   border-right: 1px solid $ui-base-lighter-color;
+// }
+
+.column-header__back-button {
+  background: none;
+  color: $highlight-text-color;
+}
+
+.reactions-bar__item {
+  background: $ui-base-extra-light-color;
+
+  &.active {
+    background: adjust-color($ui-button-background-color, $alpha: -0.5);
+
+    .reactions-bar__item__count {
+      color: $ui-button-color;
+    }
+  }
+}
+
+.media-gallery__item.letterbox {
+  background: none; // remove the black background from letterbox images
+}
+
+.tabs-bar__wrapper {
+  background: $ui-base-darker-color; // this hides posts scrolling above the column header
+}
+
+// advanced view
+.drawer__pager {
+  border-radius: $border-radius;
+  border: 1px solid $ui-base-lighter-color;
+}
+
+.drawer__inner {
+  background: $ui-base-color;
+}
+
+.mbstobon-0,
+.mbstobon-1,
+.mbstobon-2,
+.mbstobon-3 {
+  .drawer__inner__mastodon {
+    background-color: $ui-base-color;
+  }
+}
+
+// settings
+
+.admin-wrapper {
+  .sidebar ul .simple-navigation-active-leaf a,
+  .content__heading__tabs a.selected {
+    background-color: $ui-highlight-color;
+    text-shadow: 0 0 6px $faint-shadow-color;
+  }
+}

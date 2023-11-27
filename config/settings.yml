@@ -2,7 +2,7 @@
 # important settings can be changed from the admin interface.
 
 defaults: &defaults
-  site_title: 'Mastodon Glitch Edition'
+  site_title: 'Mastodon Polyam Edition'
   site_short_description: ''
   site_description: ''
   site_extended_description: ''
@@ -18,7 +18,7 @@ defaults: &defaults
   show_application: false
   noindex: false
   norss: false
-  flavour: 'glitch'
+  flavour: 'polyam'
   skin: 'default'
   trends: true
   trends_as_landing_page: false
