@@ -1,9 +1,5 @@
-/** @type {number | null} */
-let cachedScrollbarWidth = null;
+let cachedScrollbarWidth: number | null = null;
 
-/**
- * @returns {number}
- */
 const getActualScrollbarWidth = () => {
   const outer = document.createElement('div');
   outer.style.visibility = 'hidden';
@@ -14,14 +10,11 @@ const getActualScrollbarWidth = () => {
   outer.appendChild(inner);
 
   const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
-  outer.parentNode.removeChild(outer);
+  outer.remove();
 
   return scrollbarWidth;
 };
 
-/**
- * @returns {number}
- */
 export const getScrollbarWidth = () => {
   if (cachedScrollbarWidth !== null) {
     return cachedScrollbarWidth;
