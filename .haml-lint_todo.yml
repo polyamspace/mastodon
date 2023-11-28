@@ -14,6 +14,7 @@ linters:
       - 'app/views/admin/accounts/index.html.haml'
       - 'app/views/admin/ip_blocks/new.html.haml'
       - 'app/views/admin/roles/_form.html.haml'
+      - 'app/views/admin/settings/appearance/show.html.haml'
       - 'app/views/admin/settings/discovery/show.html.haml'
       - 'app/views/auth/registrations/edit.html.haml'
       - 'app/views/auth/registrations/new.html.haml'
