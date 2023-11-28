@@ -133,9 +133,12 @@ describe Admin::Reports::ActionsController do
         let(:action) { 'hide' }
         let(:statuses) { [reported_status, reported_deleted_status] }
 
-        let!(:status) { Fabricate(:status, account: target_account) }
         let(:reported_deleted_status) { Fabricate(:status, account: target_account, deleted_at: 1.day.ago) }
         let(:reported_status) { Fabricate(:status, account: target_account) }
+
+        before do
+          _status = Fabricate(:status, account: target_account)
+        end
 
         it_behaves_like 'common behavior'
 
