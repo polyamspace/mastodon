@@ -2339,6 +2339,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^6.0.0"
     arrow-key-navigation: "npm:^1.2.0"
     async-mutex: "npm:^0.4.0"
+    atrament: "npm:0.2.4"
     autoprefixer: "npm:^10.4.14"
     axios: "npm:^1.4.0"
     babel-jest: "npm:^29.5.0"
@@ -2371,10 +2372,13 @@ __metadata:
     eslint-plugin-promise: "npm:~6.1.1"
     eslint-plugin-react: "npm:~7.33.0"
     eslint-plugin-react-hooks: "npm:^4.6.0"
+    exif-js: "npm:^2.3.0"
+    favico.js: "npm:^0.3.10"
     file-loader: "npm:^6.2.0"
     font-awesome: "npm:^4.7.0"
     fuzzysort: "npm:^2.0.4"
     glob: "npm:^10.2.6"
+    highlight.js: "npm:^11.9.0"
     history: "npm:^4.10.1"
     hoist-non-react-statics: "npm:^3.3.2"
     http-link-header: "npm:^1.1.1"
@@ -4594,6 +4598,13 @@ __metadata:
   bin:
     atob: bin/atob.js
   checksum: ada635b519dc0c576bb0b3ca63a73b50eefacf390abb3f062558342a8d68f2db91d0c8db54ce81b0d89de3b0f000de71f3ae7d761fd7d8cc624278fe443d6c7e
+  languageName: node
+  linkType: hard
+
+"atrament@npm:0.2.4":
+  version: 0.2.4
+  resolution: "atrament@npm:0.2.4"
+  checksum: ddd86e3e9c546e3286862f2c1854e796e597e261444623579069426b14c1125dbd210b4158c3967a8c5f9fad07f7ae6cba2b159a860da45ce175c9c9c8888bb2
   languageName: node
   linkType: hard
 
@@ -7760,6 +7771,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"exif-js@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "exif-js@npm:2.3.0"
+  checksum: 6bcb081cfd141147e9e13c412fa52fa8a6b915d441bdaefb8c9882058f0e12843b8249ecf6f620709ce43ef069ebdd45181176560160a066f03e2cae384a10f7
+  languageName: node
+  linkType: hard
+
 "exit@npm:^0.1.2":
   version: 0.1.2
   resolution: "exit@npm:0.1.2"
@@ -7939,6 +7957,13 @@ __metadata:
   dependencies:
     reusify: "npm:^1.0.4"
   checksum: 5ce4f83afa5f88c9379e67906b4d31bc7694a30826d6cc8d0f0473c966929017fda65c2174b0ec89f064ede6ace6c67f8a4fe04cef42119b6a55b0d465554c24
+  languageName: node
+  linkType: hard
+
+"favico.js@npm:^0.3.10":
+  version: 0.3.10
+  resolution: "favico.js@npm:0.3.10"
+  checksum: ca000181f76ef800d989c2837d072fbb52ffff5c512c67a04d83339f0a3f6bc0af7e656980f2732fe6e5759dd49b6a213071bad95306abb8fbf475e4d4a8463d
   languageName: node
   linkType: hard
 
@@ -8773,6 +8798,13 @@ __metadata:
   dependencies:
     function-bind: "npm:^1.1.2"
   checksum: 5d415b114f410661208c95e7ab4879f1cc2765b8daceff4dc8718317d1cb7b9ffa7c5d1eafd9a4389c9aab7445d6ea88e05f3096cb1e529618b55304956b87fc
+  languageName: node
+  linkType: hard
+
+"highlight.js@npm:^11.9.0":
+  version: 11.9.0
+  resolution: "highlight.js@npm:11.9.0"
+  checksum: 27cfa8717dc9d200aecbdb383eb122d5f45ce715d2f468583785d36fbfe5076ce033abb02486dc13b407171721cda6f474ed3f3a5a8e8c3d91367fa5f51ee374
   languageName: node
   linkType: hard
 
