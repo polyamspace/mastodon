@@ -6,13 +6,11 @@
 # See the Securing Rails Applications Guide for more information:
 # https://guides.rubyonrails.org/security.html#content-security-policy-header
 
-def host_to_url(str)
-  return if str.blank?
+require_relative '../../app/lib/content_security_policy'
 
-  uri = Addressable::URI.parse("http#{Rails.configuration.x.use_https ? 's' : ''}://#{str}")
-  uri.path += '/' unless uri.path.blank? || uri.path.end_with?('/')
-  uri.to_s
-end
+policy = ContentSecurityPolicy.new
+assets_host = policy.assets_host
+media_host = policy.media_host
 
 def sso_host
   return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true'
@@ -33,13 +31,13 @@ def sso_host
 end
 
 unless Rails.env.development?
-  assets_host = Rails.configuration.action_controller.asset_host || "https://#{ENV['WEB_DOMAIN'] || ENV['LOCAL_DOMAIN']}"
+  # assets_host = Rails.configuration.action_controller.asset_host || "https://#{ENV['WEB_DOMAIN'] || ENV['LOCAL_DOMAIN']}"
   data_hosts = [assets_host]
 
   if ENV['S3_ENABLED'] == 'true' || ENV['AZURE_ENABLED'] == 'true'
-    attachments_host = host_to_url(ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST'] || ENV['AZURE_ALIAS_HOST'] || ENV['S3_HOSTNAME'] || "s3-#{ENV['S3_REGION'] || 'us-east-1'}.amazonaws.com")
+    attachments_host = media_host || host_to_url("s3-#{ENV['S3_REGION'] || 'us-east-1'}.amazonaws.com")
   elsif ENV['SWIFT_ENABLED'] == 'true'
-    attachments_host = ENV['SWIFT_OBJECT_URL']
+    attachments_host = ENV['SWIFT_OBJECT_URL', nil]
     attachments_host = "https://#{Addressable::URI.parse(attachments_host).host}"
   else
     attachments_host = nil
@@ -84,7 +82,7 @@ end
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only
 # Rails.application.config.content_security_policy_report_only = true
 
-Rails.application.config.content_security_policy_nonce_generator = ->request { SecureRandom.base64(16) }
+Rails.application.config.content_security_policy_nonce_generator = ->(_request) { SecureRandom.base64(16) }
 
 Rails.application.config.content_security_policy_nonce_directives = %w(style-src)
 
@@ -109,7 +107,7 @@ Rails.application.reloader.to_prepare do
       p.worker_src      :none
     end
 
-    LetterOpenerWeb::LettersController.after_action do |p|
+    LetterOpenerWeb::LettersController.after_action do
       request.content_security_policy_nonce_directives = %w(script-src)
     end
   end
