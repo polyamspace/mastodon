@@ -286,7 +286,9 @@ class Header extends ImmutablePureComponent {
         menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.props.onBlock, dangerous: true });
       }
 
-      menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport, dangerous: true });
+      if (!suspended) {
+        menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport, dangerous: true });
+      }
     }
 
     if (signedIn && isRemote) {
@@ -349,18 +351,18 @@ class Header extends ImmutablePureComponent {
               <Avatar account={suspended || hidden ? undefined : account} size={90} />
             </a>
 
-            {!suspended && (
-              <div className='account__header__tabs__buttons'>
-                {!hidden && (
-                  <>
-                    {actionBtn}
-                    {bellBtn}
-                  </>
-                )}
 
-                <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' size={24} direction='right' />
-              </div>
-            )}
+            <div className='account__header__tabs__buttons'>
+              {!hidden && (
+                <>
+                  {actionBtn}
+                  {bellBtn}
+                </>
+              )}
+
+              <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' size={24} direction='right' />
+            </div>
+
           </div>
 
           <div className='account__header__tabs__name'>

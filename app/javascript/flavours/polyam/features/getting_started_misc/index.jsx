@@ -6,7 +6,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import { openModal } from 'flavours/polyam/actions/modal';
-import ColumnBackButtonSlim from 'flavours/polyam/components/column_back_button_slim';
 import Column from 'flavours/polyam/features/ui/components/column';
 import ColumnLink from 'flavours/polyam/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/polyam/features/ui/components/column_subheading';
@@ -54,9 +53,7 @@ class GettingStartedMisc extends ImmutablePureComponent {
     const { signedIn } = this.context.identity;
 
     return (
-      <Column icon='ellipsis-h' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
-
+      <Column icon='ellipsis-h' heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <div className='scrollable'>
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
           {signedIn && (<ColumnLink key='favourites' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />)}

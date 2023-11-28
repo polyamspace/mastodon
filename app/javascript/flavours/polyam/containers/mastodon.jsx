@@ -18,8 +18,9 @@ import UI from 'flavours/polyam/features/ui';
 import initialState, { title as siteTitle } from 'flavours/polyam/initial_state';
 import { IntlProvider } from 'flavours/polyam/locales';
 import { store } from 'flavours/polyam/store';
+import { isProduction } from 'flavours/polyam/utils/environment';
 
-const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
+const title = isProduction() ? siteTitle : `${siteTitle} (Dev)`;
 
 const hydrateAction = hydrateStore(initialState);
 store.dispatch(hydrateAction);

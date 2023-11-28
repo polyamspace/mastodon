@@ -128,7 +128,7 @@ class Account extends ImmutablePureComponent {
         buttons = <IconButton icon='volume-off' title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;
       } else if (defaultAction === 'block') {
         buttons = <IconButton icon='lock' title={intl.formatMessage(messages.block, { name: account.get('username') })} onClick={this.handleBlock} />;
-      } else if (!account.get('moved') || following) {
+      } else if (!account.get('suspended') && !account.get('moved') || following) {
         buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
       }
     }

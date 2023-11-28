@@ -9,10 +9,10 @@ import { is } from 'immutable';
 
 import { ReactComponent as DownloadIcon } from '@material-symbols/svg-600/outlined/download.svg';
 import { ReactComponent as PauseIcon } from '@material-symbols/svg-600/outlined/pause.svg';
-import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow.svg';
+import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow-fill.svg';
 import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
-import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outlined/volume_off.svg';
-import { ReactComponent as VolumeUpIcon } from '@material-symbols/svg-600/outlined/volume_up.svg';
+import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outlined/volume_off-fill.svg';
+import { ReactComponent as VolumeUpIcon } from '@material-symbols/svg-600/outlined/volume_up-fill.svg';
 import { throttle, debounce } from 'lodash';
 
 import { Icon }  from 'mastodon/components/icon';
@@ -20,6 +20,7 @@ import { formatTime, getPointerPosition, fileNameFromURL } from 'mastodon/featur
 
 import { Blurhash } from '../../components/blurhash';
 import { displayMedia, useBlurhash } from '../../initial_state';
+import { currentMedia, setCurrentMedia } from '../../reducers/media_attachments';
 
 import Visualizer from './visualizer';
 
@@ -165,15 +166,32 @@ class Audio extends PureComponent {
   }
 
   togglePlay = () => {
-    if (!this.audioContext) {
-      this._initAudioContext();
+    const audios = document.querySelectorAll('audio');
+
+    audios.forEach((audio) => {
+      const button = audio.previousElementSibling;
+      button.addEventListener('click', () => {
+        if(audio.paused) {
+          audios.forEach((e) => {
+            if (e !== audio) {
+              e.pause();
+            }
+          });
+          audio.play();
+          this.setState({ paused: false });
+        } else {
+          audio.pause();
+          this.setState({ paused: true });
+        }
+      });
+    });
+
+    if (currentMedia !== null) {
+      currentMedia.pause();
     }
 
-    if (this.state.paused) {
-      this.setState({ paused: false }, () => this.audio.play());
-    } else {
-      this.setState({ paused: true }, () => this.audio.pause());
-    }
+    this.audio.play();
+    setCurrentMedia(this.audio);
   };
 
   handleResize = debounce(() => {
@@ -195,6 +213,7 @@ class Audio extends PureComponent {
   };
 
   handlePause = () => {
+    this.audio.pause();
     this.setState({ paused: true });
 
     if (this.audioContext) {

@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import { getStatusList } from 'flavours/polyam/selectors';
 
 import { fetchPinnedStatuses } from '../../actions/pin_statuses';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import StatusList from '../../components/status_list';
 import Column from '../ui/components/column';
 
@@ -50,8 +49,7 @@ class PinnedStatuses extends ImmutablePureComponent {
     const { intl, statusIds, hasMore, multiColumn } = this.props;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='thumb-tack' heading={intl.formatMessage(messages.heading)} ref={this.setRef}>
-        <ColumnBackButtonSlim />
+      <Column bindToDocument={!multiColumn} icon='thumb-tack' heading={intl.formatMessage(messages.heading)} ref={this.setRef} alwaysShowBackButton>
         <StatusList
           statusIds={statusIds}
           scrollKey='pinned_statuses'

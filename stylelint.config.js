@@ -3,6 +3,7 @@ module.exports = {
   ignoreFiles: [
     'app/javascript/styles/mastodon/reset.scss',
     'app/javascript/flavours/glitch/styles/reset.scss',
+    'app/javascript/flavours/polyam/styles/reset.scss',
     'app/javascript/styles/win95.scss',
     'coverage/**/*',
     'node_modules/**/*',
@@ -39,7 +40,6 @@ module.exports = {
     {
       files: [
         'app/javascript/styles/fairy-floss/diff.scss',
-        'app/javascript/flavours/glitch/styles/fairy-floss/diff.scss',
       ],
       rules: {
         'selector-no-vendor-prefix': null,

@@ -152,6 +152,8 @@ class Footer extends ImmutablePureComponent {
   };
 
   handleOpenClick = e => {
+    const { history } = this.props;
+
     if (e.button !== 0 || !history) {
       return;
     }

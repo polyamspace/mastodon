@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { fetchLists } from 'flavours/polyam/actions/lists';
-import ColumnBackButtonSlim from 'flavours/polyam/components/column_back_button_slim';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import Column from 'flavours/polyam/features/ui/components/column';
@@ -64,9 +63,7 @@ class Lists extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.lists' defaultMessage="You don't have any lists yet. When you create one, it will show up here." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='bars' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
-
+      <Column bindToDocument={!multiColumn} icon='bars' heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <NewListForm />
 
         <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
