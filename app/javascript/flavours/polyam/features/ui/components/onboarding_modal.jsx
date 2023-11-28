@@ -17,7 +17,7 @@ import DrawerAccount from 'flavours/polyam/features/compose/components/navigatio
 import Search from 'flavours/polyam/features/compose/components/search';
 import { me, source_url } from 'flavours/polyam/initial_state';
 
-import ColumnHeader from './column_header';
+import ColumnHeader from '../../../components/column_header';
 
 const noop = () => { };
 
@@ -109,23 +109,23 @@ const PageFour = ({ domain, intl }) => (
     <div className='onboarding-modal__page-four__columns'>
       <div className='row'>
         <div>
-          <div className='figure non-interactive'><ColumnHeader icon='home' type={intl.formatMessage(messages.home_title)} /></div>
+          <div className='figure non-interactive'><ColumnHeader icon='home' title={intl.formatMessage(messages.home_title)} /></div>
           <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='The home timeline shows posts from people you follow.' /></p>
         </div>
 
         <div>
-          <div className='figure non-interactive'><ColumnHeader icon='bell' type={intl.formatMessage(messages.notifications_title)} /></div>
+          <div className='figure non-interactive'><ColumnHeader icon='bell' title={intl.formatMessage(messages.notifications_title)} /></div>
           <p><FormattedMessage id='onboarding.page_four.notifications' defaultMessage='The notifications column shows when someone interacts with you.' /></p>
         </div>
       </div>
 
       <div className='row'>
         <div>
-          <div className='figure non-interactive' style={{ marginBottom: 0 }}><ColumnHeader icon='users' type={intl.formatMessage(messages.local_title)} /></div>
+          <div className='figure non-interactive' style={{ marginBottom: 0 }}><ColumnHeader icon='users' title={intl.formatMessage(messages.local_title)} /></div>
         </div>
 
         <div>
-          <div className='figure non-interactive' style={{ marginBottom: 0 }}><ColumnHeader icon='globe' type={intl.formatMessage(messages.federated_title)} /></div>
+          <div className='figure non-interactive' style={{ marginBottom: 0 }}><ColumnHeader icon='globe' title={intl.formatMessage(messages.federated_title)} /></div>
         </div>
       </div>
 
