@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import api from 'flavours/polyam/api';
-import Hashtag from 'flavours/polyam/components/hashtag';
+import { Hashtag } from 'flavours/polyam/components/hashtag';
 
 export default class Trends extends PureComponent {
 
