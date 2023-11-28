@@ -78,11 +78,10 @@ describe '/api/v1/statuses' do
         end
 
         it 'returns filter information', :aggregate_failures do
-          get :show, params: { id: status.id }
-          json = body_as_json
+          subject
 
           expect(response).to have_http_status(200)
-          expect(json[:filtered][0]).to include({
+          expect(body_as_json[:filtered][0]).to include({
             filter: a_hash_including({
               id: CustomFilter.instance_filter.id.to_s,
               title: 'Hidden by moderators',
