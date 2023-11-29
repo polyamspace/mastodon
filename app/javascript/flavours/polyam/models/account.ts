@@ -60,6 +60,7 @@ export interface AccountShape
 
 export type Account = RecordOf<AccountShape>;
 
+// @ts-expect-error indexable is missing, because the commit adding it hasn't been ported yet.
 export const accountDefaultValues: AccountShape = {
   acct: '',
   avatar: '',
