@@ -17,7 +17,7 @@ const messages = defineMessages({
 export default class Account extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
     intl: PropTypes.object.isRequired,
     onRemove: PropTypes.func.isRequired,
     onAdd: PropTypes.func.isRequired,

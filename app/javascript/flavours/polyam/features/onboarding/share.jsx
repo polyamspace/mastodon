@@ -146,7 +146,7 @@ class Share extends React.PureComponent {
 
   static propTypes = {
     onBack: PropTypes.func,
-    account: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.record,
     intl: PropTypes.object,
   };
 

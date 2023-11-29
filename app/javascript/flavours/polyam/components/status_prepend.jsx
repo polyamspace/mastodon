@@ -13,7 +13,7 @@ export default class StatusPrepend extends PureComponent {
 
   static propTypes = {
     type: PropTypes.string.isRequired,
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
     parseClick: PropTypes.func.isRequired,
     notificationId: PropTypes.number,
   };

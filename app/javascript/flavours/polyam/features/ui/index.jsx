@@ -286,7 +286,7 @@ class UI extends Component {
     unreadNotifications: PropTypes.number,
     showFaviconBadge: PropTypes.bool,
     hicolorPrivacyIcons: PropTypes.bool,
-    moved: ImmutablePropTypes.map,
+    moved: ImmutablePropTypes.record,
     layout: PropTypes.string.isRequired,
     firstLaunch: PropTypes.bool,
     username: PropTypes.string,

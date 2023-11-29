@@ -23,7 +23,7 @@ import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import AccountContainer from '../../containers/account_container';
 import ProfileColumnHeader from '../account/components/profile_column_header';
-import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
+import { LimitedAccountHint } from '../account_timeline/components/limited_account_hint';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import Column from '../ui/components/column';
 
@@ -45,6 +45,7 @@ const mapStateToProps = (state, { params: { acct, id } }) => {
     hasMore: !!state.getIn(['user_lists', 'following', accountId, 'next']),
     isLoading: state.getIn(['user_lists', 'following', accountId, 'isLoading'], true),
     suspended: state.getIn(['accounts', accountId, 'suspended'], false),
+    hideCollections: state.getIn(['accounts', accountId, 'hide_collections'], false),
     hidden: getAccountHidden(state, accountId),
   };
 };
@@ -117,7 +118,7 @@ class Following extends ImmutablePureComponent {
   };
 
   render () {
-    const { accountId, accountIds, hasMore, isAccount, multiColumn, isLoading, suspended, hidden, remote, remoteUrl } = this.props;
+    const { accountId, accountIds, hasMore, isAccount, multiColumn, isLoading, suspended, hidden, remote, remoteUrl, hideCollections } = this.props;
 
     if (!isAccount) {
       return (
@@ -141,6 +142,8 @@ class Following extends ImmutablePureComponent {
       emptyMessage = <FormattedMessage id='empty_column.account_suspended' defaultMessage='Account suspended' />;
     } else if (hidden) {
       emptyMessage = <LimitedAccountHint accountId={accountId} />;
+    } else if (hideCollections && accountIds.isEmpty()) {
+      emptyMessage = <FormattedMessage id='empty_column.account_hides_collections' defaultMessage='This user has chosen to not make this information available' />;
     } else if (remote && accountIds.isEmpty()) {
       emptyMessage = <RemoteHint url={remoteUrl} />;
     } else {

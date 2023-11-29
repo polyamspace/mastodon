@@ -40,7 +40,7 @@ class Onboarding extends ImmutablePureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    account: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.record,
     multiColumn: PropTypes.bool,
     ...WithRouterPropTypes,
   };
