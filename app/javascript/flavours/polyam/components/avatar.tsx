@@ -6,21 +6,20 @@ import type { Account } from '../types/resources';
 
 interface Props {
   account: Account | undefined;
-  className?: string;
   size: number;
   style?: React.CSSProperties;
   inline?: boolean;
+  animate?: boolean;
 }
 
 export const Avatar: React.FC<Props> = ({
   account,
-  className,
+  animate = autoPlayGif,
   size = 20,
   inline = false,
   style: styleFromParent,
 }) => {
-  const { hovering, handleMouseEnter, handleMouseLeave } =
-    useHovering(autoPlayGif);
+  const { hovering, handleMouseEnter, handleMouseLeave } = useHovering(animate);
 
   const style = {
     ...styleFromParent,
@@ -28,7 +27,10 @@ export const Avatar: React.FC<Props> = ({
     height: `${size}px`,
   };
 
-  const src = hovering ? account?.get('avatar') : account?.get('avatar_static');
+  const src =
+    hovering || animate
+      ? account?.get('avatar')
+      : account?.get('avatar_static');
 
   return (
     <div
