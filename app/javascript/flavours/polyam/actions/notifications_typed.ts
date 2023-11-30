@@ -18,6 +18,6 @@ export const notificationsUpdate = createAction(
     playSound: boolean;
   }) => ({
     payload: args,
-    meta: { playSound: playSound ? { sound: 'notificationSound' } : undefined },
+    meta: playSound ? { sound: 'notificationSound' } : undefined,
   }),
 );
