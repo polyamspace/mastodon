@@ -109,7 +109,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
         dispatch(importFetchedAccount(notification.report.target_account));
       }
 
-      dispatch(notificationsUpdate({ notification, preferPendingItems, playsound: playSound && !filtered }));
+      dispatch(notificationsUpdate({ notification, preferPendingItems, playSound: playSound && !filtered }));
 
       fetchRelatedRelationships(dispatch, [notification]);
     } else if (playSound && !filtered) {
