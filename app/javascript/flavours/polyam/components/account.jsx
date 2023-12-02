@@ -50,7 +50,7 @@ class Account extends ImmutablePureComponent {
   };
 
   static defaultProps = {
-    size: 36,
+    size: 46,
     minimal: true,
   };
 
