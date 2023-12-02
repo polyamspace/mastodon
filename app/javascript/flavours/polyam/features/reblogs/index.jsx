@@ -8,6 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { faRefresh, faRetweet } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
 import { Icon }  from 'flavours/polyam/components/icon';
@@ -81,12 +82,13 @@ class Reblogs extends ImmutablePureComponent {
       <Column ref={this.setRef}>
         <ColumnHeader
           icon='retweet'
+          iconComponent={faRetweet}
           title={intl.formatMessage(messages.heading)}
           onClick={this.handleHeaderClick}
           showBackButton
           multiColumn={multiColumn}
           extraButton={(
-            <button className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' /></button>
+            <button className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' icon={faRefresh} /></button>
           )}
         />
 

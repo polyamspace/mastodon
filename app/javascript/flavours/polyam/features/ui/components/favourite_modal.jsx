@@ -8,6 +8,8 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+
 import AttachmentList from 'flavours/polyam/components/attachment_list';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { Button } from 'flavours/polyam/components/button';
@@ -82,7 +84,7 @@ class FavouriteModal extends ImmutablePureComponent {
         </div>
 
         <div className='boost-modal__action-bar'>
-          <div><FormattedMessage id='favourite_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='star' /></span> }} /></div>
+          <div><FormattedMessage id='favourite_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='star' icon={faStar} /></span> }} /></div>
           <Button text={intl.formatMessage(messages.favourite)} onClick={this.handleFavourite} autoFocus />
         </div>
       </div>

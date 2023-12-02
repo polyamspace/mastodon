@@ -3,6 +3,8 @@ import { Component } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
+import { faRefresh } from '@fortawesome/free-solid-svg-icons';
+
 import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({
@@ -31,7 +33,7 @@ class BundleModalError extends Component {
     return (
       <div className='modal-root__modal error-modal'>
         <div className='error-modal__body'>
-          <IconButton title={formatMessage(messages.retry)} icon='refresh' onClick={this.handleRetry} size={64} />
+          <IconButton title={formatMessage(messages.retry)} icon='refresh' iconComponent={faRefresh} onClick={this.handleRetry} size={64} />
           {formatMessage(messages.error)}
         </div>
 

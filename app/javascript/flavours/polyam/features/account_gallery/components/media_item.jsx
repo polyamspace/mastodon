@@ -5,6 +5,9 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faEyeSlash } from '@fortawesome/free-regular-svg-icons';
+import { faMusic, faPlay } from '@fortawesome/free-solid-svg-icons';
+
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/polyam/initial_state';
@@ -83,7 +86,7 @@ export default class MediaItem extends ImmutablePureComponent {
     if (!visible) {
       icon = (
         <span className='account-gallery__item__icons'>
-          <Icon id='eye-slash' />
+          <Icon id='eye-slash' icon={faEyeSlash} />
         </span>
       );
     } else {
@@ -98,9 +101,9 @@ export default class MediaItem extends ImmutablePureComponent {
         );
 
         if (attachment.get('type') === 'audio') {
-          label = <Icon id='music' />;
+          label = <Icon id='music' icon={faMusic} />;
         } else {
-          label = <Icon id='play' />;
+          label = <Icon id='play' icon={faPlay} />;
         }
       } else if (attachment.get('type') === 'image') {
         const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;

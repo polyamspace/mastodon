@@ -5,6 +5,8 @@ import { defineMessages } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
 import { IconButton } from '../../../components/icon_button';
@@ -34,9 +36,9 @@ export default class Account extends ImmutablePureComponent {
     let button;
 
     if (added) {
-      button = <IconButton icon='times' title={intl.formatMessage(messages.remove)} onClick={onRemove} />;
+      button = <IconButton icon='times' iconComponent={faTimes} title={intl.formatMessage(messages.remove)} onClick={onRemove} />;
     } else {
-      button = <IconButton icon='plus' title={intl.formatMessage(messages.add)} onClick={onAdd} />;
+      button = <IconButton icon='plus' iconComponent={faPlus} title={intl.formatMessage(messages.add)} onClick={onAdd} />;
     }
 
     return (

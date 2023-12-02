@@ -8,6 +8,8 @@ import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { faBookmark, faEllipsisH, faPlus, faReply, faReplyAll, faRetweet, faStar } from '@fortawesome/free-solid-svg-icons';
+
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/polyam/permissions';
 import { accountAdminLink, instanceAdminLink, statusAdminLink } from 'flavours/polyam/utils/backend_links';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
@@ -227,6 +229,7 @@ class ActionBar extends PureComponent {
         title={intl.formatMessage(messages.react)}
         disabled={!canReact}
         icon='plus'
+        iconComponent={faPlus}
       />
     );
 
@@ -235,30 +238,30 @@ class ActionBar extends PureComponent {
     let reblogTitle, reblogIconComponent;
     if (status.get('reblogged')) {
       reblogTitle = intl.formatMessage(messages.cancel_reblog_private);
-      reblogIconComponent = publicStatus ? undefined : undefined; // Replace with reblog and private reblog
+      reblogIconComponent = publicStatus ? faRetweet : faRetweet; // Replace with reblog and private reblog
     } else if (publicStatus) {
       reblogTitle = intl.formatMessage(messages.reblog);
-      reblogIconComponent = undefined; // Replace with reblog
+      reblogIconComponent = faRetweet;
     } else if (reblogPrivate) {
       reblogTitle = intl.formatMessage(messages.reblog_private);
-      reblogIconComponent = undefined; // Replace with private reblog
+      reblogIconComponent = faRetweet; // Replace with private reblog
     } else {
       reblogTitle = intl.formatMessage(messages.cannot_reblog);
-      reblogIconComponent = undefined; // Replace with disabled reblog
+      reblogIconComponent = faRetweet; // Replace with disabled reblog
     }
 
     return (
       <div className='detailed-status__action-bar'>
-        <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} onClick={this.handleReplyClick} /></div>
+        <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} iconComponent={status.get('in_reply_to_id', null) === null ? faReply : faReplyAll} onClick={this.handleReplyClick} /></div>
         <div className='detailed-status__button'><IconButton className={classNames({ reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' iconComponent={reblogIconComponent} onClick={this.handleReblogClick} /></div>
-        <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} /></div>
+        <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={faStar} onClick={this.handleFavouriteClick} /></div>
         <div className='detailed-status__button'>
           {signedIn ? (<EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} button={reactButton} disabled={!canReact} />) : reactButton}
         </div>
-        <div className='detailed-status__button'><IconButton className='bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} /></div>
+        <div className='detailed-status__button'><IconButton className='bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' iconComponent={faBookmark} onClick={this.handleBookmarkClick} /></div>
 
         <div className='detailed-status__action-bar-dropdown'>
-          <DropdownMenuContainer size={18} icon='ellipsis-h' items={menu} direction='left' title={intl.formatMessage(messages.more)} />
+          <DropdownMenuContainer size={18} icon='ellipsis-h' iconComponent={faEllipsisH} items={menu} direction='left' title={intl.formatMessage(messages.more)} />
         </div>
       </div>
     );

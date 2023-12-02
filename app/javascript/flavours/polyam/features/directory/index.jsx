@@ -9,6 +9,8 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { faAddressBook } from '@fortawesome/free-regular-svg-icons';
+
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavours/polyam/actions/columns';
 import { fetchDirectory, expandDirectory } from 'flavours/polyam/actions/directory';
 import Column from 'flavours/polyam/components/column';
@@ -156,6 +158,7 @@ class Directory extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='address-book-o'
+          iconComponent={faAddressBook}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
           onMove={this.handleMove}

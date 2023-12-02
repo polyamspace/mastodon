@@ -5,6 +5,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { faListUl } from '@fortawesome/free-solid-svg-icons';
+
 import { fetchLists } from 'flavours/polyam/actions/lists';
 
 import ColumnLink from './column_link';
@@ -45,7 +47,7 @@ class ListPanel extends ImmutablePureComponent {
         <hr />
 
         {lists.map(list => (
-          <ColumnLink icon='list-ul' key={list.get('id')} strict text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
+          <ColumnLink icon='list-ul' iconComponent={faListUl} key={list.get('id')} strict text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
         ))}
       </div>
     );

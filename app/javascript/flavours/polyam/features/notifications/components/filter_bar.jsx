@@ -3,6 +3,8 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
+import { faHome, faPlus, faReplyAll, faRetweet, faStar, faTasksAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon }  from 'flavours/polyam/components/icon';
 
 const tooltips = defineMessages({
@@ -67,49 +69,49 @@ class FilterBar extends PureComponent {
           onClick={this.onClick('mention')}
           title={intl.formatMessage(tooltips.mentions)}
         >
-          <Icon id='reply-all' fixedWidth />
+          <Icon id='reply-all' icon={faReplyAll} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'favourite' ? 'active' : ''}
           onClick={this.onClick('favourite')}
           title={intl.formatMessage(tooltips.favourites)}
         >
-          <Icon id='star' fixedWidth />
+          <Icon id='star' icon={faStar} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'reaction' ? 'active' : ''}
           onClick={this.onClick('reaction')}
           title={intl.formatMessage(tooltips.reactions)}
         >
-          <Icon id='plus' fixedWidth />
+          <Icon id='plus' icon={faPlus} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'reblog' ? 'active' : ''}
           onClick={this.onClick('reblog')}
           title={intl.formatMessage(tooltips.boosts)}
         >
-          <Icon id='retweet' fixedWidth />
+          <Icon id='retweet' icon={faRetweet} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'poll' ? 'active' : ''}
           onClick={this.onClick('poll')}
           title={intl.formatMessage(tooltips.polls)}
         >
-          <Icon id='tasks' fixedWidth />
+          <Icon id='tasks' icon={faTasksAlt} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'status' ? 'active' : ''}
           onClick={this.onClick('status')}
           title={intl.formatMessage(tooltips.statuses)}
         >
-          <Icon id='home' fixedWidth />
+          <Icon id='home' icon={faHome} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'follow' ? 'active' : ''}
           onClick={this.onClick('follow')}
           title={intl.formatMessage(tooltips.follows)}
         >
-          <Icon id='user-plus' fixedWidth />
+          <Icon id='user-plus' icon={faUserPlus} fixedWidth />
         </button>
       </div>
     );

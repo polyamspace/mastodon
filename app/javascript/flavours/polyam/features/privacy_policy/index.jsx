@@ -5,6 +5,8 @@ import { FormattedMessage, FormattedDate, injectIntl, defineMessages } from 'rea
 
 import { Helmet } from 'react-helmet';
 
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
+
 import api from 'flavours/polyam/api';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
@@ -51,6 +53,7 @@ class PrivacyPolicy extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='user-secret'
+          iconComponent={faUserSecret}
           title={intl.formatMessage(messages.title)}
           onClick={this.handleHeaderClick}
           multiColumn={multiColumn}

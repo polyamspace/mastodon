@@ -5,6 +5,8 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faHashtag, faQuoteRight, faSearch, faUsers } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon } from 'flavours/polyam/components/icon';
 import { LoadMore } from 'flavours/polyam/components/load_more';
 import { SearchSection } from 'flavours/polyam/features/explore/components/search_section';
@@ -44,7 +46,7 @@ class SearchResults extends ImmutablePureComponent {
 
     if (results.get('accounts') && results.get('accounts').size > 0) {
       accounts = (
-        <SearchSection title={<><Icon id='users' fixedWidth /><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></>}>
+        <SearchSection title={<><Icon id='users' icon={faUsers} fixedWidth /><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></>}>
           {withoutLastResult(results.get('accounts')).map(accountId => <AccountContainer key={accountId} id={accountId} />)}
           {(results.get('accounts').size > INITIAL_PAGE_LIMIT && results.get('accounts').size % INITIAL_PAGE_LIMIT === 1) && <LoadMore visible onClick={this.handleLoadMoreAccounts} />}
         </SearchSection>
@@ -53,7 +55,7 @@ class SearchResults extends ImmutablePureComponent {
 
     if (results.get('hashtags') && results.get('hashtags').size > 0) {
       hashtags = (
-        <SearchSection title={<><Icon id='hashtag' fixedWidth /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></>}>
+        <SearchSection title={<><Icon id='hashtag' icon={faHashtag} fixedWidth /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></>}>
           {withoutLastResult(results.get('hashtags')).map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
           {(results.get('hashtags').size > INITIAL_PAGE_LIMIT && results.get('hashtags').size % INITIAL_PAGE_LIMIT === 1) && <LoadMore visible onClick={this.handleLoadMoreHashtags} />}
         </SearchSection>
@@ -62,7 +64,7 @@ class SearchResults extends ImmutablePureComponent {
 
     if (results.get('statuses') && results.get('statuses').size > 0) {
       statuses = (
-        <SearchSection title={<><Icon id='quote-right' fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></>}>
+        <SearchSection title={<><Icon id='quote-right' icon={faQuoteRight} fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></>}>
           {withoutLastResult(results.get('statuses')).map(statusId => <StatusContainer key={statusId} id={statusId} />)}
           {(results.get('statuses').size > INITIAL_PAGE_LIMIT && results.get('statuses').size % INITIAL_PAGE_LIMIT === 1) && <LoadMore visible onClick={this.handleLoadMoreStatuses} />}
         </SearchSection>
@@ -72,7 +74,7 @@ class SearchResults extends ImmutablePureComponent {
     return (
       <div className='drawer--results'>
         <header className='search-results__header'>
-          <Icon id='search' fixedWidth />
+          <Icon id='search' icon={faSearch} fixedWidth />
           <FormattedMessage id='explore.search_results' defaultMessage='Search results' />
         </header>
 

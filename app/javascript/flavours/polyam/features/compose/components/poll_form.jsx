@@ -8,6 +8,8 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import AutosuggestInput from 'flavours/polyam/components/autosuggest_input';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -87,7 +89,7 @@ class OptionIntl extends PureComponent {
         </label>
 
         <div className='poll__cancel'>
-          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' onClick={this.handleOptionRemove} />
+          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' iconComponent={faTimes} onClick={this.handleOptionRemove} />
         </div>
       </li>
     );
@@ -143,7 +145,7 @@ class PollForm extends ImmutablePureComponent {
           {options.size < pollLimits.max_options && (
             <label className='poll__text editable'>
               <span className={classNames('poll__input')} style={{ opacity: 0 }} />
-              <button className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
+              <button className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' icon={faPlus} /> <FormattedMessage {...messages.add_option} /></button>
             </label>
           )}
         </ul>

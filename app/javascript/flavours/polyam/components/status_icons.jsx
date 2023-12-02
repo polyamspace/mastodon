@@ -6,8 +6,9 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { faImage } from '@fortawesome/free-regular-svg-icons';
+import { faCommenting, faComment, faHome, faAngleDoubleUp, faLink, faVideoCamera, faMusic, faTasksAlt } from '@fortawesome/free-solid-svg-icons';
 
-//  Mastodon imports.
 import { Icon } from 'flavours/polyam/components/icon';
 import { languages } from 'flavours/polyam/initial_state';
 
@@ -66,6 +67,19 @@ class StatusIcons extends PureComponent {
     }
   };
 
+  // TODO: Move media icons to own component?
+  mediaIconComponent (mediaIcon) {
+    const icon = {
+      'link': faLink,
+      'picture-o': faImage,
+      'tasks': faTasksAlt,
+      'video-camera': faVideoCamera,
+      'music': faMusic,
+    }[mediaIcon];
+
+    return icon;
+  }
+
   mediaIconTitleText (mediaIcon) {
     const { intl } = this.props;
 
@@ -87,6 +101,7 @@ class StatusIcons extends PureComponent {
         className='status__media-icon'
         key={`media-icon--${mediaIcon}`}
         id={mediaIcon}
+        icon={this.mediaIconComponent(mediaIcon)}
         aria-hidden='true'
         title={this.mediaIconTitleText(mediaIcon)}
       />
@@ -113,6 +128,7 @@ class StatusIcons extends PureComponent {
               className='status__reply-icon'
               fixedWidth
               id='commenting'
+              icon={faCommenting}
               aria-hidden='true'
               title={intl.formatMessage(messages.thread)}
             />
@@ -121,6 +137,7 @@ class StatusIcons extends PureComponent {
               className='status__reply-icon'
               fixedWidth
               id='comment'
+              icon={faComment}
               aria-hidden='true'
               title={intl.formatMessage(messages.inReplyTo)}
             />
@@ -129,6 +146,7 @@ class StatusIcons extends PureComponent {
           <Icon
             fixedWidth
             id='home'
+            icon={faHome}
             aria-hidden='true'
             title={intl.formatMessage(messages.localOnly)}
           />}
@@ -145,6 +163,7 @@ class StatusIcons extends PureComponent {
                 intl.formatMessage(messages.collapse)
             }
             icon='angle-double-up'
+            iconComponent={faAngleDoubleUp}
             onClick={this.handleCollapsedClick}
           />
         )}

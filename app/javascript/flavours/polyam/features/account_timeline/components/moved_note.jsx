@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faSuitcase } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon } from 'flavours/polyam/components/icon';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
@@ -35,7 +37,7 @@ class MovedNote extends ImmutablePureComponent {
     return (
       <div className='account__moved-note'>
         <div className='account__moved-note__message'>
-          <div className='account__moved-note__icon-wrapper'><Icon id='suitcase' className='account__moved-note__icon' fixedWidth /></div>
+          <div className='account__moved-note__icon-wrapper'><Icon id='suitcase' icon={faSuitcase} className='account__moved-note__icon' fixedWidth /></div>
           <FormattedMessage id='account.moved_to' defaultMessage='{name} has indicated that their new account is now:' values={{ name: <bdi><strong dangerouslySetInnerHTML={displayNameHtml} /></bdi> }} />
         </div>
 

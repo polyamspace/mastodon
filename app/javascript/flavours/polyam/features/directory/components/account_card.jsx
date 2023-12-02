@@ -8,6 +8,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import {
   followAccount,
   unfollowAccount,
@@ -187,7 +189,7 @@ class AccountCard extends ImmutablePureComponent {
       <div className='account-card'>
         <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='account-card__permalink'>
           <div className='account-card__header'>
-            {this.props.onDismiss && <IconButton className='media-modal__close' title={intl.formatMessage(messages.dismissSuggestion)} icon='times' onClick={this.handleDismiss} size={20} />}
+            {this.props.onDismiss && <IconButton className='media-modal__close' title={intl.formatMessage(messages.dismissSuggestion)} icon='times' iconComponent={faTimes} onClick={this.handleDismiss} size={20} />}
 
             <img
               src={

@@ -8,6 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
 import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
@@ -59,7 +60,7 @@ class Blocks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.domain_blocks' defaultMessage='There are no blocked domains yet.' />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='minus-circle' heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn} icon='minus-circle' iconComponent={faMinusCircle} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='domain_blocks'
           onLoadMore={this.handleLoadMore}

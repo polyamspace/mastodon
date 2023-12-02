@@ -9,6 +9,9 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { faImage } from '@fortawesome/free-regular-svg-icons';
+import { faLink, faMusic, faTasksAlt, faVideoCamera } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon } from 'flavours/polyam/components/icon';
 import { autoPlayGif, languages as preloadedLanguages } from 'flavours/polyam/initial_state';
 import { highlightCode } from 'flavours/polyam/utils/html';
@@ -335,6 +338,18 @@ class StatusContent extends PureComponent {
     this.contentsNode = c;
   };
 
+  mediaIconComponent = (mediaIcon) => {
+    const icon = {
+      'link': faLink,
+      'picture-o': faImage,
+      'tasks': faTasksAlt,
+      'video-camera': faVideoCamera,
+      'music': faMusic,
+    }[mediaIcon];
+
+    return icon;
+  };
+
   render () {
     const {
       status,
@@ -396,6 +411,7 @@ class StatusContent extends PureComponent {
                 fixedWidth
                 className='status__content__spoiler-icon'
                 id={mediaIcon}
+                icon={this.mediaIconComponent(mediaIcon)}
                 aria-hidden='true'
                 key={`icon-${idx}`}
               />,

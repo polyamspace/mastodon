@@ -11,6 +11,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { faBell, faCheck, faEraser } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
 import { compareId } from 'flavours/polyam/compare_id';
@@ -293,7 +294,7 @@ class Notifications extends PureComponent {
           onClick={this.handleMarkAsRead}
           className='column-header__button'
         >
-          <Icon id='check' />
+          <Icon id='check' icon={faCheck} />
         </button>,
       );
     }
@@ -317,7 +318,7 @@ class Notifications extends PureComponent {
         onClick={this.onEnterCleaningMode}
         className={notifCleaningButtonClassName}
       >
-        <Icon id='eraser' />
+        <Icon id='eraser' icon={faEraser} />
       </button>,
     );
 
@@ -339,6 +340,7 @@ class Notifications extends PureComponent {
       >
         <ColumnHeader
           icon='bell'
+          iconComponent={faBell}
           active={isUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

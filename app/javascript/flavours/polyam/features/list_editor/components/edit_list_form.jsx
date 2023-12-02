@@ -5,6 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+
 import { changeListEditorTitle, submitListEditor } from '../../../actions/lists';
 import { IconButton } from '../../../components/icon_button';
 
@@ -62,6 +64,7 @@ class ListForm extends PureComponent {
         <IconButton
           disabled={disabled}
           icon='check'
+          iconComponent={faCheck}
           title={title}
           onClick={this.handleClick}
         />

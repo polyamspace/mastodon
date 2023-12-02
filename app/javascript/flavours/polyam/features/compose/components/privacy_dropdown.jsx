@@ -3,6 +3,8 @@ import { PureComponent } from 'react';
 
 import { injectIntl, defineMessages } from 'react-intl';
 
+import { faEnvelope, faGlobe, faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
+
 import Dropdown from './dropdown';
 
 const messages = defineMessages({
@@ -34,34 +36,33 @@ class PrivacyDropdown extends PureComponent {
   render () {
     const { value, onChange, onModalOpen, onModalClose, disabled, noDirect, container, isUserTouching, intl: { formatMessage } } = this.props;
 
-    // TODO: Replace "undefined" with proper icons
     //  We predefine our privacy items so that we can easily pick the
     //  dropdown icon later.
     const privacyItems = {
       direct: {
         icon: 'envelope',
-        iconComponent: undefined,
+        iconComponent: faEnvelope,
         meta: formatMessage(messages.direct_long),
         name: 'direct',
         text: formatMessage(messages.direct_short),
       },
       private: {
         icon: 'lock',
-        iconComponent: undefined,
+        iconComponent: faLock,
         meta: formatMessage(messages.private_long),
         name: 'private',
         text: formatMessage(messages.private_short),
       },
       public: {
         icon: 'globe',
-        iconComponent: undefined,
+        iconComponent: faGlobe,
         meta: formatMessage(messages.public_long),
         name: 'public',
         text: formatMessage(messages.public_short),
       },
       unlisted: {
         icon: 'unlock',
-        iconComponent: undefined,
+        iconComponent: faLockOpen,
         meta: formatMessage(messages.unlisted_long),
         name: 'unlisted',
         text: formatMessage(messages.unlisted_short),
@@ -78,6 +79,7 @@ class PrivacyDropdown extends PureComponent {
       <Dropdown
         disabled={disabled}
         icon={(privacyItems[value] || {}).icon}
+        iconComponent={(privacyItems[value] || {}).iconComponent}
         items={items}
         onChange={onChange}
         isUserTouching={isUserTouching}

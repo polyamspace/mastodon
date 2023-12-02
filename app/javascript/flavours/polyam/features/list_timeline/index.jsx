@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { faListUl, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Toggle from 'react-toggle';
 
 import { addColumn, removeColumn, moveColumn } from 'flavours/polyam/actions/columns';
@@ -182,6 +183,7 @@ class ListTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={title}>
         <ColumnHeader
           icon='list-ul'
+          iconComponent={faListUl}
           active={hasUnread}
           title={title}
           onPin={this.handlePin}
@@ -192,11 +194,11 @@ class ListTimeline extends PureComponent {
         >
           <div className='column-settings__row column-header__links'>
             <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleEditClick}>
-              <Icon id='pencil' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
+              <Icon id='pencil' icon={faPencil} /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
             </button>
 
             <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
-              <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
+              <Icon id='trash' icon={faTrash} /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
           </div>
 

@@ -3,6 +3,8 @@ import { Component } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { faEraser } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon }  from 'flavours/polyam/components/icon';
 
 export default class ClearColumnButton extends Component {
@@ -13,7 +15,7 @@ export default class ClearColumnButton extends Component {
 
   render () {
     return (
-      <button className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.props.onClick}><Icon id='eraser' /> <FormattedMessage id='notifications.clear' defaultMessage='Clear notifications' /></button>
+      <button className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.props.onClick}><Icon id='eraser' icon={faEraser} /> <FormattedMessage id='notifications.clear' defaultMessage='Clear notifications' /></button>
     );
   }
 

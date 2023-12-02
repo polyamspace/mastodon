@@ -7,6 +7,8 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 import { openModal } from 'flavours/polyam/actions/modal';
 import { fetchServer } from 'flavours/polyam/actions/server';
 import { Avatar } from 'flavours/polyam/components/avatar';
@@ -68,7 +70,7 @@ class Header extends PureComponent {
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/search' && <Link to='/search' className='button button-secondary' aria-label={intl.formatMessage(messages.search)}><Icon id='search' /></Link>}
+          {location.pathname !== '/search' && <Link to='/search' className='button button-secondary' aria-label={intl.formatMessage(messages.search)}><Icon id='search' icon={faSearch} /></Link>}
           {location.pathname !== '/publish' && <Link to='/publish' className='button button-secondary'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
           <Account />
         </>

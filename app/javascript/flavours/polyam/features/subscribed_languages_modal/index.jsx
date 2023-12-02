@@ -8,6 +8,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import { followAccount } from 'flavours/polyam/actions/accounts';
 import { Button } from 'flavours/polyam/components/button';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -101,7 +103,7 @@ class SubscribedLanguagesModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal report-dialog-modal'>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={20} />
+          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={faTimes} onClick={onClose} size={20} />
           <FormattedMessage id='subscribed_languages.target' defaultMessage='Change subscribed languages for {target}' values={{ target: <strong>{acct}</strong> }} />
         </div>
 

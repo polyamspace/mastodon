@@ -8,6 +8,8 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faEnvelope, faLock, faPlus, faRetweet, faStar } from '@fortawesome/free-solid-svg-icons';
+
 import { AnimatedNumber } from 'flavours/polyam/components/animated_number';
 import AttachmentList from 'flavours/polyam/components/attachment_list';
 import EditedTimestamp from 'flavours/polyam/components/edited_timestamp';
@@ -148,7 +150,7 @@ class DetailedStatus extends ImmutablePureComponent {
     let applicationLink = '';
     let reblogLink = '';
     let reblogIcon = 'retweet';
-    let reblogIconComponent = undefined; // TODO: Replace with proper icon
+    let reblogIconComponent = faRetweet;
     let favouriteLink = '';
     let edited = '';
     let reactionLink = '';
@@ -265,13 +267,12 @@ class DetailedStatus extends ImmutablePureComponent {
 
     const visibilityLink = <> · <VisibilityIcon visibility={status.get('visibility')} /></>;
 
-    // TODO: Replace "undefined" with proper icons
     if (status.get('visibility') === 'direct') {
       reblogIcon = 'envelope';
-      reblogIconComponent = undefined;
+      reblogIconComponent = faEnvelope;
     } else if (status.get('visibility') === 'private') {
       reblogIcon = 'lock';
-      reblogIconComponent = undefined;
+      reblogIconComponent = faLock;
     }
 
     if (!['unlisted', 'public'].includes(status.get('visibility'))) {
@@ -305,7 +306,7 @@ class DetailedStatus extends ImmutablePureComponent {
     if (this.props.history) {
       favouriteLink = (
         <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/favourites`} className='detailed-status__link'>
-          <Icon id='star' />
+          <Icon id='star' icon={faStar} />
           <span className='detailed-status__favorites'>
             <AnimatedNumber value={status.get('favourites_count')} />
           </span>
@@ -314,7 +315,7 @@ class DetailedStatus extends ImmutablePureComponent {
     } else {
       favouriteLink = (
         <a href={`/interact/${status.get('id')}?type=favourite`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <Icon id='star' />
+          <Icon id='star' icon={faStar} />
           <span className='detailed-status__favorites'>
             <AnimatedNumber value={status.get('favourites_count')} />
           </span>
@@ -334,7 +335,7 @@ class DetailedStatus extends ImmutablePureComponent {
     if (this.props.history) {
       reactionLink = (
         <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reactions`} className='detailed-status__link'>
-          <Icon id='plus' />
+          <Icon id='plus' icon={faPlus} />
           <span className='detailed-status__reactions'>
             <AnimatedNumber value={status.get('reactions_count')} />
           </span>
@@ -343,7 +344,7 @@ class DetailedStatus extends ImmutablePureComponent {
     } else {
       reactionLink = (
         <a href={`/interact/${status.get('id')}?type=reaction`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <Icon id='plus' />
+          <Icon id='plus' icon={faPlus} />
           <span className='detailed-status__reactions'>
             <AnimatedNumber value={status.get('reactions_count')} />
           </span>

@@ -5,6 +5,8 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import { fetchFilters, createFilter, createFilterStatus } from 'flavours/polyam/actions/filters';
 import { fetchStatus } from 'flavours/polyam/actions/statuses';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -120,7 +122,7 @@ class FilterModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal report-dialog-modal'>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={20} />
+          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={faTimes} onClick={onClose} size={20} />
           <FormattedMessage id='filter_modal.title.status' defaultMessage='Filter a post' />
         </div>
 

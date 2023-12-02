@@ -1,5 +1,7 @@
 import { defineMessages, useIntl } from 'react-intl';
 
+import { faEnvelope, faGlobe, faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon } from './icon';
 
 type Visibility = 'public' | 'unlisted' | 'private' | 'direct';
@@ -26,22 +28,22 @@ export const VisibilityIcon: React.FC<{ visibility: Visibility }> = ({
   const visibilityIconInfo = {
     public: {
       icon: 'globe',
-      iconComponent: undefined,
+      iconComponent: faGlobe,
       text: intl.formatMessage(messages.public_short),
     },
     unlisted: {
       icon: 'unlock',
-      iconComponent: undefined,
+      iconComponent: faLockOpen,
       text: intl.formatMessage(messages.unlisted_short),
     },
     private: {
       icon: 'lock',
-      iconComponent: undefined,
+      iconComponent: faLock,
       text: intl.formatMessage(messages.private_short),
     },
     direct: {
       icon: 'envelope',
-      iconComponent: undefined,
+      iconComponent: faEnvelope,
       text: intl.formatMessage(messages.direct_short),
     },
   };

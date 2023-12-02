@@ -5,6 +5,8 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+
 import { openModal } from 'flavours/polyam/actions/modal';
 import { Icon }  from 'flavours/polyam/components/icon';
 import InlineAccount from 'flavours/polyam/components/inline_account';
@@ -66,7 +68,7 @@ class EditedTimestamp extends PureComponent {
     return (
       <DropdownMenu statusId={statusId} renderItem={this.renderItem} scrollable renderHeader={this.renderHeader} onItemClick={this.handleItemClick}>
         <button className='dropdown-menu__text-button'>
-          <FormattedMessage id='status.edited' defaultMessage='Edited {date}' values={{ date: intl.formatDate(timestamp, { hour12: false, month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) }} /> <Icon id='caret-down' />
+          <FormattedMessage id='status.edited' defaultMessage='Edited {date}' values={{ date: intl.formatDate(timestamp, { hour12: false, month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) }} /> <Icon id='caret-down' icon={faCaretDown} />
         </button>
       </DropdownMenu>
     );

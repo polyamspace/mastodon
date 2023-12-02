@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faEnvelope, faGlobe, faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
 import { length } from 'stringz';
 
 import { Button } from 'flavours/polyam/components/button';
@@ -54,7 +55,9 @@ class Publisher extends ImmutablePureComponent {
       over: diff < 0,
     });
 
+    // TODO: Replace with visibility icons?
     const privacyIcons = { direct: 'envelope', private: 'lock', public: 'globe', unlisted: 'unlock' };
+    const privacyIconsComponent = { direct: faEnvelope, private: faLock, public: faGlobe, unlisted: faLockOpen};
 
     let publishText;
     let publishButtonText = customPublishButtonText || intl.formatMessage(messages.publish);
@@ -62,9 +65,10 @@ class Publisher extends ImmutablePureComponent {
       publishText = intl.formatMessage(messages.saveChanges);
     } else if (privacy === 'private' || privacy === 'direct') {
       const iconId = privacyIcons[privacy];
+      const iconComponent = privacyIconsComponent[privacy];
       publishText = (
         <span>
-          <Icon id={iconId} /> {publishButtonText}
+          <Icon id={iconId} icon={iconComponent} /> {publishButtonText}
         </span>
       );
     } else {
@@ -87,7 +91,7 @@ class Publisher extends ImmutablePureComponent {
               disabled={disabled}
               onClick={onSecondarySubmit}
               style={{ padding: null }}
-              text={<Icon id={privacyIcons[sideArm]} />}
+              text={<Icon id={privacyIcons[sideArm]} icon={privacyIconsComponent[sideArm]} />}
               title={`${publishButtonText}: ${intl.formatMessage(privacyNames[sideArm])}`}
             />
           </div>

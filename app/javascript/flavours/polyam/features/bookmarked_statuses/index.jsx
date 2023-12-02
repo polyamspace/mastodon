@@ -8,6 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
 import { fetchBookmarkedStatuses, expandBookmarkedStatuses } from 'flavours/polyam/actions/bookmarks';
@@ -80,6 +81,7 @@ class Bookmarks extends ImmutablePureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} name='bookmarks'>
         <ColumnHeader
           icon='bookmark'
+          iconComponent={faBookmark}
           title={intl.formatMessage(messages.heading)}
           onPin={this.handlePin}
           onMove={this.handleMove}

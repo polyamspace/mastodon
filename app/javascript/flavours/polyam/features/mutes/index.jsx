@@ -8,6 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { faVolumeOff } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
 import { fetchMutes, expandMutes } from '../../actions/mutes';
@@ -60,7 +61,7 @@ class Mutes extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.mutes' defaultMessage="You haven't muted any users yet." />;
 
     return (
-      <Column bindToDocument={!multiColumn} name='mutes' icon='volume-off' heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn} name='mutes' icon='volume-off' iconComponent={faVolumeOff} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='mutes'
           onLoadMore={this.handleLoadMore}

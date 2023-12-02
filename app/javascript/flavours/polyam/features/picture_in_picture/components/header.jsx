@@ -8,6 +8,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -40,7 +42,7 @@ class Header extends ImmutablePureComponent {
           <DisplayName account={account} />
         </Link>
 
-        <IconButton icon='times' onClick={onClose} title={intl.formatMessage(messages.close)} />
+        <IconButton icon='times' iconComponent={faTimes} onClick={onClose} title={intl.formatMessage(messages.close)} />
       </div>
     );
   }
