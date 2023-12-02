@@ -256,7 +256,7 @@ class Dropdown extends PureComponent {
   };
 
   findTarget = () => {
-    return this.target?.buttonRef?.current;
+    return this.target?.buttonRef?.current ? this.target?.buttonRef?.current : this.target;
   };
 
   componentWillUnmount = () => {
