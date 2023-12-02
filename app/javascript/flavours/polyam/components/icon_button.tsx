@@ -10,7 +10,7 @@ interface Props {
   className?: string;
   title: string;
   icon: string;
-  iconComponent?: IconProp;
+  iconComponent: IconProp;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
@@ -46,7 +46,6 @@ export class IconButton extends PureComponent<Props, States> {
     overlay: false,
     tabIndex: 0,
     ariaHidden: false,
-    iconComponent: undefined, // TODO: Remove once used
   };
 
   state = {
@@ -91,24 +90,10 @@ export class IconButton extends PureComponent<Props, States> {
   };
 
   render() {
-    // Hack required for some icons which have an overriden size
-    let containerSize = '1.28571429em';
-    if (this.props.style?.fontSize) {
-      containerSize = `${this.props.size * 1.28571429}px`;
-    }
-
     const style = {
-      fontSize: `${this.props.size}px`,
-      height: containerSize,
-      lineHeight: `${this.props.size}px`,
       ...this.props.style,
       ...(this.props.active ? this.props.activeStyle : {}),
     };
-    if (!this.props.label) {
-      style.width = containerSize;
-    } else {
-      style.textAlign = 'left';
-    }
 
     const {
       active,
@@ -138,10 +123,6 @@ export class IconButton extends PureComponent<Props, States> {
       overlayed: overlay,
       'icon-button--with-counter': typeof counter !== 'undefined',
     });
-
-    if (typeof counter !== 'undefined') {
-      style.width = 'auto';
-    }
 
     // TODO: Remove fixedWidth if not needed
     let contents = (

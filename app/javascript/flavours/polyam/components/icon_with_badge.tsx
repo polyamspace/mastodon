@@ -12,7 +12,7 @@ interface Props {
 }
 export const IconWithBadge: React.FC<Props> = ({
   id,
-  icon = undefined,
+  icon,
   count,
   issueBadge,
   className,
