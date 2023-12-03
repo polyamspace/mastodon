@@ -85,10 +85,6 @@
 
     &:hover {
       text-decoration: underline;
-
-      .icon {
-        color: lighten($dark-text-color, 7%);
-      }
     }
 
     &.mention {
@@ -99,10 +95,6 @@
           text-decoration: underline;
         }
       }
-    }
-
-    .icon {
-      color: $dark-text-color;
     }
   }
 
