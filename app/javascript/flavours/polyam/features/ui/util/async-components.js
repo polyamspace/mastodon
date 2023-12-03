@@ -126,10 +126,6 @@ export function Mutes () {
   return import(/* webpackChunkName: "flavours/polyam/async/mutes" */'flavours/polyam/features/mutes');
 }
 
-export function OnboardingModal () {
-  return import(/* webpackChunkName: "flavours/polyam/async/onboarding_modal" */'flavours/polyam/features/ui/components/onboarding_modal');
-}
-
 export function MuteModal () {
   return import(/* webpackChunkName: "flavours/polyam/async/mute_modal" */'flavours/polyam/features/ui/components/mute_modal');
 }
