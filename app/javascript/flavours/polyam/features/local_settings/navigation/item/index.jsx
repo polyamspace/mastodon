@@ -15,7 +15,7 @@ export default class LocalSettingsPage extends PureComponent {
     className: PropTypes.string,
     href: PropTypes.string,
     icon: PropTypes.string,
-    iconComponent: PropTypes.func,
+    iconComponent: PropTypes.object,
     textIcon: PropTypes.string,
     index: PropTypes.number.isRequired,
     onNavigate: PropTypes.func,
