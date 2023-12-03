@@ -456,6 +456,11 @@
   .status__collapse-button.active > .fa-angle-double-up {
     transform: rotate(-180deg);
   }
+
+  .icon {
+    width: 1em;
+    height: 1em;
+  }
 }
 
 .no-reduce-motion .status__collapse-button {
@@ -620,10 +625,10 @@
   line-height: 18px;
 
   .icon {
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     position: relative;
-    top: 0.145em;
+    top: -0.145em;
   }
 }
 
@@ -967,8 +972,8 @@ a.status-card {
   }
 
   & > .icon {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     position: absolute;
     transform-origin: 50% 50%;
     top: 50%;
@@ -1265,8 +1270,8 @@ a.status-card {
   }
 
   .icon {
-    width: 24px;
-    height: 24px;
+    width: 21px;
+    height: 21px;
     margin-bottom: 10px;
   }
 

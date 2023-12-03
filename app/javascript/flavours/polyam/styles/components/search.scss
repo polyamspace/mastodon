@@ -29,8 +29,8 @@
     }
 
     .icon {
-      width: 18px;
-      height: 18px;
+      width: 15px;
+      height: 15px;
     }
 
     &__menu {
@@ -170,8 +170,8 @@
     opacity: 0;
     transition: all 100ms linear;
     transition-property: color, transform, opacity;
-    width: 24px;
-    height: 24px;
+    width: 21px;
+    height: 21px;
     color: $secondary-text-color;
     cursor: default;
     pointer-events: none;
