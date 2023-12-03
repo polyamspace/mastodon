@@ -1334,6 +1334,11 @@ img.modal-warning {
   &__icon {
     color: $highlight-text-color;
     margin: 0 5px;
+
+    // FA adds vertical align, which makes the icon look displaced
+    .icon {
+      vertical-align: 0;
+    }
   }
 
   &__lead {
