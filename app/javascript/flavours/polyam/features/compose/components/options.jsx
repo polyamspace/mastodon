@@ -7,7 +7,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faArrowCircleDown, faCloudUpload, faCode, faEllipsisH, faFileText, faPaintBrush, faPaperclip, faTasksAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMarkdown } from '@fortawesome/free-brands-svg-icons';
+import { faCloudUpload, faCode, faEllipsisH, faFileText, faPaintBrush, faPaperclip, faTasksAlt } from '@fortawesome/free-solid-svg-icons';
 import Toggle from 'react-toggle';
 
 
@@ -223,7 +224,7 @@ class ComposerOptions extends ImmutablePureComponent {
       },
       markdown: {
         icon: 'arrow-circle-down',
-        iconComponent: faArrowCircleDown,
+        iconComponent: faMarkdown,
         name: 'text/markdown',
         text: formatMessage(messages.markdown),
       },
