@@ -350,7 +350,7 @@ body > [data-popper-placement] {
   inset-inline-start: 0;
   position: absolute;
 
-  .fa.star-icon {
+  .icon.star-icon {
     color: $gold-star;
   }
 }
@@ -365,14 +365,14 @@ body > [data-popper-placement] {
 
 .no-reduce-motion .icon-button.star-icon {
   &.activate {
-    & > .fa-star {
+    & > .icon-star {
       animation: spring-rotate-in 1s linear;
       transform-origin: 50% 55%;
     }
   }
 
   &.deactivate {
-    & > .fa-star {
+    & > .icon-star {
       animation: spring-rotate-out 1s linear;
       transform-origin: 50% 55%;
     }
@@ -1023,7 +1023,7 @@ body > [data-popper-placement] {
   }
 }
 
-button.icon-button i.fa-retweet {
+button.icon-button .icon-retweet {
   background-position: 0 0;
   height: 19px;
   transition: background-position 0.9s steps(10);
@@ -1036,17 +1036,17 @@ button.icon-button i.fa-retweet {
   }
 }
 
-button.icon-button.active i.fa-retweet {
+button.icon-button.active .icon-retweet {
   transition-duration: 0.9s;
   background-position: 0 100%;
 }
 
-.reduce-motion button.icon-button i.fa-retweet,
-.reduce-motion button.icon-button.active i.fa-retweet {
+.reduce-motion button.icon-button .icon-retweet,
+.reduce-motion button.icon-button.active .icon-retweet {
   transition: none;
 }
 
-.reduce-motion button.icon-button.disabled i.fa-retweet {
+.reduce-motion button.icon-button.disabled .icon-retweet {
   color: darken($action-button-color, 13%);
 }
 
