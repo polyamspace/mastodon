@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 
 import { expandFollowedHashtags, fetchFollowedHashtags } from 'flavours/polyam/actions/tags';
 import ColumnHeader from 'flavours/polyam/components/column_header';
-import Hashtag from 'flavours/polyam/components/hashtag';
+import { Hashtag } from 'flavours/polyam/components/hashtag';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import Column from 'flavours/polyam/features/ui/components/column';
 

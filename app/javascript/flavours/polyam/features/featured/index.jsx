@@ -9,7 +9,7 @@ import { debounce } from 'lodash';
 
 import { lookupAccount, fetchAccount, fetchPinnedAccounts, expandPinnedAccounts } from 'flavours/polyam/actions/accounts';
 import { fetchFeaturedTags } from 'flavours/polyam/actions/featured_tags';
-import Hashtag from 'flavours/polyam/components/hashtag';
+import { Hashtag } from 'flavours/polyam/components/hashtag';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import Account from 'flavours/polyam/containers/account_container';
