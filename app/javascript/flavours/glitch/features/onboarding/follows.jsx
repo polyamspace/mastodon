@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
   isLoading: state.getIn(['suggestions', 'isLoading']),
 });
 
-class Follows extends React.PureComponent {
+class Follows extends PureComponent {
 
   static propTypes = {
     onBack: PropTypes.func,
@@ -48,7 +48,7 @@ class Follows extends React.PureComponent {
     } else if (suggestions.isEmpty()) {
       loadedContent = <div className='follow-recommendations__empty'><FormattedMessage id='onboarding.follows.empty' defaultMessage='Unfortunately, no results can be shown right now. You can try using search or browsing the explore page to find people to follow, or try again later.' /></div>;
     } else {
-      loadedContent = suggestions.map(suggestion => <Account id={suggestion.get('account')} key={suggestion.get('account')} minimal={false} withBio />);
+      loadedContent = suggestions.map(suggestion => <Account id={suggestion.get('account')} key={suggestion.get('account')} withBio />);
     }
 
     return (
@@ -65,7 +65,7 @@ class Follows extends React.PureComponent {
             {loadedContent}
           </div>
 
-          <p className='onboarding__lead'><FormattedMessage id='onboarding.tips.accounts_from_other_servers' defaultMessage='<strong>Did you know?</strong> Since Mastodon is decentralized, some profiles you come across will be hosted on servers other than yours. And yet you can interact with them seamlessly! Their server is in the second half of their username!' values={{ strong: text => <strong>{text}</strong> }} /></p>
+          <p className='onboarding__lead'><FormattedMessage id='onboarding.tips.accounts_from_other_servers' defaultMessage='<strong>Did you know?</strong> Since Mastodon is decentralized, some profiles you come across will be hosted on servers other than yours. And yet you can interact with them seamlessly! Their server is in the second half of their username!' values={{ strong: chunks => <strong>{chunks}</strong> }} /></p>
 
           <div className='onboarding__footer'>
             <button className='link-button' onClick={onBack}><FormattedMessage id='onboarding.actions.back' defaultMessage='Take me back' /></button>

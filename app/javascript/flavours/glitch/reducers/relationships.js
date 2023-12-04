@@ -76,7 +76,7 @@ export default function relationships(state = initialState, action) {
     return normalizeRelationship(state, action.relationship);
   case RELATIONSHIPS_FETCH_SUCCESS:
     return normalizeRelationships(state, action.relationships);
-  case submitAccountNote.fulfilled.type:
+  case submitAccountNote.fulfilled:
     return normalizeRelationship(state, action.payload.relationship);
   case DOMAIN_BLOCK_SUCCESS:
     return setDomainBlocking(state, action.accounts, true);

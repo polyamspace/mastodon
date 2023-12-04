@@ -1,5 +1,7 @@
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
+import { me } from 'flavours/glitch/initial_state';
+
 import {
   ACCOUNT_FOLLOW_SUCCESS,
   ACCOUNT_UNFOLLOW_SUCCESS,

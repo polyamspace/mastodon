@@ -52,7 +52,6 @@ import {
   COMPOSE_CHANGE_MEDIA_FOCUS,
   COMPOSE_SET_STATUS,
   COMPOSE_FOCUS,
-  removeHighlight,
 } from '../actions/compose';
 import { REDRAFT } from '../actions/statuses';
 import { STORE_HYDRATE } from '../actions/store';
@@ -665,9 +664,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_LANGUAGE_CHANGE:
     return state.set('language', action.language);
   case COMPOSE_FOCUS:
-    return state.set('focusDate', new Date()).set('highlighted', true);
-  case removeHighlight.type:
-    return state.set('highlighted', false);
+    return state.set('focusDate', new Date()).update('text', text => text.length > 0 ? text : action.defaultText);
   default:
     return state;
   }

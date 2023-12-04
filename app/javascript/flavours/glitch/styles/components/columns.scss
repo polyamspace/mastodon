@@ -928,13 +928,7 @@ $ui-header-height: 55px;
 
 .column-title {
   text-align: center;
-  padding: 40px;
-
-  .logo {
-    width: 50px;
-    margin: 0 auto;
-    margin-bottom: 40px;
-  }
+  padding-bottom: 40px;
 
   h3 {
     font-size: 24px;
@@ -948,6 +942,10 @@ $ui-header-height: 55px;
     line-height: 24px;
     font-weight: 400;
     color: $darker-text-color;
+  }
+
+  @media screen and (width >= 600px) {
+    padding: 40px;
   }
 }
 
@@ -1100,6 +1098,9 @@ $ui-header-height: 55px;
     &__description {
       flex: 1 1 auto;
       line-height: 20px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
 
       h6 {
         color: $highlight-text-color;
@@ -1246,6 +1247,20 @@ $ui-header-height: 55px;
   }
 }
 
+.compose-form__highlightable {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  border-radius: 4px;
+  transition: box-shadow 300ms linear;
+  min-height: 0;
+
+  &.active {
+    transition: none;
+    box-shadow: 0 0 0 6px rgba(lighten($highlight-text-color, 8%), 0.7);
+  }
+}
+
 .dismissable-banner,
 .warning-banner {
   position: relative;
@@ -1364,5 +1379,10 @@ $ui-header-height: 55px;
       line-height: 33px;
       font-weight: 700;
     }
+  }
+
+  &:focus {
+    outline: 0;
+    background-color: $highlight-text-color;
   }
 }

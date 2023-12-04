@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 import { Link, withRouter } from 'react-router-dom';
@@ -27,6 +26,9 @@ import Step from './components/step';
 import Follows from './follows';
 import Share from './share';
 
+const messages = defineMessages({
+  template: { id: 'onboarding.compose.template', defaultMessage: 'Hello #Mastodon!' },
+});
 
 const mapStateToProps = () => {
   const getAccount = makeGetAccount();
@@ -37,7 +39,6 @@ const mapStateToProps = () => {
 };
 
 class Onboarding extends ImmutablePureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     account: ImmutablePropTypes.map,
@@ -67,9 +68,9 @@ class Onboarding extends ImmutablePureComponent {
   };
 
   handleComposeClick = () => {
-    const { dispatch, history } = this.props;
+    const { dispatch, intl, history } = this.props;
 
-    dispatch(focusCompose(history));
+    dispatch(focusCompose(history, intl.formatMessage(messages.template)));
   };
 
   handleShareClick = () => {
@@ -127,12 +128,12 @@ class Onboarding extends ImmutablePureComponent {
               <FormattedMessage id='onboarding.actions.go_to_explore' defaultMessage='Take me to trending' />
               <ArrowSmallRight />
             </Link>
-          </div>
 
-          <Link to='/home' className='onboarding__link'>
-            <FormattedMessage id='onboarding.actions.go_to_home' defaultMessage='Take me to my home feed' />
-            <ArrowSmallRight />
-          </Link>
+            <Link to='/home' className='onboarding__link'>
+              <FormattedMessage id='onboarding.actions.go_to_home' defaultMessage='Take me to my home feed' />
+              <ArrowSmallRight />
+            </Link>
+          </div>
         </div>
 
         <Helmet>
@@ -144,4 +145,4 @@ class Onboarding extends ImmutablePureComponent {
 
 }
 
-export default withRouter(connect(mapStateToProps)(Onboarding));
+export default withRouter(connect(mapStateToProps)(injectIntl(Onboarding)));
