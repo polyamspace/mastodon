@@ -10,7 +10,7 @@ require_relative '../../app/lib/content_security_policy'
 
 policy = ContentSecurityPolicy.new
 assets_host = policy.assets_host
-media_host = policy.media_host
+media_hosts = policy.media_hosts
 
 def sso_host
   return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true'
@@ -35,7 +35,7 @@ unless Rails.env.development?
   data_hosts = [assets_host]
 
   if ENV['S3_ENABLED'] == 'true' || ENV['AZURE_ENABLED'] == 'true'
-    attachments_host = media_host || host_to_url("s3-#{ENV['S3_REGION'] || 'us-east-1'}.amazonaws.com")
+    attachments_host = media_hosts || host_to_url("s3-#{ENV['S3_REGION'] || 'us-east-1'}.amazonaws.com")
   elsif ENV['SWIFT_ENABLED'] == 'true'
     attachments_host = ENV['SWIFT_OBJECT_URL', nil]
     attachments_host = "https://#{Addressable::URI.parse(attachments_host).host}"
@@ -43,7 +43,7 @@ unless Rails.env.development?
     attachments_host = nil
   end
 
-  data_hosts << attachments_host unless attachments_host.nil?
+  (data_hosts << attachments_host).flatten! unless attachments_host.nil?
 
   if ENV['PAPERCLIP_ROOT_URL']
     url = Addressable::URI.parse(assets_host) + ENV['PAPERCLIP_ROOT_URL']
