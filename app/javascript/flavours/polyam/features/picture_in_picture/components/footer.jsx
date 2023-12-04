@@ -15,6 +15,7 @@ import { initBoostModal } from 'flavours/polyam/actions/boosts';
 import { replyCompose } from 'flavours/polyam/actions/compose';
 import { reblog, favourite, unreblog, unfavourite } from 'flavours/polyam/actions/interactions';
 import { openModal } from 'flavours/polyam/actions/modal';
+import { faBoost, faBoostDisabled, faBoostPrivate } from 'flavours/polyam/components/boost';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { me, boostModal } from 'flavours/polyam/initial_state';
 import { makeGetStatus } from 'flavours/polyam/selectors';
@@ -187,16 +188,20 @@ class Footer extends ImmutablePureComponent {
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
-    let reblogTitle = '';
+    let reblogTitle, reblogIconComponent;
 
     if (status.get('reblogged')) {
       reblogTitle = intl.formatMessage(messages.cancel_reblog_private);
+      reblogIconComponent = publicStatus ? faBoost : faBoostPrivate;
     } else if (publicStatus) {
       reblogTitle = intl.formatMessage(messages.reblog);
+      reblogIconComponent = faBoost;
     } else if (reblogPrivate) {
       reblogTitle = intl.formatMessage(messages.reblog_private);
+      reblogIconComponent = faBoostPrivate;
     } else {
       reblogTitle = intl.formatMessage(messages.cannot_reblog);
+      reblogIconComponent = faBoostDisabled;
     }
 
     let replyButton = null;
@@ -227,7 +232,7 @@ class Footer extends ImmutablePureComponent {
     return (
       <div className='picture-in-picture__footer'>
         {replyButton}
-        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={status.get('reblogs_count')} />
+        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} title={reblogTitle} icon='retweet' iconComponent={reblogIconComponent} onClick={this.handleReblogClick} counter={status.get('reblogs_count')} />
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={faStar} onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} />
         {withOpenButton && <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.open)} icon='external-link' iconComponent={faArrowUpRightFromSquare} onClick={this.handleOpenClick} href={status.get('url')} />}
       </div>
