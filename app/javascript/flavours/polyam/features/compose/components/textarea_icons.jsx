@@ -6,7 +6,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-//  Components.
+import { faHome, faComments } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon } from 'flavours/polyam/components/icon';
 //  Messages.
 const messages = defineMessages({
@@ -23,8 +24,8 @@ const messages = defineMessages({
 //  We use an array of tuples here instead of an object because it
 //  preserves order.
 const iconMap = [
-  ['do_not_federate', 'home', messages.localOnly],
-  ['threaded_mode', 'comments', messages.threadedMode],
+  ['do_not_federate', 'home', faHome, messages.localOnly],
+  ['threaded_mode', 'comments', faComments, messages.threadedMode],
 ];
 
 class TextareaIcons extends ImmutablePureComponent {
@@ -39,7 +40,7 @@ class TextareaIcons extends ImmutablePureComponent {
     return (
       <div className='compose-form__textarea-icons'>
         {advancedOptions ? iconMap.map(
-          ([key, icon, message]) => advancedOptions.get(key) ? (
+          ([key, icon, iconComponent, message]) => advancedOptions.get(key) ? (
             <span
               className='textarea_icon'
               key={key}
@@ -48,6 +49,7 @@ class TextareaIcons extends ImmutablePureComponent {
               <Icon
                 fixedWidth
                 id={icon}
+                icon={iconComponent}
               />
             </span>
           ) : null,

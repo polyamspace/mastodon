@@ -5,6 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import { IconButton } from 'flavours/polyam/components/icon_button';
 
 import ImageLoader from './image_loader';
@@ -53,7 +55,7 @@ class ImageModal extends PureComponent {
         </div>
 
         <div className={navigationClassName}>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={40} />
+          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={faTimes} onClick={onClose} size={40} />
         </div>
       </div>
     );

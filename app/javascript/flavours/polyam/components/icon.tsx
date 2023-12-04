@@ -1,21 +1,20 @@
 import classNames from 'classnames';
 
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { faSquare } from '@fortawesome/free-solid-svg-icons';
+import type { FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { isProduction } from '../utils/environment';
 
-// TODO: Replace with FontAwesome types
-interface SVGPropsWithTitle extends React.SVGProps<SVGSVGElement> {
-  title?: string;
-}
+export type IconProp = IconDefinition;
 
-export type IconProp = React.FC<SVGPropsWithTitle>;
-
-// Kept fixedWidth prop for now. TODO: Check if that's necessary
-interface Props extends React.SVGProps<SVGSVGElement> {
+interface Props extends FontAwesomeIconProps {
   children?: never;
   id: string;
-  icon?: IconProp;
+  className?: string;
+  icon: IconProp;
   title?: string;
-  fixedWidth?: boolean;
 }
 
 export const Icon: React.FC<Props> = ({
@@ -26,22 +25,15 @@ export const Icon: React.FC<Props> = ({
   title: titleProp,
   ...other
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!IconComponent) {
-    // Disable throwing errors as IconComponent will always be undefined currently
     if (!isProduction()) {
-      //throw new Error(`<Icon id="${id}" className="${className}"> is missing an "icon" prop.`);
+      throw new Error(
+        `<Icon id="${id}" className="${className}"> is missing an "icon" prop.`,
+      );
     }
 
-    // Return old icons for now as Material icons won't be implemented
-    return (
-      // @ts-expect-error Types are not compatible, but still renders correctly
-      <i
-        className={classNames('fa', `fa-${id}`, className, {
-          'fa-fw': fixedWidth,
-        })}
-        {...other}
-      />
-    );
+    IconComponent = faSquare;
   }
 
   const ariaHidden = titleProp ? undefined : true;
@@ -52,11 +44,12 @@ export const Icon: React.FC<Props> = ({
   const title = titleProp || '';
 
   return (
-    <IconComponent
+    <FontAwesomeIcon
       className={classNames('icon', `icon-${id}`, className)}
       title={title}
       aria-hidden={ariaHidden}
       role={role}
+      icon={IconComponent}
       {...other}
     />
   );

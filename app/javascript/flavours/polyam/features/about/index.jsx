@@ -10,6 +10,8 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { faChevronDown, faChevronRight, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'flavours/polyam/actions/server';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
@@ -74,7 +76,7 @@ class Section extends PureComponent {
     return (
       <div className={classNames('about__section', { active: !collapsed })}>
         <div className='about__section__title' role='button' tabIndex={0} onClick={this.handleClick}>
-          <Icon id={collapsed ? 'chevron-right' : 'chevron-down'} fixedWidth /> {title}
+          <Icon id={collapsed ? 'chevron-right' : 'chevron-down'} icon={collapsed ? faChevronRight : faChevronDown} fixedWidth /> {title}
         </div>
 
         {!collapsed && (
@@ -128,6 +130,7 @@ class About extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='info-circle'
+          iconComponent={faInfoCircle}
           title={intl.formatMessage(messages.title)}
           onClick={this.handleHeaderClick}
           multiColumn={multiColumn}

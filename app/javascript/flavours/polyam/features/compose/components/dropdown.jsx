@@ -16,10 +16,10 @@ export default class ComposerOptionsDropdown extends PureComponent {
     isUserTouching: PropTypes.func,
     disabled: PropTypes.bool,
     icon: PropTypes.string,
-    iconComponent: PropTypes.func,
+    iconComponent: PropTypes.object,
     items: PropTypes.arrayOf(PropTypes.shape({
       icon: PropTypes.string,
-      iconComponent: PropTypes.func,
+      iconComponent: PropTypes.object,
       meta: PropTypes.string,
       name: PropTypes.string.isRequired,
       text: PropTypes.string,

@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 
 import { changeBoostPrivacy } from 'flavours/polyam/actions/boosts';
 import AttachmentList from 'flavours/polyam/components/attachment_list';
+import { faBoost } from 'flavours/polyam/components/boost';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 import PrivacyDropdown from 'flavours/polyam/features/compose/components/privacy_dropdown';
@@ -108,7 +109,7 @@ class BoostModal extends ImmutablePureComponent {
             {missingMediaDescription ?
               <FormattedMessage id='boost_modal.missing_description' defaultMessage='This toot contains some media without description' />
               :
-              <FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='retweet' /></span> }} />
+              <FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='retweet' icon={faBoost} /></span> }} />
             }
           </div>
 

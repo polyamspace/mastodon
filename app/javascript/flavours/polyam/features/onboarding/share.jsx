@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import SwipeableViews from 'react-swipeable-views';
 
 import Column from 'flavours/polyam/components/column';
@@ -80,7 +81,7 @@ class CopyPasteText extends React.PureComponent {
         <textarea readOnly value={value} ref={this.setRef} onClick={this.handleInputClick} onFocus={this.handleFocus} onBlur={this.handleBlur} />
 
         <button className='button' onClick={this.handleButtonClick}>
-          <Icon id='copy' /> {copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : <FormattedMessage id='copypaste.copy_to_clipboard' defaultMessage='Copy to clipboard' />}
+          <Icon id='copy' icon={faCopy} /> {copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : <FormattedMessage id='copypaste.copy_to_clipboard' defaultMessage='Copy to clipboard' />}
         </button>
       </div>
     );

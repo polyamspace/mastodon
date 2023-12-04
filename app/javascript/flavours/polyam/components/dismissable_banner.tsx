@@ -3,6 +3,8 @@ import { useCallback, useState } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import { bannerSettings } from 'flavours/polyam/settings';
 
 import { IconButton } from './icon_button';
@@ -36,6 +38,7 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
       <div className='dismissable-banner__action'>
         <IconButton
           icon='times'
+          iconComponent={faTimes}
           title={intl.formatMessage(messages.dismiss)}
           onClick={handleDismiss}
         />

@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { isEqual } from 'lodash';
 
 import { addColumn, removeColumn, moveColumn } from 'flavours/polyam/actions/columns';
@@ -190,6 +191,7 @@ class HashtagTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={`#${id}`}>
         <ColumnHeader
           icon='hashtag'
+          iconComponent={faHashtag}
           active={hasUnread}
           title={this.title()}
           onPin={this.handlePin}

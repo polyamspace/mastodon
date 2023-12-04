@@ -13,7 +13,7 @@ export default class Column extends PureComponent {
     heading: PropTypes.string,
     alwaysShowBackButton: PropTypes.bool,
     icon: PropTypes.string,
-    iconComponent: PropTypes.func,
+    iconComponent: PropTypes.object,
     children: PropTypes.node,
     active: PropTypes.bool,
     hideHeadingOnMobile: PropTypes.bool,

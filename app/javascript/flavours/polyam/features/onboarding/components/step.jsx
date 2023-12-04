@@ -6,11 +6,11 @@ import { Icon } from 'flavours/polyam/components/icon';
 
 import ArrowSmallRight from './arrow_small_right';
 
-const Step = ({ label, description, icon, completed, onClick, href }) => {
+const Step = ({ label, description, icon, iconComponent, completed, onClick, href }) => {
   const content = (
     <>
       <div className='onboarding__steps__item__icon'>
-        <Icon id={icon} />
+        <Icon id={icon} icon={iconComponent} />
       </div>
 
       <div className='onboarding__steps__item__description'>
@@ -43,7 +43,7 @@ Step.propTypes = {
   label: PropTypes.node,
   description: PropTypes.node,
   icon: PropTypes.string,
-  iconComponent: PropTypes.func,
+  iconComponent: PropTypes.object,
   completed: PropTypes.bool,
   href: PropTypes.string,
   onClick: PropTypes.func,

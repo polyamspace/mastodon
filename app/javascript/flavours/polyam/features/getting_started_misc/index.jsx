@@ -5,6 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { faBan, faEllipsisH, faHashtag, faMinusCircle, faQuestion, faStar, faThumbTack, faUsers, faVolumeOff } from '@fortawesome/free-solid-svg-icons';
+
 import { openModal } from 'flavours/polyam/actions/modal';
 import Column from 'flavours/polyam/features/ui/components/column';
 import ColumnLink from 'flavours/polyam/features/ui/components/column_link';
@@ -46,17 +48,17 @@ class GettingStartedMisc extends ImmutablePureComponent {
     const { signedIn } = this.context.identity;
 
     return (
-      <Column icon='ellipsis-h' heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column icon='ellipsis-h' iconComponent={faEllipsisH} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <div className='scrollable'>
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
-          {signedIn && (<ColumnLink key='favourites' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />)}
-          {signedIn && (<ColumnLink key='followed_hashtags' icon='hashtag' text={intl.formatMessage(messages.followed_tags)} to='/followed_tags' />)}
-          {signedIn && (<ColumnLink key='pinned' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />)}
-          {signedIn && (<ColumnLink key='featured_users' icon='users' text={intl.formatMessage(messages.featured_users)} onClick={this.openFeaturedAccountsModal} />)}
-          {signedIn && (<ColumnLink key='mutes' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />)}
-          {signedIn && (<ColumnLink key='blocks' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />)}
-          {signedIn && (<ColumnLink key='domain_blocks' icon='minus-circle' text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />)}
-          <ColumnLink key='shortcuts' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />
+          {signedIn && (<ColumnLink key='favourites' icon='star' iconComponent={faStar} text={intl.formatMessage(messages.favourites)} to='/favourites' />)}
+          {signedIn && (<ColumnLink key='followed_hashtags' icon='hashtag' iconComponent={faHashtag} text={intl.formatMessage(messages.followed_tags)} to='/followed_tags' />)}
+          {signedIn && (<ColumnLink key='pinned' icon='thumb-tack' iconComponent={faThumbTack} text={intl.formatMessage(messages.pins)} to='/pinned' />)}
+          {signedIn && (<ColumnLink key='featured_users' icon='users' iconComponent={faUsers} text={intl.formatMessage(messages.featured_users)} onClick={this.openFeaturedAccountsModal} />)}
+          {signedIn && (<ColumnLink key='mutes' icon='volume-off' iconComponent={faVolumeOff} text={intl.formatMessage(messages.mutes)} to='/mutes' />)}
+          {signedIn && (<ColumnLink key='blocks' icon='ban' iconComponent={faBan} text={intl.formatMessage(messages.blocks)} to='/blocks' />)}
+          {signedIn && (<ColumnLink key='domain_blocks' icon='minus-circle' iconComponent={faMinusCircle} text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />)}
+          <ColumnLink key='shortcuts' icon='question' iconComponent={faQuestion} text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />
         </div>
       </Column>
     );

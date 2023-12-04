@@ -9,6 +9,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { faBars, faListUl } from '@fortawesome/free-solid-svg-icons';
+
 import { fetchLists } from 'flavours/polyam/actions/lists';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
@@ -63,7 +65,7 @@ class Lists extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.lists' defaultMessage="You don't have any lists yet. When you create one, it will show up here." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='bars' heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn} icon='bars' iconComponent={faBars} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <NewListForm />
 
         <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
@@ -73,7 +75,7 @@ class Lists extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {lists.map(list =>
-            <ColumnLink key={list.get('id')} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />,
+            <ColumnLink key={list.get('id')} to={`/lists/${list.get('id')}`} icon='list-ul' iconComponent={faListUl} text={list.get('title')} />,
           )}
         </ScrollableList>
 

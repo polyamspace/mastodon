@@ -10,6 +10,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { faAsterisk, faBars, faBell, faBookmark, faCog, faCogs, faEllipsisH, faEnvelope, faGlobe, faHashtag, faHome, faListUl, faUserPlus, faUsers } from '@fortawesome/free-solid-svg-icons';
+
 import { fetchFollowRequests } from 'flavours/polyam/actions/accounts';
 import { fetchLists } from 'flavours/polyam/actions/lists';
 import { openModal } from 'flavours/polyam/actions/modal';
@@ -127,53 +129,53 @@ class GettingStarted extends ImmutablePureComponent {
 
     if (multiColumn) {
       if (signedIn && !columns.find(item => item.get('id') === 'HOME')) {
-        navItems.push(<ColumnLink key='home' icon='home' text={intl.formatMessage(messages.home_timeline)} to='/home' />);
+        navItems.push(<ColumnLink key='home' icon='home' iconComponent={faHome} text={intl.formatMessage(messages.home_timeline)} to='/home' />);
       }
 
       if (!columns.find(item => item.get('id') === 'NOTIFICATIONS')) {
-        navItems.push(<ColumnLink key='notifications' icon='bell' text={intl.formatMessage(messages.notifications)} badge={badgeDisplay(unreadNotifications)} to='/notifications' />);
+        navItems.push(<ColumnLink key='notifications' icon='bell' iconComponent={faBell} text={intl.formatMessage(messages.notifications)} badge={badgeDisplay(unreadNotifications)} to='/notifications' />);
       }
 
       if (!columns.find(item => item.get('id') === 'COMMUNITY')) {
-        navItems.push(<ColumnLink key='community_timeline' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/public/local' />);
+        navItems.push(<ColumnLink key='community_timeline' icon='users' iconComponent={faUsers} text={intl.formatMessage(messages.community_timeline)} to='/public/local' />);
       }
 
       if (!columns.find(item => item.get('id') === 'PUBLIC')) {
-        navItems.push(<ColumnLink key='public_timeline' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/public' />);
+        navItems.push(<ColumnLink key='public_timeline' icon='globe' iconComponent={faGlobe} text={intl.formatMessage(messages.public_timeline)} to='/public' />);
       }
     }
 
     if (showTrends) {
-      navItems.push(<ColumnLink key='explore' icon='hashtag' text={intl.formatMessage(messages.explore)} to='/explore' />);
+      navItems.push(<ColumnLink key='explore' icon='hashtag' iconComponent={faHashtag} text={intl.formatMessage(messages.explore)} to='/explore' />);
     }
 
     if (signedIn) {
       if (!multiColumn || !columns.find(item => item.get('id') === 'DIRECT')) {
-        navItems.push(<ColumnLink key='conversations' icon='envelope' text={intl.formatMessage(messages.direct)} to='/conversations' />);
+        navItems.push(<ColumnLink key='conversations' icon='envelope' iconComponent={faEnvelope} text={intl.formatMessage(messages.direct)} to='/conversations' />);
       }
 
       if (!multiColumn || !columns.find(item => item.get('id') === 'BOOKMARKS')) {
-        navItems.push(<ColumnLink key='bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />);
+        navItems.push(<ColumnLink key='bookmarks' icon='bookmark' iconComponent={faBookmark} text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />);
       }
 
       if (myAccount.get('locked') || unreadFollowRequests > 0) {
-        navItems.push(<ColumnLink key='follow_requests' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+        navItems.push(<ColumnLink key='follow_requests' icon='user-plus' iconComponent={faUserPlus} text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
       }
 
-      navItems.push(<ColumnLink key='getting_started' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
+      navItems.push(<ColumnLink key='getting_started' icon='ellipsis-h' iconComponent={faEllipsisH} text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
 
       listItems = listItems.concat([
         <div key='9'>
-          <ColumnLink key='lists' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
+          <ColumnLink key='lists' icon='bars' iconComponent={faBars} text={intl.formatMessage(messages.lists)} to='/lists' />
           {lists.filter(list => !columns.find(item => item.get('id') === 'LIST' && item.getIn(['params', 'id']) === list.get('id'))).map(list =>
-            <ColumnLink key={`list-${list.get('id')}`} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />,
+            <ColumnLink key={`list-${list.get('id')}`} to={`/lists/${list.get('id')}`} icon='list-ul' iconComponent={faListUl} text={list.get('title')} />,
           )}
         </div>,
       ]);
     }
 
     return (
-      <Column bindToDocument={!multiColumn} name='getting-started' icon='asterisk' heading={intl.formatMessage(messages.heading)} label={intl.formatMessage(messages.menu)} hideHeadingOnMobile>
+      <Column bindToDocument={!multiColumn} name='getting-started' icon='asterisk' iconComponent={faAsterisk} heading={intl.formatMessage(messages.heading)} label={intl.formatMessage(messages.menu)} hideHeadingOnMobile>
         <div className='scrollable optionally-scrollable'>
           <div className='getting-started__wrapper'>
             {!multiColumn && signedIn && <NavigationBar account={myAccount} />}
@@ -184,8 +186,8 @@ class GettingStarted extends ImmutablePureComponent {
                 <ColumnSubheading text={intl.formatMessage(messages.lists_subheading)} />
                 {listItems}
                 <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
-                { preferencesLink !== undefined && <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href={preferencesLink} /> }
-                <ColumnLink icon='cogs' text={intl.formatMessage(messages.settings)} onClick={openSettings} />
+                { preferencesLink !== undefined && <ColumnLink icon='cog' iconComponent={faCog} text={intl.formatMessage(messages.preferences)} href={preferencesLink} /> }
+                <ColumnLink icon='cogs' iconComponent={faCogs} text={intl.formatMessage(messages.settings)} onClick={openSettings} />
               </>
             )}
           </div>

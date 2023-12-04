@@ -6,8 +6,12 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { faBell, faPencil, faPlus, faStar, faTasksAlt, faThumbTack } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon } from 'flavours/polyam/components/icon';
 import { me } from 'flavours/polyam/initial_state';
+
+import { faBoost } from './boost';
 
 export default class StatusPrepend extends PureComponent {
 
@@ -115,30 +119,37 @@ export default class StatusPrepend extends PureComponent {
     const { Message } = this;
     const { type } = this.props;
 
-    let iconId;
+    let iconId, iconComponent;
 
     switch(type) {
     case 'favourite':
       iconId = 'star';
+      iconComponent = faStar;
       break;
     case 'reaction':
       iconId = 'plus';
+      iconComponent = faPlus;
       break;
     case 'featured':
       iconId = 'thumb-tack';
+      iconComponent = faThumbTack;
       break;
     case 'poll':
       iconId = 'tasks';
+      iconComponent = faTasksAlt;
       break;
     case 'reblog':
     case 'reblogged_by':
       iconId = 'retweet';
+      iconComponent = faBoost;
       break;
     case 'status':
       iconId = 'bell';
+      iconComponent = faBell;
       break;
     case 'update':
       iconId = 'pencil';
+      iconComponent = faPencil;
       break;
     }
 
@@ -148,6 +159,7 @@ export default class StatusPrepend extends PureComponent {
           <Icon
             className={`status__prepend-icon ${type === 'favourite' ? 'star-icon' : ''}`}
             id={iconId}
+            icon={iconComponent}
           />
         </div>
         <Message />

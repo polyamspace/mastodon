@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faCheck, faTimes, faUser } from '@fortawesome/free-solid-svg-icons';
 import { HotKeys } from 'react-hotkeys';
 
 import { Avatar } from 'flavours/polyam/components/avatar';
@@ -106,7 +107,7 @@ class FollowRequest extends ImmutablePureComponent {
         <div className={classNames('notification notification-follow-request focusable', { unread })} tabIndex={0}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
-              <Icon id='user' fixedWidth />
+              <Icon id='user' icon={faUser} fixedWidth />
             </div>
 
             <FormattedMessage
@@ -124,8 +125,8 @@ class FollowRequest extends ImmutablePureComponent {
               </Permalink>
 
               <div className='account__relationship'>
-                <IconButton title={intl.formatMessage(messages.authorize)} icon='check' onClick={onAuthorize} />
-                <IconButton title={intl.formatMessage(messages.reject)} icon='times' onClick={onReject} />
+                <IconButton title={intl.formatMessage(messages.authorize)} icon='check' iconComponent={faCheck} onClick={onAuthorize} />
+                <IconButton title={intl.formatMessage(messages.reject)} icon='times' iconComponent={faTimes} onClick={onReject} />
               </div>
             </div>
           </div>

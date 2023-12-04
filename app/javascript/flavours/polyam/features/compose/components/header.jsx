@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faAsterisk, faBell, faCogs, faGlobe, faHome, faSignOutAlt, faUsers } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon } from 'flavours/polyam/components/icon';
 import { signOutLink } from 'flavours/polyam/utils/backend_links';
 import { conditionalRender } from 'flavours/polyam/utils/react_helpers';
@@ -79,13 +81,13 @@ class Header extends ImmutablePureComponent {
           aria-label={intl.formatMessage(messages.start)}
           title={intl.formatMessage(messages.start)}
           to='/getting-started'
-        ><Icon id='asterisk' /></Link>
+        ><Icon id='asterisk' icon={faAsterisk} /></Link>
         {renderForColumn('HOME', (
           <Link
             aria-label={intl.formatMessage(messages.home_timeline)}
             title={intl.formatMessage(messages.home_timeline)}
             to='/home'
-          ><Icon id='home' /></Link>
+          ><Icon id='home' icon={faHome} /></Link>
         ))}
         {renderForColumn('NOTIFICATIONS', (
           <Link
@@ -94,7 +96,7 @@ class Header extends ImmutablePureComponent {
             to='/notifications'
           >
             <span className='icon-badge-wrapper'>
-              <Icon id='bell' />
+              <Icon id='bell' icon={faBell} />
               { showNotificationsBadge && unreadNotifications > 0 && <div className='icon-badge' />}
             </span>
           </Link>
@@ -104,27 +106,27 @@ class Header extends ImmutablePureComponent {
             aria-label={intl.formatMessage(messages.community)}
             title={intl.formatMessage(messages.community)}
             to='/public/local'
-          ><Icon id='users' /></Link>
+          ><Icon id='users' icon={faUsers} /></Link>
         ))}
         {renderForColumn('PUBLIC', (
           <Link
             aria-label={intl.formatMessage(messages.public)}
             title={intl.formatMessage(messages.public)}
             to='/public'
-          ><Icon id='globe' /></Link>
+          ><Icon id='globe' icon={faGlobe} /></Link>
         ))}
         <a
           aria-label={intl.formatMessage(messages.settings)}
           onClick={onSettingsClick}
           href='/settings/preferences'
           title={intl.formatMessage(messages.settings)}
-        ><Icon id='cogs' /></a>
+        ><Icon id='cogs' icon={faCogs} /></a>
         <a
           aria-label={intl.formatMessage(messages.logout)}
           onClick={this.handleLogoutClick}
           href={signOutLink}
           title={intl.formatMessage(messages.logout)}
-        ><Icon id='sign-out' /></a>
+        ><Icon id='sign-out' icon={faSignOutAlt} /></a>
       </nav>
     );
   }

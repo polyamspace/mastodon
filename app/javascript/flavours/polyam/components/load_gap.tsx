@@ -2,6 +2,8 @@ import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon } from 'flavours/polyam/components/icon';
 
 const messages = defineMessages({
@@ -28,7 +30,7 @@ export const LoadGap: React.FC<Props> = ({ disabled, maxId, onClick }) => {
       onClick={handleClick}
       aria-label={intl.formatMessage(messages.load_more)}
     >
-      <Icon id='ellipsis-h' />
+      <Icon id='ellipsis-h' icon={faEllipsisH} />
     </button>
   );
 };

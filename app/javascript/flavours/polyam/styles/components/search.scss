@@ -29,8 +29,8 @@
     }
 
     .icon {
-      width: 18px;
-      height: 18px;
+      width: 15px;
+      height: 15px;
     }
 
     &__menu {
@@ -141,27 +141,6 @@
     outline: 0 !important;
   }
 
-  .fa {
-    position: absolute;
-    top: 16px;
-    inset-inline-end: 10px;
-    display: inline-block;
-    opacity: 0;
-    transition: all 100ms linear;
-    transition-property: color, transform, opacity;
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
-    color: $secondary-text-color;
-    cursor: default;
-    pointer-events: none;
-
-    &.active {
-      pointer-events: auto;
-      opacity: 0.3;
-    }
-  }
-
   .icon {
     position: absolute;
     top: 13px;
@@ -170,8 +149,8 @@
     opacity: 0;
     transition: all 100ms linear;
     transition-property: color, transform, opacity;
-    width: 24px;
-    height: 24px;
+    width: 21px;
+    height: 21px;
     color: $secondary-text-color;
     cursor: default;
     pointer-events: none;
@@ -182,8 +161,7 @@
     }
   }
 
-  .icon-search,
-  .fa-search {
+  .icon-search {
     transform: rotate(0deg);
 
     &.active {
@@ -192,9 +170,7 @@
     }
   }
 
-  .icon-times-circle,
-  .fa-times-circle {
-    top: 17px;
+  .icon-times-circle {
     transform: rotate(0deg);
     color: $action-button-color;
     cursor: pointer;

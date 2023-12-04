@@ -5,6 +5,8 @@ import { defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon }  from 'flavours/polyam/components/icon';
 
 const messages = defineMessages({
@@ -55,8 +57,8 @@ export default class Search extends PureComponent {
         </label>
 
         <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
-          <Icon id='search' className={classNames({ active: !hasValue })} />
-          <Icon id='times-circle' aria-label={intl.formatMessage(messages.search)} className={classNames({ active: hasValue })} />
+          <Icon id='search' icon={faSearch} className={classNames({ active: !hasValue })} />
+          <Icon id='times-circle' icon={faTimesCircle} aria-label={intl.formatMessage(messages.search)} className={classNames({ active: hasValue })} />
         </div>
       </div>
     );

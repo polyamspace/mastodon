@@ -6,6 +6,8 @@ import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 
+import { faChevronLeft, faChevronRight, faPlus, faSliders, faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon }  from 'flavours/polyam/components/icon';
 import { ButtonInTabsBar, useColumnsContext } from 'flavours/polyam/features/ui/util/columns_context';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
@@ -36,7 +38,7 @@ const BackButton = ({ pinned, show }) => {
   if(!showButton) return null;
 
   return (<button onClick={handleBackClick} className='column-header__back-button'>
-    <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
+    <Icon id='chevron-left' icon={faChevronLeft} className='column-back-button__icon' fixedWidth />
     <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
   </button>);
 
@@ -57,7 +59,7 @@ class ColumnHeader extends PureComponent {
     intl: PropTypes.object.isRequired,
     title: PropTypes.node,
     icon: PropTypes.string,
-    iconComponent: PropTypes.func,
+    iconComponent: PropTypes.object,
     active: PropTypes.bool,
     multiColumn: PropTypes.bool,
     extraButton: PropTypes.node,
@@ -139,16 +141,16 @@ class ColumnHeader extends PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='times' /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
+      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='times' icon={faTimes} /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
 
       moveButtons = (
         <div key='move-buttons' className='column-header__setting-arrows'>
-          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><Icon id='chevron-left' /></button>
-          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='icon-button column-header__setting-btn' onClick={this.handleMoveRight}><Icon id='chevron-right' /></button>
+          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><Icon id='chevron-left' icon={faChevronLeft} /></button>
+          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='icon-button column-header__setting-btn' onClick={this.handleMoveRight}><Icon id='chevron-right' icon={faChevronRight} /></button>
         </div>
       );
     } else if (multiColumn && this.props.onPin) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
+      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' icon={faPlus} /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
     backButton = <BackButton pinned={pinned} show={showBackButton} />;
@@ -171,7 +173,7 @@ class ColumnHeader extends PureComponent {
           onClick={this.handleToggleClick}
         >
           <i className='icon-with-badge'>
-            <Icon id='sliders' />
+            <Icon id='sliders' icon={faSliders} />
             {collapseIssues && <i className='icon-with-badge__issue-badge' />}
           </i>
         </button>

@@ -85,10 +85,6 @@
 
     &:hover {
       text-decoration: underline;
-
-      .fa {
-        color: lighten($dark-text-color, 7%);
-      }
     }
 
     &.mention {
@@ -99,10 +95,6 @@
           text-decoration: underline;
         }
       }
-    }
-
-    .fa {
-      color: $dark-text-color;
     }
   }
 
@@ -453,20 +445,25 @@
     padding-inline-end: 2px;
   }
 
-  .status__collapse-button.active > .fa-angle-double-up {
+  .status__collapse-button.active > .icon {
     transform: rotate(-180deg);
+  }
+
+  .icon {
+    width: 1em;
+    height: 1em;
   }
 }
 
 .no-reduce-motion .status__collapse-button {
   &.activate {
-    & > .fa-angle-double-up {
+    & > .icon {
       animation: spring-flip-in 1s linear;
     }
   }
 
   &.deactivate {
-    & > .fa-angle-double-up {
+    & > .icon {
       animation: spring-flip-out 1s linear;
     }
   }
@@ -549,7 +546,7 @@
     margin-inline-end: 14px;
   }
 
-  .fa-plus {
+  .icon-plus {
     padding-top: 1px;
   }
 }
@@ -620,10 +617,10 @@
   line-height: 18px;
 
   .icon {
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     position: relative;
-    top: 0.145em;
+    top: -0.145em;
   }
 }
 
@@ -635,7 +632,7 @@
   flex-direction: row;
   padding: 10px 0;
 
-  .fa-plus {
+  .icon-plus {
     padding-top: 2px;
   }
 }
@@ -831,8 +828,8 @@ a.status__display-name,
       bottom: -1px;
     }
 
-    a .fa,
-    a:hover .fa {
+    a .icon,
+    a:hover .icon {
       color: inherit;
     }
   }
@@ -957,18 +954,9 @@ a.status-card {
   background: lighten($ui-base-color, 8%);
   position: relative;
 
-  & > .fa {
-    font-size: 21px;
-    position: absolute;
-    transform-origin: 50% 50%;
-    top: 50%;
-    inset-inline-start: 50%;
-    transform: translate(-50%, -50%);
-  }
-
   & > .icon {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     position: absolute;
     transform-origin: 50% 50%;
     top: 50%;
@@ -1093,8 +1081,7 @@ a.status-card {
       display: block;
     }
 
-    .icon,
-    .fa {
+    .icon {
       color: $dark-text-color;
     }
   }
@@ -1265,8 +1252,8 @@ a.status-card {
   }
 
   .icon {
-    width: 24px;
-    height: 24px;
+    width: 21px;
+    height: 21px;
     margin-bottom: 10px;
   }
 

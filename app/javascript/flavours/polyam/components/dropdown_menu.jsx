@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
@@ -163,7 +164,7 @@ class Dropdown extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     icon: PropTypes.string,
-    iconComponent: PropTypes.func,
+    iconComponent: PropTypes.object,
     items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]).isRequired,
     loading: PropTypes.bool,
     size: PropTypes.number,
@@ -297,7 +298,7 @@ class Dropdown extends PureComponent {
     }) : (
       <IconButton
         icon={!open ? icon : 'close'}
-        iconComponent={!open ? iconComponent : undefined} //TODO: Replace "undefined" with times icon
+        iconComponent={!open ? iconComponent : faTimes}
         title={title}
         active={open}
         disabled={disabled}

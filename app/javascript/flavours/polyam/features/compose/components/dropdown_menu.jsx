@@ -17,7 +17,7 @@ export default class ComposerOptionsDropdownContent extends PureComponent {
   static propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
       icon: PropTypes.string,
-      iconComponent: PropTypes.func,
+      iconComponent: PropTypes.object,
       meta: PropTypes.node,
       name: PropTypes.string.isRequired,
       text: PropTypes.node,

@@ -6,6 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { faBan } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
@@ -58,7 +59,7 @@ class Blocks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
 
     return (
-      <Column name='blocks' bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column name='blocks' bindToDocument={!multiColumn} icon='ban' iconComponent={faBan} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}

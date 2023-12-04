@@ -8,6 +8,8 @@ import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { faSearch, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon }  from 'flavours/polyam/components/icon';
 import { domain, searchEnabled, searchPreview } from 'flavours/polyam/initial_state';
 import { HASHTAG_REGEX } from 'flavours/polyam/utils/hashtags';
@@ -348,8 +350,8 @@ class Search extends PureComponent {
         )}
 
         <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
-          <Icon id='search' className={hasValue ? '' : 'active'} />
-          <Icon id='times-circle' className={hasValue ? 'active' : ''} />
+          <Icon id='search' icon={faSearch} className={hasValue ? '' : 'active'} />
+          <Icon id='times-circle' icon={faTimesCircle} className={hasValue ? 'active' : ''} />
         </div>
 
         <div className='search__popout'>
@@ -361,7 +363,7 @@ class Search extends PureComponent {
                 {recent.size > 0 ? this._getOptions().map(({ label, action, forget }, i) => (
                   <button key={i} onMouseDown={action} className={classNames('search__popout__menu__item search__popout__menu__item--flex', { selected: selectedOption === i })}>
                     <span>{label}</span>
-                    <button className='icon-button' onMouseDown={forget}><Icon id='times' /></button>
+                    <button className='icon-button' onMouseDown={forget}><Icon id='times' icon={faTimes} /></button>
                   </button>
                 )) : (
                   <div className='search__popout__menu__message'>

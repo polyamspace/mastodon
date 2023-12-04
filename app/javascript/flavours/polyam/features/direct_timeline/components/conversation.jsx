@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faEllipsisH, faReply } from '@fortawesome/free-solid-svg-icons';
 import { HotKeys } from 'react-hotkeys';
 
 import AttachmentList from 'flavours/polyam/components/attachment_list';
@@ -208,7 +209,7 @@ class Conversation extends ImmutablePureComponent {
             />
 
             <div className='status__action-bar'>
-              <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReply} />
+              <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' iconComponent={faReply} onClick={this.handleReply} />
 
               <div className='status__action-bar-dropdown'>
                 <DropdownMenuContainer
@@ -216,6 +217,7 @@ class Conversation extends ImmutablePureComponent {
                   status={lastStatus}
                   items={menu}
                   icon='ellipsis-h'
+                  iconComponent={faEllipsisH}
                   size={18}
                   direction='right'
                   title={intl.formatMessage(messages.more)}

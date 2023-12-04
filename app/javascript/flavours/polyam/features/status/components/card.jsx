@@ -8,6 +8,8 @@ import classNames from 'classnames';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { faArrowUpRightFromSquare, faFileText, faPlay } from '@fortawesome/free-solid-svg-icons';
+
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon } from 'flavours/polyam/components/icon';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
@@ -192,8 +194,8 @@ export default class Card extends PureComponent {
             {revealed ? (
               <div className='status-card__actions' onClick={this.handleEmbedClick} role='none'>
                 <div>
-                  <button onClick={this.handleEmbedClick}><Icon id='play' /></button>
-                  <a href={card.get('url')} target='_blank' rel='noopener noreferrer'><Icon id='external-link' /></a>
+                  <button onClick={this.handleEmbedClick}><Icon id='play' icon={faPlay} /></button>
+                  <a href={card.get('url')} target='_blank' rel='noopener noreferrer'><Icon id='external-link' icon={faArrowUpRightFromSquare} /></a>
                 </div>
               </div>
             ) : spoilerButton}
@@ -217,7 +219,7 @@ export default class Card extends PureComponent {
     } else {
       embed = (
         <div className='status-card__image'>
-          <Icon id='file-text' />
+          <Icon id='file-text' icon={faFileText} />
         </div>
       );
     }

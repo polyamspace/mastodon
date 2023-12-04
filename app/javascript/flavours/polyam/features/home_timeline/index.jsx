@@ -10,6 +10,8 @@ import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { faBullhorn, faHome } from '@fortawesome/free-solid-svg-icons';
+
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/polyam/actions/announcements';
 import { IconWithBadge } from 'flavours/polyam/components/icon_with_badge';
 import { NotSignedInIndicator } from 'flavours/polyam/components/not_signed_in_indicator';
@@ -182,7 +184,7 @@ class HomeTimeline extends PureComponent {
           aria-label={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
           onClick={this.handleToggleAnnouncementsClick}
         >
-          <IconWithBadge id='bullhorn' count={unreadAnnouncements} />
+          <IconWithBadge id='bullhorn' icon={faBullhorn} count={unreadAnnouncements} />
         </button>
       );
     }
@@ -199,6 +201,7 @@ class HomeTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} name='home' label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='home'
+          iconComponent={faHome}
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

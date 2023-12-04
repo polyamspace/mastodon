@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon } from 'flavours/polyam/components/icon';
@@ -86,7 +87,7 @@ class NotificationAdminSignup extends ImmutablePureComponent {
         <div className={classNames('notification notification-admin-sign-up focusable', { unread })} tabIndex={0}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
-              <Icon fixedWidth id='user-plus' />
+              <Icon fixedWidth id='user-plus' icon={faUserPlus} />
             </div>
 
             <FormattedMessage

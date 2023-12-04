@@ -415,8 +415,8 @@
     font-family: inherit;
 
     .icon {
-      width: 15px;
-      height: 15px;
+      width: 12px;
+      height: 12px;
     }
 
     &:hover,
@@ -460,14 +460,9 @@
   color: $darker-text-color;
   overflow: hidden;
 
-  .fa {
-    font-size: 34px;
-    margin-inline-end: 10px;
-  }
-
   .icon {
-    width: 24px;
-    height: 24px;
+    width: 21px;
+    height: 21px;
   }
 
   span {
@@ -621,6 +616,7 @@
 
     & > .side_arm {
       width: 36px;
+      height: 36px;
     }
   }
 }

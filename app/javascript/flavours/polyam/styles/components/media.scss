@@ -84,8 +84,8 @@
   line-height: 18px;
 
   .icon {
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
   }
 }
 
@@ -599,10 +599,10 @@
     .video-player__download__icon {
       color: inherit;
 
-      .fa,
-      &:active .fa,
-      &:hover .fa,
-      &:focus .fa {
+      .icon,
+      &:active .icon,
+      &:hover .icon,
+      &:focus .icon {
         color: inherit;
       }
     }

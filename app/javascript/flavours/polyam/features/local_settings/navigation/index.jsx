@@ -1,10 +1,11 @@
-//  Package imports
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import { injectIntl, defineMessages } from 'react-intl';
 
-//  Our imports
+import { faImage } from '@fortawesome/free-regular-svg-icons';
+import { faAngleDoubleUp, faCog, faCogs, faPencil, faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import { preferencesLink } from 'flavours/polyam/utils/backend_links';
 
 import LocalSettingsNavigationItem from './item';
@@ -41,6 +42,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={0}
           onNavigate={onNavigate}
           icon='cogs'
+          iconComponent={faCogs}
           title={intl.formatMessage(messages.general)}
         />
         <LocalSettingsNavigationItem
@@ -48,6 +50,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={1}
           onNavigate={onNavigate}
           icon='pencil'
+          iconComponent={faPencil}
           title={intl.formatMessage(messages.compose)}
         />
         <LocalSettingsNavigationItem
@@ -62,6 +65,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={3}
           onNavigate={onNavigate}
           icon='angle-double-up'
+          iconComponent={faAngleDoubleUp}
           title={intl.formatMessage(messages.collapsed)}
         />
         <LocalSettingsNavigationItem
@@ -69,6 +73,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={4}
           onNavigate={onNavigate}
           icon='image'
+          iconComponent={faImage}
           title={intl.formatMessage(messages.media)}
         />
         <LocalSettingsNavigationItem
@@ -76,6 +81,7 @@ class LocalSettingsNavigation extends PureComponent {
           href={preferencesLink}
           index={5}
           icon='cog'
+          iconComponent={faCog}
           title={intl.formatMessage(messages.preferences)}
         />
         <LocalSettingsNavigationItem
@@ -84,6 +90,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={6}
           onNavigate={onClose}
           icon='times'
+          iconComponent={faTimes}
           title={intl.formatMessage(messages.close)}
         />
       </nav>

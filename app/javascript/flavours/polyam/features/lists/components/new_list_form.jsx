@@ -5,6 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 import { changeListEditorTitle, submitListEditor } from 'flavours/polyam/actions/lists';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 
@@ -69,6 +71,7 @@ class NewListForm extends PureComponent {
         <IconButton
           disabled={disabled || !value}
           icon='plus'
+          iconComponent={faPlus}
           title={title}
           onClick={this.handleClick}
         />

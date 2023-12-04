@@ -6,6 +6,8 @@ import { injectIntl, defineMessages } from 'react-intl';
 import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+
 import { fetchFollowRequests } from 'flavours/polyam/actions/accounts';
 import { IconWithBadge } from 'flavours/polyam/components/icon_with_badge';
 import ColumnLink from 'flavours/polyam/features/ui/components/column_link';
@@ -43,7 +45,7 @@ class FollowRequestsColumnLink extends Component {
       <ColumnLink
         transparent
         to='/follow_requests'
-        icon={<IconWithBadge className='column-link__icon' id='user-plus' count={count} />}
+        icon={<IconWithBadge className='column-link__icon' id='user-plus' icon={faUserPlus} count={count} />}
         text={intl.formatMessage(messages.text)}
       />
     );

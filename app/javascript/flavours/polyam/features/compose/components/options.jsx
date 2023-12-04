@@ -7,6 +7,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { faMarkdown } from '@fortawesome/free-brands-svg-icons';
+import { faCloudUpload, faCode, faEllipsisH, faFileText, faPaintBrush, faPaperclip, faTasksAlt } from '@fortawesome/free-solid-svg-icons';
 import Toggle from 'react-toggle';
 
 
@@ -210,16 +212,19 @@ class ComposerOptions extends ImmutablePureComponent {
     const contentTypeItems = {
       plain: {
         icon: 'file-text',
+        iconComponent: faFileText,
         name: 'text/plain',
         text: formatMessage(messages.plain),
       },
       html: {
         icon: 'code',
+        iconComponent: faCode,
         name: 'text/html',
         text: formatMessage(messages.html),
       },
       markdown: {
         icon: 'arrow-circle-down',
+        iconComponent: faMarkdown,
         name: 'text/markdown',
         text: formatMessage(messages.markdown),
       },
@@ -241,14 +246,17 @@ class ComposerOptions extends ImmutablePureComponent {
         <DropdownContainer
           disabled={disabled || !allowMedia}
           icon='paperclip'
+          iconComponent={faPaperclip}
           items={[
             {
               icon: 'cloud-upload',
+              iconComponent: faCloudUpload,
               name: 'upload',
               text: formatMessage(messages.upload),
             },
             {
               icon: 'paint-brush',
+              iconComponent: faPaintBrush,
               name: 'doodle',
               text: formatMessage(messages.doodle),
             },
@@ -261,6 +269,7 @@ class ComposerOptions extends ImmutablePureComponent {
             active={hasPoll}
             disabled={disabled || !allowPoll}
             icon='tasks'
+            iconComponent={faTasksAlt}
             inverted
             onClick={onTogglePoll}
             size={18}
@@ -277,6 +286,7 @@ class ComposerOptions extends ImmutablePureComponent {
           <DropdownContainer
             disabled={disabled}
             icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
+            iconComponent={(contentTypeItems[contentType.split('/')[1]] || {}).iconComponent}
             items={[
               contentTypeItems.plain,
               contentTypeItems.html,
@@ -300,6 +310,7 @@ class ComposerOptions extends ImmutablePureComponent {
         <DropdownContainer
           disabled={disabled || isEditing}
           icon='ellipsis-h'
+          iconComponent={faEllipsisH}
           items={advancedOptions ? [
             {
               meta: formatMessage(messages.local_only_long),
