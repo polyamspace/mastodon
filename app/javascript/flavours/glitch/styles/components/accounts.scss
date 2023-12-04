@@ -823,37 +823,3 @@
 .account-memorial-banner__message {
   margin-bottom: 0;
 }
-
-.account__contents {
-  overflow: hidden;
-
-  > .account__note {
-    margin-top: 0;
-    -webkit-line-clamp: 2;
-  }
-}
-
-.account__details {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 1em;
-}
-
-.verified-badge {
-  display: inline-flex;
-  align-items: center;
-  color: $valid-value-color;
-  gap: 4px;
-  white-space: nowrap;
-
-  > span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  a {
-    color: inherit;
-    font-weight: 500;
-    text-decoration: none;
-  }
-}
