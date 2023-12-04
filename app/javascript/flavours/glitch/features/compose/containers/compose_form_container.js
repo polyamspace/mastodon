@@ -15,7 +15,6 @@ import {
   changeComposeVisibility,
   insertEmojiCompose,
   uploadCompose,
-  removeHighlight,
 } from '../../../actions/compose';
 import { changeLocalSetting } from '../../../actions/local_settings';
 import {
@@ -123,10 +122,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onChangeVisibility(value) {
     dispatch(changeComposeVisibility(value));
-  },
-
-  onRemoveHighlight() {
-    dispatch(removeHighlight());
   },
 
   onMediaDescriptionConfirm(routerHistory, mediaId, overriddenVisibility = null) {
