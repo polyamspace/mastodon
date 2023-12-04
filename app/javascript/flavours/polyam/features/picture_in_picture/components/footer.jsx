@@ -177,7 +177,6 @@ class Footer extends ImmutablePureComponent {
 
     let replyIcon, replyIconComponent, replyTitle;
 
-    // TODO: Replace undefined with proper icons
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
       replyIconComponent = faReply;
