@@ -15,6 +15,7 @@ import { HotKeys } from 'react-hotkeys';
 
 import { changeLayout } from 'flavours/glitch/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
+import { INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
 import PermaLink from 'flavours/glitch/components/permalink';
 import PictureInPicture from 'flavours/glitch/features/picture_in_picture';
 import { layoutFromWindow } from 'flavours/glitch/is_mobile';
@@ -23,7 +24,6 @@ import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
 import { expandNotifications, notificationsSetVisibility } from '../../actions/notifications';
-import { INTRODUCTION_VERSION } from '../../actions/onboarding';
 import { fetchServer, fetchServerTranslationLanguages } from '../../actions/server';
 import { expandHomeTimeline } from '../../actions/timelines';
 import initialState, { me, owner, singleUserMode, trendsEnabled, trendsAsLanding } from '../../initial_state';
@@ -420,7 +420,7 @@ class UI extends Component {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
     }
 
-    this.favicon = new Favico({ animation: 'none' });
+    this.favicon = new Favico({ animation:'none' });
 
     if (signedIn) {
       this.props.dispatch(fetchMarkers());

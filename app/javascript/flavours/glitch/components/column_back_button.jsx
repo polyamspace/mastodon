@@ -18,7 +18,7 @@ export class ColumnBackButton extends PureComponent {
   };
 
   handleClick = () => {
-    const { history, onClick } = this.props;
+    const { onClick, history } = this.props;
 
     if (onClick) {
       onClick();

@@ -6,7 +6,9 @@
 
   .account__display-name {
     flex: 1 1 auto;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: $darker-text-color;
     overflow: hidden;
     text-decoration: none;
@@ -68,25 +70,14 @@
   }
 }
 
-.follow-recommendations-account {
-  .icon-button {
-    color: $ui-primary-color;
-
-    &.active {
-      color: $valid-value-color;
-    }
-  }
-}
-
 .account__wrapper {
   display: flex;
+  gap: 10px;
   align-items: center;
 }
 
 .account__avatar-wrapper {
   float: left;
-  margin-inline-start: 12px;
-  margin-inline-end: 12px;
 }
 
 .account__avatar {
@@ -169,8 +160,6 @@
 }
 
 .account__relationship {
-  height: 18px;
-  padding: 10px;
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -721,52 +710,18 @@
     border-top: 1px solid lighten($ui-base-color, 12%);
     border-bottom: 1px solid lighten($ui-base-color, 12%);
 
-    &__header {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-bottom: 5px;
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
       color: $darker-text-color;
+      text-transform: uppercase;
+      margin-bottom: 5px;
     }
 
     &__content {
       white-space: pre-wrap;
       padding: 10px 0;
-    }
-
-    &__buttons {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      flex: 1 0;
-
-      .icon-button {
-        font-size: 14px;
-        padding: 2px 6px;
-        color: $darker-text-color;
-
-        &:hover,
-        &:active,
-        &:focus {
-          color: lighten($darker-text-color, 7%);
-          background-color: rgba($darker-text-color, 0.15);
-        }
-
-        &:focus {
-          background-color: rgba($darker-text-color, 0.3);
-        }
-
-        &[disabled] {
-          color: darken($darker-text-color, 13%);
-          background-color: transparent;
-          cursor: default;
-        }
-      }
-
-      .flex-spacer {
-        flex: 0 0 5px;
-        background: transparent;
-      }
     }
 
     strong {
@@ -795,6 +750,36 @@
         opacity: 1;
       }
     }
+  }
+}
+
+.account__contents {
+  overflow: hidden;
+}
+
+.account__details {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1em;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  color: $valid-value-color;
+  gap: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: none;
   }
 }
 
@@ -837,38 +822,4 @@
 
 .account-memorial-banner__message {
   margin-bottom: 0;
-}
-
-.account__contents {
-  overflow: hidden;
-
-  > .account__note {
-    margin-top: 0;
-    -webkit-line-clamp: 2;
-  }
-}
-
-.account__details {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 1em;
-}
-
-.verified-badge {
-  display: inline-flex;
-  align-items: center;
-  color: $valid-value-color;
-  gap: 4px;
-  white-space: nowrap;
-
-  > span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  a {
-    color: inherit;
-    font-weight: 500;
-    text-decoration: none;
-  }
 }

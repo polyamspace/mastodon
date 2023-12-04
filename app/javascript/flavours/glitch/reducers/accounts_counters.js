@@ -1,11 +1,12 @@
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
+import { me } from 'flavours/glitch/initial_state';
+
 import {
   ACCOUNT_FOLLOW_SUCCESS,
   ACCOUNT_UNFOLLOW_SUCCESS,
 } from '../actions/accounts';
 import { ACCOUNT_IMPORT, ACCOUNTS_IMPORT } from '../actions/importer';
-import { me } from '../initial_state';
 
 const normalizeAccount = (state, account) => state.set(account.id, fromJS({
   followers_count: account.followers_count,

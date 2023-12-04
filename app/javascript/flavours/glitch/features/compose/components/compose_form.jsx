@@ -10,6 +10,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 
 import { maxChars } from 'flavours/glitch/initial_state';
+import { isMobile } from 'flavours/glitch/is_mobile';
 import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/glitch/utils/react_router';
 
 import AutosuggestInput from '../../../components/autosuggest_input';
@@ -84,6 +85,10 @@ class ComposeForm extends ImmutablePureComponent {
 
   static defaultProps = {
     autoFocus: false,
+  };
+
+  state = {
+    highlighted: false,
   };
 
   handleChange = (e) => {
@@ -207,12 +212,12 @@ class ComposeForm extends ImmutablePureComponent {
     }
   };
 
-  componentWillUnmount () {
-    if (this.timeout) clearTimeout(this.timeout);
-  }
-
   componentDidMount () {
     this._updateFocusAndSelection({ });
+  }
+
+  componentWillUnmount () {
+    if (this.timeout) clearTimeout(this.timeout);
   }
 
   componentDidUpdate (prevProps) {
@@ -266,6 +271,8 @@ class ComposeForm extends ImmutablePureComponent {
           textarea.focus();
           if (highlighted) this.timeout = setTimeout(() => onRemoveHighlight(), 700);
           if (!singleColumn) textarea.scrollIntoView();
+          this.setState({ highlighted: true });
+          this.timeout = setTimeout(() => this.setState({ highlighted: false }), 700);
         }).catch(console.error);
       }
 
@@ -296,21 +303,22 @@ class ComposeForm extends ImmutablePureComponent {
       advancedOptions,
       intl,
       isSubmitting,
+      layout,
       onChangeSpoilerness,
       onClearSuggestions,
       onFetchSuggestions,
       onPaste,
       privacy,
       sensitive,
-      autoFocus,
+      showSearch,
       sideArm,
       spoiler,
       spoilerText,
       suggestions,
       spoilersAlwaysOn,
       isEditing,
-      highlighted
     } = this.props;
+    const { highlighted } = this.state;
 
     const countText = this.getFulltextForCharacterCounting();
 
@@ -355,16 +363,16 @@ class ComposeForm extends ImmutablePureComponent {
             onSuggestionsClearRequested={onClearSuggestions}
             onSuggestionSelected={this.handleSuggestionSelected}
             onPaste={onPaste}
-            autoFocus={autoFocus}
+            autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
             lang={this.props.lang}
           >
-            <EmojiPickerDropdown onPickEmoji={handleEmojiPick} />
             <TextareaIcons advancedOptions={advancedOptions} />
             <div className='compose-form__modifiers'>
               <UploadFormContainer />
               <PollFormContainer />
             </div>
           </AutosuggestTextarea>
+          <EmojiPickerDropdown onPickEmoji={handleEmojiPick} />
 
           <div className='compose-form__buttons-wrapper'>
             <OptionsContainer

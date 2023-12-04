@@ -50,7 +50,7 @@ class Account extends ImmutablePureComponent {
   };
 
   static defaultProps = {
-    size: 36,
+    size: 46,
     minimal: true,
   };
 
@@ -159,7 +159,9 @@ class Account extends ImmutablePureComponent {
               <DisplayName account={account} />
               {false && !minimal && (
                 <div className='account__details'>
-                  <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} /> {verification} {muteTimeRemaining}
+                  {account.get('followers_count') !== -1 && (
+                    <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} />
+                  )} {verification} {muteTimeRemaining}
                 </div>
               )}
               {!minimal && accountNote}

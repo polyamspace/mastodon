@@ -1,8 +1,15 @@
 {
+  "account.add_account_note": "Add note for @{name}",
   "account.featured": "Featured",
   "account.featured_accounts.empty": "This user doesn't feature any accounts yet.",
   "account.featured_tags.empty": "This user doesn't feature any hashtags yet.",
+  "account.mute_notifications": "Mute notifications from @{name}",
   "account.request_follow": "Request follow",
+  "account.unmute_notifications": "Unmute notifications from @{name}",
+  "account_note.cancel": "Cancel",
+  "account_note.edit": "Edit",
+  "account_note.glitch_placeholder": "No comment provided",
+  "account_note.save": "Save",
   "column.reacted_by": "Reacted by",
   "footer.documentation": "Documentation",
   "home.column_settings.show_threads": "Show threads",
@@ -15,6 +22,5 @@
   "status.is_thread": "This toot is part of a thread",
   "status.react": "React",
   "status.reactions.empty": "No one has reacted to this toot yet. When someone does, they will show up here.",
-  "suggestions.dismiss": "Dismiss suggestion",
   "video.alt": "Show alt-text"
 }

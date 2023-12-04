@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
@@ -28,7 +28,7 @@ const mapStateToProps = state => ({
   account: state.getIn(['accounts', me]),
 });
 
-class CopyPasteText extends React.PureComponent {
+class CopyPasteText extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string,
@@ -89,7 +89,7 @@ class CopyPasteText extends React.PureComponent {
 
 }
 
-class TipCarousel extends React.PureComponent {
+class TipCarousel extends PureComponent {
 
   static propTypes = {
     children: PropTypes.node,
@@ -143,7 +143,7 @@ class TipCarousel extends React.PureComponent {
 
 }
 
-class Share extends React.PureComponent {
+class Share extends PureComponent {
 
   static propTypes = {
     onBack: PropTypes.func,
