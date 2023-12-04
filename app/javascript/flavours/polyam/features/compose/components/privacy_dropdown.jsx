@@ -34,29 +34,34 @@ class PrivacyDropdown extends PureComponent {
   render () {
     const { value, onChange, onModalOpen, onModalClose, disabled, noDirect, container, isUserTouching, intl: { formatMessage } } = this.props;
 
+    // TODO: Replace "undefined" with proper icons
     //  We predefine our privacy items so that we can easily pick the
     //  dropdown icon later.
     const privacyItems = {
       direct: {
         icon: 'envelope',
+        iconComponent: undefined,
         meta: formatMessage(messages.direct_long),
         name: 'direct',
         text: formatMessage(messages.direct_short),
       },
       private: {
         icon: 'lock',
+        iconComponent: undefined,
         meta: formatMessage(messages.private_long),
         name: 'private',
         text: formatMessage(messages.private_short),
       },
       public: {
         icon: 'globe',
+        iconComponent: undefined,
         meta: formatMessage(messages.public_long),
         name: 'public',
         text: formatMessage(messages.public_short),
       },
       unlisted: {
         icon: 'unlock',
+        iconComponent: undefined,
         meta: formatMessage(messages.unlisted_long),
         name: 'unlisted',
         text: formatMessage(messages.unlisted_short),

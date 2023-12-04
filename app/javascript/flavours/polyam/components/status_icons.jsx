@@ -12,7 +12,7 @@ import { Icon } from 'flavours/polyam/components/icon';
 import { languages } from 'flavours/polyam/initial_state';
 
 import { IconButton } from './icon_button';
-import VisibilityIcon from './status_visibility_icon';
+import { VisibilityIcon } from './visibility_icon';
 
 //  Messages for use with internationalization stuff.
 const messages = defineMessages({

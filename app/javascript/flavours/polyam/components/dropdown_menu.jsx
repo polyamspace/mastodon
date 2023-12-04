@@ -163,6 +163,7 @@ class Dropdown extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     icon: PropTypes.string,
+    iconComponent: PropTypes.func,
     items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]).isRequired,
     loading: PropTypes.bool,
     size: PropTypes.number,
@@ -255,7 +256,7 @@ class Dropdown extends PureComponent {
   };
 
   findTarget = () => {
-    return this.target;
+    return this.target?.buttonRef?.current ? this.target?.buttonRef?.current : this.target;
   };
 
   componentWillUnmount = () => {
@@ -271,6 +272,7 @@ class Dropdown extends PureComponent {
   render () {
     const {
       icon,
+      iconComponent,
       items,
       size,
       title,
@@ -291,9 +293,11 @@ class Dropdown extends PureComponent {
       onMouseDown: this.handleMouseDown,
       onKeyDown: this.handleButtonKeyDown,
       onKeyPress: this.handleKeyPress,
+      ref: this.setTargetRef,
     }) : (
       <IconButton
         icon={!open ? icon : 'close'}
+        iconComponent={!open ? iconComponent : undefined} //TODO: Replace "undefined" with times icon
         title={title}
         active={open}
         disabled={disabled}
@@ -302,14 +306,14 @@ class Dropdown extends PureComponent {
         onMouseDown={this.handleMouseDown}
         onKeyDown={this.handleButtonKeyDown}
         onKeyPress={this.handleKeyPress}
+        ref={this.setTargetRef}
       />
     );
 
     return (
       <>
-        <span ref={this.setTargetRef}>
-          {button}
-        </span>
+        {button}
+
         <Overlay show={open} offset={[5, 5]} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
           {({ props, arrowProps, placement }) => (
             <div {...props}>

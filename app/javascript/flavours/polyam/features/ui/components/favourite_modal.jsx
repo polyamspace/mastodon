@@ -15,7 +15,7 @@ import { DisplayName } from 'flavours/polyam/components/display_name';
 import { Icon } from 'flavours/polyam/components/icon';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
 import StatusContent from 'flavours/polyam/components/status_content';
-import VisibilityIcon from 'flavours/polyam/components/status_visibility_icon';
+import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 const messages = defineMessages({

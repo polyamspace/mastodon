@@ -15,6 +15,7 @@ export default class LocalSettingsPage extends PureComponent {
     className: PropTypes.string,
     href: PropTypes.string,
     icon: PropTypes.string,
+    iconComponent: PropTypes.func,
     textIcon: PropTypes.string,
     index: PropTypes.number.isRequired,
     onNavigate: PropTypes.func,
@@ -36,6 +37,7 @@ export default class LocalSettingsPage extends PureComponent {
       className,
       href,
       icon,
+      iconComponent,
       textIcon,
       onNavigate,
       title,
@@ -45,7 +47,7 @@ export default class LocalSettingsPage extends PureComponent {
       active,
     }, className);
 
-    const iconElem = icon ? <Icon fixedWidth id={icon} /> : (textIcon ? <span className='text-icon-button'>{textIcon}</span> : null);
+    const iconElem = (icon || iconComponent) ? <Icon fixedWidth id={icon} icon={iconComponent} /> : (textIcon ? <span className='text-icon-button'>{textIcon}</span> : null);
 
     if (href) return (
       <a

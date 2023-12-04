@@ -24,7 +24,7 @@ import {
 import { useColumnsContext } from '../util/columns_context';
 
 import BundleColumnError from './bundle_column_error';
-import ColumnLoading from './column_loading';
+import { ColumnLoading } from './column_loading';
 import ComposePanel from './compose_panel';
 import DrawerLoading from './drawer_loading';
 import NavigationPanel from './navigation_panel';

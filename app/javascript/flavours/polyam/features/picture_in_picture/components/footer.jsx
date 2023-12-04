@@ -173,13 +173,16 @@ class Footer extends ImmutablePureComponent {
     const publicStatus  = ['public', 'unlisted'].includes(status.get('visibility'));
     const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
 
-    let replyIcon, replyTitle;
+    let replyIcon, replyIconComponent, replyTitle;
 
+    // TODO: Replace undefined with proper icons
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
+      replyIconComponent = undefined;
       replyTitle = intl.formatMessage(messages.reply);
     } else {
       replyIcon = 'reply-all';
+      replyIconComponent = undefined;
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
@@ -195,6 +198,7 @@ class Footer extends ImmutablePureComponent {
       reblogTitle = intl.formatMessage(messages.cannot_reblog);
     }
 
+    // TODO: Replace "undefined" in iconComponent with proper icon
     let replyButton = null;
     if (showReplyCount) {
       replyButton = (
@@ -202,6 +206,7 @@ class Footer extends ImmutablePureComponent {
           className='status__action-bar-button'
           title={replyTitle}
           icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon}
+          iconComponent={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? undefined : replyIconComponent}
           onClick={this.handleReplyClick}
           counter={status.get('replies_count')}
           obfuscateCount
@@ -213,6 +218,7 @@ class Footer extends ImmutablePureComponent {
           className='status__action-bar-button'
           title={replyTitle}
           icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon}
+          iconComponent={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? undefined : replyIconComponent}
           onClick={this.handleReplyClick}
         />
       );

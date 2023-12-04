@@ -14,7 +14,7 @@ import EditedTimestamp from 'flavours/polyam/components/edited_timestamp';
 import { getHashtagBarForStatus } from 'flavours/polyam/components/hashtag_bar';
 import { Icon } from 'flavours/polyam/components/icon';
 import PictureInPicturePlaceholder from 'flavours/polyam/components/picture_in_picture_placeholder';
-import VisibilityIcon from 'flavours/polyam/components/status_visibility_icon';
+import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 import PollContainer from 'flavours/polyam/containers/poll_container';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
@@ -148,6 +148,7 @@ class DetailedStatus extends ImmutablePureComponent {
     let applicationLink = '';
     let reblogLink = '';
     let reblogIcon = 'retweet';
+    let reblogIconComponent = undefined; // TODO: Replace with proper icon
     let favouriteLink = '';
     let edited = '';
     let reactionLink = '';
@@ -264,10 +265,13 @@ class DetailedStatus extends ImmutablePureComponent {
 
     const visibilityLink = <> · <VisibilityIcon visibility={status.get('visibility')} /></>;
 
+    // TODO: Replace "undefined" with proper icons
     if (status.get('visibility') === 'direct') {
       reblogIcon = 'envelope';
+      reblogIconComponent = undefined;
     } else if (status.get('visibility') === 'private') {
       reblogIcon = 'lock';
+      reblogIconComponent = undefined;
     }
 
     if (!['unlisted', 'public'].includes(status.get('visibility'))) {
@@ -277,7 +281,7 @@ class DetailedStatus extends ImmutablePureComponent {
         <>
           {' · '}
           <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reblogs`} className='detailed-status__link'>
-            <Icon id={reblogIcon} />
+            <Icon id={reblogIcon} icon={reblogIconComponent} />
             <span className='detailed-status__reblogs'>
               <AnimatedNumber value={status.get('reblogs_count')} />
             </span>
@@ -289,7 +293,7 @@ class DetailedStatus extends ImmutablePureComponent {
         <>
           {' · '}
           <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
-            <Icon id={reblogIcon} />
+            <Icon id={reblogIcon} icon={reblogIconComponent} />
             <span className='detailed-status__reblogs'>
               <AnimatedNumber value={status.get('reblogs_count')} />
             </span>
