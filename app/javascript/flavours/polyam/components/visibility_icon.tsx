@@ -1,6 +1,11 @@
 import { defineMessages, useIntl } from 'react-intl';
 
-import { faEnvelope, faGlobe, faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEnvelope,
+  faGlobe,
+  faLock,
+  faLockOpen,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { Icon } from './icon';
 
@@ -24,7 +29,6 @@ export const VisibilityIcon: React.FC<{ visibility: Visibility }> = ({
 }) => {
   const intl = useIntl();
 
-  // TODO: Replace undefined with FontAwesome icons
   const visibilityIconInfo = {
     public: {
       icon: 'globe',

@@ -32,7 +32,12 @@ export const ColumnBackButton: React.FC<{ onClick: OnClickCallback }> = ({
 
   const component = (
     <button onClick={handleClick} className='column-back-button'>
-      <Icon id='chevron-left' icon={faChevronLeft} className='column-back-button__icon' fixedWidth />
+      <Icon
+        id='chevron-left'
+        icon={faChevronLeft}
+        className='column-back-button__icon'
+        fixedWidth
+      />
       <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
     </button>
   );
