@@ -3,8 +3,9 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
-import { faHome, faPlus, faReplyAll, faRetweet, faStar, faTasksAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPlus, faReplyAll, faStar, faTasksAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
+import { faBoost } from 'flavours/polyam/components/boost';
 import { Icon }  from 'flavours/polyam/components/icon';
 
 const tooltips = defineMessages({
@@ -90,7 +91,7 @@ class FilterBar extends PureComponent {
           onClick={this.onClick('reblog')}
           title={intl.formatMessage(tooltips.boosts)}
         >
-          <Icon id='retweet' icon={faRetweet} fixedWidth />
+          <Icon id='retweet' icon={faBoost} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'poll' ? 'active' : ''}

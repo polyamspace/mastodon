@@ -8,9 +8,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faRefresh, faRetweet } from '@fortawesome/free-solid-svg-icons';
+import { faRefresh } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
+import { faBoost } from 'flavours/polyam/components/boost';
 import { Icon }  from 'flavours/polyam/components/icon';
 
 import { fetchReblogs, expandReblogs } from '../../actions/interactions';
@@ -82,7 +83,7 @@ class Reblogs extends ImmutablePureComponent {
       <Column ref={this.setRef}>
         <ColumnHeader
           icon='retweet'
-          iconComponent={faRetweet}
+          iconComponent={faBoost}
           title={intl.formatMessage(messages.heading)}
           onClick={this.handleHeaderClick}
           showBackButton

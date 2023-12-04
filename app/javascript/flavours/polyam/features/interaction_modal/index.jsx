@@ -7,11 +7,12 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
-import { faReply, faRetweet, faStar, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faStar, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { throttle, escapeRegExp } from 'lodash';
 
 import { openModal, closeModal } from 'flavours/polyam/actions/modal';
 import api from 'flavours/polyam/api';
+import { faBoost } from 'flavours/polyam/components/boost';
 import { Button } from 'flavours/polyam/components/button';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { registrationsOpen, sso_redirect } from 'flavours/polyam/initial_state';
@@ -360,7 +361,7 @@ class InteractionModal extends React.PureComponent {
       actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on Mastodon, you can respond to this post.' />;
       break;
     case 'reblog':
-      icon = <Icon id='retweet' icon={faRetweet} />;
+      icon = <Icon id='retweet' icon={faBoost} />;
       title = <FormattedMessage id='interaction_modal.title.reblog' defaultMessage="Boost {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on Mastodon, you can boost this post to share it with your own followers.' />;
       break;

@@ -6,10 +6,12 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { faBell, faPencil, faPlus, faRetweet, faStar, faTasksAlt, faThumbTack } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faPencil, faPlus, faStar, faTasksAlt, faThumbTack } from '@fortawesome/free-solid-svg-icons';
 
 import { Icon } from 'flavours/polyam/components/icon';
 import { me } from 'flavours/polyam/initial_state';
+
+import { faBoost } from './boost';
 
 export default class StatusPrepend extends PureComponent {
 
@@ -139,7 +141,7 @@ export default class StatusPrepend extends PureComponent {
     case 'reblog':
     case 'reblogged_by':
       iconId = 'retweet';
-      iconComponent = faRetweet;
+      iconComponent = faBoost;
       break;
     case 'status':
       iconId = 'bell';

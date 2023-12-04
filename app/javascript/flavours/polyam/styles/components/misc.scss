@@ -353,6 +353,11 @@ body > [data-popper-placement] {
   .icon.star-icon {
     color: $gold-star;
   }
+
+  // Makes reblog icon a bit larger in notifications as it's not square
+  .icon.icon-retweet {
+    width: 17px;
+  }
 }
 
 .icon-button.star-icon.active {

@@ -8,10 +8,11 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faEnvelope, faLock, faPlus, faRetweet, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock, faPlus, faStar } from '@fortawesome/free-solid-svg-icons';
 
 import { AnimatedNumber } from 'flavours/polyam/components/animated_number';
 import AttachmentList from 'flavours/polyam/components/attachment_list';
+import { faBoost } from 'flavours/polyam/components/boost';
 import EditedTimestamp from 'flavours/polyam/components/edited_timestamp';
 import { getHashtagBarForStatus } from 'flavours/polyam/components/hashtag_bar';
 import { Icon } from 'flavours/polyam/components/icon';
@@ -150,7 +151,7 @@ class DetailedStatus extends ImmutablePureComponent {
     let applicationLink = '';
     let reblogLink = '';
     let reblogIcon = 'retweet';
-    let reblogIconComponent = faRetweet;
+    let reblogIconComponent = faBoost;
     let favouriteLink = '';
     let edited = '';
     let reactionLink = '';

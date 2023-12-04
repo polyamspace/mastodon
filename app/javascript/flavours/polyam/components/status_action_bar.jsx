@@ -9,7 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { faEye } from '@fortawesome/free-regular-svg-icons';
-import { faBookmark, faEllipsisH, faPlus, faReply, faReplyAll, faRetweet, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faEllipsisH, faPlus, faReply, faReplyAll, faStar } from '@fortawesome/free-solid-svg-icons';
 
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/polyam/permissions';
 import { accountAdminLink, instanceAdminLink, statusAdminLink } from 'flavours/polyam/utils/backend_links';
@@ -19,6 +19,7 @@ import DropdownMenuContainer from '../containers/dropdown_menu_container';
 import EmojiPickerDropdown from '../features/compose/containers/emoji_picker_dropdown_container';
 import { me, maxReactions } from '../initial_state';
 
+import { faBoost, faBoostDisabled, faBoostPrivate } from './boost';
 import { IconButton } from './icon_button';
 import { RelativeTimestamp } from './relative_timestamp';
 
@@ -305,16 +306,16 @@ class StatusActionBar extends ImmutablePureComponent {
     let reblogTitle, reblogIconComponent;
     if (status.get('reblogged')) {
       reblogTitle = intl.formatMessage(messages.cancel_reblog_private);
-      reblogIconComponent = publicStatus ? faRetweet : faRetweet; // Replace with reblog and reblog private
+      reblogIconComponent = publicStatus ? faBoost : faBoostPrivate;
     } else if (publicStatus) {
       reblogTitle = intl.formatMessage(messages.reblog);
-      reblogIconComponent = faRetweet;
+      reblogIconComponent = faBoost;
     } else if (reblogPrivate) {
       reblogTitle = intl.formatMessage(messages.reblog_private);
-      reblogIconComponent = faRetweet; // Replace with private reblog
+      reblogIconComponent = faBoostPrivate;
     } else {
       reblogTitle = intl.formatMessage(messages.cannot_reblog);
-      reblogIconComponent = faRetweet; // Replace with disabled reblog
+      reblogIconComponent = faBoostDisabled;
     }
 
     const filterButton = this.props.onFilter && (
