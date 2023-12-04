@@ -515,7 +515,6 @@
 .compose-form__buttons {
   display: flex;
   flex: 0 0 auto;
-  gap: 2px;
 
   .icon-button {
     height: 100%;
@@ -523,12 +522,9 @@
 
   & .icon-button,
   & .text-icon-button {
-    display: inline-block;
     box-sizing: content-box;
     padding: 0 3px;
-    height: 27px;
-    line-height: 27px;
-    vertical-align: bottom;
+    width: 23px;
   }
 
   & > hr {
