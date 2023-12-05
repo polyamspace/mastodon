@@ -9,8 +9,8 @@ import type {
 */
 export const prefix: IconPrefix = 'fas';
 export const iconName: IconName = 'retweet';
-export const width = 22;
-export const height = 19;
+export const width = 20;
+export const height = 17;
 export const aliases: string[] = [];
 export const unicode = 'f079';
 
