@@ -48,6 +48,13 @@
   pointer-events: auto;
   transition: opacity 0.3s linear;
   will-change: opacity;
+
+  // Icon is larger than close, so reduce size and add padding. Temporary fix.
+  .icon {
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+  }
 }
 
 .media-modal__zoom-button--hidden {
