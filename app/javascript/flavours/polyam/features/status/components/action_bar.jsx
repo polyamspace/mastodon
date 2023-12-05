@@ -262,7 +262,7 @@ class ActionBar extends PureComponent {
         <div className='detailed-status__button'><IconButton className='bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' iconComponent={faBookmark} onClick={this.handleBookmarkClick} /></div>
 
         <div className='detailed-status__action-bar-dropdown'>
-          <DropdownMenuContainer size={18} icon='ellipsis-h' iconComponent={faEllipsisH} items={menu} direction='left' title={intl.formatMessage(messages.more)} />
+          <DropdownMenuContainer icon='ellipsis-h' iconComponent={faEllipsisH} items={menu} direction='left' title={intl.formatMessage(messages.more)} />
         </div>
       </div>
     );

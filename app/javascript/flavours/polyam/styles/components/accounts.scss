@@ -763,6 +763,12 @@
           background-color: transparent;
           cursor: default;
         }
+
+        // 14px instead of 15px to match old size
+        .icon {
+          width: 14px;
+          height: 14px;
+        }
       }
 
       .flex-spacer {

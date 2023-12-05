@@ -15,7 +15,6 @@ interface Props {
   onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
   onKeyPress?: React.KeyboardEventHandler<HTMLButtonElement>;
-  size: number;
   active: boolean;
   expanded?: boolean;
   style?: React.CSSProperties;
@@ -39,7 +38,6 @@ export class IconButton extends PureComponent<Props, States> {
   buttonRef = createRef<HTMLButtonElement>();
 
   static defaultProps = {
-    size: 18,
     active: false,
     disabled: false,
     animate: false,
