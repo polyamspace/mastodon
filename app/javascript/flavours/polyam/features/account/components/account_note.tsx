@@ -100,7 +100,6 @@ export const AccountNote: React.FC<{ account: Account }> = ({ account }) => {
         <IconButton
           icon='times'
           iconComponent={faTimes}
-          size={15}
           title=''
           label={intl.formatMessage(messages.cancel)}
           onClick={handleCancel}
@@ -110,7 +109,6 @@ export const AccountNote: React.FC<{ account: Account }> = ({ account }) => {
         <IconButton
           icon='check'
           iconComponent={faCheck}
-          size={15}
           title=''
           label={intl.formatMessage(messages.save)}
           onClick={handleSave}
@@ -124,7 +122,6 @@ export const AccountNote: React.FC<{ account: Account }> = ({ account }) => {
         <IconButton
           icon='pencil'
           iconComponent={faPencil}
-          size={15}
           title=''
           label={intl.formatMessage(messages.edit)}
           onClick={handleInitEdit}
