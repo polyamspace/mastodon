@@ -358,7 +358,6 @@ class StatusActionBar extends ImmutablePureComponent {
           items={menu}
           icon='ellipsis-h'
           iconComponent={faEllipsisH}
-          size={18}
           direction='right'
           ariaLabel={intl.formatMessage(messages.more)}
         />
