@@ -8,7 +8,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { faCheck, faPencil, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Textarea from 'react-textarea-autosize';
 
-import { Icon } from 'flavours/polyam/components/icon';
+import { IconButton } from 'flavours/polyam/components/icon_button';
 
 const messages = defineMessages({
   placeholder: { id: 'account_note.glitch_placeholder', defaultMessage: 'No comment provided' },
@@ -57,21 +57,15 @@ class Header extends ImmutablePureComponent {
     if (isEditing) {
       action_buttons = (
         <div className='account__header__account-note__buttons'>
-          <button className='icon-button' tabIndex={0} onClick={this.props.onCancelAccountNote} disabled={isSubmitting}>
-            <Icon id='times' icon={faTimes} size={15} /> <FormattedMessage id='account_note.cancel' defaultMessage='Cancel' />
-          </button>
+          <IconButton icon='times' iconComponent={faTimes} size={15} label={<FormattedMessage id='account_note.cancel' defaultMessage='Cancel' />} onClick={this.props.onCancelAccountNote} disabled={isSubmitting} />
           <div className='flex-spacer' />
-          <button className='icon-button' tabIndex={0} onClick={this.props.onSaveAccountNote} disabled={isSubmitting}>
-            <Icon id='check' icon={faCheck} size={15} /> <FormattedMessage id='account_note.save' defaultMessage='Save' />
-          </button>
+          <IconButton icon='check' iconComponent={faCheck} size={15} label={<FormattedMessage id='account_note.save' defaultMessage='Save' />} onClick={this.props.onSaveAccountNote} disabled={isSubmitting} />
         </div>
       );
     } else {
       action_buttons = (
         <div className='account__header__account-note__buttons'>
-          <button className='icon-button' tabIndex={0} onClick={this.props.onEditAccountNote} disabled={isSubmitting}>
-            <Icon id='pencil' icon={faPencil} size={15} /> <FormattedMessage id='account_note.edit' defaultMessage='Edit' />
-          </button>
+          <IconButton icon='pencil' iconComponent={faPencil} size={15} label={<FormattedMessage id='account_note.edit' defaultMessage='Edit' />} onClick={this.props.onEditAccountNote} disabled={isSubmitting} />
         </div>
       );
     }
