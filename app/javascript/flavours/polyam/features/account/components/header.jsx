@@ -23,8 +23,9 @@ import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/
 import { preferencesLink, profileLink, accountAdminLink, instanceAdminLink } from 'flavours/polyam/utils/backend_links';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
-import AccountNoteContainer from '../containers/account_note_container';
 import FollowRequestNoteContainer from '../containers/follow_request_note_container';
+
+import { AccountNote } from './account_note';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -383,7 +384,7 @@ class Header extends ImmutablePureComponent {
             </div>
           )}
 
-          {signedIn && <AccountNoteContainer account={account} />}
+          {signedIn && <AccountNote account={account} />}
 
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
