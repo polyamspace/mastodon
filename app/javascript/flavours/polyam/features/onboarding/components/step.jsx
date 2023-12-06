@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 
-import { Check } from 'flavours/polyam/components/check';
+import { Link } from 'react-router-dom';
+
+import { faCheck, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
 import { Icon } from 'flavours/polyam/components/icon';
 
-import ArrowSmallRight from './arrow_small_right';
-
-const Step = ({ label, description, icon, iconComponent, completed, onClick, href }) => {
+export const Step = ({ label, description, icon, iconComponent, completed, onClick, href, to }) => {
   const content = (
     <>
       <div className='onboarding__steps__item__icon'>
@@ -18,7 +19,7 @@ const Step = ({ label, description, icon, iconComponent, completed, onClick, hre
       </div>
 
       <div className={completed ? 'onboarding__steps__item__progress' : 'onboarding__steps__item__go'}>
-        {completed ? <Check /> : <ArrowSmallRight />}
+        {completed ? <Icon icon={faCheck} /> : <Icon icon={faArrowRight} />}
       </div>
     </>
   );
@@ -28,6 +29,12 @@ const Step = ({ label, description, icon, iconComponent, completed, onClick, hre
       <a href={href} onClick={onClick} target='_blank' rel='noopener' className='onboarding__steps__item'>
         {content}
       </a>
+    );
+  } else if (to) {
+    return (
+      <Link to={to} className='onboarding__steps__item'>
+        {content}
+      </Link>
     );
   }
 
@@ -45,7 +52,6 @@ Step.propTypes = {
   iconComponent: PropTypes.object,
   completed: PropTypes.bool,
   href: PropTypes.string,
+  to: PropTypes.string,
   onClick: PropTypes.func,
 };
-
-export default Step;
