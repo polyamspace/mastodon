@@ -381,7 +381,7 @@ GEM
       rdoc
       reline (>= 0.3.8)
     jmespath (1.6.2)
-    json (2.6.3)
+    json (2.7.0)
     json-canonicalization (1.0.0)
     json-jwt (1.15.3)
       activesupport (>= 4.2)
