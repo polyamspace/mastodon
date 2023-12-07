@@ -8,9 +8,6 @@ de:
       captcha_enabled:
         desc_html: Dies beruht auf externen Skripts von hCaptcha, was Sicherheits- und Datenschutz-Bedenken auslösen kann. Zusätzlich <strong>kann das den Registrierungsprozess für manche (besonders behinderte) Leute signifikant weniger zugänglich machen</strong>. Ziehe aus diesen Gründen bittte alternative Maßnahmen, wie Zulassungs- oder Einladungs-basierte Registrierung, in Erwägung.
         title: Neue Nutzer sollen ein CAPTCHA lösen müssen, um ihr Konto zu bestätigen
-      default_show_application:
-        desc_html: Beeinflusst alle Nutzer*innen, die diese Einstellung nicht selbst geändert haben.
-        title: Anwendung, die zum erstellen von Beiträgen genutzt wird, anzeigen
       flavour_and_skin:
         title: Variante und Skin
       hide_followers_count:

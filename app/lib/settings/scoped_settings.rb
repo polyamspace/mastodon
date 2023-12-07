@@ -6,7 +6,6 @@ module Settings
       flavour
       skin
       noindex
-      show_application
       norss
     ).freeze
 
