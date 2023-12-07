@@ -35,7 +35,6 @@ class Form::AdminSettings
     trendable_by_default
     trending_status_cw
     trending_status_sensitive
-    show_application
     show_domain_blocks
     show_domain_blocks_rationale
     noindex
@@ -67,7 +66,6 @@ class Form::AdminSettings
     preview_sensitive_media
     profile_directory
     hide_followers_count
-    show_application
     show_reblogs_in_public_timelines
     show_replies_in_public_timelines
     trends

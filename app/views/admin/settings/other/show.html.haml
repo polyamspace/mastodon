@@ -20,9 +20,6 @@
     = f.input :show_replies_in_public_timelines, as: :boolean, wrapper: :with_label, label: t('admin.settings.show_replies_in_public_timelines.title'), hint: t('admin.settings.show_replies_in_public_timelines.desc_html'), glitch_only: true
 
   .fields-group
-    = f.input :show_application, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_show_application.title'), hint: t('admin.settings.default_show_application.desc_html'), polyam_only: true
-
-  .fields-group
     = f.input :outgoing_spoilers, wrapper: :with_label, label: t('admin.settings.outgoing_spoilers.title'), hint: t('admin.settings.outgoing_spoilers.desc_html'), glitch_only: true
 
   .actions
