@@ -2,18 +2,47 @@
 
 > Mastodon, but better!
 
-This project is a fork of [glitch-soc](https://github.com/glitch-soc/mastodon), which itself is a fork of Mastodon. \
-The most notable changes being:
+This project started as a fork of [glitch-soc](https://github.com/glitch-soc/mastodon), which itself is a fork of Mastodon, but strives to provide even more features and provide an overall better experience.
 
-- Emoji reactions
-- Modal showing alt-text when clicking the alt label
-- Syntax highlighting for code blocks
-- Customisable notification sounds
-- 3 additional themes (Fairy Floss, Oatstodon, Homogay)
+## Features
 
 A full list of changes can be found [on the wiki](https://github.com/polyamspace/mastodon/wiki)
 
-So here's the deal: we all work on this code, and anyone who uses that does so absolutely at their own risk. can you dig it?
+### Emoji reactions
 
-- You can view documentation for glitch-soc at [glitch-soc.github.io/docs/](https://glitch-soc.github.io/docs/).
-- And contributing guidelines are available [here](CONTRIBUTING.md) and [here](https://glitch-soc.github.io/docs/contributing/).
+Want to give a toot a thumbs up? Show you love with a custom emoji? \
+With polyam-glitch you can! \
+React to toots with emojis and custom emojis.
+
+### Alt-text modal
+
+Want to read alt-text without awkwardly hovering over an image? \
+Click the alt label and read the alt-text in a modal. \
+This also works for audio and video attachments.
+
+### Syntax highlighting for code blocks
+
+Code is far easier to read with syntax highlighting. \
+So write a code block similar to how you do on GitHub and see your code highlighted.
+
+### Custom notification sounds
+
+Users can choose between notification sounds and admins can add their own. \
+No more replacing the default sound file.
+
+### Additional themes
+
+Polyam-glitch comes with 3 additional themes by default: \
+Fairy Floss, Oatstodon and Homogay.
+
+### Polyam flavour
+
+Polyam-glitch comes with it's own flavour based on the glitch flavour. \
+All features are available for it.
+
+## Installation and updating
+
+Installation is pretty much the same as upstream. \
+Please read the [glitch-soc docs](https://glitch-soc.github.io/docs/) for instructions.
+
+Update steps are also the same, but for convenience an update script is available on the [scripts repo](https://github.com/polyamspace/scripts)
