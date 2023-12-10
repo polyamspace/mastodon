@@ -6,6 +6,8 @@ require 'yaml'
 class Themes
   include Singleton
 
+  DISABLED_THEMES = ENV.fetch('DISABLED_SKINS', '').split(/\s*,\s*/)
+
   def initialize
     core = YAML.load_file(Rails.root.join('app', 'javascript', 'core', 'theme.yml'))
     core['pack'] = {} unless core['pack']
@@ -50,6 +52,8 @@ class Themes
       skin = pathname.basename.to_s
       name = pathname.dirname.basename.to_s
       next unless result[name]
+
+      next if skin != 'default' && DISABLED_THEMES.include?(skin)
 
       if pathname.directory?
         pack = []
