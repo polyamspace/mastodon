@@ -13,6 +13,8 @@ const flavourFiles = glob.sync('app/javascript/flavours/*/theme.yml');
 const skinFiles = glob.sync('app/javascript/skins/*/*');
 const flavours = {};
 
+const disabled_skins = (env.DISABLED_SKINS || '').split(/\s*,\s*/);
+
 const core = function () {
   const coreFile = resolve('app', 'javascript', 'core', 'theme.yml');
   const data = load(readFileSync(coreFile), 'utf8');
@@ -42,6 +44,10 @@ flavourFiles.forEach((flavourFile) => {
 skinFiles.forEach((skinFile) => {
   let skin = basename(skinFile);
   const name = basename(dirname(skinFile));
+  // Skip skin if disabled
+  if (disabled_skins && skin !== 'default' && disabled_skins.includes(skin)) {
+    return;
+  }
   if (!flavours[name]) {
     return;
   }
