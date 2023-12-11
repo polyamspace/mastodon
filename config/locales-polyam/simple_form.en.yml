@@ -12,7 +12,9 @@ en:
     labels:
       defaults:
         setting_enable_rss: Enable RSS feed for your public toots
+        setting_polyam_favourite_modal: Show confirmation dialog before favouriting
         setting_notification_sound: Notification Sound
+        setting_polyam_system_emoji_font: Use system's default font for emojis
         setting_visible_reactions: Number of visible emoji reactions
       form_admin_settings:
         publish_button_text: Publish button text
