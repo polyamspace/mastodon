@@ -65,7 +65,7 @@ class Themes
         pack = ['common']
       end
 
-      result[name]['skin'][skin] = pack if skin != 'default'
+      result[name]['skin'][skin] = pack if !pack.empty? && skin != 'default'
     end
 
     @core = core
