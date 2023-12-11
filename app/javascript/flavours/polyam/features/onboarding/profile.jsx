@@ -137,7 +137,7 @@ export const Profile = () => {
 
           <label className='app-form__toggle'>
             <div className='app-form__toggle__label'>
-              <strong><FormattedMessage id='onboarding.profile.discoverable' defaultMessage='Feature profile and posts in discovery algorithms' /></strong>
+              <strong><FormattedMessage id='onboarding.profile.discoverable' defaultMessage='Make my profile discoverable' /></strong>
               <span className='hint'><FormattedMessage id='onboarding.profile.discoverable_hint' defaultMessage='When you opt in to discoverability on Mastodon, your posts may appear in search results and trending, and your profile may be suggested to people with similar interests to you.' /></span>
             </div>
             <div className='app-form__toggle__toggle'>
