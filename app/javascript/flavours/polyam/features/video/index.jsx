@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { is } from 'immutable';
 
 import { faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { faArrowsAlt, faCompress, faExpand, faPause, faPlay, faVolumeOff, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import { faMaximize, faMinimize, faCompressAlt, faExpandAlt, faPause, faPlay, faVolumeOff, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { throttle } from 'lodash';
 
 import { Blurhash } from 'flavours/polyam/components/blurhash';
@@ -661,9 +661,9 @@ class Video extends PureComponent {
             <div className='video-player__buttons right'>
               {(!fullscreen && alt && onOpenAltText) && <button type='button' title={intl.formatMessage(messages.alt)} aria-label={intl.formatMessage(messages.alt)} className='player-button alt-button' onClick={this.handleAltClick}><span>ALT</span></button>}
               {(!onCloseVideo && !editable && !fullscreen && !this.props.alwaysVisible) && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} className='player-button' onClick={this.toggleReveal}><Icon id='eye-slash' icon={faEyeSlash} fixedWidth /></button>}
-              {(!fullscreen && onOpenVideo) && <button type='button' title={intl.formatMessage(messages.expand)} aria-label={intl.formatMessage(messages.expand)} className='player-button' onClick={this.handleOpenVideo}><Icon id='expand' icon={faExpand} fixedWidth /></button>}
-              {onCloseVideo && <button type='button' title={intl.formatMessage(messages.close)} aria-label={intl.formatMessage(messages.close)} className='player-button' onClick={this.handleCloseVideo}><Icon id='compress' icon={faCompress} fixedWidth /></button>}
-              <button type='button' title={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} className='player-button' onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} icon={fullscreen ? faCompress : faArrowsAlt} fixedWidth /></button>
+              {(!fullscreen && onOpenVideo) && <button type='button' title={intl.formatMessage(messages.expand)} aria-label={intl.formatMessage(messages.expand)} className='player-button' onClick={this.handleOpenVideo}><Icon id='expand' icon={faExpandAlt} fixedWidth /></button>}
+              {onCloseVideo && <button type='button' title={intl.formatMessage(messages.close)} aria-label={intl.formatMessage(messages.close)} className='player-button' onClick={this.handleCloseVideo}><Icon id='compress' icon={faCompressAlt} fixedWidth /></button>}
+              <button type='button' title={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} className='player-button' onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} icon={fullscreen ? faMinimize : faMaximize} fixedWidth /></button>
             </div>
           </div>
         </div>

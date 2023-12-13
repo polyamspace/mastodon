@@ -99,12 +99,20 @@
     }
   }
 
+  // Added display flex to align arrows better in FF, Chrome still slightly misaligned
   &__pagination {
     padding: 15px;
     color: $darker-text-color;
     position: absolute;
     bottom: 3px;
     inset-inline-end: 0;
+    display: flex;
+
+    // Fix arrow size in announcements
+    .icon {
+      width: 13px;
+      height: 13px;
+    }
   }
 }
 
