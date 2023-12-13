@@ -550,6 +550,12 @@ $ui-header-height: 55px;
     color: $darker-text-color;
     text-decoration: underline;
   }
+
+  // Fix icon size of arrows in column settings
+  .icon {
+    width: 13px;
+    height: 13px;
+  }
 }
 
 .column-header__collapsible__extra + .column-header__setting-btn {
