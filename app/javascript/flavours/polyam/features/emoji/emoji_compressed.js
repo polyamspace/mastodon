@@ -7,20 +7,19 @@
 // It's designed to be emitted in an array format to take up less space
 // over the wire.
 
-const { emojiIndex } = require('emoji-mart');
-let data = require('emoji-mart/data/all.json');
-const { uncompress: emojiMartUncompress } = require('emoji-mart/dist/utils/data');
-
+/* Polyam-glitch uses own data here to use newer emojis.
+ * It's a mix of the old emojiIndex and data which has all properties this code and emoji-mart cares about to make the picker work.
+ * New emoji data could be used directly with some modifications to this code, but
+ * it has to be converted for emoji-mart anyway.
+ * On-the-fly conversion would also be possible, but since this is rather static data,
+ * it wouldn't really make much sense.
+*/
+const emojiIndex = require('./emoji_data.json');
 const emojiMap = require('./emoji_map.json');
 const { unicodeToFilename } = require('./unicode_to_filename');
 const { unicodeToUnifiedName } = require('./unicode_to_unified_name');
 
-
-if(data.compressed) {
-  data = emojiMartUncompress(data);
-}
-
-const emojiMartData = data;
+const data = emojiIndex;
 
 const excluded       = ['®', '©', '™'];
 const skinTones      = ['🏻', '🏼', '🏽', '🏾', '🏿'];
@@ -37,6 +36,7 @@ Object.keys(emojiIndex.emojis).forEach(key => {
     emoji = emoji['1'];
   }
 
+  // id is just short_names[0]
   shortcodeMap[emoji.native] = emoji.id;
 });
 
@@ -90,7 +90,7 @@ Object.keys(emojiIndex.emojis).forEach(key => {
   }
 
   const { native } = emoji;
-  let { short_names, search, unified } = emojiMartData.emojis[key];
+  let { short_names, search, unified } = emoji;
 
   if (short_names[0] !== key) {
     throw new Error('The compressor expects the first short_code to be the ' +
@@ -128,8 +128,8 @@ module.exports = JSON.parse(JSON.stringify([
    * - {@link app/javascript/flavours/polyam/features/emoji/emoji_compressed.d.ts#Skins}
    * Future refactorings or updates should consider adding definitions or handling for `skins` property.
    */
-  emojiMartData.skins,
-  emojiMartData.categories,
-  emojiMartData.aliases,
+  data.skins,
+  data.categories,
+  data.aliases,
   emojisWithoutShortCodes,
 ]));
