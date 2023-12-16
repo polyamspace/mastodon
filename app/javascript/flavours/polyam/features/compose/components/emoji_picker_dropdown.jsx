@@ -10,11 +10,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
+import data from 'flavours/polyam/features/emoji/emoji_data.json';
 import { useSystemEmojiFont } from 'flavours/polyam/initial_state';
 import { assetHost } from 'flavours/polyam/utils/config';
 
 import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
 import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
+
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
@@ -36,7 +38,7 @@ let EmojiPicker, Emoji; // load asynchronously
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 
-const backgroundImageFn = () => `${assetHost}/emoji/sheet_13.png`;
+const backgroundImageFn = () => `${assetHost}/emoji/sheet_14.png`;
 
 const notFoundFn = () => (
   <div className='emoji-mart-no-results'>
@@ -103,12 +105,12 @@ class ModifierPickerMenu extends PureComponent {
 
     return (
       <div className='emoji-picker-dropdown__modifiers__menu' style={{ display: active ? 'block' : 'none' }} ref={this.setRef}>
-        <button type='button' onClick={this.handleClick} data-index={1}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={1} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} /></button>
-        <button type='button' onClick={this.handleClick} data-index={2}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={2} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} /></button>
-        <button type='button' onClick={this.handleClick} data-index={3}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={3} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} /></button>
-        <button type='button' onClick={this.handleClick} data-index={4}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={4} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} /></button>
-        <button type='button' onClick={this.handleClick} data-index={5}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={5} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} /></button>
-        <button type='button' onClick={this.handleClick} data-index={6}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={6} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} /></button>
+        <button type='button' onClick={this.handleClick} data-index={1}><Emoji data={data} emoji='fist' set='twitter' size={22} sheetSize={32} sheetColumns={61} sheetRows={61} skin={1} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} /></button>
+        <button type='button' onClick={this.handleClick} data-index={2}><Emoji data={data} emoji='fist' set='twitter' size={22} sheetSize={32} sheetColumns={61} sheetRows={61} skin={2} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} /></button>
+        <button type='button' onClick={this.handleClick} data-index={3}><Emoji data={data} emoji='fist' set='twitter' size={22} sheetSize={32} sheetColumns={61} sheetRows={61} skin={3} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} /></button>
+        <button type='button' onClick={this.handleClick} data-index={4}><Emoji data={data} emoji='fist' set='twitter' size={22} sheetSize={32} sheetColumns={61} sheetRows={61} skin={4} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} /></button>
+        <button type='button' onClick={this.handleClick} data-index={5}><Emoji data={data} emoji='fist' set='twitter' size={22} sheetSize={32} sheetColumns={61} sheetRows={61} skin={5} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} /></button>
+        <button type='button' onClick={this.handleClick} data-index={6}><Emoji data={data} emoji='fist' set='twitter' size={22} sheetSize={32} sheetColumns={61} sheetRows={61} skin={6} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} /></button>
       </div>
     );
   }
@@ -143,7 +145,7 @@ class ModifierPicker extends PureComponent {
 
     return (
       <div className='emoji-picker-dropdown__modifiers'>
-        <Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={modifier} onClick={this.handleClick} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} />
+        <Emoji data={data} emoji='fist' set='twitter' size={22} sheetSize={32} sheetColumns={61} sheetRows={61} skin={modifier} onClick={this.handleClick} backgroundImageFn={backgroundImageFn} native={useSystemEmojiFont} />
         <ModifierPickerMenu active={active} onSelect={this.handleSelect} onClose={this.props.onClose} />
       </div>
     );
@@ -277,9 +279,12 @@ class EmojiPickerMenuImpl extends PureComponent {
     return (
       <div className={classNames('emoji-picker-dropdown__menu', { selecting: modifierOpen })} style={style} ref={this.setRef}>
         <EmojiPicker
+          data={data}
           perLine={8}
           emojiSize={22}
           sheetSize={32}
+          sheetColumns={61}
+          sheetRows={61}
           custom={buildCustomEmojis(custom_emojis)}
           color=''
           emoji=''
