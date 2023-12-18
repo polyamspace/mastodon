@@ -17,23 +17,22 @@ export default class NavigationBar extends ImmutablePureComponent {
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     onLogout: PropTypes.func.isRequired,
+    onClose: PropTypes.func,
   };
 
   render () {
     const username = this.props.account.get('acct');
-    const url = this.props.account.get('url');
-
     return (
       <div className='navigation-bar'>
-        <Permalink className='avatar' href={url} to={`/@${username}`}>
+        <Permalink className='avatar' href={this.props.account.get('url')} to={`/@${username}`}>
           <span style={{ display: 'none' }}>{username}</span>
-          <Avatar account={this.props.account} size={48} />
+          <Avatar account={this.props.account} size={46} />
         </Permalink>
 
         <div className='navigation-bar__profile'>
           <span>
-            <Permalink className='acct' href={url} to={`/@${username}`}>
-              <strong>@{username}</strong>
+            <Permalink className='acct' href={this.props.account.get('url')} to={`/@${username}`}>
+              <strong className='navigation-bar__profile-account'>@{username}</strong>
             </Permalink>
           </span>
 
