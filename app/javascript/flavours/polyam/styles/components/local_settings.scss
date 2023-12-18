@@ -73,6 +73,11 @@
     unicode-bidi: embed;
   }
 
+  .icon {
+    width: 15px;
+    height: 15px;
+  }
+
   &:hover {
     background: $ui-secondary-color;
   }
