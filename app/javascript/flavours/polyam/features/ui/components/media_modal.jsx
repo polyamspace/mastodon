@@ -100,21 +100,6 @@ class MediaModal extends ImmutablePureComponent {
     this._sendBackgroundColor();
   }
 
-  componentWillUnmount () {
-    window.removeEventListener('keydown', this.handleKeyDown);
-    this.props.onChangeBackgroundColor(null);
-  }
-
-  getIndex () {
-    return this.state.index !== null ? this.state.index : this.props.index;
-  }
-
-  toggleNavigation = () => {
-    this.setState(prevState => ({
-      navigationHidden: !prevState.navigationHidden,
-    }));
-  };
-
   componentDidUpdate (prevProps, prevState) {
     if (prevState.index !== this.state.index) {
       this._sendBackgroundColor();
@@ -131,6 +116,21 @@ class MediaModal extends ImmutablePureComponent {
       onChangeBackgroundColor(backgroundColor);
     }
   }
+
+  componentWillUnmount () {
+    window.removeEventListener('keydown', this.handleKeyDown);
+    this.props.onChangeBackgroundColor(null);
+  }
+
+  getIndex () {
+    return this.state.index !== null ? this.state.index : this.props.index;
+  }
+
+  toggleNavigation = () => {
+    this.setState(prevState => ({
+      navigationHidden: !prevState.navigationHidden,
+    }));
+  };
 
   render () {
     const { media, statusId, lang, intl, onClose } = this.props;

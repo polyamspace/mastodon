@@ -388,7 +388,7 @@ class Announcements extends ImmutablePureComponent {
   };
 
   state = {
-    index: this._findFirstUnread(),
+    index: 0,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -407,19 +407,10 @@ class Announcements extends ImmutablePureComponent {
     this._markAnnouncementAsRead();
   }
 
-  /**
-   * Finds the index of the first unread announcement
-   * @returns {number} index of first unread announcement or 0
-   */
-  _findFirstUnread () {
-    const index = this.props.announcements.findIndex((item) => !item.get('read'));
-    return index >= 0 ? index : 0;
-  }
-
   _markAnnouncementAsRead () {
     const { dismissAnnouncement, announcements } = this.props;
     const { index } = this.state;
-    const announcement = announcements.get(index);
+    const announcement = announcements.get(announcements.size - 1 - index);
     if (!announcement.get('read')) dismissAnnouncement(announcement.get('id'));
   }
 
@@ -460,7 +451,7 @@ class Announcements extends ImmutablePureComponent {
                 selected={index === idx}
                 disabled={disableSwiping}
               />
-            ))}
+            )).reverse()}
           </ReactSwipeableViews>
 
           {announcements.size > 1 && (

@@ -37,7 +37,7 @@ unless Rails.env.development?
   if ENV['S3_ENABLED'] == 'true' || ENV['AZURE_ENABLED'] == 'true'
     attachments_host = media_hosts || host_to_url("s3-#{ENV['S3_REGION'] || 'us-east-1'}.amazonaws.com")
   elsif ENV['SWIFT_ENABLED'] == 'true'
-    attachments_host = ENV['SWIFT_OBJECT_URL', nil]
+    attachments_host = ENV.fetch('SWIFT_OBJECT_URL')
     attachments_host = "https://#{Addressable::URI.parse(attachments_host).host}"
   else
     attachments_host = nil

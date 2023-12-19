@@ -60,7 +60,6 @@
     "@rails/ujs": "^7.1.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@svgr/webpack": "^5.5.0",
-    "abortcontroller-polyfill": "^1.7.5",
     "arrow-key-navigation": "^1.2.0",
     "async-mutex": "^0.4.0",
     "atrament": "0.2.4",
