@@ -388,7 +388,7 @@ class Announcements extends ImmutablePureComponent {
   };
 
   state = {
-    index: this._findFirstUnread(),
+    index: 0,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -405,15 +405,6 @@ class Announcements extends ImmutablePureComponent {
 
   componentDidUpdate () {
     this._markAnnouncementAsRead();
-  }
-
-  /**
-   * Finds the index of the first unread announcement
-   * @returns {number} index of first unread announcement or 0
-   */
-  _findFirstUnread () {
-    const index = this.props.announcements.findIndex((item) => !item.get('read'));
-    return index >= 0 ? index : 0;
   }
 
   _markAnnouncementAsRead () {
