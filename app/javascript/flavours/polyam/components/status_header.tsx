@@ -34,7 +34,7 @@ export const StatusHeader: React.FC<Props> = ({
 
   const statusAvatar =
     friend === undefined || friend == null ? (
-      <Avatar account={account} size={48} />
+      <Avatar account={account} size={46} />
     ) : (
       <AvatarOverlay account={account} friend={friend} />
     );

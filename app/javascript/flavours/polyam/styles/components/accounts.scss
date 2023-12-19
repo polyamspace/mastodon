@@ -115,7 +115,7 @@
     overflow: hidden;
     position: relative;
 
-    & div {
+    & > div {
       @include avatar-radius;
 
       float: left;

@@ -40,7 +40,9 @@ export default class StatusCheckBox extends PureComponent {
             <Avatar account={status.get('account')} size={46} />
           </div>
 
-          <div><DisplayName account={status.get('account')} /> · <VisibilityIcon visibility={status.get('visibility')} /><RelativeTimestamp timestamp={status.get('created_at')} /></div>
+          <div>
+            <DisplayName account={status.get('account')} /> · <VisibilityIcon visibility={status.get('visibility')} /><RelativeTimestamp timestamp={status.get('created_at')} />
+          </div>
         </div>
 
         <StatusContent status={status} media={<MediaAttachments status={status} revealed={false} />} />

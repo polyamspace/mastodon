@@ -23,6 +23,7 @@ import { isProduction } from 'flavours/polyam/utils/environment';
 const title = isProduction() ? siteTitle : `${siteTitle} (Dev)`;
 
 const hydrateAction = hydrateStore(initialState);
+
 store.dispatch(hydrateAction);
 
 // check for deprecated local settings
@@ -72,8 +73,8 @@ export default class Mastodon extends PureComponent {
     }
   }
 
-  shouldUpdateScroll (_, { location }) {
-    return !(location.state?.mastodonModalKey);
+  shouldUpdateScroll (prevRouterProps, { location }) {
+    return !(location.state?.mastodonModalKey && location.state?.mastodonModalKey !== prevRouterProps?.location?.state?.mastodonModalKey);
   }
 
   render () {
