@@ -51,8 +51,9 @@
   }
 }
 
+// Changed display block to inline-flex and added gap and align-items to fix alignment of icons
 .glitch.local-settings__navigation__item {
-  display: block;
+  display: inline-flex;
   padding: 15px 20px;
   color: inherit;
   background: lighten($ui-secondary-color, 8%);
@@ -66,11 +67,18 @@
   width: 100%;
   text-align: start;
   font-size: inherit;
+  align-items: center;
+  gap: 4px;
 
   .text-icon-button {
     color: inherit;
     transition: unset;
     unicode-bidi: embed;
+  }
+
+  .icon {
+    width: 15px;
+    height: 15px;
   }
 
   &:hover {
