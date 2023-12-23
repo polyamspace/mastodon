@@ -1,7 +1,7 @@
 import type { RecordOf } from 'immutable';
 import { Record } from 'immutable';
 
-import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
+import type { ApiRelationshipJSON } from 'flavours/polyam/api_types/relationships';
 
 type RelationshipShape = Required<ApiRelationshipJSON>; // no changes from server shape
 export type Relationship = RecordOf<RelationshipShape>;

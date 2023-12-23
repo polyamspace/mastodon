@@ -3,10 +3,10 @@ import { Map as ImmutableMap } from 'immutable';
 import { isFulfilled } from '@reduxjs/toolkit';
 import type { Reducer } from 'redux';
 
+import type { ApiRelationshipJSON } from 'flavours/polyam/api_types/relationships';
 import type { Account } from 'flavours/polyam/models/account';
 import { createRelationship } from 'flavours/polyam/models/relationship';
 import type { Relationship } from 'flavours/polyam/models/relationship';
-import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
 
 import { submitAccountNote } from '../actions/account_notes';
 import {
