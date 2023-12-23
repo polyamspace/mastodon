@@ -22,10 +22,9 @@ describe 'Remote Interaction Helper' do
 
   private
 
-  # The order is different than vanilla
   def expected_csp_headers
     <<~CSP.squish
-      default-src 'none'; frame-ancestors 'self'; script-src 'self' https://cb6e6126.ngrok.io 'wasm-unsafe-eval'; form-action 'none'; connect-src https:
+      default-src 'none'; frame-ancestors 'self'; form-action 'none'; script-src 'self' https://cb6e6126.ngrok.io 'wasm-unsafe-eval'; connect-src https:
     CSP
   end
 end
