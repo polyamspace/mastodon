@@ -3,14 +3,14 @@ import { List, Record as ImmutableRecord } from 'immutable';
 
 import escapeTextContentForBrowser from 'escape-html';
 
-import emojify from 'flavours/polyam/features/emoji/emoji';
-import { unescapeHTML } from 'flavours/polyam/utils/html';
 import type {
   ApiAccountFieldJSON,
   ApiAccountRoleJSON,
   ApiAccountJSON,
-} from 'mastodon/api_types/accounts';
-import type { ApiCustomEmojiJSON } from 'mastodon/api_types/custom_emoji';
+} from 'flavours/polyam/api_types/accounts';
+import type { ApiCustomEmojiJSON } from 'flavours/polyam/api_types/custom_emoji';
+import emojify from 'flavours/polyam/features/emoji/emoji';
+import { unescapeHTML } from 'flavours/polyam/utils/html';
 
 import { CustomEmojiFactory } from './custom_emoji';
 import type { CustomEmoji } from './custom_emoji';

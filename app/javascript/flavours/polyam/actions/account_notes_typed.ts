@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 
+import type { ApiRelationshipJSON } from 'flavours/polyam/api_types/relationships';
 import { createAppAsyncThunk } from 'flavours/polyam/store/typed_functions';
-import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
 
 import api from '../api';
 

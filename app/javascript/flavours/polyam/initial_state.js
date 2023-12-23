@@ -67,7 +67,7 @@ export const hasMultiColumnPath = initialPath === '/'
 
 /**
  * @typedef InitialState
- * @property {Record<string, import("mastodon/api_types/accounts").ApiAccountJSON>} accounts
+ * @property {Record<string, import("./api_types/accounts").ApiAccountJSON>} accounts
  * @property {InitialStateLanguage[]} languages
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta

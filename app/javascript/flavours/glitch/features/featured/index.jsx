@@ -22,7 +22,7 @@ import { getAccountHidden } from 'flavours/glitch/selectors';
 import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
 
 
-import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
+import { LimitedAccountHint } from '../account_timeline/components/limited_account_hint';
 
 const messages = defineMessages({
   lastStatusAt: { id: 'account.featured_tags.last_status_at', defaultMessage: 'Last post on {date}' },
