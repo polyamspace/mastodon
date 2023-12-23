@@ -30,14 +30,9 @@ class Publisher extends ImmutablePureComponent {
     disabled: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     onSecondarySubmit: PropTypes.func,
-    onSubmit: PropTypes.func,
     privacy: PropTypes.oneOf(['direct', 'private', 'unlisted', 'public']),
     sideArm: PropTypes.oneOf(['none', 'direct', 'private', 'unlisted', 'public']),
     isEditing: PropTypes.bool,
-  };
-
-  handleSubmit = () => {
-    this.props.onSubmit();
   };
 
   render () {
@@ -84,9 +79,9 @@ class Publisher extends ImmutablePureComponent {
         <div className='compose-form__publish-button-wrapper'>
           <Button
             className='primary'
+            type='submit'
             text={publishText}
             title={`${publishButtonText}: ${intl.formatMessage(privacyNames[privacy])}`}
-            onClick={this.handleSubmit}
             disabled={disabled}
           />
         </div>

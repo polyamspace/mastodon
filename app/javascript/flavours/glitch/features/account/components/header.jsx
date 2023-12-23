@@ -85,7 +85,7 @@ const dateFormatOptions = {
 class Header extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.record,
     identity_props: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
