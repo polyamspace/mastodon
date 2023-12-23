@@ -14,8 +14,8 @@ import Motion from 'flavours/polyam/features/ui/util/optional_motion';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import { me } from '../../initial_state';
 
-import AccountContainer from './containers/account_container';
-import SearchContainer from './containers/search_container';
+import Account from './components/account';
+import Search from './components/search';
 
 
 const mapStateToProps = state => {
@@ -72,11 +72,11 @@ class PinnedAccountsEditor extends ImmutablePureComponent {
       <div className='modal-root__modal list-editor'>
         <h4><FormattedMessage id='endorsed_accounts_editor.endorsed_accounts' defaultMessage='Featured accounts' /></h4>
 
-        <SearchContainer />
+        <Search />
 
         <div className='drawer__pager'>
           <div className='drawer__inner list-editor__accounts'>
-            {accountIds.map(accountId => <AccountContainer key={accountId} accountId={accountId} added />)}
+            {accountIds.map(accountId => <Account key={accountId} accountId={accountId} added />)}
           </div>
 
           {showSearch && <div role='button' tabIndex={-1} className='drawer__backdrop' onClick={onClear} />}
@@ -84,7 +84,7 @@ class PinnedAccountsEditor extends ImmutablePureComponent {
           <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
             {({ x }) =>
               (<div className='drawer__inner backdrop' style={{ transform: x === 0 ? null : `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
-                {searchAccountIds.map(accountId => <AccountContainer key={accountId} accountId={accountId} />)}
+                {searchAccountIds.map(accountId => <Account key={accountId} accountId={accountId} />)}
               </div>)
             }
           </Motion>
