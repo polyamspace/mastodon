@@ -17,7 +17,7 @@
 
       %br/
 
-      = f.object.policies.map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') }.join(' · ')
+      = f.object.policies.filter_map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') if policy != :noop }.join(' · ')
       - if f.object.public_comment.present?
         ·
         = f.object.public_comment
