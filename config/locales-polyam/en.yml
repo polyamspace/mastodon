@@ -18,6 +18,7 @@ en:
       content_policies:
         policies:
           noop: None
+      reason_unavailable: No reason available
     registration_filters:
       add_new: Add new filter
       created_msg: Registration text filter successfully created!
