@@ -184,6 +184,7 @@ RSpec.describe ActivityPub::Activity::Undo do
             id: 'bar',
             type: 'Like',
             _misskey_reaction: +'👍',
+            content: +'👍',
             actor: ActivityPub::TagManager.instance.uri_for(sender),
             object: ActivityPub::TagManager.instance.uri_for(status),
           }
