@@ -231,6 +231,17 @@ RSpec.describe ActivityPub::Activity::Undo do
             expect(sender.reacted?(status, 'tinking', custom_emoji)).to be false
           end
         end
+
+        context 'when previously handled as regular like' do
+          before do
+            Fabricate(:favourite, account: sender, status: status)
+          end
+
+          it 'deletes favourite' do
+            subject.perform
+            expect(sender.favourited?(status)).to be false
+          end
+        end
       end
     end
 
