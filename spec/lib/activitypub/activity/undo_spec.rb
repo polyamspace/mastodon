@@ -184,6 +184,7 @@ RSpec.describe ActivityPub::Activity::Undo do
             id: 'bar',
             type: 'Like',
             _misskey_reaction: +'👍',
+            content: +'👍',
             actor: ActivityPub::TagManager.instance.uri_for(sender),
             object: ActivityPub::TagManager.instance.uri_for(status),
           }
@@ -228,6 +229,17 @@ RSpec.describe ActivityPub::Activity::Undo do
           it 'deletes reaction from sender to status' do
             subject.perform
             expect(sender.reacted?(status, 'tinking', custom_emoji)).to be false
+          end
+        end
+
+        context 'when previously handled as regular like' do
+          before do
+            Fabricate(:favourite, account: sender, status: status)
+          end
+
+          it 'deletes favourite' do
+            subject.perform
+            expect(sender.favourited?(status)).to be false
           end
         end
       end

@@ -37,6 +37,7 @@ RSpec.describe ActivityPub::Activity::Like do
             id: 'foo',
             type: 'Like',
             _misskey_reaction: '👍',
+            content: '👍',
             actor: ActivityPub::TagManager.instance.uri_for(sender),
             object: ActivityPub::TagManager.instance.uri_for(status),
           }.with_indifferent_access
@@ -58,6 +59,7 @@ RSpec.describe ActivityPub::Activity::Like do
             id: 'foo',
             type: 'Like',
             _misskey_reaction: +':tinking:',
+            content: +':tinking:',
             tag: [
               {
                 type: 'Emoji',
@@ -94,6 +96,7 @@ RSpec.describe ActivityPub::Activity::Like do
             id: 'foo',
             type: 'Like',
             _misskey_reaction: '👍',
+            content: '👍',
             actor: ActivityPub::TagManager.instance.uri_for(sender),
             object: ActivityPub::TagManager.instance.uri_for(status),
           }.with_indifferent_access
@@ -111,6 +114,7 @@ RSpec.describe ActivityPub::Activity::Like do
             id: 'foo',
             type: 'Like',
             _misskey_reaction: +':tinking:',
+            content: +':tinking:',
             tag: [
               {
                 type: 'Emoji',
