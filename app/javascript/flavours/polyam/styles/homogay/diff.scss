@@ -219,6 +219,14 @@ body {
   }
 }
 
+.report-dialog-modal .status__content__spoiler-link {
+  background-color: lighten($ui-base-color, 30%);
+
+  &:hover {
+    background: lighten($ui-base-color, 33%);
+  }
+}
+
 // app settings modal
 .glitch.local-settings {
   background: $ui-base-color;
