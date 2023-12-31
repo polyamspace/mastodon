@@ -45,7 +45,7 @@ export default class StatusCheckBox extends PureComponent {
           </div>
         </div>
 
-        <StatusContent status={status} media={<MediaAttachments status={status} revealed={false} />} />
+        <StatusContent status={status} media={<MediaAttachments status={status} visible={false} />} />
       </div>
     );
 
