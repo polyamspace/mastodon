@@ -73,7 +73,7 @@ export const hasMultiColumnPath = initialPath === '/'
  * @property {InitialStateMeta} meta
  * @property {object} local_settings
  * @property {number} max_toot_chars
- * @property {number} poll_limits
+ * @property {{max_options: number, max_option_chars: number, min_expiration: number, max_expiration: number}} poll_limits
  * @property {number} max_reactions
  */
 
