@@ -196,7 +196,7 @@ module SignatureVerification
         if include_query_string
           "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.original_fullpath}"
         else
-          # Older versions of Mastodon incorrectly omit the query string from the (request-target) pseudo-header.
+          # Current versions of Mastodon incorrectly omit the query string from the (request-target) pseudo-header.
           # Therefore, temporarily support such incorrect signatures for compatibility.
           # TODO: remove eventually some time after release of the fixed version
           "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
