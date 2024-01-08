@@ -1,7 +1,6 @@
-import { Map as ImmutableMap } from 'immutable';
-
 import { isFulfilled } from '@reduxjs/toolkit';
-import type { Reducer } from 'redux';
+import type { Reducer } from '@reduxjs/toolkit';
+import { Map as ImmutableMap } from 'immutable';
 
 import type { ApiRelationshipJSON } from 'flavours/polyam/api_types/relationships';
 import type { Account } from 'flavours/polyam/models/account';
