@@ -14,7 +14,7 @@ describe Api::V1::Statuses::ReactionsController do
       allow(controller).to receive(:doorkeeper_token) { token }
     end
 
-    describe 'POST #create' do
+    describe 'POST #create', :sidekiq_inline do
       let(:status) { Fabricate(:status, account: user.account) }
 
       before do
@@ -55,7 +55,7 @@ describe Api::V1::Statuses::ReactionsController do
       end
     end
 
-    describe 'POST #destroy' do
+    describe 'POST #destroy', :sidekiq_inline do
       context 'with public status' do
         let(:status) { Fabricate(:status, account: user.account) }
 

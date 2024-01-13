@@ -1,6 +1,6 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { Map as ImmutableMap } from 'immutable';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { changeComposeLanguage } from 'flavours/polyam/actions/compose';
 import { useLanguage } from 'flavours/polyam/actions/languages';

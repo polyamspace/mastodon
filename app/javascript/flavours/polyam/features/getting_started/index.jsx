@@ -4,11 +4,11 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
+import { createSelector } from '@reduxjs/toolkit';
 import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { faAsterisk, faBars, faBell, faBookmark, faCog, faCogs, faEllipsisH, faEnvelope, faGlobe, faHashtag, faHome, faListUl, faUserPlus, faUsers } from '@fortawesome/free-solid-svg-icons';
 

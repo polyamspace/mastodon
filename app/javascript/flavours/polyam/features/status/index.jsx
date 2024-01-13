@@ -6,11 +6,11 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { withRouter } from 'react-router-dom';
 
+import { createSelector } from '@reduxjs/toolkit';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
@@ -633,8 +633,12 @@ class Status extends ImmutablePureComponent {
     this.setState({ isExpanded: value });
   };
 
-  setRef = c => {
+  setContainerRef = c => {
     this.node = c;
+  };
+
+  setStatusRef = c => {
+    this.statusNode = c;
   };
 
   setColumnRef = c => {
@@ -645,8 +649,8 @@ class Status extends ImmutablePureComponent {
     const { status, multiColumn } = this.props;
 
     if (status) {
-      window.requestAnimationFrame(() => {
-        this.node?.querySelector('.detailed-status__wrapper')?.scrollIntoView(true);
+      requestIdleCallback(() => {
+        this.statusNode?.querySelector('.detailed-status__wrapper')?.scrollIntoView(true);
 
         // In the single-column interface, `scrollIntoView` will put the post behind the header,
         // so compensate for that.
@@ -684,9 +688,8 @@ class Status extends ImmutablePureComponent {
     }
 
     // Scroll to focused post if it is loaded
-    const child = this.node?.querySelector('.detailed-status__wrapper');
-    if (child) {
-      return [0, child.offsetTop];
+    if (this.statusNode) {
+      return [0, this.statusNode.offsetTop];
     }
 
     // Do not scroll otherwise, `componentDidUpdate` will take care of that
@@ -752,11 +755,11 @@ class Status extends ImmutablePureComponent {
         />
 
         <ScrollContainer scrollKey='thread' shouldUpdateScroll={this.shouldUpdateScroll}>
-          <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
+          <div className={classNames('scrollable', { fullscreen })} ref={this.setContainerRef}>
             {ancestors}
 
             <HotKeys handlers={handlers}>
-              <div className={classNames('focusable', 'detailed-status__wrapper', `detailed-status__wrapper-${status.get('visibility')}`)} tabIndex={0} aria-label={textForScreenReader(intl, status, false, isExpanded)}>
+              <div className={classNames('focusable', 'detailed-status__wrapper', `detailed-status__wrapper-${status.get('visibility')}`)} tabIndex={0} aria-label={textForScreenReader(intl, status, false, isExpanded)} ref={this.setStatusRef}>
                 <DetailedStatus
                   key={`details-${status.get('id')}`}
                   status={status}
