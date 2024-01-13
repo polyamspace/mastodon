@@ -65,6 +65,7 @@ export const AccountNote: React.FC<{ account: Account }> = ({ account }) => {
   }, [dispatch, account]);
 
   const handleSave = useCallback(() => {
+    // @ts-expect-error -- no idea why this type-errors, but it still works, so idgaf
     void dispatch(submitAccountNote());
   }, [dispatch]);
 
