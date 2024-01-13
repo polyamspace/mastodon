@@ -11,7 +11,7 @@ class AddExclusiveToLists < ActiveRecord::Migration[6.1]
   disable_ddl_transaction!
 
   def up
-    safety_assured { add_column_with_default :lists, :exclusive, :boolean, default: false, allow_null: false }
+    safety_assured { add_column :lists, :exclusive, :boolean, default: false, null: false }
   end
 
   def down
