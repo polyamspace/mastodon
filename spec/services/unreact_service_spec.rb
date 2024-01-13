@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UnreactService, type: :service do
+RSpec.describe UnreactService, :sidekiq_inline, type: :service do
   subject { described_class.new }
 
   let(:sender) { Fabricate(:account, username: 'alice') }
