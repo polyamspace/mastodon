@@ -25,9 +25,10 @@ describe 'ShareEntrypoint' do
 
     within('.compose-form') do
       fill_in "What's on your mind?", with: status_text
-      click_on 'Publish!'
+      click_on 'Toot!'
     end
 
-    expect(subject).to have_css('.notification-bar-message', text: 'Post published.')
+    # Polyam-glitch doesn't have this
+    # expect(subject).to have_css('.notification-bar-message', text: 'Post published.')
   end
 end
