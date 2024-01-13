@@ -542,7 +542,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    padding: 5px 10px;
 
     .account-role {
       line-height: unset;
@@ -555,6 +554,7 @@
     justify-content: space-between;
     padding: 7px 10px;
     margin-top: -55px;
+    gap: 8px;
     overflow: hidden;
     margin-inline-start: -2px; // aligns the pfp with content below
 
@@ -584,10 +584,6 @@
 
     &__name {
       padding: 5px 10px;
-
-      .account-role {
-        vertical-align: top;
-      }
 
       .emojione {
         width: 22px;
