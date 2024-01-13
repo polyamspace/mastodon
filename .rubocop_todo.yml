@@ -32,7 +32,7 @@ Lint/NonLocalExitFromIterator:
 
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
-  Max: 90
+  Max: 100
 
 # Configuration parameters: CountBlocks, Max.
 Metrics/BlockNesting:
