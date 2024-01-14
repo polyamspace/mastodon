@@ -12,7 +12,7 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon } from 'flavours/polyam/components/icon';
-import Permalink from 'flavours/polyam/components/permalink';
+import { Permalink } from 'flavours/polyam/components/permalink';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import NotificationOverlayContainer from '../containers/overlay_container';

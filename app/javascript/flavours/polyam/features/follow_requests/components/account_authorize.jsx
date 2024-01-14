@@ -10,7 +10,7 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
 import { IconButton } from '../../../components/icon_button';
-import Permalink from '../../../components/permalink';
+import { Permalink } from '../../../components/permalink';
 
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },

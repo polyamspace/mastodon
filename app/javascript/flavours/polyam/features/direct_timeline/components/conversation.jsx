@@ -14,7 +14,7 @@ import { HotKeys } from 'react-hotkeys';
 import AttachmentList from 'flavours/polyam/components/attachment_list';
 import AvatarComposite from 'flavours/polyam/components/avatar_composite';
 import { IconButton } from 'flavours/polyam/components/icon_button';
-import Permalink from 'flavours/polyam/components/permalink';
+import { Permalink } from 'flavours/polyam/components/permalink';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
 import StatusContent from 'flavours/polyam/components/status_content';
 import DropdownMenuContainer from 'flavours/polyam/containers/dropdown_menu_container';

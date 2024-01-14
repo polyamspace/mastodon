@@ -12,7 +12,7 @@ import { Sparklines, SparklinesCurve } from 'react-sparklines';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
 
-import Permalink from './permalink';
+import { Permalink } from './permalink';
 
 interface SilentErrorBoundaryProps {
   children: React.ReactNode;
@@ -107,7 +107,6 @@ export const Hashtag: React.FC<HashtagProps> = ({
 }) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
-      {/* @ts-expect-error Not sure what's going on here */}
       <Permalink href={href} to={to}>
         {name ? (
           <>

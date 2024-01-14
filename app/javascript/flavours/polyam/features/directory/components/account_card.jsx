@@ -21,7 +21,7 @@ import { Avatar } from 'flavours/polyam/components/avatar';
 import { Button } from 'flavours/polyam/components/button';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { IconButton } from 'flavours/polyam/components/icon_button';
-import Permalink from 'flavours/polyam/components/permalink';
+import { Permalink } from 'flavours/polyam/components/permalink';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
 import { autoPlayGif, me, unfollowModal } from 'flavours/polyam/initial_state';
 import { makeGetAccount } from 'flavours/polyam/selectors';
