@@ -8,6 +8,10 @@ import classNames from 'classnames';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { ReactComponent as DescriptionIcon } from '@material-symbols/svg-600/outlined/description-fill.svg';
+import { ReactComponent as OpenInNewIcon } from '@material-symbols/svg-600/outlined/open_in_new.svg';
+import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow-fill.svg';
+
 import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { Icon } from 'flavours/glitch/components/icon';
 import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
@@ -192,8 +196,8 @@ export default class Card extends PureComponent {
             {revealed ? (
               <div className='status-card__actions' onClick={this.handleEmbedClick} role='none'>
                 <div>
-                  <button onClick={this.handleEmbedClick}><Icon id='play' /></button>
-                  <a href={card.get('url')} target='_blank' rel='noopener noreferrer'><Icon id='external-link' /></a>
+                  <button onClick={this.handleEmbedClick}><Icon id='play' icon={PlayArrowIcon} /></button>
+                  <a href={card.get('url')} target='_blank' rel='noopener noreferrer'><Icon id='external-link' icon={OpenInNewIcon} /></a>
                 </div>
               </div>
             ) : spoilerButton}
@@ -217,7 +221,7 @@ export default class Card extends PureComponent {
     } else {
       embed = (
         <div className='status-card__image'>
-          <Icon id='file-text' />
+          <Icon id='file-text' icon={DescriptionIcon} />
         </div>
       );
     }
