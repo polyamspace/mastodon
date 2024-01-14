@@ -18,11 +18,10 @@ export default class AttachmentList extends ImmutablePureComponent {
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
     compact: PropTypes.bool,
-    collapsed: PropTypes.bool,
   };
 
   render () {
-    const { media, compact, collapsed } = this.props;
+    const { media, compact } = this.props;
 
     return (
       <div className={classNames('attachment-list', { compact })}>
