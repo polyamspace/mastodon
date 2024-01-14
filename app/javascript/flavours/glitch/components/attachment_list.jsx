@@ -7,7 +7,9 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { ReactComponent as LinkIcon } from '@material-symbols/svg-600/outlined/link.svg';
+
+import { Icon }  from 'flavours/glitch/components/icon';
 
 const filename = url => url.split('/').pop().split('#')[0].split('?')[0];
 
@@ -16,17 +18,16 @@ export default class AttachmentList extends ImmutablePureComponent {
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
     compact: PropTypes.bool,
-    collapsed: PropTypes.bool,
   };
 
   render () {
-    const { media, compact, collapsed } = this.props;
+    const { media, compact } = this.props;
 
     return (
       <div className={classNames('attachment-list', { compact })}>
         {!compact && (
           <div className='attachment-list__icon'>
-            <Icon id='link' />
+            <Icon id='link' icon={LinkIcon} />
           </div>
         )}
 
@@ -36,8 +37,8 @@ export default class AttachmentList extends ImmutablePureComponent {
 
             return (
               <li key={attachment.get('id')}>
-                <a tabIndex={collapsed ? -1 : null} href={displayUrl} target='_blank' rel='noopener noreferrer'>
-                  {compact && <Icon id='link' />}
+                <a href={displayUrl} target='_blank' rel='noopener noreferrer'>
+                  {compact && <Icon id='link' icon={LinkIcon} />}
                   {compact && ' ' }
                   {displayUrl ? filename(displayUrl) : <FormattedMessage id='attachments_list.unprocessed' defaultMessage='(unprocessed)' />}
                 </a>

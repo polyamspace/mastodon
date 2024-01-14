@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { injectIntl, FormattedDate } from 'react-intl';
+import { FormattedDate } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link, withRouter } from 'react-router-dom';
@@ -8,13 +8,17 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as ReactIcon } from '@material-symbols/svg-600/outlined/add.svg';
+import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
+import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star-fill.svg';
+
 import { AnimatedNumber } from 'flavours/glitch/components/animated_number';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import EditedTimestamp from 'flavours/glitch/components/edited_timestamp';
 import { getHashtagBarForStatus } from 'flavours/glitch/components/hashtag_bar';
 import { Icon }  from 'flavours/glitch/components/icon';
 import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
-import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
+import { VisibilityIcon } from 'flavours/glitch/components/visibility_icon';
 import PollContainer from 'flavours/glitch/containers/poll_container';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
@@ -55,7 +59,6 @@ class DetailedStatus extends ImmutablePureComponent {
     onToggleMediaVisibility: PropTypes.func,
     onReactionAdd: PropTypes.func.isRequired,
     onReactionRemove: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
     onOpenAltText: PropTypes.func.isRequired,
     ...WithRouterPropTypes,
   };
@@ -147,7 +150,8 @@ class DetailedStatus extends ImmutablePureComponent {
 
     let applicationLink = '';
     let reblogLink = '';
-    let reblogIcon = 'retweet';
+    const reblogIcon = 'retweet';
+    const reblogIconComponent = RepeatIcon;
     let favouriteLink = '';
     let edited = '';
     let reactionLink = '';
@@ -264,12 +268,6 @@ class DetailedStatus extends ImmutablePureComponent {
 
     const visibilityLink = <> · <VisibilityIcon visibility={status.get('visibility')} /></>;
 
-    if (status.get('visibility') === 'direct') {
-      reblogIcon = 'envelope';
-    } else if (status.get('visibility') === 'private') {
-      reblogIcon = 'lock';
-    }
-
     if (!['unlisted', 'public'].includes(status.get('visibility'))) {
       reblogLink = null;
     } else if (this.props.history) {
@@ -277,7 +275,7 @@ class DetailedStatus extends ImmutablePureComponent {
         <>
           {' · '}
           <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reblogs`} className='detailed-status__link'>
-            <Icon id={reblogIcon} />
+            <Icon id={reblogIcon} icon={reblogIconComponent} />
             <span className='detailed-status__reblogs'>
               <AnimatedNumber value={status.get('reblogs_count')} />
             </span>
@@ -289,7 +287,7 @@ class DetailedStatus extends ImmutablePureComponent {
         <>
           {' · '}
           <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
-            <Icon id={reblogIcon} />
+            <Icon id={reblogIcon} icon={reblogIconComponent} />
             <span className='detailed-status__reblogs'>
               <AnimatedNumber value={status.get('reblogs_count')} />
             </span>
@@ -301,7 +299,7 @@ class DetailedStatus extends ImmutablePureComponent {
     if (this.props.history) {
       favouriteLink = (
         <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/favourites`} className='detailed-status__link'>
-          <Icon id='star' />
+          <Icon id='star' icon={StarIcon} />
           <span className='detailed-status__favorites'>
             <AnimatedNumber value={status.get('favourites_count')} />
           </span>
@@ -310,7 +308,7 @@ class DetailedStatus extends ImmutablePureComponent {
     } else {
       favouriteLink = (
         <a href={`/interact/${status.get('id')}?type=favourite`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <Icon id='star' />
+          <Icon id='star' icon={StarIcon} />
           <span className='detailed-status__favorites'>
             <AnimatedNumber value={status.get('favourites_count')} />
           </span>
@@ -330,7 +328,7 @@ class DetailedStatus extends ImmutablePureComponent {
     if (this.props.history) {
       reactionLink = (
         <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reactions`} className='detailed-status__link'>
-          <Icon id='plus' />
+          <Icon id='plus' icon={ReactIcon} />
           <span className='detailed-status__reactions'>
             <AnimatedNumber value={status.get('reactions_count')} />
           </span>
@@ -339,7 +337,7 @@ class DetailedStatus extends ImmutablePureComponent {
     } else {
       reactionLink = (
         <a href={`/interact/${status.get('id')}?type=reaction`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <Icon id='plus' />
+          <Icon id='plus' icon={ReactIcon} />
           <span className='detailed-status__reactions'>
             <AnimatedNumber value={status.get('reactions_count')} />
           </span>
@@ -395,4 +393,4 @@ class DetailedStatus extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(DetailedStatus));
+export default withRouter(DetailedStatus);

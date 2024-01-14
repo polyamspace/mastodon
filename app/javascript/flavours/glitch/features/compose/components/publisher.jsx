@@ -4,6 +4,11 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as LockIcon } from '@material-symbols/svg-600/outlined/lock.svg';
+import { ReactComponent as LockOpenIcon } from '@material-symbols/svg-600/outlined/lock_open.svg';
+import { ReactComponent as MailIcon } from '@material-symbols/svg-600/outlined/mail.svg';
+import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
+
 import { Button } from 'flavours/glitch/components/button';
 import { Icon } from 'flavours/glitch/components/icon';
 import { publishButtonText as customPublishButtonText } from 'flavours/glitch/initial_state';
@@ -38,17 +43,34 @@ class Publisher extends ImmutablePureComponent {
   render () {
     const { disabled, intl, onSecondarySubmit, privacy, sideArm, isEditing } = this.props;
 
-    const privacyIcons = { direct: 'envelope', private: 'lock', public: 'globe', unlisted: 'unlock' };
+    const privacyIcons = {
+      direct: {
+        id: 'envelope',
+        icon: MailIcon,
+      },
+      private: {
+        id: 'lock',
+        icon: LockIcon,
+      },
+      public: {
+        id: 'globe',
+        icon: PublicIcon,
+      },
+      unlisted: {
+        id: 'unlock',
+        icon: LockOpenIcon,
+      },
+    };
 
     let publishText;
     let publishButtonText = customPublishButtonText || intl.formatMessage(messages.publish);
     if (isEditing) {
       publishText = intl.formatMessage(messages.saveChanges);
     } else if (privacy === 'private' || privacy === 'direct') {
-      const iconId = privacyIcons[privacy];
+      const icon = privacyIcons[privacy];
       publishText = (
         <span>
-          <Icon id={iconId} /> {publishButtonText}
+          <Icon {...icon} /> {publishButtonText}
         </span>
       );
     } else {
@@ -71,7 +93,7 @@ class Publisher extends ImmutablePureComponent {
               disabled={disabled}
               onClick={onSecondarySubmit}
               style={{ padding: null }}
-              text={<Icon id={privacyIcons[sideArm]} />}
+              text={<Icon {...privacyIcons[sideArm]} />}
               title={`${publishButtonText}: ${intl.formatMessage(privacyNames[sideArm])}`}
             />
           </div>
