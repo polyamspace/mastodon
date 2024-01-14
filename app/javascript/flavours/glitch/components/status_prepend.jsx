@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { ReactComponent as ReactIcon } from '@material-symbols/svg-600/outlined/add.svg';
 import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
 import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
 import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
@@ -131,6 +132,7 @@ export default class StatusPrepend extends PureComponent {
       break;
     case 'reaction':
       iconId = 'plus';
+      iconComponent = ReactIcon;
       break;
     case 'featured':
       iconId = 'thumb-tack';

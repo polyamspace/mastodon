@@ -8,6 +8,7 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as ReactIcon } from '@material-symbols/svg-600/outlined/add.svg';
 import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
 import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star-fill.svg';
 
@@ -327,7 +328,7 @@ class DetailedStatus extends ImmutablePureComponent {
     if (this.props.history) {
       reactionLink = (
         <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reactions`} className='detailed-status__link'>
-          <Icon id='plus' />
+          <Icon id='plus' icon={ReactIcon} />
           <span className='detailed-status__reactions'>
             <AnimatedNumber value={status.get('reactions_count')} />
           </span>
@@ -336,7 +337,7 @@ class DetailedStatus extends ImmutablePureComponent {
     } else {
       reactionLink = (
         <a href={`/interact/${status.get('id')}?type=reaction`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <Icon id='plus' />
+          <Icon id='plus' icon={ReactIcon} />
           <span className='detailed-status__reactions'>
             <AnimatedNumber value={status.get('reactions_count')} />
           </span>
