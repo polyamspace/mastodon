@@ -16,7 +16,7 @@ import { HotKeys } from 'react-hotkeys';
 import { changeLayout } from 'flavours/glitch/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
 import { INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
-import PermaLink from 'flavours/glitch/components/permalink';
+import { Permalink } from 'flavours/glitch/components/permalink';
 import PictureInPicture from 'flavours/glitch/features/picture_in_picture';
 import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
@@ -655,13 +655,11 @@ class UI extends PureComponent {
             <FormattedMessage
               id='moved_to_warning'
               defaultMessage='This account is marked as moved to {moved_to_link}, and may thus not accept new follows.'
-              values={{
-                moved_to_link: (
-                  <PermaLink href={moved.get('url')} to={`/@${moved.get('acct')}`}>
-                    @{moved.get('acct')}
-                  </PermaLink>
-                ),
-              }}
+              values={{ moved_to_link: (
+                <Permalink href={moved.get('url')} to={`/@${moved.get('acct')}`}>
+                  @{moved.get('acct')}
+                </Permalink>
+              ) }}
             />
           </div>)}
 
