@@ -12,7 +12,7 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon } from 'flavours/polyam/components/icon';
-import Permalink from 'flavours/polyam/components/permalink';
+import { Permalink } from 'flavours/polyam/components/permalink';
 import AccountContainer from 'flavours/polyam/containers/account_container';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 

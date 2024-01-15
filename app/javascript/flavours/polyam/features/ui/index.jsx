@@ -15,7 +15,7 @@ import { HotKeys } from 'react-hotkeys';
 
 import { changeLayout } from 'flavours/polyam/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/polyam/actions/markers';
-import PermaLink from 'flavours/polyam/components/permalink';
+import { Permalink } from 'flavours/polyam/components/permalink';
 import PictureInPicture from 'flavours/polyam/features/picture_in_picture';
 import { layoutFromWindow } from 'flavours/polyam/is_mobile';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
@@ -657,9 +657,9 @@ class UI extends PureComponent {
               defaultMessage='This account is marked as moved to {moved_to_link}, and may thus not accept new follows.'
               values={{
                 moved_to_link: (
-                  <PermaLink href={moved.get('url')} to={`/@${moved.get('acct')}`}>
+                  <Permalink href={moved.get('url')} to={`/@${moved.get('acct')}`}>
                     @{moved.get('acct')}
-                  </PermaLink>
+                  </Permalink>
                 ),
               }}
             />

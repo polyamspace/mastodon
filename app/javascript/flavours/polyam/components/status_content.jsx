@@ -17,7 +17,7 @@ import { autoPlayGif, languages as preloadedLanguages } from 'flavours/polyam/in
 import { highlightCode } from 'flavours/polyam/utils/html';
 import { decode as decodeIDNA } from 'flavours/polyam/utils/idna';
 
-import Permalink from './permalink';
+import { Permalink } from './permalink';
 
 const textMatchesTarget = (text, origin, host) => {
   return (text === origin || text === host

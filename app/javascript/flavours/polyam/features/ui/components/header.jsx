@@ -14,7 +14,7 @@ import { fetchServer } from 'flavours/polyam/actions/server';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { Icon } from 'flavours/polyam/components/icon';
 import { WordmarkLogo, SymbolLogo } from 'flavours/polyam/components/logo';
-import Permalink from 'flavours/polyam/components/permalink';
+import { Permalink } from 'flavours/polyam/components/permalink';
 import { registrationsOpen, me, sso_redirect } from 'flavours/polyam/initial_state';
 
 const Account = connect(state => ({

@@ -16,7 +16,7 @@ import { FollowersCounter } from './counters';
 import { DisplayName } from './display_name';
 import { EmptyAccount } from './empty_account';
 import { IconButton } from './icon_button';
-import Permalink from './permalink';
+import { Permalink } from './permalink';
 import { RelativeTimestamp } from './relative_timestamp';
 import { ShortNumber } from './short_number';
 import { VerifiedBadge } from './verified_badge';

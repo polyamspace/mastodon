@@ -9,8 +9,8 @@ import type Immutable from 'immutable';
 
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 
-import { ShortNumber } from 'flavours/polyam/components/short_number';
-import { Skeleton } from 'flavours/polyam/components/skeleton';
+import { ShortNumber } from 'flavours/glitch/components/short_number';
+import { Skeleton } from 'flavours/glitch/components/skeleton';
 
 import { Permalink } from './permalink';
 
@@ -86,9 +86,9 @@ export interface HashtagProps {
   className?: string;
   description?: React.ReactNode;
   history?: number[];
+  href: string;
   name: string;
   people: number;
-  href: string;
   to: string;
   uses?: number;
   withGraph?: boolean;
