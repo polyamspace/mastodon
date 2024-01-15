@@ -9,7 +9,7 @@ import { debounce } from 'lodash';
 
 import { lookupAccount, fetchAccount, fetchPinnedAccounts, expandPinnedAccounts } from 'flavours/glitch/actions/accounts';
 import { fetchFeaturedTags } from 'flavours/glitch/actions/featured_tags';
-import Hashtag from 'flavours/glitch/components/hashtag';
+import { Hashtag } from 'flavours/glitch/components/hashtag';
 import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import Account from 'flavours/glitch/containers/account_container';
