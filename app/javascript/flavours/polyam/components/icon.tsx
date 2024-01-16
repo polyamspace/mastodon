@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { config } from '@fortawesome/fontawesome-svg-core';
 import { faSquare } from '@fortawesome/free-solid-svg-icons';
 import type { FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -42,6 +43,11 @@ export const Icon: React.FC<Props> = ({
   // Set the title to an empty string to remove the built-in SVG one if any
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const title = titleProp || '';
+
+  // prevent FA from trying to insert CSS into page, which causes a CSP violation
+  if (config.autoAddCss) {
+    config.autoAddCss = false;
+  }
 
   return (
     <FontAwesomeIcon

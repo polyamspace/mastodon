@@ -152,6 +152,7 @@
   line-height: inherit;
   cursor: pointer;
   vertical-align: top;
+  align-items: center;
 
   &:hover {
     background: lighten($ui-base-color, 33%);
@@ -164,6 +165,8 @@
     border-inline-start: 1px solid currentColor;
     padding: 0;
     padding-inline-start: 4px;
+    width: 16px;
+    height: 16px;
   }
 }
 
