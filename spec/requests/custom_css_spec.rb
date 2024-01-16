@@ -52,6 +52,8 @@ describe 'Custom CSS' do
         <<~CSS.strip
           .user-role-123123123 {
             --user-role-accent: #336699;
+            --user-role-background: #33669939;
+            --user-role-border: #336699;
           }
         CSS
       end
