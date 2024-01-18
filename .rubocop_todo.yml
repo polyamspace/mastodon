@@ -18,7 +18,6 @@ Bundler/OrderedGems:
 # URISchemes: http, https
 Layout/LineLength:
   Exclude:
-    - 'app/models/account.rb'
     - 'app/models/status.rb'
 
 # Configuration parameters: AllowComments, AllowEmptyLambdas.
@@ -78,18 +77,6 @@ Rails/HasAndBelongsToMany:
 Rails/OutputSafety:
   Exclude:
     - 'config/initializers/simple_form.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Include.
-# Include: **/Rakefile, **/*.rake
-Rails/RakeEnvironment:
-  Exclude:
-    - 'lib/tasks/auto_annotate_models.rake'
-    - 'lib/tasks/db.rake'
-    - 'lib/tasks/emojis.rake'
-    - 'lib/tasks/mastodon.rake'
-    - 'lib/tasks/repo.rake'
-    - 'lib/tasks/statistics.rake'
 
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb

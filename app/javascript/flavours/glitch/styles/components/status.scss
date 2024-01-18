@@ -620,8 +620,7 @@
   .icon {
     width: 15px;
     height: 15px;
-    position: relative;
-    top: 0.145em;
+    vertical-align: middle;
   }
 }
 
@@ -1080,6 +1079,7 @@ a.status-card {
 
     .icon {
       color: $dark-text-color;
+      vertical-align: middle;
     }
   }
 }
