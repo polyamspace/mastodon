@@ -414,9 +414,10 @@
     padding: 10px;
     font-family: inherit;
 
+    // Polyam: Set size here, otherwise comically large
     .icon {
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
     }
 
     &:hover,
@@ -459,10 +460,11 @@
   padding: 10px;
   color: $darker-text-color;
   overflow: hidden;
+  gap: 10px;
 
   .icon {
-    width: 12px;
-    height: 12px;
+    width: 18px;
+    height: 18px;
   }
 
   span {
@@ -515,11 +517,13 @@
 .compose-form__buttons {
   display: flex;
   flex: 0 0 auto;
+  gap: 2px;
 
   .icon-button {
     height: 100%;
   }
 
+  // Polyam: Additional attribute: width -- it makes the buttons a bit more evenly sized
   & .icon-button,
   & .text-icon-button {
     box-sizing: content-box;
@@ -527,6 +531,7 @@
     width: 23px;
   }
 
+  // Polyam: Upstream removed this. I think it looks better.
   & > hr {
     display: inline-block;
     margin: 0 3px;
@@ -608,9 +613,16 @@
     button {
       padding: 7px 10px;
       text-align: center;
+
+      & > span {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
     }
 
-    & > .side_arm {
+    // Polyam: Explicitly set width and height to make button square
+    .side_arm {
       width: 36px;
       height: 36px;
     }
@@ -684,6 +696,7 @@
   }
 }
 
+// Polyam: Upstream added this to drawer.scss -- This was ported before upstream.
 .compose-form__highlightable {
   display: flex;
   flex-direction: column;

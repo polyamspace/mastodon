@@ -446,13 +446,13 @@
     padding-inline-end: 2px;
   }
 
-  .status__collapse-button.active > .icon {
-    transform: rotate(-180deg);
-  }
-
   .icon {
     width: 1em;
     height: 1em;
+  }
+
+  .status__collapse-button.active > .icon {
+    transform: rotate(-180deg);
   }
 }
 
@@ -1240,13 +1240,6 @@ a.status-card {
   cursor: pointer;
   color: $darker-text-color;
   aspect-ratio: 16 / 9;
-
-  i {
-    display: block;
-    font-size: 24px;
-    font-weight: 400;
-    margin-bottom: 10px;
-  }
 
   .icon {
     width: 21px;
