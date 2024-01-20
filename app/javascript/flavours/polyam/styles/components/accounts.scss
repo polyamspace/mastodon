@@ -70,6 +70,7 @@
   }
 }
 
+// Polyam: Kept from upstream -- Upstream removed this feature
 .follow-recommendations-account {
   .icon-button {
     color: $ui-primary-color;
@@ -95,7 +96,6 @@
 
   display: block;
   position: relative;
-  cursor: pointer;
   overflow: hidden;
 
   img {
@@ -161,7 +161,7 @@
   align-items: center;
   gap: 4px;
 
-  // Fixes size of follow/unfollow button in notifications and user lists
+  // Polyam: Fixes size of follow/unfollow button in notifications and user lists
   .icon {
     width: 23px;
     height: 23px;
@@ -310,11 +310,12 @@
   color: $darker-text-color;
   font-size: 15px;
   position: relative;
+  align-items: center;
 
   .icon {
     color: $highlight-text-color;
-    width: 15px;
-    height: 15px;
+    width: 18px;
+    height: 18px;
   }
 
   .icon-star {
@@ -581,6 +582,7 @@
     justify-content: space-between;
     padding: 7px 10px;
     margin-top: -55px;
+    gap: 8px;
     overflow: hidden;
     margin-inline-start: -2px; // aligns the pfp with content below
 
@@ -694,12 +696,20 @@
         border-radius: 0 4px 0 0;
       }
 
-      .verified a {
-        color: $valid-value-color;
+      .icon {
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
       }
 
-      .icon {
-        vertical-align: middle;
+      dd {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .verified a {
+        color: $valid-value-color;
       }
     }
   }
@@ -820,6 +830,45 @@
   }
 }
 
+.account__contents {
+  overflow: hidden;
+
+  > .account__note {
+    margin-top: 0;
+    -webkit-line-clamp: 2;
+  }
+}
+
+.account__details {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1em;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  color: $valid-value-color;
+  gap: 4px;
+  white-space: nowrap;
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .icon {
+    width: 13px;
+    height: 13px;
+  }
+}
+
 .moved-account-banner,
 .follow-request-banner,
 .account-memorial-banner {
@@ -859,43 +908,4 @@
 
 .account-memorial-banner__message {
   margin-bottom: 0;
-}
-
-.account__contents {
-  overflow: hidden;
-
-  > .account__note {
-    margin-top: 0;
-    -webkit-line-clamp: 2;
-  }
-}
-
-.account__details {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 1em;
-}
-
-.verified-badge {
-  display: inline-flex;
-  align-items: center;
-  color: $valid-value-color;
-  gap: 4px;
-  white-space: nowrap;
-
-  > span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  a {
-    color: inherit;
-    font-weight: 500;
-    text-decoration: none;
-  }
-
-  .icon {
-    width: 13px;
-    height: 13px;
-  }
 }

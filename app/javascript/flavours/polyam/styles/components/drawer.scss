@@ -49,6 +49,20 @@
   }
 }
 
+// Polyam: kept old padding compared to upstream, because it looks nicer
+.drawer__tab {
+  display: flex;
+  flex: 1 1 auto;
+  padding: 15px 5px 13px;
+  color: $darker-text-color;
+  text-decoration: none;
+  text-align: center;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid transparent;
+}
+
 .drawer__header {
   flex: none;
   font-size: 16px;
@@ -59,30 +73,8 @@
   border-radius: 4px;
   overflow: hidden;
 
-  & > * {
-    display: flex;
-    box-sizing: border-box;
-    border-bottom: 2px solid transparent;
-    padding: 15px 5px 13px;
-    height: 48px;
-    flex: 1 1 auto;
-    color: $darker-text-color;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-  }
-
-  a {
-    transition: background 100ms ease-in;
-
-    &:focus,
-    &:hover {
-      outline: none;
-      background: lighten($ui-base-color, 3%);
-      transition: background 200ms ease-out;
-    }
+  a:hover {
+    background: lighten($ui-base-color, 3%);
   }
 }
 
@@ -119,6 +111,21 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .navigation-bar__actions {
+    position: relative;
+
+    .compose__action-bar .icon-button {
+      pointer-events: auto;
+      transform: scale(1, 1) translate(0, 0);
+      opacity: 1;
+
+      .icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
   }
 }
 

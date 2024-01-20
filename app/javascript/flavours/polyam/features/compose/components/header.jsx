@@ -81,12 +81,14 @@ class Header extends ImmutablePureComponent {
           aria-label={intl.formatMessage(messages.start)}
           title={intl.formatMessage(messages.start)}
           to='/getting-started'
+          className='drawer__tab'
         ><Icon id='asterisk' icon={faAsterisk} /></Link>
         {renderForColumn('HOME', (
           <Link
             aria-label={intl.formatMessage(messages.home_timeline)}
             title={intl.formatMessage(messages.home_timeline)}
             to='/home'
+            className='drawer__tab'
           ><Icon id='home' icon={faHome} /></Link>
         ))}
         {renderForColumn('NOTIFICATIONS', (
@@ -94,6 +96,7 @@ class Header extends ImmutablePureComponent {
             aria-label={intl.formatMessage(messages.notifications)}
             title={intl.formatMessage(messages.notifications)}
             to='/notifications'
+            className='drawer__tab'
           >
             <span className='icon-badge-wrapper'>
               <Icon id='bell' icon={faBell} />
@@ -106,6 +109,7 @@ class Header extends ImmutablePureComponent {
             aria-label={intl.formatMessage(messages.community)}
             title={intl.formatMessage(messages.community)}
             to='/public/local'
+            className='drawer__tab'
           ><Icon id='users' icon={faUsers} /></Link>
         ))}
         {renderForColumn('PUBLIC', (
@@ -113,6 +117,7 @@ class Header extends ImmutablePureComponent {
             aria-label={intl.formatMessage(messages.public)}
             title={intl.formatMessage(messages.public)}
             to='/public'
+            className='drawer__tab'
           ><Icon id='globe' icon={faGlobe} /></Link>
         ))}
         <a
@@ -120,12 +125,14 @@ class Header extends ImmutablePureComponent {
           onClick={onSettingsClick}
           href='/settings/preferences'
           title={intl.formatMessage(messages.settings)}
+          className='drawer__tab'
         ><Icon id='cogs' icon={faCogs} /></a>
         <a
           aria-label={intl.formatMessage(messages.logout)}
           onClick={this.handleLogoutClick}
           href={signOutLink}
           title={intl.formatMessage(messages.logout)}
+          className='drawer__tab'
         ><Icon id='sign-out' icon={faSignOutAlt} /></a>
       </nav>
     );
