@@ -388,6 +388,7 @@
   top: 8px;
   z-index: 100;
 
+  // Polyam: Fix icon size in media modal -- kept them large
   .icon {
     width: 40px;
     height: 40px;
@@ -613,7 +614,7 @@
     }
   }
 
-  // Keeping font-size here and in .player-button as otherwise current icons too small
+  // Polyam: Kept font-size here and in .player-button as otherwise current icons too small
   &__buttons {
     display: flex;
     flex: 0 1 auto;

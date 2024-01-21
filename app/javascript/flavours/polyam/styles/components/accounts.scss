@@ -747,6 +747,8 @@
     border-top: 1px solid lighten($ui-base-color, 12%);
     border-bottom: 1px solid lighten($ui-base-color, 12%);
 
+    // Polyam: Kept from upstream as upstream refactored account notes
+    // See: https://github.com/glitch-soc/mastodon/pull/2495
     &__header {
       display: flex;
       flex-direction: row;
@@ -760,6 +762,7 @@
       padding: 10px 0;
     }
 
+    // Polyam: Kept from upstream as upstream refactored account notes
     &__buttons {
       display: flex;
       flex-direction: row;
@@ -833,6 +836,7 @@
 .account__contents {
   overflow: hidden;
 
+  // Polyam: This is used to display account bios properly in follow reqs in onboarding.
   > .account__note {
     margin-top: 0;
     -webkit-line-clamp: 2;
