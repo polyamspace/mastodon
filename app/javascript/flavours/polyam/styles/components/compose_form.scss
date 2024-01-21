@@ -523,12 +523,10 @@
     height: 100%;
   }
 
-  // Polyam: Additional attribute: width -- it makes the buttons a bit more evenly sized
   & .icon-button,
   & .text-icon-button {
     box-sizing: content-box;
     padding: 0 3px;
-    width: 23px;
   }
 
   // Polyam: Upstream removed this. I think it looks better.
@@ -696,7 +694,7 @@
   }
 }
 
-// Polyam: Upstream added this to drawer.scss -- This was ported before upstream.
+// Polyam: Upstream added this to columns.scss -- This was ported before upstream.
 .compose-form__highlightable {
   display: flex;
   flex-direction: column;

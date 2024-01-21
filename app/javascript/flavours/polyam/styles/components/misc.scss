@@ -171,6 +171,7 @@
   }
 }
 
+// Polyam: Kept padding as icons are smaller than upstream
 .icon-button {
   display: inline-flex;
   color: $action-button-color;
@@ -354,7 +355,7 @@ body > [data-popper-placement] {
     color: $gold-star;
   }
 
-  // Makes reblog icon a bit larger in notifications as it's not square
+  // Polyam: Makes reblog icon a bit larger in notifications as it's not square
   .icon.icon-retweet {
     width: 17px;
   }
@@ -1137,7 +1138,6 @@ button.icon-button.active .icon-retweet {
   background: transparent;
   cursor: pointer;
 
-  // Keep size same as arrows
   .icon {
     width: 13px;
     height: 13px;

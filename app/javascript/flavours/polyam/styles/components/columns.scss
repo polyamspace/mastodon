@@ -448,7 +448,7 @@ $ui-header-height: 55px;
     }
   }
 
-  // glitch - added focus ring for keyboard navigation
+  // Polyam: Added focus ring for keyboard navigation
   &:focus {
     text-shadow: 0 0 4px darken($ui-highlight-color, 5%);
   }
@@ -551,7 +551,7 @@ $ui-header-height: 55px;
     text-decoration: underline;
   }
 
-  // Fix icon size of arrows in column settings
+  // Polyam: Fix icon size of arrows in column settings
   .icon {
     width: 13px;
     height: 13px;
@@ -919,13 +919,7 @@ $ui-header-height: 55px;
 
 .column-title {
   text-align: center;
-  padding: 32px;
-
-  .logo {
-    width: 50px;
-    margin: 0 auto;
-    margin-bottom: 40px;
-  }
+  padding-bottom: 32px;
 
   h3 {
     font-size: 24px;
@@ -939,6 +933,10 @@ $ui-header-height: 55px;
     line-height: 24px;
     font-weight: 400;
     color: $darker-text-color;
+  }
+
+  @media screen and (width >= 600px) {
+    padding: 40px;
   }
 }
 
@@ -1322,5 +1320,10 @@ $ui-header-height: 55px;
       line-height: 33px;
       font-weight: 700;
     }
+  }
+
+  &:focus {
+    outline: 0;
+    background-color: $highlight-text-color;
   }
 }

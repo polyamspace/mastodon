@@ -49,7 +49,7 @@
   transition: opacity 0.3s linear;
   will-change: opacity;
 
-  // Icon is larger than close, so reduce size and add padding. Temporary fix.
+  // Polyam: Icon is larger than close, so reduce size and add padding. Temporary fix.
   .icon {
     width: 30px;
     height: 30px;
@@ -898,7 +898,7 @@
 }
 
 .actions-modal {
-  // Kept from upstream as otherwise the dropdown modal in mobile layout is unusable with long toots
+  // Polyam: Kept from upstream as otherwise the dropdown modal in mobile layout is unusable with long toots
   .status {
     overflow-y: auto;
     max-height: 300px;
@@ -1348,7 +1348,7 @@ img.modal-warning {
     color: $highlight-text-color;
     margin: 0 5px;
 
-    // FA adds vertical align, which makes the icon look displaced
+    // Polyam: FA adds vertical align, which makes the icon look displaced
     .icon {
       vertical-align: 0;
     }
