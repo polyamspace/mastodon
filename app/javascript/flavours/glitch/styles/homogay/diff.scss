@@ -34,7 +34,7 @@ body {
 .compose-form__buttons-wrapper,
 .compose-form__warning,
 .spoiler-input input,
-.compose-form__modifiers,
+.compose-panel .compose-form__modifiers,
 .reply-indicator {
   background: $ui-base-semi-lighter-color;
   color: $primary-text-color;
@@ -226,6 +226,14 @@ body {
 
   &:hover {
     color: $ui-highlight-color;
+  }
+}
+
+.report-dialog-modal .status__content__spoiler-link {
+  background-color: lighten($ui-base-color, 30%);
+
+  &:hover {
+    background: lighten($ui-base-color, 33%);
   }
 }
 

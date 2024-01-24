@@ -3,12 +3,14 @@
 // fav button
 .no-reduce-motion .icon-button.star-icon {
   &.deactivate {
+    & > .icon,
     & > .fa-star {
       animation: none;
     }
   }
 
   &.activate {
+    & > .icon,
     & > .fa-star {
       animation: spring-rotate-in 1s cubic-bezier(0.2, 0, 0.4, 1);
     }
