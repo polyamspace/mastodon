@@ -19,6 +19,15 @@ body {
   color: $highlight-text-color;
 }
 
+// Fix background of disabled vote button
+.poll__footer {
+  button {
+    &:disabled {
+      background-color: transparent;
+    }
+  }
+}
+
 // compose panel
 .compose-panel .autosuggest-textarea label .autosuggest-textarea__textarea,
 .compose-form .autosuggest-input label .autosuggest-textarea__textarea,
