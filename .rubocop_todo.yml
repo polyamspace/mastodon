@@ -97,17 +97,12 @@ Rails/WhereExists:
     - 'app/lib/activitypub/activity/create.rb'
     - 'app/lib/delivery_failure_tracker.rb'
     - 'app/lib/feed_manager.rb'
-    - 'app/lib/status_cache_hydrator.rb'
     - 'app/lib/suspicious_sign_in_detector.rb'
-    - 'app/models/concerns/account/interactions.rb'
-    - 'app/models/featured_tag.rb'
     - 'app/models/poll.rb'
     - 'app/models/session_activation.rb'
     - 'app/models/status.rb'
-    - 'app/models/user.rb'
     - 'app/policies/status_policy.rb'
     - 'app/serializers/rest/announcement_serializer.rb'
-    - 'app/serializers/rest/tag_serializer.rb'
     - 'app/services/activitypub/fetch_remote_status_service.rb'
     - 'app/services/vote_service.rb'
     - 'app/validators/reaction_validator.rb'
@@ -157,7 +152,6 @@ Style/FetchEnvVar:
 # AllowedMethods: redirect
 Style/FormatStringToken:
   Exclude:
-    - 'app/models/privacy_policy.rb'
     - 'config/initializers/devise.rb'
     - 'lib/paperclip/color_extractor.rb'
 
