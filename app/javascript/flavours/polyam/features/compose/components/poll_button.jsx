@@ -22,7 +22,6 @@ class PollButton extends PureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,
-    unavailable: PropTypes.bool,
     active: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -33,11 +32,7 @@ class PollButton extends PureComponent {
   };
 
   render () {
-    const { intl, active, unavailable, disabled } = this.props;
-
-    if (unavailable) {
-      return null;
-    }
+    const { intl, active, disabled } = this.props;
 
     return (
       <div className='compose-form__poll-button'>

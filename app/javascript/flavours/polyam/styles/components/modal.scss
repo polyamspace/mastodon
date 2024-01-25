@@ -569,6 +569,11 @@
     }
   }
 
+  .dialog-option {
+    align-items: center;
+    gap: 12px;
+  }
+
   .dialog-option .poll__input {
     border-color: $inverted-text-color;
     color: $ui-secondary-color;
@@ -577,8 +582,8 @@
     justify-content: center;
 
     svg {
-      width: 8px;
-      height: auto;
+      width: 15px;
+      height: 15px;
     }
 
     &:active,

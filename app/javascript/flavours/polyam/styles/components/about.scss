@@ -32,10 +32,13 @@
 
 .link-footer {
   flex: 0 0 auto;
-  padding: 10px;
   padding-top: 20px;
   z-index: 1;
   font-size: 13px;
+
+  .column & {
+    padding: 15px;
+  }
 
   p {
     color: $dark-text-color;

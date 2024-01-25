@@ -5,14 +5,14 @@ import { injectIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { faTimesCircle, faSearch, faLanguage } from '@fortawesome/free-solid-svg-icons';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import fuzzysort from 'fuzzysort';
 import Overlay from 'react-overlays/Overlay';
 
-import { languages as preloadedLanguages } from 'flavours/polyam/initial_state';
-import { loupeIcon, deleteIcon } from 'flavours/polyam/utils/icons';
 
-import TextIconButton from './text_icon_button';
+import { Icon } from 'flavours/polyam/components/icon';
+import { languages as preloadedLanguages } from 'flavours/polyam/initial_state';
 
 const messages = defineMessages({
   changeLanguage: { id: 'compose.language.change', defaultMessage: 'Change language' },
@@ -231,7 +231,7 @@ class LanguageDropdownMenu extends PureComponent {
       <div ref={this.setRef}>
         <div className='emoji-mart-search'>
           <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
-          <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}>{!isSearching ? loupeIcon : deleteIcon}</button>
+          <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}><Icon icon={!isSearching ? faSearch : faTimesCircle} /></button>
         </div>
 
         <div className='language-dropdown__dropdown__results emoji-mart-scroll' role='listbox' ref={this.setListRef}>
@@ -297,20 +297,24 @@ class LanguageDropdown extends PureComponent {
   render () {
     const { value, intl, frequentlyUsedLanguages } = this.props;
     const { open, placement } = this.state;
+    const current = preloadedLanguages.find(lang => lang[0] === value) ?? [];
 
     return (
-      <div className={classNames('privacy-dropdown', placement, { active: open })}>
-        <div className='privacy-dropdown__value' ref={this.setTargetRef} >
-          <TextIconButton
-            className='privacy-dropdown__value-icon'
-            label={value && value.toUpperCase()}
-            title={intl.formatMessage(messages.changeLanguage)}
-            active={open}
-            onClick={this.handleToggle}
-          />
-        </div>
+      <div ref={this.setTargetRef} onKeyDown={this.handleKeyDown}>
+        <button
+          type='button'
+          title={intl.formatMessage(messages.changeLanguage)}
+          aria-expanded={open}
+          onClick={this.handleToggle}
+          onMouseDown={this.handleMouseDown}
+          onKeyDown={this.handleButtonKeyDown}
+          className={classNames('dropdown-button', { active: open })}
+        >
+          <Icon icon={faLanguage} />
+          <span className='dropdown-button__label'>{current[2] ?? value}</span>
+        </button>
 
-        <Overlay show={open} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
+        <Overlay show={open} offset={[5, 5]} placement={placement} flip target={this.findTarget} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
           {({ props, placement }) => (
             <div {...props}>
               <div className={`dropdown-animation language-dropdown__dropdown ${placement}`} >

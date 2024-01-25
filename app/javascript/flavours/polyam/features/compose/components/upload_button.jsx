@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 
-import { IconButton } from '../../../components/icon_button';
+import { IconButton } from 'flavours/polyam/components/icon_button';
 
 const messages = defineMessages({
   upload: { id: 'upload_button.label', defaultMessage: 'Add images, a video or an audio file' },
@@ -31,7 +31,6 @@ class UploadButton extends ImmutablePureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,
-    unavailable: PropTypes.bool,
     onSelectFile: PropTypes.func.isRequired,
     style: PropTypes.object,
     resetFileKey: PropTypes.number,
@@ -54,11 +53,7 @@ class UploadButton extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, resetFileKey, unavailable, disabled, acceptContentTypes } = this.props;
-
-    if (unavailable) {
-      return null;
-    }
+    const { intl, resetFileKey, disabled, acceptContentTypes } = this.props;
 
     const message = intl.formatMessage(messages.upload);
 

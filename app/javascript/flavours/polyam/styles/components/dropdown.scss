@@ -1,3 +1,39 @@
+.dropdown-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  color: $highlight-text-color;
+  border-radius: 6px;
+  border: 1px solid $highlight-text-color;
+  padding: 4px 8px;
+  font-size: 13px;
+  line-height: normal;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  .icon {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 auto;
+  }
+
+  &__label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1 1 auto;
+  }
+
+  &.active {
+    background: $ui-highlight-color;
+    border-color: $ui-highlight-color;
+    color: $primary-text-color;
+  }
+}
+
 .dropdown-animation {
   animation: dropdown 150ms cubic-bezier(0.1, 0.7, 0.1, 1);
 

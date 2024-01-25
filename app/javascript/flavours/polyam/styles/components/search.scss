@@ -1,6 +1,10 @@
 .search {
-  margin-bottom: 10px;
+  margin-bottom: 32px;
   position: relative;
+
+  .layout-multiple-columns & {
+    margin-bottom: 10px;
+  }
 
   &__popout {
     box-sizing: border-box;
@@ -10,6 +14,7 @@
     margin-top: -2px;
     width: 100%;
     background: $ui-base-color;
+    border: 1px solid lighten($ui-base-color, 8%);
     border-radius: 0 0 4px 4px;
     box-shadow: var(--dropdown-shadow);
     z-index: 99;
@@ -18,7 +23,7 @@
 
     h4 {
       text-transform: uppercase;
-      color: $dark-text-color;
+      color: $darker-text-color;
       font-weight: 500;
       padding: 0 10px;
       margin-bottom: 10px;
@@ -26,6 +31,7 @@
 
     .icon-button {
       padding: 0;
+      color: $darker-text-color;
     }
 
     .icon {
@@ -41,7 +47,7 @@
       }
 
       &__message {
-        color: $dark-text-color;
+        color: $darker-text-color;
         padding: 0 10px;
       }
 
@@ -97,6 +103,10 @@
   }
 
   &.active {
+    .search__input {
+      border-radius: 4px 4px 0 0;
+    }
+
     .search__popout {
       display: block;
     }
@@ -107,14 +117,9 @@
   @include search-input;
 
   display: block;
-  padding: 15px;
-  padding-inline-end: 30px;
-  line-height: 18px;
-  font-size: 16px;
-
-  &::placeholder {
-    color: lighten($darker-text-color, 4%);
-  }
+  padding: 12px 16px;
+  padding-inline-start: 16px + 15px + 8px;
+  line-height: normal;
 
   &::-moz-focus-inner {
     border: 0;
@@ -124,10 +129,6 @@
   &:focus,
   &:active {
     outline: 0 !important;
-  }
-
-  &:focus {
-    background: lighten($ui-base-color, 4%);
   }
 }
 
@@ -143,21 +144,21 @@
 
   .icon {
     position: absolute;
-    top: 13px;
-    inset-inline-end: 10px;
+    top: 12px + 2px;
+    inset-inline-start: 16px - 2px;
     display: inline-block;
     opacity: 0;
     transition: all 100ms linear;
     transition-property: transform, opacity;
-    width: 21px;
-    height: 21px;
-    color: $secondary-text-color;
+    width: 18px; // Polyam: 18px instead of 20px
+    height: 18px; // Polyam: 18px instead of 20px
+    color: $darker-text-color;
     cursor: default;
     pointer-events: none;
 
     &.active {
       pointer-events: auto;
-      opacity: 0.3;
+      opacity: 1;
     }
   }
 
@@ -172,16 +173,10 @@
 
   .icon-times-circle {
     transform: rotate(0deg);
-    color: $action-button-color;
     cursor: pointer;
 
     &.active {
       transform: rotate(90deg);
-      opacity: 1;
-    }
-
-    &:hover {
-      color: lighten($action-button-color, 7%);
     }
   }
 }

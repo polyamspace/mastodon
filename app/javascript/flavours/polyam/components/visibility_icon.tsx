@@ -13,14 +13,17 @@ type Visibility = 'public' | 'unlisted' | 'private' | 'direct';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  unlisted_short: {
+    id: 'privacy.unlisted.short',
+    defaultMessage: 'Quiet public',
+  },
   private_short: {
     id: 'privacy.private.short',
-    defaultMessage: 'Followers only',
+    defaultMessage: 'Followers',
   },
   direct_short: {
     id: 'privacy.direct.short',
-    defaultMessage: 'Mentioned people only',
+    defaultMessage: 'Specific people',
   },
 });
 
