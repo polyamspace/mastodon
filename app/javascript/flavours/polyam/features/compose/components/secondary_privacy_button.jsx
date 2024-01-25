@@ -9,9 +9,9 @@ import { Icon } from 'flavours/polyam/components/icon';
 
 const messages = defineMessages({
   public: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Quiet public' },
+  unlisted: { id: 'polyam.privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private: { id: 'privacy.private.short', defaultMessage: 'Followers' },
-  direct: { id: 'privacy.direct.short', defaultMessage: 'Specific people' },
+  direct: { id: 'polyam.privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 
 export const SecondaryPrivacyButton = ({ disabled, privacy, isEditing, onClick }) => {
