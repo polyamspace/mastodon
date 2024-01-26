@@ -22,8 +22,8 @@
       "mastodon/*": ["app/javascript/mastodon/*"],
       "flavours/polyam": ["app/javascript/flavours/polyam"],
       "flavours/polyam/*": ["app/javascript/flavours/polyam/*"],
-      "@/*": ["app/javascript/*"]
-    }
+      "@/*": ["app/javascript/*"],
+    },
   },
   "include": [
     "app/javascript/mastodon",
@@ -31,6 +31,6 @@
     "app/javascript/types",
     "app/javascript/flavours/glitch",
     "app/javascript/core",
-    "app/javascript/flavours/polyam"
-  ]
+    "app/javascript/flavours/polyam",
+  ],
 }
