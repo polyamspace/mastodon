@@ -275,7 +275,7 @@ class Status < ApplicationRecord
   end
 
   def hidden_by_moderators?
-    CustomFilter.instance_filter.statuses.where(status_id: id).exists?
+    CustomFilter.instance_filter.statuses.exists?(status_id: id)
   end
 
   def emojis
