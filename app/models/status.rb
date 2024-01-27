@@ -271,11 +271,11 @@ class Status < ApplicationRecord
   end
 
   def reported?
-    @reported ||= Report.where(target_account: account).unresolved.where('? = ANY(status_ids)', id).exists?
+    @reported ||= Report.where(target_account: account).unresolved.exists?(['? = ANY(status_ids)', id])
   end
 
   def hidden_by_moderators?
-    CustomFilter.instance_filter.statuses.where(status_id: id).exists?
+    CustomFilter.instance_filter.statuses.exists?(status_id: id)
   end
 
   def emojis
