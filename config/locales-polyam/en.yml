@@ -63,7 +63,7 @@ en:
         rss: RSS
         search: Search
       trending_status_sensitive:
-        desc_html: When trending toots are enable, allow toots with sensitive media to be elibible. Changes to this setting are not retroactive.
+        desc_html: When trending toots are enabled, allow toots with sensitive media to be eligible. Changes to this setting are not retroactive.
         title: Allow toots with sensitive media to trend
     statuses:
       reactions: Reactions
