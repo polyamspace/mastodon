@@ -206,6 +206,19 @@ html {
     no-repeat bottom / 100% auto;
 }
 
+.inline-follow-suggestions {
+  background-color: rgba($ui-highlight-color, 0.1);
+  border-bottom-color: rgba($ui-highlight-color, 0.3);
+}
+
+.inline-follow-suggestions__body__scrollable__card {
+  background: $white;
+}
+
+.inline-follow-suggestions__body__scroll-button__icon {
+  color: $white;
+}
+
 // Change the colors used in compose-form
 .compose-form {
   .compose-form__modifiers {
