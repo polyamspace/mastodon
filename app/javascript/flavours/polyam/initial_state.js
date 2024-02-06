@@ -73,6 +73,7 @@
  * @property {InitialStateMeta} meta
  * @property {Role?} role
  * @property {object} local_settings
+ * @property {number} max_feed_hashtags
  * @property {{max_options: number, max_option_chars: number, min_expiration: number, max_expiration: number}} poll_limits
  * @property {number} max_reactions
  */
@@ -151,6 +152,7 @@ export const showRepliesPublicTimelines = getMeta('show_replies_in_public_timeli
 export const sso_redirect = getMeta('sso_redirect');
 
 // Glitch-soc-specific settings
+export const maxFeedHashtags = (initialState && initialState.max_feed_hashtags) || 4;
 export const favouriteModal = getMeta('favourite_modal');
 export const pollLimits = (initialState && initialState.poll_limits);
 export const defaultContentType = getMeta('default_content_type');
