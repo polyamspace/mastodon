@@ -2,38 +2,52 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Statuses::ReactedByAccountsController do
-  render_views
-
+RSpec.describe 'API V1 Statuses Reacted By Accounts' do
   let(:user) { Fabricate(:user) }
-  let(:app) { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, application: app, scopes: 'read:accounts') }
+  # let(:app) { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
+  let(:scopes) { 'read:accounts' }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
   let(:alice) { Fabricate(:account) }
   let(:bob) { Fabricate(:account) }
 
   context 'with an oauth token' do
-    before do
-      allow(controller).to receive(:doorkeeper_token) { token }
+    subject do
+      get "/api/v1/statuses/#{status.id}/reacted_by", headers: headers, params: { limit: 2 }
     end
 
-    describe 'GET #index' do
+    describe 'GET /api/v1/statuses/:status_id/reacted_by' do
       let(:status) { Fabricate(:status, account: user.account) }
 
       before do
-        Fabricate(:status_reaction, account: user.account, status: status)
+        Fabricate(:status_reaction, account: alice, status: status)
+        Fabricate(:status_reaction, account: bob, status: status)
       end
 
-      it 'returns http success' do
-        get :index, params: { status_id: status.id, limit: 1 }
+      it 'returns http success and accounts who reacted to the status' do
+        subject
+
         expect(response).to have_http_status(:success)
         expect(response.headers['Link'].links.size).to eq(2)
+
+        expect(body_as_json.size).to eq(2)
+        expect(body_as_json).to contain_exactly(include(id: alice.id.to_s), include(id: bob.id.to_s))
+      end
+
+      it 'does not return blocked users' do
+        user.account.block!(bob)
+
+        subject
+
+        expect(body_as_json.size).to eq 1
+        expect(body_as_json.first[:id]).to eq(alice.id.to_s)
       end
     end
   end
 
   context 'without an oauth token' do
-    before do
-      allow(controller).to receive(:doorkeeper_token).and_return(nil)
+    subject do
+      get "/api/v1/statuses/#{status.id}/reacted_by", params: { limit: 2 }
     end
 
     context 'with a private status' do
@@ -45,7 +59,8 @@ RSpec.describe Api::V1::Statuses::ReactedByAccountsController do
         end
 
         it 'returns http unauthorized' do
-          get :index, params: { status_id: status.id }
+          subject
+
           expect(response).to have_http_status(:missing)
         end
       end
@@ -60,7 +75,8 @@ RSpec.describe Api::V1::Statuses::ReactedByAccountsController do
         end
 
         it 'returns http success' do
-          get :index, params: { status_id: status.id }
+          subject
+
           expect(response).to have_http_status(:success)
         end
       end
