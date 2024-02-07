@@ -94,6 +94,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
     relationships&.attributes_map&.dig(object.id, :favourites_count) || object.favourites_count
   end
 
+  def reactions_count
+    relationships&.attributes_map&.dig(object.id, :reactions_count) || object.reactions_count
+  end
+
   def favourited
     if relationships
       relationships.favourites_map[object.id] || false
