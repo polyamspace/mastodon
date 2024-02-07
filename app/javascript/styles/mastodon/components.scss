@@ -553,7 +553,8 @@ body > [data-popper-placement] {
     align-items: stretch;
 
     &__border {
-      background: url('../images/warning-stripes.svg') repeat-y;
+      // Polyam: Fixed path as otherwise resource can't be found in vanilla themes
+      background: url('~images/warning-stripes.svg') repeat-y;
       width: 5px;
       flex: 0 0 auto;
 
