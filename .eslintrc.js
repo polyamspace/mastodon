@@ -411,6 +411,16 @@ module.exports = defineConfig({
       env: {
         jest: true,
       },
-    }
+    },
+    // TODO: Remove once compose refactor is ported
+    {
+      files: [
+        'app/javascript/flavours/**/*.js',
+        'app/javascript/flavours/**/*.jsx'
+      ],
+      rules: {
+        'jsx-a11y/no-onchange': 'warn',
+      },
+    },
   ],
 });
