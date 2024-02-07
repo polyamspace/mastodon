@@ -24,7 +24,7 @@ describe 'NewStatuses', :sidekiq_inline do
 
     within('.compose-form') do
       fill_in "What's on your mind?", with: status_text
-      click_on 'Toot!'
+      click_on 'Toot'
     end
 
     expect(subject).to have_css('.status__content__text', text: status_text)
@@ -37,7 +37,7 @@ describe 'NewStatuses', :sidekiq_inline do
 
     within('.compose-form') do
       fill_in "What's on your mind?", with: status_text
-      click_on 'Toot!'
+      click_on 'Toot'
     end
 
     expect(subject).to have_css('.status__content__text', text: status_text)
