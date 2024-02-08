@@ -230,6 +230,7 @@ class ComposerOptions extends ImmutablePureComponent {
           onChange={this.handleChangeFiles}
           ref={this.handleRefFileElement}
           type='file'
+          name='file-upload-input'
           multiple
           style={{ display: 'none' }}
         />
