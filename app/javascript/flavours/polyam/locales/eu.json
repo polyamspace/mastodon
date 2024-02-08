@@ -14,6 +14,8 @@
   "column.reacted_by": "Reacted by",
   "compose_form.alt_text_warning.header": "Your attachments are missing a description!",
   "compose_form.alt_text_warning.message": "Descriptions are for users who are deaf, hard of hearing, blind, or have low vision that prevent them from seeing or hearing an image, video, or audio file. It's recommended that you provide a description for all attached media files so everyone can enjoy using Mastodon.",
+  "compose_form.poll.add_option": "Gehitu aukera bat",
+  "compose_form.poll.remove_option": "Kendu aukera hau",
   "footer.documentation": "Dokumentazioa",
   "home.column_settings.show_threads": "Show threads",
   "notification.reaction": "{name} reacted to your toot",

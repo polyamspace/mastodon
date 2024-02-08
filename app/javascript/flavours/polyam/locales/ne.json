@@ -12,6 +12,8 @@
   "account_note.glitch_placeholder": "No comment provided",
   "account_note.save": "Save",
   "column.reacted_by": "Reacted by",
+  "compose_form.poll.add_option": "विकल्प थप्नुहोस्",
+  "compose_form.poll.remove_option": "यो विकल्प हटाउनुहोस्",
   "footer.documentation": "Documentation",
   "home.column_settings.show_threads": "Show threads",
   "notification.reaction": "{name} reacted to your toot",
