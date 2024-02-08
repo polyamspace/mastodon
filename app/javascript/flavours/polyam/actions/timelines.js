@@ -131,7 +131,8 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
       dispatch(importFetchedStatuses(response.data));
       dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
 
-      if (timelineId === 'home' && !isLoadingMore && !isLoadingRecent) {
+      // eslint-disable-next-line no-constant-condition -- false is used here to disable suggestions for polyam flavour
+      if (false && timelineId === 'home' && !isLoadingMore && !isLoadingRecent) {
         const now = new Date();
         const fittingIndex = response.data.findIndex(status => now - (new Date(status.created_at)) > 4 * 3600 * 1000);
 
