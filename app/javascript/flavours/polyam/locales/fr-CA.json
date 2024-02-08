@@ -11,6 +11,8 @@
   "account_note.glitch_placeholder": "No comment provided",
   "account_note.save": "Save",
   "column.reacted_by": "Reacted by",
+  "compose_form.poll.add_option": "Ajouter un choix",
+  "compose_form.poll.remove_option": "Supprimer ce choix",
   "footer.documentation": "Documentation",
   "home.column_settings.show_threads": "Show threads",
   "notification.reaction": "{name} reacted to your toot",
