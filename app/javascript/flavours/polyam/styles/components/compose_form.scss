@@ -122,7 +122,7 @@
       outline: 0;
     }
 
-    @include single-column('screen and (max-width: 630px)') {
+    @media screen and (width <= 600px) {
       font-size: 16px;
     }
   }
@@ -143,7 +143,7 @@
       all: unset;
     }
 
-    @include limited-single-column('screen and (max-width: 600px)') {
+    @media screen and (width <= 600px) {
       height: 100px !important; // Prevent auto-resize textarea
       resize: vertical;
     }

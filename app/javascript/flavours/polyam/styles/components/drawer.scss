@@ -72,11 +72,11 @@
     padding-inline-end: 10px;
   }
 
-  @include single-column('screen and (max-width: 630px)') {
+  @media screen and (width <= 630px) {
     flex: auto;
   }
 
-  @include limited-single-column('screen and (max-width: 630px)') {
+  @media screen and (width <= 630px) {
     &,
     &:first-child,
     &:last-child {
@@ -90,7 +90,7 @@
     flex: 1 1 200px;
   }
 
-  @include single-column('screen and (max-width: 630px)') {
+  @media screen and (width <= 630px) {
     :root & {
       //  Overrides `.wide` for single-column view
       flex: auto;

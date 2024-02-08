@@ -960,10 +960,6 @@ body > [data-popper-placement] {
     border-bottom-color: $ui-highlight-color;
   }
 
-  @include limited-single-column('screen and (max-width: 600px)') {
-    font-size: 16px;
-  }
-
   &.light {
     color: $inverted-text-color;
     border-bottom: 2px solid lighten($ui-base-color, 27%);
@@ -973,6 +969,10 @@ body > [data-popper-placement] {
       color: $inverted-text-color;
       border-bottom-color: $ui-highlight-color;
     }
+  }
+
+  @media screen and (width <= 600px) {
+    font-size: 16px;
   }
 }
 
