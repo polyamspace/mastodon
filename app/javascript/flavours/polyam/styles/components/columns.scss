@@ -382,11 +382,6 @@ $ui-header-height: 55px;
 }
 
 .column {
-  width: 330px;
-  position: relative;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
 
   .wide .columns-area:not(.columns-area--mobile) & {

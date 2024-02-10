@@ -81,9 +81,19 @@
     }
   }
 
-  &:disabled {
+  &:disabled,
+  &.disabled {
     background-color: $ui-primary-color;
     cursor: default;
+  }
+
+  &.copyable {
+    transition: background 300ms linear;
+  }
+
+  &.copied {
+    background: $valid-value-color;
+    transition: none;
   }
 
   &.button-secondary {
@@ -206,15 +216,6 @@
     color: darken($action-button-color, 13%);
     background-color: transparent;
     cursor: default;
-  }
-
-  &.copyable {
-    transition: background 300ms linear;
-  }
-
-  &.copied {
-    background: $valid-value-color;
-    transition: none;
   }
 
   &.inverted {
@@ -1434,7 +1435,7 @@ button.icon-button.active .icon-retweet {
 }
 
 .loading-bar {
-  background-color: $ui-highlight-color;
+  background-color: $highlight-text-color;
   height: 3px;
   position: fixed;
   top: 0;
@@ -1588,10 +1589,6 @@ noscript {
       &:hover {
         text-decoration: none;
       }
-    }
-
-    a {
-      word-break: break-word;
     }
   }
 }

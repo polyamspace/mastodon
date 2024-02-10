@@ -47,6 +47,10 @@
 }
 
 .status__content {
+  clear: both;
+}
+
+.status__content {
   position: relative;
   margin: 10px 0;
   font-size: 15px;
@@ -189,6 +193,21 @@
   width: 100%;
   clear: both;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  &__button {
+    display: inline;
+    color: lighten($ui-highlight-color, 8%);
+    border: 0;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
 }
 
 .status__prepend-icon-wrapper {
@@ -349,6 +368,7 @@
         text-decoration: none;
       }
 
+      // Polyam extra change for backgrounds of code blocks
       pre,
       code {
         padding: 0;
@@ -387,16 +407,6 @@
   }
 }
 
-.notification-favourite {
-  .status.status-direct {
-    background: transparent;
-
-    .icon-button.disabled {
-      color: lighten($action-button-color, 13%);
-    }
-  }
-}
-
 .status__relative-time {
   display: inline-block;
   color: $dark-text-color;
@@ -405,6 +415,16 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.notification-favourite {
+  .status.status-direct {
+    background: transparent;
+
+    .icon-button.disabled {
+      color: lighten($action-button-color, 13%);
+    }
+  }
 }
 
 .status__display-name {
@@ -446,6 +466,7 @@
     padding-inline-end: 2px;
   }
 
+  // Polyam: Different class and size to make it more consistent
   .icon {
     width: 1em;
     height: 1em;
@@ -1028,7 +1049,7 @@ a.status-card {
   font-size: 14px;
   border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
-  margin-top: 14px;
+  margin-top: 14px; // glitch-soc change to reduce margins
   overflow: hidden;
 
   &__icon {
@@ -1070,7 +1091,7 @@ a.status-card {
 
   &.compact {
     border: 0;
-    margin-top: 4px;
+    margin-top: 4px; // glitch-soc addition to reduce margins
 
     .attachment-list__list {
       padding: 0;
@@ -1081,21 +1102,6 @@ a.status-card {
       color: $dark-text-color;
       vertical-align: middle;
     }
-  }
-}
-
-.status__wrapper--filtered__button {
-  display: inline;
-  color: lighten($ui-highlight-color, 8%);
-  border: 0;
-  background: transparent;
-  padding: 0;
-  font-size: inherit;
-  line-height: inherit;
-
-  &:hover,
-  &:active {
-    text-decoration: underline;
   }
 }
 

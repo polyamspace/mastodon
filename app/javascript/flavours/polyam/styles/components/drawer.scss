@@ -1,3 +1,4 @@
+// This class exists twice upstream, merged into one
 .drawer {
   width: 300px;
   box-sizing: border-box;
@@ -139,64 +140,6 @@
 .drawer--results {
   overflow-x: hidden;
   overflow-y: scroll;
-}
-
-.search-results__section {
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-
-  &:last-child {
-    border-bottom: 0;
-  }
-
-  &__header {
-    background: darken($ui-base-color, 4%);
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
-    padding: 15px;
-    font-weight: 500;
-    font-size: 14px;
-    color: $darker-text-color;
-    display: flex;
-    justify-content: space-between;
-
-    h3 {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    button {
-      color: $highlight-text-color;
-      padding: 0;
-      border: 0;
-      background: 0;
-      font: inherit;
-
-      &:hover,
-      &:active,
-      &:focus {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .account:last-child,
-  & > div:last-child .status {
-    border-bottom: 0;
-  }
-
-  & > .hashtag {
-    display: block;
-    padding: 10px;
-    color: $secondary-text-color;
-    text-decoration: none;
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: lighten($secondary-text-color, 4%);
-      text-decoration: underline;
-    }
-  }
 }
 
 .drawer__pager {

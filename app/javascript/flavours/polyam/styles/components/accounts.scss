@@ -112,6 +112,8 @@
   }
 
   &-composite {
+    @include avatar-radius;
+
     overflow: hidden;
     position: relative;
 
@@ -140,6 +142,10 @@
       font-size: 15px;
     }
   }
+}
+
+a .account__avatar {
+  cursor: pointer;
 }
 
 .account__avatar-overlay {
@@ -391,6 +397,7 @@
 
 .notification__filter-bar,
 .account__section-headline {
+  // deliberate glitch-soc choice for now
   background: darken($ui-base-color, 4%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
@@ -569,7 +576,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    padding: 5px 10px;
+    padding: 5px 10px; // Polyam change.
 
     .account-role {
       line-height: unset;
@@ -617,10 +624,6 @@
 
     &__name {
       padding: 5px 10px;
-
-      .account-role {
-        vertical-align: top;
-      }
 
       .emojione {
         width: 22px;
