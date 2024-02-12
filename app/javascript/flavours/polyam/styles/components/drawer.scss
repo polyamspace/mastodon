@@ -1,4 +1,60 @@
-// This class exists twice upstream, merged into one
+.navigation-bar {
+  padding: 10px;
+  color: $darker-text-color;
+  display: flex;
+  align-items: center;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .acct {
+    display: inline;
+    color: $secondary-text-color;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .navigation-bar__actions {
+    position: relative;
+
+    .compose__action-bar .icon-button {
+      pointer-events: auto;
+      transform: scale(1, 1) translate(0, 0);
+      opacity: 1;
+
+      .icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}
+
+.navigation-bar__profile {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  margin-inline-start: 8px;
+}
+
+.navigation-bar__profile-account {
+  display: inline;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navigation-bar__profile-edit {
+  display: inline;
+  color: inherit;
+  text-decoration: none;
+}
+
+// This class exists twice in vanilla, merged into one
 .drawer {
   width: 300px;
   box-sizing: border-box;
@@ -62,84 +118,6 @@
   align-items: center;
   justify-content: center;
   border-bottom: 2px solid transparent;
-}
-
-.drawer__header {
-  flex: none;
-  font-size: 16px;
-  background: $ui-base-color;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
-  border-radius: 4px;
-  overflow: hidden;
-
-  a:hover {
-    background: lighten($ui-base-color, 3%);
-  }
-}
-
-.search {
-  position: relative;
-  margin-bottom: 10px;
-  flex: none;
-
-  @include limited-single-column(
-    'screen and (max-width: #{$no-gap-breakpoint})'
-  ) {
-    margin-bottom: 0;
-  }
-  @include single-column('screen and (max-width: 630px)') {
-    font-size: 16px;
-  }
-}
-
-.navigation-bar {
-  padding: 10px;
-  color: $darker-text-color;
-  display: flex;
-  align-items: center;
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .acct {
-    display: inline;
-    color: $secondary-text-color;
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .navigation-bar__actions {
-    position: relative;
-
-    .compose__action-bar .icon-button {
-      pointer-events: auto;
-      transform: scale(1, 1) translate(0, 0);
-      opacity: 1;
-
-      .icon {
-        width: 18px;
-        height: 18px;
-      }
-    }
-  }
-}
-
-.navigation-bar__profile {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  margin-inline-start: 8px;
-}
-
-.drawer--results {
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 .drawer__pager {
@@ -212,14 +190,19 @@
   text-align: start;
 }
 
-.drawer__backdrop {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  inset-inline-start: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba($base-overlay-background, 0.5);
+.drawer__header {
+  flex: 0 0 auto;
+  font-size: 16px;
+  background: $ui-base-color;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 4px;
+  overflow: hidden;
+
+  a:hover {
+    background: lighten($ui-base-color, 3%);
+  }
 }
 
 @for $i from 0 through 3 {
@@ -254,4 +237,21 @@
       }
     }
   }
+}
+
+// .drawer (has been merged with first)
+
+.drawer__backdrop {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($base-overlay-background, 0.5);
+}
+
+.drawer--results {
+  overflow-x: hidden;
+  overflow-y: scroll;
 }

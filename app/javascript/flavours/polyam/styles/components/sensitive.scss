@@ -1,13 +1,3 @@
-.sensitive-info {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  position: absolute;
-  top: 4px;
-  inset-inline-start: 4px;
-  z-index: 100;
-}
-
 // glitch-specific "sensitive" label on displayed images; TODO: remove it?
 .sensitive-marker {
   margin: 0 3px;

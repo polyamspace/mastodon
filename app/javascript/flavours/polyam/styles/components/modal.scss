@@ -2,6 +2,15 @@
   background: lighten($ui-base-color, 8%);
 }
 
+.modal-root__container .privacy-dropdown {
+  flex-grow: 0;
+}
+
+.modal-root__container .privacy-dropdown__dropdown {
+  pointer-events: auto;
+  z-index: 9999;
+}
+
 .modal-root {
   position: relative;
   z-index: 9999;
@@ -576,6 +585,7 @@
     color: $inverted-text-color;
   }
 
+  // Polyam: Code block background
   .status__content code {
     color: $primary-text-color;
   }
@@ -1076,6 +1086,13 @@
   }
 }
 
+img.modal-warning {
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+  width: 60px;
+}
+
 .embed-modal {
   width: auto;
   max-width: 80vw;
@@ -1215,61 +1232,6 @@
       display: none;
     }
   }
-}
-
-.filtered-status-info {
-  text-align: start;
-
-  .spoiler__text {
-    margin-top: 20px;
-  }
-
-  .account {
-    border-bottom: 0;
-  }
-
-  .account__display-name strong {
-    color: $inverted-text-color;
-  }
-
-  .status__content__spoiler {
-    display: none;
-
-    &--visible {
-      display: flex;
-    }
-  }
-
-  ul {
-    padding: 10px;
-    margin-inline-start: 12px;
-    list-style: disc inside;
-  }
-
-  .filtered-status-edit-link {
-    color: $action-button-color;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
-.modal-root__container .privacy-dropdown {
-  flex-grow: 0;
-}
-
-.modal-root__container .privacy-dropdown__dropdown {
-  pointer-events: auto;
-  z-index: 9999;
-}
-
-img.modal-warning {
-  display: block;
-  margin: auto;
-  margin-bottom: 15px;
-  width: 60px;
 }
 
 .interaction-modal {
@@ -1430,6 +1392,7 @@ img.modal-warning {
   }
 }
 
+// Polyam: Alt-text modal feature
 .alttext-modal {
   max-width: 90vw;
   background: $ui-base-color;

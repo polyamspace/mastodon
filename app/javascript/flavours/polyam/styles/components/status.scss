@@ -1,137 +1,9 @@
-@keyframes spring-flip-in {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  30% {
-    transform: rotate(-242.4deg);
-  }
-
-  60% {
-    transform: rotate(-158.35deg);
-  }
-
-  90% {
-    transform: rotate(-187.5deg);
-  }
-
-  100% {
-    transform: rotate(-180deg);
-  }
-}
-
-@keyframes spring-flip-out {
-  0% {
-    transform: rotate(-180deg);
-  }
-
-  30% {
-    transform: rotate(62.4deg);
-  }
-
-  60% {
-    transform: rotate(-21.635deg);
-  }
-
-  90% {
-    transform: rotate(7.5deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 .status__content--with-action {
   cursor: pointer;
 }
 
 .status__content {
   clear: both;
-}
-
-.status__content {
-  position: relative;
-  margin: 10px 0;
-  font-size: 15px;
-  line-height: 20px;
-  word-wrap: break-word;
-  font-weight: 400;
-  overflow: visible;
-  padding-top: 5px;
-  clear: both;
-
-  &:focus {
-    outline: 0;
-  }
-
-  .emojione {
-    width: 20px;
-    height: 20px;
-    margin: -3px 0 0;
-  }
-
-  p,
-  pre {
-    margin-bottom: 20px;
-    white-space: pre-wrap;
-    unicode-bidi: plaintext;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  a {
-    color: $secondary-text-color;
-    text-decoration: none;
-    unicode-bidi: isolate;
-
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &.mention {
-      &:hover {
-        text-decoration: none;
-
-        span {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-
-  .status__content__spoiler {
-    display: none;
-
-    &.status__content__spoiler--visible {
-      display: block;
-    }
-  }
-
-  a.unhandled-link {
-    color: $highlight-text-color;
-
-    .link-origin-tag {
-      color: $gold-star;
-      font-size: 0.8em;
-    }
-  }
-
-  .status__content__spoiler-link {
-    background: lighten($ui-base-color, 30%);
-
-    &:hover,
-    &:focus {
-      background: lighten($ui-base-color, 33%);
-      text-decoration: none;
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }
 }
 
 .translate-button {
@@ -174,13 +46,6 @@
   }
 }
 
-.notif-cleaning {
-  .status,
-  .notification {
-    padding-inline-end: ($dismiss-overlay-width + 0.5rem);
-  }
-}
-
 .status__wrapper--filtered {
   color: $dark-text-color;
   border: 0;
@@ -207,23 +72,6 @@
     &:active {
       text-decoration: underline;
     }
-  }
-}
-
-.status__prepend-icon-wrapper {
-  inset-inline-start: -26px;
-  position: absolute;
-}
-
-.notification-follow,
-.notification-follow-request {
-  position: relative;
-
-  // same like Status
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-
-  .account {
-    border-bottom: 0 none;
   }
 }
 
@@ -417,247 +265,6 @@
   text-overflow: ellipsis;
 }
 
-.notification-favourite {
-  .status.status-direct {
-    background: transparent;
-
-    .icon-button.disabled {
-      color: lighten($action-button-color, 13%);
-    }
-  }
-}
-
-.status__display-name {
-  color: $dark-text-color;
-  overflow: hidden;
-}
-
-.status__info__account .status__display-name {
-  display: block;
-  max-width: 100%;
-}
-
-.status__info {
-  display: flex;
-  justify-content: space-between;
-  font-size: 15px;
-
-  > span {
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  .notification__message > span {
-    word-wrap: break-word;
-  }
-}
-
-.status__info__icons {
-  display: flex;
-  align-items: center;
-  height: 1em;
-  color: $action-button-color;
-
-  .status__media-icon,
-  .status__visibility-icon,
-  .status__reply-icon,
-  .text-icon {
-    padding-inline-start: 2px;
-    padding-inline-end: 2px;
-  }
-
-  // Polyam: Different class and size to make it more consistent
-  .icon {
-    width: 1em;
-    height: 1em;
-  }
-
-  .status__collapse-button.active > .icon {
-    transform: rotate(-180deg);
-  }
-}
-
-.no-reduce-motion .status__collapse-button {
-  &.activate {
-    & > .icon {
-      animation: spring-flip-in 1s linear;
-    }
-  }
-
-  &.deactivate {
-    & > .icon {
-      animation: spring-flip-out 1s linear;
-    }
-  }
-}
-
-.status__info__account {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.status-check-box__status {
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0 10px;
-
-  .detailed-status__display-name {
-    color: lighten($inverted-text-color, 16%);
-
-    span {
-      display: inline;
-    }
-
-    &:hover strong {
-      text-decoration: none;
-    }
-  }
-
-  .media-gallery,
-  .audio-player,
-  .video-player {
-    margin-top: 15px;
-    max-width: 250px;
-  }
-
-  .status__content {
-    padding: 0;
-    white-space: normal;
-  }
-
-  .media-gallery__item-thumbnail {
-    cursor: default;
-  }
-}
-
-.status__prepend {
-  margin-top: -2px;
-  margin-bottom: 8px;
-  margin-inline-start: 58px;
-  color: $dark-text-color;
-  font-size: 14px;
-  position: relative;
-
-  .status__display-name strong {
-    color: $dark-text-color;
-  }
-
-  > span {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-
-.status__action-bar {
-  align-items: center;
-  display: flex;
-  margin-top: 8px;
-
-  & > .emoji-picker-dropdown > .emoji-button {
-    padding: 0;
-  }
-}
-
-.status__action-bar-button {
-  margin-inline-end: 18px;
-
-  &.icon-button--with-counter {
-    margin-inline-end: 14px;
-  }
-
-  .icon-plus {
-    padding-top: 1px;
-  }
-}
-
-.status__action-bar-dropdown {
-  height: 23.15px;
-  width: 23.15px;
-}
-
-.status__action-bar-spacer {
-  flex-grow: 1;
-}
-
-.detailed-status__action-bar-dropdown {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.detailed-status {
-  background: lighten($ui-base-color, 4%);
-  padding: 14px 10px;
-  border-top: 1px solid lighten($ui-base-color, 8%);
-
-  &--flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    .status__content,
-    .detailed-status__meta {
-      flex: 100%;
-    }
-  }
-
-  .status__content {
-    font-size: 19px;
-    line-height: 24px;
-
-    .emojione {
-      width: 24px;
-      height: 24px;
-      margin: -1px 0 0;
-    }
-  }
-
-  .video-player,
-  .audio-player {
-    margin-top: 8px;
-  }
-
-  .reactions-bar--empty {
-    display: none;
-  }
-}
-
-.scrollable > div:first-child .detailed-status {
-  border-top: 0;
-}
-
-.detailed-status__meta {
-  margin-top: 15px;
-  color: $dark-text-color;
-  font-size: 14px;
-  line-height: 18px;
-
-  .icon {
-    width: 14px;
-    height: 14px;
-    vertical-align: middle;
-  }
-}
-
-.detailed-status__action-bar {
-  background: lighten($ui-base-color, 4%);
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  display: flex;
-  flex-direction: row;
-  padding: 10px 0;
-
-  .icon-plus {
-    padding-top: 2px;
-  }
-}
-
 .detailed-status__link {
   display: inline-flex;
   align-items: center;
@@ -711,12 +318,6 @@ a.status__display-name,
   }
 }
 
-.account__display-name .display-name strong {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .detailed-status__application,
 .detailed-status__datetime {
   color: inherit;
@@ -745,6 +346,13 @@ a.status__display-name,
 .detailed-status__display-avatar {
   float: left;
   margin-inline-end: 10px;
+}
+
+.status__relative-time,
+.detailed-status__datetime {
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .status__avatar {
@@ -780,24 +388,22 @@ a.status__display-name,
   }
 }
 
-.status__relative-time,
-.detailed-status__datetime {
-  &:hover {
-    text-decoration: underline;
-  }
+.scrollable > div:first-child .detailed-status {
+  border-top: 0;
 }
 
+// Should be moved. Also probably not changed as polyam-glitch has ported change upstream postponed
 .status-card {
-  display: flex;
-  align-items: center;
   position: relative;
+  display: flex;
   font-size: 14px;
+  border: 1px solid lighten($ui-base-color, 8%);
+  border-radius: 8px;
   color: $darker-text-color;
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
-  border: 1px solid lighten($ui-base-color, 8%);
-  border-radius: 8px;
+  align-items: center;
 
   &__actions {
     bottom: 0;
@@ -808,7 +414,6 @@ a.status__display-name,
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
 
     & > div {
       background: rgba($base-shadow-color, 0.6);
@@ -1044,71 +649,11 @@ a.status-card {
   width: 100%;
 }
 
-.attachment-list {
-  display: flex;
-  font-size: 14px;
-  border: 1px solid lighten($ui-base-color, 8%);
-  border-radius: 4px;
-  margin-top: 14px; // glitch-soc change to reduce margins
-  overflow: hidden;
-
-  &__icon {
-    flex: 0 0 auto;
-    color: $dark-text-color;
-    padding: 8px 18px;
-    cursor: default;
-    border-inline-end: 1px solid lighten($ui-base-color, 8%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-  }
-
-  &__list {
-    list-style: none;
-    padding: 4px 0;
-    padding-inline-start: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    li {
-      display: block;
-      padding: 4px 0;
-    }
-
-    a {
-      text-decoration: none;
-      color: $dark-text-color;
-      font-weight: 500;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  &.compact {
-    border: 0;
-    margin-top: 4px; // glitch-soc addition to reduce margins
-
-    .attachment-list__list {
-      padding: 0;
-      display: block;
-    }
-
-    .icon {
-      color: $dark-text-color;
-      vertical-align: middle;
-    }
-  }
-}
-
 .notification,
 .status {
   position: relative;
 
+  // Merged from duplicate class upstream
   &.unread {
     &::before {
       content: '';
@@ -1168,6 +713,458 @@ a.status-card {
       &::before {
         display: none;
       }
+    }
+  }
+}
+
+@keyframes spring-flip-in {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  30% {
+    transform: rotate(-242.4deg);
+  }
+
+  60% {
+    transform: rotate(-158.35deg);
+  }
+
+  90% {
+    transform: rotate(-187.5deg);
+  }
+
+  100% {
+    transform: rotate(-180deg);
+  }
+}
+
+@keyframes spring-flip-out {
+  0% {
+    transform: rotate(-180deg);
+  }
+
+  30% {
+    transform: rotate(62.4deg);
+  }
+
+  60% {
+    transform: rotate(-21.635deg);
+  }
+
+  90% {
+    transform: rotate(7.5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.status__content {
+  position: relative;
+  margin: 10px 0;
+  font-size: 15px;
+  line-height: 20px;
+  word-wrap: break-word;
+  font-weight: 400;
+  overflow: visible;
+  padding-top: 5px;
+
+  &:focus {
+    outline: 0;
+  }
+
+  .emojione {
+    width: 20px;
+    height: 20px;
+    margin: -3px 0 0;
+  }
+
+  p,
+  pre {
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    unicode-bidi: plaintext;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: $secondary-text-color;
+    text-decoration: none;
+    unicode-bidi: isolate;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.mention {
+      &:hover {
+        text-decoration: none;
+
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .status__content__spoiler {
+    display: none;
+
+    &.status__content__spoiler--visible {
+      display: block;
+    }
+  }
+
+  a.unhandled-link {
+    color: $highlight-text-color;
+
+    .link-origin-tag {
+      color: $gold-star;
+      font-size: 0.8em;
+    }
+  }
+
+  .status__content__spoiler-link {
+    background: lighten($ui-base-color, 30%);
+
+    &:hover,
+    &:focus {
+      background: lighten($ui-base-color, 33%);
+      text-decoration: none;
+    }
+
+    // Polyam: Prevent outline. Looks weird
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.notif-cleaning {
+  .status,
+  .notification {
+    padding-inline-end: ($dismiss-overlay-width + 0.5rem);
+  }
+}
+
+.status__prepend-icon-wrapper {
+  inset-inline-start: -26px;
+  position: absolute;
+}
+
+.notification-follow,
+.notification-follow-request {
+  position: relative;
+
+  // same like Status
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  .account {
+    border-bottom: 0 none;
+  }
+}
+
+.notification-favourite {
+  .status.status-direct {
+    background: transparent;
+
+    .icon-button.disabled {
+      color: lighten($action-button-color, 13%);
+    }
+  }
+}
+
+.status__display-name {
+  color: $dark-text-color;
+  overflow: hidden;
+}
+
+.status__info__account .status__display-name {
+  display: block;
+  max-width: 100%;
+}
+
+.status__info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+
+  > span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .notification__message > span {
+    word-wrap: break-word;
+  }
+}
+
+.status__info__icons {
+  display: flex;
+  align-items: center;
+  height: 1em;
+  color: $action-button-color;
+
+  .status__media-icon,
+  .status__visibility-icon,
+  .status__reply-icon,
+  .text-icon {
+    padding-inline-start: 2px;
+    padding-inline-end: 2px;
+  }
+
+  // Polyam: Different class and size to make it more consistent
+  .icon {
+    width: 1em;
+    height: 1em;
+  }
+
+  .status__collapse-button.active > .icon {
+    transform: rotate(-180deg);
+  }
+}
+
+.no-reduce-motion .status__collapse-button {
+  &.activate {
+    & > .icon {
+      animation: spring-flip-in 1s linear;
+    }
+  }
+
+  &.deactivate {
+    & > .icon {
+      animation: spring-flip-out 1s linear;
+    }
+  }
+}
+
+.status__info__account {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.status-check-box__status {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 10px;
+
+  .detailed-status__display-name {
+    color: lighten($inverted-text-color, 16%);
+
+    span {
+      display: inline;
+    }
+
+    &:hover strong {
+      text-decoration: none;
+    }
+  }
+
+  .media-gallery,
+  .audio-player,
+  .video-player {
+    margin-top: 15px;
+    max-width: 250px;
+  }
+
+  .status__content {
+    padding: 0;
+    white-space: normal;
+  }
+
+  .media-gallery__item-thumbnail {
+    cursor: default;
+  }
+}
+
+.status__prepend {
+  margin-top: -2px;
+  margin-bottom: 8px;
+  margin-inline-start: 58px;
+  color: $dark-text-color;
+  font-size: 14px;
+  position: relative;
+
+  .status__display-name strong {
+    color: $dark-text-color;
+  }
+
+  > span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.status__action-bar {
+  align-items: center;
+  display: flex;
+  margin-top: 8px;
+
+  // Polyam: Reaction button
+  & > .emoji-picker-dropdown > .emoji-button {
+    padding: 0;
+  }
+}
+
+.status__action-bar-button {
+  margin-inline-end: 18px;
+
+  &.icon-button--with-counter {
+    margin-inline-end: 14px;
+  }
+
+  // Polyam: Reaction button
+  .icon-plus {
+    padding-top: 1px;
+  }
+}
+
+.status__action-bar-dropdown {
+  height: 23.15px;
+  width: 23.15px;
+}
+
+.status__action-bar-spacer {
+  flex-grow: 1;
+}
+
+.detailed-status__action-bar-dropdown {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.detailed-status {
+  background: lighten($ui-base-color, 4%);
+  padding: 14px 10px;
+  border-top: 1px solid lighten($ui-base-color, 8%);
+
+  &--flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .status__content,
+    .detailed-status__meta {
+      flex: 100%;
+    }
+  }
+
+  .status__content {
+    font-size: 19px;
+    line-height: 24px;
+
+    .emojione {
+      width: 24px;
+      height: 24px;
+      margin: -1px 0 0;
+    }
+  }
+
+  .video-player,
+  .audio-player {
+    margin-top: 8px;
+  }
+
+  .reactions-bar--empty {
+    display: none;
+  }
+}
+
+.detailed-status__meta {
+  margin-top: 15px;
+  color: $dark-text-color;
+  font-size: 14px;
+  line-height: 18px;
+
+  .icon {
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+  }
+}
+
+.detailed-status__action-bar {
+  background: lighten($ui-base-color, 4%);
+  border-top: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0;
+
+  .icon-plus {
+    padding-top: 2px;
+  }
+}
+
+.attachment-list {
+  display: flex;
+  font-size: 14px;
+  border: 1px solid lighten($ui-base-color, 8%);
+  border-radius: 4px;
+  margin-top: 14px; // glitch-soc change to reduce margins
+  overflow: hidden;
+
+  &__icon {
+    flex: 0 0 auto;
+    color: $dark-text-color;
+    padding: 8px 18px;
+    cursor: default;
+    border-inline-end: 1px solid lighten($ui-base-color, 8%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 4px 0;
+    padding-inline-start: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    li {
+      display: block;
+      padding: 4px 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: $dark-text-color;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &.compact {
+    border: 0;
+    margin-top: 4px; // glitch-soc addition to reduce margins
+
+    .attachment-list__list {
+      padding: 0;
+      display: block;
+    }
+
+    .icon {
+      color: $dark-text-color;
+      vertical-align: middle;
     }
   }
 }

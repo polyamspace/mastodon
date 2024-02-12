@@ -51,6 +51,7 @@
   gap: 2px;
 }
 
+// Polyam: Different class because clickable button
 .media-gallery__alt__label {
   display: block;
   color: $white;
@@ -69,6 +70,7 @@
   }
 }
 
+// TODO: Match with upstream. Polyam-glitch uses different style because of alt button
 .media-gallery__gifv__label {
   display: flex;
   align-items: center;

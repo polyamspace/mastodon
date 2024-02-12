@@ -159,6 +159,7 @@ a .account__avatar {
   }
 }
 
+// Polyam: Kept height and padding from upstream since polyam-glitch still uses icon buttons
 .account__relationship {
   height: 18px;
   padding: 10px;
@@ -171,6 +172,113 @@ a .account__avatar {
   .icon {
     width: 23px;
     height: 23px;
+  }
+}
+
+.account-authorize {
+  padding: 14px 10px;
+
+  .detailed-status__display-name {
+    display: block;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+}
+
+.account-authorize__avatar {
+  float: left;
+  margin-inline-end: 10px;
+}
+
+.account__display-name .display-name strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notification__report {
+  padding: 8px 10px;
+  padding-inline-start: 68px;
+  position: relative;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  min-height: 54px;
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $darker-text-color;
+    font-size: 15px;
+    line-height: 22px;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+
+  &__avatar {
+    position: absolute;
+    inset-inline-start: 10px;
+    top: 10px;
+  }
+}
+
+.notification__message {
+  margin-inline-start: 42px;
+  padding-top: 8px;
+  padding-inline-start: 26px;
+  cursor: default;
+  color: $darker-text-color;
+  font-size: 15px;
+  position: relative;
+  align-items: center;
+
+  .icon {
+    color: $highlight-text-color;
+    width: 18px;
+    height: 18px;
+  }
+
+  .icon-star {
+    color: $gold-star;
+  }
+
+  > span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.account--panel {
+  background: lighten($ui-base-color, 4%);
+  border-top: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0;
+}
+
+.account--panel__button,
+.detailed-status__button {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.relationship-tag {
+  color: $white;
+  margin-bottom: 4px;
+  display: block;
+  background-color: rgba($black, 0.45);
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px;
+  border-radius: 4px;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
   }
 }
 
@@ -266,109 +374,46 @@ a .account__avatar {
   }
 }
 
-.account-authorize {
+.account__moved-note {
   padding: 14px 10px;
-
-  .detailed-status__display-name {
-    display: block;
-    margin-bottom: 15px;
-    overflow: hidden;
-  }
-}
-
-.account-authorize__avatar {
-  float: left;
-  margin-inline-end: 10px;
-}
-
-.notification__report {
-  padding: 8px 10px;
-  padding-inline-start: 68px;
-  position: relative;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  min-height: 54px;
-
-  &__details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: $darker-text-color;
-    font-size: 15px;
-    line-height: 22px;
-
-    strong {
-      font-weight: 500;
-    }
-  }
-
-  &__avatar {
-    position: absolute;
-    inset-inline-start: 10px;
-    top: 10px;
-  }
-}
-
-.notification__message {
-  margin-inline-start: 42px;
-  padding-top: 8px;
-  padding-inline-start: 26px;
-  cursor: default;
-  color: $darker-text-color;
-  font-size: 15px;
-  position: relative;
-  align-items: center;
-
-  .icon {
-    color: $highlight-text-color;
-    width: 18px;
-    height: 18px;
-  }
-
-  .icon-star {
-    color: $gold-star;
-  }
-
-  > span {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-
-.account--panel {
+  padding-bottom: 16px;
   background: lighten($ui-base-color, 4%);
   border-top: 1px solid lighten($ui-base-color, 8%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
-  display: flex;
-  flex-direction: row;
-  padding: 10px 0;
+
+  &__message {
+    position: relative;
+    margin-inline-start: 58px;
+    color: $dark-text-color;
+    padding: 8px 0;
+    padding-top: 0;
+    padding-bottom: 4px;
+    font-size: 14px;
+
+    > span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__icon-wrapper {
+    inset-inline-start: -26px;
+    position: absolute;
+  }
+
+  .detailed-status__display-avatar {
+    position: relative;
+  }
+
+  .detailed-status__display-name {
+    margin-bottom: 0;
+  }
 }
 
-.account--panel__button,
-.detailed-status__button {
-  flex: 1 1 auto;
-  text-align: center;
-}
-
+// Move this? Belongs to reactions and should be in status.scss
 .detailed-status__button .emoji-button {
   padding: 0;
-}
-
-.relationship-tag {
-  color: $white;
-  margin-bottom: 4px;
-  display: block;
-  background-color: rgba($black, 0.45);
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 500;
-  padding: 4px;
-  border-radius: 4px;
-  opacity: 0.7;
-
-  &:hover {
-    opacity: 1;
-  }
 }
 
 .account-gallery__container {
@@ -438,61 +483,47 @@ a .account__avatar {
       }
     }
   }
-
-  &.directory__section-headline {
-    background: darken($ui-base-color, 2%);
-    border-bottom-color: transparent;
-
-    a,
-    button {
-      &.active {
-        &::before {
-          display: none;
-        }
-
-        &::after {
-          border-color: transparent transparent darken($ui-base-color, 7%);
-        }
-      }
-    }
-  }
 }
 
-.account__moved-note {
-  padding: 14px 10px;
-  padding-bottom: 16px;
+.moved-account-banner,
+.follow-request-banner,
+.account-memorial-banner {
+  padding: 20px;
   background: lighten($ui-base-color, 4%);
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
   &__message {
-    position: relative;
-    margin-inline-start: 58px;
-    color: $dark-text-color;
+    color: $darker-text-color;
     padding: 8px 0;
     padding-top: 0;
     padding-bottom: 4px;
     font-size: 14px;
-
-    > span {
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 16px;
   }
 
-  &__icon-wrapper {
-    inset-inline-start: -26px;
-    position: absolute;
-  }
-
-  .detailed-status__display-avatar {
-    position: relative;
+  &__action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
   }
 
   .detailed-status__display-name {
     margin-bottom: 0;
   }
+}
+
+.follow-request-banner .button {
+  width: 100%;
+}
+
+.account-memorial-banner__message {
+  margin-bottom: 0;
 }
 
 .account__header__content {
@@ -794,7 +825,7 @@ a .account__avatar {
           cursor: default;
         }
 
-        // 14px instead of 15px to match old size
+        // Polyam: 14px instead of 15px to match old size
         .icon {
           width: 14px;
           height: 14px;
@@ -874,45 +905,4 @@ a .account__avatar {
     width: 13px;
     height: 13px;
   }
-}
-
-.moved-account-banner,
-.follow-request-banner,
-.account-memorial-banner {
-  padding: 20px;
-  background: lighten($ui-base-color, 4%);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  &__message {
-    color: $darker-text-color;
-    padding: 8px 0;
-    padding-top: 0;
-    padding-bottom: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 16px;
-  }
-
-  &__action {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    width: 100%;
-  }
-
-  .detailed-status__display-name {
-    margin-bottom: 0;
-  }
-}
-
-.follow-request-banner .button {
-  width: 100%;
-}
-
-.account-memorial-banner__message {
-  margin-bottom: 0;
 }
