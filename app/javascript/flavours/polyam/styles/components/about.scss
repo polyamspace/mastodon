@@ -280,6 +280,7 @@
         margin-bottom: 4px;
       }
 
+      // Polyam: Removed white-space: nowrap because not readable otherwise
       h6 {
         color: $secondary-text-color;
         font-size: inherit;
@@ -287,6 +288,7 @@
         text-overflow: ellipsis;
       }
 
+      // Polyam: Removed white-space: nowrap because not readable otherwise
       p {
         overflow: hidden;
         text-overflow: ellipsis;

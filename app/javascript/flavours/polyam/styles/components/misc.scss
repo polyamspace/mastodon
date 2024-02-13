@@ -81,9 +81,19 @@
     }
   }
 
-  &:disabled {
+  &:disabled,
+  &.disabled {
     background-color: $ui-primary-color;
     cursor: default;
+  }
+
+  &.copyable {
+    transition: background 300ms linear;
+  }
+
+  &.copied {
+    background: $valid-value-color;
+    transition: none;
   }
 
   &.button-secondary {
@@ -206,15 +216,6 @@
     color: darken($action-button-color, 13%);
     background-color: transparent;
     cursor: default;
-  }
-
-  &.copyable {
-    transition: background 300ms linear;
-  }
-
-  &.copied {
-    background: $valid-value-color;
-    transition: none;
   }
 
   &.inverted {
@@ -354,6 +355,7 @@ body > [data-popper-placement] {
   inset-inline-start: 0;
   position: absolute;
 
+  // Polyam: Kept from upstream -- upstreams change on how icon is colored didn't work
   .icon.star-icon {
     color: $gold-star;
   }
@@ -604,6 +606,22 @@ body > [data-popper-placement] {
       padding: 30px 45px;
     }
   }
+
+  &.left {
+    transform-origin: 100% 50%;
+  }
+
+  &.top {
+    transform-origin: 50% 100%;
+  }
+
+  &.bottom {
+    transform-origin: 50% 0;
+  }
+
+  &.right {
+    transform-origin: 0 50%;
+  }
 }
 
 .dropdown-menu__item {
@@ -658,24 +676,6 @@ body > [data-popper-placement] {
   }
 }
 
-.static-content {
-  padding: 10px;
-  padding-top: 20px;
-  color: $dark-text-color;
-
-  h1 {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 40px;
-    text-align: center;
-  }
-
-  p {
-    font-size: 13px;
-    margin-bottom: 20px;
-  }
-}
-
 .column,
 .drawer {
   flex: 1 1 100%;
@@ -712,6 +712,8 @@ body > [data-popper-placement] {
   }
 }
 
+// columns-area--mobile (Moved to single-column.scss by upstream)
+
 .icon-with-badge {
   display: inline-flex;
   position: relative;
@@ -746,6 +748,7 @@ body > [data-popper-placement] {
   border-color: darken($ui-base-color, 8%);
 }
 
+// This would make more sense in columns.scss
 .scrollable {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -860,8 +863,7 @@ body > [data-popper-placement] {
 }
 
 .getting-started__wrapper {
-  position: relative;
-  overflow-y: auto;
+  flex: 0 0 auto;
 }
 
 .flex-spacer {
@@ -869,16 +871,8 @@ body > [data-popper-placement] {
 }
 
 .getting-started {
-  background: $ui-base-color;
-  flex: 1 0 auto;
-
-  p {
-    color: $secondary-text-color;
-  }
-
-  a {
-    color: $dark-text-color;
-  }
+  color: $dark-text-color;
+  overflow: auto;
 
   &__trends {
     flex: 0 1 auto;
@@ -926,17 +920,6 @@ body > [data-popper-placement] {
   }
 }
 
-.column-link__badge {
-  display: inline-block;
-  border-radius: 4px;
-  font-size: 12px;
-  line-height: 19px;
-  font-weight: 500;
-  background: $ui-base-color;
-  padding: 4px 8px;
-  margin: -6px 10px;
-}
-
 .keyboard-shortcuts {
   padding: 8px 0 0;
   overflow: hidden;
@@ -959,13 +942,13 @@ body > [data-popper-placement] {
 }
 
 .setting-text {
+  display: block;
+  box-sizing: border-box;
   color: $darker-text-color;
   background: transparent;
   border: 0;
   border-bottom: 2px solid $ui-primary-color;
   outline: 0;
-  box-sizing: border-box;
-  display: block;
   font-family: inherit;
   margin-bottom: 10px;
   padding: 7px 0;
@@ -975,10 +958,6 @@ body > [data-popper-placement] {
   &:active {
     color: $primary-text-color;
     border-bottom-color: $ui-highlight-color;
-  }
-
-  @include limited-single-column('screen and (max-width: 600px)') {
-    font-size: 16px;
   }
 
   &.light {
@@ -991,8 +970,13 @@ body > [data-popper-placement] {
       border-bottom-color: $ui-highlight-color;
     }
   }
+
+  @media screen and (width <= 600px) {
+    font-size: 16px;
+  }
 }
 
+// Polyam: Kept from upstream, but dead code
 button.icon-button .icon-retweet {
   background-position: 0 0;
   height: 19px;
@@ -1019,6 +1003,8 @@ button.icon-button.active .icon-retweet {
 .reduce-motion button.icon-button.disabled .icon-retweet {
   color: darken($action-button-color, 13%);
 }
+
+// End dead
 
 .load-more {
   display: block;
@@ -1066,14 +1052,6 @@ button.icon-button.active .icon-retweet {
       text-decoration: underline;
       color: lighten($highlight-text-color, 4%);
     }
-  }
-}
-
-.missing-indicator {
-  padding-top: 20px + 48px;
-
-  .regeneration-indicator__figure {
-    background-image: url('~flavours/polyam/images/elephant_ui_disappointed.svg');
   }
 }
 
@@ -1335,10 +1313,6 @@ button.icon-button.active .icon-retweet {
   vertical-align: middle;
 }
 
-.column-settings__row .radio-button {
-  display: block;
-}
-
 .setting-meta__label {
   float: right;
 }
@@ -1346,7 +1320,6 @@ button.icon-button.active .icon-retweet {
 @keyframes heartbeat {
   0% {
     transform: scale(1);
-    transform-origin: center center;
     animation-timing-function: ease-out;
   }
 
@@ -1371,7 +1344,8 @@ button.icon-button.active .icon-retweet {
   }
 }
 
-.pulse-loading {
+.no-reduce-motion .pulse-loading {
+  transform-origin: center center;
   animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
@@ -1428,18 +1402,11 @@ button.icon-button.active .icon-retweet {
   border-radius: 4px;
 }
 
+// .upload-progress (Has been moved to compose-form.scss by upstream
+
 .dropdown--active .emoji-button img {
   opacity: 1;
   filter: none;
-}
-
-.loading-bar {
-  background-color: $ui-highlight-color;
-  height: 3px;
-  position: fixed;
-  top: 0;
-  inset-inline-start: 0;
-  z-index: 9999;
 }
 
 .icon-badge-wrapper {
@@ -1456,6 +1423,67 @@ button.icon-button.active .icon-retweet {
   font-size: 75%;
   width: 1em;
   height: 1em;
+}
+
+.ui .flash-message {
+  margin-top: 10px;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  margin-bottom: 0;
+  min-width: 75%;
+}
+
+.loading-bar {
+  background-color: $highlight-text-color;
+  height: 3px;
+  position: fixed;
+  top: 0;
+  inset-inline-start: 0;
+  z-index: 9999;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+}
+
+noscript {
+  text-align: center;
+
+  img {
+    width: 200px;
+    opacity: 0.5;
+    animation: flicker 4s infinite;
+  }
+
+  div {
+    font-size: 14px;
+    margin: 30px auto;
+    color: $secondary-text-color;
+    max-width: 400px;
+
+    a {
+      color: $highlight-text-color;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .conversation {
@@ -1551,61 +1579,5 @@ button.icon-button.active .icon-retweet {
     .conversation__content__relative-time {
       color: $primary-text-color;
     }
-  }
-}
-
-.ui .flash-message {
-  margin-top: 10px;
-  margin-inline-start: auto;
-  margin-inline-end: auto;
-  margin-bottom: 0;
-  min-width: 75%;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 0;
-}
-
-noscript {
-  text-align: center;
-
-  img {
-    width: 200px;
-    opacity: 0.5;
-    animation: flicker 4s infinite;
-  }
-
-  div {
-    font-size: 14px;
-    margin: 30px auto;
-    color: $secondary-text-color;
-    max-width: 400px;
-
-    a {
-      color: $highlight-text-color;
-      text-decoration: underline;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
-
-    a {
-      word-break: break-word;
-    }
-  }
-}
-
-@keyframes flicker {
-  0% {
-    opacity: 1;
-  }
-
-  30% {
-    opacity: 0.75;
-  }
-
-  100% {
-    opacity: 1;
   }
 }
