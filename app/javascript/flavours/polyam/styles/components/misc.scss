@@ -502,18 +502,6 @@ body > [data-popper-placement] {
   }
 }
 
-.circular-progress {
-  color: lighten($ui-base-color, 26%);
-  animation: 1.4s linear 0s infinite normal none running simple-rotate;
-
-  circle {
-    stroke: currentColor;
-    stroke-dasharray: 80px, 200px;
-    stroke-dashoffset: 0;
-    animation: circular-progress 1.4s ease-in-out infinite;
-  }
-}
-
 .setting-toggle {
   display: block;
   line-height: 24px;
@@ -530,11 +518,6 @@ body > [data-popper-placement] {
 
 .setting-meta__label {
   float: right;
-}
-
-.no-reduce-motion .pulse-loading {
-  transform-origin: center center;
-  animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
 .upload-area {
