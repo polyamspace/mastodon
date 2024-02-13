@@ -649,6 +649,7 @@ a.status-card {
   width: 100%;
 }
 
+// TODO: Create mixin?
 .notification,
 .status {
   position: relative;
@@ -801,38 +802,9 @@ a.status-card {
   }
 }
 
-.notif-cleaning {
-  .status,
-  .notification {
-    padding-inline-end: ($dismiss-overlay-width + 0.5rem);
-  }
-}
-
 .status__prepend-icon-wrapper {
   inset-inline-start: -26px;
   position: absolute;
-}
-
-.notification-follow,
-.notification-follow-request {
-  position: relative;
-
-  // same like Status
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-
-  .account {
-    border-bottom: 0 none;
-  }
-}
-
-.notification-favourite {
-  .status.status-direct {
-    background: transparent;
-
-    .icon-button.disabled {
-      color: lighten($action-button-color, 13%);
-    }
-  }
 }
 
 .status__display-name {

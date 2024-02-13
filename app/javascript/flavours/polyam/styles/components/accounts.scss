@@ -196,60 +196,6 @@ a .account__avatar {
   text-overflow: ellipsis;
 }
 
-.notification__report {
-  padding: 8px 10px;
-  padding-inline-start: 68px;
-  position: relative;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  min-height: 54px;
-
-  &__details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: $darker-text-color;
-    font-size: 15px;
-    line-height: 22px;
-
-    strong {
-      font-weight: 500;
-    }
-  }
-
-  &__avatar {
-    position: absolute;
-    inset-inline-start: 10px;
-    top: 10px;
-  }
-}
-
-.notification__message {
-  margin-inline-start: 42px;
-  padding-top: 8px;
-  padding-inline-start: 26px;
-  cursor: default;
-  color: $darker-text-color;
-  font-size: 15px;
-  position: relative;
-  align-items: center;
-
-  .icon {
-    color: $highlight-text-color;
-    width: 18px;
-    height: 18px;
-  }
-
-  .icon-star {
-    color: $gold-star;
-  }
-
-  > span {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-
 .inline-account {
   display: inline-flex;
   align-items: center;
