@@ -165,44 +165,6 @@ body > [data-popper-placement] {
   }
 }
 
-.column,
-.drawer {
-  flex: 1 1 100%;
-  overflow: hidden;
-}
-
-@media screen and (width >= 631px) {
-  .columns-area {
-    padding: 0;
-  }
-
-  .column,
-  .drawer {
-    flex: 0 0 auto;
-    padding: 10px;
-    padding-inline-start: 5px;
-    padding-inline-end: 5px;
-
-    &:first-child {
-      padding-inline-start: 10px;
-    }
-
-    &:last-child {
-      padding-inline-end: 10px;
-    }
-  }
-
-  .columns-area > div {
-    .column,
-    .drawer {
-      padding-inline-start: 5px;
-      padding-inline-end: 5px;
-    }
-  }
-}
-
-// columns-area--mobile (Moved to single-column.scss by upstream)
-
 .icon-with-badge {
   display: inline-flex;
   position: relative;
@@ -231,10 +193,6 @@ body > [data-popper-placement] {
     width: 0.625rem;
     height: 0.625rem;
   }
-}
-
-.column-link--transparent .icon-with-badge__badge {
-  border-color: darken($ui-base-color, 8%);
 }
 
 // This would make more sense in columns.scss
