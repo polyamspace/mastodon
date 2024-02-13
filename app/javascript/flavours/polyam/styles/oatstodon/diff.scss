@@ -64,6 +64,7 @@ hr {
 .column-header {
   background-color: $background-brighter;
   border-radius: $border-radius $border-radius 0 0;
+  border-bottom: none;
 
   &__button,
   &__back-button {
@@ -82,6 +83,10 @@ hr {
     }
   }
 
+  &__collapsible {
+    border-bottom: none;
+  }
+
   &__collapsible-inner {
     background-color: $background-brighter;
   }
@@ -91,6 +96,7 @@ hr {
 .column-back-button {
   background-color: $background-brighter;
   border-radius: $border-radius $border-radius 0 0;
+  border-bottom: none;
 }
 
 // Form in edit/add list
@@ -124,6 +130,11 @@ hr {
   button:not(.active):hover {
     top: -3px;
   }
+}
+
+// "Toots are not E2E encrypted and such banners
+.follow_requests-unlocked_explanation {
+  border-bottom: none;
 }
 
 // Animates follow request count
