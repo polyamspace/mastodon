@@ -37,14 +37,10 @@ export default class NavigationBar extends ImmutablePureComponent {
           </span>
 
           { profileLink !== undefined && (
-            <span>
-              <a
-                className='edit'
-                href={profileLink}
-              >
-                <FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' />
-              </a>
-            </span>
+            <a
+              href={profileLink}
+              className='navigation-bar__profile-edit'
+            ><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a>
           )}
         </div>
 
