@@ -336,21 +336,6 @@ body > [data-popper-placement] {
   }
 }
 
-.inline-account {
-  display: inline-flex;
-  align-items: center;
-  vertical-align: top;
-
-  .account__avatar {
-    margin-inline-end: 5px;
-    border-radius: 50%;
-  }
-
-  strong {
-    font-weight: 600;
-  }
-}
-
 .column,
 .drawer {
   flex: 1 1 100%;

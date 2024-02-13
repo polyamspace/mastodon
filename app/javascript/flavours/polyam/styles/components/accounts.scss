@@ -250,6 +250,21 @@ a .account__avatar {
   }
 }
 
+.inline-account {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: top;
+
+  .account__avatar {
+    margin-inline-end: 5px;
+    border-radius: 50%;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
 .account--panel {
   background: lighten($ui-base-color, 4%);
   border-top: 1px solid lighten($ui-base-color, 8%);
