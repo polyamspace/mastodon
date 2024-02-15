@@ -228,18 +228,18 @@ hr {
   &__warning {
     background-color: $background-brighter;
   }
-}
 
-.autosuggest-textarea {
-  &__suggestions {
-    background-color: $simple-background-color;
+  .autosuggest-textarea {
+    &__suggestions {
+      background-color: $simple-background-color;
 
-    &__item {
-      &:hover,
-      &:focus,
-      &:active,
-      &.selected {
-        background-color: lighten($simple-background-color, 8%);
+      &__item {
+        &:hover,
+        &:focus,
+        &:active,
+        &.selected {
+          background-color: lighten($simple-background-color, 8%);
+        }
       }
     }
   }
