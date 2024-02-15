@@ -262,22 +262,6 @@ button.icon-button {
 
 // Compose
 
-// Hashtags and users suggestions
-.autosuggest-textarea {
-  &__suggestions {
-    background-color: darken($purple2, 4%);
-
-    &__item {
-      &:hover,
-      &:focus,
-      &:active,
-      &.selected {
-        background-color: darken($purple2, 10%);
-      }
-    }
-  }
-}
-
 .compose-form {
   // Bar below textarea
   &__buttons-wrapper {
@@ -293,6 +277,22 @@ button.icon-button {
 
   &__warning {
     background-color: darken($purple2, 4%);
+  }
+
+  // Hashtags and users suggestions
+  .autosuggest-textarea {
+    &__suggestions {
+      background-color: darken($purple2, 4%);
+
+      &__item {
+        &:hover,
+        &:focus,
+        &:active,
+        &.selected {
+          background-color: darken($purple2, 10%);
+        }
+      }
+    }
   }
 }
 
