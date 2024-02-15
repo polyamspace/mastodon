@@ -262,6 +262,13 @@ button.icon-button {
 
 // Compose
 
+// Fix white corners in compose textarea in simple UI
+.compose-panel {
+  .compose-form__autosuggest-wrapper {
+    background-color: transparent;
+  }
+}
+
 .compose-form {
   // Bar below textarea
   &__buttons-wrapper {
