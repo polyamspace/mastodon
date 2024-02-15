@@ -101,13 +101,17 @@ body {
   border: 1px solid $ui-base-extra-light-color;
 }
 
-.autosuggest-textarea__suggestions {
+.compose-form .autosuggest-textarea__suggestions {
   background: lighten($ui-base-color, 4%);
 }
 
-.autosuggest-textarea__suggestions__item.selected,
-.autosuggest-textarea__suggestions__item:hover {
-  background: $ui-highlight-color;
+.compose-form .autosuggest-textarea__suggestions__item {
+  &:hover,
+  &:focus,
+  &:active,
+  &.selected {
+    background: $ui-highlight-color;
+  }
 }
 
 .compose-form__publish .compose-form__publish-button-wrapper button {
