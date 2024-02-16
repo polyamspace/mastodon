@@ -67,6 +67,7 @@ defaults: &defaults
   publish_button_text: ''
   captcha_enabled: false
   allow_referer_origin: false
+  reject_pattern: ''
 
 development:
   <<: *defaults
