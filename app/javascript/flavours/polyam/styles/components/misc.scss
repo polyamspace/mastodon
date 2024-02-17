@@ -388,8 +388,7 @@ body > [data-popper-placement] {
   }
 }
 
-.setting-text {
-  display: block;
+input.glitch-setting-text {
   box-sizing: border-box;
   color: $darker-text-color;
   background: transparent;
@@ -407,15 +406,57 @@ body > [data-popper-placement] {
     border-bottom-color: $ui-highlight-color;
   }
 
-  &.light {
-    color: $inverted-text-color;
-    border-bottom: 2px solid lighten($ui-base-color, 27%);
+  @media screen and (width <= 600px) {
+    font-size: 16px;
+  }
+}
 
-    &:focus,
-    &:active {
-      color: $inverted-text-color;
-      border-bottom-color: $ui-highlight-color;
+.setting-text {
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  color: $inverted-text-color;
+  background: $white;
+  padding: 7px 10px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  border-radius: 4px;
+  border: 1px solid $white;
+
+  &:focus {
+    outline: 0;
+    border-color: lighten($ui-highlight-color, 12%);
+  }
+
+  &__wrapper {
+    background: $white;
+    border: 1px solid $ui-secondary-color;
+    margin-bottom: 10px;
+    border-radius: 4px;
+
+    .setting-text {
+      border: 0;
+      margin-bottom: 0;
+      border-radius: 0;
+
+      &:focus {
+        border: 0;
+      }
     }
+
+    &__modifiers {
+      color: $inverted-text-color;
+      font-family: inherit;
+      font-size: 14px;
+      background: $white;
+    }
+  }
+
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
 
   @media screen and (width <= 600px) {

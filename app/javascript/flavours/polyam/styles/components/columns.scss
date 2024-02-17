@@ -523,7 +523,6 @@ $ui-header-height: 55px;
   cursor: pointer;
   white-space: nowrap;
   font-size: 16px;
-  flex: 0 0 auto;
   padding: 0;
   padding-inline-end: 5px;
   z-index: 3;
@@ -1194,29 +1193,24 @@ $ui-header-height: 55px;
 }
 
 .column-inline-form {
-  padding: 7px 15px;
-  padding-inline-end: 5px;
+  padding: 15px;
   display: flex;
   justify-content: flex-start;
+  gap: 15px;
   align-items: center;
   background: lighten($ui-base-color, 4%);
+
+  // Polyam: Fix awkward input width
+  input {
+    width: 100%;
+  }
 
   label {
     flex: 1 1 auto;
 
     input {
       width: 100%;
-      margin-bottom: 6px;
-
-      &:focus {
-        outline: 0;
-      }
     }
-  }
-
-  .icon-button {
-    flex: 0 0 auto;
-    margin: 0 5px;
   }
 }
 
