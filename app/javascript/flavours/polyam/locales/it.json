@@ -4,6 +4,7 @@
   "account.featured_accounts.empty": "This user doesn't feature any accounts yet.",
   "account.featured_tags.empty": "This user doesn't feature any hashtags yet.",
   "account.follows_you": "Ti segue",
+  "account.joined": "Joined {date}",
   "account.mute_notifications": "Mute notifications from @{name}",
   "account.request_follow": "Request follow",
   "account.unmute_notifications": "Unmute notifications from @{name}",
