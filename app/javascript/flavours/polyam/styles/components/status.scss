@@ -325,10 +325,13 @@ a.status__display-name,
 }
 
 .detailed-status__display-name {
-  color: $secondary-text-color;
-  display: block;
-  line-height: 24px;
-  margin-bottom: 15px;
+  color: $darker-text-color;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 22px;
+  margin-bottom: 16px;
   overflow: hidden;
 
   strong,
@@ -339,14 +342,8 @@ a.status__display-name,
   }
 
   strong {
-    font-size: 16px;
     color: $primary-text-color;
   }
-}
-
-.detailed-status__display-avatar {
-  float: left;
-  margin-inline-end: 10px;
 }
 
 .status__relative-time,
