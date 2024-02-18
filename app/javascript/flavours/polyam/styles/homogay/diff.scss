@@ -177,10 +177,22 @@ body {
 // Profiles
 
 .account__header {
+  // Polyam: Keep profile background different
+  background: lighten($ui-base-color, 4%);
+
   // Polyam: Make field content distinct and more readable
   .account__header__fields {
     dd {
       color: $ui-primary-color;
+    }
+  }
+
+  // Polyam: Match with background
+  &__account-note {
+    textarea {
+      &:focus {
+        background: lighten($ui-base-color, 4%);
+      }
     }
   }
 }
