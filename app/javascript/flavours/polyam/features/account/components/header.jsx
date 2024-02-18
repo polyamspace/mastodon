@@ -23,9 +23,8 @@ import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/
 import { preferencesLink, profileLink, accountAdminLink, instanceAdminLink } from 'flavours/polyam/utils/backend_links';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
+import AccountNoteContainer from '../containers/account_note_container';
 import FollowRequestNoteContainer from '../containers/follow_request_note_container';
-
-import { AccountNote } from './account_note';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -65,7 +64,6 @@ const messages = defineMessages({
   add_or_remove_from_list: { id: 'account.add_or_remove_from_list', defaultMessage: 'Add or Remove from lists' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
-  add_account_note: { id: 'account.add_account_note', defaultMessage: 'Add note for @{name}' },
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
 });
@@ -104,7 +102,6 @@ class Header extends ImmutablePureComponent {
     onUnblockDomain: PropTypes.func.isRequired,
     onEndorseToggle: PropTypes.func.isRequired,
     onAddToList: PropTypes.func.isRequired,
-    onEditAccountNote: PropTypes.func.isRequired,
     onChangeLanguages: PropTypes.func.isRequired,
     onInteractionModal: PropTypes.func.isRequired,
     onOpenAvatar: PropTypes.func.isRequired,
@@ -173,8 +170,6 @@ class Header extends ImmutablePureComponent {
       return null;
     }
 
-    const accountNote = account.getIn(['relationship', 'note']);
-
     const suspended    = account.get('suspended');
     const isRemote     = account.get('acct') !== account.get('username');
     const remoteDomain = isRemote ? account.get('acct').split('@')[1] : null;
@@ -241,10 +236,6 @@ class Header extends ImmutablePureComponent {
     if ('share' in navigator && !suspended) {
       menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
       menu.push(null);
-    }
-
-    if (accountNote === null || accountNote === '') {
-      menu.push({ text: intl.formatMessage(messages.add_account_note, { name: account.get('username') }), action: this.props.onEditAccountNote });
     }
 
     if (account.get('id') === me) {
@@ -384,7 +375,7 @@ class Header extends ImmutablePureComponent {
             </div>
           )}
 
-          {signedIn && <AccountNote account={account} />}
+          {signedIn && <AccountNoteContainer account={account} />}
 
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
