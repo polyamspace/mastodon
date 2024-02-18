@@ -174,6 +174,17 @@ body {
   }
 }
 
+// Profiles
+
+.account__header {
+  // Polyam: Make field content distinct and more readable
+  .account__header__fields {
+    dd {
+      color: $ui-primary-color;
+    }
+  }
+}
+
 // dropdowns
 .dropdown-menu,
 .dropdown-menu__item a,
