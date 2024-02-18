@@ -49,9 +49,9 @@
   display: flex;
 }
 
-.video-modal__container {
+.video-modal .video-player {
+  max-height: 80vh;
   max-width: 100vw;
-  max-height: 100vh;
 }
 
 .audio-modal__container {

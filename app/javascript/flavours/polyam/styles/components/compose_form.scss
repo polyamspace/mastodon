@@ -331,6 +331,22 @@
         height: 100%;
       }
 
+      .compose-form__upload-button-icon {
+        line-height: 27px;
+      }
+
+      .compose-form__sensitive-button {
+        display: none;
+
+        &.compose-form__sensitive-button--visible {
+          display: block;
+        }
+
+        .compose-form__sensitive-button__icon {
+          line-height: 27px;
+        }
+      }
+
       // Polyam: Upstream removed this. I think it looks better.
       & > hr {
         display: inline-block;
@@ -615,10 +631,6 @@
 .privacy-dropdown__option__content {
   flex: 1 1 auto;
   color: $lighter-text-color;
-
-  &:not(:first-child) {
-    margin-inline-start: 10px;
-  }
 
   strong {
     font-weight: 500;

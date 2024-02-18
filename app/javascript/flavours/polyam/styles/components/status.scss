@@ -132,8 +132,9 @@
   }
 
   &.light {
-    .status__relative-time {
-      color: $lighter-text-color;
+    .status__relative-time,
+    .status__visibility-icon {
+      color: $light-text-color;
     }
 
     .status__display-name {
