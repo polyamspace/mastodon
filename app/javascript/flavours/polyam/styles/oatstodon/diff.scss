@@ -508,9 +508,14 @@ hr {
   }
 
   &__header {
+    background-color: $background-brighter;
+
+    &__image {
+      border-bottom: none;
+    }
+
     &__bar {
       border-bottom: none;
-      background-color: $background-brighter;
     }
 
     &__bio {
@@ -525,6 +530,15 @@ hr {
 
       dt {
         color: $primary-text-color;
+      }
+    }
+
+    // Polyam: Keep same background as header
+    &__account-note {
+      textarea {
+        &:focus {
+          background-color: $background-brighter;
+        }
       }
     }
   }
