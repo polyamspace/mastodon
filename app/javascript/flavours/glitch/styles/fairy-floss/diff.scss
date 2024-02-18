@@ -428,9 +428,7 @@ button.icon-button {
 
 .account {
   &__header {
-    &__bar {
-      background-color: $purple5;
-    }
+    background-color: $purple5;
 
     &__image {
       background-color: $purple1;
@@ -451,6 +449,15 @@ button.icon-button {
     &__bio {
       .account__header__fields {
         border-color: lighten($purple1, 12%);
+      }
+    }
+
+    // Polyam: Keep same background as header
+    &__account-note {
+      textarea {
+        &:focus {
+          background-color: $purple5;
+        }
       }
     }
   }
