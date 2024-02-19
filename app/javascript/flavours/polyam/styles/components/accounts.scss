@@ -1,8 +1,6 @@
 .account {
   padding: 10px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
-  color: inherit;
-  text-decoration: none;
 
   .account__display-name {
     flex: 1 1 auto;
@@ -85,10 +83,6 @@
   display: flex;
   gap: 10px;
   align-items: center;
-}
-
-.account__avatar-wrapper {
-  float: left;
 }
 
 .account__avatar {
@@ -241,11 +235,6 @@ a .account__avatar {
   &:hover {
     opacity: 1;
   }
-}
-
-.account__header__wrapper {
-  flex: 0 0 auto;
-  background: lighten($ui-base-color, 4%);
 }
 
 .account__disclaimer {

@@ -228,7 +228,7 @@
     height: 16px;
   }
 
-  .autosuggest-account .display-name > span {
+  .autosuggest-account .display-name__account {
     color: $lighter-text-color;
   }
 
@@ -329,6 +329,22 @@
 
       .icon-button {
         height: 100%;
+      }
+
+      .compose-form__upload-button-icon {
+        line-height: 27px;
+      }
+
+      .compose-form__sensitive-button {
+        display: none;
+
+        &.compose-form__sensitive-button--visible {
+          display: block;
+        }
+
+        .compose-form__sensitive-button__icon {
+          line-height: 27px;
+        }
       }
 
       // Polyam: Upstream removed this. I think it looks better.
@@ -439,11 +455,6 @@
   line-height: 24px;
   overflow: hidden;
   text-decoration: none;
-
-  & > .display-name {
-    line-height: unset;
-    height: unset;
-  }
 }
 
 .reply-indicator__display-avatar {
@@ -615,10 +626,6 @@
 .privacy-dropdown__option__content {
   flex: 1 1 auto;
   color: $lighter-text-color;
-
-  &:not(:first-child) {
-    margin-inline-start: 10px;
-  }
 
   strong {
     font-weight: 500;

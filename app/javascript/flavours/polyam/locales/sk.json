@@ -17,6 +17,7 @@
   "compose_form.alt_text_warning.message": "Descriptions are for users who are deaf, hard of hearing, blind, or have low vision that prevent them from seeing or hearing an image, video, or audio file. It's recommended that you provide a description for all attached media files so everyone can enjoy using Mastodon.",
   "footer.documentation": "Dokumentácia",
   "home.column_settings.show_threads": "Show threads",
+  "media_gallery.sensitive": "Sensitive",
   "notification.reaction": "{name} reacted to your toot",
   "notifications.column_settings.reaction": "Reactions",
   "notifications.filter.reactions": "Reactions",
