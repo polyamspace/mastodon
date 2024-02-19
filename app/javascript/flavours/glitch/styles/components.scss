@@ -602,7 +602,7 @@ body > [data-popper-placement] {
     height: 16px;
   }
 
-  .autosuggest-account .display-name > span {
+  .autosuggest-account .display-name__account {
     color: $lighter-text-color;
   }
 
@@ -697,6 +697,22 @@ body > [data-popper-placement] {
 
       .icon-button {
         height: 100%;
+      }
+
+      .compose-form__upload-button-icon {
+        line-height: 27px;
+      }
+
+      .compose-form__sensitive-button {
+        display: none;
+
+        &.compose-form__sensitive-button--visible {
+          display: block;
+        }
+
+        .compose-form__sensitive-button__icon {
+          line-height: 27px;
+        }
       }
     }
 
@@ -827,11 +843,6 @@ body > [data-popper-placement] {
   line-height: 24px;
   overflow: hidden;
   text-decoration: none;
-
-  & > .display-name {
-    line-height: unset;
-    height: unset;
-  }
 }
 
 .reply-indicator__display-avatar {
@@ -1033,12 +1044,6 @@ body > [data-popper-placement] {
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: auto;
 
-  @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
-    // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
-    // On Edge 16 this is 16px and Edge <=15 it's 12px, so aim for 16px.
-    padding-inline-end: 28px; // 12px + 16px
-  }
-
   @keyframes fade {
     0% {
       opacity: 0;
@@ -1063,8 +1068,9 @@ body > [data-popper-placement] {
   }
 
   &.light {
-    .status__relative-time {
-      color: $lighter-text-color;
+    .status__relative-time,
+    .status__visibility-icon {
+      color: $light-text-color;
     }
 
     .status__display-name {
@@ -1274,8 +1280,6 @@ body > [data-popper-placement] {
 .account {
   padding: 10px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
-  color: inherit;
-  text-decoration: none;
 
   .account__display-name {
     flex: 1 1 auto;
@@ -1347,10 +1351,6 @@ body > [data-popper-placement] {
   display: flex;
   gap: 10px;
   align-items: center;
-}
-
-.account__avatar-wrapper {
-  float: left;
 }
 
 .account__avatar {
@@ -1486,10 +1486,13 @@ a.status__display-name,
 }
 
 .detailed-status__display-name {
-  color: $secondary-text-color;
-  display: block;
-  line-height: 24px;
-  margin-bottom: 15px;
+  color: $darker-text-color;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 22px;
+  margin-bottom: 16px;
   overflow: hidden;
 
   strong,
@@ -1500,14 +1503,8 @@ a.status__display-name,
   }
 
   strong {
-    font-size: 16px;
     color: $primary-text-color;
   }
-}
-
-.detailed-status__display-avatar {
-  float: left;
-  margin-inline-end: 10px;
 }
 
 // Reactions
@@ -2194,6 +2191,7 @@ $ui-header-height: 55px;
 .columns-area--mobile {
   flex-direction: column;
   width: 100%;
+  height: 100%;
   margin: 0 auto;
 
   .column,
@@ -4168,19 +4166,18 @@ a.status-card.compact:hover {
   background: $base-overlay-background;
   color: $darker-text-color;
   border: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
+  border-radius: 4px;
+  appearance: none;
 
   &:hover,
   &:active,
   &:focus {
+    padding: 0;
     color: lighten($darker-text-color, 8%);
   }
-
-  .status__content > & {
-    margin-top: 15px; // Add margin when used bare for NSFW video player
-  }
-  @include fullwidth-gallery;
 }
 
 .media-spoiler__warning {
@@ -4191,7 +4188,7 @@ a.status-card.compact:hover {
 .media-spoiler__trigger {
   display: block;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .spoiler-button {
@@ -4855,10 +4852,6 @@ a.status-card.compact:hover {
   flex: 1 1 auto;
   color: $lighter-text-color;
 
-  &:not(:first-child) {
-    margin-inline-start: 10px;
-  }
-
   strong {
     font-weight: 500;
     display: block;
@@ -4888,11 +4881,6 @@ a.status-card.compact:hover {
   margin-inline-end: auto;
   margin-bottom: 0;
   min-width: 75%;
-}
-
-.account__header__wrapper {
-  flex: 0 0 auto;
-  background: lighten($ui-base-color, 4%);
 }
 
 .account__disclaimer {
@@ -5775,9 +5763,9 @@ a.status-card.compact:hover {
   display: flex;
 }
 
-.video-modal__container {
+.video-modal .video-player {
+  max-height: 80vh;
   max-width: 100vw;
-  max-height: 100vh;
 }
 
 .audio-modal__container {
@@ -6173,8 +6161,7 @@ a.status-card.compact:hover {
   justify-content: space-between;
   align-items: center;
   background: $ui-secondary-color;
-  padding: 10px;
-  line-height: 36px;
+  padding: 10px; // purposefully reduce padding in glitch-soc
 
   & > div {
     flex: 1 1 auto;
@@ -7516,8 +7503,11 @@ img.modal-warning {
 
 .notification__filter-bar,
 .account__section-headline {
-  // deliberate glitch-soc choice for now
-  background: darken($ui-base-color, 4%);
+  background: darken(
+    $ui-base-color,
+    4%
+  ); // deliberate glitch-soc choice for now
+
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
   display: flex;
@@ -7652,24 +7642,6 @@ noscript {
   }
 
   100% {
-    opacity: 1;
-  }
-}
-
-// glitch-specific “sensitive” label on displayed images; TODO: remove it?
-.sensitive-marker {
-  margin: 0 3px;
-  border-radius: 2px;
-  padding: 2px 6px;
-  color: rgba($primary-text-color, 0.8);
-  background: rgba($base-overlay-background, 0.5);
-  font-size: 12px;
-  line-height: 18px;
-  text-transform: uppercase;
-  opacity: 0.9;
-  transition: opacity 0.1s ease;
-
-  .media-gallery:hover & {
     opacity: 1;
   }
 }
@@ -8465,7 +8437,6 @@ noscript {
 
   &--compact &__item {
     padding: 10px;
-    padding-inline-end: 28px;
   }
 }
 
@@ -8529,11 +8500,6 @@ noscript {
       a {
         color: $primary-text-color;
         text-decoration: none;
-
-        .icon {
-          width: 15px;
-          height: 15px;
-        }
 
         &:hover,
         &:focus,
