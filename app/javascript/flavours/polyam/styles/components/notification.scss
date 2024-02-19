@@ -1,3 +1,10 @@
+.notification__relative_time {
+  color: $dark-text-color;
+  float: right;
+  font-size: 14px;
+  padding-bottom: 1px;
+}
+
 .notification__favourite-icon-wrapper {
   inset-inline-start: 0;
   position: absolute;
