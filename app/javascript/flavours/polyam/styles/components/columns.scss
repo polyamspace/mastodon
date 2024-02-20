@@ -689,6 +689,7 @@ $ui-header-height: 55px;
     margin: 0;
     border: 0;
     padding: 13px;
+    padding-inline-end: 0;
     color: inherit;
     background: transparent;
     font: inherit;
@@ -723,7 +724,6 @@ $ui-header-height: 55px;
 .column-header__buttons {
   height: 48px;
   display: flex;
-  margin-inline-start: 0;
 }
 
 .column-header__links {

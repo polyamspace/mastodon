@@ -20,6 +20,7 @@ export default class StatusPrepend extends PureComponent {
     account: ImmutablePropTypes.record.isRequired,
     parseClick: PropTypes.func.isRequired,
     notificationId: PropTypes.number,
+    children: PropTypes.node,
   };
 
   handleClick = (e) => {
@@ -35,11 +36,9 @@ export default class StatusPrepend extends PureComponent {
         href={account.get('url')}
         className='status__display-name'
       >
-        <b
-          dangerouslySetInnerHTML={{
-            __html : account.get('display_name_html') || account.get('username'),
-          }}
-        />
+        <bdi>
+          <strong dangerouslySetInnerHTML={{ __html: account.get('display_name_html') || account.get('username')}} />
+        </bdi>
       </a>
     );
     switch (type) {
@@ -117,7 +116,7 @@ export default class StatusPrepend extends PureComponent {
 
   render () {
     const { Message } = this;
-    const { type } = this.props;
+    const { type, children } = this.props;
 
     let iconId, iconComponent;
 
@@ -155,14 +154,13 @@ export default class StatusPrepend extends PureComponent {
 
     return !type ? null : (
       <aside className={type === 'reblogged_by' || type === 'featured' ? 'status__prepend' : 'notification__message'}>
-        <div className={type === 'reblogged_by' || type === 'featured' ? 'status__prepend-icon-wrapper' : 'notification__favourite-icon-wrapper'}>
-          <Icon
-            className={`status__prepend-icon ${type === 'favourite' ? 'star-icon' : ''}`}
-            id={iconId}
-            icon={iconComponent}
-          />
-        </div>
+        <Icon
+          className={`status__prepend-icon ${type === 'favourite' ? 'star-icon' : ''}`}
+          id={iconId}
+          icon={iconComponent}
+        />
         <Message />
+        {children}
       </aside>
     );
   }

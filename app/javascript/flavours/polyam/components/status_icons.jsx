@@ -7,12 +7,12 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { faImage } from '@fortawesome/free-regular-svg-icons';
-import { faCommenting, faComment, faHome, faAngleDoubleUp, faLink, faVideoCamera, faMusic, faTasksAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCommenting, faComment, faHome, faLink, faVideoCamera, faMusic, faTasksAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { Icon } from 'flavours/polyam/components/icon';
 import { languages } from 'flavours/polyam/initial_state';
 
-import { IconButton } from './icon_button';
+import { CollapseButton } from './collapse_button';
 import { VisibilityIcon } from './visibility_icon';
 
 //  Messages for use with internationalization stuff.
@@ -115,6 +115,7 @@ class StatusIcons extends PureComponent {
       mediaIcons,
       collapsible,
       collapsed,
+      setCollapsed,
       settings,
       intl,
     } = this.props;
@@ -152,21 +153,7 @@ class StatusIcons extends PureComponent {
           />}
         {settings.get('media') && !!mediaIcons && mediaIcons.map(icon => this.renderIcon(icon))}
         {settings.get('visibility') && <VisibilityIcon visibility={status.get('visibility')} />}
-        {collapsible && (
-          <IconButton
-            className='status__collapse-button'
-            animate
-            active={collapsed}
-            title={
-              collapsed ?
-                intl.formatMessage(messages.uncollapse) :
-                intl.formatMessage(messages.collapse)
-            }
-            icon='angle-double-up'
-            iconComponent={faAngleDoubleUp}
-            onClick={this.handleCollapsedClick}
-          />
-        )}
+        {collapsible && <CollapseButton collapsed={collapsed} setCollapsed={setCollapsed} />}
       </div>
     );
   }
