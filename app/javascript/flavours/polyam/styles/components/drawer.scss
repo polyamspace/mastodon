@@ -1,5 +1,5 @@
 .navigation-bar {
-  padding: 10px;
+  padding: 10px; // glitch: reduced padding
   color: $darker-text-color;
   display: flex;
   align-items: center;
@@ -38,7 +38,8 @@
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  margin-inline-start: 8px;
+  margin-inline-start: 8px; // Polyam: Removed upstream, but needed. TODO: Figure out why
+  line-height: 20px;
 }
 
 .navigation-bar__profile-account {
@@ -61,49 +62,6 @@
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
-  padding: 10px 5px;
-  flex: none;
-
-  &:first-child {
-    padding-inline-start: 10px;
-  }
-
-  &:last-child {
-    padding-inline-end: 10px;
-  }
-
-  @media screen and (width <= 630px) {
-    flex: auto;
-  }
-
-  @media screen and (width <= 630px) {
-    &,
-    &:first-child,
-    &:last-child {
-      padding: 0;
-    }
-  }
-
-  .wide & {
-    min-width: 300px;
-    max-width: 400px;
-    flex: 1 1 200px;
-  }
-
-  @media screen and (width <= 630px) {
-    :root & {
-      //  Overrides `.wide` for single-column view
-      flex: auto;
-      width: 100%;
-      min-width: 0;
-      max-width: none;
-      padding: 0;
-    }
-  }
-
-  .react-swipeable-view-container & {
-    height: 100%;
-  }
 }
 
 // Polyam: kept old padding compared to upstream, because it looks nicer

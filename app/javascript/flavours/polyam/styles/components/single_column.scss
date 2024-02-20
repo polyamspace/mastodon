@@ -201,6 +201,8 @@
     display: flex;
     flex-direction: column;
     min-height: 310px;
+    padding-bottom: 71px;
+    margin-bottom: -71px;
   }
 
   .compose-form__autosuggest-wrapper {

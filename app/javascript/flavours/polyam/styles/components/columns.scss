@@ -1173,18 +1173,18 @@ $ui-header-height: 55px;
   }
 }
 
-.column {
-  overflow: hidden;
-
-  .wide .columns-area:not(.columns-area--mobile) & {
+// glitch: optional wide mode
+.wide .columns-area:not(.columns-area--mobile) {
+  .column {
     flex: auto;
     min-width: 330px;
     max-width: 400px;
   }
 
-  > .scrollable {
-    background: $ui-base-color;
-    border-radius: 0 0 4px 4px;
+  .drawer {
+    min-width: 300px;
+    max-width: 400px;
+    flex: 1 1 200px;
   }
 }
 

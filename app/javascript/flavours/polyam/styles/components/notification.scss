@@ -17,7 +17,7 @@
 }
 
 .notification__report {
-  padding: 10px; // deliberate glitch-soc change
+  padding: 10px; // glitch: reduced padding
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   display: flex;
   gap: 10px;
@@ -54,12 +54,12 @@
 }
 
 .notification__message {
-  padding: 8px 14px 0; // padding intentionally reduced for glitch-soc
+  padding: 8px 14px; // glitch: reduced padding
+  padding-bottom: 0;
   cursor: default;
   color: $darker-text-color;
   font-size: 15px;
-
-  // line-height: 22px; omitted in glitch-soc for space saving
+  line-height: 22px;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -88,7 +88,6 @@
   text-decoration: none;
 
   &:hover {
-    color: $primary-text-color;
     text-decoration: underline;
   }
 }
@@ -159,16 +158,6 @@
 
   .account {
     border-bottom: 0 none;
-  }
-}
-
-.notification-favourite {
-  .status.status-direct {
-    background: transparent;
-
-    .icon-button.disabled {
-      color: lighten($action-button-color, 13%);
-    }
   }
 }
 

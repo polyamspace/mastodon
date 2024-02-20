@@ -380,12 +380,12 @@ button.icon-button.active .icon-retweet {
   z-index: 100;
 
   &--minified {
-    display: flex;
+    display: flex; // glitch: media icon in spoiler button
     inset-inline-start: 4px;
     top: 4px;
     width: auto;
     height: auto;
-    align-items: center;
+    align-items: center; // glitch: media icon in spoiler button
   }
 
   &--click-thru {
