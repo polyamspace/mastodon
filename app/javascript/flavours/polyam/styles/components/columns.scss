@@ -922,7 +922,7 @@ $ui-header-height: 55px;
   margin: 0;
   font-size: inherit;
   flex: auto;
-  background-color: $ui-base-color;
+  background-color: lighten($ui-base-color, 8%);
   transition: all 0.2s ease;
   transition-property: background-color, box-shadow;
 
