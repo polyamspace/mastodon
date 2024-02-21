@@ -389,6 +389,11 @@
   display: flex;
   gap: 18px;
   margin-top: 8px;
+
+  // Polyam: Reaction button
+  & > .emoji-picker-dropdown > .emoji-button {
+    padding: 0;
+  }
 }
 
 .status__action-bar-spacer {
