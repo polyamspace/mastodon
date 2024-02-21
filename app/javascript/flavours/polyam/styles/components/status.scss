@@ -6,6 +6,18 @@
   clear: both;
 }
 
+.status__content {
+  overflow: visible;
+
+  .status__content__spoiler {
+    display: none;
+
+    &.status__content__spoiler--visible {
+      display: block;
+    }
+  }
+}
+
 .translate-button {
   margin-top: 16px;
   font-size: 15px;
@@ -898,89 +910,6 @@ a.status-card {
 .detailed-status__datetime {
   &:hover {
     text-decoration: underline;
-  }
-}
-
-.status__content {
-  position: relative;
-  font-size: 15px;
-  line-height: 20px;
-  word-wrap: break-word;
-  font-weight: 400;
-  overflow: visible;
-  padding-top: 5px;
-
-  &:focus {
-    outline: 0;
-  }
-
-  .emojione {
-    width: 20px;
-    height: 20px;
-    margin: -3px 0 0;
-  }
-
-  p,
-  pre {
-    margin-bottom: 20px;
-    white-space: pre-wrap;
-    unicode-bidi: plaintext;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  a {
-    color: $secondary-text-color;
-    text-decoration: none;
-    unicode-bidi: isolate;
-
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &.mention {
-      &:hover {
-        text-decoration: none;
-
-        span {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-
-  .status__content__spoiler {
-    display: none;
-
-    &.status__content__spoiler--visible {
-      display: block;
-    }
-  }
-
-  a.unhandled-link {
-    color: $highlight-text-color;
-
-    .link-origin-tag {
-      color: $gold-star;
-      font-size: 0.8em;
-    }
-  }
-
-  .status__content__spoiler-link {
-    background: lighten($ui-base-color, 30%);
-
-    &:hover,
-    &:focus {
-      background: lighten($ui-base-color, 33%);
-      text-decoration: none;
-    }
-
-    // Polyam: Prevent outline. Looks weird
-    &:focus {
-      outline: none;
-    }
   }
 }
 
