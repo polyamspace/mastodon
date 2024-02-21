@@ -463,7 +463,8 @@
 }
 
 // TODO: create mixin?
-.status__content,
+// Polyam: Split out from .status__content, .reply-indicator__content upstream
+// Polyam: Changes here also need to be applied to status.scss
 .reply-indicator__content {
   position: relative;
   font-size: 15px;
