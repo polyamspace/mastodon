@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { faBars, faHome, faBell, faUsers, faGlobe, faCog, faSignOut } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faHome, faBell, faUsers, faGlobe, faCogs, faSignOut } from '@fortawesome/free-solid-svg-icons';
 import spring from 'react-motion/lib/spring';
 
 import { openModal } from 'flavours/polyam/actions/modal';
@@ -34,7 +34,7 @@ const messages = defineMessages({
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
   public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
-  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new post' },
   logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
@@ -85,6 +85,15 @@ class Compose extends PureComponent {
     return false;
   };
 
+  handleSettingsClick = e => {
+    const { dispatch } = this.props;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    dispatch(openModal({ modalType: 'SETTINGS', modalProps: {} }));
+  };
+
   onFocus = () => {
     this.props.dispatch(changeComposing(true));
   };
@@ -115,7 +124,15 @@ class Compose extends PureComponent {
             {!columns.some(column => column.get('id') === 'PUBLIC') && (
               <Link to='/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' icon={faGlobe} /></Link>
             )}
-            <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' icon={faCog} /></a>
+            <a
+              onClick={this.handleSettingsClick}
+              href='/settings/preferences'
+              className='drawer__tab'
+              title={intl.formatMessage(messages.settings)}
+              aria-label={intl.formatMessage(messages.settings)}
+            >
+              <Icon id='cogs' icon={faCogs} />
+            </a>
             <a href='/auth/sign_out' className='drawer__tab' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)} onClick={this.handleLogoutClick}><Icon id='sign-out' icon={faSignOut} /></a>
           </nav>
 
