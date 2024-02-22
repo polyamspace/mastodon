@@ -19,6 +19,19 @@ body {
   color: $highlight-text-color;
 }
 
+// Restore old color of show more button
+.status__content {
+  .status__content__spoiler-link {
+    background-color: lighten($ui-base-color, 30%);
+
+    &:hover,
+    &:focus {
+      // higher for more visibility
+      background-color: lighten($ui-base-color, 37%);
+    }
+  }
+}
+
 // Fix background of disabled vote button
 .poll__footer {
   button {
