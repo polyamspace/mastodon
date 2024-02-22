@@ -88,10 +88,6 @@
       outline: 0 !important;
     }
   }
-}
-
-.status__content {
-  overflow: visible;
 
   .status__content__spoiler {
     display: none;
@@ -99,6 +95,35 @@
     &.status__content__spoiler--visible {
       display: block;
     }
+  }
+}
+
+.status__content {
+  // glitch: necessary for fullwidth media options
+  overflow: visible;
+}
+
+.status__content__read-more-button,
+.status__content__translate-button {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  line-height: 22px;
+  color: $highlight-text-color;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  padding-top: 16px;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+
+  .icon {
+    width: 15px;
+    height: 15px;
   }
 }
 
@@ -114,7 +139,7 @@
 .status__content__spoiler-link {
   display: inline-flex;
   border-radius: 2px;
-  background: lighten($ui-base-color, 30%);
+  background: transparent;
   border: 0;
   color: $inverted-text-color;
   font-weight: 700;
@@ -176,14 +201,6 @@
     outline: 0;
     background: lighten($ui-base-color, 4%);
 
-    &.status.status-direct {
-      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
-
-      &.muted {
-        background: transparent;
-      }
-    }
-
     .detailed-status,
     .detailed-status__action-bar {
       background: lighten($ui-base-color, 8%);
@@ -215,11 +232,6 @@
   .audio-player,
   .attachment-list {
     margin-top: 8px; // glitch: reduced margins
-  }
-
-  &.status-direct {
-    background: mix($ui-base-color, $ui-highlight-color, 95%);
-    border-bottom-color: lighten($ui-base-color, 12%);
   }
 
   &.light {
@@ -268,6 +280,10 @@
     .status__action-bar {
       margin-inline-start: $thread-margin;
       width: calc(100% - ($thread-margin));
+    }
+
+    .status__content__read-more-button {
+      margin-inline-start: $thread-margin;
     }
   }
 
@@ -530,6 +546,18 @@
   }
 }
 
+.status__wrapper-direct {
+  background: mix($ui-base-color, $ui-highlight-color, 95%);
+
+  &:focus {
+    background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+  }
+
+  .status__prepend {
+    color: $highlight-text-color;
+  }
+}
+
 .status__action-bar {
   display: flex;
   align-items: center;
@@ -580,6 +608,11 @@
       height: 24px;
       margin: -1px 0 0;
     }
+
+    .status__content__spoiler-link {
+      line-height: 24px;
+      margin: -1px 0 0;
+    }
   }
 
   .media-gallery,
@@ -618,6 +651,31 @@
   display: flex;
   flex-direction: row;
   padding: 8px 0; // glitch: reduced padding
+}
+
+.detailed-status__wrapper-direct {
+  .detailed-status,
+  .detailed-status__action-bar {
+    background: mix($ui-base-color, $ui-highlight-color, 95%);
+  }
+
+  &:focus {
+    .detailed-status,
+    .detailed-status__action-bar {
+      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+    }
+  }
+}
+
+.detailed-status__action-bar {
+  border-top-color: mix(lighten($ui-base-color, 8%), $ui-highlight-color, 95%);
+}
+
+// Polyam: Different from upstream as only icon should be in highlight color
+.status__prepend {
+  .icon {
+    color: $highlight-text-color;
+  }
 }
 
 .detailed-status__link {
@@ -1082,6 +1140,7 @@ a.status-card {
   inset-inline-end: 20px;
   width: 300px;
 
+  // glitch: feature to chose which side the pop-in player is displayed
   &.left {
     inset-inline-end: unset;
     inset-inline-start: 20px;
