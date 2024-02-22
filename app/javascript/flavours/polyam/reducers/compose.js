@@ -56,7 +56,7 @@ import {
 import { REDRAFT } from '../actions/statuses';
 import { STORE_HYDRATE } from '../actions/store';
 import { TIMELINE_DELETE } from '../actions/timelines';
-import { me, defaultContentType } from '../initial_state';
+import { me, defaultContentType, pollLimits } from '../initial_state';
 import { recoverHashtags } from '../utils/hashtag';
 import { unescapeHTML } from '../utils/html';
 import { overwrite } from '../utils/js_helpers';
@@ -375,7 +375,7 @@ const updatePoll = (state, index, value) => state.updateIn(['poll', 'options'], 
 
   if (tmp.size === 0) {
     return tmp.push('').push('');
-  } else if (tmp.size < 4) {
+  } else if (tmp.size < pollLimits.max_options) {
     return tmp.push('');
   }
 
