@@ -81,7 +81,7 @@ export default class MediaItem extends ImmutablePureComponent {
     const title  = status.get('spoiler_text') || attachment.get('description');
 
     let thumbnail, label, icon, content;
-    let altButton = (<button type='button' className='media-gallery__alt__button' onClick={this.handleAltClick}><span>ALT</span></button>);
+    let altButton = (<button type='button' className='media-gallery__alt__label' onClick={this.handleAltClick}><span>ALT</span></button>);
 
     if (!visible) {
       icon = (
