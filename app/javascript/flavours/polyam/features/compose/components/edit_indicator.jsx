@@ -2,8 +2,6 @@ import { useCallback } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Link } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 
 import { faImage } from '@fortawesome/free-regular-svg-icons';
@@ -12,6 +10,7 @@ import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { cancelReplyCompose } from 'flavours/polyam/actions/compose';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+import { Permalink } from 'flavours/polyam/components/permalink';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
 
 const messages = defineMessages({
@@ -39,9 +38,9 @@ export const EditIndicator = () => {
     <div className='edit-indicator'>
       <div className='edit-indicator__header'>
         <div className='edit-indicator__display-name'>
-          <Link to={`/@${account.get('acct')}`}>@{account.get('acct')}</Link>
+          <Permalink href={account.get('url')} to={`/@${account.get('acct')}`}>@{account.get('acct')}</Permalink>
           ·
-          <Link to={`/@${account.get('acct')}/${status.get('id')}`}><RelativeTimestamp timestamp={status.get('created_at')} /></Link>
+          <Permalink href={status.get('url')} to={`/@${account.get('acct')}/${status.get('id')}`}><RelativeTimestamp timestamp={status.get('created_at')} /></Permalink>
         </div>
 
         <div className='edit-indicator__cancel'>

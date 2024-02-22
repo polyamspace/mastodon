@@ -1,7 +1,5 @@
 import { FormattedMessage } from 'react-intl';
 
-import { Link } from 'react-router-dom';
-
 import { useSelector } from 'react-redux';
 
 import { faImage } from '@fortawesome/free-regular-svg-icons';
@@ -10,6 +8,7 @@ import { faTasksAlt } from '@fortawesome/free-solid-svg-icons';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { Icon } from 'flavours/polyam/components/icon';
+import { Permalink } from 'flavours/polyam/components/permalink';
 import { highlightCode } from 'flavours/polyam/utils/html';
 
 export const ReplyIndicator = () => {
@@ -26,14 +25,14 @@ export const ReplyIndicator = () => {
   return (
     <div className='reply-indicator'>
       <div className='reply-indicator__line' />
-      <Link to={`/@${account.get('acct')}`} className='detailed-status__display-avatar'>
+      <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='detailed-status__display-avatar'>
         <Avatar account={account} size={46} />
-      </Link>
+      </Permalink>
 
       <div className='reply-indicator__main'>
-        <Link to={`/@${account.get('acct')}`} className='detailed-status__display-name'>
+        <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='detailed-status__display-name'>
           <DisplayName account={account} />
-        </Link>
+        </Permalink>
 
         <div className='reply-indicator__content translate' dangerouslySetInnerHTML={content} />
 
