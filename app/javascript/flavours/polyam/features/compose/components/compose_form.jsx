@@ -8,36 +8,38 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { length } from 'stringz';
 
-import { maxChars } from 'flavours/polyam/initial_state';
+import { Icon } from 'flavours/polyam/components/icon';
 import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/polyam/utils/react_router';
 
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
+import { Button } from '../../../components/button';
+import { maxChars } from '../../../initial_state';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
-import OptionsContainer from '../containers/options_container';
+import LanguageDropdown from '../containers/language_dropdown_container';
+import PollButtonContainer from '../containers/poll_button_container';
 import PollFormContainer from '../containers/poll_form_container';
+import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
+import SpoilerButtonContainer from '../containers/spoiler_button_container';
+import UploadButtonContainer from '../containers/upload_button_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
 import { countableText } from '../util/counter';
 
 import CharacterCounter from './character_counter';
-import Publisher from './publisher';
-import TextareaIcons from './textarea_icons';
+
+const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
-  missingDescriptionMessage: {
-    id: 'confirmations.missing_media_description.message',
-    defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.',
-  },
-  missingDescriptionConfirm: {
-    id: 'confirmations.missing_media_description.confirm',
-    defaultMessage: 'Send anyway',
-  },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
+  publish: { id: 'compose_form.publish', defaultMessage: 'Publish' },
+  publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
+  saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
 });
 
 class ComposeForm extends ImmutablePureComponent {
@@ -63,21 +65,11 @@ class ComposeForm extends ImmutablePureComponent {
     onChangeSpoilerText: PropTypes.func.isRequired,
     onPaste: PropTypes.func.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
-    showSearch: PropTypes.bool,
+    autoFocus: PropTypes.bool,
     anyMedia: PropTypes.bool,
     isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
-    advancedOptions: ImmutablePropTypes.map,
-    media: ImmutablePropTypes.list,
-    sideArm: PropTypes.string,
-    sensitive: PropTypes.bool,
-    spoilersAlwaysOn: PropTypes.bool,
-    mediaDescriptionConfirmation: PropTypes.bool,
-    preselectOnReply: PropTypes.bool,
-    onChangeSpoilerness: PropTypes.func.isRequired,
-    onChangeVisibility: PropTypes.func.isRequired,
-    onMediaDescriptionConfirm: PropTypes.func.isRequired,
     highlighted: PropTypes.bool,
     onRemoveHighlight: PropTypes.func,
     ...WithOptionalRouterPropTypes
@@ -100,28 +92,21 @@ class ComposeForm extends ImmutablePureComponent {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.handleSubmit();
     }
-
-    if (e.keyCode === 13 && e.altKey) {
-      this.handleSecondarySubmit();
-    }
   };
 
   getFulltextForCharacterCounting = () => {
-    return [
-      this.props.spoiler? this.props.spoilerText: '',
-      countableText(this.props.text),
-      this.props.advancedOptions && this.props.advancedOptions.get('do_not_federate') ? ' 👁️' : '',
-    ].join('');
+    return [this.props.spoiler? this.props.spoilerText: '', countableText(this.props.text)].join('');
   };
 
   canSubmit = () => {
     const { isSubmitting, isChangingUpload, isUploading, anyMedia } = this.props;
     const fulltext = this.getFulltextForCharacterCounting();
+    const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars || (!fulltext.trim().length && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars || (isOnlyWhitespace && !anyMedia));
   };
 
-  handleSubmit = (e, overriddenVisibility = null) => {
+  handleSubmit = (e) => {
 
     if (this.props.text !== this.textareaRef.current.value) {
       // Something changed the text inside the textarea (e.g. browser extensions like Grammarly)
@@ -133,26 +118,11 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
+    this.props.onSubmit(this.props.history || null);
+
     if (e) {
       e.preventDefault();
     }
-
-    // Submit unless there are media with missing descriptions
-    if (this.props.mediaDescriptionConfirmation && this.props.media && this.props.media.some(item => !item.get('description'))) {
-      const firstWithoutDescription = this.props.media.find(item => !item.get('description'));
-      this.props.onMediaDescriptionConfirm(this.props.history || null, firstWithoutDescription.get('id'), overriddenVisibility);
-    } else {
-      if (overriddenVisibility) {
-        this.props.onChangeVisibility(overriddenVisibility);
-      }
-      this.props.onSubmit(this.props.history || null);
-    }
-  };
-
-  //  Handles the secondary submit button.
-  handleSecondarySubmit = () => {
-    const { sideArm } = this.props;
-    this.handleSubmit(null, sideArm === 'none' ? null : sideArm);
   };
 
   onSuggestionsClearRequested = () => {
@@ -205,7 +175,7 @@ class ComposeForm extends ImmutablePureComponent {
     if (this.props.focusDate && this.props.focusDate !== prevProps.focusDate) {
       let selectionEnd, selectionStart;
 
-      if (this.props.preselectDate !== prevProps.preselectDate && this.props.isInReply && this.props.preselectOnReply) {
+      if (this.props.preselectDate !== prevProps.preselectDate && this.props.isInReply) {
         selectionEnd   = this.props.text.length;
         selectionStart = this.props.text.search(/\s/) + 1;
       } else if (typeof this.props.caretPosition === 'number') {
@@ -223,7 +193,6 @@ class ComposeForm extends ImmutablePureComponent {
         this.textareaRef.current.setSelectionRange(selectionStart, selectionEnd);
         this.textareaRef.current.focus();
         if (this.props.highlighted) this.timeout = setTimeout(() => this.props.onRemoveHighlight(), 700);
-        if (!this.props.singleColumn) this.textareaRef.current.scrollIntoView();
       }).catch(console.error);
     } else if(prevProps.isSubmitting && !this.props.isSubmitting) {
       this.textareaRef.current.focus();
@@ -245,28 +214,31 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   handleEmojiPick = (data) => {
-    const position = this.textareaRef.current.selectionStart;
+    const { text }   = this.props;
+    const position   = this.textareaRef.current.selectionStart;
+    const needsSpace = data.custom && position > 0 && !allowedAroundShortCode.includes(text[position -1]);
 
-    this.props.onPickEmoji(position, data);
+    this.props.onPickEmoji(position, data, needsSpace);
   };
 
   render () {
     const {
       intl,
-      advancedOptions,
-      isSubmitting,
-      onChangeSpoilerness,
       onPaste,
-      privacy,
-      sensitive,
       autoFocus,
-      sideArm,
-      spoilersAlwaysOn,
-      isEditing,
       highlighted
     } = this.props;
-
     const disabled = this.props.isSubmitting;
+
+    let publishText = '';
+
+    if (this.props.isEditing) {
+      publishText = intl.formatMessage(messages.saveChanges);
+    } else if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
+      publishText = <><Icon id='lock' icon={faLock} /> {intl.formatMessage(messages.publish)}</>;
+    } else {
+      publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
+    }
 
     return (
       <form className='compose-form' onSubmit={this.handleSubmit}>
@@ -290,7 +262,6 @@ class ComposeForm extends ImmutablePureComponent {
             id='cw-spoiler-input'
             className='spoiler-input__input'
             lang={this.props.lang}
-            autoFocus={false}
             spellCheck
           />
         </div>
@@ -312,7 +283,6 @@ class ComposeForm extends ImmutablePureComponent {
             autoFocus={autoFocus}
             lang={this.props.lang}
           >
-            <TextareaIcons advancedOptions={advancedOptions} />
             <div className='compose-form__modifiers'>
               <UploadFormContainer />
               <PollFormContainer />
@@ -321,28 +291,29 @@ class ComposeForm extends ImmutablePureComponent {
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
 
           <div className='compose-form__buttons-wrapper'>
-            <OptionsContainer
-              advancedOptions={advancedOptions}
-              disabled={isSubmitting}
-              onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
-              onUpload={onPaste}
-              isEditing={isEditing}
-              sensitive={sensitive || (spoilersAlwaysOn && this.props.spoilerText && this.props.spoilerText.length > 0)}
-              spoiler={spoilersAlwaysOn ? (this.props.spoilerText && this.props.spoilerText.length > 0) : this.props.spoiler}
-            />
+            <div className='compose-form__buttons'>
+              <UploadButtonContainer />
+              <PollButtonContainer />
+              <PrivacyDropdownContainer disabled={this.props.isEditing} />
+              <SpoilerButtonContainer />
+              <LanguageDropdown />
+            </div>
             <div className='character-counter__wrapper'>
               <CharacterCounter max={maxChars} text={this.getFulltextForCharacterCounting()} />
             </div>
           </div>
         </div>
 
-        <Publisher
-          disabled={!this.canSubmit()}
-          isEditing={isEditing}
-          onSecondarySubmit={this.handleSecondarySubmit}
-          privacy={privacy}
-          sideArm={sideArm}
-        />
+        <div className='compose-form__publish'>
+          <div className='compose-form__publish-button-wrapper'>
+            <Button
+              type='submit'
+              text={publishText}
+              disabled={!this.canSubmit()}
+              block
+            />
+          </div>
+        </div>
       </form>
     );
   }

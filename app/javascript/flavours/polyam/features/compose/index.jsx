@@ -3,95 +3,133 @@ import { PureComponent } from 'react';
 
 import { injectIntl, defineMessages } from 'react-intl';
 
-import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { faBars, faHome, faBell, faUsers, faGlobe, faCog, faSignOut } from '@fortawesome/free-solid-svg-icons';
 import spring from 'react-motion/lib/spring';
 
-import { mountCompose, unmountCompose, cycleElefriendCompose } from 'flavours/polyam/actions/compose';
+import { openModal } from 'flavours/polyam/actions/modal';
 import Column from 'flavours/polyam/components/column';
+import { Icon } from 'flavours/polyam/components/icon';
+import { logOut } from 'flavours/polyam/utils/log_out';
 
+import elephantUIPlane from '../../../../images/elephant_ui_plane.svg';
+import { changeComposing, mountCompose, unmountCompose } from '../../actions/compose';
 import { mascot } from '../../initial_state';
 import { isMobile } from '../../is_mobile';
 import Motion from '../ui/util/optional_motion';
 
 import ComposeFormContainer from './containers/compose_form_container';
-import HeaderContainer from './containers/header_container';
 import NavigationContainer from './containers/navigation_container';
 import SearchContainer from './containers/search_container';
 import SearchResultsContainer from './containers/search_results_container';
 
 
 const messages = defineMessages({
+  start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
+  home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
+  notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
+  public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
+  community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
+  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new post' },
+  logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
+  logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
 });
 
 const mapStateToProps = (state, ownProps) => ({
-  elefriend: state.getIn(['compose', 'elefriend']),
+  columns: state.getIn(['settings', 'columns']),
   showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : false,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onClickElefriend () {
-    dispatch(cycleElefriendCompose());
-  },
-
-  onMount () {
-    dispatch(mountCompose());
-  },
-
-  onUnmount () {
-    dispatch(unmountCompose());
-  },
 });
 
 class Compose extends PureComponent {
 
   static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    columns: ImmutablePropTypes.list.isRequired,
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
-    elefriend: PropTypes.number,
-    onClickElefriend: PropTypes.func,
-    onMount: PropTypes.func,
-    onUnmount: PropTypes.func,
     intl: PropTypes.object.isRequired,
   };
 
   componentDidMount () {
-    this.props.onMount();
+    const { dispatch } = this.props;
+    dispatch(mountCompose());
   }
 
   componentWillUnmount () {
-    this.props.onUnmount();
+    const { dispatch } = this.props;
+    dispatch(unmountCompose());
   }
 
+  handleLogoutClick = e => {
+    const { dispatch, intl } = this.props;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.logoutMessage),
+        confirm: intl.formatMessage(messages.logoutConfirm),
+        closeWhenConfirm: false,
+        onConfirm: () => logOut(),
+      },
+    }));
+
+    return false;
+  };
+
+  onFocus = () => {
+    this.props.dispatch(changeComposing(true));
+  };
+
+  onBlur = () => {
+    this.props.dispatch(changeComposing(false));
+  };
+
   render () {
-    const {
-      elefriend,
-      intl,
-      multiColumn,
-      onClickElefriend,
-      showSearch,
-    } = this.props;
-    const computedClass = classNames('drawer', `mbstobon-${elefriend}`);
+    const { multiColumn, showSearch, intl } = this.props;
 
     if (multiColumn) {
-      return (
-        <div className={computedClass} role='region' aria-label={intl.formatMessage(messages.compose)}>
-          <HeaderContainer />
+      const { columns } = this.props;
 
-          {multiColumn && <SearchContainer />}
+      return (
+        <div className='drawer' role='region' aria-label={intl.formatMessage(messages.compose)}>
+          <nav className='drawer__header'>
+            <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-label={intl.formatMessage(messages.start)}><Icon id='bars' icon={faBars} /></Link>
+            {!columns.some(column => column.get('id') === 'HOME') && (
+              <Link to='/home' className='drawer__tab' title={intl.formatMessage(messages.home_timeline)} aria-label={intl.formatMessage(messages.home_timeline)}><Icon id='home' icon={faHome} /></Link>
+            )}
+            {!columns.some(column => column.get('id') === 'NOTIFICATIONS') && (
+              <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)} aria-label={intl.formatMessage(messages.notifications)}><Icon id='bell' icon={faBell} /></Link>
+            )}
+            {!columns.some(column => column.get('id') === 'COMMUNITY') && (
+              <Link to='/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)}><Icon id='users' icon={faUsers} /></Link>
+            )}
+            {!columns.some(column => column.get('id') === 'PUBLIC') && (
+              <Link to='/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' icon={faGlobe} /></Link>
+            )}
+            <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' icon={faCog} /></a>
+            <a href='/auth/sign_out' className='drawer__tab' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)} onClick={this.handleLogoutClick}><Icon id='sign-out' icon={faSignOut} /></a>
+          </nav>
+
+          {multiColumn && <SearchContainer /> }
 
           <div className='drawer__pager'>
-            <div className='drawer__inner'>
-              <NavigationContainer />
+            <div className='drawer__inner' onFocus={this.onFocus}>
+              <NavigationContainer onClose={this.onBlur} />
 
               <ComposeFormContainer autoFocus={!isMobile(window.innerWidth)} />
 
               <div className='drawer__inner__mastodon'>
-                {mascot ? <img alt='' draggable='false' src={mascot} /> : <button className='mastodon' onClick={onClickElefriend} />}
+                <img alt='' draggable='false' src={mascot || elephantUIPlane} />
               </div>
             </div>
 
@@ -108,8 +146,8 @@ class Compose extends PureComponent {
     }
 
     return (
-      <Column>
-        <NavigationContainer />
+      <Column onFocus={this.onFocus}>
+        <NavigationContainer onClose={this.onBlur} />
         <ComposeFormContainer />
 
         <Helmet>
@@ -121,4 +159,4 @@ class Compose extends PureComponent {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Compose));
+export default connect(mapStateToProps)(injectIntl(Compose));
