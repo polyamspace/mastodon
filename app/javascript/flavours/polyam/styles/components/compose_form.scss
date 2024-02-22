@@ -1,5 +1,5 @@
 .compose-form {
-  padding: 10px;
+  padding: 10px; // glitch: reduced padding
 
   &__sensitive-button {
     padding: 10px;
@@ -37,7 +37,7 @@
 
   .compose-form__warning {
     color: $inverted-text-color;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     background: $ui-primary-color;
     box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
     padding: 8px 10px;
@@ -462,21 +462,35 @@
   margin-inline-end: 5px;
 }
 
+// TODO: create mixin?
+// Polyam: Split out from .status__content, .reply-indicator__content upstream
+// Polyam: Changes here also need to be applied to status.scss
 .reply-indicator__content {
   position: relative;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
   font-weight: 400;
   overflow: hidden;
-  padding-top: 5px;
-  color: $inverted-text-color;
-  white-space: pre-wrap;
+  text-overflow: ellipsis;
+  padding-top: 2px;
+  color: $primary-text-color;
+
+  &:focus {
+    outline: 0;
+  }
+
+  .emojione {
+    width: 20px;
+    height: 20px;
+    margin: -3px 0 0;
+  }
 
   p,
   pre {
     margin-bottom: 20px;
     white-space: pre-wrap;
+    unicode-bidi: plaintext;
 
     &:last-child {
       margin-bottom: 0;
@@ -484,8 +498,9 @@
   }
 
   a {
-    color: $lighter-text-color;
+    color: $secondary-text-color;
     text-decoration: none;
+    unicode-bidi: isolate;
 
     &:hover {
       text-decoration: underline;
@@ -502,10 +517,42 @@
     }
   }
 
-  .emojione {
-    width: 20px;
-    height: 20px;
-    margin: -5px 0 0;
+  a.unhandled-link {
+    color: $highlight-text-color;
+
+    .link-origin-tag {
+      color: $gold-star;
+      font-size: 0.8em;
+    }
+  }
+
+  .status__content__spoiler-link {
+    background: $action-button-color;
+
+    &:hover,
+    &:focus {
+      background: lighten($action-button-color, 7%);
+      text-decoration: none;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &::-moz-focus-inner,
+    &:focus,
+    &:active {
+      outline: 0 !important;
+    }
+  }
+}
+
+.reply-indicator__content {
+  color: $inverted-text-color;
+  font-size: 14px;
+
+  a {
+    color: $lighter-text-color;
   }
 }
 
@@ -631,6 +678,12 @@
     font-weight: 500;
     display: block;
     color: $inverted-text-color;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 }
 

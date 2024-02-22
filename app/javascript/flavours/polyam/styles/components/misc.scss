@@ -66,52 +66,14 @@ body > [data-popper-placement] {
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  a {
-    color: inherit;
-    text-decoration: inherit;
-  }
-
-  strong {
-    display: block;
-  }
-
-  > a:hover {
-    strong {
-      text-decoration: underline;
-    }
-  }
-
-  &.inline {
-    padding: 0;
-    height: 18px;
-    font-size: 15px;
-    line-height: 18px;
+  &__account {
     text-overflow: ellipsis;
-    white-space: nowrap;
     overflow: hidden;
-
-    strong {
-      display: inline;
-      height: auto;
-      font-size: inherit;
-      line-height: inherit;
-    }
-
-    span {
-      display: inline;
-      height: auto;
-      font-size: inherit;
-      line-height: inherit;
-    }
   }
 }
 
 .display-name__html {
   font-weight: 500;
-}
-
-.display-name__account {
-  font-size: 14px;
 }
 
 .image-loader {
@@ -557,17 +519,12 @@ input.glitch-setting-text {
   line-height: 24px;
 }
 
-.setting-toggle__label,
-.setting-meta__label {
+.setting-toggle__label {
   color: $darker-text-color;
   display: inline-block;
   margin-bottom: 14px;
   margin-inline-start: 8px;
   vertical-align: middle;
-}
-
-.setting-meta__label {
-  float: right;
 }
 
 .upload-area {

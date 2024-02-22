@@ -40,25 +40,16 @@ export const StatusHeader: React.FC<Props> = ({
     );
 
   return (
-    <div className='status__info__account'>
-      <a
-        href={account.get('url')}
-        target='_blank'
-        className='status__avatar'
-        onClick={handleAccountClick}
-        rel='noopener noreferrer'
-      >
-        {statusAvatar}
-      </a>
-      <a
-        href={account.get('url')}
-        target='_blank'
-        className='status__display-name'
-        onClick={handleAccountClick}
-        rel='noopener noreferrer'
-      >
-        <DisplayName account={account} />
-      </a>
-    </div>
+    <a
+      href={account.get('url')}
+      className='status__display-name'
+      target='_blank'
+      onClick={handleAccountClick}
+      rel='noopener noreferrer'
+    >
+      <div className='status__avatar'>{statusAvatar}</div>
+
+      <DisplayName account={account} />
+    </a>
   );
 };

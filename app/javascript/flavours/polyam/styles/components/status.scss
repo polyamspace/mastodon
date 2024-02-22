@@ -6,6 +6,102 @@
   clear: both;
 }
 
+// Polyam: Split out from .status__content, .reply-indicator__content upstream
+// Polyam: Changes here also need to be applied to compose-form.scss
+.status__content {
+  position: relative;
+  font-size: 15px;
+  line-height: 20px;
+  word-wrap: break-word;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 2px;
+  color: $primary-text-color;
+
+  &:focus {
+    outline: 0;
+  }
+
+  .emojione {
+    width: 20px;
+    height: 20px;
+    margin: -3px 0 0;
+  }
+
+  p,
+  pre {
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    unicode-bidi: plaintext;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: $secondary-text-color;
+    text-decoration: none;
+    unicode-bidi: isolate;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.mention {
+      &:hover {
+        text-decoration: none;
+
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  a.unhandled-link {
+    color: $highlight-text-color;
+
+    .link-origin-tag {
+      color: $gold-star;
+      font-size: 0.8em;
+    }
+  }
+
+  .status__content__spoiler-link {
+    background: $action-button-color;
+
+    &:hover,
+    &:focus {
+      background: lighten($action-button-color, 7%);
+      text-decoration: none;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &::-moz-focus-inner,
+    &:focus,
+    &:active {
+      outline: 0 !important;
+    }
+  }
+}
+
+.status__content {
+  overflow: visible;
+
+  .status__content__spoiler {
+    display: none;
+
+    &.status__content__spoiler--visible {
+      display: block;
+    }
+  }
+}
+
 .translate-button {
   margin-top: 16px;
   font-size: 15px;
@@ -96,9 +192,8 @@
 }
 
 .status {
-  padding: 10px 14px;
-  position: relative;
-  height: auto;
+  padding: 10px 14px; // glitch: reduced padding
+  min-height: 54px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: auto;
 
@@ -115,9 +210,11 @@
   opacity: 1;
   animation: fade 150ms linear;
 
+  .media-gallery,
   .video-player,
-  .audio-player {
-    margin-top: 8px;
+  .audio-player,
+  .attachment-list {
+    margin-top: 8px; // glitch: reduced margins
   }
 
   &.status-direct {
@@ -150,13 +247,64 @@
         color: $highlight-text-color;
       }
 
-      a.status__content__spoiler-link {
+      &__spoiler-link {
         color: $primary-text-color;
         background: $ui-primary-color;
 
-        &:hover {
+        &:hover,
+        &:focus {
           background: lighten($ui-primary-color, 8%);
         }
+      }
+    }
+  }
+
+  &--in-thread {
+    $thread-margin: 46px + 10px;
+
+    border-bottom: 0;
+
+    .status__content,
+    .status__action-bar {
+      margin-inline-start: $thread-margin;
+      width: calc(100% - ($thread-margin));
+    }
+  }
+
+  &--first-in-thread {
+    border-top: 1px solid lighten($ui-base-color, 8%);
+  }
+
+  &__line {
+    height: 10px - 4px;
+    border-inline-start: 2px solid lighten($ui-base-color, 8%);
+    width: 0;
+    position: absolute;
+    top: 0;
+    inset-inline-start: 14px + ((46px - 2px) * 0.5);
+
+    &--full {
+      top: 0;
+      height: 100%;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 10px - 4px;
+        height: 46px + 4px + 4px;
+        width: 2px;
+        background: $ui-base-color;
+        inset-inline-start: -2px;
+      }
+    }
+
+    &--first {
+      top: 10px + 46px + 4px;
+      height: calc(100% - (10px + 46px + 4px));
+
+      &::before {
+        display: none;
       }
     }
   }
@@ -165,6 +313,7 @@
     background-position: center;
     background-size: cover;
     user-select: none;
+    min-height: 0;
 
     &.has-background::before {
       display: block;
@@ -231,29 +380,25 @@
         rgba(mix($ui-base-color, $ui-highlight-color, 95%), 1)
       );
     }
-
-    .notification__message {
-      margin-bottom: 0;
-    }
-
-    .status__info .notification__message > span {
-      white-space: nowrap;
-    }
   }
 
-  .notification__message {
-    margin: -10px 0 10px;
-  }
-
+  // Polyam: Reactions
   .reactions-bar--empty {
     display: none;
   }
 }
 
+.status__wrapper.collapsed {
+  .notification__message {
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+}
+
 .status__relative-time {
-  display: inline-block;
-  color: $dark-text-color;
+  display: block;
   font-size: 14px;
+  color: $dark-text-color;
   text-align: end;
   white-space: nowrap;
   overflow: hidden;
@@ -262,27 +407,39 @@
 
 .status__display-name {
   color: $dark-text-color;
-  overflow: hidden;
 }
 
-.status__info__account .status__display-name {
-  display: block;
+.status__info .status__display-name {
   max-width: 100%;
+  display: flex;
+  font-size: 15px;
+  line-height: 22px;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+
+  .display-name {
+    bdi {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__account {
+      white-space: nowrap;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 }
 
 .status__info {
+  font-size: 15px;
+  padding-bottom: 10px;
   display: flex;
   justify-content: space-between;
-  font-size: 15px;
-
-  > span {
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  .notification__message > span {
-    word-wrap: break-word;
-  }
+  gap: 10px;
+  cursor: pointer;
 }
 
 .status__info__icons {
@@ -290,24 +447,17 @@
   align-items: center;
   height: 1em;
   color: $action-button-color;
+  gap: 4px;
 
-  .status__media-icon,
-  .status__visibility-icon,
-  .status__reply-icon,
-  .text-icon {
-    padding-inline-start: 2px;
-    padding-inline-end: 2px;
-  }
-
-  // Polyam: Different class and size to make it more consistent
+  // Polyam: Different class as otherwise doesn't apply to collapse icon
   .icon {
-    width: 1em;
-    height: 1em;
+    width: 16px;
+    height: 16px;
   }
+}
 
-  .status__collapse-button.active > .icon {
-    transform: rotate(-180deg);
-  }
+.status__collapse-button.active > .icon {
+  transform: rotate(-180deg);
 }
 
 .no-reduce-motion .status__collapse-button {
@@ -322,12 +472,6 @@
       animation: spring-flip-out 1s linear;
     }
   }
-}
-
-.status__info__account {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 
 .status-check-box__status {
@@ -366,6 +510,8 @@
 }
 
 .status__prepend {
+  padding: 8px 14px; // glitch: reduced padding
+  padding-bottom: 0;
   display: inline-flex;
   gap: 10px;
   font-size: 14px;
@@ -385,19 +531,19 @@
 }
 
 .status__action-bar {
-  align-items: center;
   display: flex;
+  align-items: center;
   gap: 18px;
   margin-top: 8px;
+
+  &-spacer {
+    flex-grow: 1;
+  }
 
   // Polyam: Reaction button
   & > .emoji-picker-dropdown > .emoji-button {
     padding: 0;
   }
-}
-
-.status__action-bar-spacer {
-  flex-grow: 1;
 }
 
 .detailed-status__action-bar-dropdown {
@@ -410,7 +556,7 @@
 
 .detailed-status {
   background: lighten($ui-base-color, 4%);
-  padding: 14px 10px;
+  padding: 14px 10px; // glitch: reduced padding
   border-top: 1px solid lighten($ui-base-color, 8%);
 
   &--flex {
@@ -453,7 +599,7 @@
 }
 
 .detailed-status__meta {
-  margin-top: 15px;
+  margin-top: 16px;
   color: $dark-text-color;
   font-size: 14px;
   line-height: 18px;
@@ -471,7 +617,7 @@
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   display: flex;
   flex-direction: row;
-  padding: 8px 0;
+  padding: 8px 0; // glitch: reduced padding
 }
 
 .detailed-status__link {
@@ -518,10 +664,10 @@
   }
 }
 
-a.status__display-name,
+.status__display-name,
 .reply-indicator__display-name,
 .detailed-status__display-name,
-.account__display-name {
+a.account__display-name {
   &:hover .display-name strong {
     text-decoration: underline;
   }
@@ -554,16 +700,9 @@ a.status__display-name,
   }
 }
 
-.status__relative-time,
-.detailed-status__datetime {
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
 .status__avatar {
-  flex: none;
-  margin-inline-end: 10px;
+  width: 46px;
+  height: 46px;
 }
 
 .muted {
@@ -734,7 +873,7 @@ a.status-card {
 .status-card__content {
   flex: 1 1 auto;
   overflow: hidden;
-  padding: 0 8px;
+  padding: 0 8px; // Polyam: Different design
   box-sizing: border-box;
   max-width: 100%;
 }
@@ -773,7 +912,7 @@ a.status-card {
 
 .status-card__image {
   flex: 0 0 auto;
-  width: 90px;
+  width: 90px; // Polyam: Different design
   aspect-ratio: 1;
   background: lighten($ui-base-color, 8%);
   position: relative;
@@ -851,156 +990,10 @@ a.status-card {
   width: 100%;
 }
 
-// TODO: Create mixin?
-.notification,
-.status {
-  position: relative;
-
-  // Merged from duplicate class upstream
-  &.unread {
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      inset-inline-start: 0;
-      width: 100%;
-      height: 100%;
-      border-inline-start: 4px solid $highlight-text-color;
-      pointer-events: none;
-    }
-  }
-
-  &--in-thread {
-    border-bottom: 0;
-
-    .status__content,
-    .status__action-bar,
-    .reactions-bar {
-      margin-inline-start: 46px + 10px;
-      width: calc(100% - (46px + 10px));
-    }
-  }
-
-  &--first-in-thread {
-    border-top: 1px solid lighten($ui-base-color, 8%);
-  }
-
-  &__line {
-    height: 10px - 4px;
-    border-inline-start: 2px solid lighten($ui-base-color, 8%);
-    width: 0;
-    position: absolute;
-    top: 0;
-    inset-inline-start: 14px + ((46px - 2px) * 0.5);
-
-    &--full {
-      top: 0;
-      height: 100%;
-
-      &::before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 10px - 4px;
-        height: 46px + 4px + 4px;
-        width: 2px;
-        background: $ui-base-color;
-        inset-inline-start: -2px;
-      }
-    }
-
-    &--first {
-      top: 10px + 46px + 4px;
-      height: calc(100% - (10px + 46px + 4px));
-
-      &::before {
-        display: none;
-      }
-    }
-  }
-}
-
-.status__content {
-  position: relative;
-  margin: 10px 0;
-  font-size: 15px;
-  line-height: 20px;
-  word-wrap: break-word;
-  font-weight: 400;
-  overflow: visible;
-  padding-top: 5px;
-
-  &:focus {
-    outline: 0;
-  }
-
-  .emojione {
-    width: 20px;
-    height: 20px;
-    margin: -3px 0 0;
-  }
-
-  p,
-  pre {
-    margin-bottom: 20px;
-    white-space: pre-wrap;
-    unicode-bidi: plaintext;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  a {
-    color: $secondary-text-color;
-    text-decoration: none;
-    unicode-bidi: isolate;
-
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &.mention {
-      &:hover {
-        text-decoration: none;
-
-        span {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-
-  .status__content__spoiler {
-    display: none;
-
-    &.status__content__spoiler--visible {
-      display: block;
-    }
-  }
-
-  a.unhandled-link {
-    color: $highlight-text-color;
-
-    .link-origin-tag {
-      color: $gold-star;
-      font-size: 0.8em;
-    }
-  }
-
-  .status__content__spoiler-link {
-    background: lighten($ui-base-color, 30%);
-
-    &:hover,
-    &:focus {
-      background: lighten($ui-base-color, 33%);
-      text-decoration: none;
-    }
-
-    // Polyam: Prevent outline. Looks weird
-    &:focus {
-      outline: none;
-    }
+.status__relative-time,
+.detailed-status__datetime {
+  &:hover {
+    text-decoration: underline;
   }
 }
 
@@ -1009,7 +1002,7 @@ a.status-card {
   font-size: 14px;
   border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
-  margin-top: 14px; // glitch-soc change to reduce margins
+  margin-top: 14px; // glitch: reduced margins
   overflow: hidden;
 
   &__icon {
@@ -1051,7 +1044,7 @@ a.status-card {
 
   &.compact {
     border: 0;
-    margin-top: 4px; // glitch-soc addition to reduce margins
+    margin-top: 4px; // glitch: reduced margins
 
     .attachment-list__list {
       padding: 0;
@@ -1061,6 +1054,24 @@ a.status-card {
     .icon {
       color: $dark-text-color;
       vertical-align: middle;
+    }
+  }
+}
+
+.notification,
+.status__wrapper {
+  position: relative;
+
+  &.unread {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      inset-inline-start: 0;
+      width: 100%;
+      height: 100%;
+      border-inline-start: 4px solid $highlight-text-color;
+      pointer-events: none;
     }
   }
 }

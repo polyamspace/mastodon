@@ -409,27 +409,7 @@
   flex-direction: column;
 
   .status__relative-time {
-    color: $dark-text-color;
-    float: right;
-    font-size: 14px;
-    width: auto;
-    margin: initial;
-    padding: initial;
-  }
-
-  .status__visibility-icon {
-    color: $dark-text-color;
-    font-size: 14px;
-    padding: 0 4px;
-  }
-
-  .status__display-name {
-    display: flex;
-  }
-
-  .status__avatar {
-    height: 48px;
-    width: 48px;
+    order: 2;
   }
 
   .status__content__spoiler-link {
@@ -476,15 +456,6 @@
   .button {
     flex: 0 0 auto;
   }
-}
-
-.boost-modal__status-header {
-  font-size: 15px;
-}
-
-.boost-modal__status-time {
-  float: right;
-  font-size: 14px;
 }
 
 .mute-modal,
@@ -1040,6 +1011,7 @@
   }
 }
 
+// glitch: deprecated settings modal
 img.modal-warning {
   display: block;
   margin: auto;

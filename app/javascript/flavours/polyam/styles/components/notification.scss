@@ -1,3 +1,14 @@
+.notification__message-collapse-button {
+  text-align: end;
+  flex-grow: 2;
+
+  // Polyam: Different size, because smaller for polyam-glitch
+  .status__collapse-button .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
 .notification__relative_time {
   color: $dark-text-color;
   float: right;
@@ -5,57 +16,54 @@
   padding-bottom: 1px;
 }
 
-.notification__favourite-icon-wrapper {
-  inset-inline-start: 0;
-  position: absolute;
-
-  // Polyam: Kept from upstream -- upstreams change on how icon is colored didn't work
-  .icon.star-icon {
-    color: $gold-star;
-  }
-
-  // Polyam: Makes reblog icon a bit larger in notifications as it's not square
-  .icon.icon-retweet {
-    width: 17px;
-  }
-}
-
 .notification__report {
-  padding: 8px 10px;
-  padding-inline-start: 68px;
-  position: relative;
+  padding: 10px; // glitch: reduced padding
   border-bottom: 1px solid lighten($ui-base-color, 8%);
-  min-height: 54px;
+  display: flex;
+  gap: 10px;
+
+  &__avatar {
+    flex: 0 0 auto;
+  }
 
   &__details {
+    flex: 1 1 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: $darker-text-color;
+    gap: 10px;
     font-size: 15px;
     line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+
+    & > div {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     strong {
       font-weight: 500;
     }
   }
 
-  &__avatar {
-    position: absolute;
-    inset-inline-start: 10px;
-    top: 10px;
+  &__actions {
+    flex: 0 0 auto;
   }
 }
 
 .notification__message {
-  margin-inline-start: 42px;
-  padding-top: 8px;
-  padding-inline-start: 26px;
+  padding: 8px 14px; // glitch: reduced padding
+  padding-bottom: 0;
   cursor: default;
   color: $darker-text-color;
   font-size: 15px;
-  position: relative;
+  line-height: 22px;
+  font-weight: 500;
+  display: flex;
   align-items: center;
+  gap: 10px;
 
   .icon {
     color: $highlight-text-color;
@@ -68,7 +76,7 @@
   }
 
   > span {
-    display: block;
+    display: inline;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -80,7 +88,6 @@
   text-decoration: none;
 
   &:hover {
-    color: $primary-text-color;
     text-decoration: underline;
   }
 }
@@ -151,16 +158,6 @@
 
   .account {
     border-bottom: 0 none;
-  }
-}
-
-.notification-favourite {
-  .status.status-direct {
-    background: transparent;
-
-    .icon-button.disabled {
-      color: lighten($action-button-color, 13%);
-    }
   }
 }
 

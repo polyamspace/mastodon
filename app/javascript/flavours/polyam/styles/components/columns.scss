@@ -689,6 +689,7 @@ $ui-header-height: 55px;
     margin: 0;
     border: 0;
     padding: 13px;
+    padding-inline-end: 0;
     color: inherit;
     background: transparent;
     font: inherit;
@@ -723,7 +724,6 @@ $ui-header-height: 55px;
 .column-header__buttons {
   height: 48px;
   display: flex;
-  margin-inline-start: 0;
 }
 
 .column-header__links {
@@ -922,7 +922,7 @@ $ui-header-height: 55px;
   margin: 0;
   font-size: inherit;
   flex: auto;
-  background-color: $ui-base-color;
+  background-color: lighten($ui-base-color, 8%);
   transition: all 0.2s ease;
   transition-property: background-color, box-shadow;
 
@@ -1173,18 +1173,18 @@ $ui-header-height: 55px;
   }
 }
 
-.column {
-  overflow: hidden;
-
-  .wide .columns-area:not(.columns-area--mobile) & {
+// glitch: optional wide mode
+.wide .columns-area:not(.columns-area--mobile) {
+  .column {
     flex: auto;
     min-width: 330px;
     max-width: 400px;
   }
 
-  > .scrollable {
-    background: $ui-base-color;
-    border-radius: 0 0 4px 4px;
+  .drawer {
+    min-width: 300px;
+    max-width: 400px;
+    flex: 1 1 200px;
   }
 }
 
