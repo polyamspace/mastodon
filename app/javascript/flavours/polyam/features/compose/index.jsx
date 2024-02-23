@@ -47,6 +47,8 @@ const messages = defineMessages({
 const mapStateToProps = (state, ownProps) => ({
   columns: state.getIn(['settings', 'columns']),
   showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : false,
+  unreadNotifications: state.getIn(['notifications', 'unread']),
+  showNotificationsBadge: state.getIn(['local_settings', 'notifications', 'tab_badge']),
 });
 
 // ~4% chance you'll end up with an unexpected friend
@@ -61,6 +63,8 @@ class Compose extends PureComponent {
     columns: ImmutablePropTypes.list.isRequired,
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
+    unreadNotifications: PropTypes.number,
+    showNotificationsBadge: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -119,7 +123,7 @@ class Compose extends PureComponent {
   };
 
   render () {
-    const { multiColumn, showSearch, intl } = this.props;
+    const { multiColumn, showSearch, showNotificationsBadge, unreadNotifications, intl } = this.props;
 
     const elefriend = [glitchedElephant1, glitchedElephant2, glitchedElephant3, elephantUIPlane][this.state.elefriend];
 
@@ -134,7 +138,12 @@ class Compose extends PureComponent {
               <Link to='/home' className='drawer__tab' title={intl.formatMessage(messages.home_timeline)} aria-label={intl.formatMessage(messages.home_timeline)}><Icon id='home' icon={faHome} /></Link>
             )}
             {!columns.some(column => column.get('id') === 'NOTIFICATIONS') && (
-              <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)} aria-label={intl.formatMessage(messages.notifications)}><Icon id='bell' icon={faBell} /></Link>
+              <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)} aria-label={intl.formatMessage(messages.notifications)}>
+                <span className='icon-badge-wrapper'>
+                  <Icon id='bell' icon={faBell} />
+                  {showNotificationsBadge && unreadNotifications > 0 && <div className='icon-badge' />}
+                </span>
+              </Link>
             )}
             {!columns.some(column => column.get('id') === 'COMMUNITY') && (
               <Link to='/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)}><Icon id='users' icon={faUsers} /></Link>
