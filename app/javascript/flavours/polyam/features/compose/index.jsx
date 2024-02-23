@@ -15,6 +15,9 @@ import spring from 'react-motion/lib/spring';
 import { openModal } from 'flavours/polyam/actions/modal';
 import Column from 'flavours/polyam/components/column';
 import { Icon } from 'flavours/polyam/components/icon';
+import glitchedElephant1 from 'flavours/polyam/images/mbstobon-ui-0.png';
+import glitchedElephant2 from 'flavours/polyam/images/mbstobon-ui-1.png';
+import glitchedElephant3 from 'flavours/polyam/images/mbstobon-ui-2.png';
 import { logOut } from 'flavours/polyam/utils/log_out';
 
 import elephantUIPlane from '../../../../images/elephant_ui_plane.svg';
@@ -46,6 +49,11 @@ const mapStateToProps = (state, ownProps) => ({
   showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : false,
 });
 
+// ~4% chance you'll end up with an unexpected friend
+// glitch-soc/mastodon repo created_at date: 2017-04-20T21:55:28Z
+const glitchProbability = 1 - 0.0420215528;
+const totalElefriends = 3;
+
 class Compose extends PureComponent {
 
   static propTypes = {
@@ -54,6 +62,10 @@ class Compose extends PureComponent {
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
     intl: PropTypes.object.isRequired,
+  };
+
+  state = {
+    elefriend: Math.random() < glitchProbability ? Math.floor(Math.random() * totalElefriends) : totalElefriends,
   };
 
   componentDidMount () {
@@ -102,8 +114,14 @@ class Compose extends PureComponent {
     this.props.dispatch(changeComposing(false));
   };
 
+  cycleElefriend = () => {
+    this.setState((state) => ({ elefriend: (state.elefriend + 1) % totalElefriends }));
+  };
+
   render () {
     const { multiColumn, showSearch, intl } = this.props;
+
+    const elefriend = [glitchedElephant1, glitchedElephant2, glitchedElephant3, elephantUIPlane][this.state.elefriend];
 
     if (multiColumn) {
       const { columns } = this.props;
@@ -142,8 +160,9 @@ class Compose extends PureComponent {
             <div className='drawer__inner' onFocus={this.onFocus}>
               <ComposeFormContainer autoFocus={!isMobile(window.innerWidth)} />
 
-              <div className='drawer__inner__mastodon'>
-                <img alt='' draggable='false' src={mascot || elephantUIPlane} />
+              {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- this is not a feature but a visual easter egg */}
+              <div className='drawer__inner__mastodon' onClick={this.cycleElefriend}>
+                <img alt='' draggable='false' src={mascot || elefriend} />
               </div>
             </div>
 
