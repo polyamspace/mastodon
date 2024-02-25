@@ -470,6 +470,11 @@
     width: 16px;
     height: 16px;
   }
+
+  // Polyam: Temporary fix for language icon
+  .text-icon {
+    font-weight: 600;
+  }
 }
 
 .status__collapse-button.active > .icon {
