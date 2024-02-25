@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from 'flavours/polyam/actions/compose';
 import ServerBanner from 'flavours/polyam/components/server_banner';
 import ComposeFormContainer from 'flavours/polyam/features/compose/containers/compose_form_container';
-import NavigationContainer from 'flavours/polyam/features/compose/containers/navigation_container';
 import SearchContainer from 'flavours/polyam/features/compose/containers/search_container';
 
 import LinkFooter from './link_footer';
@@ -46,10 +45,7 @@ class ComposePanel extends PureComponent {
         )}
 
         {signedIn && (
-          <>
-            <NavigationContainer />
-            <ComposeFormContainer singleColumn />
-          </>
+          <ComposeFormContainer singleColumn />
         )}
 
         <LinkFooter />

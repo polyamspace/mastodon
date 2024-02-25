@@ -1,58 +1,44 @@
 .navigation-bar {
-  padding: 10px; // glitch: reduced padding
-  color: $darker-text-color;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+  cursor: default;
+  gap: 10px;
 
-  a {
-    color: inherit;
-    text-decoration: none;
+  .column > & {
+    padding: 15px;
   }
 
-  .acct {
-    display: inline;
-    color: $secondary-text-color;
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  .account {
+    border-bottom: 0;
+    padding: 0;
+    flex: 1 1 auto;
+    min-width: 0;
 
-  .navigation-bar__actions {
-    position: relative;
+    &__display-name {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.15px;
+      font-weight: 500;
 
-    .compose__action-bar .icon-button {
-      pointer-events: auto;
-      transform: scale(1, 1) translate(0, 0);
-      opacity: 1;
-
-      .icon {
-        width: 18px;
-        height: 18px;
+      .display-name__account {
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.1px;
       }
     }
   }
-}
 
-.navigation-bar__profile {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  margin-inline-start: 8px; // Polyam: Removed upstream, but needed. TODO: Figure out why
-  line-height: 20px;
-}
+  .icon-button {
+    padding: 8px;
+    color: $secondary-text-color;
+  }
 
-.navigation-bar__profile-account {
-  display: inline;
-  font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.navigation-bar__profile-edit {
-  display: inline;
-  color: inherit;
-  text-decoration: none;
+  // Polyam: size 18px instead of 24px
+  .icon-button .icon {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 // This class exists twice in vanilla, merged into one
@@ -92,7 +78,7 @@
   position: absolute;
   top: 0;
   inset-inline-start: 0;
-  background: $ui-base-color;
+  background: darken($ui-base-color, 4%);
   box-sizing: border-box;
   padding: 0;
   display: flex;
@@ -108,7 +94,7 @@
 }
 
 .drawer__inner__mastodon {
-  background: $ui-base-color
+  background: darken($ui-base-color, 4%)
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>')
     no-repeat bottom / 100% auto;
   flex: 1;
@@ -125,75 +111,25 @@
     user-select: none;
   }
 
-  > .mastodon {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    cursor: inherit;
-
-    &:focus-visible {
-      outline: none;
-    }
-  }
-
   @media screen and (height >= 640px) {
     display: block;
   }
 }
 
-.pseudo-drawer {
-  background: lighten($ui-base-color, 13%);
-  font-size: 13px;
-  text-align: start;
-}
-
 .drawer__header {
   flex: 0 0 auto;
   font-size: 16px;
-  background: $ui-base-color;
+  background: darken($ui-base-color, 4%);
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
   border-radius: 4px;
   overflow: hidden;
 
-  a:hover {
-    background: lighten($ui-base-color, 3%);
-  }
-}
-
-@for $i from 0 through 3 {
-  .mbstobon-#{$i} .drawer__inner__mastodon {
-    @if $i == 3 {
-      background:
-        url('~flavours/polyam/images/wave-drawer.png')
-          no-repeat
-          bottom /
-          100%
-          auto,
-        $ui-base-color;
-    } @else {
-      background:
-        url('~flavours/polyam/images/wave-drawer-glitched.png')
-          no-repeat
-          bottom /
-          100%
-          auto,
-        $ui-base-color;
-    }
-
-    & > .mastodon {
-      background: url('~flavours/polyam/images/mbstobon-ui-#{$i}.png')
-        no-repeat
-        left
-        bottom /
-        contain;
-
-      @if $i != 3 {
-        filter: contrast(50%) brightness(50%);
-      }
-    }
+  a:hover,
+  a:focus,
+  a:active {
+    background: $ui-base-color;
   }
 }
 

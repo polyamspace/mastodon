@@ -1,60 +1,36 @@
-import PropTypes from 'prop-types';
+import { useCallback } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { useIntl, defineMessages } from 'react-intl';
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { Permalink } from 'flavours/polyam/components/permalink';
-import { profileLink } from 'flavours/polyam/utils/backend_links';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { Avatar } from '../../../components/avatar';
+import { cancelReplyCompose } from 'flavours/polyam/actions/compose';
+import Account from 'flavours/polyam/components/account';
+import { IconButton } from 'flavours/polyam/components/icon_button';
+import { me } from 'flavours/polyam/initial_state';
 
-import ActionBar from './action_bar';
+import { ActionBar } from './action_bar';
 
-export default class NavigationBar extends ImmutablePureComponent {
+const messages = defineMessages({
+  cancel: { id: 'reply_indicator.cancel', defaultMessage: 'Cancel' },
+});
 
-  static propTypes = {
-    account: ImmutablePropTypes.record.isRequired,
-    onLogout: PropTypes.func.isRequired,
-    onClose: PropTypes.func,
-  };
+export const NavigationBar = () => {
+  const dispatch = useDispatch();
+  const intl = useIntl();
+  const account = useSelector(state => state.getIn(['accounts', me]));
+  const isReplying = useSelector(state => !!state.getIn(['compose', 'in_reply_to']));
 
-  render () {
-    const username = this.props.account.get('acct');
-    const url = this.props.account.get('url');
+  const handleCancelClick = useCallback(() => {
+    dispatch(cancelReplyCompose());
+  }, [dispatch]);
 
-    return (
-      <div className='navigation-bar'>
-        <Permalink className='avatar' href={url} to={`/@${username}`}>
-          <span style={{ display: 'none' }}>{username}</span>
-          <Avatar account={this.props.account} size={46} />
-        </Permalink>
-
-        <div className='navigation-bar__profile'>
-          <span>
-            <Permalink className='acct' href={url} to={`/@${username}`}>
-              <strong className='navigation-bar__profile-account' >@{username}</strong>
-            </Permalink>
-          </span>
-
-          { profileLink !== undefined && (
-            <span>
-              <a
-                className='navigation-bar__profile-edit'
-                href={profileLink}
-              >
-                <FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' />
-              </a>
-            </span>
-          )}
-        </div>
-
-        <div className='navigation-bar__actions'>
-          <ActionBar account={this.props.account} onLogout={this.props.onLogout} />
-        </div>
-      </div>
-    );
-  }
-
-}
+  return (
+    <div className='navigation-bar'>
+      <Account account={account} minimal />
+      {isReplying ? <IconButton title={intl.formatMessage(messages.cancel)} iconComponent={faTimes} onClick={handleCancelClick} /> : <ActionBar />}
+    </div>
+  );
+};

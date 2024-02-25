@@ -4,13 +4,11 @@ import { PureComponent } from 'react';
 import { injectIntl, defineMessages } from 'react-intl';
 
 import { faImage } from '@fortawesome/free-regular-svg-icons';
-import { faAngleDoubleUp, faCog, faCogs, faPencil, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleUp, faCog, faCogs, faPencil, faTimes, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 import { preferencesLink } from 'flavours/polyam/utils/backend_links';
 
 import LocalSettingsNavigationItem from './item';
-
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 const messages = defineMessages({
   general: {  id: 'settings.general', defaultMessage: 'General' },
@@ -57,7 +55,8 @@ class LocalSettingsNavigation extends PureComponent {
           active={index === 2}
           index={2}
           onNavigate={onNavigate}
-          textIcon='CW'
+          icon='warning'
+          iconComponent={faExclamationTriangle}
           title={intl.formatMessage(messages.content_warnings)}
         />
         <LocalSettingsNavigationItem

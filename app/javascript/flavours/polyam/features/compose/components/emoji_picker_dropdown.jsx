@@ -7,16 +7,18 @@ import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { faFaceGrinWide } from '@fortawesome/free-solid-svg-icons';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
+
+import { IconButton } from 'flavours/polyam/components/icon_button';
 import data from 'flavours/polyam/features/emoji/emoji_data.json';
 import { useSystemEmojiFont } from 'flavours/polyam/initial_state';
 import { assetHost } from 'flavours/polyam/utils/config';
 
 import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
 import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
-
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
@@ -328,7 +330,6 @@ class EmojiPickerDropdown extends PureComponent {
     onPickEmoji: PropTypes.func.isRequired,
     onSkinTone: PropTypes.func.isRequired,
     skinTone: PropTypes.number.isRequired,
-    button: PropTypes.node,
     disabled: PropTypes.bool,
   };
 
@@ -387,23 +388,24 @@ class EmojiPickerDropdown extends PureComponent {
   };
 
   render () {
-    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, button } = this.props;
+    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis } = this.props;
     const title = intl.formatMessage(messages.emoji);
     const { active, loading } = this.state;
 
     return (
-      <div className='emoji-picker-dropdown' onKeyDown={this.handleKeyDown}>
-        <div ref={this.setTargetRef} className='emoji-button' title={title} aria-label={title} aria-expanded={active} role='button' onClick={this.onToggle} onKeyDown={this.onToggle} tabIndex={0}>
-          {button || <img
-            className={classNames('emojione', { 'pulse-loading': active && loading })}
-            alt='🙂'
-            src={`${assetHost}/blobcat.png`}
-          />}
-        </div>
+      <div className='emoji-picker-dropdown' onKeyDown={this.handleKeyDown} ref={this.setTargetRef}>
+        <IconButton
+          title={title}
+          aria-expanded={active}
+          active={active}
+          iconComponent={faFaceGrinWide}
+          onClick={this.onToggle}
+          inverted
+        />
 
         <Overlay show={active} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
           {({ props, placement })=> (
-            <div {...props} style={{ ...props.style, width: 299 }}>
+            <div {...props} style={{ ...props.style }}>
               <div className={`dropdown-animation ${placement}`}>
                 <EmojiPickerMenu
                   custom_emojis={this.props.custom_emojis}

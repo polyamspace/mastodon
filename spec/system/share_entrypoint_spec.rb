@@ -19,16 +19,16 @@ describe 'ShareEntrypoint' do
 
   it 'can be used to post a new status' do
     expect(subject).to have_css('div#mastodon-compose')
-    expect(subject).to have_css('.compose-form__publish-button-wrapper > button')
+    expect(subject).to have_css('.compose-form__submit')
 
     status_text = 'This is a new status!'
 
     within('.compose-form') do
       fill_in "What's on your mind?", with: status_text
-      click_on 'Toot!'
+      click_on 'Toot'
     end
 
     # Polyam-glitch doesn't have this
-    # expect(subject).to have_css('.notification-bar-message', text: 'Post published.')
+    # expect(subject).to have_css('.notification-bar-message', text: 'Toot published.')
   end
 end

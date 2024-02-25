@@ -13,7 +13,6 @@
   "notification.reaction": "{name} reacted to your toot",
   "notifications.column_settings.reaction": "Reactions",
   "notifications.filter.reactions": "Reactions",
-  "reply_indicator.reply_to": "Replying to:",
   "search.disabled": "Search disabled",
   "status.hidden_by_moderators": "This toot has been hidden by the moderators of {domain}.",
   "status.is_thread": "This toot is part of a thread",

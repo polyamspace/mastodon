@@ -21,7 +21,7 @@ let id = 0;
 class DropdownMenu extends PureComponent {
 
   static propTypes = {
-    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]).isRequired,
+    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]),
     loading: PropTypes.bool,
     scrollable: PropTypes.bool,
     onClose: PropTypes.func.isRequired,

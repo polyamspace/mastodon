@@ -73,10 +73,10 @@ class SearchResults extends ImmutablePureComponent {
 
     return (
       <div className='search-results'>
-        <header className='search-results__header'>
+        <div className='search-results__header'>
           <Icon id='search' icon={faSearch} fixedWidth />
           <FormattedMessage id='explore.search_results' defaultMessage='Search results' />
-        </header>
+        </div>
 
         {accounts}
         {hashtags}
