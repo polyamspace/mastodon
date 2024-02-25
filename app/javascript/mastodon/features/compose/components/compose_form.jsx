@@ -15,7 +15,7 @@ import { WithOptionalRouterPropTypes, withOptionalRouter } from 'mastodon/utils/
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import { Button } from '../../../components/button';
-import { publishButtonText as customPublishButtonText } from '../../../initial_state';
+import { maxChars, publishButtonText as customPublishButtonText } from '../../../initial_state';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import LanguageDropdown from '../containers/language_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
