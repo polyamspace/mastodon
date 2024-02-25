@@ -14,12 +14,12 @@ import { Icon } from 'flavours/polyam/components/icon';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  public_long: { id: 'privacy.public.long', defaultMessage: 'Anyone on and off Mastodon' },
-  unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Quiet public' },
-  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Fewer algorithmic fanfares' },
+  public_long: { id: 'polyam.privacy.public.long', defaultMessage: 'Visible for all' },
+  unlisted_short: { id: 'polyam.privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  unlisted_long: { id: 'polyam.privacy.unlisted.long', defaultMessage: 'Visible for all, but opted-out of discovery features' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers' },
   private_long: { id: 'privacy.private.long', defaultMessage: 'Only your followers' },
-  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Specific people' },
+  direct_short: { id: 'polyam.privacy.direct.short', defaultMessage: 'Mentioned people only' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Everyone mentioned in the post' },
   change_privacy: { id: 'privacy.change', defaultMessage: 'Change post privacy' },
   unlisted_extra: { id: 'privacy.unlisted.additional', defaultMessage: 'This behaves exactly like public, except the post will not appear in live feeds or hashtags, explore, or Mastodon search, even if you are opted-in account-wide.' },
