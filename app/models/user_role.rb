@@ -39,6 +39,8 @@ class UserRole < ApplicationRecord
     bypass_invite_limits: (1 << 50),
   }.freeze
 
+  EVERYONE_ROLE_ID = -99
+
   module Flags
     NONE = 0
     ALL  = FLAGS.values.reduce(&:|)
@@ -96,7 +98,10 @@ class UserRole < ApplicationRecord
 
   before_validation :set_position
 
-  scope :assignable, -> { where.not(id: -99).order(position: :asc) }
+  scope :assignable, -> { where.not(id: EVERYONE_ROLE_ID).order(position: :asc) }
+  scope :highlighted, -> { where(highlighted: true) }
+  scope :with_color, -> { where.not(color: [nil, '']) }
+  scope :providing_styles, -> { highlighted.with_color }
 
   has_many :users, inverse_of: :role, foreign_key: 'role_id', dependent: :nullify
 
@@ -105,9 +110,9 @@ class UserRole < ApplicationRecord
   end
 
   def self.everyone
-    UserRole.find(-99)
+    UserRole.find(EVERYONE_ROLE_ID)
   rescue ActiveRecord::RecordNotFound
-    UserRole.create!(id: -99, permissions: Flags::DEFAULT)
+    UserRole.create!(id: EVERYONE_ROLE_ID, permissions: Flags::DEFAULT)
   end
 
   def self.that_can(*any_of_privileges)
@@ -115,7 +120,7 @@ class UserRole < ApplicationRecord
   end
 
   def everyone?
-    id == -99
+    id == EVERYONE_ROLE_ID
   end
 
   def nobody?

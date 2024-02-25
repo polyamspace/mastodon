@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { scrollTopTimeline, loadPending } from '../../../actions/timelines';
+import { scrollTopTimeline, loadPending, TIMELINE_SUGGESTIONS, TIMELINE_GAP } from '../../../actions/timelines';
 import StatusList from '../../../components/status_list';
 import { me } from '../../../initial_state';
 
@@ -57,7 +57,7 @@ const makeGetStatusIds = (pending = false) => createSelector([
   getRegex,
 ], (columnSettings, statusIds, statuses, regex) => {
   return statusIds.filter(id => {
-    if (id === null) return true;
+    if (id === TIMELINE_GAP || id === TIMELINE_SUGGESTIONS) return true;
 
     const statusForId = statuses.get(id);
     let showStatus    = true;

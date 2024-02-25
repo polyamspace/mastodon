@@ -298,10 +298,12 @@
       }
     }
 
+    // Polyam: Kept padding of 3px
     .icon-button.compose-form__upload__delete {
       padding: 3px;
       border-radius: 50%;
 
+      // Polyam: Kept size at 18px
       .icon {
         width: 18px;
         height: 18px;
@@ -398,10 +400,12 @@
       display: flex;
     }
 
+    // Polyam: Kept padding of 3px
     .icon-button {
       padding: 3px;
     }
 
+    // Polyam: Kept size at 18px
     .icon-button .icon {
       width: 18px;
       height: 18px;

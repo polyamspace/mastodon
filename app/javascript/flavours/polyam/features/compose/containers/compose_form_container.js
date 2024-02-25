@@ -72,6 +72,7 @@ const mapStateToProps = state => ({
   sideArm: sideArmPrivacy(state),
   media: state.getIn(['compose', 'media_attachments']),
   mediaDescriptionConfirmation: state.getIn(['local_settings', 'confirm_missing_media_description']),
+  maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 500),
   highlighted: state.getIn(['compose', 'highlighted']),
 });
 

@@ -189,6 +189,19 @@ html {
   background: $ui-base-color;
 }
 
+.inline-follow-suggestions {
+  background-color: rgba($ui-highlight-color, 0.1);
+  border-bottom-color: rgba($ui-highlight-color, 0.3);
+}
+
+.inline-follow-suggestions__body__scrollable__card {
+  background: $white;
+}
+
+.inline-follow-suggestions__body__scroll-button__icon {
+  color: $white;
+}
+
 // Change the background colors of statuses
 .focusable:focus {
   background: lighten($white, 4%);

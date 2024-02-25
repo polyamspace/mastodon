@@ -72,7 +72,6 @@ export const hasMultiColumnPath = initialPath === '/'
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
  * @property {object} local_settings
- * @property {number} max_toot_chars
  * @property {{max_options: number, max_option_chars: number, min_expiration: number, max_expiration: number}} poll_limits
  * @property {number} max_reactions
  */
@@ -143,7 +142,6 @@ export const showRepliesPublicTimelines = getMeta('show_replies_in_public_timeli
 export const sso_redirect = getMeta('sso_redirect');
 
 // Glitch-soc-specific settings
-export const maxChars = (initialState && initialState.max_toot_chars) || 500;
 export const favouriteModal = getMeta('favourite_modal');
 export const pollLimits = (initialState && initialState.poll_limits);
 export const defaultContentType = getMeta('default_content_type');
