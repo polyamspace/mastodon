@@ -8,7 +8,7 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faEnvelope, faLock, faPlus, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faFaceGrinWide, faLock, faStar } from '@fortawesome/free-solid-svg-icons';
 
 import { AnimatedNumber } from 'flavours/polyam/components/animated_number';
 import AttachmentList from 'flavours/polyam/components/attachment_list';
@@ -336,7 +336,7 @@ class DetailedStatus extends ImmutablePureComponent {
     if (this.props.history) {
       reactionLink = (
         <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reactions`} className='detailed-status__link'>
-          <Icon id='plus' icon={faPlus} />
+          <Icon id='face-grin-wide' icon={faFaceGrinWide} />
           <span className='detailed-status__reactions'>
             <AnimatedNumber value={status.get('reactions_count')} />
           </span>
@@ -345,7 +345,7 @@ class DetailedStatus extends ImmutablePureComponent {
     } else {
       reactionLink = (
         <a href={`/interact/${status.get('id')}?type=reaction`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <Icon id='plus' icon={faPlus} />
+          <Icon id='face-grin-wide' icon={faFaceGrinWide} />
           <span className='detailed-status__reactions'>
             <AnimatedNumber value={status.get('reactions_count')} />
           </span>

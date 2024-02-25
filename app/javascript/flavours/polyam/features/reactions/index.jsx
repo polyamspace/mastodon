@@ -8,7 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faPlus, faRefresh } from '@fortawesome/free-solid-svg-icons';
+import { faFaceGrinWide, faRefresh } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
 import { fetchReactions, expandReactions } from 'flavours/polyam/actions/interactions';
@@ -80,8 +80,8 @@ class Reactions extends ImmutablePureComponent {
     return (
       <Column ref={this.setRef}>
         <ColumnHeader
-          icon='plus'
-          iconComponent={faPlus}
+          icon='face-grin-wide'
+          iconComponent={faFaceGrinWide}
           title={intl.formatMessage(messages.heading)}
           onClick={this.handleHeaderClick}
           showBackButton
