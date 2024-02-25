@@ -574,8 +574,9 @@
   }
 
   // Polyam: Reaction button
-  & > .emoji-picker-dropdown > .emoji-button {
-    padding: 0;
+  & > .emoji-picker-dropdown {
+    width: 22px;
+    height: 22px;
   }
 }
 
