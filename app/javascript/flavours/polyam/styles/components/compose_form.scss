@@ -390,7 +390,7 @@
 
   &__buttons {
     display: flex;
-    gap: 8px;
+    gap: 5px; // Polyam: Reduced gap to fit icons
     align-items: center;
     flex: 1 1 auto;
 
