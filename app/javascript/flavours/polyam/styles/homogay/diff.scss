@@ -42,13 +42,13 @@ body {
 }
 
 // compose panel
-.compose-panel .autosuggest-textarea label .autosuggest-textarea__textarea,
-.compose-form .autosuggest-input label .autosuggest-textarea__textarea,
+.compose-panel .autosuggest-textarea__textarea,
+.compose-form .autosuggest-textarea__textarea,
+.compose-form__highlightable,
 .compose-form__buttons-wrapper,
 .compose-form__warning,
 .spoiler-input input,
-.compose-panel .compose-form__modifiers,
-.reply-indicator {
+.compose-panel .compose-form__modifiers {
   background: $ui-base-semi-lighter-color;
   color: $primary-text-color;
 }
@@ -404,22 +404,29 @@ body {
 }
 
 // advanced view
+
+.drawer__header {
+  background: $ui-base-color;
+
+  a:hover,
+  a:focus,
+  a:active {
+    background: lighten($ui-base-color, 4%);
+  }
+}
+
 .drawer__pager {
   border-radius: $border-radius;
-  border: 1px solid $ui-base-lighter-color;
+
+  // border: 1px solid $ui-base-lighter-color;
 }
 
 .drawer__inner {
   background: $ui-base-color;
 }
 
-.mbstobon-0,
-.mbstobon-1,
-.mbstobon-2,
-.mbstobon-3 {
-  .drawer__inner__mastodon {
-    background-color: $ui-base-color;
-  }
+.drawer__inner__mastodon {
+  background-color: $ui-base-color;
 }
 
 // settings
