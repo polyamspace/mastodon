@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
-import { faHome, faPlus, faReplyAll, faStar, faTasksAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faFaceGrinWide, faHome, faReplyAll, faStar, faTasksAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { faBoost } from 'flavours/polyam/components/boost';
 import { Icon }  from 'flavours/polyam/components/icon';
@@ -84,7 +84,7 @@ class FilterBar extends PureComponent {
           onClick={this.onClick('reaction')}
           title={intl.formatMessage(tooltips.reactions)}
         >
-          <Icon id='plus' icon={faPlus} fixedWidth />
+          <Icon id='face-grin-wide' icon={faFaceGrinWide} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'reblog' ? 'active' : ''}

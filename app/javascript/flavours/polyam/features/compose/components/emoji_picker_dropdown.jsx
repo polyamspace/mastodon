@@ -331,6 +331,11 @@ class EmojiPickerDropdown extends PureComponent {
     onSkinTone: PropTypes.func.isRequired,
     skinTone: PropTypes.number.isRequired,
     disabled: PropTypes.bool,
+    inverted: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    inverted: true,
   };
 
   state = {
@@ -388,7 +393,7 @@ class EmojiPickerDropdown extends PureComponent {
   };
 
   render () {
-    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis } = this.props;
+    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, disabled, inverted } = this.props;
     const title = intl.formatMessage(messages.emoji);
     const { active, loading } = this.state;
 
@@ -400,7 +405,8 @@ class EmojiPickerDropdown extends PureComponent {
           active={active}
           iconComponent={faFaceGrinWide}
           onClick={this.onToggle}
-          inverted
+          disabled={disabled}
+          inverted={inverted}
         />
 
         <Overlay show={active} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>

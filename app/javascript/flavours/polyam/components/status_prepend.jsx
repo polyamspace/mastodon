@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { faBell, faPencil, faPlus, faStar, faTasksAlt, faThumbTack } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faFaceGrinWide, faPencil, faStar, faTasksAlt, faThumbTack } from '@fortawesome/free-solid-svg-icons';
 
 import { Icon } from 'flavours/polyam/components/icon';
 import { me } from 'flavours/polyam/initial_state';
@@ -126,8 +126,8 @@ export default class StatusPrepend extends PureComponent {
       iconComponent = faStar;
       break;
     case 'reaction':
-      iconId = 'plus';
-      iconComponent = faPlus;
+      iconId = 'face-grin-wide';
+      iconComponent = faFaceGrinWide;
       break;
     case 'featured':
       iconId = 'thumb-tack';
