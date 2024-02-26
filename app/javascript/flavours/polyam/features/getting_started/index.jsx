@@ -146,7 +146,7 @@ class GettingStarted extends ImmutablePureComponent {
     }
 
     if (showTrends) {
-      navItems.push(<ColumnLink key='explore' icon='hashtag' iconComponent={faHashtag} text={intl.formatMessage(messages.explore)} to='/explore' />);
+      navItems.push(<ColumnLink key='explore' icon='explore' iconComponent={faHashtag} text={intl.formatMessage(messages.explore)} to='/explore' />);
     }
 
     if (signedIn) {

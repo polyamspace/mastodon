@@ -82,7 +82,7 @@ class NavigationPanel extends Component {
         )}
 
         {trendsEnabled ? (
-          <ColumnLink transparent to='/explore' icon='hashtag' iconComponent={faCompass} text={intl.formatMessage(messages.explore)} />
+          <ColumnLink transparent to='/explore' icon='explore' iconComponent={faCompass} text={intl.formatMessage(messages.explore)} />
         ) : (
           <ColumnLink transparent to='/search' icon='search' iconComponent={faSearch} text={intl.formatMessage(messages.search)} />
         )}
