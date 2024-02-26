@@ -10,7 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faAsterisk, faBars, faBell, faBookmark, faCog, faCogs, faEllipsisH, faEnvelope, faGlobe, faHashtag, faHome, faListUl, faUserPlus, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faAsterisk, faBars, faBell, faBookmark, faCog, faCogs, faCompass, faEllipsisH, faEnvelope, faGlobe, faHome, faListUl, faUserPlus, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 import { fetchFollowRequests } from 'flavours/polyam/actions/accounts';
 import { fetchLists } from 'flavours/polyam/actions/lists';
@@ -146,7 +146,7 @@ class GettingStarted extends ImmutablePureComponent {
     }
 
     if (showTrends) {
-      navItems.push(<ColumnLink key='explore' icon='hashtag' iconComponent={faHashtag} text={intl.formatMessage(messages.explore)} to='/explore' />);
+      navItems.push(<ColumnLink key='explore' icon='explore' iconComponent={faCompass} text={intl.formatMessage(messages.explore)} to='/explore' />);
     }
 
     if (signedIn) {

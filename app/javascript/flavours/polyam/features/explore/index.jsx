@@ -8,7 +8,7 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import { faHashtag, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faCompass } from '@fortawesome/free-solid-svg-icons';
 
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
@@ -58,8 +58,8 @@ class Explore extends PureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
-          icon={isSearching ? 'search' : 'hashtag'}
-          iconComponent={isSearching ? faSearch : faHashtag}
+          icon={isSearching ? 'search' : 'explore'}
+          iconComponent={isSearching ? faSearch : faCompass}
           title={intl.formatMessage(isSearching ? messages.searchResults : messages.title)}
           onClick={this.handleHeaderClick}
           multiColumn={multiColumn}

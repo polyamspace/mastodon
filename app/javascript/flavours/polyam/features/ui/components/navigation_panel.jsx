@@ -3,7 +3,7 @@ import { Component } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { faAt, faBookmark, faCog, faCogs, faEllipsisH, faGlobe, faHashtag, faHome, faListUl, faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faAt, faBookmark, faCog, faCogs, faEllipsisH, faGlobe, faCompass, faHome, faListUl, faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 
 import { NavigationPortal } from 'flavours/polyam/components/navigation_portal';
 import { timelinePreview, trendsEnabled } from 'flavours/polyam/initial_state';
@@ -82,7 +82,7 @@ class NavigationPanel extends Component {
         )}
 
         {trendsEnabled ? (
-          <ColumnLink transparent to='/explore' icon='hashtag' iconComponent={faHashtag} text={intl.formatMessage(messages.explore)} />
+          <ColumnLink transparent to='/explore' icon='explore' iconComponent={faCompass} text={intl.formatMessage(messages.explore)} />
         ) : (
           <ColumnLink transparent to='/search' icon='search' iconComponent={faSearch} text={intl.formatMessage(messages.search)} />
         )}
