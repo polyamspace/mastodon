@@ -298,9 +298,11 @@
     box-sizing: border-box;
     padding: 14px;
     text-align: center;
-    max-height: 48px;
-    overflow: hidden;
-    white-space: nowrap;
+
+    // Polyam: Disable these as they make long field text unreadable
+    // max-height: 48px;
+    // overflow: hidden;
+    // white-space: nowrap;
     text-overflow: ellipsis;
   }
 
