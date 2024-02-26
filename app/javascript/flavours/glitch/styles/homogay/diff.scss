@@ -45,10 +45,7 @@ body {
 .compose-panel .autosuggest-textarea__textarea,
 .compose-form .autosuggest-textarea__textarea,
 .compose-form__highlightable,
-.compose-form__buttons-wrapper,
-.compose-form__warning,
-.spoiler-input input,
-.compose-panel .compose-form__modifiers {
+.compose-form__warning {
   background: $ui-base-semi-lighter-color;
   color: $primary-text-color;
 }
@@ -68,66 +65,37 @@ body {
   //    border-bottom: 1px solid $ui-base-lighter-color;
   //    border-radius: 0 0 $border-radius $border-radius;
   //  }
-
-  .compose-form__poll-wrapper .icon-button {
-    color: $lighter-text-color;
-
-    &.disabled {
-      color: transparent;
-    }
-  }
-}
-
-.compose-form__poll-wrapper {
-  .button.button-secondary {
-    // this is the "add poll option" button.  its styles have been overridden
-    // to kinda make it look like a tertiary one, except whoever did this seems
-    // to have forgotten a bunch of stuff.  do some damage control.
-    color: $ui-button-tertiary-color;
-    border-color: $ui-button-tertiary-border-color;
-
-    &:active,
-    &:focus,
-    &:hover {
-      color: $ui-button-tertiary-focus-color;
-      background-color: $ui-button-tertiary-focus-background-color;
-    }
-  }
-
-  select {
-    // s/o to whoever decided this is the way to colorize SVGs
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($simple-background-color, 14%))}'/></svg>")
-      no-repeat right 8px center / auto 16px;
-  }
 }
 
 // .spoiler-input input {
 //   border: 1px solid $ui-base-extra-light-color;
 // }
 
-.poll__option input[type='text']::placeholder {
-  color: $darker-text-color;
-}
-
-.poll__option input[type='text'],
-.compose-form__poll-wrapper select {
+.poll__option input[type='text'] {
   border: 1px solid $ui-base-extra-light-color;
 }
 
-.compose-form .autosuggest-textarea__suggestions {
-  background: lighten($ui-base-color, 4%);
-}
+// Polyam: Fix border color of poll checkbox in compose
+.compose-form__poll {
+  .poll__input {
+    border-color: $ui-base-extra-light-color;
+  }
 
-.compose-form .autosuggest-textarea__suggestions__item {
-  &:hover,
-  &:focus,
-  &:active,
-  &.selected {
-    background: $ui-highlight-color;
+  .poll__option.editable .poll__input {
+    // Polyam: Fix color change on hover
+    &:hover,
+    &:focus {
+      border-color: $ui-base-extra-light-color;
+    }
   }
 }
 
-.compose-form__publish .compose-form__publish-button-wrapper button {
+.autosuggest-textarea__suggestions {
+  background: lighten($ui-base-color, 4%);
+}
+
+// Make toot buttons bounce when clicked
+.compose-form__submit button {
   transition-duration: 50ms;
   transition-timing-function: ease-in-out;
   transition-property: background-color, color, transform;
@@ -152,39 +120,16 @@ body {
 }
 
 .emoji-mart-bar:first-child {
-  background: $ui-base-extra-light-color;
+  // background: $ui-base-extra-light-color;
   border-bottom-color: #fff0;
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;
-}
-
-.emoji-mart-anchor:not(.emoji-mart-anchor-selected) {
-  color: $ui-button-tertiary-color;
-}
-
-.search__input {
-  background: $ui-base-semi-lighter-color;
-
-  //  border: 1px solid $ui-base-lighter-color;
-
-  &::placeholder {
-    color: $dark-text-color;
-  }
 }
 
 .emoji-button img {
   // fancier "grayscale" mode for the emoji picker button
   mix-blend-mode: luminosity;
   opacity: 0.65;
-}
-
-.emoji-button:active,
-.emoji-button:focus,
-.emoji-button:hover {
-  img {
-    opacity: 1;
-    mix-blend-mode: normal;
-  }
 }
 
 // Profiles
@@ -211,19 +156,6 @@ body {
 }
 
 // dropdowns
-.dropdown-menu,
-.dropdown-menu__item a,
-.dropdown-menu__item button {
-  background: $ui-base-lighter-color;
-}
-
-.dropdown-menu__arrow.top {
-  border-top-color: $ui-base-lighter-color;
-}
-
-.dropdown-menu__arrow.bottom {
-  border-bottom-color: $ui-base-lighter-color;
-}
 
 .language-dropdown__dropdown__results__item {
   &:focus,
@@ -310,7 +242,6 @@ body {
 .language-dropdown__dropdown,
 .privacy-dropdown__dropdown,
 .poll__option input[type='text'],
-.compose-form__poll-wrapper select,
 .account__header__tabs__buttons .icon-button,
 .emoji-picker-dropdown__menu,
 .emoji-mart-search input,
@@ -406,6 +337,7 @@ body {
 // advanced view
 
 .drawer__header {
+  border-radius: $border-radius;
   background: $ui-base-color;
 
   a:hover,
@@ -426,7 +358,9 @@ body {
 }
 
 .drawer__inner__mastodon {
-  background-color: $ui-base-color;
+  background: $ui-base-color
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color(lighten($ui-base-color, 4%))}"/></svg>')
+    no-repeat bottom / 100% auto;
 }
 
 // settings
