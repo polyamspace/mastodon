@@ -168,6 +168,7 @@ class EmojiPickerMenuImpl extends PureComponent {
     skinTone: PropTypes.number.isRequired,
     onSkinTone: PropTypes.func.isRequired,
     pickerButtonRef: PropTypes.func.isRequired,
+    emojiCategories: ImmutablePropTypes.map,
   };
 
   static defaultProps = {
@@ -255,7 +256,7 @@ class EmojiPickerMenuImpl extends PureComponent {
   };
 
   render () {
-    const { loading, style, intl, custom_emojis, skinTone, frequentlyUsedEmojis } = this.props;
+    const { loading, style, intl, custom_emojis, skinTone, frequentlyUsedEmojis, emojiCategories } = this.props;
 
     if (loading) {
       return <div style={{ width: 299 }} />;
@@ -267,15 +268,39 @@ class EmojiPickerMenuImpl extends PureComponent {
 
     const categoriesSort = [
       'recent',
-      'people',
-      'nature',
-      'foods',
-      'activity',
-      'places',
-      'objects',
-      'symbols',
-      'flags',
     ];
+
+    if (emojiCategories.get('people')) {
+      categoriesSort.push('people');
+    }
+
+    if (emojiCategories.get('nature')) {
+      categoriesSort.push('nature');
+    }
+
+    if (emojiCategories.get('foods')) {
+      categoriesSort.push('foods');
+    }
+
+    if (emojiCategories.get('activity')) {
+      categoriesSort.push('activity');
+    }
+
+    if (emojiCategories.get('places')) {
+      categoriesSort.push('places');
+    }
+
+    if (emojiCategories.get('objects')) {
+      categoriesSort.push('objects');
+    }
+
+    if (emojiCategories.get('symbols')) {
+      categoriesSort.push('symbols');
+    }
+
+    if (emojiCategories.get('flags')) {
+      categoriesSort.push('flags');
+    }
 
     categoriesSort.splice(1, 0, ...Array.from(categoriesFromEmojis(custom_emojis)).sort());
 
@@ -333,6 +358,7 @@ class EmojiPickerDropdown extends PureComponent {
     skinTone: PropTypes.number.isRequired,
     disabled: PropTypes.bool,
     inverted: PropTypes.bool,
+    emojiCategories: ImmutablePropTypes.map,
   };
 
   static defaultProps = {
@@ -394,7 +420,7 @@ class EmojiPickerDropdown extends PureComponent {
   };
 
   render () {
-    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, disabled, inverted } = this.props;
+    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, emojiCategories, disabled, inverted } = this.props;
     const title = intl.formatMessage(messages.emoji);
     const { active, loading } = this.state;
 
@@ -423,6 +449,7 @@ class EmojiPickerDropdown extends PureComponent {
                   skinTone={skinTone}
                   frequentlyUsedEmojis={frequentlyUsedEmojis}
                   pickerButtonRef={this.target}
+                  emojiCategories={emojiCategories}
                 />
               </div>
             </div>
