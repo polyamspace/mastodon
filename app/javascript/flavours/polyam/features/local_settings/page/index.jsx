@@ -226,6 +226,14 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
+          item={['only_show_custom_emojis_in_picker']}
+          id='mastodon-settings--only-show-custom-emojis-in-picker'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.only_show_custom_emojis_in_picker' defaultMessage='Only show custom emojis in emoji picker' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
           item={['side_arm']}
           id='mastodon-settings--side_arm'
           options={[

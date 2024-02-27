@@ -168,6 +168,7 @@ class EmojiPickerMenuImpl extends PureComponent {
     skinTone: PropTypes.number.isRequired,
     onSkinTone: PropTypes.func.isRequired,
     pickerButtonRef: PropTypes.func.isRequired,
+    onlyShowCustomEmojis: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
@@ -255,7 +256,7 @@ class EmojiPickerMenuImpl extends PureComponent {
   };
 
   render () {
-    const { loading, style, intl, custom_emojis, skinTone, frequentlyUsedEmojis } = this.props;
+    const { loading, style, intl, custom_emojis, skinTone, frequentlyUsedEmojis, onlyShowCustomEmojis } = this.props;
 
     if (loading) {
       return <div style={{ width: 299 }} />;
@@ -278,6 +279,10 @@ class EmojiPickerMenuImpl extends PureComponent {
     ];
 
     categoriesSort.splice(1, 0, ...Array.from(categoriesFromEmojis(custom_emojis)).sort());
+
+    if (onlyShowCustomEmojis) {
+      categoriesSort.splice(-8); // categoriesSort.length from above definition - 1
+    }
 
     return (
       <div className={classNames('emoji-picker-dropdown__menu', { selecting: modifierOpen })} style={style} ref={this.setRef}>
@@ -331,6 +336,7 @@ class EmojiPickerDropdown extends PureComponent {
     onPickEmoji: PropTypes.func.isRequired,
     onSkinTone: PropTypes.func.isRequired,
     skinTone: PropTypes.number.isRequired,
+    onlyShowCustomEmojis: PropTypes.bool,
     disabled: PropTypes.bool,
     inverted: PropTypes.bool,
   };
@@ -394,7 +400,7 @@ class EmojiPickerDropdown extends PureComponent {
   };
 
   render () {
-    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, disabled, inverted } = this.props;
+    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, onlyShowCustomEmojis, disabled, inverted } = this.props;
     const title = intl.formatMessage(messages.emoji);
     const { active, loading } = this.state;
 
@@ -423,6 +429,7 @@ class EmojiPickerDropdown extends PureComponent {
                   skinTone={skinTone}
                   frequentlyUsedEmojis={frequentlyUsedEmojis}
                   pickerButtonRef={this.target}
+                  onlyShowCustomEmojis={onlyShowCustomEmojis}
                 />
               </div>
             </div>

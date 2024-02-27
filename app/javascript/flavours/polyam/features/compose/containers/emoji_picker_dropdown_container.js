@@ -65,6 +65,7 @@ const mapStateToProps = state => ({
   custom_emojis: getCustomEmojis(state),
   skinTone: state.getIn(['settings', 'skinTone']),
   frequentlyUsedEmojis: getFrequentlyUsedEmojis(state),
+  onlyShowCustomEmojis: state.getIn(['local_settings', 'only_show_custom_emojis_in_picker']),
 });
 
 const mapDispatchToProps = (dispatch, { onPickEmoji }) => ({
