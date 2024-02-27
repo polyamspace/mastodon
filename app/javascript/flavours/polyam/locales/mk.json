@@ -27,6 +27,7 @@
   "polyam.privacy.unlisted.short": "Необјавено",
   "reply_indicator.reply_to": "Replying to:",
   "search.disabled": "Search disabled",
+  "settings.only_show_custom_emojis_in_picker": "Only show custom emojis in emoji picker",
   "status.hidden_by_moderators": "This toot has been hidden by the moderators of {domain}.",
   "status.is_thread": "This toot is part of a thread",
   "status.react": "React",
