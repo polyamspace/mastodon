@@ -1174,6 +1174,7 @@ const startServer = async () => {
    * @property {string} [tag]
    * @property {string} [list]
    * @property {string} [only_media]
+   * @property {string} [allow_local_only]
    */
 
   /**
@@ -1198,7 +1199,7 @@ const startServer = async () => {
    * @param {any} req
    * @param {string} name
    * @param {StreamParams} params
-   * @returns {Promise.<{ channelIds: string[], options: { needsFiltering: boolean } }>}
+   * @returns {Promise.<{ channelIds: string[], options: { needsFiltering: boolean, allowLocalOnly: boolean } }>}
    */
   const channelNameToIds = (req, name, params) => new Promise((resolve, reject) => {
     switch (name) {
