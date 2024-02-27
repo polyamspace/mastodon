@@ -6,12 +6,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faImage } from '@fortawesome/free-regular-svg-icons';
+import { faPaperclip, faPaintbrush, faFileArrowUp } from '@fortawesome/free-solid-svg-icons';
 
-import { IconButton } from 'flavours/polyam/components/icon_button';
+import { DropdownIconButton } from './dropdown_icon_button';
 
 const messages = defineMessages({
   upload: { id: 'upload_button.label', defaultMessage: 'Add images, a video or an audio file' },
+  doodle: { id: 'compose.attach.doodle', defaultMessage: 'Draw something' },
 });
 
 const makeMapStateToProps = () => {
@@ -22,16 +23,12 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const iconStyle = {
-  height: null,
-  lineHeight: '27px',
-};
-
 class UploadButton extends ImmutablePureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,
     onSelectFile: PropTypes.func.isRequired,
+    onDoodleOpen: PropTypes.func.isRequired,
     style: PropTypes.object,
     resetFileKey: PropTypes.number,
     acceptContentTypes: ImmutablePropTypes.listOf(PropTypes.string).isRequired,
@@ -44,8 +41,12 @@ class UploadButton extends ImmutablePureComponent {
     }
   };
 
-  handleClick = () => {
-    this.fileElement.click();
+  handleSelect = (value) => {
+    if (value === 'upload') {
+      this.fileElement.click();
+    } else {
+      this.props.onDoodleOpen();
+    }
   };
 
   setRef = (c) => {
@@ -57,9 +58,32 @@ class UploadButton extends ImmutablePureComponent {
 
     const message = intl.formatMessage(messages.upload);
 
+    const options = [
+      {
+        icon: 'file-arrow-up',
+        iconComponent: faFileArrowUp,
+        value: 'upload',
+        text: intl.formatMessage(messages.upload),
+      },
+      {
+        icon: 'paint-brush',
+        iconComponent: faPaintbrush,
+        value: 'doodle',
+        text: intl.formatMessage(messages.doodle),
+      },
+    ];
+
     return (
       <div className='compose-form__upload-button'>
-        <IconButton icon='paperclip' iconComponent={faImage} title={message} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle} />
+        <DropdownIconButton
+          icon='paperclip'
+          iconComponent={faPaperclip}
+          title={message}
+          disabled={disabled}
+          onChange={this.handleSelect}
+          value='upload'
+          options={options}
+        />
         <label>
           <span style={{ display: 'none' }}>{message}</span>
           <input
