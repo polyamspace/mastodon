@@ -224,6 +224,73 @@ class LocalSettingsPage extends PureComponent {
         >
           <FormattedMessage id='settings.show_content_type_choice' defaultMessage='Show content-type choice when authoring toots' />
         </LocalSettingsPageItem>
+        <section>
+          <h2><FormattedMessage id='settings.picker_opts' defaultMessage='Emoji picker categories' /></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['emoji_categories', 'people']}
+            id='mastodon-settings--emoji-categories-people'
+            onChange={onChange}
+          >
+            <FormattedMessage id='emoji_button.people' defaultMessage='People' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['emoji_categories', 'nature']}
+            id='mastodon-settings--emoji-categories-nature'
+            onChange={onChange}
+          >
+            <FormattedMessage id='emoji_button.nature' defaultMessage='Nature' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['emoji_categories', 'foods']}
+            id='mastodon-settings--emoji-categories-foods'
+            onChange={onChange}
+          >
+            <FormattedMessage id='emoji_button.food' defaultMessage='Food & Drink' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['emoji_categories', 'activity']}
+            id='mastodon-settings--emoji-categories-activity'
+            onChange={onChange}
+          >
+            <FormattedMessage id='emoji_button.activity' defaultMessage='Activity' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['emoji_categories', 'places']}
+            id='mastodon-settings--emoji-categories-places'
+            onChange={onChange}
+          >
+            <FormattedMessage id='emoji_button.travel' defaultMessage='Travel & Places' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['emoji_categories', 'objects']}
+            id='mastodon-settings--emoji-categories-objects'
+            onChange={onChange}
+          >
+            <FormattedMessage id='emoji_button.objects' defaultMessage='Objects' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['emoji_categories', 'symbols']}
+            id='mastodon-settings--emoji-categories-symbols'
+            onChange={onChange}
+          >
+            <FormattedMessage id='emoji_button.symbols' defaultMessage='Symbols' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['emoji_categories', 'flags']}
+            id='mastodon-settings--emoji-categories-flags'
+            onChange={onChange}
+          >
+            <FormattedMessage id='emoji_button.flags' defaultMessage='Flags' />
+          </LocalSettingsPageItem>
+        </section>
         <LocalSettingsPageItem
           settings={settings}
           item={['side_arm']}

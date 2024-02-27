@@ -61,6 +61,16 @@ const initialState = ImmutableMap({
     media:      true,
     visibility: true,
   }),
+  emoji_categories : ImmutableMap({
+    people:   true,
+    nature:   true,
+    foods:    true,
+    activity: true,
+    places:   true,
+    objects:  true,
+    symbols:  true,
+    flags:    true,
+  })
 });
 
 const hydrate = (state, localSettings) => state.mergeDeep(localSettings);
