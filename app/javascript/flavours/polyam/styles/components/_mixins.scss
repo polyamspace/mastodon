@@ -1,0 +1,196 @@
+// Upstream has a nasty habit to override its own style.
+// Due to different structure and load order of CSS,
+// this sometimes causes overrides to not apply correctly
+// and makes it necessary to put overrides in files where they don't belong
+// or split classes anyway and apply changes to all of them.
+
+// Mixin for upstream's .status__content, .edit-indicator__content, .reply-indicator__content class
+@mixin status-content() {
+  position: relative;
+  word-wrap: break-word;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  line-height: 20px;
+  padding-top: 2px;
+  color: $primary-text-color;
+
+  &:focus {
+    outline: 0;
+  }
+
+  .emojione {
+    width: 20px;
+    height: 20px;
+    margin: -3px 0 0;
+  }
+
+  p,
+  pre {
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    unicode-bidi: plaintext;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: $secondary-text-color;
+    text-decoration: none;
+    unicode-bidi: isolate;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.mention {
+      &:hover {
+        text-decoration: none;
+
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  a.unhandled-link {
+    color: $highlight-text-color;
+
+    .link-origin-tag {
+      color: $gold-star;
+      font-size: 0.8em;
+    }
+  }
+
+  .status__content__spoiler-link {
+    background: $action-button-color;
+
+    &:hover,
+    &:focus {
+      background: lighten($action-button-color, 7%);
+      text-decoration: none;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &::-moz-focus-inner,
+    &:focus,
+    &:active {
+      outline: 0 !important;
+    }
+  }
+
+  .status__content__spoiler {
+    display: none;
+
+    &.status__content__spoiler--visible {
+      display: block;
+    }
+  }
+}
+
+// Mixin for upstream's .status__display-name,
+// .status__relative-time,
+// .detailed-status__display-name,
+// .detailed-status__datetime,
+// .detailed-status__application,
+// .account__display-name
+// class
+@mixin no-text-decoration() {
+  text-decoration: none;
+}
+
+// Mixin for upstream's .status__display-name, .account__display-name class
+@mixin display-name-primary-color() {
+  .display-name strong {
+    color: $primary-text-color;
+  }
+}
+
+// Mixin for upstream's .status__display-name, .detailed-status__display-name. a.account__display-name class
+@mixin underline-display-name-on-hover() {
+  &:hover .display-name strong {
+    text-decoration: underline;
+  }
+}
+
+// Mixin for upstream's .column, .drawer class
+@mixin column-drawer() {
+  flex: 1 1 100%;
+  overflow: hidden;
+}
+
+// Mixin for upstream's .account--panel__button, .detailed-status__button
+@mixin panel-button() {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+// Mixin for upstream's .notification__filter-bar, .account__section-headline
+@mixin filter-bar() {
+  // deliberate glitch-soc choice for now
+  background: darken($ui-base-color, 4%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  cursor: default;
+  display: flex;
+  flex-shrink: 0;
+
+  button {
+    background: transparent;
+    border: 0;
+    margin: 0;
+  }
+
+  button,
+  a {
+    display: block;
+    flex: 1 1 auto;
+    color: $darker-text-color;
+    padding: 15px 0;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+
+    &.active {
+      color: $primary-text-color;
+
+      &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 4px;
+        background: $highlight-text-color;
+      }
+    }
+  }
+}
+
+// Mixin for upstream's .notification, .status__wrapper
+@mixin notification-status-wrapper {
+  position: relative;
+
+  &.unread {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      inset-inline-start: 0;
+      width: 100%;
+      height: 100%;
+      border-inline-start: 4px solid $highlight-text-color;
+      pointer-events: none;
+    }
+  }
+}
