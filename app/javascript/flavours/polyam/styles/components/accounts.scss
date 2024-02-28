@@ -229,10 +229,9 @@ a.account__display-name {
   padding: 10px 0;
 }
 
-.account--panel__button,
-.detailed-status__button {
-  flex: 1 1 auto;
-  text-align: center;
+// Polyam: Split from .account--panel__button, .detailed-status__button
+.account--panel__button {
+  @include panel-button;
 }
 
 .relationship-tag {

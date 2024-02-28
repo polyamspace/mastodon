@@ -962,6 +962,11 @@ a.status-card {
   width: 100%;
 }
 
+// Polyam: Split from .account--panel__button, .detailed-status__button
+.detailed-status__button {
+  @include panel-button;
+}
+
 .status__relative-time,
 .detailed-status__datetime {
   &:hover {

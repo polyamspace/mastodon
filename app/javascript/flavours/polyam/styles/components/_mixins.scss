@@ -125,3 +125,9 @@
   flex: 1 1 100%;
   overflow: hidden;
 }
+
+// Mixin for upstream's .account--panel__button, .detailed-status__button
+@mixin panel-button() {
+  flex: 1 1 auto;
+  text-align: center;
+}
