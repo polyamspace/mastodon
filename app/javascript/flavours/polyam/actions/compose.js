@@ -266,12 +266,14 @@ export function submitCompose(routerHistory, overridePrivacy = null) {
         insertIfOnline('direct');
       }
 
+      /* Polyam: Don't show alert as it is annoying
       dispatch(showAlert({
         message: statusId === null ? messages.published : messages.saved,
         action: messages.open,
         dismissAfter: 10000,
         onClick: () => routerHistory.push(`/@${response.data.account.username}/${response.data.id}`),
       }));
+      */
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
