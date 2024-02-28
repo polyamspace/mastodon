@@ -149,8 +149,14 @@
   }
 }
 
-// .notification__filter-bar, .account__section-headline (Moved to account.scss)
+// Polyam: Split from .notification__filter-bar, .account__section-headline
+.notification__filter-bar {
+  @include filter-bar;
+}
 
-// .notification, status (duplicate upstream, Merged with same class in status.scss)
+// Polyam: Split from .notification, .status__wrapper
+.notification {
+  @include notification-status-wrapper;
+}
 
 // .notifications-permission-banner (Moved to columns.scss)
