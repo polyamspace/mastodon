@@ -183,7 +183,8 @@
     align-items: stretch;
 
     &__border {
-      background: url('~images/warning-stripes.svg') repeat-y;
+      // Polyam: Don't show stripes. Keep same as input
+      background: mix($ui-base-color, $ui-highlight-color, 85%);
       width: 5px;
       flex: 0 0 auto;
 
