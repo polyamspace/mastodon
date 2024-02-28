@@ -619,20 +619,18 @@
   line-height: 18px;
 }
 
+// Polyam: Split from class also containing .account__display-name
 .status__display-name,
 .status__relative-time,
 .detailed-status__display-name,
 .detailed-status__datetime,
-.detailed-status__application,
-.account__display-name {
-  text-decoration: none;
+.detailed-status__application {
+  @include no-text-decoration;
 }
 
-.status__display-name,
-.account__display-name {
-  .display-name strong {
-    color: $primary-text-color;
-  }
+// Polyam: Split from class also containing .account__display-name
+.status__display-name {
+  @include display-name-primary-color;
 }
 
 .muted {
@@ -641,12 +639,10 @@
   }
 }
 
+// Polyam: Split from class also containing a.account__display-name
 .status__display-name,
-.detailed-status__display-name,
-a.account__display-name {
-  &:hover .display-name strong {
-    text-decoration: underline;
-  }
+.detailed-status__display-name {
+  @include underline-display-name-on-hover;
 }
 
 .detailed-status__application,

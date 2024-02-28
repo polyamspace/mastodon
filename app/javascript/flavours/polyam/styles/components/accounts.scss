@@ -184,6 +184,21 @@ a .account__avatar {
   margin-inline-end: 10px;
 }
 
+// Polyam: Split from .status__display-name, .status__relative-time, .detailed-statuse__display-name etc. class
+.account__display-name {
+  @include no-text-decoration;
+}
+
+// Polyam: Split from .status__display-name, .acocunt__display-name class
+.account__display-name {
+  @include display-name-primary-color;
+}
+
+// Polyam: Split from .status__display-name, .detailed-status__display-name, a.account__display-name
+a.account__display-name {
+  @include underline-display-name-on-hover;
+}
+
 .account__display-name .display-name strong {
   display: block;
   overflow: hidden;

@@ -94,3 +94,28 @@
     }
   }
 }
+
+// Mixin for upstream's .status__display-name,
+// .status__relative-time,
+// .detailed-status__display-name,
+// .detailed-status__datetime,
+// .detailed-status__application,
+// .account__display-name
+// class
+@mixin no-text-decoration() {
+  text-decoration: none;
+}
+
+// Mixin for upstream's .status__display-name, .account__display-name class
+@mixin display-name-primary-color() {
+  .display-name strong {
+    color: $primary-text-color;
+  }
+}
+
+// Mixin for upstream's .status__display-name, .detailed-status__display-name. a.account__display-name class
+@mixin underline-display-name-on-hover() {
+  &:hover .display-name strong {
+    text-decoration: underline;
+  }
+}
