@@ -64,6 +64,11 @@
   border-bottom: 2px solid transparent;
 }
 
+// Polyam: Split from .columns, .drawer
+.drawer {
+  @include column-drawer;
+}
+
 .drawer__pager {
   box-sizing: border-box;
   padding: 0;

@@ -119,3 +119,9 @@
     text-decoration: underline;
   }
 }
+
+// Mixin for upstream's .column, .drawer class
+@mixin column-drawer() {
+  flex: 1 1 100%;
+  overflow: hidden;
+}
