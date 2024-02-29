@@ -160,10 +160,6 @@
       pointer-events: auto;
       opacity: 1;
     }
-
-    @media screen and (min-width: $no-gap-breakpoint) {
-      inset-inline-start: 16px - 2px;
-    }
   }
 
   .icon-search {
