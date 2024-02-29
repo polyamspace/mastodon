@@ -85,7 +85,6 @@ const dateFormatOptions = {
   month: 'short',
   day: 'numeric',
   year: 'numeric',
-  hour12: false,
   hour: '2-digit',
   minute: '2-digit',
 };
