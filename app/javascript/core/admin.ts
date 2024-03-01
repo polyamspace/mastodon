@@ -262,11 +262,11 @@ Rails.delegate(
 );
 
 ready(() => {
-  const domainBlockSeverityInput = document.querySelector<HTMLSelectElement>(
+  const domainBlockSeveritySelect = document.querySelector<HTMLSelectElement>(
     'select#domain_block_severity',
   );
-  if (domainBlockSeverityInput)
-    onDomainBlockSeverityChange(domainBlockSeverityInput);
+  if (domainBlockSeveritySelect)
+    onDomainBlockSeverityChange(domainBlockSeveritySelect);
 
   const enableBootstrapTimelineAccounts =
     document.querySelector<HTMLInputElement>(
