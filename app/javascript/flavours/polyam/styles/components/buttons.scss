@@ -375,12 +375,12 @@ button.icon-button.active .icon-retweet {
   z-index: 100;
 
   &--minified {
-    display: flex; // glitch: media icon in spoiler button
+    display: flex; // Polyam: sensitive marker in images
     inset-inline-start: 4px;
     top: 4px;
     width: auto;
     height: auto;
-    align-items: center; // glitch: media icon in spoiler button
+    align-items: center; // Polyam: sensitive marker in images
   }
 
   &--click-thru {
