@@ -819,12 +819,6 @@
   max-height: 80vh;
   max-width: 80vw;
 
-  // Polyam: Kept from upstream as otherwise the dropdown modal in mobile layout is unusable with long toots
-  .status {
-    overflow-y: auto;
-    max-height: 300px;
-  }
-
   .actions-modal__item-label {
     font-weight: 500;
   }
@@ -867,8 +861,6 @@
           }
         }
 
-        & > .react-toggle,
-        & > .icon,
         button:first-child {
           margin-inline-end: 10px;
         }

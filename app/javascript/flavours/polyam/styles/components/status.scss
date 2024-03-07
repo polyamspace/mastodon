@@ -50,19 +50,19 @@
 }
 
 .status__content__spoiler-link {
-  display: inline-flex;
+  display: inline-flex; // glitch: media icon in spoiler button
   border-radius: 2px;
   background: transparent;
   border: 0;
   color: $inverted-text-color;
   font-weight: 700;
   font-size: 11px;
-  padding: 0 5px;
+  padding: 0 6px;
   text-transform: uppercase;
-  line-height: inherit;
+  line-height: 20px;
   cursor: pointer;
   vertical-align: top;
-  align-items: center;
+  align-items: center; // glitch: content indicator
 
   &:hover {
     background: lighten($ui-base-color, 33%);
@@ -540,6 +540,11 @@
     margin-top: 8px;
   }
 
+  .status__prepend {
+    padding: 0;
+    margin-bottom: 16px;
+  }
+
   // Polyam: Reactions
   .reactions-bar--empty {
     display: none;
@@ -699,7 +704,7 @@
 
     &:hover,
     &:focus {
-      background: lighten($ui-base-color, 29%);
+      background: lighten($ui-base-lighter-color, 7%);
       text-decoration: none;
     }
   }

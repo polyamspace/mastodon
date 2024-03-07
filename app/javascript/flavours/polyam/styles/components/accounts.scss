@@ -112,8 +112,6 @@
     position: relative;
 
     & > div {
-      @include avatar-radius;
-
       float: left;
       position: relative;
       box-sizing: border-box;
