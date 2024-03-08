@@ -221,8 +221,6 @@ class ListTimeline extends PureComponent {
               </div>
             </div>
           )}
-
-          <hr />
         </ColumnHeader>
 
         <StatusListContainer

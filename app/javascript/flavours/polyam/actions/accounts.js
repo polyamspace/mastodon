@@ -88,7 +88,6 @@ export const PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CHANGE = 'PINNED_ACCOUNTS_EDITOR
 
 export const PINNED_ACCOUNTS_EDITOR_RESET = 'PINNED_ACCOUNTS_EDITOR_RESET';
 
-
 export const ACCOUNT_REVEAL = 'ACCOUNT_REVEAL';
 
 export * from './accounts_typed';
@@ -96,11 +95,6 @@ export * from './accounts_typed';
 export function fetchAccount(id) {
   return (dispatch, getState) => {
     dispatch(fetchRelationships([id]));
-
-    if (getState().getIn(['accounts', id], null) !== null) {
-      return;
-    }
-
     dispatch(fetchAccountRequest(id));
 
     api(getState).get(`/api/v1/accounts/${id}`).then(response => {
