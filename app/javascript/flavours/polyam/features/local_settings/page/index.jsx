@@ -224,6 +224,14 @@ class LocalSettingsPage extends PureComponent {
         >
           <FormattedMessage id='settings.show_content_type_choice' defaultMessage='Show content-type choice when authoring toots' />
         </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['show_published_toast']}
+          id='mastodon-settings--show_published_toast'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.show_published_toast' defaultMessage='Display toast when publishing/saving a post' />
+        </LocalSettingsPageItem>
         <section>
           <h2><FormattedMessage id='settings.picker_opts' defaultMessage='Emoji picker categories' /></h2>
           <LocalSettingsPageItem
