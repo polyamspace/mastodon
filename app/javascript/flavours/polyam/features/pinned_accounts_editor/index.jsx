@@ -17,7 +17,6 @@ import { me } from '../../initial_state';
 import Account from './components/account';
 import Search from './components/search';
 
-
 const mapStateToProps = state => {
   const myAccount = state.getIn(['accounts', me]);
 

@@ -31,7 +31,6 @@ export const ContentTypeButton = () => {
     dispatch(changeComposeContentType(value));
   }, [dispatch]);
 
-
   if (!showButton) {
     return null;
   }

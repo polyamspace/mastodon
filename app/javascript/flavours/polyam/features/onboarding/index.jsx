@@ -23,7 +23,6 @@ import { Follows } from './follows';
 import { Profile } from './profile';
 import { Share } from './share';
 
-
 const Onboarding = () => {
   const account = useAppSelector(state => state.getIn(['accounts', me]));
   const dispatch = useDispatch();

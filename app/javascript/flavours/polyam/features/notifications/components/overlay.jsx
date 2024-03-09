@@ -2,8 +2,6 @@
  * Notification overlay
  */
 
-
-//  Package imports.
 import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';

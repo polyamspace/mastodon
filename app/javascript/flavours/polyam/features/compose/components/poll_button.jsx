@@ -7,7 +7,6 @@ import { faTasksAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { IconButton } from '../../../components/icon_button';
 
-
 const messages = defineMessages({
   add_poll: { id: 'poll_button.add_poll', defaultMessage: 'Add a poll' },
   remove_poll: { id: 'poll_button.remove_poll', defaultMessage: 'Remove poll' },
