@@ -41,7 +41,6 @@ class Form::AdminSettings
     norss
     outgoing_spoilers
     require_invite_text
-    captcha_enabled
     media_cache_retention_period
     content_cache_retention_period
     backups_retention_period
