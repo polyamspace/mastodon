@@ -10,7 +10,6 @@ import { supportsPassiveEvents } from 'detect-passive-events';
 import fuzzysort from 'fuzzysort';
 import Overlay from 'react-overlays/Overlay';
 
-
 import { Icon } from 'flavours/polyam/components/icon';
 import { languages as preloadedLanguages } from 'flavours/polyam/initial_state';
 

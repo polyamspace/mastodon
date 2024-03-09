@@ -4,8 +4,6 @@
  * a Confirm and Abort buttons are shown in its place.
  */
 
-
-//  Package imports  //
 import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';

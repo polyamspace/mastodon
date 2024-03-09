@@ -11,7 +11,6 @@ import { faFaceGrinWide } from '@fortawesome/free-solid-svg-icons';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
-
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import data from 'flavours/polyam/features/emoji/emoji_data.json';
 import { useSystemEmojiFont } from 'flavours/polyam/initial_state';

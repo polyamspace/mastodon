@@ -8,7 +8,6 @@ import initialState from 'flavours/polyam/initial_state';
 import { IntlProvider } from 'flavours/polyam/locales';
 import { store } from 'flavours/polyam/store';
 
-
 if (initialState) {
   store.dispatch(hydrateStore(initialState));
 }

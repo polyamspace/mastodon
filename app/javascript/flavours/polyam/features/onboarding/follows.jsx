@@ -36,7 +36,6 @@ export const Follows = () => {
     loadedContent = suggestions.map(suggestion => <Account id={suggestion.get('account')} key={suggestion.get('account')} minimal={false} withBio />);
   }
 
-
   return (
     <>
       <ColumnBackButton />

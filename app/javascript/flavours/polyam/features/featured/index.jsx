@@ -21,7 +21,6 @@ import { normalizeForLookup } from 'flavours/polyam/reducers/accounts_map';
 import { getAccountHidden } from 'flavours/polyam/selectors';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
-
 import { LimitedAccountHint } from '../account_timeline/components/limited_account_hint';
 
 const messages = defineMessages({

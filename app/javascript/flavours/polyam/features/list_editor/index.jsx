@@ -15,7 +15,6 @@ import Account from './components/account';
 import EditListForm from './components/edit_list_form';
 import Search from './components/search';
 
-
 const mapStateToProps = state => ({
   accountIds: state.getIn(['listEditor', 'accounts', 'items']),
   searchAccountIds: state.getIn(['listEditor', 'suggestions', 'items']),
