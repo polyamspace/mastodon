@@ -599,10 +599,7 @@ a.account__display-name {
       .button {
         flex-shrink: 1;
         white-space: nowrap;
-
-        @media screen and (max-width: $no-gap-breakpoint) {
-          min-width: 0;
-        }
+        min-width: 80px;
       }
 
       .icon-button {
