@@ -18,7 +18,7 @@
 
 .notification__report {
   padding: 10px; // glitch: reduced padding
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
   display: flex;
   gap: 10px;
 

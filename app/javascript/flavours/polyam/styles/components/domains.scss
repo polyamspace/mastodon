@@ -1,6 +1,6 @@
 .domain {
   padding: 10px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
 
   .domain__domain-name {
     flex: 1 1 auto;

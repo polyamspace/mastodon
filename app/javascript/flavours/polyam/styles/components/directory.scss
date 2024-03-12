@@ -1,6 +1,5 @@
 .scrollable .account-card {
   margin: 10px;
-  background: lighten($ui-base-color, 8%);
 }
 
 .scrollable .account-card__title__avatar {
@@ -11,15 +10,11 @@
 }
 
 .scrollable .account-card__bio::after {
-  background: linear-gradient(
-    to left,
-    lighten($ui-base-color, 8%),
-    transparent
-  );
+  background: linear-gradient(to left, var(--background-color), transparent);
 }
 
 .filter-form {
-  background: $ui-base-color;
+  border-bottom: 1px solid var(--background-border-color);
 
   &__column {
     display: flex;

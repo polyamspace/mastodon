@@ -181,7 +181,7 @@
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
-  background: darken($ui-base-color, 8%);
+  background: var(--background-color);
   border-radius: 8px;
   padding-bottom: 44px;
   width: 100%;

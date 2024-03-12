@@ -145,7 +145,7 @@ body > [data-popper-placement] {
     inset-inline-start: 9px;
     top: -13px;
     background: $ui-highlight-color;
-    border: 2px solid lighten($ui-base-color, 8%);
+    border: 2px solid var(--background-color);
     padding: 1px 6px;
     border-radius: 6px;
     font-size: 10px;
@@ -274,12 +274,6 @@ body > [data-popper-placement] {
   border-color: $ui-highlight-color;
 }
 
-.getting-started__wrapper,
-.getting_started,
-.flex-spacer {
-  background: $ui-base-color;
-}
-
 .getting-started__wrapper {
   flex: 0 0 auto;
 }
@@ -291,6 +285,8 @@ body > [data-popper-placement] {
 .getting-started {
   color: $dark-text-color;
   overflow: auto;
+  border: 1px solid var(--background-border-color);
+  border-top: 0;
 
   &__trends {
     flex: 0 1 auto;
@@ -299,7 +295,7 @@ body > [data-popper-placement] {
     margin-top: 10px;
 
     h4 {
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-bottom: 1px solid var(--background-border-color);
       padding: 10px;
       font-size: 12px;
       text-transform: uppercase;
@@ -456,7 +452,7 @@ input.glitch-setting-text {
 }
 
 .load-gap {
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
 }
 
 .timeline-hint {
