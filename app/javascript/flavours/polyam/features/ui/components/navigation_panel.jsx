@@ -46,7 +46,7 @@ const NotificationsLink = () => {
     <ColumnLink
       transparent
       to='/notifications'
-      icon={<IconWithBadge icon={faBell} count={count} className='column-link__icon' />}
+      icon={<IconWithBadge id='bell' icon={faBell} count={count} className='column-link__icon' />}
       text={intl.formatMessage(messages.notifications)}
     />
   );
@@ -69,7 +69,7 @@ const FollowRequestsLink = () => {
     <ColumnLink
       transparent
       to='/follow_requests'
-      icon={<IconWithBadge icon={faUserPlus} count={count} className='column-link__icon' />}
+      icon={<IconWithBadge id='user-plus' icon={faUserPlus} count={count} className='column-link__icon' />}
       text={intl.formatMessage(messages.followRequests)}
     />
   );
