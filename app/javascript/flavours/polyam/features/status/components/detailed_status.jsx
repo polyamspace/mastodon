@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { injectIntl, FormattedDate } from 'react-intl';
+import { injectIntl, FormattedDate, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link, withRouter } from 'react-router-dom';
@@ -8,14 +8,10 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faEnvelope, faFaceGrinWide, faLock, faStar } from '@fortawesome/free-solid-svg-icons';
-
 import { AnimatedNumber } from 'flavours/polyam/components/animated_number';
 import AttachmentList from 'flavours/polyam/components/attachment_list';
-import { faBoost } from 'flavours/polyam/components/boost';
 import EditedTimestamp from 'flavours/polyam/components/edited_timestamp';
 import { getHashtagBarForStatus } from 'flavours/polyam/components/hashtag_bar';
-import { Icon } from 'flavours/polyam/components/icon';
 import PictureInPicturePlaceholder from 'flavours/polyam/components/picture_in_picture_placeholder';
 import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 import PollContainer from 'flavours/polyam/containers/poll_container';
@@ -150,10 +146,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
     let applicationLink = '';
     let reblogLink = '';
-    let reblogIcon = 'retweet';
-    let reblogIconComponent = faBoost;
     let favouriteLink = '';
-    let edited = '';
     let reactionLink = '';
 
     //  Depending on user settings, some media are considered as parts of the
@@ -263,92 +256,69 @@ class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('application')) {
-      applicationLink = <> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener noreferrer'>{status.getIn(['application', 'name'])}</a></>;
+      applicationLink = <>·<a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener noreferrer'>{status.getIn(['application', 'name'])}</a></>;
     }
 
-    const visibilityLink = <> · <VisibilityIcon visibility={status.get('visibility')} /></>;
-
-    if (status.get('visibility') === 'direct') {
-      reblogIcon = 'envelope';
-      reblogIconComponent = faEnvelope;
-    } else if (status.get('visibility') === 'private') {
-      reblogIcon = 'lock';
-      reblogIconComponent = faLock;
-    }
+    const visibilityLink = <>·<VisibilityIcon visibility={status.get('visibility')} /></>;
 
     if (!['unlisted', 'public'].includes(status.get('visibility'))) {
       reblogLink = null;
     } else if (this.props.history) {
       reblogLink = (
-        <>
-          {' · '}
-          <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reblogs`} className='detailed-status__link'>
-            <Icon id={reblogIcon} icon={reblogIconComponent} />
-            <span className='detailed-status__reblogs'>
-              <AnimatedNumber value={status.get('reblogs_count')} />
-            </span>
-          </Link>
-        </>
+        <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reblogs`} className='detailed-status__link'>
+          <span className='detailed-status__reblogs'>
+            <AnimatedNumber value={status.get('reblogs_count')} />
+          </span>
+          <FormattedMessage id='status.reblogs' defaultMessage='{count, plural, one {boost} other {boosts}}' values={{ count: status.get('reblogs_count') }} />
+        </Link>
       );
     } else {
       reblogLink = (
-        <>
-          {' · '}
-          <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
-            <Icon id={reblogIcon} icon={reblogIconComponent} />
-            <span className='detailed-status__reblogs'>
-              <AnimatedNumber value={status.get('reblogs_count')} />
-            </span>
-          </a>
-        </>
+        <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
+          <span className='detailed-status__reblogs'>
+            <AnimatedNumber value={status.get('reblogs_count')} />
+          </span>
+          <FormattedMessage id='status.reblogs' defaultMessage='{count, plural, one {boost} other {boosts}}' values={{ count: status.get('reblogs_count') }} />
+        </a>
       );
     }
 
     if (this.props.history) {
       favouriteLink = (
         <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/favourites`} className='detailed-status__link'>
-          <Icon id='star' icon={faStar} />
           <span className='detailed-status__favorites'>
             <AnimatedNumber value={status.get('favourites_count')} />
           </span>
+          <FormattedMessage id='status.favourites' defaultMessage='{count, plural, one {favorite} other {favorites}}' values={{ count: status.get('favourites_count') }} />
         </Link>
       );
     } else {
       favouriteLink = (
         <a href={`/interact/${status.get('id')}?type=favourite`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <Icon id='star' icon={faStar} />
           <span className='detailed-status__favorites'>
             <AnimatedNumber value={status.get('favourites_count')} />
           </span>
+          <FormattedMessage id='status.favourites' defaultMessage='{count, plural, one {favorite} other {favorites}}' values={{ count: status.get('favourites_count') }} />
         </a>
-      );
-    }
-
-    if (status.get('edited_at')) {
-      edited = (
-        <>
-          {' · '}
-          <EditedTimestamp statusId={status.get('id')} timestamp={status.get('edited_at')} />
-        </>
       );
     }
 
     if (this.props.history) {
       reactionLink = (
         <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reactions`} className='detailed-status__link'>
-          <Icon id='face-grin-wide' icon={faFaceGrinWide} />
           <span className='detailed-status__reactions'>
             <AnimatedNumber value={status.get('reactions_count')} />
           </span>
+          <FormattedMessage id='status.reactions' defaultMessage='{count, plural, one {reaction} other {reactions}}' values={{ count: status.get('reactions_count') }} />
         </Link>
       );
     } else {
       reactionLink = (
         <a href={`/interact/${status.get('id')}?type=reaction`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <Icon id='face-grin-wide' icon={faFaceGrinWide} />
           <span className='detailed-status__reactions'>
             <AnimatedNumber value={status.get('reactions_count')} />
           </span>
+          <FormattedMessage id='status.reactions' defaultMessage='{count, plural, one {reaction} other {reactions}}' values={{ count: status.get('reactions_count') }} />
         </a>
       );
     }
@@ -390,9 +360,25 @@ class DetailedStatus extends ImmutablePureComponent {
           />
 
           <div className='detailed-status__meta'>
-            <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener noreferrer'>
-              <FormattedDate value={new Date(status.get('created_at'))} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
-            </a>{edited}{visibilityLink}{applicationLink}{reblogLink} · {favouriteLink} · {reactionLink}
+            <div className='detailed-status__meta__line'>
+              <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener noreferrer'>
+                <FormattedDate value={new Date(status.get('created_at'))} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
+              </a>
+
+              {visibilityLink}
+
+              {applicationLink}
+            </div>
+
+            {status.get('edited_at') && <div className='detailed-status__meta__line'><EditedTimestamp statusId={status.get('id')} timestamp={status.get('edited_at')} /></div>}
+
+            <div className='detailed-status__meta__line'>
+              {reblogLink}
+              ·
+              {favouriteLink}
+              ·
+              {reactionLink}
+            </div>
           </div>
         </div>
       </div>
