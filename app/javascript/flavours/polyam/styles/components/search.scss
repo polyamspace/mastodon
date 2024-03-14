@@ -181,18 +181,6 @@
   }
 }
 
-.search-results__header {
-  color: $dark-text-color;
-  background: lighten($ui-base-color, 2%);
-  padding: 15px;
-  font-weight: 500;
-  font-size: 16px;
-  cursor: default;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
 .search-results__section {
   border-bottom: 1px solid var(--background-border-color);
 
@@ -201,8 +189,8 @@
   }
 
   &__header {
-    background: darken($ui-base-color, 4%);
     border-bottom: 1px solid var(--background-border-color);
+    background: var(--surface-background-color);
     padding: 15px;
     font-weight: 500;
     font-size: 14px;

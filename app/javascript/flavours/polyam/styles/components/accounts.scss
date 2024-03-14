@@ -474,7 +474,7 @@ a.account__display-name {
 .follow-request-banner,
 .account-memorial-banner {
   padding: 20px;
-  background: lighten($ui-base-color, 4%);
+  background: var(--surface-background-color);
   display: flex;
   align-items: center;
   flex-direction: column;

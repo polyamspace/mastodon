@@ -626,7 +626,7 @@ $ui-header-height: 55px;
 }
 
 .column-subheading {
-  background: darken($ui-base-color, 4%);
+  background: var(--surface-background-color);
   color: $darker-text-color;
   padding: 8px 20px;
   font-size: 12px;
@@ -1163,7 +1163,7 @@ $ui-header-height: 55px;
 }
 
 .follow_requests-unlocked_explanation {
-  background: darken($ui-base-color, 4%);
+  background: var(--surface-background-color);
   border-bottom: 1px solid var(--background-border-color);
   contain: initial;
   flex-grow: 0;
