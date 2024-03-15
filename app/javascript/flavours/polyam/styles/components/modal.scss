@@ -49,6 +49,10 @@
   pointer-events: auto;
   user-select: text;
   display: flex;
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    margin-top: auto;
+  }
 }
 
 .video-modal .video-player {
@@ -391,6 +395,146 @@
   max-width: 30px;
   max-height: auto;
   margin-inline-start: 10px;
+}
+
+.safety-action-modal {
+  width: 600px;
+  flex-direction: column;
+
+  &__top,
+  &__bottom {
+    display: flex;
+    gap: 8px;
+    padding: 24px;
+    flex-direction: column;
+    background: var(--modal-background-color);
+    backdrop-filter: var(--background-filter);
+    border: 1px solid var(--modal-border-color);
+  }
+
+  &__top {
+    border-radius: 16px 16px 0 0;
+    border-bottom: 0;
+    gap: 16px;
+  }
+
+  &__bottom {
+    border-radius: 0 0 16px 16px;
+    border-top: 0;
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      border-radius: 0;
+      border-bottom: 0;
+      padding-bottom: 32px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 14px;
+    line-height: 20px;
+    color: $darker-text-color;
+
+    &__icon {
+      border-radius: 64px;
+      background: $ui-highlight-color;
+      color: $white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    h1 {
+      font-size: 22px;
+      line-height: 28px;
+      color: $primary-text-color;
+    }
+  }
+
+  &__bullet-points {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 16px;
+    line-height: 24px;
+
+    & > div {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    &__icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      // Polyam: Smaller icon size
+      .icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  &__field-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      font-size: 16px;
+      line-height: 24px;
+      height: 32px;
+      padding: 0 12px;
+    }
+  }
+
+  &__bottom {
+    padding-top: 0;
+
+    &__collapsible {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    &.active {
+      background: var(--modal-background-variant-color);
+      padding-top: 24px;
+
+      .safety-action-modal__bottom__collapsible {
+        display: flex;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-end;
+
+    .link-button {
+      padding: 10px 12px;
+      font-weight: 600;
+    }
+  }
 }
 
 .doodle-modal,
@@ -1168,22 +1312,36 @@ img.modal-warning {
   }
 }
 
+.safety-action-modal,
 .interaction-modal {
   max-width: 90vw;
   width: 600px;
-  background: var(--modal-background-color);
-  border: 1px solid var(--modal-border-color);
-  border-radius: 8px;
+}
+
+.interaction-modal {
   overflow: visible;
   position: relative;
   display: block;
-  padding: 40px;
+  border-radius: 16px;
+  background: var(--modal-background-color);
+  backdrop-filter: var(--background-filter);
+  border: 1px solid var(--modal-border-color);
+  padding: 24px;
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-radius: 16px 16px 0 0;
+    border-bottom: 0;
+    padding-bottom: 32px;
+  }
 
   h3 {
     font-size: 22px;
     line-height: 33px;
     font-weight: 700;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
 
   p {
@@ -1204,12 +1362,9 @@ img.modal-warning {
 
   &__icon {
     color: $highlight-text-color;
-    margin: 0 5px;
-
-    // Polyam: FA adds vertical align, which makes the icon look displaced
-    .icon {
-      vertical-align: 0;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__lead {
@@ -1242,6 +1397,7 @@ img.modal-warning {
         border: 0;
         padding: 15px - 4px 15px - 6px;
         flex: 1 1 auto;
+        min-width: 0;
 
         &::placeholder {
           color: lighten($darker-text-color, 4%);

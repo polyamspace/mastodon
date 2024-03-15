@@ -6,17 +6,23 @@ import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
 import { faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { faAt, faBan, faBullhorn, faReply } from '@fortawesome/free-solid-svg-icons';
+import { faUserMinus, faBullhorn, faReply, faClockRotateLeft, faShopSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { blockAccount } from 'flavours/polyam/actions/accounts';
+import { blockDomain } from 'flavours/polyam/actions/domain_blocks';
 import { closeModal } from 'flavours/polyam/actions/modal';
 import { Button } from 'flavours/polyam/components/button';
 import { Icon } from 'flavours/polyam/components/icon';
 
-export const BlockModal = ({ accountId, acct }) => {
+export const DomainBlockModal = ({ domain, accountId, acct }) => {
   const dispatch = useDispatch();
 
   const handleClick = useCallback(() => {
+    dispatch(closeModal({ modalType: undefined, ignoreFocus: false }));
+    dispatch(blockDomain(domain));
+  }, [dispatch, domain]);
+
+  const handleSecondaryClick = useCallback(() => {
     dispatch(closeModal({ modalType: undefined, ignoreFocus: false }));
     dispatch(blockAccount(accountId));
   }, [dispatch, accountId]);
@@ -30,44 +36,57 @@ export const BlockModal = ({ accountId, acct }) => {
       <div className='safety-action-modal__top'>
         <div className='safety-action-modal__header'>
           <div className='safety-action-modal__header__icon'>
-            <Icon icon={faBan} />
+            <Icon icon={faShopSlash} />
           </div>
 
           <div>
-            <h1><FormattedMessage id='block_modal.title' defaultMessage='Block user?' /></h1>
-            <div>@{acct}</div>
+            <h1><FormattedMessage id='domain_block_modal.title' defaultMessage='Block domain?' /></h1>
+            <div>{domain}</div>
           </div>
         </div>
+
         <div className='safety-action-modal__bullet-points'>
           <div>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={faBullhorn} /></div>
-            <div><FormattedMessage id='block_modal.they_will_know' defaultMessage="They can see that they're blocked." /></div>
+            <div><FormattedMessage id='domain_block_modal.they_wont_know' defaultMessage="They won't know they've been blocked." /></div>
           </div>
 
           <div>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={faEyeSlash} /></div>
-            <div><FormattedMessage id='block_modal.they_cant_see_posts' defaultMessage="They can't see your posts and you won't see theirs." /></div>
+            <div><FormattedMessage id='domain_block_modal.you_wont_see_posts' defaultMessage="You won't see posts or notifications from users on this server." /></div>
           </div>
 
           <div>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={faAt} /></div>
-            <div><FormattedMessage id='block_modal.you_wont_see_mentions' defaultMessage="You won't see posts that mentions them." /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={faUserMinus} /></div>
+            <div><FormattedMessage id='domain_block_modal.you_will_lose_followers' defaultMessage='All your followers from this server will be removed.' /></div>
           </div>
 
           <div>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={faReply} /></div>
-            <div><FormattedMessage id='block_modal.they_cant_mention' defaultMessage="They can't mention or follow you." /></div>
+            <div><FormattedMessage id='domain_block_modal.they_cant_follow' defaultMessage='Nobody from this server can follow you.' /></div>
+          </div>
+
+          <div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={faClockRotateLeft} /></div>
+            <div><FormattedMessage id='domain_block_modal.they_can_interact_with_old_posts' defaultMessage='People from this server can interact with your old posts.' /></div>
           </div>
         </div>
       </div>
+
       <div className='safety-action-modal__bottom'>
         <div className='safety-action-modal__actions'>
+          <Button onClick={handleSecondaryClick} secondary>
+            <FormattedMessage id='domain_block_modal.block_account_instead' defaultMessage='Block @{name} instead' values={{ name: acct.split('@')[0] }} />
+          </Button>
+
+          <div className='spacer' />
+
           <button onClick={handleCancel} className='link-button'>
             <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
           </button>
 
           <Button onClick={handleClick}>
-            <FormattedMessage id='confirmations.block.confirm' defaultMessage='Block' />
+            <FormattedMessage id='domain_block_modal.block' defaultMessage='Block server' />
           </Button>
         </div>
       </div>
@@ -75,9 +94,10 @@ export const BlockModal = ({ accountId, acct }) => {
   );
 };
 
-BlockModal.propTypes = {
+DomainBlockModal.propTypes = {
+  domain: PropTypes.string.isRequired,
   accountId: PropTypes.string.isRequired,
   acct: PropTypes.string.isRequired,
 };
 
-export default BlockModal;
+export default DomainBlockModal;

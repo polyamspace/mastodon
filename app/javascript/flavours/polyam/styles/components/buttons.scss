@@ -84,17 +84,17 @@
   }
 
   &.button-secondary {
-    color: $ui-button-secondary-color;
+    color: $highlight-text-color;
     background: transparent;
     padding: 6px 17px;
-    border: 1px solid $ui-button-secondary-border-color;
+    border: 1px solid $highlight-text-color;
 
     &:active,
     &:focus,
     &:hover {
-      border-color: $ui-button-secondary-focus-background-color;
-      color: $ui-button-secondary-focus-color;
-      background-color: $ui-button-secondary-focus-background-color;
+      border-color: lighten($highlight-text-color, 4%);
+      color: lighten($highlight-text-color, 4%);
+      background-color: transparent;
       text-decoration: none;
     }
 
