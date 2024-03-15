@@ -64,18 +64,18 @@ export const ColumnSettings: React.FC = () => {
             }
           />
 
-        <SettingToggle
-          prefix='home_timeline'
-          settings={settings}
-          settingPath={['shows', 'thread']}
-          onChange={onChange}
-          label={
-            <FormattedMessage
-              id='home.column_settings.show_threads'
-              defaultMessage='Show threads'
-            />
-          }
-        />
+          <SettingToggle
+            prefix='home_timeline'
+            settings={settings}
+            settingPath={['shows', 'thread']}
+            onChange={onChange}
+            label={
+              <FormattedMessage
+                id='home.column_settings.show_threads'
+                defaultMessage='Show threads'
+              />
+            }
+          />
 
           <SettingToggle
             prefix='home_timeline'

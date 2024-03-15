@@ -51,7 +51,7 @@ class Notification < ApplicationRecord
     }.freeze,
     reaction: {
       filterable: true,
-  }.freeze,
+    }.freeze,
     poll: {
       filterable: false,
     }.freeze,
