@@ -5,13 +5,32 @@
   = render 'shared/error_messages', object: @custom_emoji
 
   .fields-group
-    = f.input :shortcode, wrapper: :with_label, label: t('admin.custom_emojis.shortcode'), hint: t('admin.custom_emojis.shortcode_hint')
+    = f.input :shortcode,
+              wrapper: :with_label,
+              label: t('admin.custom_emojis.shortcode'),
+              hint: t('admin.custom_emojis.shortcode_hint')
   .fields-group
-    = f.input :category_id, wrapper: :with_label, label: t('admin.reports.category'), hint: t('admin.custom_emojis.category_hint'), collection: CustomEmojiCategory.all, prompt: t('admin.custom_emojis.uncategorized'), polyam_only: true
+    = f.input :category_id,
+              wrapper: :with_label,
+              label: t('admin.reports.category'),
+              hint: t('admin.custom_emojis.category_hint'),
+              collection: CustomEmojiCategory.all,
+              prompt: t('admin.custom_emojis.uncategorized'),
+              polyam_only: true
   .fields-group
-    = f.input :image, wrapper: :with_label, input_html: { accept: CustomEmoji::IMAGE_MIME_TYPES.join(',') }, hint: t('admin.custom_emojis.image_hint', size: number_to_human_size(CustomEmoji::LOCAL_LIMIT))
+    = f.input :image,
+              wrapper: :with_label,
+              input_html: { accept: CustomEmoji::IMAGE_MIME_TYPES.join(',') },
+              hint: t('admin.custom_emojis.image_hint', size: number_to_human_size(CustomEmoji::LOCAL_LIMIT))
   .fields-group
-    = f.input :visible_in_picker, as: :boolean, wrapper: :with_label, label: t('admin.custom_emojis.visible_in_picker'), hint: t('admin.custom_emojis.visible_in_picker_hint'), polyam_only: true
+    = f.input :visible_in_picker,
+              as: :boolean,
+              wrapper: :with_label,
+              label: t('admin.custom_emojis.visible_in_picker'),
+              hint: t('admin.custom_emojis.visible_in_picker_hint'),
+              polyam_only: true
 
   .actions
-    = f.button :button, t('admin.custom_emojis.upload'), type: :submit
+    = f.button :button,
+               t('admin.custom_emojis.upload'),
+               type: :submit
