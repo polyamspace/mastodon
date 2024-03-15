@@ -308,7 +308,7 @@ class DetailedStatus extends ImmutablePureComponent {
           <span className='detailed-status__reactions'>
             <AnimatedNumber value={status.get('reactions_count')} />
           </span>
-          <FormattedMessage id='status.reactions' defaultMessage='{count, plural, one {reactions} other {reactions}}' values={{ count: status.get('reactions_count')}} />
+          <FormattedMessage id='status.reactions' defaultMessage='{count, plural, one {reaction} other {reactions}}' values={{ count: status.get('reactions_count')}} />
         </Link>
       );
     } else {
@@ -317,7 +317,7 @@ class DetailedStatus extends ImmutablePureComponent {
           <span className='detailed-status__reactions'>
             <AnimatedNumber value={status.get('reactions_count')} />
           </span>
-          <FormattedMessage id='status.reactions' defaultMessage='{count, plural, one {reactions} other {reactions}}' values={{ count: status.get('reactions_count')}} />
+          <FormattedMessage id='status.reactions' defaultMessage='{count, plural, one {reaction} other {reactions}}' values={{ count: status.get('reactions_count')}} />
         </a>
       );
     }
