@@ -94,6 +94,8 @@ en:
       body: "%{name} reacted to your toot:"
       subject: "%{name} reacted to your toot"
       title: New reaction
+  notifications:
+    other_settings: Other settings
   regex_validator:
     invalid_regexp: 'error parsing regular expression: %{error}'
   sounds:

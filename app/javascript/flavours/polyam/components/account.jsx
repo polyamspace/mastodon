@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faBell, faBellSlash, faHourglass, faLock, faLockOpen, faUserPlus, faUserTimes, faVolumeOff, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faBellSlash, faHourglass, faLock, faLockOpen, faUserPlus, faUserTimes, faVolumeUp, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { me } from '../initial_state';
 
@@ -116,7 +116,7 @@ class Account extends ImmutablePureComponent {
           </>
         );
       } else if (defaultAction === 'mute') {
-        buttons = <IconButton icon='volume-off' iconComponent={faVolumeOff} title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;
+        buttons = <IconButton icon='volume-off' iconComponent={faVolumeXmark} title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;
       } else if (defaultAction === 'block') {
         buttons = <IconButton icon='lock' iconComponent={faLock} title={intl.formatMessage(messages.block, { name: account.get('username') })} onClick={this.handleBlock} />;
       } else if (!account.get('suspended') && !account.get('moved') || following) {

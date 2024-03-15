@@ -209,3 +209,12 @@ export function About () {
 export function PrivacyPolicy () {
   return import(/*webpackChunkName: "features/polyam/async/privacy_policy" */'../../privacy_policy');
 }
+
+
+export function NotificationRequests () {
+  return import(/*webpackChunkName: "features/polyam/notifications/requests" */'../../notifications/requests');
+}
+
+export function NotificationRequest () {
+  return import(/*webpackChunkName: "features/polyam/notifications/request" */'../../notifications/request');
+}

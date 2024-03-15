@@ -515,16 +515,13 @@ input.glitch-setting-text {
 }
 
 .setting-toggle {
-  display: block;
-  line-height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .setting-toggle__label {
   color: $darker-text-color;
-  display: inline-block;
-  margin-bottom: 14px;
-  margin-inline-start: 8px;
-  vertical-align: middle;
 }
 
 .upload-area {

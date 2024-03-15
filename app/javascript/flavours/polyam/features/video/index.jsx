@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { is } from 'immutable';
 
 import { faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { faMaximize, faMinimize, faCompressAlt, faExpandAlt, faPause, faPlay, faVolumeOff, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import { faMaximize, faMinimize, faCompressAlt, faExpandAlt, faPause, faPlay, faVolumeXmark, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { throttle } from 'lodash';
 
 import { Blurhash } from 'flavours/polyam/components/blurhash';
@@ -637,7 +637,7 @@ class Video extends PureComponent {
           <div className='video-player__buttons-bar'>
             <div className='video-player__buttons left'>
               <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay} autoFocus={autoFocus}><Icon id={paused ? 'play' : 'pause'} icon={paused ? faPlay : faPause} fixedWidth /></button>
-              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} icon={muted ? faVolumeOff : faVolumeUp} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} icon={muted ? faVolumeXmark : faVolumeUp} fixedWidth /></button>
 
               <div className={classNames('video-player__volume', { active: this.state.hovered })} onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
                 <div className='video-player__volume__current' style={{ width: `${muted ? 0 : volume * 100}%` }} />

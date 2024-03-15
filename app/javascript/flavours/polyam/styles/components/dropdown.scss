@@ -91,6 +91,10 @@
       outline: 1px dotted;
     }
 
+    &:hover {
+      text-decoration: underline;
+    }
+
     .icon {
       width: 12px;
       height: 12px;

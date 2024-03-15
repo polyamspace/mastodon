@@ -27,7 +27,7 @@ class ColumnSettings extends PureComponent {
     const { settings, onChange, intl } = this.props;
 
     return (
-      <div>
+      <div className='column-settings'>
         <div className='column-settings__row'>
           {showReblogsPublicTimelines && <SettingToggle prefix='community_timeline' settings={settings} settingPath={['shows', 'reblog']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_reblogs' defaultMessage='Show boosts' />} />}
           {showRepliesPublicTimelines && <SettingToggle prefix='community_timeline' settings={settings} settingPath={['shows', 'reply']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_replies' defaultMessage='Show replies' />} />}
