@@ -319,16 +319,10 @@ button.icon-button {
   // Compose area
   &__inner {
     background-color: $purple3;
-  }
-}
 
-// Fix glitch mascot
-.mbstobon-0,
-.mbstobon-1,
-.mbstobon-2,
-.mbstobon-3 {
-  .drawer__inner__mastodon {
-    background-color: $purple3;
+    &__mastodon {
+      background-color: $purple3;
+    }
   }
 }
 
