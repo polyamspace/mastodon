@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faHashtag, faQuoteRight, faSearch, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faHashtag, faQuoteRight, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 import { Icon } from 'flavours/polyam/components/icon';
 import { LoadMore } from 'flavours/polyam/components/load_more';
@@ -73,10 +73,6 @@ class SearchResults extends ImmutablePureComponent {
 
     return (
       <div className='search-results'>
-        <div className='search-results__header'>
-          <Icon id='search' icon={faSearch} fixedWidth />
-          <FormattedMessage id='explore.search_results' defaultMessage='Search results' />
-        </div>
 
         {accounts}
         {hashtags}

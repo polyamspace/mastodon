@@ -1,6 +1,6 @@
 .account {
   padding: 10px; // glitch: reduced padding
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
 
   .account__display-name {
     flex: 1 1 auto;
@@ -331,9 +331,8 @@ a.account__display-name {
 }
 
 .account--panel {
-  background: lighten($ui-base-color, 4%);
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-top: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--background-border-color);
   display: flex;
   flex-direction: row;
   padding: 10px 0;
@@ -475,7 +474,7 @@ a.account__display-name {
 .follow-request-banner,
 .account-memorial-banner {
   padding: 20px;
-  background: lighten($ui-base-color, 4%);
+  background: var(--surface-background-color);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -562,7 +561,7 @@ a.account__display-name {
     height: 145px;
     position: relative;
     background: darken($ui-base-color, 4%);
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-border-color);
 
     img {
       object-fit: cover;
@@ -577,7 +576,7 @@ a.account__display-name {
     position: relative;
     padding: 0 20px;
     padding-bottom: 16px; // glitch-soc addition for the different tabs design
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-border-color);
 
     .avatar {
       display: block;
@@ -585,8 +584,8 @@ a.account__display-name {
       width: 94px;
 
       .account__avatar {
-        background: darken($ui-base-color, 8%);
-        border: 2px solid $ui-base-color;
+        background: var(--background-color);
+        border: 2px solid var(--background-border-color);
       }
     }
   }
@@ -703,13 +702,12 @@ a.account__display-name {
 
       // Polyam: margin-top: 16px; removed as margin to note was too large
       border-radius: 4px;
-      background: darken($ui-base-color, 4%);
-      border: 0;
+      border: 1px solid var(--background-border-color);
 
       dl {
         display: block;
         padding: 8px 16px; // glitch-soc: padding purposfuly reduced
-        border-bottom-color: lighten($ui-base-color, 4%);
+        border-bottom-color: var(--background-border-color);
       }
 
       dd,

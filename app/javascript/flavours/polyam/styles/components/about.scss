@@ -67,6 +67,7 @@
 
 .about {
   padding: 20px;
+  border-top: 1px solid var(--background-border-color);
 
   @media screen and (min-width: $no-gap-breakpoint) {
     border-radius: 4px;
@@ -113,7 +114,7 @@
   }
 
   &__meta {
-    background: lighten($ui-base-color, 4%);
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
     display: flex;
     margin-bottom: 30px;
@@ -129,7 +130,7 @@
       width: 0;
       border: 0;
       border-style: solid;
-      border-color: lighten($ui-base-color, 8%);
+      border-color: var(--background-border-color);
       border-left-width: 1px;
       min-height: calc(100% - 60px);
       flex: 0 0 auto;
@@ -237,7 +238,7 @@
       line-height: 22px;
       padding: 20px;
       border-radius: 4px;
-      background: lighten($ui-base-color, 4%);
+      border: 1px solid var(--background-border-color);
       color: $highlight-text-color;
       cursor: pointer;
     }
@@ -247,7 +248,7 @@
     }
 
     &__body {
-      border: 1px solid lighten($ui-base-color, 4%);
+      border: 1px solid var(--background-border-color);
       border-top: 0;
       padding: 20px;
       font-size: 15px;
@@ -257,18 +258,17 @@
 
   &__domain-blocks {
     margin-top: 30px;
-    background: darken($ui-base-color, 4%);
-    border: 1px solid lighten($ui-base-color, 4%);
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
 
     &__domain {
-      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      border-bottom: 1px solid var(--background-border-color);
       padding: 10px;
       font-size: 15px;
       color: $darker-text-color;
 
       &:nth-child(2n) {
-        background: darken($ui-base-color, 2%);
+        background: darken($ui-base-color, 4%);
       }
 
       &:last-child {

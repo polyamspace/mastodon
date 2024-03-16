@@ -69,6 +69,7 @@
 
 .dropdown-menu {
   background: var(--dropdown-background-color);
+  backdrop-filter: var(--background-filter);
   border: 1px solid var(--dropdown-border-color);
   padding: 2px; // glitch: reduced padding
   border-radius: 4px;

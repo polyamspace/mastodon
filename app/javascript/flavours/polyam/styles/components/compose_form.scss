@@ -751,7 +751,7 @@
   width: 100%;
   height: 6px;
   border-radius: 6px;
-  background: darken($ui-base-color, 8%);
+  background: var(--background-color);
   position: relative;
   margin-top: 5px;
 }
