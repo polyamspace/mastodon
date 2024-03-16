@@ -184,16 +184,10 @@ hr {
   // Compose area
   &__inner {
     background-color: $background;
-  }
-}
 
-// Fix glitch mascot
-.mbstobon-0,
-.mbstobon-1,
-.mbstobon-2,
-.mbstobon-3 {
-  .drawer__inner__mastodon {
-    background-color: $background;
+    &__mastodon {
+      background-color: $background;
+    }
   }
 }
 
