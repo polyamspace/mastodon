@@ -1,3 +1,35 @@
+# Contributing to Glitch Polyam Edition
+
+Thank you for your interest in contributing to the `polyam-glitch` project!
+Here are some guidelines, and ways you can help.
+
+## Translations
+
+Contrary to upstream, translations are commited directly instead of being managed by Crowdin. \
+Use corresponing `en` files as base as these include all strings used by the polyam flavour.
+
+### Frontend translations
+
+Frontend translation files can be found in `app/javascript/flavours/polyam/locales/`
+
+### Backend translations
+
+Backend translation files can be found in `config/locales-polyam`
+
+## Planning
+
+Planning for this project takes place in Projects and Issues.
+Feel free to open or comment on Issues.
+
+## Development
+
+The main focus of polyam-glitch is the polyam flavour.
+Modifications of other flavours should be kept minimal and only done if necessary. [glitch-soc's frontend documentation](https://glitch-soc.github.io/docs/contributing/frontend/) also applies to polyam-glitch.
+
+---
+
+Guideline for contributing to glitch reproduced below:
+
 # Contributing to Mastodon Glitch Edition
 
 Thank you for your interest in contributing to the `glitch-soc` project!
