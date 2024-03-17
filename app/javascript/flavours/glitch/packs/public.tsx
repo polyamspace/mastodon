@@ -345,9 +345,7 @@ Rails.delegate(document, '#registration_new_user,#new_user', 'submit', () => {
 Rails.delegate(document, '#user_role_color', 'change', ({ target }) => {
   if (target instanceof HTMLInputElement) {
     for (let i = 1; i <= 3; i++) {
-      const preview = document.querySelector<HTMLDivElement>(
-        `user-role-preview-${i}`,
-      );
+      const preview = document.getElementById(`user-role-preview-${i}`);
 
       if (preview) {
         preview.style.backgroundColor = `${target.value}39`;
@@ -360,9 +358,7 @@ Rails.delegate(document, '#user_role_color', 'change', ({ target }) => {
 Rails.delegate(document, '#user_role_name', 'change', ({ target }) => {
   if (target instanceof HTMLInputElement) {
     for (let i = 1; i <= 3; i++) {
-      const preview = document.querySelector<HTMLDivElement>(
-        `user-role-preview-${i}`,
-      );
+      const preview = document.getElementById(`user-role-preview-${i}`);
 
       if (preview) {
         preview.getElementsByTagName('span')[0].innerText = target.value;
