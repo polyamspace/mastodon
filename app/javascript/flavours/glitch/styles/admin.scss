@@ -1015,6 +1015,7 @@ a.name-tag,
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
+    background: var(--background-color);
 
     .item {
       padding: 12px 15px;
@@ -1022,7 +1023,7 @@ a.name-tag,
     }
 
     .dark {
-      background-color: lighten($classic-base-color, 4%);
+      background-color: darken($classic-base-color, 8%);
 
       .account-role {
         color: $classic-secondary-color;
@@ -1038,7 +1039,7 @@ a.name-tag,
     }
 
     .light {
-      background-color: lighten($classic-secondary-color, 4%);
+      background-color: $white;
 
       .account-role {
         color: $classic-base-color;
