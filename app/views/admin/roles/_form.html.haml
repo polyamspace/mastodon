@@ -21,7 +21,7 @@
                      input_html: { placeholder: '#000000', type: 'color' },
                      wrapper: :with_label
 
-    - unless current_user.setting_flavour == 'vanilla'
+    - unless ['vanilla', 'glitch'].include? current_user.setting_flavour
       .fields-row__column.fields-row__column-6
         .user-role__preview
           .item.dark
