@@ -80,3 +80,11 @@ $media-modal-media-max-width: 100%;
 $media-modal-media-max-height: 80%;
 
 $border-radius: 8px;
+
+// Overrides do not apply without "!important"
+:root {
+  --dropdown-background-color: #{$ui-base-lighter-color} !important;
+  --background-border-color: #{lighten($ui-base-color, 12%)} !important;
+  --background-color: #{$ui-base-color} !important;
+  --background-color-tint: #{$ui-base-color} !important;
+}
