@@ -54,7 +54,7 @@
 .drawer__tab {
   display: flex;
   flex: 1 1 auto;
-  padding: 15px 5px 13px;
+  padding: 15px 5px; // Polyam: Adjusted to keep same size as column headers
   color: $darker-text-color;
   text-decoration: none;
   text-align: center;
