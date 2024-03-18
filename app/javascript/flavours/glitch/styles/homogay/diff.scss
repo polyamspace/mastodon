@@ -207,7 +207,7 @@
 }
 
 // general modals
-.modal-root__modal {
+.modal-root__modal:not(.safety-action-modal) {
   background: $ui-base-color;
 }
 
