@@ -1,7 +1,3 @@
-body {
-  background: $ui-base-darker-color;
-}
-
 .button {
   text-shadow: 0 0 6px $faint-shadow-color;
 }
@@ -14,31 +10,19 @@ body {
   text-shadow: 0 0 2px $base-shadow-color;
 }
 
-// hashtags in primary color
-.status__content a {
-  color: $highlight-text-color;
+// Polyam: Fix badge background to be more visible
+.column-link__badge {
+  background-color: $ui-base-darker-color;
 }
 
-// Restore old color of show more button
-.status__content {
-  .status__content__spoiler-link {
-    background-color: lighten($ui-base-color, 30%);
-
-    &:hover,
-    &:focus {
-      // higher for more visibility
-      background-color: lighten($ui-base-color, 37%);
-    }
-  }
+.column-link--transparent.active {
+  border-left: 4px solid $highlight-text-color;
+  padding-left: 11px;
 }
 
-// Fix background of disabled vote button
-.poll__footer {
-  button {
-    &:disabled {
-      background-color: transparent;
-    }
-  }
+.switch-to-advanced,
+.filtered-notifications-banner {
+  background-color: lighten($ui-base-color, 4%);
 }
 
 // compose panel
@@ -47,32 +31,10 @@ body {
 .compose-form__highlightable,
 .compose-form__warning {
   background: $ui-base-semi-lighter-color;
-  color: $primary-text-color;
 }
-
-.compose-panel {
-  .compose-form__autosuggest-wrapper {
-    background-color: #fff0; // transparent background so it doesn't mess with border-radius
-    //    border-left: 1px solid $ui-base-lighter-color;
-    //    border-top: 1px solid $ui-base-lighter-color;
-    //    border-right: 1px solid $ui-base-lighter-color;
-    border-radius: $border-radius $border-radius 0 0;
-  }
-
-  //  .compose-form__buttons-wrapper {
-  //    border-left: 1px solid $ui-base-lighter-color;
-  //    border-right: 1px solid $ui-base-lighter-color;
-  //    border-bottom: 1px solid $ui-base-lighter-color;
-  //    border-radius: 0 0 $border-radius $border-radius;
-  //  }
-}
-
-// .spoiler-input input {
-//   border: 1px solid $ui-base-extra-light-color;
-// }
 
 .poll__option input[type='text'] {
-  border: 1px solid $ui-base-extra-light-color;
+  border-color: $ui-base-extra-light-color;
 }
 
 // Polyam: Fix border color of poll checkbox in compose
@@ -90,29 +52,17 @@ body {
   }
 }
 
-.autosuggest-textarea__suggestions {
-  background: lighten($ui-base-color, 4%);
-}
-
-// Make toot buttons bounce when clicked
-.compose-form__submit button {
-  transition-duration: 50ms;
-  transition-timing-function: ease-in-out;
-  transition-property: background-color, color, transform;
-  transform-origin: center;
-
-  &:active {
-    transform: scale(96%);
-  }
-
-  &[disabled]:active {
-    transform: none;
-  }
+.search__input {
+  background: $ui-base-semi-lighter-color;
 }
 
 .emoji-picker-dropdown__menu {
   width: 286px;
-  box-shadow: 0 2px 8px 0 $base-shadow-color;
+}
+
+// Polyam: Remove transparency while selecting skin tone
+.emoji-picker-dropdown__menu.selecting .emoji-mart-scroll {
+  opacity: 1;
 }
 
 .emoji-mart-anchor {
@@ -126,87 +76,111 @@ body {
   border-top-right-radius: $border-radius;
 }
 
-.emoji-button img {
-  // fancier "grayscale" mode for the emoji picker button
-  mix-blend-mode: luminosity;
-  opacity: 0.65;
+.drawer__inner__mastodon {
+  background: $ui-base-color
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color(lighten($ui-base-color, 4%))}"/></svg>')
+    no-repeat bottom / 100% auto;
 }
 
-// Profiles
+// Restore old color of show more button
+.status__content {
+  .status__content__spoiler-link {
+    background-color: lighten($ui-base-color, 30%);
 
-.account__header {
-  // Polyam: Keep profile background different
-  background: lighten($ui-base-color, 4%);
-
-  // Polyam: Make field content distinct and more readable
-  .account__header__fields {
-    dd {
-      color: $ui-primary-color;
-    }
-  }
-
-  // Polyam: Match with background
-  &__account-note {
-    textarea {
-      &:focus {
-        background: lighten($ui-base-color, 4%);
-      }
+    &:hover,
+    &:focus {
+      // higher for more visibility
+      background-color: lighten($ui-base-color, 37%);
     }
   }
 }
 
-// dropdowns
+// hashtags in primary color
+.status__content a {
+  color: $highlight-text-color;
+}
 
-.language-dropdown__dropdown__results__item {
-  &:focus,
+// Polyam: Keep collapse button in higthlight color
+.status__collapse-button {
+  color: $highlight-text-color;
+
+  &:hover,
   &:active,
-  &:hover {
-    background: $ui-base-extra-light-color;
+  &:focus {
+    color: $highlight-text-color;
   }
 }
 
-// general modals
-.modal-root__modal {
-  background: $ui-base-color;
-}
-
-.report-modal__container {
-  border-top-color: $ui-base-lighter-color;
-}
-
-.report-modal__comment {
-  border-right-color: $ui-base-lighter-color;
-}
-
-.report-modal__comment .setting-text {
-  background: $ui-base-color;
-}
-
-.boost-modal__action-bar,
-.doodle-modal__action-bar,
-.confirmation-modal__action-bar,
-.mute-modal__action-bar,
-.block-modal__action-bar {
-  background: $ui-base-semi-lighter-color;
-}
-
-.confirmation-modal__secondary-button,
-.confirmation-modal__cancel-button,
-.mute-modal__cancel-button,
-.block-modal__cancel-button {
-  color: $primary-text-color;
-
-  &:hover {
-    color: $ui-highlight-color;
+// Fix background of disabled vote button
+.poll__footer {
+  button {
+    &:disabled {
+      background-color: transparent;
+    }
   }
 }
 
-.report-dialog-modal .status__content__spoiler-link {
-  background-color: lighten($ui-base-color, 30%);
+.reactions-bar__item {
+  background: $ui-base-extra-light-color;
 
-  &:hover {
-    background: lighten($ui-base-color, 33%);
+  &.active {
+    background: adjust-color($ui-button-background-color, $alpha: -0.5);
+
+    .reactions-bar__item__count {
+      color: $ui-button-color;
+    }
   }
+}
+
+.media-gallery__item.letterbox {
+  background: none; // remove the black background from letterbox images
+}
+
+// border radius
+.button,
+.dropdown-menu,
+.drawer__header,
+.drawer__pager,
+.account__avatar,
+.search__input,
+.status-card,
+.language-dropdown__dropdown,
+.privacy-dropdown__dropdown,
+.poll__option input[type='text'],
+.account__header__tabs__buttons .icon-button,
+.emoji-picker-dropdown__menu,
+.emoji-mart-search input,
+.compose-form__highlightable,
+.boost-modal,
+.report-modal,
+.confirmation-modal,
+.actions-modal,
+.compare-history-modal {
+  border-radius: $border-radius;
+}
+
+.dropdown-menu {
+  padding-top: $border-radius;
+  padding-bottom: $border-radius;
+}
+
+.emoji-mart-scroll {
+  margin-bottom: $border-radius;
+  padding-bottom: 0;
+}
+
+.column-header {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+
+  //  border-left: 1px solid $ui-base-lighter-color;
+  //  border-top: 1px solid $ui-base-lighter-color;
+  //  border-right: 1px solid $ui-base-lighter-color;
+}
+
+.column > .scrollable {
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
 }
 
 // app settings modal
@@ -232,134 +206,44 @@ body {
   }
 }
 
-// border radius
-.button,
-.dropdown-menu,
-.account__avatar,
-.search__input,
-.status-card,
-.language-dropdown__dropdown,
-.privacy-dropdown__dropdown,
-.poll__option input[type='text'],
-.account__header__tabs__buttons .icon-button,
-.emoji-picker-dropdown__menu,
-.emoji-mart-search input,
-.boost-modal,
-.report-modal,
-.block-modal,
-.confirmation-modal,
-.actions-modal,
-.mute-modal,
-.compare-history-modal {
-  border-radius: $border-radius;
+// general modals
+.modal-root__modal {
+  background: $ui-base-color;
 }
 
-.dropdown-menu {
-  padding-top: $border-radius;
-  padding-bottom: $border-radius;
+.report-modal__container {
+  border-top-color: $ui-base-lighter-color;
 }
 
-.emoji-mart-scroll {
-  margin-bottom: $border-radius;
-  padding-bottom: 0;
+.report-modal__comment {
+  border-right-color: $ui-base-lighter-color;
 }
 
-.column-header {
-  border-top-left-radius: $border-radius;
-  border-top-right-radius: $border-radius;
-
-  //  border-left: 1px solid $ui-base-lighter-color;
-  //  border-top: 1px solid $ui-base-lighter-color;
-  //  border-right: 1px solid $ui-base-lighter-color;
+.report-modal__comment .setting-text {
+  background: $ui-base-color;
 }
 
-.column-header,
-.column-header__button,
-.search__input {
+.boost-modal__action-bar,
+.doodle-modal__action-bar,
+.confirmation-modal__action-bar {
   background: $ui-base-semi-lighter-color;
 }
 
-.column > .scrollable {
-  border-bottom-left-radius: $border-radius;
-  border-bottom-right-radius: $border-radius;
-}
+.confirmation-modal__secondary-button,
+.confirmation-modal__cancel-button {
+  color: $primary-text-color;
 
-// button fixes
-.button.button-tertiary {
-  &:active,
-  &:focus,
   &:hover {
-    padding: 6.5px 18px 7.5px;
+    color: $ui-highlight-color;
   }
 }
 
-.column-link--transparent.active {
-  border-left: 4px solid $highlight-text-color;
-  padding-left: 11px;
-}
+.report-dialog-modal .status__content__spoiler-link {
+  background-color: lighten($ui-base-color, 30%);
 
-// timed line
-// .status {
-//   border-bottom: 0; // no separators between posts
-// }
-
-// .column > .scrollable {
-//   border-left: 1px solid $ui-base-lighter-color;
-//   border-right: 1px solid $ui-base-lighter-color;
-// }
-
-.column-header__back-button {
-  background: none;
-  color: $highlight-text-color;
-}
-
-.reactions-bar__item {
-  background: $ui-base-extra-light-color;
-
-  &.active {
-    background: adjust-color($ui-button-background-color, $alpha: -0.5);
-
-    .reactions-bar__item__count {
-      color: $ui-button-color;
-    }
+  &:hover {
+    background: lighten($ui-base-color, 33%);
   }
-}
-
-.media-gallery__item.letterbox {
-  background: none; // remove the black background from letterbox images
-}
-
-.tabs-bar__wrapper {
-  background: $ui-base-darker-color; // this hides posts scrolling above the column header
-}
-
-// advanced view
-
-.drawer__header {
-  border-radius: $border-radius;
-  background: $ui-base-color;
-
-  a:hover,
-  a:focus,
-  a:active {
-    background: lighten($ui-base-color, 4%);
-  }
-}
-
-.drawer__pager {
-  border-radius: $border-radius;
-
-  // border: 1px solid $ui-base-lighter-color;
-}
-
-.drawer__inner {
-  background: $ui-base-color;
-}
-
-.drawer__inner__mastodon {
-  background: $ui-base-color
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color(lighten($ui-base-color, 4%))}"/></svg>')
-    no-repeat bottom / 100% auto;
 }
 
 // settings
