@@ -122,10 +122,9 @@ export class IconButton extends PureComponent<Props, States> {
       'icon-button--with-counter': typeof counter !== 'undefined',
     });
 
-    // TODO: Remove fixedWidth if not needed
     let contents = (
       <>
-        <Icon id={icon} icon={iconComponent} fixedWidth aria-hidden='true' />{' '}
+        <Icon id={icon} icon={iconComponent} aria-hidden='true' />{' '}
         {typeof counter !== 'undefined' && (
           <span className='icon-button__counter'>
             <AnimatedNumber value={counter} obfuscate={obfuscateCount} />

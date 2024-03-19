@@ -1,19 +1,17 @@
 import classNames from 'classnames';
 
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { config } from '@fortawesome/fontawesome-svg-core';
-import { faSquare } from '@fortawesome/free-solid-svg-icons';
-import type { FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CheckBoxOutlineBlankIcon from '@/awesome-icons/regular/square.svg?react';
+import { isProduction } from 'flavours/polyam/utils/environment';
 
-import { isProduction } from '../utils/environment';
+interface SVGPropsWithTitle extends React.SVGProps<SVGSVGElement> {
+  title?: string;
+}
 
-export type IconProp = IconDefinition;
+export type IconProp = React.FC<SVGPropsWithTitle>;
 
-interface Props extends FontAwesomeIconProps {
+interface Props extends React.SVGProps<SVGSVGElement> {
   children?: never;
   id: string;
-  className?: string;
   icon: IconProp;
   title?: string;
 }
@@ -22,7 +20,6 @@ export const Icon: React.FC<Props> = ({
   id,
   icon: IconComponent,
   className,
-  fixedWidth,
   title: titleProp,
   ...other
 }) => {
@@ -34,7 +31,7 @@ export const Icon: React.FC<Props> = ({
       );
     }
 
-    IconComponent = faSquare;
+    IconComponent = CheckBoxOutlineBlankIcon;
   }
 
   const ariaHidden = titleProp ? undefined : true;
@@ -44,18 +41,12 @@ export const Icon: React.FC<Props> = ({
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const title = titleProp || '';
 
-  // prevent FA from trying to insert CSS into page, which causes a CSP violation
-  if (config.autoAddCss) {
-    config.autoAddCss = false;
-  }
-
   return (
-    <FontAwesomeIcon
+    <IconComponent
       className={classNames('icon', `icon-${id}`, className)}
       title={title}
       aria-hidden={ariaHidden}
       role={role}
-      icon={IconComponent}
       {...other}
     />
   );
