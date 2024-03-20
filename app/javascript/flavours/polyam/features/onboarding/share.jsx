@@ -6,9 +6,10 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { faCopy, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import SwipeableViews from 'react-swipeable-views';
 
+import ArrowRightIcon from '@/awesome-icons/solid/arrow-right.svg?react';
+import CopyIcon from '@/awesome-icons/solid/copy.svg?react';
 import { ColumnBackButton } from 'flavours/polyam/components/column_back_button';
 import { Icon } from 'flavours/polyam/components/icon';
 import { me, domain } from 'flavours/polyam/initial_state';
@@ -71,7 +72,7 @@ class CopyPasteText extends PureComponent {
         <textarea readOnly value={value} ref={this.setRef} onClick={this.handleInputClick} onFocus={this.handleFocus} onBlur={this.handleBlur} />
 
         <button className='button' onClick={this.handleButtonClick}>
-          <Icon id='copy' icon={faCopy} /> {copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : <FormattedMessage id='copypaste.copy_to_clipboard' defaultMessage='Copy to clipboard' />}
+          <Icon id='copy' icon={CopyIcon} /> {copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : <FormattedMessage id='copypaste.copy_to_clipboard' defaultMessage='Copy to clipboard' />}
         </button>
       </div>
     );
@@ -161,12 +162,12 @@ export const Share = () => {
         <div className='onboarding__links'>
           <Link to='/home' className='onboarding__link'>
             <FormattedMessage id='onboarding.actions.go_to_home' defaultMessage='Take me to my home feed' />
-            <Icon icon={faArrowRight} />
+            <Icon icon={ArrowRightIcon} />
           </Link>
 
           <Link to='/explore' className='onboarding__link'>
             <FormattedMessage id='onboarding.actions.go_to_explore' defaultMessage='Take me to trending' />
-            <Icon icon={faArrowRight} />
+            <Icon icon={ArrowRightIcon} />
           </Link>
         </div>
 

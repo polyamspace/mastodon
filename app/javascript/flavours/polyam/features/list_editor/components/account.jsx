@@ -6,7 +6,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import AddIcon from '@/awesome-icons/solid/plus.svg?react';
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 
 import { removeFromListEditor, addToListEditor } from '../../../actions/lists';
 import { Avatar } from '../../../components/avatar';
@@ -55,9 +56,9 @@ class Account extends ImmutablePureComponent {
     let button;
 
     if (added) {
-      button = <IconButton icon='times' iconComponent={faTimes} title={intl.formatMessage(messages.remove)} onClick={onRemove} />;
+      button = <IconButton icon='times' iconComponent={CloseIcon} title={intl.formatMessage(messages.remove)} onClick={onRemove} />;
     } else {
-      button = <IconButton icon='plus' iconComponent={faPlus} title={intl.formatMessage(messages.add)} onClick={onAdd} />;
+      button = <IconButton icon='plus' iconComponent={AddIcon} title={intl.formatMessage(messages.add)} onClick={onAdd} />;
     }
 
     return (

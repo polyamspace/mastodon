@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { injectIntl, defineMessages } from 'react-intl';
 
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import CircleUserIcon from '@/awesome-icons/solid/circle-user.svg?react';
 
 import ColumnHeader from '../../../components/column_header';
 
@@ -25,7 +25,7 @@ class ProfileColumnHeader extends PureComponent {
     return (
       <ColumnHeader
         icon='user-circle'
-        iconComponent={faUserCircle}
+        iconComponent={CircleUserIcon}
         title={intl.formatMessage(messages.profile)}
         onClick={onClick}
         showBackButton

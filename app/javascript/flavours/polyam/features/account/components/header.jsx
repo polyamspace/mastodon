@@ -9,9 +9,11 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faBell as faBellRegular } from '@fortawesome/free-regular-svg-icons';
-import { faBell, faCheck, faEllipsisV, faLock } from '@fortawesome/free-solid-svg-icons';
-
+import NotificationsRegularIcon from '@/awesome-icons/regular/bell.svg?react';
+import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
+import CheckIcon from '@/awesome-icons/solid/check.svg?react';
+import MoreVertIcon from '@/awesome-icons/solid/ellipsis-vertical.svg?react';
+import LockIcon from '@/awesome-icons/solid/lock.svg?react';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'flavours/polyam/components/badge';
 import { Button } from 'flavours/polyam/components/button';
@@ -194,7 +196,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
-      bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell' : 'bell-o'} iconComponent={account.getIn(['relationship', 'notifying']) ? faBell : faBellRegular} size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
+      bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell' : 'bell-o'} iconComponent={account.getIn(['relationship', 'notifying']) ? NotificationsIcon : NotificationsRegularIcon} size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
     }
 
     if (me !== account.get('id')) {
@@ -220,7 +222,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.get('locked')) {
-      lockedIcon = <Icon id='lock' icon={faLock} title={intl.formatMessage(messages.account_locked)} />;
+      lockedIcon = <Icon id='lock' icon={LockIcon} title={intl.formatMessage(messages.account_locked)} />;
     }
 
     if (signedIn && account.get('id') !== me && !suspended) {
@@ -356,7 +358,7 @@ class Header extends ImmutablePureComponent {
                 </>
               )}
 
-              <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' iconComponent={faEllipsisV} size={24} direction='right' />
+              <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' iconComponent={MoreVertIcon} size={24} direction='right' />
             </div>
 
           </div>
@@ -391,7 +393,7 @@ class Header extends ImmutablePureComponent {
                         <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} className='translate' />
 
                         <dd className='translate' title={pair.get('value_plain')}>
-                          {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' icon={faCheck} className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
+                          {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' icon={CheckIcon} className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
                         </dd>
                       </dl>
                     ))}

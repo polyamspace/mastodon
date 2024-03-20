@@ -11,9 +11,11 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { faBell, faCheck, faEraser } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
+import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
+import CheckIcon from '@/awesome-icons/solid/check.svg?react';
+import EraserIcon from '@/awesome-icons/solid/eraser.svg?react';
 import { compareId } from 'flavours/polyam/compare_id';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { NotSignedInIndicator } from 'flavours/polyam/components/not_signed_in_indicator';
@@ -295,7 +297,7 @@ class Notifications extends PureComponent {
           onClick={this.handleMarkAsRead}
           className='column-header__button'
         >
-          <Icon id='check' icon={faCheck} />
+          <Icon id='check' icon={CheckIcon} />
         </button>,
       );
     }
@@ -319,7 +321,7 @@ class Notifications extends PureComponent {
         onClick={this.onEnterCleaningMode}
         className={notifCleaningButtonClassName}
       >
-        <Icon id='eraser' icon={faEraser} />
+        <Icon id='eraser' icon={EraserIcon} />
       </button>,
     );
 
@@ -341,7 +343,7 @@ class Notifications extends PureComponent {
       >
         <ColumnHeader
           icon='bell'
-          iconComponent={faBell}
+          iconComponent={NotificationsIcon}
           active={isUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

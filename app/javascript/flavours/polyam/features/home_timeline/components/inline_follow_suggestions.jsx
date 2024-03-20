@@ -8,8 +8,10 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { faChevronLeft, faChevronRight, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-
+import ChevronLeftIcon from '@/awesome-icons/solid/chevron-left.svg?react';
+import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
+import CircleInfo from '@/awesome-icons/solid/circle-info.svg?react';
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { followAccount, unfollowAccount } from 'flavours/polyam/actions/accounts';
 import { changeSetting } from 'flavours/polyam/actions/settings';
 import { fetchSuggestions, dismissSuggestion } from 'flavours/polyam/actions/suggestions';
@@ -64,7 +66,7 @@ const Source = ({ id }) => {
 
   return (
     <div className='inline-follow-suggestions__body__scrollable__card__text-stack__source' title={hint}>
-      <Icon icon={faInfoCircle} />
+      <Icon icon={CircleInfo} />
       {label}
     </div>
   );
@@ -96,7 +98,7 @@ const Card = ({ id, sources }) => {
 
   return (
     <div className='inline-follow-suggestions__body__scrollable__card'>
-      <IconButton iconComponent={faTimes} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
+      <IconButton iconComponent={CloseIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
 
       <div className='inline-follow-suggestions__body__scrollable__card__avatar'>
         <Link to={`/@${account.get('acct')}`}><Avatar account={account} size={72} /></Link>
@@ -197,13 +199,13 @@ export const InlineFollowSuggestions = ({ hidden }) => {
 
         {canScrollLeft && (
           <button className='inline-follow-suggestions__body__scroll-button left' onClick={handleLeftNav} aria-label={intl.formatMessage(messages.previous)}>
-            <div className='inline-follow-suggestions__body__scroll-button__icon'><Icon icon={faChevronLeft} /></div>
+            <div className='inline-follow-suggestions__body__scroll-button__icon'><Icon icon={ChevronLeftIcon} /></div>
           </button>
         )}
 
         {canScrollRight && (
           <button className='inline-follow-suggestions__body__scroll-button right' onClick={handleRightNav} aria-label={intl.formatMessage(messages.next)}>
-            <div className='inline-follow-suggestions__body__scroll-button__icon'><Icon icon={faChevronRight} /></div>
+            <div className='inline-follow-suggestions__body__scroll-button__icon'><Icon icon={ChevronRightIcon} /></div>
           </button>
         )}
       </div>

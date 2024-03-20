@@ -6,8 +6,12 @@ import { FormattedMessage, injectIntl, defineMessages, useIntl } from 'react-int
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 
-import { faChevronLeft, faChevronRight, faPlus, faCog, faTimes } from '@fortawesome/free-solid-svg-icons';
-
+import ArrowBackIcon from '@/awesome-icons/solid/arrow-left.svg?react';
+import ChevronLeftIcon from '@/awesome-icons/solid/chevron-left.svg?react';
+import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
+import SettingsIcon from '@/awesome-icons/solid/gear.svg?react';
+import AddIcon from '@/awesome-icons/solid/plus.svg?react';
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { ButtonInTabsBar, useColumnsContext } from 'flavours/polyam/features/ui/util/columns_context';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
@@ -41,7 +45,7 @@ const BackButton = ({ pinned, show, onlyIcon }) => {
 
   return (
     <button onClick={handleBackClick} className={classNames('column-header__back-button', { 'compact': onlyIcon})} aria-label={intl.formatMessage(messages.back)}>
-      <Icon id='chevron-left' icon={faChevronLeft} className='column-back-button__icon' fixedWidth />
+      <Icon id='chevron-left' icon={ArrowBackIcon} className='column-back-button__icon' fixedWidth />
       {!onlyIcon && <FormattedMessage id='column_back_button.label' defaultMessage='Back' />}
     </button>
   );
@@ -145,16 +149,16 @@ class ColumnHeader extends PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = <button className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='times' icon={faTimes} /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
+      pinButton = <button className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='times' icon={CloseIcon} /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
 
       moveButtons = (
         <div className='column-header__setting-arrows'>
-          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><Icon id='chevron-left' icon={faChevronLeft} /></button>
-          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='icon-button column-header__setting-btn' onClick={this.handleMoveRight}><Icon id='chevron-right' icon={faChevronRight} /></button>
+          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><Icon id='chevron-left' icon={ChevronLeftIcon} /></button>
+          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='icon-button column-header__setting-btn' onClick={this.handleMoveRight}><Icon id='chevron-right' icon={ChevronRightIcon} /></button>
         </div>
       );
     } else if (multiColumn && this.props.onPin) {
-      pinButton = <button className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' icon={faPlus} /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
+      pinButton = <button className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' icon={AddIcon} /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
     backButton = <BackButton pinned={pinned} show={showBackButton} onlyIcon={!!title} />;
@@ -181,7 +185,7 @@ class ColumnHeader extends PureComponent {
           onClick={this.handleToggleClick}
         >
           <i className='icon-with-badge'>
-            <Icon id='sliders' icon={faCog} />
+            <Icon id='sliders' icon={SettingsIcon} />
             {collapseIssues && <i className='icon-with-badge__issue-badge' />}
           </i>
         </button>

@@ -7,8 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-
+import EnvelopeIcon from '@/awesome-icons/solid/envelope.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'flavours/polyam/actions/columns';
 import { mountConversations, unmountConversations, expandConversations } from 'flavours/polyam/actions/conversations';
 import { connectDirectStream } from 'flavours/polyam/actions/streaming';
@@ -75,7 +74,7 @@ const DirectTimeline = ({ columnId, multiColumn }) => {
     <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
         icon='envelope'
-        iconComponent={faEnvelope}
+        iconComponent={EnvelopeIcon}
         active={hasUnread}
         title={intl.formatMessage(messages.title)}
         onPin={handlePin}

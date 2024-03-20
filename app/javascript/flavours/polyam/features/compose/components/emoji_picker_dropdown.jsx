@@ -7,10 +7,10 @@ import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { faFaceGrinWide } from '@fortawesome/free-solid-svg-icons';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
+import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import data from 'flavours/polyam/features/emoji/emoji_data.json';
 import { useSystemEmojiFont } from 'flavours/polyam/initial_state';
@@ -429,7 +429,7 @@ class EmojiPickerDropdown extends PureComponent {
           title={title}
           aria-expanded={active}
           active={active}
-          iconComponent={faFaceGrinWide}
+          iconComponent={ReactIcon}
           onClick={this.onToggle}
           disabled={disabled}
           inverted={inverted}

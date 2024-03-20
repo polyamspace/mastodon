@@ -8,8 +8,7 @@ import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { changeSetting } from 'flavours/polyam/actions/settings';
 import { bannerSettings } from 'flavours/polyam/settings';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
@@ -57,7 +56,7 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
       <div className='dismissable-banner__action'>
         <IconButton
           icon='times'
-          iconComponent={faTimes}
+          iconComponent={CloseIcon}
           title={intl.formatMessage(messages.dismiss)}
           onClick={handleDismiss}
         />

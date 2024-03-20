@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-import { faCheck, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-
+import ArrowRightIcon from '@/awesome-icons/solid/arrow-right.svg?react';
+import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 
 export const Step = ({ label, description, icon, iconComponent, completed, onClick, href, to }) => {
@@ -19,7 +19,7 @@ export const Step = ({ label, description, icon, iconComponent, completed, onCli
       </div>
 
       <div className={completed ? 'onboarding__steps__item__progress' : 'onboarding__steps__item__go'}>
-        {completed ? <Icon icon={faCheck} /> : <Icon icon={faArrowRight} />}
+        {completed ? <Icon icon={CheckIcon} /> : <Icon icon={ArrowRightIcon} />}
       </div>
     </>
   );

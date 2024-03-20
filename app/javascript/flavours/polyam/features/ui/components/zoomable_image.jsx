@@ -3,8 +3,8 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { faCompressAlt, faExpandAlt } from '@fortawesome/free-solid-svg-icons';
-
+import CompressIcon from '@/awesome-icons/solid/down-left-and-up-right-to-center.svg?react';
+import ExpandIcon from '@/awesome-icons/solid/up-right-and-down-left-from-center.svg?react';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 
 const messages = defineMessages({
@@ -420,7 +420,7 @@ class ZoomableImage extends PureComponent {
           className={`media-modal__zoom-button ${zoomButtonShouldHide}`}
           title={zoomButtonTitle}
           icon={this.state.zoomState}
-          iconComponent={this.state.zoomState === 'compress' ? faCompressAlt : faExpandAlt}
+          iconComponent={this.state.zoomState === 'compress' ? CompressIcon : ExpandIcon}
           onClick={this.handleZoomClick}
           size={40}
           style={{

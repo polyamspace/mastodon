@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { faBoxArchive } from '@fortawesome/free-solid-svg-icons';
-
+import ArchiveIcon from '@/awesome-icons/solid/box-archive.svg?react';
 import { fetchNotificationPolicy } from 'flavours/polyam/actions/notifications';
 import { Icon } from 'flavours/polyam/components/icon';
 import { toCappedNumber } from 'flavours/polyam/utils/numbers';
@@ -34,7 +33,7 @@ export const FilteredNotificationsBanner = () => {
 
   return (
     <Link className='filtered-notifications-banner' to='/notifications/requests'>
-      <Icon icon={faBoxArchive} />
+      <Icon icon={ArchiveIcon} />
 
       <div className='filtered-notifications-banner__text'>
         <strong><FormattedMessage id='filtered_notifications_banner.title' defaultMessage='Filtered notifications' /></strong>

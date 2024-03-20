@@ -2,8 +2,7 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-
+import ArrowBackIcon from '@/awesome-icons/solid/arrow-left.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { ButtonInTabsBar } from 'flavours/polyam/features/ui/util/columns_context';
 
@@ -34,9 +33,8 @@ export const ColumnBackButton: React.FC<{ onClick: OnClickCallback }> = ({
     <button onClick={handleClick} className='column-back-button'>
       <Icon
         id='chevron-left'
-        icon={faChevronLeft}
+        icon={ArrowBackIcon}
         className='column-back-button__icon'
-        fixedWidth
       />
       <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
     </button>

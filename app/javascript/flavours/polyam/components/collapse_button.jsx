@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import { faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons';
+import CollapseIcon from '@/awesome-icons/solid/angles-up.svg?react';
 
 import { IconButton } from './icon_button';
 
@@ -33,7 +33,7 @@ export const CollapseButton = ({ collapsed, setCollapsed }) => {
           intl.formatMessage(messages.collapse)
       }
       icon='angle-double-up'
-      iconComponent={faAngleDoubleUp}
+      iconComponent={CollapseIcon}
       onClick={handleCollapsedClick}
     />
   );

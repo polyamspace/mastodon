@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { faMusic, faPlay } from '@fortawesome/free-solid-svg-icons';
-
+import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
+import MusicIcon from '@/awesome-icons/solid/music.svg?react';
+import PlayIcon from '@/awesome-icons/solid/play.svg?react';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/polyam/initial_state';
@@ -86,7 +86,7 @@ export default class MediaItem extends ImmutablePureComponent {
     if (!visible) {
       icon = (
         <span className='account-gallery__item__icons'>
-          <Icon id='eye-slash' icon={faEyeSlash} />
+          <Icon id='eye-slash' icon={VisibilityOffIcon} />
         </span>
       );
     } else {
@@ -101,9 +101,9 @@ export default class MediaItem extends ImmutablePureComponent {
         );
 
         if (attachment.get('type') === 'audio') {
-          label = <Icon id='music' icon={faMusic} />;
+          label = <Icon id='music' icon={MusicIcon} />;
         } else {
-          label = <Icon id='play' icon={faPlay} />;
+          label = <Icon id='play' icon={PlayIcon} />;
         }
       } else if (attachment.get('type') === 'image') {
         const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;

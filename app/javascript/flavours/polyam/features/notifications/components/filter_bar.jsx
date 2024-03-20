@@ -3,9 +3,13 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
-import { faFaceGrinWide, faHome, faReplyAll, faStar, faTasksAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
-
-import { faBoost } from 'flavours/polyam/components/boost';
+import PollIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
+import HomeIcon from '@/awesome-icons/solid/house.svg?react';
+import ReplyAllIcon from '@/awesome-icons/solid/reply-all.svg?react';
+import StarIcon from '@/awesome-icons/solid/star.svg?react';
+import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
+import BoostIcon from '@/svg-icons/boost.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 
 const tooltips = defineMessages({
@@ -70,49 +74,49 @@ class FilterBar extends PureComponent {
           onClick={this.onClick('mention')}
           title={intl.formatMessage(tooltips.mentions)}
         >
-          <Icon id='reply-all' icon={faReplyAll} fixedWidth />
+          <Icon id='reply-all' icon={ReplyAllIcon} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'favourite' ? 'active' : ''}
           onClick={this.onClick('favourite')}
           title={intl.formatMessage(tooltips.favourites)}
         >
-          <Icon id='star' icon={faStar} fixedWidth />
+          <Icon id='star' icon={StarIcon} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'reaction' ? 'active' : ''}
           onClick={this.onClick('reaction')}
           title={intl.formatMessage(tooltips.reactions)}
         >
-          <Icon id='face-grin-wide' icon={faFaceGrinWide} fixedWidth />
+          <Icon id='face-grin-wide' icon={ReactIcon} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'reblog' ? 'active' : ''}
           onClick={this.onClick('reblog')}
           title={intl.formatMessage(tooltips.boosts)}
         >
-          <Icon id='retweet' icon={faBoost} fixedWidth />
+          <Icon id='retweet' icon={BoostIcon} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'poll' ? 'active' : ''}
           onClick={this.onClick('poll')}
           title={intl.formatMessage(tooltips.polls)}
         >
-          <Icon id='tasks' icon={faTasksAlt} fixedWidth />
+          <Icon id='tasks' icon={PollIcon} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'status' ? 'active' : ''}
           onClick={this.onClick('status')}
           title={intl.formatMessage(tooltips.statuses)}
         >
-          <Icon id='home' icon={faHome} fixedWidth />
+          <Icon id='home' icon={HomeIcon} fixedWidth />
         </button>
         <button
           className={selectedFilter === 'follow' ? 'active' : ''}
           onClick={this.onClick('follow')}
           title={intl.formatMessage(tooltips.follows)}
         >
-          <Icon id='user-plus' icon={faUserPlus} fixedWidth />
+          <Icon id='user-plus' icon={FollowIcon} fixedWidth />
         </button>
       </div>
     );

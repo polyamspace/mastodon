@@ -3,9 +3,13 @@ import { PureComponent } from 'react';
 
 import { injectIntl, defineMessages } from 'react-intl';
 
-import { faImage } from '@fortawesome/free-regular-svg-icons';
-import { faAngleDoubleUp, faCog, faCogs, faPencil, faTimes, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-
+import ImageIcon from '@/awesome-icons/regular/image.svg?react';
+import CollapseIcon from '@/awesome-icons/solid/angles-up.svg?react';
+import SettingsIcon from '@/awesome-icons/solid/gear.svg?react';
+import AppSettingsIcon from '@/awesome-icons/solid/gears.svg?react';
+import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
+import WarningIcon from '@/awesome-icons/solid/triangle-exclamation.svg?react';
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { preferencesLink } from 'flavours/polyam/utils/backend_links';
 
 import LocalSettingsNavigationItem from './item';
@@ -40,7 +44,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={0}
           onNavigate={onNavigate}
           icon='cogs'
-          iconComponent={faCogs}
+          iconComponent={AppSettingsIcon}
           title={intl.formatMessage(messages.general)}
         />
         <LocalSettingsNavigationItem
@@ -48,7 +52,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={1}
           onNavigate={onNavigate}
           icon='pencil'
-          iconComponent={faPencil}
+          iconComponent={EditIcon}
           title={intl.formatMessage(messages.compose)}
         />
         <LocalSettingsNavigationItem
@@ -56,7 +60,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={2}
           onNavigate={onNavigate}
           icon='warning'
-          iconComponent={faExclamationTriangle}
+          iconComponent={WarningIcon}
           title={intl.formatMessage(messages.content_warnings)}
         />
         <LocalSettingsNavigationItem
@@ -64,7 +68,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={3}
           onNavigate={onNavigate}
           icon='angle-double-up'
-          iconComponent={faAngleDoubleUp}
+          iconComponent={CollapseIcon}
           title={intl.formatMessage(messages.collapsed)}
         />
         <LocalSettingsNavigationItem
@@ -72,7 +76,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={4}
           onNavigate={onNavigate}
           icon='image'
-          iconComponent={faImage}
+          iconComponent={ImageIcon}
           title={intl.formatMessage(messages.media)}
         />
         <LocalSettingsNavigationItem
@@ -80,7 +84,7 @@ class LocalSettingsNavigation extends PureComponent {
           href={preferencesLink}
           index={5}
           icon='cog'
-          iconComponent={faCog}
+          iconComponent={SettingsIcon}
           title={intl.formatMessage(messages.preferences)}
         />
         <LocalSettingsNavigationItem
@@ -89,7 +93,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={6}
           onNavigate={onClose}
           icon='times'
-          iconComponent={faTimes}
+          iconComponent={CloseIcon}
           title={intl.formatMessage(messages.close)}
         />
       </nav>

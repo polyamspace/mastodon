@@ -5,9 +5,12 @@ import { FormattedMessage } from 'react-intl';
 
 import { useDispatch } from 'react-redux';
 
-import { faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { faUserMinus, faBullhorn, faReply, faClockRotateLeft, faShopSlash } from '@fortawesome/free-solid-svg-icons';
-
+import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
+import AnnouncementIcon from '@/awesome-icons/solid/bullhorn.svg?react';
+import HistoryIcon from '@/awesome-icons/solid/clock-rotate-left.svg?react';
+import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
+import ShopSlashIcon from '@/awesome-icons/solid/shop-slash.svg?react';
+import UserMinusIcon from '@/awesome-icons/solid/user-minus.svg?react';
 import { blockAccount } from 'flavours/polyam/actions/accounts';
 import { blockDomain } from 'flavours/polyam/actions/domain_blocks';
 import { closeModal } from 'flavours/polyam/actions/modal';
@@ -36,7 +39,7 @@ export const DomainBlockModal = ({ domain, accountId, acct }) => {
       <div className='safety-action-modal__top'>
         <div className='safety-action-modal__header'>
           <div className='safety-action-modal__header__icon'>
-            <Icon icon={faShopSlash} />
+            <Icon icon={ShopSlashIcon} />
           </div>
 
           <div>
@@ -47,27 +50,27 @@ export const DomainBlockModal = ({ domain, accountId, acct }) => {
 
         <div className='safety-action-modal__bullet-points'>
           <div>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={faBullhorn} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={AnnouncementIcon} /></div>
             <div><FormattedMessage id='domain_block_modal.they_wont_know' defaultMessage="They won't know they've been blocked." /></div>
           </div>
 
           <div>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={faEyeSlash} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={VisibilityOffIcon} /></div>
             <div><FormattedMessage id='domain_block_modal.you_wont_see_posts' defaultMessage="You won't see posts or notifications from users on this server." /></div>
           </div>
 
           <div>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={faUserMinus} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={UserMinusIcon} /></div>
             <div><FormattedMessage id='domain_block_modal.you_will_lose_followers' defaultMessage='All your followers from this server will be removed.' /></div>
           </div>
 
           <div>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={faReply} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={ReplyIcon} /></div>
             <div><FormattedMessage id='domain_block_modal.they_cant_follow' defaultMessage='Nobody from this server can follow you.' /></div>
           </div>
 
           <div>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={faClockRotateLeft} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={HistoryIcon} /></div>
             <div><FormattedMessage id='domain_block_modal.they_can_interact_with_old_posts' defaultMessage='People from this server can interact with your old posts.' /></div>
           </div>
         </div>

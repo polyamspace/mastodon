@@ -8,9 +8,9 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { HotKeys } from 'react-hotkeys';
 
+import FlagIcon from '@/awesome-icons/solid/flag.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { Permalink } from 'flavours/polyam/components/permalink';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
@@ -95,7 +95,7 @@ class AdminReport extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-admin-report focusable', { unread })} tabIndex={0}>
           <div className='notification__message'>
-            <Icon id='flag' icon={faFlag} fixedWidth />
+            <Icon id='flag' icon={FlagIcon} fixedWidth />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.admin.report' defaultMessage='{name} reported {target}' values={{ name: link, target: targetLink }} />

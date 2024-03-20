@@ -12,8 +12,7 @@ import classNames from 'classnames';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-
+import TrashIcon from '@/awesome-icons/solid/trash.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 
 const messages = defineMessages({
@@ -53,7 +52,7 @@ class NotificationPurgeButtons extends ImmutablePureComponent {
         </button>
 
         <button onClick={this.props.onDeleteMarked} className='column-header__button'>
-          <Icon id='trash' icon={faTrash} /><br />{intl.formatMessage(messages.btnApply)}
+          <Icon id='trash' icon={TrashIcon} /><br />{intl.formatMessage(messages.btnApply)}
         </button>
       </div>
     );

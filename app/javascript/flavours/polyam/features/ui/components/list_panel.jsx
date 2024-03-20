@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import { createSelector } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { faListUl } from '@fortawesome/free-solid-svg-icons';
-
+import ListIcon from '@/awesome-icons/solid/list-ul.svg?react';
 import { fetchLists } from 'flavours/polyam/actions/lists';
 
 import ColumnLink from './column_link';
@@ -33,7 +32,7 @@ export const ListPanel = () => {
     <div className='list-panel'>
       <hr />
       {lists.map(list => (
-        <ColumnLink icon='list-ul' key={list.get('id')} iconComponent={faListUl} text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
+        <ColumnLink icon='list-ul' key={list.get('id')} iconComponent={ListIcon} text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
       ))}
     </div>
   );

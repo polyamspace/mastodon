@@ -8,9 +8,9 @@ import classNames from 'classnames';
 import { is } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { debounce } from 'lodash';
 
+import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
@@ -363,7 +363,7 @@ class MediaGallery extends PureComponent {
         </button>
       );
     } else if (visible) {
-      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible, { number: size })} icon='eye-slash' iconComponent={faEyeSlash} overlay onClick={this.handleOpen} ariaHidden />;
+      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible, { number: size })} icon='eye-slash' iconComponent={VisibilityOffIcon} overlay onClick={this.handleOpen} ariaHidden />;
     } else {
       spoilerButton = (
         <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>

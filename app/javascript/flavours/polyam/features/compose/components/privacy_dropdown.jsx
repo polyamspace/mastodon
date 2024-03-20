@@ -5,9 +5,12 @@ import { injectIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { faEnvelope, faGlobe, faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
 import Overlay from 'react-overlays/Overlay';
 
+import EnvelopeIcon from '@/awesome-icons/solid/envelope.svg?react';
+import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
+import LockIcon from '@/awesome-icons/solid/lock.svg?react';
+import UnlistedIcon from '@/awesome-icons/solid/unlock.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 
 import { PrivacyDropdownMenu } from './privacy_dropdown_menu';
@@ -90,14 +93,14 @@ class PrivacyDropdown extends PureComponent {
     const { intl: { formatMessage } } = this.props;
 
     this.options = [
-      { icon: 'globe', iconComponent: faGlobe, value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
-      { icon: 'unlock', iconComponent: faLockOpen,  value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long), extra: formatMessage(messages.unlisted_extra) },
-      { icon: 'lock', iconComponent: faLock, value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
+      { icon: 'globe', iconComponent: PublicIcon, value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
+      { icon: 'unlock', iconComponent: UnlistedIcon,  value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long), extra: formatMessage(messages.unlisted_extra) },
+      { icon: 'lock', iconComponent: LockIcon, value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
     ];
 
     if (!this.props.noDirect) {
       this.options.push(
-        { icon: 'envelope', iconComponent: faEnvelope, value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
+        { icon: 'envelope', iconComponent: EnvelopeIcon, value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
       );
     }
   }

@@ -5,8 +5,19 @@ import { defineMessages, injectIntl, useIntl } from 'react-intl';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { faAt, faBookmark, faCog, faCogs, faEllipsisH, faGlobe, faCompass, faHome, faListUl, faSearch, faStar, faBell, faUserPlus } from '@fortawesome/free-solid-svg-icons';
-
+import AtIcon from '@/awesome-icons/solid/at.svg?react';
+import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
+import BookmarkIcon from '@/awesome-icons/solid/bookmark.svg?react';
+import ExploreIcon from '@/awesome-icons/solid/compass.svg?react';
+import MoreHorizIcon from '@/awesome-icons/solid/ellipsis.svg?react';
+import SettingsIcon from '@/awesome-icons/solid/gear.svg?react';
+import AppSettingsIcon from '@/awesome-icons/solid/gears.svg?react';
+import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
+import HomeIcon from '@/awesome-icons/solid/house.svg?react';
+import ListIcon from '@/awesome-icons/solid/list-ul.svg?react';
+import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
+import StarIcon from '@/awesome-icons/solid/star.svg?react';
+import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import { fetchFollowRequests } from 'flavours/polyam/actions/accounts';
 import { IconWithBadge } from 'flavours/polyam/components/icon_with_badge';
 import { NavigationPortal } from 'flavours/polyam/components/navigation_portal';
@@ -46,7 +57,7 @@ const NotificationsLink = () => {
     <ColumnLink
       transparent
       to='/notifications'
-      icon={<IconWithBadge id='bell' icon={faBell} count={count} className='column-link__icon' />}
+      icon={<IconWithBadge id='bell' icon={NotificationsIcon} count={count} className='column-link__icon' />}
       text={intl.formatMessage(messages.notifications)}
     />
   );
@@ -69,7 +80,7 @@ const FollowRequestsLink = () => {
     <ColumnLink
       transparent
       to='/follow_requests'
-      icon={<IconWithBadge id='user-plus' icon={faUserPlus} count={count} className='column-link__icon' />}
+      icon={<IconWithBadge id='user-plus' icon={FollowIcon} count={count} className='column-link__icon' />}
       text={intl.formatMessage(messages.followRequests)}
     />
   );
@@ -115,20 +126,20 @@ class NavigationPanel extends Component {
 
         {signedIn && (
           <>
-            <ColumnLink transparent to='/home' icon='home' iconComponent={faHome} text={intl.formatMessage(messages.home)} />
+            <ColumnLink transparent to='/home' icon='home' iconComponent={HomeIcon} text={intl.formatMessage(messages.home)} />
             <NotificationsLink />
             <FollowRequestsLink />
           </>
         )}
 
         {trendsEnabled ? (
-          <ColumnLink transparent to='/explore' icon='explore' iconComponent={faCompass} text={intl.formatMessage(messages.explore)} />
+          <ColumnLink transparent to='/explore' icon='explore' iconComponent={ExploreIcon} text={intl.formatMessage(messages.explore)} />
         ) : (
-          <ColumnLink transparent to='/search' icon='search' iconComponent={faSearch} text={intl.formatMessage(messages.search)} />
+          <ColumnLink transparent to='/search' icon='search' iconComponent={SearchIcon} text={intl.formatMessage(messages.search)} />
         )}
 
         {(signedIn || timelinePreview) && (
-          <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' iconComponent={faGlobe} text={intl.formatMessage(messages.firehose)} />
+          <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' iconComponent={PublicIcon} text={intl.formatMessage(messages.firehose)} />
         )}
 
         {!signedIn && (
@@ -140,23 +151,23 @@ class NavigationPanel extends Component {
 
         {signedIn && (
           <>
-            <ColumnLink transparent to='/conversations' icon='at' iconComponent={faAt} text={intl.formatMessage(messages.direct)} />
-            <ColumnLink transparent to='/bookmarks' icon='bookmark' iconComponent={faBookmark} text={intl.formatMessage(messages.bookmarks)} />
-            <ColumnLink transparent to='/favourites' icon='star' iconComponent={faStar} text={intl.formatMessage(messages.favourites)} />
-            <ColumnLink transparent to='/lists' icon='list-ul' iconComponent={faListUl} text={intl.formatMessage(messages.lists)} />
+            <ColumnLink transparent to='/conversations' icon='at' iconComponent={AtIcon} text={intl.formatMessage(messages.direct)} />
+            <ColumnLink transparent to='/bookmarks' icon='bookmark' iconComponent={BookmarkIcon} text={intl.formatMessage(messages.bookmarks)} />
+            <ColumnLink transparent to='/favourites' icon='star' iconComponent={StarIcon} text={intl.formatMessage(messages.favourites)} />
+            <ColumnLink transparent to='/lists' icon='list-ul' iconComponent={ListIcon} text={intl.formatMessage(messages.lists)} />
 
             <ListPanel />
 
             <hr />
 
-            {!!preferencesLink && <ColumnLink transparent href={preferencesLink} icon='cog' iconComponent={faCog} text={intl.formatMessage(messages.preferences)} />}
-            <ColumnLink transparent onClick={onOpenSettings} icon='cogs' iconComponent={faCogs} text={intl.formatMessage(messages.app_settings)} />
+            {!!preferencesLink && <ColumnLink transparent href={preferencesLink} icon='cog' iconComponent={SettingsIcon} text={intl.formatMessage(messages.preferences)} />}
+            <ColumnLink transparent onClick={onOpenSettings} icon='cogs' iconComponent={AppSettingsIcon} text={intl.formatMessage(messages.app_settings)} />
           </>
         )}
 
         <div className='navigation-panel__legal'>
           <hr />
-          <ColumnLink transparent to='/about' icon='ellipsis-h' iconComponent={faEllipsisH} text={intl.formatMessage(messages.about)} />
+          <ColumnLink transparent to='/about' icon='ellipsis-h' iconComponent={MoreHorizIcon} text={intl.formatMessage(messages.about)} />
         </div>
 
         <NavigationPortal />

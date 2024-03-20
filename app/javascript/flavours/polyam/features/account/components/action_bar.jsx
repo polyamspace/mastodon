@@ -6,8 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-
+import CircleInfo from '@/awesome-icons/solid/circle-info.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 
 class ActionBar extends PureComponent {
@@ -30,7 +29,7 @@ class ActionBar extends PureComponent {
       return (
         <div>
           <div className='account__disclaimer'>
-            <Icon id='info-circle' icon={faInfoCircle} fixedWidth />
+            <Icon id='info-circle' icon={CircleInfo} fixedWidth />
             <FormattedMessage
               id='account.suspended_disclaimer_full'
               defaultMessage='This user has been suspended by a moderator.'
@@ -45,7 +44,7 @@ class ActionBar extends PureComponent {
     if (account.get('acct') !== account.get('username')) {
       extraInfo = (
         <div className='account__disclaimer'>
-          <Icon id='info-circle' icon={faInfoCircle} fixedWidth />
+          <Icon id='info-circle' icon={CircleInfo} fixedWidth />
           <div>
             <FormattedMessage
               id='account.disclaimer_full'

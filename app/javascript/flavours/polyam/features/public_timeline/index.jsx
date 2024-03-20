@@ -7,8 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
-
+import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
 import { domain } from 'flavours/polyam/initial_state';
 
@@ -138,7 +137,7 @@ class PublicTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} name='federated' label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='globe'
-          iconComponent={faGlobe}
+          iconComponent={PublicIcon}
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

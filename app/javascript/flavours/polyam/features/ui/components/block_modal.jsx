@@ -7,9 +7,11 @@ import classNames from 'classnames';
 
 import { useDispatch } from 'react-redux';
 
-import { faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { faAt, faBan, faBullhorn, faReply } from '@fortawesome/free-solid-svg-icons';
-
+import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
+import AtIcon from '@/awesome-icons/solid/at.svg?react';
+import BanIcon from '@/awesome-icons/solid/ban.svg?react';
+import AnnouncementIcon from '@/awesome-icons/solid/bullhorn.svg?react';
+import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
 import { blockAccount } from 'flavours/polyam/actions/accounts';
 import { closeModal } from 'flavours/polyam/actions/modal';
 import { Button } from 'flavours/polyam/components/button';
@@ -39,7 +41,7 @@ export const BlockModal = ({ accountId, acct }) => {
       <div className='safety-action-modal__top'>
         <div className='safety-action-modal__header'>
           <div className='safety-action-modal__header__icon'>
-            <Icon icon={faBan} />
+            <Icon icon={BanIcon} />
           </div>
 
           <div>
@@ -49,22 +51,22 @@ export const BlockModal = ({ accountId, acct }) => {
         </div>
         <div className='safety-action-modal__bullet-points'>
           <div>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={faBullhorn} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={AnnouncementIcon} /></div>
             <div><FormattedMessage id='block_modal.they_will_know' defaultMessage="They can see that they're blocked." /></div>
           </div>
 
           <div>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={faEyeSlash} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={VisibilityOffIcon} /></div>
             <div><FormattedMessage id='block_modal.they_cant_see_posts' defaultMessage="They can't see your posts and you won't see theirs." /></div>
           </div>
 
           <div>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={faAt} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={AtIcon} /></div>
             <div><FormattedMessage id='block_modal.you_wont_see_mentions' defaultMessage="You won't see posts that mentions them." /></div>
           </div>
 
           <div>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={faReply} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={ReplyIcon} /></div>
             <div><FormattedMessage id='block_modal.they_cant_mention' defaultMessage="They can't mention or follow you." /></div>
           </div>
         </div>

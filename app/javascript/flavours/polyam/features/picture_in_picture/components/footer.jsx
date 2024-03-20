@@ -9,13 +9,17 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faArrowUpRightFromSquare, faReply, faReplyAll, faStar } from '@fortawesome/free-solid-svg-icons';
-
+import ExternalLinkIcon from '@/awesome-icons/solid/arrow-up-right-from-square.svg?react';
+import ReplyAllIcon from '@/awesome-icons/solid/reply-all.svg?react';
+import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
+import StarIcon from '@/awesome-icons/solid/star.svg?react';
+import BoostIcon from '@/svg-icons/boost.svg?react';
+import BoostDisabledIcon from '@/svg-icons/boost_disabled.svg?react';
+import BoostPrivateIcon from '@/svg-icons/boost_private.svg?react';
 import { initBoostModal } from 'flavours/polyam/actions/boosts';
 import { replyCompose } from 'flavours/polyam/actions/compose';
 import { reblog, favourite, unreblog, unfavourite } from 'flavours/polyam/actions/interactions';
 import { openModal } from 'flavours/polyam/actions/modal';
-import { faBoost, faBoostDisabled, faBoostPrivate } from 'flavours/polyam/components/boost';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { me, boostModal } from 'flavours/polyam/initial_state';
 import { makeGetStatus } from 'flavours/polyam/selectors';
@@ -180,11 +184,11 @@ class Footer extends ImmutablePureComponent {
 
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
-      replyIconComponent = faReply;
+      replyIconComponent = ReplyIcon;
       replyTitle = intl.formatMessage(messages.reply);
     } else {
       replyIcon = 'reply-all';
-      replyIconComponent = faReplyAll;
+      replyIconComponent = ReplyAllIcon;
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
@@ -192,16 +196,16 @@ class Footer extends ImmutablePureComponent {
 
     if (status.get('reblogged')) {
       reblogTitle = intl.formatMessage(messages.cancel_reblog_private);
-      reblogIconComponent = publicStatus ? faBoost : faBoostPrivate;
+      reblogIconComponent = publicStatus ? BoostIcon : BoostPrivateIcon;
     } else if (publicStatus) {
       reblogTitle = intl.formatMessage(messages.reblog);
-      reblogIconComponent = faBoost;
+      reblogIconComponent = BoostIcon;
     } else if (reblogPrivate) {
       reblogTitle = intl.formatMessage(messages.reblog_private);
-      reblogIconComponent = faBoostPrivate;
+      reblogIconComponent = BoostPrivateIcon;
     } else {
       reblogTitle = intl.formatMessage(messages.cannot_reblog);
-      reblogIconComponent = faBoostDisabled;
+      reblogIconComponent = BoostDisabledIcon;
     }
 
     let replyButton = null;
@@ -211,7 +215,7 @@ class Footer extends ImmutablePureComponent {
           className='status__action-bar-button'
           title={replyTitle}
           icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon}
-          iconComponent={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? faReply : replyIconComponent}
+          iconComponent={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? ReplyIcon : replyIconComponent}
           onClick={this.handleReplyClick}
           counter={status.get('replies_count')}
           obfuscateCount
@@ -223,7 +227,7 @@ class Footer extends ImmutablePureComponent {
           className='status__action-bar-button'
           title={replyTitle}
           icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon}
-          iconComponent={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? faReply : replyIconComponent}
+          iconComponent={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? ReplyIcon : replyIconComponent}
           onClick={this.handleReplyClick}
         />
       );
@@ -233,8 +237,8 @@ class Footer extends ImmutablePureComponent {
       <div className='picture-in-picture__footer'>
         {replyButton}
         <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} title={reblogTitle} icon='retweet' iconComponent={reblogIconComponent} onClick={this.handleReblogClick} counter={status.get('reblogs_count')} />
-        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={faStar} onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} />
-        {withOpenButton && <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.open)} icon='external-link' iconComponent={faArrowUpRightFromSquare} onClick={this.handleOpenClick} href={status.get('url')} />}
+        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={StarIcon} onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} />
+        {withOpenButton && <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.open)} icon='external-link' iconComponent={ExternalLinkIcon} onClick={this.handleOpenClick} href={status.get('url')} />}
       </div>
     );
   }

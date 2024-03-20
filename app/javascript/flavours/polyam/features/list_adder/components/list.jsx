@@ -6,8 +6,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faListUl, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
-
+import ListIcon from '@/awesome-icons/solid/list-ul.svg?react';
+import AddIcon from '@/awesome-icons/solid/plus.svg?react';
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 
 import { removeFromListAdder, addToListAdder } from '../../../actions/lists';
@@ -48,16 +49,16 @@ class List extends ImmutablePureComponent {
     let button;
 
     if (added) {
-      button = <IconButton icon='times' iconComponent={faTimes} title={intl.formatMessage(messages.remove)} onClick={onRemove} />;
+      button = <IconButton icon='times' iconComponent={CloseIcon} title={intl.formatMessage(messages.remove)} onClick={onRemove} />;
     } else {
-      button = <IconButton icon='plus' iconComponent={faPlus} title={intl.formatMessage(messages.add)} onClick={onAdd} />;
+      button = <IconButton icon='plus' iconComponent={AddIcon} title={intl.formatMessage(messages.add)} onClick={onAdd} />;
     }
 
     return (
       <div className='list'>
         <div className='list__wrapper'>
           <div className='list__display-name'>
-            <Icon id='list-ul' icon={faListUl} className='column-link__icon' fixedWidth />
+            <Icon id='list-ul' icon={ListIcon} className='column-link__icon' fixedWidth />
             {list.get('title')}
           </div>
 

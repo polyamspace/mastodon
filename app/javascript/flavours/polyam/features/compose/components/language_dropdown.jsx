@@ -5,11 +5,13 @@ import { injectIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { faTimesCircle, faSearch, faLanguage } from '@fortawesome/free-solid-svg-icons';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import fuzzysort from 'fuzzysort';
 import Overlay from 'react-overlays/Overlay';
 
+import CircleCloseIcon from '@/awesome-icons/solid/circle-xmark.svg?react';
+import LanguageIcon from '@/awesome-icons/solid/language.svg?react';
+import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { languages as preloadedLanguages } from 'flavours/polyam/initial_state';
 
@@ -231,7 +233,7 @@ class LanguageDropdownMenu extends PureComponent {
       <div ref={this.setRef}>
         <div className='emoji-mart-search'>
           <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
-          <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}><Icon icon={!isSearching ? faSearch : faTimesCircle} /></button>
+          <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}><Icon icon={!isSearching ? SearchIcon : CircleCloseIcon} /></button>
         </div>
 
         <div className='language-dropdown__dropdown__results emoji-mart-scroll' role='listbox' ref={this.setListRef}>
@@ -310,7 +312,7 @@ class LanguageDropdown extends PureComponent {
           onKeyDown={this.handleButtonKeyDown}
           className={classNames('dropdown-button', { active: open })}
         >
-          <Icon icon={faLanguage} />
+          <Icon icon={LanguageIcon} />
           <span className='dropdown-button__label'>{current[2] ?? value}</span>
         </button>
 

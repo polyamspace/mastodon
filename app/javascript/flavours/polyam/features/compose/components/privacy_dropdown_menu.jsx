@@ -3,9 +3,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { supportsPassiveEvents } from 'detect-passive-events';
 
+import CircleInfo from '@/awesome-icons/solid/circle-info.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
@@ -110,7 +110,7 @@ export const PrivacyDropdownMenu = ({ style, items, value, onClose, onChange }) 
 
           {item.extra && (
             <div className='privacy-dropdown__option__additional' title={item.extra}>
-              <Icon id='info-circle' icon={faInfoCircle} />
+              <Icon id='info-circle' icon={CircleInfo} />
             </div>
           )}
         </li>

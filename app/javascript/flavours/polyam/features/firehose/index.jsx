@@ -6,8 +6,7 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
-
+import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import { addColumn } from 'flavours/polyam/actions/columns';
 import { changeSetting } from 'flavours/polyam/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'flavours/polyam/actions/streaming';
@@ -194,7 +193,7 @@ const Firehose = ({ feedType, multiColumn }) => {
     <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
         icon='globe'
-        iconComponent={faGlobe}
+        iconComponent={PublicIcon}
         active={hasUnread}
         title={intl.formatMessage(messages.title)}
         onPin={handlePin}

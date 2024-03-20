@@ -9,9 +9,11 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { faImage } from '@fortawesome/free-regular-svg-icons';
-import { faLink, faMusic, faTasksAlt, faVideoCamera } from '@fortawesome/free-solid-svg-icons';
-
+import ImageIcon from '@/awesome-icons/regular/image.svg?react';
+import PollIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import LinkIcon from '@/awesome-icons/solid/link.svg?react';
+import MusicIcon from '@/awesome-icons/solid/music.svg?react';
+import VideoIcon from '@/awesome-icons/solid/video.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { autoPlayGif, languages as preloadedLanguages } from 'flavours/polyam/initial_state';
 import { highlightCode } from 'flavours/polyam/utils/html';
@@ -340,11 +342,11 @@ class StatusContent extends PureComponent {
 
   mediaIconComponent = (mediaIcon) => {
     const icon = {
-      'link': faLink,
-      'picture-o': faImage,
-      'tasks': faTasksAlt,
-      'video-camera': faVideoCamera,
-      'music': faMusic,
+      'link': LinkIcon,
+      'picture-o': ImageIcon,
+      'tasks': PollIcon,
+      'video-camera': VideoIcon,
+      'music': MusicIcon,
     }[mediaIcon];
 
     return icon;

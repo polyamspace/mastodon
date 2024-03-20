@@ -6,12 +6,16 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { faBell, faFaceGrinWide, faPencil, faStar, faTasksAlt, faThumbTack } from '@fortawesome/free-solid-svg-icons';
-
+import PollIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
+import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
+import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
+import StarIcon from '@/awesome-icons/solid/star.svg?react';
+import PinIcon from '@/awesome-icons/solid/thumbtack.svg?react';
+import BoostIcon from '@/svg-icons/boost.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { me } from 'flavours/polyam/initial_state';
 
-import { faBoost } from './boost';
 
 export default class StatusPrepend extends PureComponent {
 
@@ -123,32 +127,32 @@ export default class StatusPrepend extends PureComponent {
     switch(type) {
     case 'favourite':
       iconId = 'star';
-      iconComponent = faStar;
+      iconComponent = StarIcon;
       break;
     case 'reaction':
       iconId = 'face-grin-wide';
-      iconComponent = faFaceGrinWide;
+      iconComponent = ReactIcon;
       break;
     case 'featured':
       iconId = 'thumb-tack';
-      iconComponent = faThumbTack;
+      iconComponent = PinIcon;
       break;
     case 'poll':
       iconId = 'tasks';
-      iconComponent = faTasksAlt;
+      iconComponent = PollIcon;
       break;
     case 'reblog':
     case 'reblogged_by':
       iconId = 'retweet';
-      iconComponent = faBoost;
+      iconComponent = BoostIcon;
       break;
     case 'status':
       iconId = 'bell';
-      iconComponent = faBell;
+      iconComponent = NotificationsIcon;
       break;
     case 'update':
       iconId = 'pencil';
-      iconComponent = faPencil;
+      iconComponent = EditIcon;
       break;
     }
 

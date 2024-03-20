@@ -8,9 +8,15 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faEye } from '@fortawesome/free-regular-svg-icons';
-import { faBookmark, faEllipsisH, faReply, faReplyAll, faStar } from '@fortawesome/free-solid-svg-icons';
-
+import VisibilityIcon from '@/awesome-icons/regular/eye.svg?react';
+import BookmarkIcon from '@/awesome-icons/solid/bookmark.svg?react';
+import MoreHorizIcon from '@/awesome-icons/solid/ellipsis.svg?react';
+import ReplyAllIcon from '@/awesome-icons/solid/reply-all.svg?react';
+import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
+import StarIcon from '@/awesome-icons/solid/star.svg?react';
+import BoostIcon from '@/svg-icons/boost.svg?react';
+import BoostDisabledIcon from '@/svg-icons/boost_disabled.svg?react';
+import BoostPrivateIcon from '@/svg-icons/boost_private.svg?react';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/polyam/permissions';
 import { accountAdminLink, instanceAdminLink, statusAdminLink } from 'flavours/polyam/utils/backend_links';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
@@ -19,7 +25,6 @@ import DropdownMenuContainer from '../containers/dropdown_menu_container';
 import EmojiPickerDropdown from '../features/compose/containers/emoji_picker_dropdown_container';
 import { me, maxReactions } from '../initial_state';
 
-import { faBoost, faBoostDisabled, faBoostPrivate } from './boost';
 import { IconButton } from './icon_button';
 import { RelativeTimestamp } from './relative_timestamp';
 
@@ -293,11 +298,11 @@ class StatusActionBar extends ImmutablePureComponent {
 
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
-      replyIconComponent = faReply;
+      replyIconComponent = ReplyIcon;
       replyTitle = intl.formatMessage(messages.reply);
     } else {
       replyIcon = 'reply-all';
-      replyIconComponent = faReplyAll;
+      replyIconComponent = ReplyAllIcon;
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
@@ -306,20 +311,20 @@ class StatusActionBar extends ImmutablePureComponent {
     let reblogTitle, reblogIconComponent;
     if (status.get('reblogged')) {
       reblogTitle = intl.formatMessage(messages.cancel_reblog_private);
-      reblogIconComponent = publicStatus ? faBoost : faBoostPrivate;
+      reblogIconComponent = publicStatus ? BoostIcon : BoostPrivateIcon;
     } else if (publicStatus) {
       reblogTitle = intl.formatMessage(messages.reblog);
-      reblogIconComponent = faBoost;
+      reblogIconComponent = BoostIcon;
     } else if (reblogPrivate) {
       reblogTitle = intl.formatMessage(messages.reblog_private);
-      reblogIconComponent = faBoostPrivate;
+      reblogIconComponent = BoostPrivateIcon;
     } else {
       reblogTitle = intl.formatMessage(messages.cannot_reblog);
-      reblogIconComponent = faBoostDisabled;
+      reblogIconComponent = BoostDisabledIcon;
     }
 
     const filterButton = this.props.onFilter && (
-      <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.hide)} icon='eye' iconComponent={faEye} onClick={this.handleHideClick} />
+      <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.hide)} icon='eye' iconComponent={VisibilityIcon} onClick={this.handleHideClick} />
     );
 
     const canReact = signedIn && status.get('reactions').filter(r => r.get('count') > 0 && r.get('me')).size < maxReactions;
@@ -336,9 +341,9 @@ class StatusActionBar extends ImmutablePureComponent {
           obfuscateCount
         />
         <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon={reblogIcon} iconComponent={reblogIconComponent} onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
-        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={faStar} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
+        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={StarIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
         <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} disabled={!canReact} inverted={false} />
-        <IconButton className='status__action-bar-button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' iconComponent={faBookmark} onClick={this.handleBookmarkClick} />
+        <IconButton className='status__action-bar-button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' iconComponent={BookmarkIcon} onClick={this.handleBookmarkClick} />
 
         {filterButton}
 
@@ -347,7 +352,7 @@ class StatusActionBar extends ImmutablePureComponent {
           status={status}
           items={menu}
           icon='ellipsis-h'
-          iconComponent={faEllipsisH}
+          iconComponent={MoreHorizIcon}
           direction='right'
           ariaLabel={intl.formatMessage(messages.more)}
         />

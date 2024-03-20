@@ -8,8 +8,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
+
+import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
 
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
 import ScrollableList from '../../components/scrollable_list';
@@ -67,7 +68,7 @@ class FollowRequests extends ImmutablePureComponent {
     );
 
     return (
-      <Column bindToDocument={!multiColumn} name='follow-requests' icon='user-plus' iconComponent={faUserPlus} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn} name='follow-requests' icon='user-plus' iconComponent={FollowIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='follow_requests'
           onLoadMore={this.handleLoadMore}

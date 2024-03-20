@@ -8,9 +8,9 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { HotKeys } from 'react-hotkeys';
 
+import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { Permalink } from 'flavours/polyam/components/permalink';
 import AccountContainer from 'flavours/polyam/containers/account_container';
@@ -86,7 +86,7 @@ class NotificationFollow extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-follow focusable', { unread })} tabIndex={0}>
           <div className='notification__message'>
-            <Icon fixedWidth id='user-plus' icon={faUserPlus} />
+            <Icon fixedWidth id='user-plus' icon={FollowIcon} />
 
             <FormattedMessage
               id='notification.follow'
