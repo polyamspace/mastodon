@@ -9,7 +9,7 @@ const ColumnLink = ({ icon, activeIcon, iconComponent, activeIconComponent, text
   const match = useRouteMatch(to);
   const className = classNames('column-link', { 'column-link--transparent': transparent });
   const badgeElement = typeof badge !== 'undefined' ? <span className='column-link__badge'>{badge}</span> : null;
-  const iconElement = (typeof icon === 'string' || iconComponent) ? <Icon id={icon} icon={iconComponent} fixedWidth className='column-link__icon' /> : icon;
+  const iconElement = (typeof icon === 'string' || iconComponent) ? <Icon id={icon} icon={iconComponent} className='column-link__icon' /> : icon;
   const activeIconElement = activeIcon ?? (activeIconComponent ? <Icon id={icon} icon={activeIconComponent} className='column-link__icon' /> : iconElement);
   const active = match?.isExact;
 

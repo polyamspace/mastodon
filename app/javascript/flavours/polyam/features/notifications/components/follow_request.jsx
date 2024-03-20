@@ -108,7 +108,7 @@ class FollowRequest extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-follow-request focusable', { unread })} tabIndex={0}>
           <div className='notification__message'>
-            <Icon id='user' icon={UserIcon} fixedWidth />
+            <Icon id='user' icon={UserIcon} />
 
             <FormattedMessage
               id='notification.follow_request'

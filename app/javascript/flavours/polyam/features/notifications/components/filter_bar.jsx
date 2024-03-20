@@ -74,49 +74,49 @@ class FilterBar extends PureComponent {
           onClick={this.onClick('mention')}
           title={intl.formatMessage(tooltips.mentions)}
         >
-          <Icon id='reply-all' icon={ReplyAllIcon} fixedWidth />
+          <Icon id='reply-all' icon={ReplyAllIcon} />
         </button>
         <button
           className={selectedFilter === 'favourite' ? 'active' : ''}
           onClick={this.onClick('favourite')}
           title={intl.formatMessage(tooltips.favourites)}
         >
-          <Icon id='star' icon={StarIcon} fixedWidth />
+          <Icon id='star' icon={StarIcon} />
         </button>
         <button
           className={selectedFilter === 'reaction' ? 'active' : ''}
           onClick={this.onClick('reaction')}
           title={intl.formatMessage(tooltips.reactions)}
         >
-          <Icon id='face-grin-wide' icon={ReactIcon} fixedWidth />
+          <Icon id='face-grin-wide' icon={ReactIcon} />
         </button>
         <button
           className={selectedFilter === 'reblog' ? 'active' : ''}
           onClick={this.onClick('reblog')}
           title={intl.formatMessage(tooltips.boosts)}
         >
-          <Icon id='retweet' icon={BoostIcon} fixedWidth />
+          <Icon id='retweet' icon={BoostIcon} />
         </button>
         <button
           className={selectedFilter === 'poll' ? 'active' : ''}
           onClick={this.onClick('poll')}
           title={intl.formatMessage(tooltips.polls)}
         >
-          <Icon id='tasks' icon={PollIcon} fixedWidth />
+          <Icon id='tasks' icon={PollIcon} />
         </button>
         <button
           className={selectedFilter === 'status' ? 'active' : ''}
           onClick={this.onClick('status')}
           title={intl.formatMessage(tooltips.statuses)}
         >
-          <Icon id='home' icon={HomeIcon} fixedWidth />
+          <Icon id='home' icon={HomeIcon} />
         </button>
         <button
           className={selectedFilter === 'follow' ? 'active' : ''}
           onClick={this.onClick('follow')}
           title={intl.formatMessage(tooltips.follows)}
         >
-          <Icon id='user-plus' icon={FollowIcon} fixedWidth />
+          <Icon id='user-plus' icon={FollowIcon} />
         </button>
       </div>
     );

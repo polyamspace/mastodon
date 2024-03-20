@@ -45,7 +45,7 @@ export default class LocalSettingsPage extends PureComponent {
       active,
     }, className);
 
-    const iconElem = (icon || iconComponent) ? <Icon fixedWidth id={icon} icon={iconComponent} /> : null;
+    const iconElem = (icon || iconComponent) ? <Icon id={icon} icon={iconComponent} /> : null;
 
     if (href) return (
       <a
