@@ -42,9 +42,3 @@
                      label_method: ->(setting) { I18n.t("simple_form.labels.notification_emails.software_updates.#{setting}") },
                      label: I18n.t('simple_form.labels.notification_emails.software_updates.label'),
                      wrapper: :with_label
-
-  %h4= t 'notifications.other_settings'
-
-  = f.simple_fields_for :settings, current_user.settings do |ff|
-    .fields-group
-      = ff.input :'web.notification_sound', collection: NotificationSounds.instance.names, label_method: ->(sound) { I18n.t("sounds.#{sound}", default: sound) }, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_notification_sound'), include_blank: false, polyam_only: true
