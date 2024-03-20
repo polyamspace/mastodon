@@ -168,19 +168,19 @@ class Results extends PureComponent {
       filteredResults = (accounts.size + hashtags.size + statuses.size) > 0 ? (
         <>
           {accounts.size > 0 && (
-            <SearchSection key='accounts' title={<><Icon id='users' icon={PeopleIcon} fixedWidth /><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></>} onClickMore={this.handleLoadMoreAccounts}>
+            <SearchSection key='accounts' title={<><Icon id='users' icon={PeopleIcon} /><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></>} onClickMore={this.handleLoadMoreAccounts}>
               {accounts.take(INITIAL_DISPLAY).map(id => <Account key={id} id={id} />)}
             </SearchSection>
           )}
 
           {hashtags.size > 0 && (
-            <SearchSection key='hashtags' title={<><Icon id='hashtag' icon={HashtagIcon} fixedWidth /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></>} onClickMore={this.handleLoadMoreHashtags}>
+            <SearchSection key='hashtags' title={<><Icon id='hashtag' icon={HashtagIcon} /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></>} onClickMore={this.handleLoadMoreHashtags}>
               {hashtags.take(INITIAL_DISPLAY).map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
             </SearchSection>
           )}
 
           {statuses.size > 0 && (
-            <SearchSection key='statuses' title={<><Icon id='quote-right' icon={QuoteRightIcon} fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></>} onClickMore={this.handleLoadMoreStatuses}>
+            <SearchSection key='statuses' title={<><Icon id='quote-right' icon={QuoteRightIcon} /><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></>} onClickMore={this.handleLoadMoreStatuses}>
               {statuses.take(INITIAL_DISPLAY).map(id => <Status key={id} id={id} />)}
             </SearchSection>
           )}

@@ -45,7 +45,7 @@ const BackButton = ({ pinned, show, onlyIcon }) => {
 
   return (
     <button onClick={handleBackClick} className={classNames('column-header__back-button', { 'compact': onlyIcon})} aria-label={intl.formatMessage(messages.back)}>
-      <Icon id='chevron-left' icon={ArrowBackIcon} className='column-back-button__icon' fixedWidth />
+      <Icon id='chevron-left' icon={ArrowBackIcon} className='column-back-button__icon' />
       {!onlyIcon && <FormattedMessage id='column_back_button.label' defaultMessage='Back' />}
     </button>
   );

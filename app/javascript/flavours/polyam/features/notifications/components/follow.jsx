@@ -86,7 +86,7 @@ class NotificationFollow extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-follow focusable', { unread })} tabIndex={0}>
           <div className='notification__message'>
-            <Icon fixedWidth id='user-plus' icon={FollowIcon} />
+            <Icon id='user-plus' icon={FollowIcon} />
 
             <FormattedMessage
               id='notification.follow'

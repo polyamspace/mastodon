@@ -29,7 +29,7 @@ class ActionBar extends PureComponent {
       return (
         <div>
           <div className='account__disclaimer'>
-            <Icon id='info-circle' icon={CircleInfo} fixedWidth />
+            <Icon id='info-circle' icon={CircleInfo} />
             <FormattedMessage
               id='account.suspended_disclaimer_full'
               defaultMessage='This user has been suspended by a moderator.'
@@ -44,7 +44,7 @@ class ActionBar extends PureComponent {
     if (account.get('acct') !== account.get('username')) {
       extraInfo = (
         <div className='account__disclaimer'>
-          <Icon id='info-circle' icon={CircleInfo} fixedWidth />
+          <Icon id='info-circle' icon={CircleInfo} />
           <div>
             <FormattedMessage
               id='account.disclaimer_full'
