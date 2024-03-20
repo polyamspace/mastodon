@@ -48,9 +48,9 @@ const ColumnLink = ({ icon, activeIcon, iconComponent, activeIconComponent, text
 
 ColumnLink.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-  iconComponent: PropTypes.object,
+  iconComponent: PropTypes.func,
   activeIcon: PropTypes.node,
-  activeIconComponent: PropTypes.object,
+  activeIconComponent: PropTypes.func,
   text: PropTypes.string.isRequired,
   to: PropTypes.string,
   onClick: PropTypes.func,

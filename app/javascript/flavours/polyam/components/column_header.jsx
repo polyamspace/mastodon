@@ -67,7 +67,7 @@ class ColumnHeader extends PureComponent {
     intl: PropTypes.object.isRequired,
     title: PropTypes.node,
     icon: PropTypes.string,
-    iconComponent: PropTypes.object,
+    iconComponent: PropTypes.func,
     active: PropTypes.bool,
     multiColumn: PropTypes.bool,
     extraButton: PropTypes.node,
