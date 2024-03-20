@@ -7,9 +7,11 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faChevronLeft, faChevronRight, faTimes } from '@fortawesome/free-solid-svg-icons';
 import ReactSwipeableViews from 'react-swipeable-views';
 
+import ChevronLeftIcon from '@/awesome-icons/solid/chevron-left.svg?react';
+import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { getAverageFromBlurhash } from 'flavours/polyam/blurhash';
 import { GIFV } from 'flavours/polyam/components/gifv';
 import { Icon }  from 'flavours/polyam/components/icon';
@@ -138,8 +140,8 @@ class MediaModal extends ImmutablePureComponent {
 
     const index = this.getIndex();
 
-    const leftNav  = media.size > 1 && <button tabIndex={0} className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' icon={faChevronLeft} fixedWidth /></button>;
-    const rightNav = media.size > 1 && <button tabIndex={0} className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' icon={faChevronRight} fixedWidth /></button>;
+    const leftNav  = media.size > 1 && <button tabIndex={0} className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' icon={ChevronLeftIcon} fixedWidth /></button>;
+    const rightNav = media.size > 1 && <button tabIndex={0} className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' icon={ChevronRightIcon} fixedWidth /></button>;
 
     const content = media.map((image) => {
       const width  = image.getIn(['meta', 'original', 'width']) || null;
@@ -241,7 +243,7 @@ class MediaModal extends ImmutablePureComponent {
         </div>
 
         <div className={navigationClassName}>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={faTimes} onClick={onClose} />
+          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={CloseIcon} onClick={onClose} />
 
           {leftNav}
           {rightNav}

@@ -5,9 +5,9 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import fuzzysort from 'fuzzysort';
 
+import AddIcon from '@/awesome-icons/solid/plus.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { toServerSideType } from 'flavours/polyam/utils/filters';
 import { loupeIcon, deleteIcon } from 'flavours/polyam/utils/icons';
@@ -79,7 +79,7 @@ class SelectFilter extends PureComponent {
   renderCreateNew (name) {
     return (
       <div key='add-new-filter' role='button' tabIndex={0} className='language-dropdown__dropdown__results__item' onClick={this.handleNewFilterClick} onKeyDown={this.handleKeyDown}>
-        <Icon id='plus' icon={faPlus} fixedWidth /> <FormattedMessage id='filter_modal.select_filter.prompt_new' defaultMessage='New category: {name}' values={{ name }} />
+        <Icon id='plus' icon={AddIcon} fixedWidth /> <FormattedMessage id='filter_modal.select_filter.prompt_new' defaultMessage='New category: {name}' values={{ name }} />
       </div>
     );
   }

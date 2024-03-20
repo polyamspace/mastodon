@@ -7,8 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { faBoxArchive } from '@fortawesome/free-solid-svg-icons';
-
+import ArchiveIcon from '@/awesome-icons/solid/box-archive.svg?react';
 import { fetchNotificationRequests, expandNotificationRequests } from 'flavours/polyam/actions/notifications';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
@@ -44,7 +43,7 @@ export const NotificationRequests = ({ multiColumn }) => {
     <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
         icon='archive'
-        iconComponent={faBoxArchive}
+        iconComponent={ArchiveIcon}
         title={intl.formatMessage(messages.title)}
         onClick={handleHeaderClick}
         multiColumn={multiColumn}

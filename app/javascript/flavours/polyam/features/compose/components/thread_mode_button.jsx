@@ -2,8 +2,7 @@ import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import { faComments } from '@fortawesome/free-solid-svg-icons';
-
+import CommentsIcon from '@/awesome-icons/solid/comments.svg?react';
 import { changeComposeAdvancedOption } from 'flavours/polyam/actions/compose';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
@@ -32,7 +31,7 @@ export const ThreadModeButton = () => {
       disabled={isEditing}
       icon=''
       onClick={handleClick}
-      iconComponent={faComments}
+      iconComponent={CommentsIcon}
       title={title}
       active={active}
       size={18}

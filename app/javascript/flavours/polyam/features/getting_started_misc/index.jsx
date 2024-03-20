@@ -5,8 +5,15 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faBan, faEllipsisH, faHashtag, faMinusCircle, faQuestion, faStar, faThumbTack, faUsers, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
-
+import BanIcon from '@/awesome-icons/solid/ban.svg?react';
+import CircleMinusIcon from '@/awesome-icons/solid/circle-minus.svg?react';
+import MoreHorizIcon from '@/awesome-icons/solid/ellipsis.svg?react';
+import HashtagIcon from '@/awesome-icons/solid/hashtag.svg?react';
+import QuestionIcon from '@/awesome-icons/solid/question.svg?react';
+import StarIcon from '@/awesome-icons/solid/star.svg?react';
+import PinIcon from '@/awesome-icons/solid/thumbtack.svg?react';
+import PeopleIcon from '@/awesome-icons/solid/users.svg?react';
+import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import { openModal } from 'flavours/polyam/actions/modal';
 import Column from 'flavours/polyam/features/ui/components/column';
 import ColumnLink from 'flavours/polyam/features/ui/components/column_link';
@@ -48,17 +55,17 @@ class GettingStartedMisc extends ImmutablePureComponent {
     const { signedIn } = this.context.identity;
 
     return (
-      <Column icon='ellipsis-h' iconComponent={faEllipsisH} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column icon='ellipsis-h' iconComponent={MoreHorizIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <div className='scrollable'>
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
-          {signedIn && (<ColumnLink key='favourites' icon='star' iconComponent={faStar} text={intl.formatMessage(messages.favourites)} to='/favourites' />)}
-          {signedIn && (<ColumnLink key='followed_hashtags' icon='hashtag' iconComponent={faHashtag} text={intl.formatMessage(messages.followed_tags)} to='/followed_tags' />)}
-          {signedIn && (<ColumnLink key='pinned' icon='thumb-tack' iconComponent={faThumbTack} text={intl.formatMessage(messages.pins)} to='/pinned' />)}
-          {signedIn && (<ColumnLink key='featured_users' icon='users' iconComponent={faUsers} text={intl.formatMessage(messages.featured_users)} onClick={this.openFeaturedAccountsModal} />)}
-          {signedIn && (<ColumnLink key='mutes' icon='volume-off' iconComponent={faVolumeXmark} text={intl.formatMessage(messages.mutes)} to='/mutes' />)}
-          {signedIn && (<ColumnLink key='blocks' icon='ban' iconComponent={faBan} text={intl.formatMessage(messages.blocks)} to='/blocks' />)}
-          {signedIn && (<ColumnLink key='domain_blocks' icon='minus-circle' iconComponent={faMinusCircle} text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />)}
-          <ColumnLink key='shortcuts' icon='question' iconComponent={faQuestion} text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />
+          {signedIn && (<ColumnLink key='favourites' icon='star' iconComponent={StarIcon} text={intl.formatMessage(messages.favourites)} to='/favourites' />)}
+          {signedIn && (<ColumnLink key='followed_hashtags' icon='hashtag' iconComponent={HashtagIcon} text={intl.formatMessage(messages.followed_tags)} to='/followed_tags' />)}
+          {signedIn && (<ColumnLink key='pinned' icon='thumb-tack' iconComponent={PinIcon} text={intl.formatMessage(messages.pins)} to='/pinned' />)}
+          {signedIn && (<ColumnLink key='featured_users' icon='users' iconComponent={PeopleIcon} text={intl.formatMessage(messages.featured_users)} onClick={this.openFeaturedAccountsModal} />)}
+          {signedIn && (<ColumnLink key='mutes' icon='volume-off' iconComponent={MuteIcon} text={intl.formatMessage(messages.mutes)} to='/mutes' />)}
+          {signedIn && (<ColumnLink key='blocks' icon='ban' iconComponent={BanIcon} text={intl.formatMessage(messages.blocks)} to='/blocks' />)}
+          {signedIn && (<ColumnLink key='domain_blocks' icon='minus-circle' iconComponent={CircleMinusIcon} text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />)}
+          <ColumnLink key='shortcuts' icon='question' iconComponent={QuestionIcon} text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />
         </div>
       </Column>
     );

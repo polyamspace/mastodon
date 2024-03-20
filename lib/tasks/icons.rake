@@ -41,6 +41,37 @@ def find_used_icons
   icons_by_weight_and_size
 end
 
+def download_awesome_icon(icon, variant)
+  url_template = Addressable::Template.new('https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/{variant}/{icon}.svg')
+
+  url = url_template.expand(icon: icon, variant: variant).to_s
+  path = Rails.root.join('app', 'javascript', 'awesome-icons', variant.to_s, "#{icon}.svg")
+  FileUtils.mkdir_p(File.dirname(path))
+
+  File.write(path, HTTP.get(url).to_s)
+end
+
+def find_used_awesome_icons
+  icons_by_variant = {}
+
+  Dir[Rails.root.join('app', 'javascript', '**', '*.*s*')].map do |path|
+    File.open(path, 'r') do |file|
+      pattern = %r{\Aimport .* from '@/awesome-icons/(?<variant>\w+)/(?<icon>[\w-]+).svg\?react';}
+      file.each_line do |line|
+        match = pattern.match(line)
+        next if match.blank?
+
+        variant = match['variant'].to_s
+
+        icons_by_variant[variant] ||= Set.new
+        icons_by_variant[variant] << match['icon']
+      end
+    end
+  end
+
+  icons_by_variant
+end
+
 namespace :icons do
   desc 'Download used Material Symbols icons'
   task download: :environment do
@@ -50,6 +81,12 @@ namespace :icons do
           download_material_icon(icon, weight: weight, size: size)
           download_material_icon(icon, weight: weight, size: size, filled: true)
         end
+      end
+    end
+
+    find_used_awesome_icons.each do |variant, icons|
+      icons.each do |icon|
+        download_awesome_icon(icon, variant)
       end
     end
   end

@@ -5,7 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import CheckIcon from '@/awesome-icons/solid/check.svg?react';
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
@@ -42,8 +43,8 @@ class AccountAuthorize extends ImmutablePureComponent {
         </div>
 
         <div className='account--panel'>
-          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.authorize)} icon='check' iconComponent={faCheck} onClick={onAuthorize} /></div>
-          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.reject)} icon='times' iconComponent={faTimes} onClick={onReject} /></div>
+          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.authorize)} icon='check' iconComponent={CheckIcon} onClick={onAuthorize} /></div>
+          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.reject)} icon='times' iconComponent={CloseIcon} onClick={onReject} /></div>
         </div>
       </div>
     );

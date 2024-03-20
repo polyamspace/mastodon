@@ -1,4 +1,4 @@
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 
 import { Icon } from './icon';
 
@@ -23,7 +23,7 @@ interface Props {
 }
 export const VerifiedBadge: React.FC<Props> = ({ link }) => (
   <span className='verified-badge'>
-    <Icon id='check' icon={faCheck} className='verified-badge__mark' />
+    <Icon id='check' icon={CheckIcon} className='verified-badge__mark' />
     <span dangerouslySetInnerHTML={stripRelMe(link)} />
   </span>
 );

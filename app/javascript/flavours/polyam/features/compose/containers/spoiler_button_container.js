@@ -2,8 +2,7 @@ import { injectIntl, defineMessages } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-
+import WarningIcon from '@/awesome-icons/solid/triangle-exclamation.svg?react';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 
 import { changeComposeSpoilerness } from '../../../actions/compose';
@@ -14,7 +13,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state, { intl }) => ({
-  iconComponent: faExclamationTriangle,
+  iconComponent: WarningIcon,
   title: intl.formatMessage(state.getIn(['compose', 'spoiler']) ? messages.marked : messages.unmarked),
   active: state.getIn(['compose', 'spoiler']),
   ariaControls: 'cw-spoiler-input',

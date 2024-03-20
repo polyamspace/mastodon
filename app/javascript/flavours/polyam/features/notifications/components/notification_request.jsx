@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { faCheck, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
-
+import CheckIcon from '@/awesome-icons/solid/check.svg?react';
+import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import { acceptNotificationRequest, dismissNotificationRequest } from 'flavours/polyam/actions/notifications';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -51,8 +51,8 @@ export const NotificationRequest = ({ id, accountId, notificationsCount }) => {
       </Link>
 
       <div className='notification-request__actions'>
-        <IconButton iconComponent={faVolumeXmark} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
-        <IconButton iconComponent={faCheck} onClick={handleAccept} title={intl.formatMessage(messages.accept)} />
+        <IconButton iconComponent={MuteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
+        <IconButton iconComponent={CheckIcon} onClick={handleAccept} title={intl.formatMessage(messages.accept)} />
       </div>
     </div>
   );

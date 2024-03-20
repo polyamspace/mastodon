@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { faRefresh } from '@fortawesome/free-solid-svg-icons';
+import RefreshIcon from '@/awesome-icons/solid/arrows-rotate.svg?react';
 
 import { IconButton } from '../../../components/icon_button';
 
@@ -33,7 +33,7 @@ class BundleModalError extends PureComponent {
     return (
       <div className='modal-root__modal error-modal'>
         <div className='error-modal__body'>
-          <IconButton title={formatMessage(messages.retry)} icon='refresh' iconComponent={faRefresh} onClick={this.handleRetry} size={64} />
+          <IconButton title={formatMessage(messages.retry)} icon='refresh' iconComponent={RefreshIcon} onClick={this.handleRetry} size={64} />
           {formatMessage(messages.error)}
         </div>
 

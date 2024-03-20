@@ -1,11 +1,9 @@
 import { defineMessages, useIntl } from 'react-intl';
 
-import {
-  faEnvelope,
-  faGlobe,
-  faLock,
-  faLockOpen,
-} from '@fortawesome/free-solid-svg-icons';
+import EnvelopeIcon from '@/awesome-icons/solid/envelope.svg?react';
+import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
+import LockIcon from '@/awesome-icons/solid/lock.svg?react';
+import UnlistedIcon from '@/awesome-icons/solid/unlock.svg?react';
 
 import { Icon } from './icon';
 
@@ -35,22 +33,22 @@ export const VisibilityIcon: React.FC<{ visibility: Visibility }> = ({
   const visibilityIconInfo = {
     public: {
       icon: 'globe',
-      iconComponent: faGlobe,
+      iconComponent: PublicIcon,
       text: intl.formatMessage(messages.public_short),
     },
     unlisted: {
       icon: 'unlock',
-      iconComponent: faLockOpen,
+      iconComponent: UnlistedIcon,
       text: intl.formatMessage(messages.unlisted_short),
     },
     private: {
       icon: 'lock',
-      iconComponent: faLock,
+      iconComponent: LockIcon,
       text: intl.formatMessage(messages.private_short),
     },
     direct: {
       icon: 'envelope',
-      iconComponent: faEnvelope,
+      iconComponent: EnvelopeIcon,
       text: intl.formatMessage(messages.direct_short),
     },
   };
@@ -65,7 +63,6 @@ export const VisibilityIcon: React.FC<{ visibility: Visibility }> = ({
       icon={visibilityIcon.iconComponent}
       title={visibilityIcon.text}
       aria-hidden='true'
-      fixedWidth
     />
   );
 };

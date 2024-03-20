@@ -7,9 +7,11 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faPencil, faTimes, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import spring from 'react-motion/lib/spring';
 
+import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
+import WarningIcon from '@/awesome-icons/solid/triangle-exclamation.svg?react';
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon }  from 'flavours/polyam/components/icon';
 
@@ -57,12 +59,12 @@ export default class Upload extends ImmutablePureComponent {
                 className='compose-form__upload__preview'
               />}
               <div className='compose-form__upload__actions'>
-                <button type='button' className='icon-button compose-form__upload__delete' onClick={this.handleUndoClick}><Icon icon={faTimes} /></button>
-                <button type='button' className='icon-button' onClick={this.handleFocalPointClick}><Icon icon={faPencil} /> <FormattedMessage id='upload_form.edit' defaultMessage='Edit' /></button>
+                <button type='button' className='icon-button compose-form__upload__delete' onClick={this.handleUndoClick}><Icon icon={CloseIcon} /></button>
+                <button type='button' className='icon-button' onClick={this.handleFocalPointClick}><Icon icon={EditIcon} /> <FormattedMessage id='upload_form.edit' defaultMessage='Edit' /></button>
               </div>
 
               <div className='compose-form__upload__warning'>
-                <button type='button' className={classNames('icon-button', { active: missingDescription })} onClick={this.handleFocalPointClick}>{missingDescription && <Icon icon={faExclamationTriangle} />} ALT</button>
+                <button type='button' className={classNames('icon-button', { active: missingDescription })} onClick={this.handleFocalPointClick}>{missingDescription && <Icon icon={WarningIcon} />} ALT</button>
               </div>
             </div>
           )}

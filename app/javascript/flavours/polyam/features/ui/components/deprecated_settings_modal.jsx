@@ -5,8 +5,8 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { faCog, faCogs } from '@fortawesome/free-solid-svg-icons';
-
+import SettingsIcon from '@/awesome-icons/solid/gear.svg?react';
+import AppSettingsIcon from '@/awesome-icons/solid/gears.svg?react';
 import { Button } from 'flavours/polyam/components/button';
 import { Icon } from 'flavours/polyam/components/icon';
 import illustration from 'flavours/polyam/images/logo_warn_glitch.svg';
@@ -47,12 +47,12 @@ class DeprecatedSettingsModal extends PureComponent {
             values={{
               app_settings: (
                 <strong className='deprecated-settings-label'>
-                  <Icon id='cogs' icon={faCogs} /> <FormattedMessage id='navigation_bar.app_settings' defaultMessage='App settings' />
+                  <Icon id='cogs' icon={AppSettingsIcon} /> <FormattedMessage id='navigation_bar.app_settings' defaultMessage='App settings' />
                 </strong>
               ),
               preferences: (
                 <strong className='deprecated-settings-label'>
-                  <Icon id='cog' icon={faCog} /> <FormattedMessage id='navigation_bar.preferences' defaultMessage='Preferences' />
+                  <Icon id='cog' icon={SettingsIcon} /> <FormattedMessage id='navigation_bar.preferences' defaultMessage='Preferences' />
                 </strong>
               ),
             }}

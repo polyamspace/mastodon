@@ -4,8 +4,7 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { useDispatch } from 'react-redux';
 
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-
+import MenuIcon from '@/awesome-icons/solid/bars.svg?react';
 import { openModal } from 'flavours/polyam/actions/modal';
 import DropdownMenuContainer from 'flavours/polyam/containers/dropdown_menu_container';
 import { logOut } from 'flavours/polyam/utils/log_out';
@@ -67,7 +66,7 @@ export const ActionBar = () => {
     <DropdownMenuContainer
       items={menu}
       icon='bars'
-      iconComponent={faBars}
+      iconComponent={MenuIcon}
       size={24}
       direction='right'
     />

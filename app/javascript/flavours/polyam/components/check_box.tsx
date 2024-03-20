@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 
 import { Icon } from './icon';
 
@@ -30,7 +30,7 @@ export const CheckBox: React.FC<Props> = ({
       />
 
       <span className={classNames('check-box__input', { checked })}>
-        {checked && <Icon id='check' icon={faCheck} />}
+        {checked && <Icon id='check' icon={CheckIcon} />}
       </span>
 
       <span>{label}</span>

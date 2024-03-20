@@ -7,8 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
-
+import PeopleIcon from '@/awesome-icons/solid/users.svg?react';
 import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
 import { domain } from 'flavours/polyam/initial_state';
 
@@ -133,7 +132,7 @@ class CommunityTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)} name='local'>
         <ColumnHeader
           icon='users'
-          iconComponent={faUsers}
+          iconComponent={PeopleIcon}
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

@@ -6,9 +6,14 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { faImage } from '@fortawesome/free-regular-svg-icons';
-import { faCommenting, faComment, faHome, faLink, faVideoCamera, faMusic, faTasksAlt } from '@fortawesome/free-solid-svg-icons';
-
+import ImageIcon from '@/awesome-icons/regular/image.svg?react';
+import PollIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import CommentingIcon from '@/awesome-icons/solid/comment-dots.svg?react';
+import CommentIcon from '@/awesome-icons/solid/comment.svg?react';
+import HomeIcon from '@/awesome-icons/solid/house.svg?react';
+import LinkIcon from '@/awesome-icons/solid/link.svg?react';
+import MusicIcon from '@/awesome-icons/solid/music.svg?react';
+import VideoIcon from '@/awesome-icons/solid/video.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { languages } from 'flavours/polyam/initial_state';
 
@@ -70,11 +75,11 @@ class StatusIcons extends PureComponent {
   // TODO: Move media icons to own component?
   mediaIconComponent (mediaIcon) {
     const icon = {
-      'link': faLink,
-      'picture-o': faImage,
-      'tasks': faTasksAlt,
-      'video-camera': faVideoCamera,
-      'music': faMusic,
+      'link': LinkIcon,
+      'picture-o': ImageIcon,
+      'tasks': PollIcon,
+      'video-camera': VideoIcon,
+      'music': MusicIcon,
     }[mediaIcon];
 
     return icon;
@@ -129,7 +134,7 @@ class StatusIcons extends PureComponent {
               className='status__reply-icon'
               fixedWidth
               id='commenting'
-              icon={faCommenting}
+              icon={CommentingIcon}
               aria-hidden='true'
               title={intl.formatMessage(messages.thread)}
             />
@@ -138,7 +143,7 @@ class StatusIcons extends PureComponent {
               className='status__reply-icon'
               fixedWidth
               id='comment'
-              icon={faComment}
+              icon={CommentIcon}
               aria-hidden='true'
               title={intl.formatMessage(messages.inReplyTo)}
             />
@@ -147,7 +152,7 @@ class StatusIcons extends PureComponent {
           <Icon
             fixedWidth
             id='home'
-            icon={faHome}
+            icon={HomeIcon}
             aria-hidden='true'
             title={intl.formatMessage(messages.localOnly)}
           />}

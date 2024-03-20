@@ -7,8 +7,7 @@ import { Helmet } from 'react-helmet';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faQuestion } from '@fortawesome/free-solid-svg-icons';
-
+import QuestionIcon from '@/awesome-icons/solid/question.svg?react';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
 
@@ -36,7 +35,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
         <ColumnHeader
           title={intl.formatMessage(messages.heading)}
           icon='question'
-          iconComponent={faQuestion}
+          iconComponent={QuestionIcon}
           multiColumn={multiColumn}
         />
 

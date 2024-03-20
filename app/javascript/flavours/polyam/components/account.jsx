@@ -7,7 +7,15 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faBell, faBellSlash, faHourglass, faLock, faLockOpen, faUserPlus, faUserTimes, faVolumeUp, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
+import NotificationsDisabledIcon from '@/awesome-icons/solid/bell-slash.svg?react';
+import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
+import PendingApprovalIcon from '@/awesome-icons/solid/hourglass-half.svg?react';
+import UnblockIcon from '@/awesome-icons/solid/lock-open.svg?react';
+import BlockIcon from '@/awesome-icons/solid/lock.svg?react';
+import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
+import UnFollowIcon from '@/awesome-icons/solid/user-xmark.svg?react';
+import UnmuteIcon from '@/awesome-icons/solid/volume-high.svg?react';
+import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 
 import { me } from '../initial_state';
 
@@ -99,28 +107,28 @@ class Account extends ImmutablePureComponent {
       const muting  = account.getIn(['relationship', 'muting']);
 
       if (requested) {
-        buttons = <IconButton disabled icon='hourglass' iconComponent={faHourglass} title={intl.formatMessage(messages.requested)} />;
+        buttons = <IconButton disabled icon='hourglass' iconComponent={PendingApprovalIcon} title={intl.formatMessage(messages.requested)} />;
       } else if (blocking) {
-        buttons = <IconButton active icon='unlock' iconComponent={faLockOpen} title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.handleBlock} />;
+        buttons = <IconButton active icon='unlock' iconComponent={UnblockIcon} title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.handleBlock} />;
       } else if (muting) {
         let hidingNotificationsButton;
         if (account.getIn(['relationship', 'muting_notifications'])) {
-          hidingNotificationsButton = <IconButton active icon='bell' iconComponent={faBell} title={intl.formatMessage(messages.unmute_notifications, { name: account.get('username') })} onClick={this.handleUnmuteNotifications} />;
+          hidingNotificationsButton = <IconButton active icon='bell' iconComponent={NotificationsIcon} title={intl.formatMessage(messages.unmute_notifications, { name: account.get('username') })} onClick={this.handleUnmuteNotifications} />;
         } else {
-          hidingNotificationsButton = <IconButton active icon='bell-slash' iconComponent={faBellSlash} title={intl.formatMessage(messages.mute_notifications, { name: account.get('username')  })} onClick={this.handleMuteNotifications} />;
+          hidingNotificationsButton = <IconButton active icon='bell-slash' iconComponent={NotificationsDisabledIcon} title={intl.formatMessage(messages.mute_notifications, { name: account.get('username')  })} onClick={this.handleMuteNotifications} />;
         }
         buttons = (
           <>
-            <IconButton active icon='volume-up' iconComponent={faVolumeUp} title={intl.formatMessage(messages.unmute, { name: account.get('username') })} onClick={this.handleMute} />
+            <IconButton active icon='volume-up' iconComponent={UnmuteIcon} title={intl.formatMessage(messages.unmute, { name: account.get('username') })} onClick={this.handleMute} />
             {hidingNotificationsButton}
           </>
         );
       } else if (defaultAction === 'mute') {
-        buttons = <IconButton icon='volume-off' iconComponent={faVolumeXmark} title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;
+        buttons = <IconButton icon='volume-off' iconComponent={MuteIcon} title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;
       } else if (defaultAction === 'block') {
-        buttons = <IconButton icon='lock' iconComponent={faLock} title={intl.formatMessage(messages.block, { name: account.get('username') })} onClick={this.handleBlock} />;
+        buttons = <IconButton icon='lock' iconComponent={BlockIcon} title={intl.formatMessage(messages.block, { name: account.get('username') })} onClick={this.handleBlock} />;
       } else if (!account.get('suspended') && !account.get('moved') || following) {
-        buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} iconComponent={following ? faUserTimes : faUserPlus} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
+        buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} iconComponent={following ? UnFollowIcon : FollowIcon} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
       }
     }
 

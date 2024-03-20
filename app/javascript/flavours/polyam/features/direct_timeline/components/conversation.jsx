@@ -10,9 +10,10 @@ import { createSelector } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { faEllipsisH, faReply } from '@fortawesome/free-solid-svg-icons';
 import { HotKeys } from 'react-hotkeys';
 
+import MoreHorizIcon from '@/awesome-icons/solid/ellipsis.svg?react';
+import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
 import { replyCompose } from 'flavours/polyam/actions/compose';
 import { markConversationRead, deleteConversation } from 'flavours/polyam/actions/conversations';
 import { openModal } from 'flavours/polyam/actions/modal';
@@ -234,7 +235,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
           />
 
           <div className='status__action-bar'>
-            <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' iconComponent={faReply} onClick={handleReply} />
+            <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' iconComponent={ReplyIcon} onClick={handleReply} />
 
             <div className='status__action-bar-dropdown'>
               <DropdownMenuContainer
@@ -242,7 +243,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
                 status={lastStatus}
                 items={menu}
                 icon='ellipsis-h'
-                iconComponent={faEllipsisH}
+                iconComponent={MoreHorizIcon}
                 size={18}
                 direction='right'
                 title={intl.formatMessage(messages.more)}

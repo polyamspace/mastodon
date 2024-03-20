@@ -9,8 +9,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-
+import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 
 const messages = defineMessages({
@@ -49,7 +48,7 @@ class NotificationOverlay extends ImmutablePureComponent {
       >
         <div className='wrappy'>
           <div className='ckbox' aria-hidden='true' title={label}>
-            {active ? (<Icon id='check' icon={faCheck} />) : ''}
+            {active ? (<Icon id='check' icon={CheckIcon} />) : ''}
           </div>
         </div>
       </div>

@@ -8,8 +8,9 @@ import classNames from 'classnames';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { faArrowUpRightFromSquare, faFileText, faPlay } from '@fortawesome/free-solid-svg-icons';
-
+import ExternalLinkIcon from '@/awesome-icons/solid/arrow-up-right-from-square.svg?react';
+import TextFileIcon from '@/awesome-icons/solid/file-lines.svg?react';
+import PlayIcon from '@/awesome-icons/solid/play.svg?react';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon } from 'flavours/polyam/components/icon';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
@@ -198,8 +199,8 @@ export default class Card extends PureComponent {
             {revealed ? (
               <div className='status-card__actions' onClick={this.handleEmbedClick} role='none'>
                 <div>
-                  <button onClick={this.handleEmbedClick}><Icon id='play' icon={faPlay} /></button>
-                  <a href={card.get('url')} onClick={this.handleExternalLinkClick} target='_blank' rel='noopener noreferrer'><Icon id='external-link' icon={faArrowUpRightFromSquare} /></a>
+                  <button onClick={this.handleEmbedClick}><Icon id='play' icon={PlayIcon} /></button>
+                  <a href={card.get('url')} onClick={this.handleExternalLinkClick} target='_blank' rel='noopener noreferrer'><Icon id='external-link' icon={ExternalLinkIcon} /></a>
                 </div>
               </div>
             ) : spoilerButton}
@@ -223,7 +224,7 @@ export default class Card extends PureComponent {
     } else {
       embed = (
         <div className='status-card__image'>
-          <Icon id='file-text' icon={faFileText} />
+          <Icon id='file-text' icon={TextFileIcon} />
         </div>
       );
     }

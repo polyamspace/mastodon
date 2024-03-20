@@ -7,12 +7,14 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
-import { faReply, faStar, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { throttle, escapeRegExp } from 'lodash';
 
+import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
+import StarIcon from '@/awesome-icons/solid/star.svg?react';
+import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
+import BoostIcon from '@/svg-icons/boost.svg?react';
 import { openModal, closeModal } from 'flavours/polyam/actions/modal';
 import api from 'flavours/polyam/api';
-import { faBoost } from 'flavours/polyam/components/boost';
 import { Button } from 'flavours/polyam/components/button';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { registrationsOpen, sso_redirect } from 'flavours/polyam/initial_state';
@@ -356,22 +358,22 @@ class InteractionModal extends React.PureComponent {
 
     switch(type) {
     case 'reply':
-      icon = <Icon id='reply' icon={faReply} />;
+      icon = <Icon id='reply' icon={ReplyIcon} />;
       title = <FormattedMessage id='interaction_modal.title.reply' defaultMessage="Reply to {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on Mastodon, you can respond to this post.' />;
       break;
     case 'reblog':
-      icon = <Icon id='retweet' icon={faBoost} />;
+      icon = <Icon id='retweet' icon={BoostIcon} />;
       title = <FormattedMessage id='interaction_modal.title.reblog' defaultMessage="Boost {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on Mastodon, you can boost this post to share it with your own followers.' />;
       break;
     case 'favourite':
-      icon = <Icon id='star' icon={faStar} />;
+      icon = <Icon id='star' icon={StarIcon} />;
       title = <FormattedMessage id='interaction_modal.title.favourite' defaultMessage="Favorite {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on Mastodon, you can favorite this post to let the author know you appreciate it and save it for later.' />;
       break;
     case 'follow':
-      icon = <Icon id='user-plus' icon={faUserPlus} />;
+      icon = <Icon id='user-plus' icon={FollowIcon} />;
       title = <FormattedMessage id='interaction_modal.title.follow' defaultMessage='Follow {name}' values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.follow' defaultMessage='With an account on Mastodon, you can follow {name} to receive their posts in your home feed.' values={{ name }} />;
       break;

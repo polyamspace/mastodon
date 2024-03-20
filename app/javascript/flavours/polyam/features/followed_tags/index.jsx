@@ -8,9 +8,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
+import HashtagIcon from '@/awesome-icons/solid/hashtag.svg?react';
 import { expandFollowedHashtags, fetchFollowedHashtags } from 'flavours/polyam/actions/tags';
 import ColumnHeader from 'flavours/polyam/components/column_header';
 import { Hashtag } from 'flavours/polyam/components/hashtag';
@@ -56,7 +56,7 @@ class FollowedTags extends ImmutablePureComponent {
       <Column bindToDocument={!multiColumn}>
         <ColumnHeader
           icon='hashtag'
-          iconComponent={faHashtag}
+          iconComponent={HashtagIcon}
           title={intl.formatMessage(messages.heading)}
           showBackButton
           multiColumn={multiColumn}

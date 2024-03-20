@@ -4,8 +4,7 @@ import { useIntl, defineMessages } from 'react-intl';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { cancelReplyCompose } from 'flavours/polyam/actions/compose';
 import Account from 'flavours/polyam/components/account';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -30,7 +29,7 @@ export const NavigationBar = () => {
   return (
     <div className='navigation-bar'>
       <Account account={account} minimal />
-      {isReplying ? <IconButton title={intl.formatMessage(messages.cancel)} iconComponent={faTimes} onClick={handleCancelClick} /> : <ActionBar />}
+      {isReplying ? <IconButton title={intl.formatMessage(messages.cancel)} iconComponent={CloseIcon} onClick={handleCancelClick} /> : <ActionBar />}
     </div>
   );
 };

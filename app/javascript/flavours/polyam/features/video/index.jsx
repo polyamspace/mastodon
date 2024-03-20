@@ -7,10 +7,17 @@ import classNames from 'classnames';
 
 import { is } from 'immutable';
 
-import { faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { faMaximize, faMinimize, faCompressAlt, faExpandAlt, faPause, faPlay, faVolumeXmark, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { throttle } from 'lodash';
 
+import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
+import CompressIcon from '@/awesome-icons/solid/down-left-and-up-right-to-center.svg?react';
+import MaximizeIcon from '@/awesome-icons/solid/maximize.svg?react';
+import MinimizeIcon from '@/awesome-icons/solid/minimize.svg?react';
+import PauseIcon from '@/awesome-icons/solid/pause.svg?react';
+import PlayIcon from '@/awesome-icons/solid/play.svg?react';
+import ExpandIcon from '@/awesome-icons/solid/up-right-and-down-left-from-center.svg?react';
+import UnmuteIcon from '@/awesome-icons/solid/volume-high.svg?react';
+import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { playerSettings } from 'flavours/polyam/settings';
@@ -636,8 +643,8 @@ class Video extends PureComponent {
 
           <div className='video-player__buttons-bar'>
             <div className='video-player__buttons left'>
-              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay} autoFocus={autoFocus}><Icon id={paused ? 'play' : 'pause'} icon={paused ? faPlay : faPause} fixedWidth /></button>
-              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} icon={muted ? faVolumeXmark : faVolumeUp} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay} autoFocus={autoFocus}><Icon id={paused ? 'play' : 'pause'} icon={paused ? PlayIcon : PauseIcon} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} icon={muted ? MuteIcon : UnmuteIcon} fixedWidth /></button>
 
               <div className={classNames('video-player__volume', { active: this.state.hovered })} onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
                 <div className='video-player__volume__current' style={{ width: `${muted ? 0 : volume * 100}%` }} />
@@ -660,10 +667,10 @@ class Video extends PureComponent {
 
             <div className='video-player__buttons right'>
               {(!fullscreen && alt && onOpenAltText) && <button type='button' title={intl.formatMessage(messages.alt)} aria-label={intl.formatMessage(messages.alt)} className='player-button alt-button' onClick={this.handleAltClick}><span>ALT</span></button>}
-              {(!onCloseVideo && !editable && !fullscreen && !this.props.alwaysVisible) && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} className='player-button' onClick={this.toggleReveal}><Icon id='eye-slash' icon={faEyeSlash} fixedWidth /></button>}
-              {(!fullscreen && onOpenVideo) && <button type='button' title={intl.formatMessage(messages.expand)} aria-label={intl.formatMessage(messages.expand)} className='player-button' onClick={this.handleOpenVideo}><Icon id='expand' icon={faExpandAlt} fixedWidth /></button>}
-              {onCloseVideo && <button type='button' title={intl.formatMessage(messages.close)} aria-label={intl.formatMessage(messages.close)} className='player-button' onClick={this.handleCloseVideo}><Icon id='compress' icon={faCompressAlt} fixedWidth /></button>}
-              <button type='button' title={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} className='player-button' onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} icon={fullscreen ? faMinimize : faMaximize} fixedWidth /></button>
+              {(!onCloseVideo && !editable && !fullscreen && !this.props.alwaysVisible) && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} className='player-button' onClick={this.toggleReveal}><Icon id='eye-slash' icon={VisibilityOffIcon} fixedWidth /></button>}
+              {(!fullscreen && onOpenVideo) && <button type='button' title={intl.formatMessage(messages.expand)} aria-label={intl.formatMessage(messages.expand)} className='player-button' onClick={this.handleOpenVideo}><Icon id='expand' icon={ExpandIcon} fixedWidth /></button>}
+              {onCloseVideo && <button type='button' title={intl.formatMessage(messages.close)} aria-label={intl.formatMessage(messages.close)} className='player-button' onClick={this.handleCloseVideo}><Icon id='compress' icon={CompressIcon} fixedWidth /></button>}
+              <button type='button' title={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} className='player-button' onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} icon={fullscreen ? MinimizeIcon : MaximizeIcon} fixedWidth /></button>
             </div>
           </div>
         </div>

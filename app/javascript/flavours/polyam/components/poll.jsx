@@ -7,10 +7,10 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import escapeTextContentForBrowser from 'escape-html';
 import spring from 'react-motion/lib/spring';
 
+import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 import emojify from 'flavours/polyam/features/emoji/emoji';
 import Motion from 'flavours/polyam/features/ui/util/optional_motion';
@@ -195,7 +195,7 @@ class Poll extends ImmutablePureComponent {
           />
 
           {!!voted && <span className='poll__voted'>
-            <Icon id='check' icon={faCheck} className='poll__voted__mark' title={intl.formatMessage(messages.voted)} />
+            <Icon id='check' icon={CheckIcon} className='poll__voted__mark' title={intl.formatMessage(messages.voted)} />
           </span>}
         </label>
 

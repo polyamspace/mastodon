@@ -6,7 +6,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faPaperclip, faPaintbrush, faFileArrowUp } from '@fortawesome/free-solid-svg-icons';
+import FileArrowUpIcon from '@/awesome-icons/solid/file-arrow-up.svg?react';
+import PaintBrushIcon from '@/awesome-icons/solid/paintbrush.svg?react';
+import PaperClipIcon from '@/awesome-icons/solid/paperclip.svg?react';
 
 import { DropdownIconButton } from './dropdown_icon_button';
 
@@ -61,13 +63,13 @@ class UploadButton extends ImmutablePureComponent {
     const options = [
       {
         icon: 'file-arrow-up',
-        iconComponent: faFileArrowUp,
+        iconComponent: FileArrowUpIcon,
         value: 'upload',
         text: intl.formatMessage(messages.upload),
       },
       {
         icon: 'paint-brush',
-        iconComponent: faPaintbrush,
+        iconComponent: PaintBrushIcon,
         value: 'doodle',
         text: intl.formatMessage(messages.doodle),
       },
@@ -77,7 +79,7 @@ class UploadButton extends ImmutablePureComponent {
       <div className='compose-form__upload-button'>
         <DropdownIconButton
           icon='paperclip'
-          iconComponent={faPaperclip}
+          iconComponent={PaperClipIcon}
           title={message}
           disabled={disabled}
           onChange={this.handleSelect}

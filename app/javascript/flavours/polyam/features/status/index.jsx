@@ -12,10 +12,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { HotKeys } from 'react-hotkeys';
 
+import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
+import VisibilityIcon from '@/awesome-icons/regular/eye.svg?react';
+import CommentIcon from '@/awesome-icons/solid/comment.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import ScrollContainer from 'flavours/polyam/containers/scroll_container';
@@ -746,12 +747,12 @@ class Status extends ImmutablePureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setColumnRef} label={intl.formatMessage(messages.detailedStatus)}>
         <ColumnHeader
           icon='comment'
-          iconComponent={faComment}
+          iconComponent={CommentIcon}
           title={intl.formatMessage(messages.tootHeading)}
           onClick={this.handleHeaderClick}
           showBackButton
           multiColumn={multiColumn}
-          extraButton={(<button type='button' className='column-header__button' title={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={!isExpanded ? 'eye-slash' : 'eye'} icon={!isExpanded ? faEyeSlash : faEye} /></button>)}
+          extraButton={(<button type='button' className='column-header__button' title={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={!isExpanded ? 'eye-slash' : 'eye'} icon={!isExpanded ? VisibilityOffIcon : VisibilityIcon} /></button>)}
         />
 
         <ScrollContainer scrollKey='thread' shouldUpdateScroll={this.shouldUpdateScroll}>

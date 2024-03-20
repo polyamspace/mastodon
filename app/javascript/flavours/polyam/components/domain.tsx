@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import { faLockOpen } from '@fortawesome/free-solid-svg-icons';
+import UnblockIcon from '@/awesome-icons/solid/lock-open.svg?react';
 
 import { IconButton } from './icon_button';
 
@@ -36,7 +36,7 @@ export const Domain: React.FC<Props> = ({ domain, onUnblockDomain }) => {
           <IconButton
             active
             icon='unlock'
-            iconComponent={faLockOpen}
+            iconComponent={UnblockIcon}
             title={intl.formatMessage(messages.unblockDomain, { domain })}
             onClick={handleDomainUnblock}
           />

@@ -6,9 +6,9 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import escapeTextContentForBrowser from 'escape-html';
 
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { closeModal } from 'flavours/polyam/actions/modal';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import InlineAccount from 'flavours/polyam/components/inline_account';
@@ -66,7 +66,7 @@ class CompareHistoryModal extends PureComponent {
     return (
       <div className='modal-root__modal compare-history-modal'>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' icon='times' iconComponent={faTimes} onClick={onClose} size={20} />
+          <IconButton className='report-modal__close' icon='times' iconComponent={CloseIcon} onClick={onClose} size={20} />
           {label}
         </div>
 

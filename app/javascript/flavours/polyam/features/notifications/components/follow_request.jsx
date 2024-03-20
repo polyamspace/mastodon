@@ -8,9 +8,11 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faCheck, faTimes, faUser } from '@fortawesome/free-solid-svg-icons';
 import { HotKeys } from 'react-hotkeys';
 
+import CheckIcon from '@/awesome-icons/solid/check.svg?react';
+import UserIcon from '@/awesome-icons/solid/user.svg?react';
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { Icon } from 'flavours/polyam/components/icon';
@@ -106,7 +108,7 @@ class FollowRequest extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-follow-request focusable', { unread })} tabIndex={0}>
           <div className='notification__message'>
-            <Icon id='user' icon={faUser} fixedWidth />
+            <Icon id='user' icon={UserIcon} fixedWidth />
 
             <FormattedMessage
               id='notification.follow_request'
@@ -123,8 +125,8 @@ class FollowRequest extends ImmutablePureComponent {
               </Permalink>
 
               <div className='account__relationship'>
-                <IconButton title={intl.formatMessage(messages.authorize)} icon='check' iconComponent={faCheck} onClick={onAuthorize} />
-                <IconButton title={intl.formatMessage(messages.reject)} icon='times' iconComponent={faTimes} onClick={onReject} />
+                <IconButton title={intl.formatMessage(messages.authorize)} icon='check' iconComponent={CheckIcon} onClick={onAuthorize} />
+                <IconButton title={intl.formatMessage(messages.reject)} icon='times' iconComponent={CloseIcon} onClick={onReject} />
               </div>
             </div>
           </div>

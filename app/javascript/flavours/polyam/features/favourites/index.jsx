@@ -8,9 +8,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faRefresh, faStar } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
+import RefreshIcon from '@/awesome-icons/solid/arrows-rotate.svg?react';
+import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import { fetchFavourites, expandFavourites } from 'flavours/polyam/actions/interactions';
 import ColumnHeader from 'flavours/polyam/components/column_header';
 import { Icon }  from 'flavours/polyam/components/icon';
@@ -81,13 +82,13 @@ class Favourites extends ImmutablePureComponent {
       <Column ref={this.setRef}>
         <ColumnHeader
           icon='star'
-          iconComponent={faStar}
+          iconComponent={StarIcon}
           title={intl.formatMessage(messages.heading)}
           onClick={this.handleHeaderClick}
           showBackButton
           multiColumn={multiColumn}
           extraButton={(
-            <button type='button' className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' icon={faRefresh} /></button>
+            <button type='button' className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' icon={RefreshIcon} /></button>
           )}
         />
 

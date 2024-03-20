@@ -2,9 +2,9 @@ import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import { faMarkdown } from '@fortawesome/free-brands-svg-icons';
-import { faCode, faFileText, } from '@fortawesome/free-solid-svg-icons';
-
+import MarkdownIcon from '@/awesome-icons/brands/markdown.svg?react';
+import CodeIcon from '@/awesome-icons/solid/code.svg?react';
+import TextFileIcon from '@/awesome-icons/solid/file-lines.svg?react';
 import { changeComposeContentType } from 'flavours/polyam/actions/compose';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
@@ -36,9 +36,9 @@ export const ContentTypeButton = () => {
   }
 
   const options = [
-    { icon: 'file-text', iconComponent: faFileText, value: 'text/plain', text: intl.formatMessage(messages.plain_text_label), meta: intl.formatMessage(messages.plain_text_meta) },
-    { icon: 'arrow-circle-down', iconComponent: faMarkdown, value: 'text/markdown', text: intl.formatMessage(messages.markdown_label), meta: intl.formatMessage(messages.markdown_meta) },
-    { icon: 'code', iconComponent: faCode,  value: 'text/html', text: intl.formatMessage(messages.html_label), meta: intl.formatMessage(messages.html_meta) },
+    { icon: 'file-text', iconComponent: TextFileIcon, value: 'text/plain', text: intl.formatMessage(messages.plain_text_label), meta: intl.formatMessage(messages.plain_text_meta) },
+    { icon: 'arrow-circle-down', iconComponent: MarkdownIcon, value: 'text/markdown', text: intl.formatMessage(messages.markdown_label), meta: intl.formatMessage(messages.markdown_meta) },
+    { icon: 'code', iconComponent: CodeIcon,  value: 'text/html', text: intl.formatMessage(messages.html_label), meta: intl.formatMessage(messages.html_meta) },
   ];
 
   const icon = {
@@ -48,9 +48,9 @@ export const ContentTypeButton = () => {
   }[contentType];
 
   const iconComponent = {
-    'text/plain': faFileText,
-    'text/markdown': faMarkdown,
-    'text/html': faCode,
+    'text/plain': TextFileIcon,
+    'text/markdown': MarkdownIcon,
+    'text/html': CodeIcon,
   }[contentType];
 
   return (

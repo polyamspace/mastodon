@@ -9,7 +9,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
 // eslint-disable-next-line import/extensions
@@ -17,6 +16,7 @@ import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
 
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { Button } from 'flavours/polyam/components/button';
 import { GIFV } from 'flavours/polyam/components/gifv';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -313,7 +313,7 @@ class FocalPointModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal report-modal' style={{ maxWidth: 960 }}>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={faTimes} onClick={onClose} size={20} />
+          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={CloseIcon} onClick={onClose} size={20} />
           <FormattedMessage id='upload_modal.edit_media' defaultMessage='Edit media' />
         </div>
 

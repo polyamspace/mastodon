@@ -8,9 +8,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faFaceGrinWide, faRefresh } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
+import RefreshIcon from '@/awesome-icons/solid/arrows-rotate.svg?react';
+import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
 import { fetchReactions, expandReactions } from 'flavours/polyam/actions/interactions';
 import ColumnHeader from 'flavours/polyam/components/column_header';
 import { Icon } from 'flavours/polyam/components/icon';
@@ -81,13 +82,13 @@ class Reactions extends ImmutablePureComponent {
       <Column ref={this.setRef}>
         <ColumnHeader
           icon='face-grin-wide'
-          iconComponent={faFaceGrinWide}
+          iconComponent={ReactIcon}
           title={intl.formatMessage(messages.heading)}
           onClick={this.handleHeaderClick}
           showBackButton
           multiColumn={multiColumn}
           extraButton={(
-            <button className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' icon={faRefresh} /></button>
+            <button className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' icon={RefreshIcon} /></button>
           )}
         />
 

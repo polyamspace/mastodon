@@ -3,9 +3,9 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import spring from 'react-motion/lib/spring';
 
+import UploadIcon from '@/awesome-icons/solid/upload.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 
 import Motion from '../../ui/util/optional_motion';
@@ -35,7 +35,7 @@ export default class UploadProgress extends PureComponent {
 
     return (
       <div className='upload-progress'>
-        <Icon id='upload' icon={faUpload} />
+        <Icon id='upload' icon={UploadIcon} />
 
         <div className='upload-progress__message'>
           {message}

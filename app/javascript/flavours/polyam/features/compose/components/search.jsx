@@ -8,8 +8,9 @@ import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { faSearch, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-
+import CircleCloseIcon from '@/awesome-icons/solid/circle-xmark.svg?react';
+import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { domain, searchEnabled, searchPreview } from 'flavours/polyam/initial_state';
 import { HASHTAG_REGEX } from 'flavours/polyam/utils/hashtags';
@@ -347,8 +348,8 @@ class Search extends PureComponent {
         )}
 
         <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
-          <Icon id='search' icon={faSearch} className={hasValue ? '' : 'active'} />
-          <Icon id='times-circle' icon={faTimesCircle} className={hasValue ? 'active' : ''} aria-label={intl.formatMessage(messages.placeholder)} />
+          <Icon id='search' icon={SearchIcon} className={hasValue ? '' : 'active'} />
+          <Icon id='times-circle' icon={CircleCloseIcon} className={hasValue ? 'active' : ''} aria-label={intl.formatMessage(messages.placeholder)} />
         </div>
 
         <div className='search__popout'>
@@ -360,7 +361,7 @@ class Search extends PureComponent {
                 {recent.size > 0 ? this._getOptions().map(({ label, key, action, forget }, i) => (
                   <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item search__popout__menu__item--flex', { selected: selectedOption === i })}>
                     <span>{label}</span>
-                    <button className='icon-button' onMouseDown={forget}><Icon id='times' icon={faTimes} /></button>
+                    <button className='icon-button' onMouseDown={forget}><Icon id='times' icon={CloseIcon} /></button>
                   </button>
                 )) : (
                   <div className='search__popout__menu__message'>

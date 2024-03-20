@@ -7,8 +7,8 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
-import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-
+import CircleCloseIcon from '@/awesome-icons/solid/circle-xmark.svg?react';
+import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 
 import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
@@ -71,8 +71,8 @@ class Search extends PureComponent {
         </label>
 
         <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
-          <Icon id='search' icon={faSearch} className={classNames({ active: !hasValue })} />
-          <Icon id='times-circle' icon={faTimesCircle} aria-label={intl.formatMessage(messages.search)} className={classNames({ active: hasValue })} />
+          <Icon id='search' icon={SearchIcon} className={classNames({ active: !hasValue })} />
+          <Icon id='times-circle' icon={CircleCloseIcon} aria-label={intl.formatMessage(messages.search)} className={classNames({ active: hasValue })} />
         </div>
       </div>
     );

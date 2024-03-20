@@ -4,9 +4,9 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { faImage } from '@fortawesome/free-regular-svg-icons';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
-
+import ImageIcon from '@/awesome-icons/regular/image.svg?react';
+import PollIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { cancelReplyCompose } from 'flavours/polyam/actions/compose';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -44,7 +44,7 @@ export const EditIndicator = () => {
         </div>
 
         <div className='edit-indicator__cancel'>
-          <IconButton title={intl.formatMessage(messages.cancel)} icon='times' iconComponent={faTimes} onClick={handleCancelClick} inverted />
+          <IconButton title={intl.formatMessage(messages.cancel)} icon='times' iconComponent={CloseIcon} onClick={handleCancelClick} inverted />
         </div>
       </div>
 
@@ -52,8 +52,8 @@ export const EditIndicator = () => {
 
       {(status.get('poll') || status.get('media_attachments').size > 0) && (
         <div className='edit-indicator__attachments'>
-          {status.get('poll') && <><Icon icon={faBars} /><FormattedMessage id='reply_indicator.poll' defaultMessage='Poll' /></>}
-          {status.get('media_attachments').size > 0 && <><Icon icon={faImage} /><FormattedMessage id='reply_indicator.attachments' defaultMessage='{count, plural, one {# attachment} other {# attachments}}' values={{ count: status.get('media_attachments').size }} /></>}
+          {status.get('poll') && <><Icon icon={PollIcon} /><FormattedMessage id='reply_indicator.poll' defaultMessage='Poll' /></>}
+          {status.get('media_attachments').size > 0 && <><Icon icon={ImageIcon} /><FormattedMessage id='reply_indicator.attachments' defaultMessage='{count, plural, one {# attachment} other {# attachments}}' values={{ count: status.get('media_attachments').size }} /></>}
         </div>
       )}
     </div>

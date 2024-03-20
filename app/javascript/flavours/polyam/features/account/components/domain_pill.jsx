@@ -5,10 +5,11 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { faIdBadge } from '@fortawesome/free-regular-svg-icons';
-import { faAt, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import Overlay from 'react-overlays/Overlay';
 
+import BadgeIcon from '@/awesome-icons/regular/id-badge.svg?react';
+import AtIcon from '@/awesome-icons/solid/at.svg?react';
+import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 
 export const DomainPill = ({ domain, username, isSelf }) => {
@@ -32,7 +33,7 @@ export const DomainPill = ({ domain, username, isSelf }) => {
         {({ props }) => (
           <div {...props} className='account__domain-pill__popout dropdown-animation'>
             <div className='account__domain-pill__popout__header'>
-              <div className='account__domain-pill__popout__header__icon'><Icon icon={faIdBadge} /></div>
+              <div className='account__domain-pill__popout__header__icon'><Icon icon={BadgeIcon} /></div>
               <h3><FormattedMessage id='domain_pill.whats_in_a_handle' defaultMessage="What's in a handle?" /></h3>
             </div>
 
@@ -43,7 +44,7 @@ export const DomainPill = ({ domain, username, isSelf }) => {
 
             <div className='account__domain-pill__popout__parts'>
               <div>
-                <div className='account__domain-pill__popout__parts__icon'><Icon icon={faAt} /></div>
+                <div className='account__domain-pill__popout__parts__icon'><Icon icon={AtIcon} /></div>
 
                 <div>
                   <h6><FormattedMessage id='domain_pill.username' defaultMessage='Username' /></h6>
@@ -52,7 +53,7 @@ export const DomainPill = ({ domain, username, isSelf }) => {
               </div>
 
               <div>
-                <div className='account__domain-pill__popout__parts__icon'><Icon icon={faGlobe} /></div>
+                <div className='account__domain-pill__popout__parts__icon'><Icon icon={PublicIcon} /></div>
 
                 <div>
                   <h6><FormattedMessage id='domain_pill.server' defaultMessage='Server' /></h6>

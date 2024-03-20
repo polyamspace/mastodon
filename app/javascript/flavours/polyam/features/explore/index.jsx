@@ -8,8 +8,8 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import { faSearch, faCompass } from '@fortawesome/free-solid-svg-icons';
-
+import ExploreIcon from '@/awesome-icons/solid/compass.svg?react';
+import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
 import Search from 'flavours/polyam/features/compose/containers/search_container';
@@ -59,7 +59,7 @@ class Explore extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon={isSearching ? 'search' : 'explore'}
-          iconComponent={isSearching ? faSearch : faCompass}
+          iconComponent={isSearching ? SearchIcon : ExploreIcon}
           title={intl.formatMessage(isSearching ? messages.searchResults : messages.title)}
           onClick={this.handleHeaderClick}
           multiColumn={multiColumn}

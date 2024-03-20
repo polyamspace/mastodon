@@ -7,8 +7,9 @@ import { Helmet } from 'react-helmet';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { faCheck, faBoxArchive, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
-
+import ArchiveIcon from '@/awesome-icons/solid/box-archive.svg?react';
+import CheckIcon from '@/awesome-icons/solid/check.svg?react';
+import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import { fetchNotificationRequest, fetchNotificationsForRequest, expandNotificationsForRequest, acceptNotificationRequest, dismissNotificationRequest } from 'flavours/polyam/actions/notifications';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
@@ -93,15 +94,15 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
     <Column bindToDocument={!multiColumn} ref={columnRef} label={columnTitle}>
       <ColumnHeader
         icon='archive'
-        iconComponent={faBoxArchive}
+        iconComponent={ArchiveIcon}
         title={columnTitle}
         onClick={handleHeaderClick}
         multiColumn={multiColumn}
         showBackButton
         extraButton={!removed && (
           <>
-            <IconButton className='column-header__button' iconComponent={faVolumeXmark} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
-            <IconButton className='column-header__button' iconComponent={faCheck} onClick={handleAccept} title={intl.formatMessage(messages.accept)} />
+            <IconButton className='column-header__button' iconComponent={MuteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
+            <IconButton className='column-header__button' iconComponent={CheckIcon} onClick={handleAccept} title={intl.formatMessage(messages.accept)} />
           </>
         )}
       />

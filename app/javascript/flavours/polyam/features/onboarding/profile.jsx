@@ -7,9 +7,10 @@ import { useHistory } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
-import { faPencil, faCamera } from '@fortawesome/free-solid-svg-icons';
 import Toggle from 'react-toggle';
 
+import CameraIcon from '@/awesome-icons/solid/camera.svg?react';
+import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
 import { updateAccount } from 'flavours/polyam/actions/accounts';
 import { Button } from 'flavours/polyam/components/button';
 import { ColumnBackButton } from 'flavours/polyam/components/column_back_button';
@@ -103,7 +104,7 @@ export const Profile = () => {
 
               {headerPreview && <img src={headerPreview} alt='' />}
 
-              <Icon icon={headerPreview ? faPencil : faCamera} />
+              <Icon icon={headerPreview ? EditIcon : CameraIcon} />
             </label>
 
             <label className={classNames('app-form__avatar-input', { selected: !!avatarPreview, invalid: !!errors?.avatar })} title={intl.formatMessage(messages.uploadAvatar)}>
@@ -117,7 +118,7 @@ export const Profile = () => {
 
               {avatarPreview && <img src={avatarPreview} alt='' />}
 
-              <Icon icon={avatarPreview ? faPencil : faCamera} />
+              <Icon icon={avatarPreview ? EditIcon : CameraIcon} />
             </label>
           </div>
 

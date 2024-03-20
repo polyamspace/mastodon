@@ -8,9 +8,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { debounce } from 'lodash';
 
+import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'flavours/polyam/actions/columns';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'flavours/polyam/actions/favourites';
 import ColumnHeader from 'flavours/polyam/components/column_header';
@@ -81,7 +81,7 @@ class Favourites extends ImmutablePureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} name='favourites' label={intl.formatMessage(messages.heading)}>
         <ColumnHeader
           icon='star'
-          iconComponent={faStar}
+          iconComponent={StarIcon}
           title={intl.formatMessage(messages.heading)}
           onPin={this.handlePin}
           onMove={this.handleMove}

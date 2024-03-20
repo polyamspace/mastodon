@@ -4,8 +4,7 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
+import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import api from 'flavours/polyam/api';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 
@@ -64,7 +63,7 @@ class EmbedModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal report-modal embed-modal'>
         <div className='report-modal__target'>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={faTimes} onClick={onClose} size={16} />
+          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={CloseIcon} onClick={onClose} size={16} />
           <FormattedMessage id='status.embed' defaultMessage='Embed' />
         </div>
 
