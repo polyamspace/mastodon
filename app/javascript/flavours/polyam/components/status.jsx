@@ -75,10 +75,7 @@ export const defaultMediaVisibility = (status, settings) => {
 
 class Status extends ImmutablePureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object,
-    ...SensitiveMediaContext,
-  };
+  static contextType = SensitiveMediaContext;
 
   static propTypes = {
     containerId: PropTypes.string,
