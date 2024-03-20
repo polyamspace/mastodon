@@ -410,7 +410,6 @@ class StatusContent extends PureComponent {
           mediaIcons.forEach((mediaIcon, idx) => {
             toggleText.push(
               <Icon
-                fixedWidth
                 className='status__content__spoiler-icon'
                 id={mediaIcon}
                 icon={this.mediaIconComponent(mediaIcon)}

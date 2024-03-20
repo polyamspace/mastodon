@@ -102,7 +102,6 @@ class StatusIcons extends PureComponent {
   renderIcon (mediaIcon) {
     return (
       <Icon
-        fixedWidth
         className='status__media-icon'
         key={`media-icon--${mediaIcon}`}
         id={mediaIcon}
@@ -132,7 +131,6 @@ class StatusIcons extends PureComponent {
           status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? (
             <Icon
               className='status__reply-icon'
-              fixedWidth
               id='commenting'
               icon={CommentingIcon}
               aria-hidden='true'
@@ -141,7 +139,6 @@ class StatusIcons extends PureComponent {
           ) : (
             <Icon
               className='status__reply-icon'
-              fixedWidth
               id='comment'
               icon={CommentIcon}
               aria-hidden='true'
@@ -150,7 +147,6 @@ class StatusIcons extends PureComponent {
           ) : null}
         {settings.get('local_only') && status.get('local_only') &&
           <Icon
-            fixedWidth
             id='home'
             icon={HomeIcon}
             aria-hidden='true'
