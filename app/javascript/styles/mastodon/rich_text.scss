@@ -1,5 +1,6 @@
 .status__content__text,
 .e-content,
+.edit-indicator__content,
 .reply-indicator__content {
   pre,
   blockquote {
@@ -70,12 +71,5 @@
   pre code {
     // prevent padding of code tags inside pre
     padding: 0;
-  }
-}
-
-.reply-indicator__content {
-  blockquote {
-    border-left-color: $inverted-text-color;
-    color: $inverted-text-color;
   }
 }

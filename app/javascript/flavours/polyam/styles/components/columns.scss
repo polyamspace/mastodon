@@ -1282,6 +1282,13 @@ $ui-header-height: 55px;
     color: $darker-text-color;
     margin-bottom: 15px;
     text-align: center;
+
+    // Polyam: Reduced icon size
+    .icon {
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+    }
   }
 }
 
