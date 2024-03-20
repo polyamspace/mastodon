@@ -983,6 +983,15 @@ a.name-tag,
       border-radius: 0 4px 0 0;
     }
 
+    // Polyam: This was removed in component
+    dt,
+    dd {
+      max-height: 48px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
     .verified a {
       color: $valid-value-color;
     }
