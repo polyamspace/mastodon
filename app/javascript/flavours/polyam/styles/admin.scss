@@ -992,6 +992,7 @@ a.name-tag,
     box-sizing: border-box;
     padding: 20px;
     color: $primary-text-color;
+    margin: 0; // Polyam: Added margin to component
   }
 }
 
