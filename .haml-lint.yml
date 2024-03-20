@@ -15,5 +15,4 @@ linters:
   LineLength:
     max: 320
   ViewLength:
-    # Disabled for polyam-glitch
-    enabled: false
+    max: 200 # Override default value of 100 inherited from rubocop
