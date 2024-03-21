@@ -60,20 +60,13 @@
   width: 286px;
 }
 
-// Polyam: Remove transparency while selecting skin tone
-.emoji-picker-dropdown__menu.selecting .emoji-mart-scroll {
-  opacity: 1;
+// Polyam: Restore background of category label
+.emoji-mart-category-label span {
+  background: var(--dropdown-background-color);
 }
 
 .emoji-mart-anchor {
   padding: 12px 0;
-}
-
-.emoji-mart-bar:first-child {
-  // background: $ui-base-extra-light-color;
-  border-bottom-color: #fff0;
-  border-top-left-radius: $border-radius;
-  border-top-right-radius: $border-radius;
 }
 
 .drawer__inner__mastodon {
