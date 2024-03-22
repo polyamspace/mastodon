@@ -11,7 +11,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
 
 import FlagIcon from '@/awesome-icons/solid/flag.svg?react';
-import LinkOffIcon from '@/awesome-icons/solid/link-slash.svg?react';
+import HeartCrackIcon from '@/awesome-icons/solid/heart-crack.svg?react';
 import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import UserIcon from '@/awesome-icons/solid/user.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
@@ -341,7 +341,7 @@ class Notification extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-severed-relationships focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.adminReport, { name: notification.getIn(['event', 'target_name']) }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='unlink' icon={LinkOffIcon} />
+            <Icon id='heart_crack' icon={HeartCrackIcon} />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.severed_relationships' defaultMessage='Relationships with {name} severed' values={{ name: notification.getIn(['event', 'target_name']) }} />
