@@ -7,7 +7,6 @@ import classNames from 'classnames';
 
 import {
   followAccount,
-  unfollowAccount,
   unblockAccount,
   unmuteAccount,
 } from 'flavours/polyam/actions/accounts';
@@ -17,7 +16,7 @@ import { Button } from 'flavours/polyam/components/button';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { Permalink } from 'flavours/polyam/components/permalink';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
-import { autoPlayGif, me, unfollowModal } from 'flavours/polyam/initial_state';
+import { autoPlayGif, me } from 'flavours/polyam/initial_state';
 import type { Account } from 'flavours/polyam/models/account';
 import { makeGetAccount } from 'flavours/polyam/selectors';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
@@ -85,20 +84,15 @@ export const AccountCard: React.FC<{ accountId: string }> = ({ accountId }) => {
       account.getIn(['relationship', 'following']) ||
       account.getIn(['relationship', 'requested'])
     ) {
-      // Polyam: Keep unfollow modal optional
-      if (unfollowModal) {
-        dispatch(
-          openModal({
-            modalType: 'CONFIRM_UNFOLLOW',
-            modalProps: {
-              account,
-              requested: account.getIn(['relationship', 'requested']),
-            },
-          }),
-        );
-      } else {
-        dispatch(unfollowAccount(account.get('id')));
-      }
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_UNFOLLOW',
+          modalProps: {
+            account,
+            requested: account.getIn(['relationship', 'requested']),
+          },
+        }),
+      );
     } else {
       dispatch(followAccount(account.get('id')));
     }

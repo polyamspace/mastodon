@@ -6,12 +6,11 @@ import { useIdentity } from '@/flavours/polyam/identity_context';
 import {
   fetchRelationships,
   followAccount,
-  unfollowAccount,
 } from 'flavours/polyam/actions/accounts';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { Button } from 'flavours/polyam/components/button';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
-import { me, unfollowModal } from 'flavours/polyam/initial_state';
+import { me } from 'flavours/polyam/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 const messages = defineMessages({
@@ -64,17 +63,12 @@ export const FollowButton: React.FC<{
     if (accountId === me) {
       return;
     } else if (account && (relationship.following || relationship.requested)) {
-      // Polyam: Keep unfollow modal optional
-      if (unfollowModal) {
-        dispatch(
-          openModal({
-            modalType: 'CONFIRM_UNFOLLOW',
-            modalProps: { account, requested: relationship.requested },
-          }),
-        );
-      } else {
-        dispatch(unfollowAccount(accountId));
-      }
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_UNFOLLOW',
+          modalProps: { account, requested: relationship.requested },
+        }),
+      );
     } else {
       dispatch(followAccount(accountId));
     }
