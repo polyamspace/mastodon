@@ -40,15 +40,5 @@
           = fa_icon 'trash fw'
           = t('admin.site_uploads.delete')
 
-  .fields-row
-    .fields-row__column.fields-row__column-6.fields-group
-      = f.input :favicon, as: :file, wrapper: :with_block_label, polyam_only: true
-    .fields-row__column.fields-row__column-6.fields-group
-      - if @admin_settings.favicon.persisted?
-        = image_tag @admin_settings.favicon.file.url(:original), class: 'fields-group__favicon'
-        = link_to admin_site_upload_path(@admin_settings.favicon), data: { method: :delete }, class: 'link-button link-button--destructive' do
-          = fa_icon 'trash fw'
-          = t('admin.site_uploads.delete')
-
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

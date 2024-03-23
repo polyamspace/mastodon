@@ -83,18 +83,6 @@ module ApplicationHelper
     end
   end
 
-  def favicon_path
-    instance_presenter.favicon ? instance_presenter.favicon&.file&.url : '/favicon.ico'
-  end
-
-  def favicon_type
-    instance_presenter.favicon ? instance_presenter.favicon.file.content_type : 'image/x-icon'
-  end
-
-  def favicon?
-    instance_presenter.favicon.present?
-  end
-
   def html_title
     safe_join(
       [content_for(:page_title).to_s.chomp, title]

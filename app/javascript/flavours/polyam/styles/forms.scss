@@ -327,19 +327,6 @@ code {
         object-fit: cover;
       }
     }
-
-    &__favicon {
-      display: block;
-      margin: 0;
-      margin-bottom: 10px;
-      max-width: 64px;
-      height: auto;
-      border-radius: 4px;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
   }
 
   .fields-row {
