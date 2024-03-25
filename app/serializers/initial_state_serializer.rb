@@ -123,7 +123,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       version: instance_presenter.version,
       limited_federation_mode: Rails.configuration.x.limited_federation_mode,
       mascot: instance_presenter.mascot&.file&.url,
-      favicon: instance_presenter.favicon&.file&.url,
       profile_directory: Setting.profile_directory,
       trends_enabled: Setting.trends,
       registrations_open: Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode,
