@@ -523,10 +523,6 @@ $ui-header-height: 55px;
   &:hover {
     text-decoration: underline;
   }
-
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border-top: 0;
-  }
 }
 
 .column-header__back-button {
@@ -738,10 +734,6 @@ $ui-header-height: 55px;
     &:first-child {
       padding-top: 16px;
     }
-  }
-
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border-top: 0;
   }
 }
 
