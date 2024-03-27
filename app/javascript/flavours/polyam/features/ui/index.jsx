@@ -16,7 +16,7 @@ import { HotKeys } from 'react-hotkeys';
 import { changeLayout } from 'flavours/polyam/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/polyam/actions/markers';
 import { Permalink } from 'flavours/polyam/components/permalink';
-import PictureInPicture from 'flavours/polyam/features/picture_in_picture';
+import { PictureInPicture } from 'flavours/polyam/features/picture_in_picture';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { layoutFromWindow } from 'flavours/polyam/is_mobile';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
