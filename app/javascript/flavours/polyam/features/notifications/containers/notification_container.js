@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
-import { initBoostModal } from '../../../actions/boosts';
+import { openModal } from 'flavours/polyam/actions/modal';
+
 import { mentionCompose } from '../../../actions/compose';
 import {
   reblog,
@@ -46,7 +47,7 @@ const mapDispatchToProps = dispatch => ({
       if (e.shiftKey || !boostModal) {
         this.onModalReblog(status);
       } else {
-        dispatch(initBoostModal({ status, onReblog: this.onModalReblog }));
+        dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.onModalReblog } }));
       }
     }
   },

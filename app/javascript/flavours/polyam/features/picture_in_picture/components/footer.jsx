@@ -16,7 +16,6 @@ import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import BoostIcon from '@/svg-icons/boost.svg?react';
 import BoostDisabledIcon from '@/svg-icons/boost_disabled.svg?react';
 import BoostPrivateIcon from '@/svg-icons/boost_private.svg?react';
-import { initBoostModal } from 'flavours/polyam/actions/boosts';
 import { replyCompose } from 'flavours/polyam/actions/compose';
 import { reblog, favourite, unreblog, unfavourite } from 'flavours/polyam/actions/interactions';
 import { openModal } from 'flavours/polyam/actions/modal';
@@ -144,7 +143,7 @@ class Footer extends ImmutablePureComponent {
       } else if ((e && e.shiftKey) || !boostModal) {
         this._performReblog(status);
       } else {
-        dispatch(initBoostModal({ status, onReblog: this._performReblog }));
+        dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this._performReblog } }));
       }
     } else {
       dispatch(openModal({
