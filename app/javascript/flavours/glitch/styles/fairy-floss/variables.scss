@@ -108,3 +108,14 @@ $no-gap-breakpoint: 415px;
 $font-sans-serif: 'mastodon-font-sans-serif' !default;
 $font-display: 'mastodon-font-display' !default;
 $font-monospace: 'mastodon-font-monospace' !default;
+
+:root {
+  --dropdown-border-color: #{lighten($purple3, 4%)} !important;
+  --dropdown-background-color: #{$purple3} !important;
+  --modal-background-color: #{lighten($ui-base-color, 8%)} !important;
+  --modal-background-variant-color: #{$ui-base-color} !important;
+  --background-border-color: #{lighten($ui-base-color, 8%)} !important;
+  --background-color: #{darken($ui-base-color, 4%)} !important;
+  --background-color-tint: #{darken($ui-base-color, 4%)} !important;
+  --surface-background-color: #{$purple1} !important;
+}
