@@ -166,7 +166,7 @@ function loaded() {
 
         return true;
       })
-      .catch((error) => {
+      .catch((error: unknown) => {
         console.error(error);
       });
   }
@@ -368,7 +368,7 @@ Rails.delegate(document, '#user_role_name', 'change', ({ target }) => {
 });
 
 function main() {
-  ready(loaded).catch((error) => {
+  ready(loaded).catch((error: unknown) => {
     console.error(error);
   });
 }
@@ -377,6 +377,6 @@ loadPolyfills()
   .then(loadLocale)
   .then(main)
   .then(loadKeyboardExtensions)
-  .catch((error) => {
+  .catch((error: unknown) => {
     console.error(error);
   });
