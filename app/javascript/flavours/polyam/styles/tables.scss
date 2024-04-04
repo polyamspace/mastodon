@@ -134,6 +134,7 @@ a.table-action-link {
   padding: 0 10px;
   color: $darker-text-color;
   font-weight: 500;
+  white-space: nowrap; // Polyam: Fix display with long text
 
   &:hover {
     color: $primary-text-color;
