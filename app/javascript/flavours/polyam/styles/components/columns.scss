@@ -1611,7 +1611,7 @@ $ui-header-height: 55px;
   align-items: center;
   border: 1px solid var(--background-border-color);
   border-top: 0;
-  padding: 24px 32px;
+  padding: 15px; // Polyam: Keep old padding
   gap: 16px;
   color: $darker-text-color;
   text-decoration: none;
