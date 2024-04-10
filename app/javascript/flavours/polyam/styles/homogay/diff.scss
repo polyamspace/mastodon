@@ -93,6 +93,19 @@
   color: $highlight-text-color;
 }
 
+// Polyam: Hashtag bar
+.hashtag-bar {
+  a {
+    background-color: lighten($ui-base-color, 4%);
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: lighten($ui-base-color, 8%);
+    }
+  }
+}
+
 // Polyam: Keep collapse button in higthlight color
 .status__collapse-button {
   color: $highlight-text-color;
