@@ -22,7 +22,7 @@ import { GIFV } from 'flavours/polyam/components/gifv';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import Audio from 'flavours/polyam/features/audio';
 import { CharacterCounter } from 'flavours/polyam/features/compose/components/character_counter';
-import UploadProgress from 'flavours/polyam/features/compose/components/upload_progress';
+import { UploadProgress } from 'flavours/polyam/features/compose/components/upload_progress';
 import { Tesseract as fetchTesseract } from 'flavours/polyam/features/ui/util/async-components';
 import { me } from 'flavours/polyam/initial_state';
 import { assetHost } from 'flavours/polyam/utils/config';
