@@ -333,7 +333,7 @@ class Header extends ImmutablePureComponent {
     }
 
     account.get('roles', []).forEach((role) => {
-      badges.push(<Badge key={`role-badge-${role.get('id')}`} label={<span>{role.get('name')}</span>} domain={domain} />);
+      badges.push(<Badge key={`role-badge-${role.get('id')}`} label={<span>{role.get('name')}</span>} domain={domain} roleId={role.get('id')} />);
     });
 
     return (
