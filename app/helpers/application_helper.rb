@@ -114,8 +114,18 @@ module ApplicationHelper
   end
 
   def material_symbol(icon, attributes = {})
+    return awesome_icon(icon.tr('_', '-'), attributes) if current_flavour == 'polyam'
+
     inline_svg_tag(
       "400-24px/#{icon}.svg",
+      class: %w(icon).concat(attributes[:class].to_s.split),
+      role: :img
+    )
+  end
+
+  def awesome_icon(icon, attributes = {})
+    inline_svg_tag(
+      "solid/#{icon}.svg",
       class: %w(icon).concat(attributes[:class].to_s.split),
       role: :img
     )
