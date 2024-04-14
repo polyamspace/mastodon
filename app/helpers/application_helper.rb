@@ -125,7 +125,7 @@ module ApplicationHelper
 
   def awesome_icon(icon, attributes = {})
     inline_svg_tag(
-      "solid/#{icon}.svg",
+      "#{attributes[:variant] || 'solid'}/#{icon}.svg",
       class: %w(icon).concat(attributes[:class].to_s.split),
       role: :img
     )
