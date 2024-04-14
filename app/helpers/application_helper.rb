@@ -132,6 +132,8 @@ module ApplicationHelper
   end
 
   def material_to_awesome(icon)
+    icon = icon.tr('-fill', '')
+
     case icon
     when 'visibility'
       'eye'
@@ -140,7 +142,7 @@ module ApplicationHelper
     when 'close'
       'xmark'
     else
-      icon.tr('_', '-').tr('-fill', '')
+      icon.tr('_', '-')
     end
   end
 
