@@ -28,6 +28,8 @@ class CustomFilter < ApplicationRecord
     account
   ).freeze
 
+  INSTANCE_FILTER_ID = -99
+
   include Expireable
   include Redisable
 
@@ -63,9 +65,9 @@ class CustomFilter < ApplicationRecord
   end
 
   def self.instance_filter
-    CustomFilter.find(-99)
+    CustomFilter.find(INSTANCE_FILTER_ID)
   rescue ActiveRecord::RecordNotFound
-    CustomFilter.create!(id: -99, account_id: Account.representative.id, context: VALID_CONTEXTS, phrase: 'Hidden by moderators')
+    CustomFilter.create!(id: INSTANCE_FILTER_ID, account_id: Account.representative.id, context: VALID_CONTEXTS, phrase: 'Hidden by moderators')
   end
 
   def self.cached_filters_for(account_id)
