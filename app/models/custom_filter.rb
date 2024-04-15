@@ -81,7 +81,7 @@ class CustomFilter < ApplicationRecord
         filters_hash[filter.id] = { keywords: Regexp.union(keywords), filter: filter }
       end.to_h
 
-      with_instance_filter = [account_id, CustomFilter.instance_filter.account_id]
+      with_instance_filter = [account_id, Account::INSTANCE_ACTOR_ID]
       scope = CustomFilterStatus.includes(:custom_filter).where(custom_filter: { account_id: with_instance_filter }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()'))
       scope.to_a.group_by(&:custom_filter).each do |filter, statuses|
         filters_hash[filter.id] ||= { filter: filter }

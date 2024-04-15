@@ -10,7 +10,7 @@ class REST::FilterSerializer < ActiveModel::Serializer
   end
 
   def title
-    object.id == CustomFilter.instance_filter.id ? I18n.t('filters.instance_filter.title') : object.title
+    object.id == CustomFilter::INSTANCE_FILTER_ID ? I18n.t('filters.instance_filter.title') : object.title
   end
 
   def rules_requested?
