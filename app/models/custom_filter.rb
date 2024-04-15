@@ -28,6 +28,8 @@ class CustomFilter < ApplicationRecord
     account
   ).freeze
 
+  INSTANCE_FILTER_ID = -99
+
   include Expireable
   include Redisable
 
@@ -63,9 +65,9 @@ class CustomFilter < ApplicationRecord
   end
 
   def self.instance_filter
-    CustomFilter.find(-99)
+    CustomFilter.find(INSTANCE_FILTER_ID)
   rescue ActiveRecord::RecordNotFound
-    CustomFilter.create!(id: -99, account_id: Account.representative.id, context: VALID_CONTEXTS, phrase: 'Hidden by moderators')
+    CustomFilter.create!(id: INSTANCE_FILTER_ID, account_id: Account::INSTANCE_ACTOR_ID, context: VALID_CONTEXTS, phrase: 'Hidden by moderators')
   end
 
   def self.cached_filters_for(account_id)
@@ -79,7 +81,7 @@ class CustomFilter < ApplicationRecord
         filters_hash[filter.id] = { keywords: Regexp.union(keywords), filter: filter }
       end.to_h
 
-      with_instance_filter = [account_id, CustomFilter.instance_filter.account_id]
+      with_instance_filter = [account_id, Account::INSTANCE_ACTOR_ID]
       scope = CustomFilterStatus.includes(:custom_filter).where(custom_filter: { account_id: with_instance_filter }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()'))
       scope.to_a.group_by(&:custom_filter).each do |filter, statuses|
         filters_hash[filter.id] ||= { filter: filter }

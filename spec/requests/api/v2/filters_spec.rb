@@ -32,7 +32,7 @@ RSpec.describe 'Filters' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json.pluck(:id)).to match_array(filters.map { |filter| filter.id.to_s }.push(CustomFilter.instance_filter.id.to_s))
+      expect(body_as_json.pluck(:id)).to match_array(filters.map { |filter| filter.id.to_s })
     end
   end
 
