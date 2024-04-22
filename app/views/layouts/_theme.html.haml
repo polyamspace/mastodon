@@ -4,7 +4,7 @@
     - pack_path = theme[:flavour] ? "flavours/#{theme[:flavour]}/#{theme[:pack]}" : "core/#{theme[:pack]}"
     = javascript_pack_tag pack_path, crossorigin: 'anonymous'
     - if theme[:skin]
-      - if !theme[:flavour] || theme[:skin] == 'default'
+      - if !theme[:flavour] || theme[:skin] == 'system'
         = stylesheet_pack_tag pack_path, media: 'all', crossorigin: 'anonymous'
       - else
         = stylesheet_pack_tag "skins/#{theme[:flavour]}/#{theme[:skin]}/#{theme[:pack]}", media: 'all', crossorigin: 'anonymous'

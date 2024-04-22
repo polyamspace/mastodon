@@ -45,7 +45,7 @@ skinFiles.forEach((skinFile) => {
   let skin = basename(skinFile);
   const name = basename(dirname(skinFile));
   // Skip skin if disabled
-  if (disabled_skins && skin !== 'default' && disabled_skins.includes(skin)) {
+  if (disabled_skins && skin !== 'system' && disabled_skins.includes(skin)) {
     return;
   }
   if (!flavours[name]) {
