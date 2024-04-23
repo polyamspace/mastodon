@@ -6,6 +6,9 @@
     - if theme[:skin]
       - if !theme[:flavour] || theme[:skin] == 'default'
         = stylesheet_pack_tag pack_path, media: 'all', crossorigin: 'anonymous'
+      - elsif theme[:skin] == 'system'
+        = stylesheet_pack_tag "skins/#{theme[:flavour]}/mastodon-light/#{theme[:pack]}", media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous'
+        = stylesheet_pack_tag pack_path, media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous'
       - else
         = stylesheet_pack_tag "skins/#{theme[:flavour]}/#{theme[:skin]}/#{theme[:pack]}", media: 'all', crossorigin: 'anonymous'
     - theme[:preload]&.each do |link|

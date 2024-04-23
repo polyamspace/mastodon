@@ -53,10 +53,14 @@ module ThemingConcern
     pack_data[:preload] = [preloads] if preloads.is_a?(String)
     pack_data[:preload] = preloads if preloads.is_a?(Array)
 
-    if skin != 'default' && data['skin'][skin]
+    if skin != 'default' && skin != 'system' && data['skin'][skin]
       pack_data[:skin] = skin if data['skin'][skin].include?(pack_name)
     elsif data['pack'][pack_name]['stylesheet']
-      pack_data[:skin] = 'default'
+      pack_data[:skin] = if skin == 'default'
+                           'default'
+                         else
+                           'system'
+                         end
     end
 
     pack_data
@@ -83,6 +87,7 @@ module ThemingConcern
 
   def resolve_pack_with_common(data, pack_name, skin = 'default')
     result = resolve_pack(data, pack_name, skin) || nil_pack(data)
+    Rails.logger.info("result: #{result}")
     result[:common] = resolve_pack(data, 'common', skin) if result.delete(:use_common)
     result
   end
