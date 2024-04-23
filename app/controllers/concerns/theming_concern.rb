@@ -53,10 +53,10 @@ module ThemingConcern
     pack_data[:preload] = [preloads] if preloads.is_a?(String)
     pack_data[:preload] = preloads if preloads.is_a?(Array)
 
-    if skin != 'default' && data['skin'][skin]
+    if skin != 'default' && skin != 'system' && data['skin'][skin]
       pack_data[:skin] = skin if data['skin'][skin].include?(pack_name)
     elsif data['pack'][pack_name]['stylesheet']
-      pack_data[:skin] = 'default'
+      pack_data[:skin] = skin == 'default' ? 'default' : 'system'
     end
 
     pack_data

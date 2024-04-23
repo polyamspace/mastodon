@@ -167,11 +167,11 @@ module ApplicationHelper
   end
 
   def theme_style_tags(theme)
-    if theme == 'system'
-      concat stylesheet_pack_tag('mastodon-light', media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
-      concat stylesheet_pack_tag('default', media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
+    if theme[:skin] == 'system'
+      concat stylesheet_pack_tag "skins/#{theme[:flavour]}/mastodon-light/#{theme[:pack]}", media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous'
+      concat stylesheet_pack_tag "flavours/#{theme[:flavour]}/#{theme[:pack]}", media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous'
     else
-      stylesheet_pack_tag theme, media: 'all', crossorigin: 'anonymous'
+      stylesheet_pack_tag "skins/#{theme[:flavour]}/#{theme[:skin]}/#{theme[:pack]}", media: 'all', crossorigin: 'anonymous'
     end
   end
 

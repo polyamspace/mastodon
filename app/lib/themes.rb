@@ -43,7 +43,7 @@ class Themes
       data['name'] = name
       data['locales'] = locales
       data['screenshot'] = screenshots
-      data['skin'] = { 'default' => [] }
+      data['skin'] = { 'system' => [], 'default' => [] }
       result[name] = data
     end
 
@@ -53,7 +53,7 @@ class Themes
       name = pathname.dirname.basename.to_s
       next unless result[name]
 
-      next if skin != 'default' && DISABLED_THEMES.include?(skin)
+      next if skin != 'default' && skin != 'system' && DISABLED_THEMES.include?(skin)
 
       if pathname.directory?
         pack = []
@@ -65,7 +65,7 @@ class Themes
         pack = ['common']
       end
 
-      result[name]['skin'][skin] = pack if !pack.empty? && skin != 'default'
+      result[name]['skin'][skin] = pack if !pack.empty? && skin != 'default' && skin != 'system'
     end
 
     @core = core
