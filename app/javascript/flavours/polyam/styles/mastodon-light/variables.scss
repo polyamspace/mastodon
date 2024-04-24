@@ -56,7 +56,8 @@ $account-background-color: $white !default;
 
 $emojis-requiring-inversion: 'chains';
 
-.theme-mastodon-light {
+.skin-mastodon-light,
+.skin-system {
   --dropdown-border-color: #d9e1e8;
   --dropdown-background-color: #fff;
   --background-border-color: #d9e1e8;
