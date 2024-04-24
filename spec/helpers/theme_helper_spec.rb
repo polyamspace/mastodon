@@ -7,7 +7,7 @@ describe ThemeHelper do
     let(:result) { helper.theme_style_tags(theme) }
 
     context 'when using system theme' do
-      let(:theme) { 'system' }
+      let(:theme) { { flavour: 'polyam', skin: 'system', pack: 'common' } }
 
       it 'returns the mastodon-light and default stylesheets with correct color schemes' do
         expect(html_links.first.attributes.symbolize_keys)
@@ -17,14 +17,14 @@ describe ThemeHelper do
           )
         expect(html_links.last.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/default/)),
+            href: have_attributes(value: match(/common/)),
             media: have_attributes(value: '(prefers-color-scheme: dark)')
           )
       end
     end
 
     context 'when using other theme' do
-      let(:theme) { 'contrast' }
+      let(:theme) { { flavour: 'polyam', skin: 'contrast', pack: 'common' } }
 
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_links.first.attributes.symbolize_keys)
@@ -40,7 +40,7 @@ describe ThemeHelper do
     let(:result) { helper.theme_color_tags(theme) }
 
     context 'when using system theme' do
-      let(:theme) { 'system' }
+      let(:theme) { { skin: 'system' } }
 
       it 'returns the mastodon-light and default stylesheets with correct color schemes' do
         expect(html_theme_colors.first.attributes.symbolize_keys)
@@ -57,7 +57,7 @@ describe ThemeHelper do
     end
 
     context 'when using mastodon-light theme' do
-      let(:theme) { 'mastodon-light' }
+      let(:theme) { { skin: 'mastodon-light' } }
 
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_theme_colors.first.attributes.symbolize_keys)
@@ -68,7 +68,7 @@ describe ThemeHelper do
     end
 
     context 'when using other theme' do
-      let(:theme) { 'contrast' }
+      let(:theme) { { skin: 'contrast' } }
 
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_theme_colors.first.attributes.symbolize_keys)
