@@ -10,9 +10,10 @@ $content-width: 840px;
   width: 100%;
   min-height: 100vh;
 
+  // Polyam: smaller icon size compared to upstream
   .icon {
-    width: 16px;
-    height: 16px;
+    width: 13px;
+    height: 13px;
     vertical-align: middle;
     margin: 0 2px;
   }
