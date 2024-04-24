@@ -170,8 +170,11 @@ module ApplicationHelper
     if theme[:skin] == 'system'
       concat stylesheet_pack_tag "skins/#{theme[:flavour]}/mastodon-light/#{theme[:pack]}", media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous'
       concat stylesheet_pack_tag "flavours/#{theme[:flavour]}/#{theme[:pack]}", media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous'
+      concat tag.meta name: 'theme-color', content: Themes::MASTODON_DARK_THEME_COLOR, media: '(prefers-color-scheme: dark)'
+      concat tag.meta name: 'theme-color', content: Themes::MASTODON_LIGHT_THEME_COLOR, media: '(prefers-color-scheme: light)'
     else
-      stylesheet_pack_tag "skins/#{theme[:flavour]}/#{theme[:skin]}/#{theme[:pack]}", media: 'all', crossorigin: 'anonymous'
+      concat stylesheet_pack_tag "skins/#{theme[:flavour]}/#{theme[:skin]}/#{theme[:pack]}", media: 'all', crossorigin: 'anonymous'
+      concat tag.meta name: 'theme-color', content: theme == 'mastodon-light' ? Themes::MASTODON_LIGHT_THEME_COLOR : Themes::MASTODON_DARK_THEME_COLOR
     end
   end
 

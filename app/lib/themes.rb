@@ -8,6 +8,9 @@ class Themes
 
   DISABLED_THEMES = ENV.fetch('DISABLED_SKINS', '').split(/\s*,\s*/)
 
+  MASTODON_DARK_THEME_COLOR = '#191b22'
+  MASTODON_LIGHT_THEME_COLOR = '#f3f5f7'
+
   def initialize
     core = YAML.load_file(Rails.root.join('app', 'javascript', 'core', 'theme.yml'))
     core['pack'] = {} unless core['pack']
