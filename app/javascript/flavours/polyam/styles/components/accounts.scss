@@ -270,34 +270,28 @@ a .account__avatar {
   white-space: nowrap;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 
-  // Polyam: Fixes size of follow/unfollow button in notifications and user lists
-  .icon {
-    width: 23px;
-    height: 23px;
-  }
-
-  // Polyam: Make buttons more visible
   .icon-button {
-    border: 1px solid $action-button-color;
+    border: 1px solid var(--background-border-color);
+    border-radius: 4px;
+    box-sizing: content-box;
     padding: 5px;
 
-    &:hover,
-    &:active,
-    &:focus {
-      border-color: lighten($action-button-color, 7%);
-    }
-
+    // Polyam: Color active icon-button
     &.active {
       border-color: $highlight-text-color;
 
-      // Polyam: Change background on hover
       &:hover,
       &:focus,
       &:active {
         background-color: rgba($highlight-text-color, 0.15);
       }
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
     }
   }
 }
