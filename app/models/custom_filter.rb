@@ -44,6 +44,7 @@ class CustomFilter < ApplicationRecord
   validate :context_must_be_valid
 
   normalizes :context, with: ->(context) { context.map(&:strip).filter_map(&:presence) }
+  scope :unexpired, -> { where(expires_at: nil).or where.not(expires_at: ..Time.zone.now) }
 
   before_save :prepare_cache_invalidation!
   before_destroy :prepare_cache_invalidation!
@@ -74,7 +75,8 @@ class CustomFilter < ApplicationRecord
     active_filters = Rails.cache.fetch("filters:v3:#{account_id}") do
       filters_hash = {}
 
-      scope = CustomFilterKeyword.includes(:custom_filter).where(custom_filter: { account_id: account_id }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()'))
+      scope = CustomFilterKeyword.left_outer_joins(:custom_filter).merge(unexpired.where(account_id: account_id))
+
       scope.to_a.group_by(&:custom_filter).each do |filter, keywords|
         keywords.map!(&:to_regex)
 
@@ -82,7 +84,8 @@ class CustomFilter < ApplicationRecord
       end.to_h
 
       with_instance_filter = [account_id, Account::INSTANCE_ACTOR_ID]
-      scope = CustomFilterStatus.includes(:custom_filter).where(custom_filter: { account_id: with_instance_filter }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()'))
+      scope = CustomFilterStatus.left_outer_joins(:custom_filter).merge(unexpired.where(account_id: with_instance_filter))
+
       scope.to_a.group_by(&:custom_filter).each do |filter, statuses|
         filters_hash[filter.id] ||= { filter: filter }
         filters_hash[filter.id].merge!(status_ids: statuses.map(&:status_id))
