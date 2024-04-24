@@ -35,7 +35,7 @@ window.addEventListener('message', (e) => {
       },
       '*',
     );
-  }).catch((e) => {
+  }).catch((e: unknown) => {
     console.error('Error in setHeightMessage postMessage', e);
   });
 });

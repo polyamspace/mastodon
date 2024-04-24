@@ -335,6 +335,6 @@ ready(() => {
   if (announcementStartsAt) {
     setAnnouncementEndsAttributes(announcementStartsAt);
   }
-}).catch((reason) => {
+}).catch((reason: unknown) => {
   throw reason;
 });
