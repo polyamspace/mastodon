@@ -2,6 +2,7 @@
 
 module ThemeHelper
   def theme_style_tags(theme)
+    Rails.logger.warn(theme)
     if theme[:skin] == 'system'
       concat stylesheet_pack_tag("skins/#{theme[:flavour]}/mastodon-light/#{theme[:pack]}", media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
       concat stylesheet_pack_tag("flavours/#{theme[:flavour]}/#{theme[:pack]}", media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
@@ -22,6 +23,6 @@ module ThemeHelper
   private
 
   def theme_color_for(theme)
-    theme == 'mastodon-light' ? Themes::THEME_COLORS[:light] : Themes::THEME_COLORS[:dark]
+    theme[:skin] == 'mastodon-light' ? Themes::THEME_COLORS[:light] : Themes::THEME_COLORS[:dark]
   end
 end
