@@ -4,10 +4,9 @@ import EnvelopeIcon from '@/awesome-icons/solid/envelope.svg?react';
 import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import LockIcon from '@/awesome-icons/solid/lock.svg?react';
 import UnlistedIcon from '@/awesome-icons/solid/unlock.svg?react';
+import type { StatusVisibility } from 'flavours/polyam/models/status';
 
 import { Icon } from './icon';
-
-type Visibility = 'public' | 'unlisted' | 'private' | 'direct';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
@@ -25,7 +24,7 @@ const messages = defineMessages({
   },
 });
 
-export const VisibilityIcon: React.FC<{ visibility: Visibility }> = ({
+export const VisibilityIcon: React.FC<{ visibility: StatusVisibility }> = ({
   visibility,
 }) => {
   const intl = useIntl();

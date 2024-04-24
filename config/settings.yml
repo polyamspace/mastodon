@@ -19,7 +19,7 @@ defaults: &defaults
   noindex: false
   norss: false
   flavour: 'polyam'
-  skin: 'default'
+  skin: 'system'
   trends: true
   trends_as_landing_page: false
   trendable_by_default: false

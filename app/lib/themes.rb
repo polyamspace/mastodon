@@ -8,6 +8,9 @@ class Themes
 
   DISABLED_THEMES = ENV.fetch('DISABLED_SKINS', '').split(/\s*,\s*/)
 
+  MASTODON_DARK_THEME_COLOR = '#191b22'
+  MASTODON_LIGHT_THEME_COLOR = '#f3f5f7'
+
   def initialize
     core = YAML.load_file(Rails.root.join('app', 'javascript', 'core', 'theme.yml'))
     core['pack'] = {} unless core['pack']
@@ -43,7 +46,7 @@ class Themes
       data['name'] = name
       data['locales'] = locales
       data['screenshot'] = screenshots
-      data['skin'] = { 'default' => [] }
+      data['skin'] = { 'system' => [], 'default' => [] }
       result[name] = data
     end
 
@@ -53,7 +56,7 @@ class Themes
       name = pathname.dirname.basename.to_s
       next unless result[name]
 
-      next if skin != 'default' && DISABLED_THEMES.include?(skin)
+      next if skin != 'default' && skin != 'system' && DISABLED_THEMES.include?(skin)
 
       if pathname.directory?
         pack = []
@@ -65,7 +68,7 @@ class Themes
         pack = ['common']
       end
 
-      result[name]['skin'][skin] = pack if !pack.empty? && skin != 'default'
+      result[name]['skin'][skin] = pack if !pack.empty? && skin != 'default' && skin != 'system'
     end
 
     @core = core

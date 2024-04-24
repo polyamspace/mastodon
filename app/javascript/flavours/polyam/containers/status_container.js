@@ -3,7 +3,6 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { initBlockModal } from 'flavours/polyam/actions/blocks';
-import { initBoostModal } from 'flavours/polyam/actions/boosts';
 import {
   replyCompose,
   mentionCompose,
@@ -128,11 +127,11 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     dispatch((_, getState) => {
       let state = getState();
       if (state.getIn(['local_settings', 'confirm_boost_missing_media_description']) && status.get('media_attachments').some(item => !item.get('description')) && !status.get('reblogged')) {
-        dispatch(initBoostModal({ status, onReblog: this.onModalReblog, missingMediaDescription: true }));
+        dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.onModalReblog, missingMediaDescription: true } } ));
       } else if (e.shiftKey || !boostModal) {
         this.onModalReblog(status);
       } else {
-        dispatch(initBoostModal({ status, onReblog: this.onModalReblog }));
+        dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.onModalReblog } }));
       }
     });
   },
