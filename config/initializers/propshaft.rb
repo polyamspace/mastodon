@@ -5,3 +5,6 @@ Rails.application.config.assets.paths << Rails.root.join('app', 'javascript', 'i
 
 # Material Design icons
 Rails.application.config.assets.paths << Rails.root.join('app', 'javascript', 'material-icons')
+
+# Font Awesome icons
+Rails.application.config.assets.paths << Rails.root.join('app', 'javascript', 'awesome-icons')
