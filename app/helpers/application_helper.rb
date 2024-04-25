@@ -132,7 +132,7 @@ module ApplicationHelper
   end
 
   def material_to_awesome(icon)
-    icon = icon.chomp('fill')
+    icon = icon.chomp('-fill')
 
     case icon
     when 'add'
