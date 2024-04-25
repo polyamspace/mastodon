@@ -13,6 +13,8 @@ export type StatusVisibility =
   // | 'limited' // This is never exposed to the API (they become `private`)
   | 'direct';
 
+export type StatusContentType = 'text/plain' | 'text/markdown' | 'text/html';
+
 export interface ApiStatusApplicationJSON {
   name: string;
   website: string;
@@ -87,7 +89,7 @@ export interface ApiStatusJSON {
   filtered: unknown; // TODO
   content?: string;
   text?: string;
-  content_type?: string;
+  content_type?: StatusContentType;
 
   reblog?: ApiStatusJSON;
   application?: ApiStatusApplicationJSON;
