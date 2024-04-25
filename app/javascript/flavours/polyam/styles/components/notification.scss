@@ -53,7 +53,8 @@
   }
 }
 
-.notification__relationships-severance-event {
+.notification__relationships-severance-event,
+.notification__moderation-warning {
   display: flex;
   gap: 16px;
   color: $secondary-text-color;
