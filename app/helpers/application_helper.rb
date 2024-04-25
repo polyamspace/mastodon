@@ -143,6 +143,8 @@ module ApplicationHelper
       'xmark'
     when 'group'
       'users'
+    when 'info'
+      'circle-info'
     when 'person'
       'user'
     when 'tag'
@@ -151,6 +153,8 @@ module ApplicationHelper
       'eye'
     when 'visibility_off'
       'eye-slash'
+    when 'warning'
+      'triangle-exclamation'
     else
       icon.tr('_', '-')
     end
