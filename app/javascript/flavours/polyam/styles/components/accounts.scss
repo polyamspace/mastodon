@@ -271,29 +271,11 @@ a .account__avatar {
   display: flex;
   align-items: center;
   gap: 8px;
+}
 
-  .icon-button {
-    border: 1px solid var(--background-border-color);
-    border-radius: 4px;
-    box-sizing: content-box;
-    padding: 5px;
-
-    // Polyam: Color active icon-button
-    &.active {
-      border-color: $highlight-text-color;
-
-      &:hover,
-      &:focus,
-      &:active {
-        background-color: rgba($highlight-text-color, 0.15);
-      }
-    }
-
-    .icon {
-      width: 24px;
-      height: 24px;
-    }
-  }
+// Polyam: Split from .explore__suggestions__card
+.account__relationship {
+  @include follow-unfollow-icons;
 }
 
 .account-authorize {
