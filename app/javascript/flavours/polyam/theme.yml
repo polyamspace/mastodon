@@ -10,8 +10,8 @@ pack:
     filename: common.js
     stylesheet: true
   error: error.js
-  home:
-    filename: home.js
+  application:
+    filename: application.js
     preload:
       - flavours/polyam/async/compose
       - flavours/polyam/async/home_timeline
