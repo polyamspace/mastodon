@@ -10,6 +10,7 @@ import Rails from '@rails/ujs';
 import axios from 'axios';
 import { throttle } from 'lodash';
 
+import { start } from 'flavours/polyam/common';
 import { timeAgoString } from 'flavours/polyam/components/relative_timestamp';
 import emojify from 'flavours/polyam/features/emoji/emoji';
 import loadKeyboardExtensions from 'flavours/polyam/load_keyboard_extensions';
@@ -18,6 +19,8 @@ import { loadPolyfills } from 'flavours/polyam/polyfills';
 import ready from 'flavours/polyam/ready';
 
 import 'cocoon-js-vanilla';
+
+start();
 
 const messages = defineMessages({
   usernameTaken: {
