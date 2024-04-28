@@ -5,4 +5,4 @@ import 'packs/public-path';
 import 'font-awesome/css/font-awesome.css';
 
 // This is a hack to ensures that webpack compiles our images.
-require.context('../images', true);
+require.context('../images', true, /\.(jpg|png|svg)$/);
