@@ -19,7 +19,7 @@
       </o:OfficeDocumentSettings>
       </xml>
     -# Polyam: current_flavour is unavailable in this context
-    = stylesheet_pack_tag "flavours/#{Setting.default_settings['flavour']}/mailer"
+    = stylesheet_pack_tag "flavours/#{Setting.default_settings['flavour'] || 'glitch'}/mailer"
   %body
     .email{ dir: locale_direction }
       %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
