@@ -6,7 +6,7 @@ require 'yaml'
 class Themes
   include Singleton
 
-  DISABLED_THEMES = ENV.fetch('DISABLED_SKINS', '').split(/\s*,\s*/)
+  DISABLED_THEMES = ENV.fetch('DISABLED_SKINS', '').split(/\s*,\s*/).delete_if { |s| %w(system default mastodon-light).include?(s) }
 
   THEME_COLORS = {
     dark: '#191b22',
@@ -58,7 +58,7 @@ class Themes
       name = pathname.dirname.basename.to_s
       next unless result[name]
 
-      next if skin != 'default' && skin != 'system' && DISABLED_THEMES.include?(skin)
+      next if DISABLED_THEMES.include?(skin)
 
       if pathname.directory?
         pack = []

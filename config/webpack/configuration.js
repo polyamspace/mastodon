@@ -13,7 +13,7 @@ const flavourFiles = glob.sync('app/javascript/flavours/*/theme.yml');
 const skinFiles = glob.sync('app/javascript/skins/*/*');
 const flavours = {};
 
-const disabled_skins = (env.DISABLED_SKINS || '').split(/\s*,\s*/);
+const disabled_skins = (env.DISABLED_SKINS || '').split(/\s*,\s*/).filter(s => !['default', 'mastodon-light'].includes(s));
 
 const core = function () {
   const coreFile = resolve('app', 'javascript', 'core', 'theme.yml');
@@ -45,7 +45,7 @@ skinFiles.forEach((skinFile) => {
   let skin = basename(skinFile);
   const name = basename(dirname(skinFile));
   // Skip skin if disabled
-  if (disabled_skins && skin !== 'default' && skin !== 'system' && disabled_skins.includes(skin)) {
+  if (disabled_skins.includes(skin)) {
     return;
   }
   if (!flavours[name]) {
