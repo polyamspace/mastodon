@@ -4,10 +4,9 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import GroupsIcon from '@/material-icons/400-24px/group.svg?react';
-import PersonIcon from '@/material-icons/400-24px/person.svg?react';
-import SmartToyIcon from '@/material-icons/400-24px/smart_toy.svg?react';
-
+import SmartToyIcon from '@/awesome-icons/solid/robot.svg?react';
+import GroupsIcon from '@/awesome-icons/solid/user-group.svg?react';
+import PersonIcon from '@/awesome-icons/solid/user.svg?react';
 
 export const Badge = ({ icon, label, domain, className, roleId }) => (
   <div className={classNames('account-role', className)} data-account-role-id={roleId}>
