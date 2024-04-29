@@ -229,9 +229,10 @@
 
   svg {
     width: auto;
-    height: 15px;
+    height: 12px; // Polyam: reduced height
     opacity: 0.85;
     fill: currentColor;
+    padding: 2px; // Polyam: added padding
   }
 
   &__domain {
