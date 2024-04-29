@@ -285,6 +285,12 @@ module.exports = defineConfig({
           from: ['app/javascript/mastodon/', 'app/javascript/flavours/glitch/'],
           except: ['./api_types'],
           message: 'Import from flavours/polyam/ instead'
+        },
+        // Forbid imports from material-icons in polyam flavour
+        {
+          target: 'app/javascript/flavours/polyam/',
+          from: 'app/javascript/material-icons',
+          message: 'Use awesome-icons instead'
         }]
       }
     ],
