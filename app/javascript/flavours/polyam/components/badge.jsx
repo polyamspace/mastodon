@@ -8,7 +8,7 @@ import SmartToyIcon from '@/awesome-icons/solid/robot.svg?react';
 import GroupsIcon from '@/awesome-icons/solid/user-group.svg?react';
 import PersonIcon from '@/awesome-icons/solid/user.svg?react';
 
-export const Badge = ({ icon, label, domain, className, roleId }) => (
+export const Badge = ({ icon = <PersonIcon />, label, domain, className, roleId }) => (
   <div className={classNames('account-role', className)} data-account-role-id={roleId}>
     {icon}
     {label}
@@ -22,10 +22,6 @@ Badge.propTypes = {
   domain: PropTypes.node,
   className: PropTypes.string,
   roleId: PropTypes.string,
-};
-
-Badge.defaultProps = {
-  icon: <PersonIcon />,
 };
 
 export const GroupBadge = () => (
