@@ -27,5 +27,32 @@ describe REST::InstanceSerializer do
           )
         )
     end
+
+    it 'returns the max profile bio length limit' do
+      expect(serialization.deep_symbolize_keys)
+        .to include(
+          configuration: include(
+            accounts: include(max_bio_chars: Account::MAX_NOTE_LENGTH)
+          )
+        )
+    end
+
+    it 'return the max display name length limit' do
+      expect(serialization.deep_symbolize_keys)
+        .to include(
+          configuration: include(
+            accounts: include(max_display_name_chars: Account::MAX_DISPLAY_NAME_LENGTH)
+          )
+        )
+    end
+
+    it 'returns the profile fields limit' do
+      expect(serialization.deep_symbolize_keys)
+        .to include(
+          configuration: include(
+            accounts: include(max_profile_fields: Account::DEFAULT_FIELDS_SIZE)
+          )
+        )
+    end
   end
 end
