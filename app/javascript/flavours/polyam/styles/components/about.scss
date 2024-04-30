@@ -298,4 +298,13 @@
       }
     }
   }
+
+  // Polyam: Instance limits
+  &__server-limits {
+    color: $secondary-text-color;
+
+    strong {
+      font-weight: 500;
+    }
+  }
 }
