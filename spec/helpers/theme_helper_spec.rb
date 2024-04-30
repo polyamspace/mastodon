@@ -4,10 +4,12 @@ require 'rails_helper'
 
 describe ThemeHelper do
   describe 'theme_style_tags' do
+    before { helper.extend controller_helpers }
+
     let(:result) { helper.theme_style_tags(theme) }
 
     context 'when using system theme' do
-      let(:theme) { { flavour: 'polyam', skin: 'system', pack: 'common' } }
+      let(:theme) { 'system' }
 
       it 'returns the mastodon-light and default stylesheets with correct color schemes' do
         expect(html_links.first.attributes.symbolize_keys)
@@ -17,14 +19,14 @@ describe ThemeHelper do
           )
         expect(html_links.last.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/common/)),
+            href: have_attributes(value: match(/default/)),
             media: have_attributes(value: '(prefers-color-scheme: dark)')
           )
       end
     end
 
     context 'when using other theme' do
-      let(:theme) { { flavour: 'polyam', skin: 'contrast', pack: 'common' } }
+      let(:theme) { 'contrast' }
 
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_links.first.attributes.symbolize_keys)
@@ -34,13 +36,21 @@ describe ThemeHelper do
           )
       end
     end
+
+    private
+
+    def controller_helpers
+      Module.new do
+        def current_flavour = 'polyam'
+      end
+    end
   end
 
   describe 'theme_color_tags' do
     let(:result) { helper.theme_color_tags(theme) }
 
     context 'when using system theme' do
-      let(:theme) { { skin: 'system' } }
+      let(:theme) { 'system' }
 
       it 'returns the mastodon-light and default stylesheets with correct color schemes' do
         expect(html_theme_colors.first.attributes.symbolize_keys)
@@ -57,7 +67,7 @@ describe ThemeHelper do
     end
 
     context 'when using mastodon-light theme' do
-      let(:theme) { { skin: 'mastodon-light' } }
+      let(:theme) { 'mastodon-light' }
 
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_theme_colors.first.attributes.symbolize_keys)
@@ -68,7 +78,7 @@ describe ThemeHelper do
     end
 
     context 'when using other theme' do
-      let(:theme) { { skin: 'contrast' } }
+      let(:theme) { 'contrast' }
 
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_theme_colors.first.attributes.symbolize_keys)
