@@ -1,9 +1,12 @@
 import 'packs/public-path';
 import { createRoot } from 'react-dom/client';
 
+import { start } from 'flavours/polyam/common';
 import ComposeContainer from 'flavours/polyam/containers/compose_container';
 import { loadPolyfills } from 'flavours/polyam/polyfills';
 import ready from 'flavours/polyam/ready';
+
+start();
 
 function loaded() {
   const mountNode = document.getElementById('mastodon-compose');

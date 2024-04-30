@@ -7,7 +7,7 @@ describe 'statuses/show.html.haml', :without_verify_partial_doubles do
   let(:status) { Fabricate(:status, account: alice, text: 'Hello World') }
 
   before do
-    allow(view).to receive_messages(api_oembed_url: '', site_title: 'example site', site_hostname: 'example.com', full_asset_url: '//asset.host/image.svg', current_account: nil, single_user_mode?: false)
+    allow(view).to receive_messages(api_oembed_url: '', site_title: 'example site', site_hostname: 'example.com', full_asset_url: '//asset.host/image.svg', current_flavour: 'glitch', current_account: nil, single_user_mode?: false)
     allow(view).to receive(:local_time)
     allow(view).to receive(:local_time_ago)
     assign(:instance_presenter, InstancePresenter.new)
