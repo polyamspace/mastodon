@@ -75,7 +75,7 @@ class Themes
   end
 
   def skins_for(name)
-    @flavours[name]['skins']
+    ['system'] + @flavours[name]['skins']
   end
 
   def flavours_and_skins
