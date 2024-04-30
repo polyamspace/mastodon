@@ -29,6 +29,8 @@ const nullIfMissing = path => path.endsWith('missing.png') ? null : path;
 
 export const Profile = () => {
   const account = useAppSelector(state => state.getIn(['accounts', me]));
+  const maxBioChars = useAppSelector(state => state.getIn(['server', 'server', 'configuration', 'accounts', 'max_bio_chars'], 500));
+  const maxDisplayNameChars= useAppSelector(state => state.getIn(['server', 'server', 'configuration', 'accounts', 'max_display_name_chars'], 30));
   const [displayName, setDisplayName] = useState(account.get('display_name'));
   const [note, setNote] = useState(unescapeHTML(account.get('note')));
   const [avatar, setAvatar] = useState(null);
@@ -126,7 +128,7 @@ export const Profile = () => {
             <label htmlFor='display_name'><FormattedMessage id='onboarding.profile.display_name' defaultMessage='Display name' /></label>
             <span className='hint'><FormattedMessage id='onboarding.profile.display_name_hint' defaultMessage='Your full name or your fun name…' /></span>
             <div className='label_input'>
-              <input id='display_name' type='text' value={displayName} onChange={handleDisplayNameChange} maxLength={30} />
+              <input id='display_name' type='text' value={displayName} onChange={handleDisplayNameChange} maxLength={maxDisplayNameChars} />
             </div>
           </div>
 
@@ -134,7 +136,7 @@ export const Profile = () => {
             <label htmlFor='note'><FormattedMessage id='onboarding.profile.note' defaultMessage='Bio' /></label>
             <span className='hint'><FormattedMessage id='onboarding.profile.note_hint' defaultMessage='You can @mention other people or #hashtags…' /></span>
             <div className='label_input'>
-              <textarea id='note' value={note} onChange={handleNoteChange} maxLength={500} />
+              <textarea id='note' value={note} onChange={handleNoteChange} maxLength={maxBioChars} />
             </div>
           </div>
 
