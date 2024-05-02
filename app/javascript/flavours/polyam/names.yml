@@ -6,3 +6,4 @@ en:
   skins:
     polyam:
       default: Default
+      system: Automatic (use system theme)
