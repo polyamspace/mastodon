@@ -46,7 +46,7 @@ class FollowRequest extends ImmutablePureComponent {
       <div className='account account--minimal'>
         <div className='account__wrapper'>
           <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
-            <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
+            <div className='account__avatar-wrapper'><Avatar account={account} size={46} /></div>
             <DisplayName account={account} />
           </Permalink>
 
