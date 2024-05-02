@@ -25,14 +25,14 @@ export const ServerLimits = () => {
       <p>
         <FormattedMessage
           id='about.limits.max_toot_length'
-          defaultMessage='Max toot length:'
+          defaultMessage='Toot character limit:'
         />{' '}
         <strong>{maxChars}</strong>
       </p>
       <p>
         <FormattedMessage
           id='about.limits.max_reactions'
-          defaultMessage='Max reactions:'
+          defaultMessage='Reaction limit:'
         />{' '}
         <strong>{maxReactions}</strong>
       </p>
@@ -46,14 +46,14 @@ export const ServerLimits = () => {
       <p>
         <FormattedMessage
           id='about.limits.max_bio_length'
-          defaultMessage='Max profile bio length:'
+          defaultMessage='Profile bio character limit:'
         />{' '}
         <strong>{maxBioChars}</strong>
       </p>
       <p>
         <FormattedMessage
           id='about.limits.max_display_name_length'
-          defaultMessage='Max display name length:'
+          defaultMessage='Display name character limit:'
         />{' '}
         <strong>{maxDisplayNameChars}</strong>
       </p>
@@ -74,21 +74,21 @@ export const ServerLimits = () => {
       <p>
         <FormattedMessage
           id='about.limits.max_poll_option_length'
-          defaultMessage='Max poll option length:'
+          defaultMessage='Poll option character limit:'
         />{' '}
         <strong>{maxPollOptionLength}</strong>
       </p>
       <p>
         <FormattedMessage
           id='about.limits.max_image_size'
-          defaultMessage='Max image size:'
+          defaultMessage='Image size limit:'
         />{' '}
         <strong>{mediaLimitString(maxImageSize)}</strong>
       </p>
       <p>
         <FormattedMessage
           id='about.limits.max_video_size'
-          defaultMessage='Max video size:'
+          defaultMessage='Video size limit:'
         />{' '}
         <strong>{mediaLimitString(maxVideoSize)}</strong>
       </p>
