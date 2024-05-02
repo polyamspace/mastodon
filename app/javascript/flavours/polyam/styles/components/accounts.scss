@@ -277,6 +277,29 @@ a .account__avatar {
     width: 23px;
     height: 23px;
   }
+
+  // Polyam: Make buttons more visible
+  .icon-button {
+    border: 1px solid $action-button-color;
+    padding: 5px;
+
+    &:hover,
+    &:active,
+    &:focus {
+      border-color: lighten($action-button-color, 7%);
+    }
+
+    &.active {
+      border-color: $highlight-text-color;
+
+      // Polyam: Change background on hover
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: rgba($highlight-text-color, 0.15);
+      }
+    }
+  }
 }
 
 .account-authorize {
