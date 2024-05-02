@@ -9,7 +9,7 @@ describe ThemeHelper do
     let(:result) { helper.theme_style_tags(theme) }
 
     context 'when using system theme' do
-      let(:theme) { 'system' }
+      let(:theme) { ['glitch', 'system'] }
 
       it 'returns the mastodon-light and default stylesheets with correct color schemes' do
         expect(html_links.first.attributes.symbolize_keys)
@@ -26,7 +26,7 @@ describe ThemeHelper do
     end
 
     context 'when using other theme' do
-      let(:theme) { 'contrast' }
+      let(:theme) { ['glitch', 'contrast'] }
 
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_links.first.attributes.symbolize_keys)
@@ -50,7 +50,7 @@ describe ThemeHelper do
     let(:result) { helper.theme_color_tags(theme) }
 
     context 'when using system theme' do
-      let(:theme) { 'system' }
+      let(:theme) { ['glitch', 'system'] }
 
       it 'returns the mastodon-light and default stylesheets with correct color schemes' do
         expect(html_theme_colors.first.attributes.symbolize_keys)
@@ -67,7 +67,7 @@ describe ThemeHelper do
     end
 
     context 'when using mastodon-light theme' do
-      let(:theme) { 'mastodon-light' }
+      let(:theme) { ['glitch', 'mastodon-light'] }
 
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_theme_colors.first.attributes.symbolize_keys)
@@ -78,7 +78,7 @@ describe ThemeHelper do
     end
 
     context 'when using other theme' do
-      let(:theme) { 'contrast' }
+      let(:theme) { ['glitch', 'contrast'] }
 
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_theme_colors.first.attributes.symbolize_keys)
