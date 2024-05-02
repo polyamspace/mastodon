@@ -22,6 +22,8 @@ import { Skeleton } from 'flavours/polyam/components/skeleton';
 import Account from 'flavours/polyam/containers/account_container';
 import LinkFooter from 'flavours/polyam/features/ui/components/link_footer';
 
+import { ServerLimits } from './components/server_limits';
+
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },
   rules: { id: 'about.rules', defaultMessage: 'Server rules' },
@@ -30,6 +32,7 @@ const messages = defineMessages({
   silencedExplanation: { id: 'about.domain_blocks.silenced.explanation', defaultMessage: 'You will generally not see profiles and content from this server, unless you explicitly look it up or opt into it by following.' },
   suspended: { id: 'about.domain_blocks.suspended.title', defaultMessage: 'Suspended' },
   suspendedExplanation: { id: 'about.domain_blocks.suspended.explanation', defaultMessage: 'No data from this server will be processed, stored or exchanged, making any interaction or communication with users from this server impossible.' },
+  limits: { id: 'about.limits', defaultMessage: 'Server limits' },
 });
 
 const severityMessages = {
@@ -179,6 +182,10 @@ class About extends PureComponent {
             ) : (
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
             ))}
+          </Section>
+
+          <Section title={intl.formatMessage(messages.limits)}>
+            <ServerLimits />
           </Section>
 
           <Section title={intl.formatMessage(messages.rules)}>
