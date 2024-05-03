@@ -32,8 +32,8 @@ No more replacing the default sound file.
 
 ### Additional themes
 
-Polyam-glitch comes with 3 additional themes by default: \
-Fairy Floss, Oatstodon and Homogay.
+Polyam-glitch comes with 2 additional themes by default: \
+Fairy Floss and Homogay.
 
 ### Polyam flavour
 
