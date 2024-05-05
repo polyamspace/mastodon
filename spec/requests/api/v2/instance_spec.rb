@@ -42,8 +42,8 @@ describe 'Instances' do
           accounts: include(
             max_featured_tags: FeaturedTag::LIMIT,
             max_pinned_statuses: StatusPinValidator::PIN_LIMIT,
-            max_bio_chars: Account::MAX_NOTE_LENGTH,
-            max_display_name_chars: Account::MAX_DISPLAY_NAME_LENGTH,
+            max_bio_chars: Account::NOTE_LENGTH_LIMIT,
+            max_display_name_chars: Account::DISPLAY_NAME_LENGTH_LIMIT,
             max_profile_fields: Account::DEFAULT_FIELDS_SIZE
           ),
           statuses: include(

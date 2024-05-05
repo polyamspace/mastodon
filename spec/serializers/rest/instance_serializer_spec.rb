@@ -32,7 +32,7 @@ describe REST::InstanceSerializer do
       expect(serialization.deep_symbolize_keys)
         .to include(
           configuration: include(
-            accounts: include(max_bio_chars: Account::MAX_NOTE_LENGTH)
+            accounts: include(max_bio_chars: Account::NOTE_LENGTH_LIMIT)
           )
         )
     end
@@ -41,7 +41,7 @@ describe REST::InstanceSerializer do
       expect(serialization.deep_symbolize_keys)
         .to include(
           configuration: include(
-            accounts: include(max_display_name_chars: Account::MAX_DISPLAY_NAME_LENGTH)
+            accounts: include(max_display_name_chars: Account::DISPLAY_NAME_LENGTH_LIMIT)
           )
         )
     end
