@@ -48,6 +48,8 @@ class Form::AdminSettings
     status_page_url
     captcha_enabled
     authorized_fetch
+    system_dark
+    system_light
   ).freeze
 
   INTEGER_KEYS = %i(
