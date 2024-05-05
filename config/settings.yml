@@ -20,6 +20,8 @@ defaults: &defaults
   norss: false
   flavour: 'polyam'
   skin: 'system'
+  system_dark: 'default'
+  system_light: 'mastodon-light'
   trends: true
   trends_as_landing_page: false
   trendable_by_default: false

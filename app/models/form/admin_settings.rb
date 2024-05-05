@@ -50,6 +50,8 @@ class Form::AdminSettings
     authorized_fetch
     app_icon
     favicon
+    system_dark
+    system_light
   ).freeze
 
   INTEGER_KEYS = %i(
