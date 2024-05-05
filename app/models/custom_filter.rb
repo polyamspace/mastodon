@@ -29,6 +29,7 @@ class CustomFilter < ApplicationRecord
   ).freeze
 
   INSTANCE_FILTER_ID = -99
+  EXPIRATION_DURATIONS = [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].freeze
 
   include Expireable
   include Redisable
@@ -51,10 +52,9 @@ class CustomFilter < ApplicationRecord
   after_commit :invalidate_cache!
 
   def expires_in
-    return @expires_in if defined?(@expires_in)
     return nil if expires_at.nil?
 
-    [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].find { |expires_in| expires_in.from_now >= expires_at }
+    EXPIRATION_DURATIONS.find { |expires_in| expires_in.from_now >= expires_at }
   end
 
   def irreversible=(value)
