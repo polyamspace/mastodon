@@ -1658,6 +1658,7 @@ $ui-header-logo-wordmark-width: 99px;
     font-weight: 500;
     font-size: 11px;
     line-height: 16px;
+    word-break: keep-all;
 
     &__badge {
       background: $ui-button-background-color;

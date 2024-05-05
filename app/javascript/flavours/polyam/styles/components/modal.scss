@@ -50,7 +50,7 @@
   user-select: text;
   display: flex;
 
-  @media screen and (max-width: $no-gap-breakpoint) {
+  @media screen and (width <= 630px) {
     margin-top: auto;
   }
 }
