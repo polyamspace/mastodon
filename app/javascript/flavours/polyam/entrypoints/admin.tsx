@@ -285,6 +285,49 @@ async function mountReactComponent(element: Element) {
   );
 }
 
+// Polyam: System skin settings
+const onChangeFlavourAndSkin = (target: HTMLSelectElement) => {
+  const darkSelectElement = document.querySelector<HTMLSelectElement>(
+    'select#form_admin_settings_system_dark',
+  );
+
+  const lightSelectElement = document.querySelector<HTMLSelectElement>(
+    'select#form_admin_settings_system_light',
+  );
+
+  const selectedGroup = target.selectedOptions[0]
+    .parentNode as HTMLOptGroupElement;
+
+  const toggleGroup = (e: HTMLSelectElement) => {
+    for (const child of e.children) {
+      if (child instanceof HTMLOptGroupElement) {
+        if (child.label !== selectedGroup.label) {
+          child.disabled = true;
+        } else {
+          child.disabled = false;
+        }
+      }
+    }
+  };
+
+  if (darkSelectElement) {
+    toggleGroup(darkSelectElement);
+  }
+
+  if (lightSelectElement) {
+    toggleGroup(lightSelectElement);
+  }
+};
+
+Rails.delegate(
+  document,
+  '#form_admin_settings_flavour_and_skin',
+  'change',
+  ({ target }) => {
+    if (target instanceof HTMLSelectElement) onChangeFlavourAndSkin(target);
+  },
+);
+
 ready(() => {
   const domainBlockSeveritySelect = document.querySelector<HTMLSelectElement>(
     'select#domain_block_severity',
@@ -363,6 +406,13 @@ ready(() => {
   document.querySelectorAll('[data-admin-component]').forEach((element) => {
     void mountReactComponent(element);
   });
+
+  const flavourAndSkin = document.querySelector<HTMLSelectElement>(
+    'select#form_admin_settings_flavour_and_skin',
+  );
+  if (flavourAndSkin) {
+    onChangeFlavourAndSkin(flavourAndSkin);
+  }
 }).catch((reason: unknown) => {
   throw reason;
 });
