@@ -29,6 +29,7 @@
                 wrapper: :with_label,
                 label: t('admin.settings.system_dark.title'),
                 include_blank: false,
+                selected: system_skins[0],
                 label_method: ->(system_dark) { I18n.t("skins.#{Setting.flavour}.#{system_dark}", default: system_dark) }
 
     .fields-row__column.fields-row__column-6.fields-group
@@ -37,6 +38,7 @@
                 wrapper: :with_label,
                 label: t('admin.settings.system_light.title'),
                 include_blank: false,
+                selected: system_skins[1],
                 label_method: ->(system_light) { I18n.t("skins.#{Setting.flavour}.#{system_light}", default: system_light) }
 
   .fields-group

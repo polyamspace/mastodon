@@ -3,10 +3,11 @@
 module ThemeHelper
   def theme_style_tags(flavour_and_skin)
     flavour, theme = flavour_and_skin
+    dark, light = system_skins
 
     if theme == 'system'
-      stylesheet_pack_tag("skins/#{flavour}/mastodon-light", media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous') +
-        stylesheet_pack_tag("skins/#{flavour}/default", media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
+      stylesheet_pack_tag("skins/#{flavour}/#{light}", media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous') +
+        stylesheet_pack_tag("skins/#{flavour}/#{dark}", media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
     else
       stylesheet_pack_tag "skins/#{flavour}/#{theme}", media: 'all', crossorigin: 'anonymous'
     end
@@ -26,6 +27,7 @@ module ThemeHelper
   private
 
   def theme_color_for(theme)
-    theme == 'mastodon-light' ? Themes::THEME_COLORS[:light] : Themes::THEME_COLORS[:dark]
+    _, light = system_skins
+    theme == light ? Themes::THEME_COLORS[:light] : Themes::THEME_COLORS[:dark]
   end
 end

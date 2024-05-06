@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 describe ThemeHelper do
-  describe 'theme_style_tags' do
-    before { helper.extend controller_helpers }
+  before { helper.extend controller_helpers }
 
+  describe 'theme_style_tags' do
     let(:result) { helper.theme_style_tags(theme) }
 
     context 'when using system theme' do
@@ -34,14 +34,6 @@ describe ThemeHelper do
             href: have_attributes(value: match(/contrast/)),
             media: have_attributes(value: 'all')
           )
-      end
-    end
-
-    private
-
-    def controller_helpers
-      Module.new do
-        def current_flavour = 'polyam'
       end
     end
   end
@@ -97,5 +89,11 @@ describe ThemeHelper do
 
   def html_theme_colors
     Nokogiri::HTML5.fragment(result).css('meta[name=theme-color]')
+  end
+
+  def controller_helpers
+    Module.new do
+      def system_skins = ['default', 'mastodon-light']
+    end
   end
 end
