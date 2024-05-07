@@ -16,9 +16,18 @@ module ThemingConcern
     end
   end
 
+  def system_skins
+    @system_skins ||= begin
+      skins = Themes.instance.skins_for(current_flavour)
+      system_dark = [Setting.system_dark, 'default'].find { |skin| skins.include?(skin) }
+      system_light = [Setting.system_light, 'mastodon-light'].find { |skin| skins.include?(skin) }
+      [system_dark, system_light]
+    end
+  end
+
   def current_theme
     # NOTE: this is slightly different from upstream, as it's a derived value used
     # for the sole purpose of pointing to the appropriate stylesheet pack
-    [current_flavour, current_skin]
+    [current_flavour, current_skin] + system_skins
   end
 end

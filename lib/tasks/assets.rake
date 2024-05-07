@@ -16,6 +16,10 @@ namespace :assets do
         def current_skin
           Setting.default_settings['skin']
         end
+
+        def system_skins
+          [Setting.default_settings['system_dark'], Setting.default_settings['system_light']]
+        end
       end
 
       html = renderer.render(action, opts)
