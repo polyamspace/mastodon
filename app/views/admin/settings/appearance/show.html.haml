@@ -22,6 +22,35 @@
               value_method: ->(value) { value.join('/') },
               group_method: :last
 
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :system_dark,
+                collection: Themes.instance.flavours_and_skins.each { |(_, fsa)| fsa.delete_if { |fs| fs[1] == 'system' } },
+                group_label_method: ->(flavour_and_skin) { I18n.t("flavours.#{flavour_and_skin[0]}.name", default: flavour_and_skin) },
+                wrapper: :with_block_label,
+                label: t('admin.settings.system_dark.title'),
+                hint: t('admin.settings.system_dark.desc_html'),
+                include_blank: false,
+                as: :grouped_select,
+                value_method: ->(value) { value[1] },
+                label_method: ->(flavour_and_skin) { I18n.t("skins.#{flavour_and_skin.join('.')}", default: flavour_and_skin[1]) },
+                group_method: :last,
+                polyam_only: true
+
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :system_light,
+                collection: Themes.instance.flavours_and_skins.each { |(_, fsa)| fsa.delete_if { |fs| fs[1] == 'system' } },
+                group_label_method: ->(flavour_and_skin) { I18n.t("flavours.#{flavour_and_skin[0]}.name", default: flavour_and_skin) },
+                wrapper: :with_block_label,
+                label: t('admin.settings.system_light.title'),
+                hint: t('admin.settings.system_light.desc_html'),
+                include_blank: false,
+                as: :grouped_select,
+                value_method: ->(value) { value[1] },
+                label_method: ->(flavour_and_skin) { I18n.t("skins.#{flavour_and_skin.join('.')}", default: flavour_and_skin[1]) },
+                group_method: :last,
+                polyam_only: true
+
   .fields-group
     = f.input :custom_css,
               as: :text,

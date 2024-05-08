@@ -111,6 +111,15 @@ describe ApplicationController do
     end
   end
 
+  describe 'helper_method :system_skins' do
+    it 'returns ["default", "mastodon-light"] when themes weren\'t changed in admin settings' do
+      allow(Setting).to receive(:default_settings).and_return({ 'system_dark' => 'default' })
+      allow(Setting).to receive(:default_settings).and_return({ 'system_light' => 'mastodon-light' })
+
+      expect(controller.view_context.system_skins).to eq ['default', 'mastodon-light']
+    end
+  end
+
   context 'with ActionController::RoutingError' do
     subject do
       routes.draw { get 'routing_error' => 'anonymous#routing_error' }

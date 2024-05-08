@@ -62,6 +62,12 @@ en:
       discovery:
         rss: RSS
         search: Search
+      system_dark:
+        desc_html: Skin used as dark skin in system skin. Applies to all flavours
+        title: Dark skin
+      system_light:
+        desc_html: Skin used as light skin in system skin. Applies to all flavours
+        title: Light skin
       trending_status_sensitive:
         desc_html: When trending toots are enabled, allow toots with sensitive media to be eligible. Changes to this setting are not retroactive.
         title: Allow toots with sensitive media to trend

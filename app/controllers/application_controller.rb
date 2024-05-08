@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_flavour
   helper_method :current_skin
   helper_method :current_theme
+  helper_method :system_skins
   helper_method :single_user_mode?
   helper_method :use_seamless_external_login?
   helper_method :omniauth_only?

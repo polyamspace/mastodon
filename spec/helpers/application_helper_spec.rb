@@ -24,6 +24,7 @@ describe ApplicationHelper do
 
           def current_flavour = 'glitch'
           def current_skin = 'default'
+          def system_skins = ['default', 'mastodon-light']
         end
       end
     end
