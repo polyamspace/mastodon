@@ -35,5 +35,29 @@ RSpec.describe Settings::FlavoursController do
         expect(user.setting_skin).to eq 'wallpaper'
       end
     end
+
+    describe 'with a user[system_dark] parameter' do
+      before do
+        put :update, params: { flavour: 'schnozzberry', user: { setting_system_dark: 'wallpaper' } }
+
+        user.reload
+      end
+
+      it 'sets the selected system dark skin' do
+        expect(user.setting_system_dark).to eq 'wallpaper'
+      end
+    end
+
+    describe 'with a user[system_light] parameter' do
+      before do
+        put :update, params: { flavour: 'schnozzberry', user: { setting_system_light: 'wallpaper' } }
+
+        user.reload
+      end
+
+      it 'sets the selected system light skin' do
+        expect(user.setting_system_light).to eq 'wallpaper'
+      end
+    end
   end
 end

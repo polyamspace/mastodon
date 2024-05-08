@@ -4,6 +4,8 @@ en:
     hints:
       defaults:
         setting_enable_rss: Mastodon offers an RSS feed of all public toots by default.
+        setting_system_dark: Skin used as dark skin in system skin
+        setting_system_light: Skin used as light skin in system skin
       form_admin_settings:
         publish_button_text: Overrides the text of the publish button.
         search_preview: Logged out visitors will be able to use the search bar.
@@ -15,6 +17,8 @@ en:
         setting_notification_sound: Notification Sound
         setting_polyam_favourite_modal: Show confirmation dialog before favouriting
         setting_polyam_system_emoji_font: Use system's default font for emojis
+        setting_system_dark: Dark skin
+        setting_system_light: Light skin
         setting_visible_reactions: Number of visible emoji reactions
       form_admin_settings:
         publish_button_text: Publish button text

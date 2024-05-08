@@ -118,6 +118,44 @@ describe ApplicationController do
 
       expect(controller.view_context.system_skins).to eq ['default', 'mastodon-light']
     end
+
+    it 'returns instances\'s default system skins when user is not signed in' do
+      allow(Setting).to receive(:[]).with('skin').and_return 'default'
+      allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
+      allow(Setting).to receive(:[]).with('system_dark').and_return 'default'
+      allow(Setting).to receive(:[]).with('system_light').and_return 'mastodon-light'
+
+      expect(controller.view_context.system_skins).to eq ['default', 'mastodon-light']
+    end
+
+    it 'returns instances\'s default system skins when user didn\'t set them' do
+      current_user = Fabricate(:user)
+      sign_in current_user
+
+      allow(Setting).to receive(:[]).with('skin').and_return 'default'
+      allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
+      allow(Setting).to receive(:[]).with('system_dark').and_return 'default'
+      allow(Setting).to receive(:[]).with('system_light').and_return 'mastodon-light'
+      allow(Setting).to receive(:[]).with('noindex').and_return false
+      allow(Setting).to receive(:[]).with('show_application').and_return false
+      allow(Setting).to receive(:[]).with('norss').and_return false
+
+      expect(controller.view_context.system_skins).to eq ['default', 'mastodon-light']
+    end
+
+    it 'returns user\'s system skins when set' do
+      current_user = Fabricate(:user)
+      current_user.settings.update(system_dark: 'contrast')
+      current_user.save
+      sign_in current_user
+
+      allow(Setting).to receive(:[]).with('skin').and_return 'default'
+      allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
+      allow(Setting).to receive(:[]).with('system_dark').and_return 'default'
+      allow(Setting).to receive(:[]).with('system_light').and_return 'mastodon-light'
+
+      expect(controller.view_context.system_skins).to eq ['contrast', 'mastodon-light']
+    end
   end
 
   context 'with ActionController::RoutingError' do
