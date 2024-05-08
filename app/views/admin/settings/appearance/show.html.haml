@@ -34,7 +34,8 @@
                 as: :grouped_select,
                 value_method: ->(value) { value[1] },
                 label_method: ->(flavour_and_skin) { I18n.t("skins.#{flavour_and_skin.join('.')}", default: flavour_and_skin[1]) },
-                group_method: :last
+                group_method: :last,
+                polyam_only: true
 
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :system_light,
@@ -47,7 +48,8 @@
                 as: :grouped_select,
                 value_method: ->(value) { value[1] },
                 label_method: ->(flavour_and_skin) { I18n.t("skins.#{flavour_and_skin.join('.')}", default: flavour_and_skin[1]) },
-                group_method: :last
+                group_method: :last,
+                polyam_only: true
 
   .fields-group
     = f.input :custom_css,
