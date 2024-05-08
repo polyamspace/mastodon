@@ -19,7 +19,7 @@ class Settings::FlavoursController < Settings::BaseController
   end
 
   def update
-    current_user.settings.update(flavour: params.require(:flavour), skin: params.dig(:user, :setting_skin))
+    current_user.settings.update(flavour: params.require(:flavour), skin: params.dig(:user, :setting_skin), system_dark: params.dig(:user, :setting_system_dark), system_light: params.dig(:user, :setting_system_light))
     current_user.save
     redirect_to action: 'show', flavour: params[:flavour]
   end

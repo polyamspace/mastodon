@@ -16,5 +16,25 @@
     .fields-group
       = f.input :setting_skin, collection: Themes.instance.skins_for(@selected), label_method: ->(skin) { I18n.t("skins.#{@selected}.#{skin}", default: skin) }, wrapper: :with_label, include_blank: false
 
+    - if Themes.instance.skins_for(@selected).include?('system')
+      .fields-row
+        .fields-row__column.fields-row__column-6.fields-group
+          = f.input :setting_system_dark,
+                    selected: Themes.instance.skins_for(@selected).include?(f.object.setting_system_dark) ? f.object.setting_system_dark : 'default',
+                    collection: Themes.instance.skins_for(@selected).delete_if { |s| s == 'system' },
+                    label_method: ->(skin) { I18n.t("skins.#{@selected}.#{skin}", default: skin) },
+                    wrapper: :with_label,
+                    include_blank: false,
+                    polyam_only: true
+
+        .fields-row__column.fields-row__column-6.fields-group
+          = f.input :setting_system_light,
+                    selected: Themes.instance.skins_for(@selected).include?(f.object.setting_system_light) ? f.object.setting_system_light : 'mastodon-light',
+                    collection: Themes.instance.skins_for(@selected).delete_if { |s| s == 'system' },
+                    label_method: ->(skin) { I18n.t("skins.#{@selected}.#{skin}", default: skin) },
+                    wrapper: :with_label,
+                    include_blank: false,
+                    polyam_only: true
+
   .actions
     = f.button :button, t('generic.use_this'), type: :submit
