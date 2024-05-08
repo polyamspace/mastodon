@@ -299,12 +299,24 @@ const onChangeFlavourAndSkin = (target: HTMLSelectElement) => {
     .parentNode as HTMLOptGroupElement;
 
   const toggleGroup = (e: HTMLSelectElement) => {
-    for (const child of e.children) {
-      if (child instanceof HTMLOptGroupElement) {
-        if (child.label !== selectedGroup.label) {
-          child.disabled = true;
+    for (const group of e.children) {
+      if (group instanceof HTMLOptGroupElement) {
+        if (group.label !== selectedGroup.label) {
+          group.disabled = true;
         } else {
-          child.disabled = false;
+          group.disabled = false;
+
+          // Reset system skin settings on flavour change when selected skin not available in group.
+          if (
+            (e.selectedOptions[0].parentNode as HTMLOptGroupElement).label !==
+              group.label &&
+            group.querySelector(
+              `option[value="${e.selectedOptions[0].value}"]`,
+            ) === null
+          ) {
+            // No need to worry about whether these exist as system skin wouldn't be available in such a case
+            e.value = e === darkSelectElement ? 'default' : 'mastodon-light';
+          }
         }
       }
     }
