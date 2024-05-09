@@ -37,7 +37,7 @@ Fairy Floss, Oatstodon and Homogay.
 
 ### Polyam flavour
 
-Polyam-glitch comes with it's own flavour based on the glitch flavour. \
+Polyam-glitch comes with its own flavour based on the glitch flavour. \
 All features are available for it.
 
 ## Installation and updating
