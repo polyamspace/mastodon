@@ -8,9 +8,6 @@ RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
 if RUN_SYSTEM_SPECS
   STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
   ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
-else
-  # Fix specs writing to public/system
-  ENV['PAPERCLIP_ROOT_PATH'] ||= File.join('spec', 'test_files')
 end
 
 require File.expand_path('../config/environment', __dir__)
@@ -107,6 +104,10 @@ RSpec.configure do |config|
     else
       Sidekiq::Testing.fake!
     end
+
+    # Polyam: Fix specs writing to public/system
+    Paperclip::Attachment.default_options[:path] = File.join(ENV.fetch('PAPERCLIP_ROOT_PATH', File.join('spec', 'test_files')), ':prefix_path:class', ':attachment', ':id_partition', ':style', ':filename') unless example.metadata[:type] == :system
+
     example.run
   end
 
