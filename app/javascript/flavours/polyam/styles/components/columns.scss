@@ -779,10 +779,6 @@ $ui-header-logo-wordmark-width: 99px;
     outline: $ui-button-focus-outline;
   }
 
-  .no-reduce-motion .icon {
-    transition: transform 0.15s ease-in-out;
-  }
-
   &.active {
     color: $primary-text-color;
 
@@ -804,6 +800,10 @@ $ui-header-logo-wordmark-width: 99px;
     color: $dark-text-color;
     cursor: default;
   }
+}
+
+.no-reduce-motion .column-header__button .icon {
+  transition: transform 150ms ease-in-out;
 }
 
 .column-header__notif-cleaning-buttons {
