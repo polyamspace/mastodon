@@ -29,6 +29,7 @@ import { fetchLists } from 'flavours/polyam/actions/lists';
 import { openModal } from 'flavours/polyam/actions/modal';
 import Column from 'flavours/polyam/features/ui/components/column';
 import LinkFooter from 'flavours/polyam/features/ui/components/link_footer';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { preferencesLink } from 'flavours/polyam/utils/backend_links';
 
 import { me, showTrends } from '../../initial_state';
@@ -100,11 +101,8 @@ const badgeDisplay = (number, limit) => {
 
 class GettingStarted extends ImmutablePureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     intl: PropTypes.object.isRequired,
     myAccount: ImmutablePropTypes.record,
     columns: ImmutablePropTypes.list,
@@ -123,7 +121,7 @@ class GettingStarted extends ImmutablePureComponent {
 
   componentDidMount () {
     const { fetchFollowRequests } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (!signedIn) {
       return;
@@ -134,7 +132,7 @@ class GettingStarted extends ImmutablePureComponent {
 
   render () {
     const { intl, myAccount, columns, multiColumn, unreadFollowRequests, unreadNotifications, lists, openSettings } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     const navItems = [];
     let listItems = [];
@@ -219,4 +217,4 @@ class GettingStarted extends ImmutablePureComponent {
 
 }
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(GettingStarted));
+export default withIdentity(connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(GettingStarted)));

@@ -13,6 +13,7 @@ import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
 import Search from 'flavours/polyam/features/compose/containers/search_container';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { trendsEnabled } from 'flavours/polyam/initial_state';
 
 import Links from './links';
@@ -33,11 +34,8 @@ const mapStateToProps = state => ({
 
 class Explore extends PureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
     isSearching: PropTypes.bool,
@@ -53,7 +51,7 @@ class Explore extends PureComponent {
 
   render() {
     const { intl, multiColumn, isSearching } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
@@ -114,4 +112,4 @@ class Explore extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(Explore));
+export default withIdentity(connect(mapStateToProps)(injectIntl(Explore)));

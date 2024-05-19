@@ -14,6 +14,7 @@ import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/polyam/act
 import { IconWithBadge } from 'flavours/polyam/components/icon_with_badge';
 import { NotSignedInIndicator } from 'flavours/polyam/components/not_signed_in_indicator';
 import AnnouncementsContainer from 'flavours/polyam/features/getting_started/containers/announcements_container';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { criticalUpdatesPending } from 'flavours/polyam/initial_state';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
@@ -42,11 +43,8 @@ const mapStateToProps = state => ({
 
 class HomeTimeline extends PureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     hasUnread: PropTypes.bool,
@@ -128,7 +126,7 @@ class HomeTimeline extends PureComponent {
   render () {
     const { intl, hasUnread, columnId, multiColumn, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
     const pinned = !!columnId;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
     const banners = [];
 
     let announcementsButton;
@@ -192,4 +190,4 @@ class HomeTimeline extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(HomeTimeline));
+export default connect(mapStateToProps)(withIdentity(injectIntl(HomeTimeline)));

@@ -14,6 +14,7 @@ import AddIcon from '@/awesome-icons/solid/plus.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { ButtonInTabsBar } from 'flavours/polyam/features/ui/util/columns_context';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import { useAppHistory } from './router';
@@ -52,11 +53,8 @@ BackButton.propTypes = {
 
 class ColumnHeader extends PureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     intl: PropTypes.object.isRequired,
     title: PropTypes.node,
     icon: PropTypes.string,
@@ -171,7 +169,7 @@ class ColumnHeader extends PureComponent {
       );
     }
 
-    if (this.context.identity.signedIn && (children || (multiColumn && this.props.onPin))) {
+    if (this.props.identity.signedIn && (children || (multiColumn && this.props.onPin))) {
       collapseButton = (
         <button
           className={collapsibleButtonClassName}
@@ -232,4 +230,4 @@ class ColumnHeader extends PureComponent {
 
 }
 
-export default injectIntl(withRouter(ColumnHeader));
+export default injectIntl(withIdentity(withRouter(ColumnHeader)));

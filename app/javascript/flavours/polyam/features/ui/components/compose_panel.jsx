@@ -7,16 +7,14 @@ import { mountCompose, unmountCompose } from 'flavours/polyam/actions/compose';
 import ServerBanner from 'flavours/polyam/components/server_banner';
 import ComposeFormContainer from 'flavours/polyam/features/compose/containers/compose_form_container';
 import SearchContainer from 'flavours/polyam/features/compose/containers/search_container';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 
 import LinkFooter from './link_footer';
 
 class ComposePanel extends PureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     dispatch: PropTypes.func.isRequired,
   };
 
@@ -31,7 +29,7 @@ class ComposePanel extends PureComponent {
   }
 
   render() {
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     return (
       <div className='compose-panel'>
@@ -55,4 +53,4 @@ class ComposePanel extends PureComponent {
 
 }
 
-export default connect()(ComposePanel);
+export default connect()(withIdentity(ComposePanel));

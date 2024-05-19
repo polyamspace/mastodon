@@ -17,6 +17,7 @@ import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/polyam/ac
 import { expandHashtagTimeline, clearTimeline } from 'flavours/polyam/actions/timelines';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 
 import StatusListContainer from '../ui/containers/status_list_container';
 
@@ -32,11 +33,8 @@ class HashtagTimeline extends PureComponent {
 
   disconnects = [];
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     params: PropTypes.object.isRequired,
     columnId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
@@ -94,7 +92,7 @@ class HashtagTimeline extends PureComponent {
   };
 
   _subscribe (dispatch, id, tags = {}, local) {
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (!signedIn) {
       return;
@@ -168,7 +166,7 @@ class HashtagTimeline extends PureComponent {
   handleFollow = () => {
     const { dispatch, params, tag } = this.props;
     const { id } = params;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (!signedIn) {
       return;
@@ -185,7 +183,7 @@ class HashtagTimeline extends PureComponent {
     const { hasUnread, columnId, multiColumn, tag } = this.props;
     const { id, local } = this.props.params;
     const pinned = !!columnId;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={`#${id}`}>
@@ -225,4 +223,4 @@ class HashtagTimeline extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(HashtagTimeline);
+export default connect(mapStateToProps)(withIdentity(HashtagTimeline));

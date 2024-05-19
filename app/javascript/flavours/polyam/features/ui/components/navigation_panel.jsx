@@ -21,6 +21,7 @@ import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import { fetchFollowRequests } from 'flavours/polyam/actions/accounts';
 import { IconWithBadge } from 'flavours/polyam/components/icon_with_badge';
 import { NavigationPortal } from 'flavours/polyam/components/navigation_portal';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { timelinePreview, trendsEnabled } from 'flavours/polyam/initial_state';
 import { transientSingleColumn } from 'flavours/polyam/is_mobile';
 import { preferencesLink } from 'flavours/polyam/utils/backend_links';
@@ -88,11 +89,8 @@ const FollowRequestsLink = () => {
 
 class NavigationPanel extends Component {
 
-  static contextTypes = {
-    identity: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     intl: PropTypes.object.isRequired,
     onOpenSettings: PropTypes.func,
   };
@@ -103,7 +101,7 @@ class NavigationPanel extends Component {
 
   render() {
     const { intl, onOpenSettings } = this.props;
-    const { signedIn, disabledAccountId } = this.context.identity;
+    const { signedIn, disabledAccountId } = this.props.identity;
 
     let banner = undefined;
 
@@ -177,4 +175,4 @@ class NavigationPanel extends Component {
 
 }
 
-export default injectIntl(NavigationPanel);
+export default injectIntl(withIdentity(NavigationPanel));

@@ -20,6 +20,7 @@ import { replyCompose } from 'flavours/polyam/actions/compose';
 import { reblog, favourite, unreblog, unfavourite } from 'flavours/polyam/actions/interactions';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { me, boostModal } from 'flavours/polyam/initial_state';
 import { makeGetStatus } from 'flavours/polyam/selectors';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
@@ -51,11 +52,8 @@ const makeMapStateToProps = () => {
 
 class Footer extends ImmutablePureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     statusId: PropTypes.string.isRequired,
     status: ImmutablePropTypes.map.isRequired,
     intl: PropTypes.object.isRequired,
@@ -79,7 +77,7 @@ class Footer extends ImmutablePureComponent {
 
   handleReplyClick = () => {
     const { dispatch, askReplyConfirmation, status, intl } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (askReplyConfirmation) {
@@ -108,7 +106,7 @@ class Footer extends ImmutablePureComponent {
 
   handleFavouriteClick = () => {
     const { dispatch, status } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (status.get('favourited')) {
@@ -135,7 +133,7 @@ class Footer extends ImmutablePureComponent {
 
   handleReblogClick = e => {
     const { dispatch, status } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (status.get('reblogged')) {
@@ -244,4 +242,4 @@ class Footer extends ImmutablePureComponent {
 
 }
 
-export default  withRouter(connect(makeMapStateToProps)(injectIntl(Footer)));
+export default  connect(makeMapStateToProps)(withIdentity(withRouter(injectIntl(Footer))));
