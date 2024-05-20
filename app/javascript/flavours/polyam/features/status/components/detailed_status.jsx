@@ -15,6 +15,7 @@ import { getHashtagBarForStatus } from 'flavours/polyam/components/hashtag_bar';
 import PictureInPicturePlaceholder from 'flavours/polyam/components/picture_in_picture_placeholder';
 import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 import PollContainer from 'flavours/polyam/containers/poll_container';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import { Avatar } from '../../../components/avatar';
@@ -30,11 +31,8 @@ import Card from './card';
 
 class DetailedStatus extends ImmutablePureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     status: ImmutablePropTypes.map,
     settings: ImmutablePropTypes.map.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
@@ -356,7 +354,7 @@ class DetailedStatus extends ImmutablePureComponent {
             reactions={status.get('reactions')}
             addReaction={this.props.onReactionAdd}
             removeReaction={this.props.onReactionRemove}
-            canReact={this.context.identity.signedIn}
+            canReact={this.props.identity.signedIn}
           />
 
           <div className='detailed-status__meta'>
@@ -387,4 +385,4 @@ class DetailedStatus extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(DetailedStatus));
+export default withRouter(injectIntl(withIdentity(DetailedStatus)));
