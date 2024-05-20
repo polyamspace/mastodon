@@ -23,6 +23,7 @@ import { Icon }  from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
+import { identityContextPropShape, withIdentity } from 'flavours/glitch/identity_context';
 import { autoPlayGif, me, domain as localDomain } from 'flavours/glitch/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/glitch/permissions';
 import { preferencesLink, profileLink, accountAdminLink, instanceAdminLink } from 'flavours/glitch/utils/backend_links';
@@ -95,6 +96,7 @@ const dateFormatOptions = {
 class Header extends ImmutablePureComponent {
 
   static propTypes = {
+    identity: identityContextPropShape,
     account: ImmutablePropTypes.record,
     identity_props: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
@@ -116,10 +118,6 @@ class Header extends ImmutablePureComponent {
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
     ...WithRouterPropTypes,
-  };
-
-  static contextTypes = {
-    identity: PropTypes.object,
   };
 
   openEditProfile = () => {
@@ -171,7 +169,7 @@ class Header extends ImmutablePureComponent {
 
   render () {
     const { account, hidden, intl } = this.props;
-    const { signedIn, permissions } = this.context.identity;
+    const { signedIn, permissions } = this.props.identity;
 
     if (!account) {
       return null;
@@ -418,4 +416,4 @@ class Header extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(Header));
+export default withRouter(withIdentity(injectIntl(Header)));
