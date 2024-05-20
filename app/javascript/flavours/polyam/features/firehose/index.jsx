@@ -7,13 +7,14 @@ import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
 import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
+import { useIdentity } from '@/flavours/polyam/identity_context';
 import { addColumn } from 'flavours/polyam/actions/columns';
 import { changeSetting } from 'flavours/polyam/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'flavours/polyam/actions/streaming';
 import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/polyam/actions/timelines';
 import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
 import SettingText from 'flavours/polyam/components/setting_text';
-import initialState, { domain, showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/polyam/initial_state';
+import { domain, showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/polyam/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 import Column from '../../components/column';
@@ -24,15 +25,6 @@ import StatusListContainer from '../ui/containers/status_list_container';
 const messages = defineMessages({
   title: { id: 'column.firehose', defaultMessage: 'Live feeds' },
   filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
-});
-
-// TODO: use a proper React context later on
-const useIdentity = () => ({
-  signedIn: !!initialState.meta.me,
-  accountId: initialState.meta.me,
-  disabledAccountId: initialState.meta.disabled_account_id,
-  accessToken: initialState.meta.access_token,
-  permissions: initialState.role ? initialState.role.permissions : 0,
 });
 
 const ColumnSettings = () => {

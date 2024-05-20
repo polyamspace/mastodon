@@ -21,6 +21,7 @@ import { Icon }  from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import ScrollContainer from 'flavours/polyam/containers/scroll_container';
 import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { autoUnfoldCW } from 'flavours/polyam/utils/content_warning';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
@@ -188,11 +189,8 @@ const titleFromStatus = (intl, status) => {
 
 class Status extends ImmutablePureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     status: ImmutablePropTypes.map,
@@ -279,7 +277,7 @@ class Status extends ImmutablePureComponent {
 
   handleFavouriteClick = (status, e) => {
     const { dispatch } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (status.get('favourited')) {
@@ -311,7 +309,7 @@ class Status extends ImmutablePureComponent {
 
   handleReactionAdd = (statusId, name, url) => {
     const { dispatch } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       dispatch(addReaction(statusId, name, url));
@@ -332,7 +330,7 @@ class Status extends ImmutablePureComponent {
 
   handleReplyClick = (status) => {
     const { askReplyConfirmation, dispatch, intl } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (askReplyConfirmation) {
@@ -372,7 +370,7 @@ class Status extends ImmutablePureComponent {
 
   handleReblogClick = (status, e) => {
     const { settings, dispatch } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (settings.get('confirm_boost_missing_media_description') && status.get('media_attachments').some(item => !item.get('description')) && !status.get('reblogged')) {
@@ -815,4 +813,4 @@ class Status extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(connect(makeMapStateToProps)(Status)));
+export default withRouter(injectIntl(connect(makeMapStateToProps)(withIdentity(Status))));

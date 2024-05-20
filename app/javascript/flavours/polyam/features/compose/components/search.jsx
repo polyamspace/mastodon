@@ -12,6 +12,7 @@ import CircleCloseIcon from '@/awesome-icons/solid/circle-xmark.svg?react';
 import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { domain, searchEnabled, searchPreview } from 'flavours/polyam/initial_state';
 import { HASHTAG_REGEX } from 'flavours/polyam/utils/hashtags';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
@@ -35,11 +36,8 @@ const labelForRecentSearch = search => {
 
 class Search extends PureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     value: PropTypes.string.isRequired,
     recent: ImmutablePropTypes.orderedSet,
     submitted: PropTypes.bool,
@@ -276,7 +274,7 @@ class Search extends PureComponent {
   }
 
   _calculateOptions (value) {
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
     const trimmedValue = value.trim();
     const options = [];
 
@@ -318,7 +316,7 @@ class Search extends PureComponent {
   render () {
     const { intl, value, submitted, recent } = this.props;
     const { expanded, options, selectedOption } = this.state;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     const hasValue = value.length > 0 || submitted;
 
@@ -412,4 +410,4 @@ class Search extends PureComponent {
 
 }
 
-export default withRouter(injectIntl(Search));
+export default withRouter(withIdentity(injectIntl(Search)));

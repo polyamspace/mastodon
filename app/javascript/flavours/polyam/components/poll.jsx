@@ -14,6 +14,7 @@ import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 import emojify from 'flavours/polyam/features/emoji/emoji';
 import Motion from 'flavours/polyam/features/ui/util/optional_motion';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 
 import { RelativeTimestamp } from './relative_timestamp';
 
@@ -38,12 +39,8 @@ const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
 }, {});
 
 class Poll extends ImmutablePureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identitiy: identityContextPropShape,
     poll: ImmutablePropTypes.map,
     lang: PropTypes.string,
     intl: PropTypes.object.isRequired,
@@ -237,7 +234,7 @@ class Poll extends ImmutablePureComponent {
         </ul>
 
         <div className='poll__footer'>
-          {!showResults && <button tabIndex={collapsed ? -1 : null} className='button button-secondary' disabled={disabled || !this.context.identity.signedIn} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
+          {!showResults && <button tabIndex={collapsed ? -1 : null} className='button button-secondary' disabled={disabled || !this.props.identity.signedIn} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
           {!showResults && <><button tabIndex={collapsed ? -1 : null} className='poll__link' onClick={this.handleReveal}><FormattedMessage id='poll.reveal' defaultMessage='See results' /></button> · </>}
           {showResults && !this.props.disabled && <><button tabIndex={collapsed ? -1 : null} className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </>}
           {votesCount}
@@ -249,4 +246,4 @@ class Poll extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(Poll);
+export default injectIntl(withIdentity(Poll));

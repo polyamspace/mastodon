@@ -18,7 +18,7 @@ import { openModal } from 'flavours/polyam/actions/modal';
 import Column from 'flavours/polyam/features/ui/components/column';
 import ColumnLink from 'flavours/polyam/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/polyam/features/ui/components/column_subheading';
-
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 
 const messages = defineMessages({
   heading: { id: 'column.heading', defaultMessage: 'Misc' },
@@ -35,11 +35,8 @@ const messages = defineMessages({
 
 class GettingStartedMisc extends ImmutablePureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     intl: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
@@ -52,7 +49,7 @@ class GettingStartedMisc extends ImmutablePureComponent {
 
   render () {
     const { intl } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     return (
       <Column icon='ellipsis-h' iconComponent={MoreHorizIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
@@ -73,4 +70,4 @@ class GettingStartedMisc extends ImmutablePureComponent {
 
 }
 
-export default connect()(injectIntl(GettingStartedMisc));
+export default connect()(withIdentity(injectIntl(GettingStartedMisc)));

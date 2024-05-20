@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { openModal } from 'flavours/polyam/actions/modal';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { domain, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'flavours/polyam/initial_state';
 import { PERMISSION_INVITE_USERS } from 'flavours/polyam/permissions';
 import { logOut } from 'flavours/polyam/utils/log_out';
@@ -33,11 +34,8 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
 class LinkFooter extends PureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     multiColumn: PropTypes.bool,
     onLogout: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -53,7 +51,7 @@ class LinkFooter extends PureComponent {
   };
 
   render () {
-    const { signedIn, permissions } = this.context.identity;
+    const { signedIn, permissions } = this.props.identity;
     const { multiColumn } = this.props;
 
     const canInvite = signedIn && ((permissions & PERMISSION_INVITE_USERS) === PERMISSION_INVITE_USERS);
@@ -114,4 +112,4 @@ class LinkFooter extends PureComponent {
 
 }
 
-export default injectIntl(connect(null, mapDispatchToProps)(LinkFooter));
+export default injectIntl(withIdentity(connect(null, mapDispatchToProps)(LinkFooter)));

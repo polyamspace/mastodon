@@ -19,6 +19,7 @@ import EraserIcon from '@/awesome-icons/solid/eraser.svg?react';
 import { compareId } from 'flavours/polyam/compare_id';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { NotSignedInIndicator } from 'flavours/polyam/components/not_signed_in_indicator';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { submitMarkers } from '../../actions/markers';
@@ -94,11 +95,8 @@ const mapDispatchToProps = dispatch => ({
 
 class Notifications extends PureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     columnId: PropTypes.string,
     notifications: ImmutablePropTypes.list.isRequired,
     showFilterBar: PropTypes.bool.isRequired,
@@ -225,7 +223,7 @@ class Notifications extends PureComponent {
     const { animatingNCD } = this.state;
     const pinned = !!columnId;
     const emptyMessage = <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. When other people interact with you, you will see it here." />;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     let scrollableContent = null;
 
@@ -374,4 +372,4 @@ class Notifications extends PureComponent {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Notifications));
+export default connect(mapStateToProps, mapDispatchToProps)(withIdentity(injectIntl(Notifications)));

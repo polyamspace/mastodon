@@ -16,6 +16,7 @@ import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import BoostIcon from '@/svg-icons/boost.svg?react';
 import BoostDisabledIcon from '@/svg-icons/boost_disabled.svg?react';
 import BoostPrivateIcon from '@/svg-icons/boost_private.svg?react';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/polyam/permissions';
 import { accountAdminLink, instanceAdminLink, statusAdminLink } from 'flavours/polyam/utils/backend_links';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
@@ -58,11 +59,8 @@ const messages = defineMessages({
 
 class ActionBar extends PureComponent {
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     status: ImmutablePropTypes.map.isRequired,
     onReply: PropTypes.func.isRequired,
     onReblog: PropTypes.func.isRequired,
@@ -162,7 +160,7 @@ class ActionBar extends PureComponent {
 
   render () {
     const { status, intl } = this.props;
-    const { signedIn, permissions } = this.context.identity;
+    const { signedIn, permissions } = this.props.identity;
 
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
     const pinnableStatus     = ['public', 'unlisted', 'private'].includes(status.get('visibility'));
@@ -265,4 +263,4 @@ class ActionBar extends PureComponent {
 
 }
 
-export default withRouter(injectIntl(ActionBar));
+export default withRouter(withIdentity(injectIntl(ActionBar)));

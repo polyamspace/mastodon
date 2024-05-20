@@ -17,6 +17,7 @@ import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import BoostIcon from '@/svg-icons/boost.svg?react';
 import BoostDisabledIcon from '@/svg-icons/boost_disabled.svg?react';
 import BoostPrivateIcon from '@/svg-icons/boost_private.svg?react';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/polyam/permissions';
 import { accountAdminLink, instanceAdminLink, statusAdminLink } from 'flavours/polyam/utils/backend_links';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
@@ -65,12 +66,8 @@ const messages = defineMessages({
 });
 
 class StatusActionBar extends ImmutablePureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     status: ImmutablePropTypes.map.isRequired,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
@@ -107,7 +104,7 @@ class StatusActionBar extends ImmutablePureComponent {
   ];
 
   handleReplyClick = () => {
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       this.props.onReply(this.props.status, this.props.history);
@@ -123,7 +120,7 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleFavouriteClick = (e) => {
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       this.props.onFavourite(this.props.status, e);
@@ -137,7 +134,7 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleReblogClick = e => {
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       this.props.onReblog(this.props.status, e);
@@ -215,7 +212,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
   render () {
     const { status, intl, withDismiss, withCounters, showReplyCount, scrollKey } = this.props;
-    const { permissions, signedIn } = this.context.identity;
+    const { permissions, signedIn } = this.props.identity;
 
     const mutingConversation = status.get('muted');
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
@@ -367,4 +364,4 @@ class StatusActionBar extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(StatusActionBar));
+export default withRouter(withIdentity(injectIntl(StatusActionBar)));
