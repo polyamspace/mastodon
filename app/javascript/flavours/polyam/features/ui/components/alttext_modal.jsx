@@ -2,21 +2,21 @@ import PropTypes from 'prop-types';
 
 import { injectIntl, FormattedMessage } from 'react-intl';
 
+import { withRouter } from 'react-router';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Button } from 'flavours/polyam/components/button';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 class AltTextModal extends ImmutablePureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object,
-  };
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     statusId: PropTypes.string,
     onClose: PropTypes.func.isRequired,
+    ...WithRouterPropTypes,
   };
 
   render () {
@@ -38,4 +38,4 @@ class AltTextModal extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(AltTextModal);
+export default withRouter(injectIntl(AltTextModal));
