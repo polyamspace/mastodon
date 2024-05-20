@@ -20,8 +20,8 @@ import Card from '../features/status/components/card';
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
 import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
-import { IdentityConsumer } from '../features/ui/util/identity_consumer';
 import { SensitiveMediaContext } from '../features/ui/util/sensitive_media_context';
+import { identityContextPropShape, withIdentity } from '../identity_context';
 import { displayMedia, visibleReactions, domain } from '../initial_state';
 
 import AttachmentList from './attachment_list';
@@ -78,6 +78,7 @@ class Status extends ImmutablePureComponent {
   static contextType = SensitiveMediaContext;
 
   static propTypes = {
+    identity: identityContextPropShape,
     containerId: PropTypes.string,
     id: PropTypes.string,
     status: ImmutablePropTypes.map,
@@ -862,18 +863,14 @@ class Status extends ImmutablePureComponent {
               {...statusContentProps}
             />
 
-            <IdentityConsumer>
-              {identity => (
-                <StatusReactions
-                  statusId={status.get('id')}
-                  reactions={status.get('reactions')}
-                  numVisible={visibleReactions}
-                  addReaction={this.props.onReactionAdd}
-                  removeReaction={this.props.onReactionRemove}
-                  canReact={identity.signedIn}
-                />
-              )}
-            </IdentityConsumer>
+            <StatusReactions
+              statusId={status.get('id')}
+              reactions={status.get('reactions')}
+              numVisible={visibleReactions}
+              addReaction={this.props.onReactionAdd}
+              removeReaction={this.props.onReactionRemove}
+              canReact={this.props.identity.signedIn}
+            />
 
             {(!isCollapsed || !(muted || !settings.getIn(['collapsed', 'show_action_bar']))) && (
               <StatusActionBar
@@ -897,4 +894,4 @@ class Status extends ImmutablePureComponent {
 
 }
 
-export default withOptionalRouter(injectIntl(Status));
+export default withOptionalRouter(injectIntl(withIdentity(Status)));
