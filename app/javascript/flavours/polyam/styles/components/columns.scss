@@ -786,7 +786,7 @@ $ui-header-logo-wordmark-width: 99px;
       color: $primary-text-color;
     }
 
-    .icon {
+    .icon-sliders {
       transform: rotate(60deg);
     }
   }
@@ -802,7 +802,7 @@ $ui-header-logo-wordmark-width: 99px;
   }
 }
 
-.no-reduce-motion .column-header__button .icon {
+.no-reduce-motion .column-header__button .icon-sliders {
   transition: transform 150ms ease-in-out;
 }
 
