@@ -13,7 +13,7 @@ export const BLOCKS_EXPAND_SUCCESS = 'BLOCKS_EXPAND_SUCCESS';
 export const BLOCKS_EXPAND_FAIL    = 'BLOCKS_EXPAND_FAIL';
 
 export function fetchBlocks() {
-  return (dispatch, ) => {
+  return (dispatch) => {
     dispatch(fetchBlocksRequest());
 
     api().get('/api/v1/blocks').then(response => {
