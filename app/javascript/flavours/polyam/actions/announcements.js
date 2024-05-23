@@ -26,7 +26,7 @@ export const ANNOUNCEMENTS_TOGGLE_SHOW = 'ANNOUNCEMENTS_TOGGLE_SHOW';
 
 const noOp = () => {};
 
-export const fetchAnnouncements = (done = noOp) => (dispatch, ) => {
+export const fetchAnnouncements = (done = noOp) => (dispatch) => {
   dispatch(fetchAnnouncementsRequest());
 
   api().get('/api/v1/announcements').then(response => {
@@ -61,7 +61,7 @@ export const updateAnnouncements = announcement => ({
   announcement: normalizeAnnouncement(announcement),
 });
 
-export const dismissAnnouncement = announcementId => (dispatch, ) => {
+export const dismissAnnouncement = announcementId => (dispatch) => {
   dispatch(dismissAnnouncementRequest(announcementId));
 
   api().post(`/api/v1/announcements/${announcementId}/dismiss`).then(() => {
@@ -134,7 +134,7 @@ export const addReactionFail = (announcementId, name, error) => ({
   skipLoading: true,
 });
 
-export const removeReaction = (announcementId, name) => (dispatch, ) => {
+export const removeReaction = (announcementId, name) => (dispatch) => {
   dispatch(removeReactionRequest(announcementId, name));
 
   api().delete(`/api/v1/announcements/${announcementId}/reactions/${encodeURIComponent(name)}`).then(() => {
