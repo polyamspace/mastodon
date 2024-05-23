@@ -166,7 +166,7 @@ export function followAccount(id, options = { reblogs: true }) {
     api().post(`/api/v1/accounts/${id}/follow`, options).then(response => {
       dispatch(followAccountSuccess({ relationship: response.data, alreadyFollowing }));
     }).catch(error => {
-      dispatch(followAccountFail({ error, locked }));
+      dispatch(followAccountFail({ id, error, locked }));
     });
   };
 }
