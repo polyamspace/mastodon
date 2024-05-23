@@ -46,7 +46,7 @@ export function submitSearch(type) {
 
     dispatch(fetchSearchRequest(type));
 
-    api(getState).get('/api/v2/search', {
+    api().get('/api/v2/search', {
       params: {
         q: value,
         resolve: signedIn,
@@ -99,7 +99,7 @@ export const expandSearch = type => (dispatch, getState) => {
 
   dispatch(expandSearchRequest(type));
 
-  api(getState).get('/api/v2/search', {
+  api().get('/api/v2/search', {
     params: {
       q: value,
       type,
@@ -155,7 +155,7 @@ export const openURL = (value, history, onFailure) => (dispatch, getState) => {
 
   dispatch(fetchSearchRequest());
 
-  api(getState).get('/api/v2/search', { params: { q: value, resolve: true } }).then(response => {
+  api().get('/api/v2/search', { params: { q: value, resolve: true } }).then(response => {
     if (response.data.accounts?.length > 0) {
       dispatch(importFetchedAccounts(response.data.accounts));
       history.push(`/@${response.data.accounts[0].acct}`);
