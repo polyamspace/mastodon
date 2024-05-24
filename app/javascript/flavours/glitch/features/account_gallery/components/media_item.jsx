@@ -161,6 +161,7 @@ export default class MediaItem extends ImmutablePureComponent {
             className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && loaded })}
             dummy={!useBlurhash}
           />
+
           {visible ? thumbnail : icon}
         </a>
       </div>
