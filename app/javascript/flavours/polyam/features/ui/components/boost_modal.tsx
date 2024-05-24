@@ -35,8 +35,8 @@ export const BoostModal: React.FC<{
   status: Status;
   onClose: () => void;
   onReblog: (status: Status, privacy: StatusVisibility) => void;
-  missingmediaDescription?: boolean;
-}> = ({ status, onReblog, onClose, missingmediaDescription }) => {
+  missingMediaDescription?: boolean;
+}> = ({ status, onReblog, onClose, missingMediaDescription }) => {
   const intl = useIntl();
   const history = useHistory();
 
@@ -131,7 +131,7 @@ export const BoostModal: React.FC<{
 
       <div className='boost-modal__action-bar'>
         <div>
-          {missingmediaDescription ? (
+          {missingMediaDescription ? (
             <FormattedMessage
               id='boost_modal.missing_description'
               defaultMessage='This toot contains some media without description'

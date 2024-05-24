@@ -17,6 +17,7 @@ interface MastodonLocationState {
   fromMastodon?: boolean;
   mastodonModalKey?: string;
 }
+
 type LocationState = MastodonLocationState | null | undefined;
 
 type HistoryPath = Path | LocationDescriptor<LocationState>;

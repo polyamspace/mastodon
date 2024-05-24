@@ -16,18 +16,18 @@ import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import UnFollowIcon from '@/awesome-icons/solid/user-xmark.svg?react';
 import UnmuteIcon from '@/awesome-icons/solid/volume-high.svg?react';
 import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
+import { EmptyAccount } from 'flavours/polyam/components/empty_account';
+import { ShortNumber } from 'flavours/polyam/components/short_number';
+import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
 
 import { me } from '../initial_state';
 
 import { Avatar } from './avatar';
 import { FollowersCounter } from './counters';
 import { DisplayName } from './display_name';
-import { EmptyAccount } from './empty_account';
 import { IconButton } from './icon_button';
 import { Permalink } from './permalink';
 import { RelativeTimestamp } from './relative_timestamp';
-import { ShortNumber } from './short_number';
-import { VerifiedBadge } from './verified_badge';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },

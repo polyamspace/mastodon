@@ -87,7 +87,7 @@ const buildPostMarkersParams = (state: RootState) => {
 
   if (
     lastNotificationId &&
-    lastNotificationId !== '0' && // Polyam: Why?
+    lastNotificationId !== '0' &&
     compareId(lastNotificationId, state.markers.notifications) > 0
   ) {
     params.notifications = {
@@ -144,5 +144,6 @@ export const fetchMarkers = createAppAsyncThunk('markers/fetch', async () => {
     `/api/v1/markers`,
     { params: { timeline: ['notifications'] } },
   );
+
   return { markers: response.data };
 });

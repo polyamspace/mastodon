@@ -78,31 +78,31 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
 
-  onChange(text) {
+  onChange (text) {
     dispatch(changeCompose(text));
   },
 
-  onSubmit(router, overridePrivacy = null) {
+  onSubmit (router, overridePrivacy = null) {
     dispatch(submitCompose(router, overridePrivacy));
   },
 
-  onClearSuggestions() {
+  onClearSuggestions () {
     dispatch(clearComposeSuggestions());
   },
 
-  onFetchSuggestions(token) {
+  onFetchSuggestions (token) {
     dispatch(fetchComposeSuggestions(token));
   },
 
-  onSuggestionSelected(position, token, suggestion, path) {
+  onSuggestionSelected (position, token, suggestion, path) {
     dispatch(selectComposeSuggestion(position, token, suggestion, path));
   },
 
-  onChangeSpoilerText(checked) {
+  onChangeSpoilerText (checked) {
     dispatch(changeComposeSpoilerText(checked));
   },
 
-  onPaste(files) {
+  onPaste (files) {
     dispatch(uploadCompose(files));
   },
 

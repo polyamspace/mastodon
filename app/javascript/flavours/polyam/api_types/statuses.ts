@@ -74,22 +74,18 @@ export interface ApiStatusJSON {
   replies_count: number;
   reblogs_count: number;
   favorites_count: number;
-  reactions_count: number;
   edited_at?: string;
-  hidden_by_moderators: boolean;
 
   favorited?: boolean;
   reblogged?: boolean;
   muted?: boolean;
   bookmarked?: boolean;
   pinned?: boolean;
-  local_only?: boolean;
 
   // filtered: FilterResult[]
   filtered: unknown; // TODO
   content?: string;
   text?: string;
-  content_type?: StatusContentType;
 
   reblog?: ApiStatusJSON;
   application?: ApiStatusApplicationJSON;
@@ -100,8 +96,15 @@ export interface ApiStatusJSON {
   tags: ApiTagJSON[];
   emojis: ApiCustomEmojiJSON[];
 
-  reactions: ApiReactionJSON[];
-
   card?: ApiPreviewCardJSON;
   poll?: ApiPollJSON;
+
+  // glitch-soc additions
+  local_only?: boolean;
+  content_type?: string;
+
+  // polyam-glitch additions
+  reactions_count: number;
+  hidden_by_moderators: boolean;
+  reactions: ApiReactionJSON[];
 }

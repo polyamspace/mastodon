@@ -89,7 +89,6 @@ export const NOTIFICATIONS_FOR_REQUEST_EXPAND_REQUEST = 'NOTIFICATIONS_FOR_REQUE
 export const NOTIFICATIONS_FOR_REQUEST_EXPAND_SUCCESS = 'NOTIFICATIONS_FOR_REQUEST_EXPAND_SUCCESS';
 export const NOTIFICATIONS_FOR_REQUEST_EXPAND_FAIL    = 'NOTIFICATIONS_FOR_REQUEST_EXPAND_FAIL';
 
-
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
 });

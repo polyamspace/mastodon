@@ -370,4 +370,3 @@ export const addToListAdder = listId => (dispatch, getState) => {
 export const removeFromListAdder = listId => (dispatch, getState) => {
   dispatch(removeFromList(listId, getState().getIn(['listAdder', 'accountId'])));
 };
-

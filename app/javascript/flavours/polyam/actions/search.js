@@ -150,6 +150,7 @@ export const openURL = (value, history, onFailure) => (dispatch, getState) => {
     if (onFailure) {
       onFailure();
     }
+
     return;
   }
 

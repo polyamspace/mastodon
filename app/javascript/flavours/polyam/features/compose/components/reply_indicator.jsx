@@ -24,6 +24,7 @@ export const ReplyIndicator = () => {
   return (
     <div className='reply-indicator'>
       <div className='reply-indicator__line' />
+
       <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='detailed-status__display-avatar'>
         <Avatar account={account} size={46} />
       </Permalink>

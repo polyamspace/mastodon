@@ -6,7 +6,7 @@ import HeartCrackIcon from '@/awesome-icons/solid/heart-crack.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { domain } from 'flavours/polyam/initial_state';
 
-// This needs to be kept in sync with app/models/relationship_severance_event.rb
+// This needs to be kept in sync with app/models/relationships_severance_event.rb
 const messages = defineMessages({
   account_suspension: { id: 'notification.relationships_severance_event.account_suspension', defaultMessage: 'An admin from {from} has suspended {target}, which means you can no longer receive updates from them or interact with them.' },
   domain_block: { id: 'notification.relationships_severance_event.domain_block', defaultMessage: 'An admin from {from} has blocked {target}, including {followersCount} of your followers and {followingCount, plural, one {# account} other {# accounts}} you follow.' },

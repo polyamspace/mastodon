@@ -65,7 +65,6 @@ class FavouriteModal extends ImmutablePureComponent {
                 </div>
 
                 <DisplayName account={status.get('account')} />
-
               </a>
             </div>
 

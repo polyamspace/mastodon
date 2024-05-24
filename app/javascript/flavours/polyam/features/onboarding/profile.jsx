@@ -76,7 +76,7 @@ export const Profile = () => {
       avatar,
       header,
       discoverable,
-      indexable: discoverable
+      indexable: discoverable,
     })).then(() => history.push('/start/follows')).catch(err => {
       setIsSaving(false);
       setErrors(err.response.data.details);
@@ -145,6 +145,7 @@ export const Profile = () => {
               <strong><FormattedMessage id='onboarding.profile.discoverable' defaultMessage='Make my profile discoverable' /></strong>
               <span className='hint'><FormattedMessage id='onboarding.profile.discoverable_hint' defaultMessage='When you opt in to discoverability on Mastodon, your posts may appear in search results and trending, and your profile may be suggested to people with similar interests to you.' /></span>
             </div>
+
             <div className='app-form__toggle__toggle'>
               <div>
                 <Toggle checked={discoverable} onChange={handleDiscoverableChange} />

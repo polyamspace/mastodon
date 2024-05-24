@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
+import type { ApiAccountJSON } from '../api_types/accounts';
 // To be replaced once ApiNotificationJSON type exists
 interface FakeApiNotificationJSON {
   type: string;
@@ -18,6 +18,6 @@ export const notificationsUpdate = createAction(
     playSound: boolean;
   }) => ({
     payload: args,
-    meta: playSound ? { sound: 'notificationSound' } : undefined,
+    meta: { sound: playSound ? 'notificationSound' : undefined },
   }),
 );

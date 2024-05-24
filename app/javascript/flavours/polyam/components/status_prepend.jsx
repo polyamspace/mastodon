@@ -41,7 +41,11 @@ export default class StatusPrepend extends PureComponent {
         className='status__display-name'
       >
         <bdi>
-          <strong dangerouslySetInnerHTML={{ __html: account.get('display_name_html') || account.get('username')}} />
+          <strong
+            dangerouslySetInnerHTML={{
+              __html: account.get('display_name_html') || account.get('username'),
+            }}
+          />
         </bdi>
       </a>
     );
