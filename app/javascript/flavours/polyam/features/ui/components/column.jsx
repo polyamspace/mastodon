@@ -58,6 +58,7 @@ export default class Column extends PureComponent {
     const showHeading = heading && (!hideHeadingOnMobile || (hideHeadingOnMobile && !isMobile(window.innerWidth)));
 
     const columnHeaderId = showHeading && heading.replace(/ /g, '-');
+
     const header = showHeading && (
       <ColumnHeader icon={icon} iconComponent={iconComponent} active={active} title={heading} onClick={this.handleHeaderClick} columnHeaderId={columnHeaderId} showBackButton={alwaysShowBackButton} />
     );

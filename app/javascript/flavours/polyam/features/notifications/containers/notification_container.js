@@ -1,7 +1,5 @@
 import { connect } from 'react-redux';
 
-import { openModal } from 'flavours/polyam/actions/modal';
-
 import { mentionCompose } from '../../../actions/compose';
 import {
   reblog,
@@ -9,6 +7,7 @@ import {
   unreblog,
   unfavourite,
 } from '../../../actions/interactions';
+import { openModal } from '../../../actions/modal';
 import { boostModal } from '../../../initial_state';
 import { makeGetNotification, makeGetStatus, makeGetReport } from '../../../selectors';
 import Notification from '../components/notification';

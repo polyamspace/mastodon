@@ -16,6 +16,7 @@ import ReactSwipeableViews from 'react-swipeable-views';
 import ChevronLeftIcon from '@/awesome-icons/solid/chevron-left.svg?react';
 import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
+import elephantUIPlane from '@/images/elephant_ui_plane.svg';
 import { AnimatedNumber } from 'flavours/polyam/components/animated_number';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -24,7 +25,6 @@ import { unicodeMapping } from 'flavours/polyam/features/emoji/emoji_unicode_map
 import { autoPlayGif, reduceMotion, disableSwiping, mascot } from 'flavours/polyam/initial_state';
 import { assetHost } from 'flavours/polyam/utils/config';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
-import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

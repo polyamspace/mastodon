@@ -48,6 +48,7 @@ const ColumnSettings = () => {
             onChange={onChange}
             label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
           />
+
           <SettingToggle
             settings={settings}
             settingPath={['allowLocalOnly']}

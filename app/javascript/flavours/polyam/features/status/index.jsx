@@ -635,12 +635,12 @@ class Status extends ImmutablePureComponent {
     this.node = c;
   };
 
-  setStatusRef = c => {
-    this.statusNode = c;
-  };
-
   setColumnRef = c => {
     this.column = c;
+  };
+
+  setStatusRef = c => {
+    this.statusNode = c;
   };
 
   _scrollStatusIntoView () {
@@ -749,7 +749,9 @@ class Status extends ImmutablePureComponent {
           onClick={this.handleHeaderClick}
           showBackButton
           multiColumn={multiColumn}
-          extraButton={(<button type='button' className='column-header__button' title={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={!isExpanded ? 'eye-slash' : 'eye'} icon={!isExpanded ? VisibilityOffIcon : VisibilityIcon} /></button>)}
+          extraButton={(
+            <button type='button' className='column-header__button' title={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={!isExpanded ? 'eye-slash' : 'eye'} icon={!isExpanded ? VisibilityOffIcon : VisibilityIcon} /></button>
+          )}
         />
 
         <ScrollContainer scrollKey='thread' shouldUpdateScroll={this.shouldUpdateScroll}>

@@ -49,6 +49,7 @@ export const BlockModal = ({ accountId, acct }) => {
             <div>@{acct}</div>
           </div>
         </div>
+
         <div className='safety-action-modal__bullet-points'>
           <div>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={AnnouncementIcon} /></div>
@@ -71,6 +72,7 @@ export const BlockModal = ({ accountId, acct }) => {
           </div>
         </div>
       </div>
+
       <div className={classNames('safety-action-modal__bottom', { active: expanded })}>
         {domain && (
           <div className='safety-action-modal__bottom__collapsible'>

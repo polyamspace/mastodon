@@ -12,7 +12,8 @@ const mapDispatchToProps = (dispatch, { account }) => ({
 
   onSave (value) {
     dispatch(submitAccountNote({ accountId: account.get('id'), note: value }));
-  }
+  },
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountNote);

@@ -72,8 +72,8 @@ class ActionBar extends PureComponent {
     onDirect: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
     onMute: PropTypes.func,
-    onMuteConversation: PropTypes.func,
     onBlock: PropTypes.func,
+    onMuteConversation: PropTypes.func,
     onReport: PropTypes.func,
     onPin: PropTypes.func,
     onEmbed: PropTypes.func,
@@ -230,6 +230,7 @@ class ActionBar extends PureComponent {
     const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
 
     let reblogTitle, reblogIconComponent;
+
     if (status.get('reblogged')) {
       reblogTitle = intl.formatMessage(messages.cancel_reblog_private);
       reblogIconComponent = publicStatus ? BoostIcon : BoostPrivateIcon;

@@ -31,6 +31,7 @@ export const ListPanel = () => {
   return (
     <div className='list-panel'>
       <hr />
+
       {lists.map(list => (
         <ColumnLink icon='list-ul' key={list.get('id')} iconComponent={ListIcon} text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
       ))}

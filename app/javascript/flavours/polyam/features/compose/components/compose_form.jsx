@@ -43,7 +43,7 @@ const messages = defineMessages({
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning (optional)' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Post' },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Update' },
-  reply: { id: 'compose_form.reply', defaultMessage: 'Reply' }
+  reply: { id: 'compose_form.reply', defaultMessage: 'Reply' },
 });
 
 class ComposeForm extends ImmutablePureComponent {
@@ -123,7 +123,6 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   handleSubmit = (e, overridePrivacy = null) => {
-
     if (this.props.text !== this.textareaRef.current.value) {
       // Something changed the text inside the textarea (e.g. browser extensions like Grammarly)
       // Update the state to match the current text
@@ -181,12 +180,12 @@ class ComposeForm extends ImmutablePureComponent {
     }
   };
 
-  componentWillUnmount () {
-    if (this.timeout) clearTimeout(this.timeout);
-  }
-
   componentDidMount () {
     this._updateFocusAndSelection({ });
+  }
+
+  componentWillUnmount () {
+    if (this.timeout) clearTimeout(this.timeout);
   }
 
   componentDidUpdate (prevProps) {
@@ -241,9 +240,9 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   handleEmojiPick = (data) => {
-    const { text }   = this.props;
-    const position   = this.textareaRef.current.selectionStart;
-    const needsSpace = data.custom && position > 0 && !allowedAroundShortCode.includes(text[position -1]);
+    const { text }     = this.props;
+    const position     = this.textareaRef.current.selectionStart;
+    const needsSpace   = data.custom && position > 0 && !allowedAroundShortCode.includes(text[position - 1]);
 
     this.props.onPickEmoji(position, data, needsSpace);
   };
@@ -332,6 +331,7 @@ class ComposeForm extends ImmutablePureComponent {
               <PrivacyDropdownContainer disabled={this.props.isEditing} />
               <LanguageDropdown />
             </div>
+
             <div className='compose-form__actions'>
               <div className='compose-form__buttons'>
                 <UploadButtonContainer />

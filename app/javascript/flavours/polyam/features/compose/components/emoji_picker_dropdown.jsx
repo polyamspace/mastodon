@@ -367,7 +367,7 @@ class EmojiPickerDropdown extends PureComponent {
   state = {
     active: false,
     loading: false,
-    placement: 'bottom'
+    placement: 'bottom',
   };
 
   setRef = (c) => {

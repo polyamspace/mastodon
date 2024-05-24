@@ -12,6 +12,7 @@ import ArrowRightIcon from '@/awesome-icons/solid/arrow-right.svg?react';
 import CopyIcon from '@/awesome-icons/solid/copy.svg?react';
 import WriteIcon from '@/awesome-icons/solid/pen-to-square.svg?react';
 import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
+import illustration from '@/images/elephant_ui_conversation.svg';
 import { focusCompose } from 'flavours/polyam/actions/compose';
 import { Icon } from 'flavours/polyam/components/icon';
 import { NotSignedInIndicator } from 'flavours/polyam/components/not_signed_in_indicator';
@@ -19,7 +20,6 @@ import Column from 'flavours/polyam/features/ui/components/column';
 import { me } from 'flavours/polyam/initial_state';
 import { useAppSelector } from 'flavours/polyam/store';
 import { assetHost } from 'flavours/polyam/utils/config';
-import illustration from 'mastodon/../images/elephant_ui_conversation.svg';
 
 import { Step } from './components/step';
 import { Follows } from './follows';

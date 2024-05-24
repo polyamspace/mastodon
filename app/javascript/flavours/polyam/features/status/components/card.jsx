@@ -114,7 +114,7 @@ export default class Card extends PureComponent {
         ref={this.setRef}
         className='status-card__image status-card-video'
         dangerouslySetInnerHTML={content}
-        style={{ aspectRatio: `16 / 9` }}
+        style={{ aspectRatio: '16 / 9' }}
       />
     );
   }
