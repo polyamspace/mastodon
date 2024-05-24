@@ -36,7 +36,6 @@ import { SearchResults } from './components/search_results';
 import ComposeFormContainer from './containers/compose_form_container';
 import SearchContainer from './containers/search_container';
 
-
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
