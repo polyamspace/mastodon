@@ -199,7 +199,7 @@ export default class Card extends PureComponent {
             {revealed ? (
               <div className='status-card__actions' onClick={this.handleEmbedClick} role='none'>
                 <div>
-                  <button onClick={this.handleEmbedClick}><Icon id='play' icon={PlayIcon} /></button>
+                  <button type='button' onClick={this.handleEmbedClick}><Icon id='play' icon={PlayIcon} /></button>
                   <a href={card.get('url')} onClick={this.handleExternalLinkClick} target='_blank' rel='noopener noreferrer'><Icon id='external-link' icon={ExternalLinkIcon} /></a>
                 </div>
               </div>

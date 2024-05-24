@@ -648,7 +648,7 @@ class Status extends ImmutablePureComponent {
 
     if (status) {
       requestIdleCallback(() => {
-        this.statusNode?.querySelector('.detailed-status__wrapper')?.scrollIntoView(true);
+        this.statusNode?.scrollIntoView(true);
 
         // In the single-column interface, `scrollIntoView` will put the post behind the header,
         // so compensate for that.
