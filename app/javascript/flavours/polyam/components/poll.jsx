@@ -40,7 +40,7 @@ const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
 
 class Poll extends ImmutablePureComponent {
   static propTypes = {
-    identitiy: identityContextPropShape,
+    identity: identityContextPropShape,
     poll: ImmutablePropTypes.map,
     lang: PropTypes.string,
     intl: PropTypes.object.isRequired,
