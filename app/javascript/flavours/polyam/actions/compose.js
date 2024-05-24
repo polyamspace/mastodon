@@ -58,7 +58,7 @@ export const COMPOSE_SENSITIVITY_CHANGE  = 'COMPOSE_SENSITIVITY_CHANGE';
 export const COMPOSE_SPOILERNESS_CHANGE  = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE   = 'COMPOSE_VISIBILITY_CHANGE';
-export const COMPOSE_COMPOSING_CHANGE  = 'COMPOSE_COMPOSING_CHANGE';
+export const COMPOSE_COMPOSING_CHANGE    = 'COMPOSE_COMPOSING_CHANGE';
 export const COMPOSE_CONTENT_TYPE_CHANGE = 'COMPOSE_CONTENT_TYPE_CHANGE';
 export const COMPOSE_LANGUAGE_CHANGE     = 'COMPOSE_LANGUAGE_CHANGE';
 
@@ -241,7 +241,8 @@ export function submitCompose(routerHistory, overridePrivacy = null) {
       dispatch(insertIntoTagHistory(response.data.tags, status));
       dispatch(submitComposeSuccess({ ...response.data }));
 
-      // To make the app more responsive, immediately push the status into the columns
+      // To make the app more responsive, immediately push the status
+      // into the columns
       const insertIfOnline = timelineId => {
         const timeline = getState().getIn(['timelines', timelineId]);
 
@@ -652,6 +653,7 @@ export const readyComposeSuggestionsTags = (token, tags) => ({
 export function selectComposeSuggestion(position, token, suggestion, path) {
   return (dispatch, getState) => {
     let completion, startPosition;
+
     if (suggestion.type === 'emoji') {
       completion    = suggestion.native || suggestion.colons;
       startPosition = position - 1;
@@ -678,7 +680,7 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
     } else {
       dispatch({
         type: COMPOSE_SUGGESTION_IGNORE,
-        position, startPosition,
+        position: startPosition,
         token,
         completion,
         path,

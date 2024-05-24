@@ -337,18 +337,6 @@ class StatusContent extends PureComponent {
     this.contentsNode = c;
   };
 
-  mediaIconComponent = (mediaIcon) => {
-    const icon = {
-      'link': LinkIcon,
-      'picture-o': ImageIcon,
-      'tasks': PollIcon,
-      'video-camera': VideoIcon,
-      'music': MusicIcon,
-    }[mediaIcon];
-
-    return icon;
-  };
-
   render () {
     const {
       status,
@@ -404,12 +392,20 @@ class StatusContent extends PureComponent {
           />,
         ];
         if (mediaIcons) {
+          const mediaComponents = {
+            'link': LinkIcon,
+            'picture-o': ImageIcon,
+            'tasks': PollIcon,
+            'video-camera': VideoIcon,
+            'music': MusicIcon,
+          };
+
           mediaIcons.forEach((mediaIcon, idx) => {
             toggleText.push(
               <Icon
                 className='status__content__spoiler-icon'
                 id={mediaIcon}
-                icon={this.mediaIconComponent(mediaIcon)}
+                icon={mediaComponents[mediaIcon]}
                 aria-hidden='true'
                 key={`icon-${idx}`}
               />,

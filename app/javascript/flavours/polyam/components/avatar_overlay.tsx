@@ -37,8 +37,8 @@ export const AvatarOverlay: React.FC<Props> = ({
       <div className='account__avatar-overlay-base'>
         <div
           className='account__avatar'
-          data-avatar-of={`@${account?.get('acct')}`}
           style={{ width: `${baseSize}px`, height: `${baseSize}px` }}
+          data-avatar-of={`@${account?.get('acct')}`}
         >
           {accountSrc && <img src={accountSrc} alt={account?.get('acct')} />}
         </div>
@@ -46,8 +46,8 @@ export const AvatarOverlay: React.FC<Props> = ({
       <div className='account__avatar-overlay-overlay'>
         <div
           className='account__avatar'
-          data-avatar-of={`@${friend?.get('acct')}`}
           style={{ width: `${overlaySize}px`, height: `${overlaySize}px` }}
+          data-avatar-of={`@${friend?.get('acct')}`}
         >
           {friendSrc && <img src={friendSrc} alt={friend?.get('acct')} />}
         </div>

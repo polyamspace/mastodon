@@ -20,7 +20,6 @@ import { languages } from 'flavours/polyam/initial_state';
 import { CollapseButton } from './collapse_button';
 import { VisibilityIcon } from './visibility_icon';
 
-//  Messages for use with internationalization stuff.
 const messages = defineMessages({
   collapse: { id: 'status.collapse', defaultMessage: 'Collapse' },
   uncollapse: { id: 'status.uncollapse', defaultMessage: 'Uncollapse' },
@@ -72,47 +71,46 @@ class StatusIcons extends PureComponent {
     }
   };
 
-  // TODO: Move media icons to own component?
-  mediaIconComponent (mediaIcon) {
-    const icon = {
-      'link': LinkIcon,
-      'picture-o': ImageIcon,
-      'tasks': PollIcon,
-      'video-camera': VideoIcon,
-      'music': MusicIcon,
-    }[mediaIcon];
-
-    return icon;
-  }
-
-  mediaIconTitleText (mediaIcon) {
+  renderIcon (mediaIcon) {
     const { intl } = this.props;
 
-    const message = {
-      'link': messages.previewCard,
-      'picture-o': messages.pictures,
-      'tasks': messages.poll,
-      'video-camera': messages.video,
-      'music': messages.audio,
-    }[mediaIcon];
+    let title, iconComponent;
 
-    return message && intl.formatMessage(message);
-  }
+    switch (mediaIcon) {
+    case 'link':
+      title = messages.previewCard;
+      iconComponent = LinkIcon;
+      break;
+    case 'picture-o':
+      title = messages.pictures;
+      iconComponent = ImageIcon;
+      break;
+    case 'tasks':
+      title = messages.poll;
+      iconComponent = PollIcon;
+      break;
+    case 'video-camera':
+      title = messages.video;
+      iconComponent = VideoIcon;
+      break;
+    case 'music':
+      title = messages.audio;
+      iconComponent = MusicIcon;
+      break;
+    }
 
-  renderIcon (mediaIcon) {
     return (
       <Icon
         className='status__media-icon'
         key={`media-icon--${mediaIcon}`}
         id={mediaIcon}
-        icon={this.mediaIconComponent(mediaIcon)}
+        icon={iconComponent}
         aria-hidden='true'
-        title={this.mediaIconTitleText(mediaIcon)}
+        title={title && intl.formatMessage(title)}
       />
     );
   }
 
-  //  Rendering.
   render () {
     const {
       status,
