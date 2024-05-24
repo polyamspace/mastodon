@@ -121,17 +121,14 @@ export const expandSpoilers = getMeta('expand_spoilers');
 export const forceSingleColumn = !getMeta('advanced_layout');
 export const limitedFederationMode = getMeta('limited_federation_mode');
 export const mascot = getMeta('mascot');
-export const maxReactions = (initialState && initialState.max_reactions) || 1;
 export const me = getMeta('me');
 export const movedToAccountId = getMeta('moved_to_account_id');
-export const notificationSound = getMeta('notification_sound');
 export const owner = getMeta('owner');
 export const profile_directory = getMeta('profile_directory');
 export const reduceMotion = getMeta('reduce_motion');
 export const registrationsOpen = getMeta('registrations_open');
 export const repository = getMeta('repository');
 export const searchEnabled = getMeta('search_enabled');
-export const searchPreview = getMeta('search_preview');
 export const trendsEnabled = getMeta('trends_enabled');
 export const showTrends = getMeta('show_trends');
 export const singleUserMode = getMeta('single_user_mode');
@@ -142,13 +139,9 @@ export const trendsAsLanding = getMeta('trends_as_landing_page');
 export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
-export const visibleReactions = getMeta('visible_reactions');
 export const languages = initialState?.languages;
-export const publishButtonText = getMeta('publish_button_text');
 export const criticalUpdatesPending = initialState?.critical_updates_pending;
 export const statusPageUrl = getMeta('status_page_url');
-export const showReblogsPublicTimelines = getMeta('show_reblogs_in_public_timelines');
-export const showRepliesPublicTimelines = getMeta('show_replies_in_public_timelines');
 export const sso_redirect = getMeta('sso_redirect');
 
 // Glitch-soc-specific settings
@@ -157,6 +150,15 @@ export const favouriteModal = getMeta('favourite_modal');
 export const pollLimits = (initialState && initialState.poll_limits);
 export const defaultContentType = getMeta('default_content_type');
 export const useSystemEmojiFont = getMeta('system_emoji_font');
+
+// Polyam-glitch additions
+export const maxReactions = (initialState && initialState.max_reactions) || 1;
+export const visibleReactions = getMeta('visible_reactions');
+export const notificationSound = getMeta('notification_sound');
+export const searchPreview = getMeta('search_preview');
+export const publishButtonText = getMeta('publish_button_text');
+export const showReblogsPublicTimelines = getMeta('show_reblogs_in_public_timelines');
+export const showRepliesPublicTimelines = getMeta('show_replies_in_public_timelines');
 
 /**
  * @returns {string | undefined}
