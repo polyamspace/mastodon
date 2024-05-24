@@ -3,7 +3,8 @@ import { PureComponent } from 'react';
 
 import classNames from 'classnames';
 
-import { Check } from 'flavours/polyam/components/check';
+import CheckIcon from '@/awesome-icons/solid/check.svg?react';
+import { Icon }  from 'flavours/polyam/components/icon';
 
 export default class Option extends PureComponent {
 
@@ -47,7 +48,7 @@ export default class Option extends PureComponent {
           onKeyPress={this.handleKeyPress}
           aria-checked={checked}
           aria-label={label}
-        >{checked && <Check />}</span>
+        >{checked && <Icon icon={CheckIcon} />}</span>
 
         {labelComponent ? labelComponent : (
           <span className='poll__option__text'>
