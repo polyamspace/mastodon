@@ -11,8 +11,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ExternalLinkIcon from '@/awesome-icons/solid/arrow-up-right-from-square.svg?react';
 import TextFileIcon from '@/awesome-icons/solid/file-lines.svg?react';
 import PlayIcon from '@/awesome-icons/solid/play.svg?react';
+import { Avatar } from 'flavours/polyam/components/avatar';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon } from 'flavours/polyam/components/icon';
+import { Permalink } from 'flavours/polyam/components/permalink';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
 import { useBlurhash } from 'flavours/polyam/initial_state';
 import { decode as decodeIDNA } from 'flavours/polyam/utils/idna';
@@ -44,6 +46,20 @@ const addAutoPlay = html => {
   }
 
   return html;
+};
+
+const MoreFromAuthor = ({ author }) => (
+  <div className='more-from-author'>
+    <svg viewBox='0 0 79 79' className='logo logo--icon' role='img'>
+      <use xlinkHref='#logo-symbol-icon' />
+    </svg>
+
+    <FormattedMessage id='link_preview.more_from_author' defaultMessage='More from {name}' values={{ name: <Permalink href={author.get('url')} to={`/@${author.get('acct')}`}><Avatar account={author} size={16} /> {author.get('display_name')}</Permalink> }} />
+  </div>
+);
+
+MoreFromAuthor.propTypes = {
+  author: ImmutablePropTypes.map,
 };
 
 export default class Card extends PureComponent {
@@ -131,6 +147,7 @@ export default class Card extends PureComponent {
     const interactive = card.get('type') === 'video';
     const language    = card.get('language') || '';
     const largeImage  = (card.get('image')?.length > 0 && card.get('width') > card.get('height')) || interactive;
+    const showAuthor  = !!card.get('author_account');
 
     const description = (
       <div className='status-card__content'>
@@ -141,7 +158,7 @@ export default class Card extends PureComponent {
 
         <strong className='status-card__title' title={card.get('title')} lang={language}>{card.get('title')}</strong>
 
-        {card.get('author_name').length > 0 ? <span className='status-card__author'><FormattedMessage id='link_preview.author' defaultMessage='By {name}' values={{ name: <strong>{card.get('author_name')}</strong> }} /></span> : <span className='status-card__description' lang={language}>{card.get('description')}</span>}
+        {!showAuthor && card.get('author_name').length > 0 ? <span className='status-card__author'><FormattedMessage id='link_preview.author' defaultMessage='By {name}' values={{ name: <strong>{card.get('author_name')}</strong> }} /></span> : <span className='status-card__description' lang={language}>{card.get('description')}</span>}
       </div>
     );
 
@@ -230,10 +247,14 @@ export default class Card extends PureComponent {
     }
 
     return (
-      <a href={card.get('url')} className={classNames('status-card', { expanded: !compact && largeImage })} target='_blank' rel='noopener noreferrer' ref={this.setRef}>
-        {embed}
-        {description}
-      </a>
+      <>
+        <a href={card.get('url')} className={classNames('status-card', { expanded: !compact && largeImage, bottomless: showAuthor })} target='_blank' rel='noopener noreferrer' ref={this.setRef}>
+          {embed}
+          {description}
+        </a>
+
+        {showAuthor && <MoreFromAuthor author={card.get('author_account')} />}
+      </>
     );
   }
 
