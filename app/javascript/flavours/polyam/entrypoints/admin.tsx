@@ -296,7 +296,7 @@ const onChangeFlavourAndSkin = (target: HTMLSelectElement) => {
   );
 
   const selectedGroup = target.selectedOptions[0]
-    .parentNode as HTMLOptGroupElement;
+    ?.parentNode as HTMLOptGroupElement;
 
   const toggleGroup = (e: HTMLSelectElement) => {
     for (const group of e.children) {
@@ -308,10 +308,10 @@ const onChangeFlavourAndSkin = (target: HTMLSelectElement) => {
 
           // Reset system skin settings on flavour change when selected skin not available in group.
           if (
-            (e.selectedOptions[0].parentNode as HTMLOptGroupElement).label !==
+            (e.selectedOptions[0]?.parentNode as HTMLOptGroupElement).label !==
               group.label &&
             group.querySelector(
-              `option[value="${e.selectedOptions[0].value}"]`,
+              `option[value="${e.selectedOptions[0]?.value}"]`,
             ) === null
           ) {
             // No need to worry about whether these exist as system skin wouldn't be available in such a case
