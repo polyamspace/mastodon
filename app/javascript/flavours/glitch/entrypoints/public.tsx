@@ -467,7 +467,8 @@ Rails.delegate(document, '#user_role_name', 'change', ({ target }) => {
       const preview = document.getElementById(`user-role-preview-${i}`);
 
       if (preview) {
-        preview.getElementsByTagName('span')[0].innerText = target.value;
+        const e = preview.getElementsByTagName('span')[0];
+        if (e) e.innerText = target.value;
       }
     }
   }
