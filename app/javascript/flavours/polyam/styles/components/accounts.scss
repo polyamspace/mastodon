@@ -469,6 +469,7 @@ a.account__display-name {
   @include filter-bar;
 }
 
+.account-anniversary-banner,
 .moved-account-banner,
 .follow-request-banner,
 .account-memorial-banner {
@@ -506,6 +507,7 @@ a.account__display-name {
   width: 100%;
 }
 
+.account-anniversary-banner__message,
 .account-memorial-banner__message {
   margin-bottom: 0;
 }

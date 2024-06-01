@@ -12,6 +12,7 @@ import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 import ActionBar from '../../account/components/action_bar';
 import InnerHeader from '../../account/components/header';
 
+import { AnniversaryNote } from './anniversary-note';
 import MemorialNote from './memorial_note';
 import MovedNote from './moved_note';
 
@@ -123,6 +124,7 @@ class Header extends ImmutablePureComponent {
       <div className='account-timeline__header'>
         {(!hidden && account.get('memorial')) && <MemorialNote />}
         {(!hidden && account.get('moved')) && <MovedNote from={account} to={account.get('moved')} />}
+        {(!hidden && account.get('anniversary') && <AnniversaryNote account={account} />)}
 
         <InnerHeader
           account={account}
