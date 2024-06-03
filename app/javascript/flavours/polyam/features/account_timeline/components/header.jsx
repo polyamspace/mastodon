@@ -124,7 +124,7 @@ class Header extends ImmutablePureComponent {
       <div className='account-timeline__header'>
         {(!hidden && account.get('memorial')) && <MemorialNote />}
         {(!hidden && account.get('moved')) && <MovedNote from={account} to={account.get('moved')} />}
-        {(!hidden && account.get('anniversary') && <AnniversaryNote account={account} />)}
+        {(!hidden && !account.get('memorial') && account.get('anniversary') && <AnniversaryNote account={account} />)}
 
         <InnerHeader
           account={account}
