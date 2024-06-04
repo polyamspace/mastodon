@@ -469,6 +469,7 @@ a.account__display-name {
   @include filter-bar;
 }
 
+.account-anniversary-banner,
 .moved-account-banner,
 .follow-request-banner,
 .account-memorial-banner {
@@ -506,8 +507,14 @@ a.account__display-name {
   width: 100%;
 }
 
+.account-anniversary-banner__message,
 .account-memorial-banner__message {
   margin-bottom: 0;
+}
+
+.account-anniversary-banner {
+  position: relative;
+  z-index: -2;
 }
 
 .account__header__content {
@@ -878,5 +885,46 @@ a.account__display-name {
   .icon {
     width: 13px;
     height: 13px;
+  }
+}
+
+// Polyam: Animation for anniversary-note
+@keyframes fall {
+  0% {
+    transform: translateY(-220%) rotate(0);
+  }
+
+  100% {
+    transform: translateY(220%) rotate(180deg);
+  }
+}
+
+.no-reduce-motion {
+  .fedimation {
+    .fedi-logo {
+      animation: fall 5s linear infinite;
+
+      &:nth-child(even) {
+        animation-delay: 2.5s;
+      }
+    }
+  }
+}
+
+.fedimation {
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+  pointer-events: none;
+  z-index: -1;
+  width: 100%;
+  height: 0;
+
+  .fedi-logo {
+    width: 18px;
+    height: 18px;
+    background-image: url('~flavours/polyam/images/fediverse.svg');
+    background-size: contain;
+    transform: translateY(-220%);
   }
 }

@@ -8,7 +8,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :indexable, :group, :created_at,
              :note, :url, :uri, :avatar, :avatar_static, :header, :header_static,
-             :followers_count, :following_count, :statuses_count, :last_status_at, :hide_collections
+             :followers_count, :following_count, :statuses_count, :last_status_at, :hide_collections, :anniversary
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
 
@@ -142,6 +142,11 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def memorial
     object.memorial?
+  end
+
+  def anniversary
+    now = Time.now.utc
+    object.created_at.month == now.month && object.created_at.day == now.day
   end
 
   def roles
