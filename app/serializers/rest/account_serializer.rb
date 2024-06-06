@@ -146,7 +146,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def anniversary
     now = Time.now.utc
-    object.created_at.month == now.month && object.created_at.day == now.day
+    object.created_at.month == now.month && object.created_at.day == now.day && object.created_at.year != now.year
   end
 
   def roles
