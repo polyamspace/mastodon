@@ -67,8 +67,4 @@ class Api::V1::Statuses::ReactedByAccountsController < Api::BaseController
   rescue Mastodon::NotPermittedError
     not_found
   end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
-  end
 end
