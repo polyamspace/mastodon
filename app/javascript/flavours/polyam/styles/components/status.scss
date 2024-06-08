@@ -112,13 +112,13 @@
 .focusable {
   &:focus {
     outline: 0;
-    background: rgba($ui-highlight-color, 0.05);
+    background: var(--toot-focus-background-color);
 
     // Polyam: Moved from .status &.collapsed to here as otherwise doesn't apply
     &.collapsed .status__content::after {
       background: linear-gradient(
-        rgba(mix($ui-highlight-color, darken($ui-base-color, 8%), 5%), 0),
-        rgba(mix($ui-highlight-color, darken($ui-base-color, 8%), 5%), 1)
+        transparent,
+        var(--toot-focus-background-color)
       );
     }
   }
@@ -298,8 +298,8 @@
 
     &.status-direct > .status__content::after {
       background: linear-gradient(
-        rgba(mix($ui-highlight-color, darken($ui-base-color, 8%), 5%), 0),
-        rgba(mix($ui-highlight-color, darken($ui-base-color, 8%), 5%), 1)
+        transparent,
+        var(--toot-private-background-color)
       );
     }
   }
@@ -459,10 +459,10 @@
 }
 
 .status__wrapper-direct {
-  background: rgba($ui-highlight-color, 0.05);
+  background: var(--toot-private-background-color);
 
   &:focus {
-    background: rgba($ui-highlight-color, 0.05);
+    background: var(--toot-private-background-color);
   }
 
   .status__prepend {

@@ -112,4 +112,14 @@ $dismiss-overlay-width: 4rem;
   --background-color: #{darken($ui-base-color, 8%)};
   --background-color-tint: #{rgba(darken($ui-base-color, 8%), 0.9)};
   --surface-background-color: #{darken($ui-base-color, 4%)};
+  --toot-focus-background-color: #{color-mix(
+      in srgb,
+      var(--background-color),
+      $ui-highlight-color 5%
+    )};
+  --toot-private-background-color: #{color-mix(
+      in srgb,
+      var(--background-color),
+      $ui-highlight-color 5%
+    )};
 }
