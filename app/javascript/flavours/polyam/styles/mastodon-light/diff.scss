@@ -526,10 +526,16 @@ html {
   }
 }
 
-.status.collapsed .status__content::after {
+// Polyam: Fix focused gradient
+.focusable:focus.collapsed:not(.status-direct) .status__content::after {
+  background: linear-gradient(transparent, lighten($white, 4%));
+}
+
+// Polyam: Fix private mention gradient
+.status.collapsed.status-direct .status__content::after {
   background: linear-gradient(
-    rgba(darken($ui-base-color, 13%), 0),
-    rgba(darken($ui-base-color, 13%), 1)
+    rgba(mix($ui-highlight-color, #fff, 5%), 0),
+    rgba(mix($ui-highlight-color, #fff, 5%), 1)
   );
 }
 
