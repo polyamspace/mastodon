@@ -130,6 +130,15 @@ button.icon-button.active {
   }
 }
 
+// Polyam: Fix gradients
+.focusable:focus.collapsed .status__content::after,
+.status.collapsed.status-direct .status__content::after {
+  background: linear-gradient(
+    rgba(mix($ui-highlight-color, darken($ui-base-color, 4%), 5%), 0),
+    rgba(mix($ui-highlight-color, darken($ui-base-color, 4%), 5%), 1)
+  );
+}
+
 // Polyam: Use same color as hashtags in toot
 .hashtag-bar {
   a {
