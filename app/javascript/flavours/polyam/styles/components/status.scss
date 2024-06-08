@@ -113,6 +113,14 @@
   &:focus {
     outline: 0;
     background: rgba($ui-highlight-color, 0.05);
+
+    // Polyam: Moved from .status &.collapsed to here as otherwise doesn't apply
+    &.collapsed .status__content::after {
+      background: linear-gradient(
+        rgba(mix($ui-highlight-color, darken($ui-base-color, 8%), 5%), 0),
+        rgba(mix($ui-highlight-color, darken($ui-base-color, 8%), 5%), 1)
+      );
+    }
   }
 }
 
@@ -288,17 +296,10 @@
       }
     }
 
-    &:focus > .status__content::after {
-      background: linear-gradient(
-        rgba(lighten($ui-base-color, 4%), 0),
-        rgba(lighten($ui-base-color, 4%), 1)
-      );
-    }
-
     &.status-direct > .status__content::after {
       background: linear-gradient(
-        rgba(mix($ui-base-color, $ui-highlight-color, 95%), 0),
-        rgba(mix($ui-base-color, $ui-highlight-color, 95%), 1)
+        rgba(mix($ui-highlight-color, darken($ui-base-color, 8%), 5%), 0),
+        rgba(mix($ui-highlight-color, darken($ui-base-color, 8%), 5%), 1)
       );
     }
   }
