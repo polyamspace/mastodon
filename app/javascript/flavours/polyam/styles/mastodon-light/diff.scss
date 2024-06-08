@@ -122,7 +122,7 @@ html {
 
 // Change the background colors of statuses
 .focusable:focus {
-  background: lighten($white, 4%);
+  background: var(--toot-focus-background-color);
 }
 
 // Change the background colors of status__content__spoiler-link
@@ -528,15 +528,7 @@ html {
 
 // Polyam: Fix focused gradient
 .focusable:focus.collapsed:not(.status-direct) .status__content::after {
-  background: linear-gradient(transparent, lighten($white, 4%));
-}
-
-// Polyam: Fix private mention gradient
-.status.collapsed.status-direct .status__content::after {
-  background: linear-gradient(
-    rgba(mix($ui-highlight-color, #fff, 5%), 0),
-    rgba(mix($ui-highlight-color, #fff, 5%), 1)
-  );
+  background: linear-gradient(transparent, var(--toot-focus-background-color));
 }
 
 .drawer__inner__mastodon {
