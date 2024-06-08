@@ -88,6 +88,15 @@
   }
 }
 
+// Polyam: Fix gradients
+.focusable:focus.collapsed .status__content::after,
+.status.collapsed.status-direct .status__content::after {
+  background: linear-gradient(
+    rgba(mix($ui-highlight-color, $ui-base-color, 5%), 0),
+    rgba(mix($ui-highlight-color, $ui-base-color, 5%), 1)
+  );
+}
+
 // hashtags in primary color
 .status__content a {
   color: $highlight-text-color;
