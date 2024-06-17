@@ -1,0 +1,22 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+# This file is intended to update polyam-glitch only packages as renovate is overkill for such a task.
+
+# glitch-soc dependencies:
+# - atrament (used by doodle)
+# - exif-js (used by resize_image util)
+# - favico.js (used by favicon badge feature)
+
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 99
+    allow:
+      # Used for syntax highlighting in code blocks
+      - dependency-name: 'highlight.js'
