@@ -85,7 +85,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   def imagemagick_version
     return if Rails.configuration.x.use_vips
 
-    version = `convert -version`.match(/Version: ImageMagick ([\d\.]+)/)[1]
+    version = `convert -version`.match(/(?<=Version: ImageMagick) [\d\.]+/).to_s
 
     {
       key: 'imagemagick',
@@ -98,7 +98,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   end
 
   def ffmpeg_version
-    version = `ffmpeg -version`.match(/ffmpeg version ([\w\d\.-]+) (?=Copyright)/)[1]
+    version = `ffmpeg -version`.match(/(?<=ffmpeg version) [\w\d\.-]+/).to_s
 
     {
       key: 'ffmpeg',
