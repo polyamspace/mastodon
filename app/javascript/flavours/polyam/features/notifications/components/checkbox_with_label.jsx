@@ -26,6 +26,6 @@ export const CheckboxWithLabel = ({ checked, disabled, children, onChange }) => 
 CheckboxWithLabel.propTypes = {
   checked: PropTypes.bool,
   disabled: PropTypes.bool,
-  children: PropTypes.children,
+  children: PropTypes.node,
   onChange: PropTypes.func,
 };
