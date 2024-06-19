@@ -283,7 +283,6 @@ module.exports = defineConfig({
         {
           target: 'app/javascript/flavours/polyam/',
           from: ['app/javascript/mastodon/', 'app/javascript/flavours/glitch/'],
-          except: ['./api_types'],
           message: 'Import from flavours/polyam/ instead'
         },
         // Forbid imports from material-icons in polyam flavour
