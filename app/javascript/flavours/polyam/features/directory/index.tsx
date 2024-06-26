@@ -14,9 +14,12 @@ import {
   moveColumn,
   changeColumnParams,
 } from 'flavours/polyam/actions/columns';
-import { fetchDirectory, expandDirectory } from 'flavours/polyam/actions/directory';
+import {
+  fetchDirectory,
+  expandDirectory,
+} from 'flavours/polyam/actions/directory';
 import Column from 'flavours/polyam/components/column';
-import ColumnHeader from 'flavours/polyam/components/column_header';
+import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { LoadMore } from 'flavours/polyam/components/load_more';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { RadioButton } from 'flavours/polyam/components/radio_button';
@@ -86,7 +89,7 @@ export const Directory: React.FC<{
   }, [dispatch, order, local]);
 
   const handleMove = useCallback(
-    (dir: string) => {
+    (dir: number) => {
       dispatch(moveColumn(columnId, dir));
     },
     [dispatch, columnId],
@@ -185,7 +188,6 @@ export const Directory: React.FC<{
       label={intl.formatMessage(messages.title)}
     >
       <ColumnHeader
-        // @ts-expect-error ColumnHeader is not properly typed yet
         icon='address-book-o'
         iconComponent={PeopleIcon}
         title={intl.formatMessage(messages.title)}
