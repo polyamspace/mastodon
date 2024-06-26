@@ -12,12 +12,11 @@ import ChevronLeftIcon from '@/awesome-icons/solid/chevron-left.svg?react';
 import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import CircleInfo from '@/awesome-icons/solid/circle-info.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
-import { followAccount, unfollowAccount } from 'flavours/polyam/actions/accounts';
 import { changeSetting } from 'flavours/polyam/actions/settings';
 import { fetchSuggestions, dismissSuggestion } from 'flavours/polyam/actions/suggestions';
 import { Avatar } from 'flavours/polyam/components/avatar';
-import { Button } from 'flavours/polyam/components/button';
 import { DisplayName } from 'flavours/polyam/components/display_name';
+import { FollowButton } from 'flavours/polyam/components/follow_button';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
@@ -79,18 +78,8 @@ Source.propTypes = {
 const Card = ({ id, sources }) => {
   const intl = useIntl();
   const account = useSelector(state => state.getIn(['accounts', id]));
-  const relationship = useSelector(state => state.getIn(['relationships', id]));
   const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
   const dispatch = useDispatch();
-  const following = relationship?.get('following') ?? relationship?.get('requested');
-
-  const handleFollow = useCallback(() => {
-    if (following) {
-      dispatch(unfollowAccount(id));
-    } else {
-      dispatch(followAccount(id));
-    }
-  }, [id, following, dispatch]);
 
   const handleDismiss = useCallback(() => {
     dispatch(dismissSuggestion(id));
@@ -109,7 +98,7 @@ const Card = ({ id, sources }) => {
         {firstVerifiedField ? <VerifiedBadge link={firstVerifiedField.get('value')} /> : <Source id={sources.get(0)} />}
       </div>
 
-      <Button text={intl.formatMessage(following ? messages.unfollow : messages.follow)} secondary={following} onClick={handleFollow} />
+      <FollowButton accountId={id} />
     </div>
   );
 };

@@ -12,7 +12,7 @@ export const AuthorLink = ({ accountId }) => {
   }
 
   return (
-    <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='story__details__shared__author-link'>
+    <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='story__details__shared__author-link' data-hover-card-account={accountId}>
       <Avatar account={account} size={16} />
       <bdi dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} />
     </Permalink>
