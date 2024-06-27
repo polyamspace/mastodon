@@ -7,6 +7,10 @@ import { useAppSelector } from 'flavours/polyam/store';
 export const AuthorLink = ({ accountId }) => {
   const account = useAppSelector(state => state.getIn(['accounts', accountId]));
 
+  if (!account) {
+    return null;
+  }
+
   return (
     <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='story__details__shared__author-link'>
       <Avatar account={account} size={16} />
