@@ -660,7 +660,7 @@ class UI extends PureComponent {
 
           {layout !== 'mobile' && <PictureInPicture />}
           <NotificationsContainer />
-          <HoverCardController />
+          {/* Temporarily disabled while upstream improves the issue */ null && <HoverCardController />}
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
