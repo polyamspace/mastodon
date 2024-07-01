@@ -16,6 +16,7 @@ import { HotKeys } from 'react-hotkeys';
 import { changeLayout } from 'flavours/polyam/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/polyam/actions/markers';
 import { INTRODUCTION_VERSION } from 'flavours/polyam/actions/onboarding';
+import { HoverCardController } from 'flavours/polyam/components/hover_card_controller';
 import { Permalink } from 'flavours/polyam/components/permalink';
 import { PictureInPicture } from 'flavours/polyam/features/picture_in_picture';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
@@ -659,6 +660,7 @@ class UI extends PureComponent {
 
           {layout !== 'mobile' && <PictureInPicture />}
           <NotificationsContainer />
+          {/* Temporarily disabled while upstream improves the issue */ null && <HoverCardController />}
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />

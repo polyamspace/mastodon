@@ -75,7 +75,7 @@ export const Card = ({ id, source }) => {
           <div className='explore__suggestions__card__body__main__name-button'>
             <Link className='explore__suggestions__card__body__main__name-button__name' to={`/@${account.get('acct')}`}><DisplayName account={account} /></Link>
             <IconButton iconComponent={CloseIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
-            {/* Polyam: Use IconButton */}
+            {/* Polyam: Use IconButton instead of FollowButton. TODO: Make a component like FollowButton? */}
             <IconButton iconComponent={following ? UnfollowIcon : FollowIcon} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} active={following} onClick={handleFollow} />
           </div>
         </div>

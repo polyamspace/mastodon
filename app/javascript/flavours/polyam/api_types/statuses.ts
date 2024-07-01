@@ -40,6 +40,12 @@ export interface ApiMentionJSON {
   acct: string;
 }
 
+export interface ApiPreviewCardAuthorJSON {
+  name: string;
+  url: string;
+  account?: ApiAccountJSON;
+}
+
 export interface ApiPreviewCardJSON {
   url: string;
   title: string;
@@ -58,6 +64,7 @@ export interface ApiPreviewCardJSON {
   embed_url: string;
   blurhash: string;
   published_at: string;
+  authors: ApiPreviewCardAuthorJSON[];
 }
 
 export interface ApiStatusJSON {

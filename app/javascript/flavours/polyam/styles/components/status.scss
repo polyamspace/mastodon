@@ -113,14 +113,6 @@
   &:focus {
     outline: 0;
     background: var(--toot-focus-background-color);
-
-    // Polyam: Moved from .status &.collapsed to here as otherwise doesn't apply
-    &.collapsed .status__content::after {
-      background: linear-gradient(
-        transparent,
-        var(--toot-focus-background-color)
-      );
-    }
   }
 }
 
@@ -241,69 +233,6 @@
     }
   }
 
-  &.collapsed {
-    background-position: center;
-    background-size: cover;
-    user-select: none;
-    min-height: 0;
-
-    &.has-background::before {
-      display: block;
-      position: absolute;
-      inset-inline-start: 0;
-      inset-inline-end: 0;
-      top: 0;
-      bottom: 0;
-      background-image: linear-gradient(
-        to bottom,
-        rgba($base-shadow-color, 0.75),
-        rgba($base-shadow-color, 0.65) 24px,
-        rgba($base-shadow-color, 0.8)
-      );
-      pointer-events: none;
-      content: '';
-    }
-
-    .display-name:hover .display-name__html {
-      text-decoration: none;
-    }
-
-    .status__content {
-      height: 20px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding-top: 0;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        inset-inline-start: 0;
-        inset-inline-end: 0;
-        background: linear-gradient(transparent, var(--background-color));
-        pointer-events: none;
-      }
-
-      a:hover {
-        text-decoration: none;
-      }
-
-      // Polyam extra change for backgrounds of code blocks
-      pre,
-      code {
-        padding: 0;
-      }
-    }
-
-    &.status-direct > .status__content::after {
-      background: linear-gradient(
-        transparent,
-        var(--toot-private-background-color)
-      );
-    }
-  }
-
   // Polyam: Reactions
   .reactions-bar--empty {
     display: none;
@@ -311,6 +240,52 @@
 }
 
 .status__wrapper.collapsed {
+  .status {
+    background-position: center;
+    background-size: cover;
+    user-select: none;
+    min-height: 0;
+  }
+
+  &.has-background::before {
+    display: block;
+    position: absolute;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    top: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+      to bottom,
+      rgba($base-shadow-color, 0.75),
+      rgba($base-shadow-color, 0.65) 24px,
+      rgba($base-shadow-color, 0.8)
+    );
+    pointer-events: none;
+    content: '';
+  }
+
+  .display-name:hover .display-name__html {
+    text-decoration: none;
+  }
+
+  .status__content {
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 0;
+    mask-image: linear-gradient(rgb(0 0 0 / 100%), transparent);
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    // Polyam extra change for backgrounds of code blocks
+    pre,
+    code {
+      padding: 0;
+    }
+  }
+
   .notification__message {
     margin-bottom: 0;
     white-space: nowrap;
@@ -460,10 +435,6 @@
 
 .status__wrapper-direct {
   background: var(--toot-private-background-color);
-
-  &:focus {
-    background: var(--toot-private-background-color);
-  }
 
   .status__prepend {
     color: $highlight-text-color;
