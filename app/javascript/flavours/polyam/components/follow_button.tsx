@@ -23,6 +23,10 @@ const messages = defineMessages({
     defaultMessage: 'Withdraw follow request',
   },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
+  cancelFollowRequestConfirm: {
+    id: 'confirmations.cancel_follow_request.confirm',
+    defaultMessage: 'Withdraw request',
+  },
 });
 
 export const FollowButton: React.FC<{
@@ -70,14 +74,25 @@ export const FollowButton: React.FC<{
           openModal({
             modalType: 'CONFIRM',
             modalProps: {
-              message: (
+              // Polyam: Keep different messages for canceling request
+              message: relationship.following ? (
                 <FormattedMessage
                   id='confirmations.unfollow.message'
                   defaultMessage='Are you sure you want to unfollow {name}?'
-                  values={{ name: <strong>@{account?.acct}</strong>}}
+                  values={{ name: <strong>@{account?.acct}</strong> }}
+                />
+              ) : (
+                <FormattedMessage
+                  id='confirmations.cancel_follow_request.message'
+                  defaultMessage='Are you sure you want to withdraw your request to follow {name}?'
+                  values={{ name: <strong>@{account?.acct}</strong> }}
                 />
               ),
-              confirm: intl.formatMessage(messages.unfollow),
+              confirm: intl.formatMessage(
+                relationship.following
+                  ? messages.unfollow
+                  : messages.cancelFollowRequestConfirm,
+              ),
               onConfirm: () => {
                 dispatch(unfollowAccount(accountId));
               },
