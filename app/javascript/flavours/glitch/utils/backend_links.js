@@ -3,7 +3,6 @@ export const profileLink = '/settings/profile';
 export const signOutLink = '/auth/sign_out';
 export const privacyPolicyLink = '/privacy-policy';
 export const accountAdminLink = (id) => `/admin/accounts/${id}`;
-export const instanceAdminLink = (domain) => `/admin/instances/${domain}`;
 export const statusAdminLink = (account_id, status_id) => `/admin/accounts/${account_id}/statuses/${status_id}`;
 export const filterEditLink = (id) => `/filters/${id}/edit`;
 export const relationshipsLink = '/relationships';

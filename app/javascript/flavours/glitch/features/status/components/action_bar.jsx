@@ -23,7 +23,7 @@ import RepeatPrivateIcon from '@/svg-icons/repeat_private.svg?react';
 import RepeatPrivateActiveIcon from '@/svg-icons/repeat_private_active.svg?react';
 import { identityContextPropShape, withIdentity } from 'flavours/glitch/identity_context';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/glitch/permissions';
-import { accountAdminLink, instanceAdminLink, statusAdminLink } from 'flavours/glitch/utils/backend_links';
+import { accountAdminLink, statusAdminLink } from 'flavours/glitch/utils/backend_links';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import { IconButton } from '../../../components/icon_button';
@@ -209,7 +209,7 @@ class ActionBar extends PureComponent {
         menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick, dangerous: true });
         menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick, dangerous: true });
         menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport, dangerous: true });
-        if (((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && (accountAdminLink || statusAdminLink)) || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION && instanceAdminLink)) {
+        if (((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && (accountAdminLink || statusAdminLink)) || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION)) {
           menu.push(null);
           if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
             if (accountAdminLink !== undefined) {
@@ -220,10 +220,8 @@ class ActionBar extends PureComponent {
             }
           }
           if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
-            if (instanceAdminLink !== undefined) {
-              const domain = status.getIn(['account', 'acct']).split('@')[1];
-              menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: instanceAdminLink(domain) });
-            }
+            const domain = status.getIn(['account', 'acct']).split('@')[1];
+            menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: `/admin/instances/${domain}` });
           }
         }
       }

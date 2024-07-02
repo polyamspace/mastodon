@@ -26,7 +26,7 @@ import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_cont
 import { identityContextPropShape, withIdentity } from 'flavours/glitch/identity_context';
 import { autoPlayGif, me, domain as localDomain } from 'flavours/glitch/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/glitch/permissions';
-import { preferencesLink, profileLink, accountAdminLink, instanceAdminLink } from 'flavours/glitch/utils/backend_links';
+import { preferencesLink, profileLink, accountAdminLink } from 'flavours/glitch/utils/backend_links';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import AccountNoteContainer from '../containers/account_note_container';
@@ -301,16 +301,13 @@ class Header extends ImmutablePureComponent {
       }
     }
 
-    if ((account.get('id') !== me && (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && accountAdminLink) || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION && instanceAdminLink)) {
+    if (account.get('id') !== me && ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && accountAdminLink) || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION)) {
       menu.push(null);
       if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && accountAdminLink) {
         menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: accountAdminLink(account.get('id')) });
       }
-      if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION && instanceAdminLink) {
-        menu.push({
-          text: intl.formatMessage(messages.admin_domain, { domain: remoteDomain }),
-          href: instanceAdminLink(remoteDomain),
-        });
+      if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
+        menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: remoteDomain }), href: `/admin/instances/${remoteDomain}` });
       }
     }
 
