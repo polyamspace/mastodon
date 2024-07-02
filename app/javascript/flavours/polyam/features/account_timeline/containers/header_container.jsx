@@ -58,6 +58,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
         dispatch(unfollowAccount(account.get('id')));
       }
     } else if (account.getIn(['relationship', 'requested'])) {
+      // Polyam: Kept from upstream as otherwise confusing
       if (unfollowModal) {
         dispatch(openModal({
           modalType: 'CONFIRM',

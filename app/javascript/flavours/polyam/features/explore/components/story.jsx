@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
@@ -56,7 +57,7 @@ export const Story = ({
 
         <div className='story__details__shared'>
           {author ? <FormattedMessage id='link_preview.author' className='story__details__shared__author' defaultMessage='By {name}' values={{ name: authorAccount ? <AuthorLink accountId={authorAccount} /> : <strong>{author}</strong> }} /> : <span />}
-          {typeof sharedTimes === 'number' ? <span className='story__details__shared__pill'><ShortNumber value={sharedTimes} renderer={sharesCountRenderer} /></span> : <Skeleton width='10ch' />}
+          {typeof sharedTimes === 'number' ? <Link className='story__details__shared__pill' to={`/links/${encodeURIComponent(url)}`}><ShortNumber value={sharedTimes} renderer={sharesCountRenderer} /></Link> : <Skeleton width='10ch' />}
         </div>
       </div>
 
