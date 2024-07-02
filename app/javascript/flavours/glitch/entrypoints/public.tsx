@@ -447,33 +447,6 @@ Rails.delegate(document, '#registration_new_user,#new_user', 'submit', () => {
   });
 });
 
-// User role preview
-Rails.delegate(document, '#user_role_color', 'change', ({ target }) => {
-  if (target instanceof HTMLInputElement) {
-    for (let i = 1; i <= 3; i++) {
-      const preview = document.getElementById(`user-role-preview-${i}`);
-
-      if (preview) {
-        preview.style.backgroundColor = `${target.value}39`;
-        preview.style.borderColor = target.value;
-      }
-    }
-  }
-});
-
-Rails.delegate(document, '#user_role_name', 'change', ({ target }) => {
-  if (target instanceof HTMLInputElement) {
-    for (let i = 1; i <= 3; i++) {
-      const preview = document.getElementById(`user-role-preview-${i}`);
-
-      if (preview) {
-        const e = preview.getElementsByTagName('span')[0];
-        if (e) e.innerText = target.value;
-      }
-    }
-  }
-});
-
 function main() {
   ready(loaded).catch((error: unknown) => {
     console.error(error);
