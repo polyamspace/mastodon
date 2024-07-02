@@ -29,7 +29,6 @@ class ListForm extends PureComponent {
   static propTypes = {
     value: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
-    isExclusive: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
