@@ -19,6 +19,8 @@
   "account.request_follow": "Request follow",
   "account.unmute_notifications": "Unmute notifications from @{name}",
   "column.reacted_by": "Reacted by",
+  "confirmations.cancel_follow_request.confirm": "o weka e wile sina",
+  "confirmations.cancel_follow_request.message": "sina awen ala awen wile weka e wile kute sina lon {name}?",
   "footer.documentation": "Documentation",
   "home.column_settings.show_threads": "Show threads",
   "media_gallery.sensitive": "Sensitive",

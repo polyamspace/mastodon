@@ -27,6 +27,8 @@
   "column.reacted_by": "Reacted by",
   "compose_form.alt_text_warning.header": "Your attachments are missing a description!",
   "compose_form.alt_text_warning.message": "Descriptions are for users who are deaf, hard of hearing, blind, or have low vision that prevent them from seeing or hearing an image, video, or audio file. It's recommended that you provide a description for all attached media files so everyone can enjoy using Mastodon.",
+  "confirmations.cancel_follow_request.confirm": "요청 삭제",
+  "confirmations.cancel_follow_request.message": "정말 {name}님에 대한 팔로우 요청을 취소하시겠습니까?",
   "footer.documentation": "문서",
   "home.column_settings.show_threads": "Show threads",
   "media_gallery.sensitive": "민감함",
