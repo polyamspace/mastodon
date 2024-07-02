@@ -42,21 +42,21 @@
     background: lighten($ui-base-color, 4%);
 
     .avatar {
-      @include avatar-size(48px);
-
       flex: 0 0 auto;
       width: 48px;
       height: 48px;
+      @include avatar-size(48px);
+
       padding-top: 2px;
 
       img {
-        @include avatar-radius;
-
         width: 100%;
         height: 100%;
         display: block;
         margin: 0;
         border-radius: 4px;
+        @include avatar-radius;
+
         background: darken($ui-base-color, 8%);
         object-fit: cover;
       }

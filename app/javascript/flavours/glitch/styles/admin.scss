@@ -1010,47 +1010,6 @@ a.name-tag,
 
 .user-role {
   color: var(--user-role-accent);
-
-  &__preview {
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    background: var(--background-color);
-
-    .item {
-      padding: 12px 15px;
-      border: none;
-    }
-
-    .dark {
-      background-color: darken($classic-base-color, 8%);
-
-      .account-role {
-        color: $classic-secondary-color;
-        background-color: var(
-          --user-role-background,
-          rgba($classic-secondary-color, 0.1)
-        );
-        border-color: var(
-          --user-role-border,
-          rgba($classic-secondary-color, 0.5)
-        );
-      }
-    }
-
-    .light {
-      background-color: $white;
-
-      .account-role {
-        color: $classic-base-color;
-        background-color: var(
-          --user-role-background,
-          rgba($classic-base-color, 0.1)
-        );
-        border-color: var(--user-role-border, rgba($classic-base-color, 0.5));
-      }
-    }
-  }
 }
 
 .announcements-list,
