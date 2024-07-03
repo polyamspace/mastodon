@@ -28,7 +28,6 @@ import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_col
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
-
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
   deleteConfirm: { id: 'confirmations.delete_list.confirm', defaultMessage: 'Delete' },

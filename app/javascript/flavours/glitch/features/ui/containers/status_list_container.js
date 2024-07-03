@@ -33,10 +33,12 @@ const getRegex = createSelector([
   return regex;
 });
 
+// Polyam:
 // Settings can both be in column params and in state
 // This destinction didn't matter before the introduction of the firehose column
 // Not sure if oversight or on purpose, but multiple community and public timelines can be pinned, which should each have their own settings
 // There is no distinct timelineId for the firehose column, so an additional prop is parsed which indicates settings should be loaded from firehose
+// Removing this breaks "Show boosts" and "Show replies" options in public timelines
 const getSettings = createSelector([
   (state, { firehose }) => firehose,
   (state, { columnId }) => columnId,

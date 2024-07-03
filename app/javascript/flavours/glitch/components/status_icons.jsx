@@ -26,7 +26,6 @@ const messages = defineMessages({
   previewCard: { id: 'status.has_preview_card', defaultMessage: 'Features an attached preview card' },
   pictures: { id: 'status.has_pictures', defaultMessage: 'Features attached pictures' },
   poll: { id: 'status.is_poll', defaultMessage: 'This toot is a poll' },
-  thread: { id: 'status.is_thread', defaultMessage: 'This toot is part of a thread' },
   video: { id: 'status.has_video', defaultMessage: 'Features attached videos' },
   audio: { id: 'status.has_audio', defaultMessage: 'Features attached audio files' },
   localOnly: { id: 'status.local_only', defaultMessage: 'Only visible from your instance' },
