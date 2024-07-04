@@ -1,41 +1,38 @@
 import PropTypes from 'prop-types';
+import { useCallback } from 'react';
 
-import { injectIntl, FormattedMessage } from 'react-intl';
-
-import { withRouter } from 'react-router';
+import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Button } from 'flavours/polyam/components/button';
-import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
-class AltTextModal extends ImmutablePureComponent {
+export const AltTextModal = ({ media, onClose}) => {
+  const handleClick = useCallback(() => {
+    onClose();
+  }, [onClose]);
 
-  static propTypes = {
-    media: ImmutablePropTypes.map.isRequired,
-    statusId: PropTypes.string,
-    onClose: PropTypes.func.isRequired,
-    ...WithRouterPropTypes,
-  };
-
-  render () {
-    const { media, onClose } = this.props;
-
-    return (
-      <div className='modal-root__modal alttext-modal'>
-        <div className='alttext-modal__container'>
-          <pre>{media.get('description')}</pre>
+  return (
+    <div className='modal-root__modal alttext-modal'>
+      <div className='alttext-modal__top'>
+        <div className='alttext-modal__description'>
+          <pre>{media.getIn(['translation', 'description']) || media.get('description')}</pre>
         </div>
-        <div className='alttext-modal__action-bar'>
-          <Button onClick={onClose} className='alttext-modal__button'>
+      </div>
+      <div className='alttext-modal__bottom'>
+        <div className='alttext-modal__actions'>
+          <Button onClick={handleClick}>
             <FormattedMessage id='lightbox.close' defaultMessage='Close' />
           </Button>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+};
 
-}
+AltTextModal.propTypes = {
+  media: ImmutablePropTypes.map.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
 
-export default withRouter(injectIntl(AltTextModal));
+export default AltTextModal;

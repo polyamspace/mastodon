@@ -255,8 +255,8 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     }));
   },
 
-  onOpenAltText (statusId, media) {
-    dispatch(openModal({modalType: 'ALTTEXT', modalProps: { statusId, media }}));
+  onOpenAltText (media) {
+    dispatch(openModal({modalType: 'ALTTEXT', modalProps: { media: media }}));
   },
 
   onBlock (status) {
