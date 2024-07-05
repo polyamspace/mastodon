@@ -219,7 +219,6 @@ const Firehose = ({ feedType, multiColumn }) => {
         emptyMessage={emptyMessage}
         bindToDocument={!multiColumn}
         regex={regex}
-        firehose
       />
 
       <Helmet>
