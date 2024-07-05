@@ -3,7 +3,7 @@
 class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
 
-  PERMITTED_PARAMS = %i(local remote limit only_media allow_local_only).freeze
+  PERMITTED_PARAMS = %i(local remote limit only_media allow_local_only with_replies with_reblogs).freeze
 
   def show
     cache_if_unauthenticated!
@@ -37,8 +37,8 @@ class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
       remote: truthy_param?(:remote),
       only_media: truthy_param?(:only_media),
       allow_local_only: truthy_param?(:allow_local_only),
-      with_replies: Setting.show_replies_in_public_timelines,
-      with_reblogs: Setting.show_reblogs_in_public_timelines
+      with_replies: truthy_param?(:with_replies) && Setting.show_replies_in_public_timelines,
+      with_reblogs: truthy_param?(:with_reblogs) && Setting.show_reblogs_in_public_timelines
     )
   end
 
