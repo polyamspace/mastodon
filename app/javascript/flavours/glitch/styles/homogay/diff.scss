@@ -213,7 +213,7 @@
 }
 
 // general modals
-.modal-root__modal:not(.safety-action-modal) {
+.modal-root__modal:not(.safety-action-modal, .alttext-modal) {
   background: $ui-base-color;
 }
 
