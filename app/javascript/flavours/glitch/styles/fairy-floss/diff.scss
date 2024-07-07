@@ -142,7 +142,7 @@ button.icon-button.active {
 // Polyam: Apply background to modals,
 // but new mute and block modals need to be exempt
 // as otherwise it conflicts with border-radius
-.modal-root__modal:not(.safety-action-modal) {
+.modal-root__modal:not(.safety-action-modal, .alttext-modal) {
   background-color: lighten($purple2, 8%);
 }
 
