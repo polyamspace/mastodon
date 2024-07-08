@@ -681,18 +681,18 @@
   }
 }
 
-// Should be moved. Also probably not changed as polyam-glitch has ported change upstream postponed
+// Polyam: TODO: Move to new file?
 .status-card {
-  position: relative;
   display: flex;
+  align-items: center;
+  position: relative;
   font-size: 14px;
-  border: 1px solid var(--background-border-color);
-  border-radius: 8px;
   color: $darker-text-color;
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
-  align-items: center;
+  border: 1px solid var(--background-border-color);
+  border-radius: 8px;
 
   &.bottomless {
     border-radius: 8px 8px 0 0;
@@ -707,6 +707,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
     & > div {
       background: rgba($base-shadow-color, 0.6);
@@ -742,11 +743,6 @@
       position: relative;
       bottom: -1px;
     }
-
-    a .icon,
-    a:hover .icon {
-      color: inherit;
-    }
   }
 }
 
@@ -756,7 +752,7 @@ a.status-card {
   &:hover,
   &:focus,
   &:active {
-    // Fix underline being white
+    // Polyam: Fix underline being white
     text-decoration-color: $highlight-text-color;
 
     .status-card__title,
@@ -825,7 +821,7 @@ a.status-card {
 .status-card__content {
   flex: 1 1 auto;
   overflow: hidden;
-  padding: 0 8px; // Polyam: Different design
+  padding: 8px 10px; // glitch: reduced padding
   box-sizing: border-box;
   max-width: 100%;
 }
@@ -864,7 +860,7 @@ a.status-card {
 
 .status-card__image {
   flex: 0 0 auto;
-  width: 90px; // Polyam: Different design
+  width: 96px; // glitch: intentional change to better use space
   aspect-ratio: 1;
   background: lighten($ui-base-color, 8%);
   position: relative;
@@ -915,10 +911,6 @@ a.status-card {
 .status-card.expanded .status-card__image {
   width: 100%;
   aspect-ratio: auto;
-}
-
-.status-card.expanded .status-card__content {
-  padding: 15px;
 }
 
 .status-card__image,
