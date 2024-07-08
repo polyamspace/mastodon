@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Reactions', :sidekiq_inline do
+RSpec.describe 'Reactions', :inline_jobs do
   let(:user) { Fabricate(:user) }
   let(:scopes) { 'write:favourites' }
   # let(:app)   { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
