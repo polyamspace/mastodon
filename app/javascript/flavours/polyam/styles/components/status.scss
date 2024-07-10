@@ -121,6 +121,8 @@
   min-height: 54px;
   border-bottom: 1px solid var(--background-border-color);
   cursor: auto;
+  opacity: 1;
+  animation: fade 150ms linear;
 
   @keyframes fade {
     0% {
@@ -131,9 +133,6 @@
       opacity: 1;
     }
   }
-
-  opacity: 1;
-  animation: fade 150ms linear;
 
   .media-gallery,
   .video-player,
