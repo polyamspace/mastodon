@@ -46,6 +46,7 @@ export const StatusHeader: React.FC<Props> = ({
       target='_blank'
       onClick={handleAccountClick}
       rel='noopener noreferrer'
+      title={status.getIn(['account', 'acct']) as string}
       data-hover-card-account={status.getIn(['account', 'id'])}
     >
       <div className='status__avatar'>{statusAvatar}</div>
