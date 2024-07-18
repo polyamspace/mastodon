@@ -8,7 +8,7 @@ import { Avatar } from 'flavours/polyam/components/avatar';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { Icon } from 'flavours/polyam/components/icon';
 import { Permalink } from 'flavours/polyam/components/permalink';
-import { highlightCode } from 'flavours/polyam/utils/html';
+import { EmbeddedStatusContent } from 'flavours/polyam/features/notifications_v2/components/embedded_status_content';
 
 export const ReplyIndicator = () => {
   const inReplyToId = useSelector(state => state.getIn(['compose', 'in_reply_to']));
@@ -18,8 +18,6 @@ export const ReplyIndicator = () => {
   if (!status) {
     return null;
   }
-
-  const content = { __html: highlightCode(status.get('contentHtml')) };
 
   return (
     <div className='reply-indicator'>
@@ -34,7 +32,12 @@ export const ReplyIndicator = () => {
           <DisplayName account={account} />
         </Permalink>
 
-        <div className='reply-indicator__content translate' dangerouslySetInnerHTML={content} />
+        <EmbeddedStatusContent
+          className='reply-indicator__content translate'
+          content={status.get('contentHtml')}
+          language={status.get('language')}
+          mentions={status.get('mentions')}
+        />
 
         {(status.get('poll') || status.get('media_attachments').size > 0) && (
           <div className='reply-indicator__attachments'>

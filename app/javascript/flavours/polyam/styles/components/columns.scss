@@ -1626,8 +1626,8 @@ $ui-header-logo-wordmark-width: 99px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--background-border-color);
-  padding: 15px; // Polyam: Keep old padding
-  gap: 16px;
+  padding: 16px 24px;
+  gap: 8px;
   color: $darker-text-color;
   text-decoration: none;
 
@@ -1637,10 +1637,8 @@ $ui-header-logo-wordmark-width: 99px;
     color: $secondary-text-color;
   }
 
-  .icon {
-    width: 24px;
-    height: 24px;
-    padding: 2px;
+  .notification-group__icon {
+    color: inherit;
   }
 
   &__text {

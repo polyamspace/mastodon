@@ -432,10 +432,19 @@
   }
 }
 
-.status__wrapper-direct {
+.status__wrapper-direct,
+.notifications-ungrouped--direct {
   background: var(--toot-private-background-color);
 
-  .status__prepend {
+  &:focus {
+    background: var(--toot-private-background-focus-color);
+  }
+}
+
+.status__wrapper-direct,
+.notifications-ungrouped--direct {
+  .status__prepend,
+  .notifications-ungrouped__header {
     color: $highlight-text-color;
   }
 }
