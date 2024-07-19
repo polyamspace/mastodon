@@ -332,6 +332,7 @@
         font-size: 15px;
         line-height: 22px;
         color: $darker-text-color;
+        justify-content: space-between; // Polyam: Consistent timestamps
 
         a {
           color: inherit;
