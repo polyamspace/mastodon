@@ -8,11 +8,18 @@ import type { List as ImmutableList, RecordOf } from 'immutable';
 
 import PhotoLibraryIcon from '@/awesome-icons/regular/image.svg?react';
 import BarChart4BarsIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import {
+  addReaction,
+  removeReaction,
+} from 'flavours/polyam/actions/interactions';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { Icon } from 'flavours/polyam/components/icon';
+import StatusReactions from 'flavours/polyam/components/status_reactions';
+import { useIdentity } from 'flavours/polyam/identity_context';
+import { visibleReactions } from 'flavours/polyam/initial_state';
 import type { Status } from 'flavours/polyam/models/status';
-import { useAppSelector } from 'flavours/polyam/store';
+import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 import { EmbeddedStatusContent } from './embedded_status_content';
 
@@ -22,6 +29,10 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   statusId,
 }) => {
   const history = useHistory();
+  const dispatch = useAppDispatch();
+  // Polyam: TODO: Remove as notifications already require being signedIn
+  // This is currently only here to satisfy required "canReact" prop on StatusReactions.
+  const { signedIn } = useIdentity();
 
   const status = useAppSelector(
     (state) => state.statuses.get(statusId) as Status | undefined,
@@ -36,6 +47,21 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
 
     history.push(`/@${account.acct}/${statusId}`);
   }, [statusId, account, history]);
+
+  // Polyam: I'm not sure how useful it is to allow adding and removing of reactions here
+  const handleReactionAdd = useCallback(
+    (statusId: string, name: string, url: string) => {
+      dispatch(addReaction(statusId, name, url));
+    },
+    [dispatch],
+  );
+
+  const handleReactionRemove = useCallback(
+    (statusId: string, name: string) => {
+      dispatch(removeReaction(statusId, name));
+    },
+    [dispatch],
+  );
 
   if (!status) {
     return null;
@@ -88,6 +114,15 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
           )}
         </div>
       )}
+
+      <StatusReactions
+        statusId={status.get('id')}
+        reactions={status.get('reactions')}
+        numVisible={visibleReactions}
+        addReaction={handleReactionAdd}
+        removeReaction={handleReactionRemove}
+        canReact={signedIn}
+      />
     </div>
   );
 };
