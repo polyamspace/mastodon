@@ -14,12 +14,14 @@ type StatusLike = Record<{ account: Account }>;
 interface Props {
   status: StatusLike;
   friend: Account | undefined | null;
+  avatarSize: number;
   parseClick: (e: React.MouseEvent, acct: string) => void;
 }
 
 export const StatusHeader: React.FC<Props> = ({
   status,
   friend,
+  avatarSize,
   parseClick,
 }) => {
   const account = status.get('account');
@@ -34,7 +36,7 @@ export const StatusHeader: React.FC<Props> = ({
 
   const statusAvatar =
     friend === undefined || friend == null ? (
-      <Avatar account={account} size={46} />
+      <Avatar account={account} size={avatarSize} />
     ) : (
       <AvatarOverlay account={account} friend={friend} />
     );

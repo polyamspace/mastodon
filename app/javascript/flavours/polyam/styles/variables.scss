@@ -124,4 +124,9 @@ $dismiss-overlay-width: 4rem;
       var(--background-color),
       $ui-highlight-color 5%
     )};
+  --toot-private-background-focus-color: #{color-mix(
+      in srgb,
+      var(--background-color),
+      $ui-highlight-color 10%
+    )};
 }
