@@ -10,8 +10,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
 
-import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/polyam/utils/react_router';
-
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import { Button } from '../../../components/button';
@@ -84,7 +82,6 @@ class ComposeForm extends ImmutablePureComponent {
     maxChars: PropTypes.number,
     highlighted: PropTypes.bool,
     onRemoveHighlight: PropTypes.func,
-    ...WithOptionalRouterPropTypes
   };
 
   static defaultProps = {
@@ -140,9 +137,9 @@ class ComposeForm extends ImmutablePureComponent {
     // Submit unless there are media with missing descriptions
     if (this.props.mediaDescriptionConfirmation && this.props.media && this.props.media.some(item => !item.get('description'))) {
       const firstWithoutDescription = this.props.media.find(item => !item.get('description'));
-      this.props.onMediaDescriptionConfirm(this.props.history || null, firstWithoutDescription.get('id'), overridePrivacy);
+      this.props.onMediaDescriptionConfirm(firstWithoutDescription.get('id'), overridePrivacy);
     } else {
-      this.props.onSubmit(this.props.history || null, overridePrivacy);
+      this.props.onSubmit(overridePrivacy);
     }
   };
 
@@ -366,4 +363,4 @@ class ComposeForm extends ImmutablePureComponent {
 
 }
 
-export default withOptionalRouter(injectIntl(ComposeForm));
+export default injectIntl(ComposeForm);

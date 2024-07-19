@@ -2,12 +2,10 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-
-import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import ActionBar from '../../account/components/action_bar';
 import InnerHeader from '../../account/components/header';
@@ -38,7 +36,6 @@ class Header extends ImmutablePureComponent {
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
     featured: PropTypes.bool,
-    ...WithRouterPropTypes,
   };
 
   handleFollow = () => {
@@ -50,11 +47,11 @@ class Header extends ImmutablePureComponent {
   };
 
   handleMention = () => {
-    this.props.onMention(this.props.account, this.props.history);
+    this.props.onMention(this.props.account);
   };
 
   handleDirect = () => {
-    this.props.onDirect(this.props.account, this.props.history);
+    this.props.onDirect(this.props.account);
   };
 
   handleReport = () => {
@@ -172,4 +169,4 @@ class Header extends ImmutablePureComponent {
 
 }
 
-export default withRouter(Header);
+export default Header;
