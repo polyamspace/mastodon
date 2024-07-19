@@ -267,9 +267,10 @@
     flex: 0 0 auto;
     color: $dark-text-color;
 
+    // Polyam: reduced icon size
     .icon {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
     }
   }
 
@@ -331,6 +332,7 @@
         font-size: 15px;
         line-height: 22px;
         color: $darker-text-color;
+        justify-content: space-between; // Polyam: Consistent timestamps
 
         a {
           color: inherit;
@@ -462,7 +464,8 @@
   .picture-in-picture-placeholder,
   .more-from-author,
   .status-card,
-  .hashtag-bar {
+  .hashtag-bar,
+  .reactions-bar {
     margin-inline-start: $icon-margin;
     width: calc(100% - $icon-margin);
   }
