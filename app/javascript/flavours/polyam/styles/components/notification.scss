@@ -462,7 +462,8 @@
   .picture-in-picture-placeholder,
   .more-from-author,
   .status-card,
-  .hashtag-bar {
+  .hashtag-bar,
+  .reactions-bar {
     margin-inline-start: $icon-margin;
     width: calc(100% - $icon-margin);
   }
