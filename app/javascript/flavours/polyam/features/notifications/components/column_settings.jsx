@@ -121,7 +121,6 @@ class ColumnSettings extends PureComponent {
           </div>
         </section>
 
-        {/* Polyam: temporarily disable grouped notfications until issues fixed */null &&
         <section role='group' aria-labelledby='notifications-beta'>
           <h3 id='notifications-beta'>
             <FormattedMessage id='notifications.column_settings.beta.category' defaultMessage='Experimental features' />
@@ -130,7 +129,7 @@ class ColumnSettings extends PureComponent {
           <div className='column-settings__row'>
             <SettingToggle id='unread-notification-markers' prefix='notifications' settings={settings} settingPath={['groupingBeta']} onChange={onChange} label={groupingShowStr} />
           </div>
-        </section>}
+        </section>
 
         <section role='group' aria-labelledby='notifications-unread-markers'>
           <h3 id='notifications-unread-markers'>
