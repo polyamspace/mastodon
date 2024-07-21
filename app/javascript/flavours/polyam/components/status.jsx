@@ -867,8 +867,6 @@ class Status extends ImmutablePureComponent {
               statusId={status.get('id')}
               reactions={status.get('reactions')}
               numVisible={visibleReactions}
-              addReaction={this.props.onReactionAdd}
-              removeReaction={this.props.onReactionRemove}
               canReact={this.props.identity.signedIn}
             />
 

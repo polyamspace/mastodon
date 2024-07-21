@@ -4,19 +4,20 @@ import { useState, useCallback } from 'react';
 import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { useDispatch } from 'react-redux';
 
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 
+import { addReaction, removeReaction } from '../actions/interactions';
 import { unicodeMapping } from '../features/emoji/emoji_unicode_mapping_light';
 import { autoPlayGif, reduceMotion } from '../initial_state';
 import { assetHost } from '../utils/config';
 
 import { AnimatedNumber } from './animated_number';
 
-//TODO: addReaction and removeReaction could be dispatch
-// canReact should be optional and always require being signed in
-export const StatusReactions = ({statusId, reactions, numVisible, addReaction, removeReaction, canReact}) => {
+//TODO: canReact should be optional and always require being signed in
+export const StatusReactions = ({statusId, reactions, numVisible, canReact}) => {
   const willEnter = useCallback(() => {
     return { scale: reduceMotion ? 1 : 0 };
   }, []);
@@ -50,8 +51,6 @@ export const StatusReactions = ({statusId, reactions, numVisible, addReaction, r
               statusId={statusId}
               reaction={data}
               style={{ transform: `scale(${style.scale})`, position: style.scale < 0.5 ? 'absolute' : 'static' }}
-              addReaction={addReaction}
-              removeReaction={removeReaction}
               canReact={canReact}
             />
           ))}
@@ -65,22 +64,20 @@ StatusReactions.propTypes = {
   statusId: PropTypes.string.isRequired,
   reactions: ImmutablePropTypes.list.isRequired,
   numVisible: PropTypes.number,
-  addReaction: PropTypes.func.isRequired,
   canReact: PropTypes.bool.isRequired,
-  removeReaction: PropTypes.func.isRequired,
 };
 
-const Reaction = ({statusId, reaction, addReaction, removeReaction, canReact, style}) => {
+const Reaction = ({statusId, reaction, canReact, style}) => {
+  const dispatch = useDispatch();
   const [hovered, setHovered] = useState(false);
 
-  //TODO: Use dispatch directly
   const handleClick = useCallback(() => {
     if (reaction.get('me')) {
-      removeReaction(statusId, reaction.get('name'));
+      dispatch(removeReaction(statusId, reaction.get('name')));
     } else {
-      addReaction(statusId, reaction.get('name'));
+      dispatch(addReaction(statusId, reaction.get('name')));
     }
-  }, [reaction, statusId, removeReaction, addReaction]);
+  }, [dispatch, reaction, statusId]);
 
   const handleMouseEnter = useCallback(() => {
     setHovered(true);
@@ -117,8 +114,6 @@ const Reaction = ({statusId, reaction, addReaction, removeReaction, canReact, st
 Reaction.propTypes = {
   statusId: PropTypes.string,
   reaction: ImmutablePropTypes.map.isRequired,
-  addReaction: PropTypes.func.isRequired,
-  removeReaction: PropTypes.func.isRequired,
   canReact: PropTypes.bool.isRequired,
   style: PropTypes.object,
 };
