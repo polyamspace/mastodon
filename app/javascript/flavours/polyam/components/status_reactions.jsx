@@ -30,9 +30,8 @@ export const StatusReactions = ({statusId, reactions, canReact = true}) => {
     .filter(x => x.get('count') > 0)
     .sort((a, b) => b.get('count') - a.get('count'));
 
-  //FIXME: Own reaction should always be shown
   if (visibleReactions >= 0) {
-    shownReactions = shownReactions.filter((_, i) => i < visibleReactions);
+    shownReactions = shownReactions.filter((x, i) => i < visibleReactions || x.get('me'));
   }
 
   const styles = shownReactions.map(reaction => ({
