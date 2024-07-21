@@ -12,12 +12,12 @@ import spring from 'react-motion/lib/spring';
 import { addReaction, removeReaction } from '../actions/interactions';
 import { unicodeMapping } from '../features/emoji/emoji_unicode_mapping_light';
 import { useIdentity } from '../identity_context';
-import { autoPlayGif, reduceMotion } from '../initial_state';
+import { autoPlayGif, reduceMotion, visibleReactions } from '../initial_state';
 import { assetHost } from '../utils/config';
 
 import { AnimatedNumber } from './animated_number';
 
-export const StatusReactions = ({statusId, reactions, numVisible, canReact = true}) => {
+export const StatusReactions = ({statusId, reactions, canReact = true}) => {
   const willEnter = useCallback(() => {
     return { scale: reduceMotion ? 1 : 0 };
   }, []);
@@ -26,16 +26,16 @@ export const StatusReactions = ({statusId, reactions, numVisible, canReact = tru
     return { scale: reduceMotion ? 0 : spring(0, { stiffness: 170, damping: 26 }) };
   }, []);
 
-  let visibleReactions = reactions
+  let shownReactions = reactions
     .filter(x => x.get('count') > 0)
     .sort((a, b) => b.get('count') - a.get('count'));
 
-  //TODO: numVisible could be read by state
-  if (numVisible >= 0) {
-    visibleReactions = visibleReactions.filter((_, i) => i < numVisible);
+  //FIXME: Own reaction should always be shown
+  if (visibleReactions >= 0) {
+    shownReactions = shownReactions.filter((_, i) => i < visibleReactions);
   }
 
-  const styles = visibleReactions.map(reaction => ({
+  const styles = shownReactions.map(reaction => ({
     key: reaction.get('name'),
     data: reaction,
     style: { scale: reduceMotion ? 1 : spring(1, { stiffness: 150, damping: 13 }) },
@@ -44,7 +44,7 @@ export const StatusReactions = ({statusId, reactions, numVisible, canReact = tru
   return (
     <TransitionMotion styles={styles} willEnter={willEnter} willLeave={willLeave}>
       {items => (
-        <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.isEmpty() })}>
+        <div className={classNames('reactions-bar', { 'reactions-bar--empty': shownReactions.isEmpty() })}>
           {items.map(({ key, data, style }) => (
             <Reaction
               key={key}
@@ -63,7 +63,6 @@ export const StatusReactions = ({statusId, reactions, numVisible, canReact = tru
 StatusReactions.propTypes = {
   statusId: PropTypes.string.isRequired,
   reactions: ImmutablePropTypes.list.isRequired,
-  numVisible: PropTypes.number,
   canReact: PropTypes.bool,
 };
 
