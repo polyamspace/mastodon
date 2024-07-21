@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { useState, useCallback } from 'react';
 
 import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
@@ -15,161 +14,150 @@ import { assetHost } from '../utils/config';
 
 import { AnimatedNumber } from './animated_number';
 
-export default class StatusReactions extends ImmutablePureComponent {
-
-  static propTypes = {
-    statusId: PropTypes.string.isRequired,
-    reactions: ImmutablePropTypes.list.isRequired,
-    numVisible: PropTypes.number,
-    addReaction: PropTypes.func.isRequired,
-    canReact: PropTypes.bool.isRequired,
-    removeReaction: PropTypes.func.isRequired,
-  };
-
-  willEnter() {
+//TODO: addReaction and removeReaction could be dispatch
+// canReact should be optional and always require being signed in
+export const StatusReactions = ({statusId, reactions, numVisible, addReaction, removeReaction, canReact}) => {
+  const willEnter = useCallback(() => {
     return { scale: reduceMotion ? 1 : 0 };
-  }
+  }, []);
 
-  willLeave() {
+  const willLeave = useCallback(() => {
     return { scale: reduceMotion ? 0 : spring(0, { stiffness: 170, damping: 26 }) };
+  }, []);
+
+  let visibleReactions = reactions
+    .filter(x => x.get('count') > 0)
+    .sort((a, b) => b.get('count') - a.get('count'));
+
+  //TODO: numVisible could be read by state
+  if (numVisible >= 0) {
+    visibleReactions = visibleReactions.filter((_, i) => i < numVisible);
   }
 
-  render() {
-    const { reactions, numVisible } = this.props;
-    let visibleReactions = reactions
-      .filter(x => x.get('count') > 0)
-      .sort((a, b) => b.get('count') - a.get('count'));
+  const styles = visibleReactions.map(reaction => ({
+    key: reaction.get('name'),
+    data: reaction,
+    style: { scale: reduceMotion ? 1 : spring(1, { stiffness: 150, damping: 13 }) },
+  })).toArray();
 
-    if (numVisible >= 0) {
-      visibleReactions = visibleReactions.filter((_, i) => i < numVisible);
-    }
+  return (
+    <TransitionMotion styles={styles} willEnter={willEnter} willLeave={willLeave}>
+      {items => (
+        <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.isEmpty() })}>
+          {items.map(({ key, data, style }) => (
+            <Reaction
+              key={key}
+              statusId={statusId}
+              reaction={data}
+              style={{ transform: `scale(${style.scale})`, position: style.scale < 0.5 ? 'absolute' : 'static' }}
+              addReaction={addReaction}
+              removeReaction={removeReaction}
+              canReact={canReact}
+            />
+          ))}
+        </div>
+      )}
+    </TransitionMotion>
+  );
+};
 
-    const styles = visibleReactions.map(reaction => ({
-      key: reaction.get('name'),
-      data: reaction,
-      style: { scale: reduceMotion ? 1 : spring(1, { stiffness: 150, damping: 13 }) },
-    })).toArray();
+StatusReactions.propTypes = {
+  statusId: PropTypes.string.isRequired,
+  reactions: ImmutablePropTypes.list.isRequired,
+  numVisible: PropTypes.number,
+  addReaction: PropTypes.func.isRequired,
+  canReact: PropTypes.bool.isRequired,
+  removeReaction: PropTypes.func.isRequired,
+};
 
-    return (
-      <TransitionMotion styles={styles} willEnter={this.willEnter} willLeave={this.willLeave}>
-        {items => (
-          <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.isEmpty() })}>
-            {items.map(({ key, data, style }) => (
-              <Reaction
-                key={key}
-                statusId={this.props.statusId}
-                reaction={data}
-                style={{ transform: `scale(${style.scale})`, position: style.scale < 0.5 ? 'absolute' : 'static' }}
-                addReaction={this.props.addReaction}
-                removeReaction={this.props.removeReaction}
-                canReact={this.props.canReact}
-              />
-            ))}
-          </div>
-        )}
-      </TransitionMotion>
-    );
-  }
+const Reaction = ({statusId, reaction, addReaction, removeReaction, canReact, style}) => {
+  const [hovered, setHovered] = useState(false);
 
-}
-
-class Reaction extends ImmutablePureComponent {
-
-  static propTypes = {
-    statusId: PropTypes.string,
-    reaction: ImmutablePropTypes.map.isRequired,
-    addReaction: PropTypes.func.isRequired,
-    removeReaction: PropTypes.func.isRequired,
-    canReact: PropTypes.bool.isRequired,
-    style: PropTypes.object,
-  };
-
-  state = {
-    hovered: false,
-  };
-
-  handleClick = () => {
-    const { reaction, statusId, addReaction, removeReaction } = this.props;
-
+  //TODO: Use dispatch directly
+  const handleClick = useCallback(() => {
     if (reaction.get('me')) {
       removeReaction(statusId, reaction.get('name'));
     } else {
       addReaction(statusId, reaction.get('name'));
     }
-  };
+  }, [reaction, statusId, removeReaction, addReaction]);
 
-  handleMouseEnter = () => this.setState({ hovered: true });
+  const handleMouseEnter = useCallback(() => {
+    setHovered(true);
+  }, [setHovered]);
 
-  handleMouseLeave = () => this.setState({ hovered: false });
+  const handleMouseLeave = useCallback(() => {
+    setHovered(false);
+  }, [setHovered]);
 
-  render() {
-    const { reaction } = this.props;
+  return (
+    <button
+      className={classNames('reactions-bar__item', { active: reaction.get('me') })}
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      disabled={!canReact}
+      style={style}
+    >
+      <span className='reactions-bar__item__emoji'>
+        <Emoji
+          hovered={hovered}
+          emoji={reaction.get('name')}
+          url={reaction.get('url')}
+          staticUrl={reaction.get('static_url')}
+        />
+      </span>
+      <span className='reactions-bar__item__count'>
+        <AnimatedNumber value={reaction.get('count')} />
+      </span>
+    </button>
+  );
+};
+
+Reaction.propTypes = {
+  statusId: PropTypes.string,
+  reaction: ImmutablePropTypes.map.isRequired,
+  addReaction: PropTypes.func.isRequired,
+  removeReaction: PropTypes.func.isRequired,
+  canReact: PropTypes.bool.isRequired,
+  style: PropTypes.object,
+};
+
+const Emoji = ({emoji, hovered, url, staticUrl}) => {
+  if (unicodeMapping[emoji]) {
+    const { filename, shortCode } = unicodeMapping[emoji];
+    const title = shortCode ? `:${shortCode}:` : '';
 
     return (
-      <button
-        className={classNames('reactions-bar__item', { active: reaction.get('me') })}
-        onClick={this.handleClick}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
-        disabled={!this.props.canReact}
-        style={this.props.style}
-      >
-        <span className='reactions-bar__item__emoji'>
-          <Emoji
-            hovered={this.state.hovered}
-            emoji={reaction.get('name')}
-            url={reaction.get('url')}
-            staticUrl={reaction.get('static_url')}
-          />
-        </span>
-        <span className='reactions-bar__item__count'>
-          <AnimatedNumber value={reaction.get('count')} />
-        </span>
-      </button>
+      <img
+        draggable='false'
+        className='emojione'
+        alt={emoji}
+        title={title}
+        src={`${assetHost}/emoji/${filename}.svg`}
+      />
+    );
+  } else {
+    const filename = (autoPlayGif || hovered) ? url : staticUrl;
+    const shortCode = `:${emoji}:`;
+
+    return (
+      <img
+        draggable='false'
+        className='emojione custom-emoji'
+        alt={shortCode}
+        title={shortCode}
+        src={filename}
+      />
     );
   }
+};
 
-}
+Emoji.propTypes = {
+  emoji: PropTypes.string.isRequired,
+  hovered: PropTypes.bool.isRequired,
+  url: PropTypes.string,
+  staticUrl: PropTypes.string,
+};
 
-class Emoji extends PureComponent {
-
-  static propTypes = {
-    emoji: PropTypes.string.isRequired,
-    hovered: PropTypes.bool.isRequired,
-    url: PropTypes.string,
-    staticUrl: PropTypes.string,
-  };
-
-  render() {
-    const { emoji, hovered, url, staticUrl } = this.props;
-
-    if (unicodeMapping[emoji]) {
-      const { filename, shortCode } = unicodeMapping[this.props.emoji];
-      const title = shortCode ? `:${shortCode}:` : '';
-
-      return (
-        <img
-          draggable='false'
-          className='emojione'
-          alt={emoji}
-          title={title}
-          src={`${assetHost}/emoji/${filename}.svg`}
-        />
-      );
-    } else {
-      const filename = (autoPlayGif || hovered) ? url : staticUrl;
-      const shortCode = `:${emoji}:`;
-
-      return (
-        <img
-          draggable='false'
-          className='emojione custom-emoji'
-          alt={shortCode}
-          title={shortCode}
-          src={filename}
-        />
-      );
-    }
-  }
-
-}
+export default StatusReactions;
