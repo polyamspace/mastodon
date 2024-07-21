@@ -12,7 +12,6 @@ import { Avatar } from 'flavours/polyam/components/avatar';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { Icon } from 'flavours/polyam/components/icon';
 import { StatusReactions } from 'flavours/polyam/components/status_reactions';
-import { useIdentity } from 'flavours/polyam/identity_context';
 import { visibleReactions } from 'flavours/polyam/initial_state';
 import type { Status } from 'flavours/polyam/models/status';
 import { useAppSelector } from 'flavours/polyam/store';
@@ -25,10 +24,6 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   statusId,
 }) => {
   const history = useHistory();
-
-  // Polyam: TODO: Remove as notifications already require being signedIn
-  // This is currently only here to satisfy required "canReact" prop on StatusReactions.
-  const { signedIn } = useIdentity();
 
   const status = useAppSelector(
     (state) => state.statuses.get(statusId) as Status | undefined,
@@ -100,7 +95,6 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         statusId={status.get('id') as string}
         reactions={status.get('reactions')}
         numVisible={visibleReactions}
-        canReact={signedIn}
       />
     </div>
   );

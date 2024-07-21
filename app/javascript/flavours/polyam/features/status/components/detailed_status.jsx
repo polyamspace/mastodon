@@ -352,7 +352,6 @@ class DetailedStatus extends ImmutablePureComponent {
           <StatusReactions
             statusId={status.get('id')}
             reactions={status.get('reactions')}
-            canReact={this.props.identity.signedIn}
           />
 
           <div className='detailed-status__meta'>

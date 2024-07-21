@@ -11,13 +11,13 @@ import spring from 'react-motion/lib/spring';
 
 import { addReaction, removeReaction } from '../actions/interactions';
 import { unicodeMapping } from '../features/emoji/emoji_unicode_mapping_light';
+import { useIdentity } from '../identity_context';
 import { autoPlayGif, reduceMotion } from '../initial_state';
 import { assetHost } from '../utils/config';
 
 import { AnimatedNumber } from './animated_number';
 
-//TODO: canReact should be optional and always require being signed in
-export const StatusReactions = ({statusId, reactions, numVisible, canReact}) => {
+export const StatusReactions = ({statusId, reactions, numVisible, canReact = true}) => {
   const willEnter = useCallback(() => {
     return { scale: reduceMotion ? 1 : 0 };
   }, []);
@@ -64,11 +64,13 @@ StatusReactions.propTypes = {
   statusId: PropTypes.string.isRequired,
   reactions: ImmutablePropTypes.list.isRequired,
   numVisible: PropTypes.number,
-  canReact: PropTypes.bool.isRequired,
+  canReact: PropTypes.bool,
 };
 
 const Reaction = ({statusId, reaction, canReact, style}) => {
   const dispatch = useDispatch();
+  const { signedIn } = useIdentity();
+
   const [hovered, setHovered] = useState(false);
 
   const handleClick = useCallback(() => {
@@ -93,7 +95,7 @@ const Reaction = ({statusId, reaction, canReact, style}) => {
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      disabled={!canReact}
+      disabled={!(signedIn && canReact)}
       style={style}
     >
       <span className='reactions-bar__item__emoji'>
