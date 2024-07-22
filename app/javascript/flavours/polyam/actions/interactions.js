@@ -560,11 +560,11 @@ export function toggleReblog(statusId, skipModal = false) {
     const missing_description_setting = state.getIn(['local_settings', 'confirm_boost_missing_media_description']);
     const missing_description = status.get('media_attachments').some(item => !item.get('description'));
     if (missing_description_setting && missing_description && !status.get('reblogged')) {
-      dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: toggleReblogWithoutConfirmation, missingMediaDescription: true } }));
+      dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: (status, privacy) => dispatch(toggleReblogWithoutConfirmation(status, privacy)), missingMediaDescription: true } }));
     } else if (boostModal && !skipModal) {
-      dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: toggleReblogWithoutConfirmation } }));
+      dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: (status, privacy) => dispatch(toggleReblogWithoutConfirmation(status, privacy)) } }));
     } else {
-      toggleReblogWithoutConfirmation(status);
+      dispatch(toggleReblogWithoutConfirmation(status));
     }
   };
 }
