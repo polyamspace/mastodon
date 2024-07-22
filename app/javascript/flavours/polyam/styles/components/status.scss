@@ -428,7 +428,7 @@
 }
 
 .status__wrapper-direct,
-.notifications-ungrouped--direct {
+.notification-ungrouped--direct {
   background: var(--toot-private-background-color);
 
   &:focus {
@@ -437,9 +437,9 @@
 }
 
 .status__wrapper-direct,
-.notifications-ungrouped--direct {
+.notification-ungrouped--direct {
   .status__prepend,
-  .notifications-ungrouped__header {
+  .notification-ungrouped__header {
     color: $highlight-text-color;
   }
 }
