@@ -404,6 +404,11 @@
       }
     }
   }
+
+  // Polyam: Fix empty reactions bar adding margin
+  .reactions-bar--empty {
+    display: none;
+  }
 }
 
 .notification-ungrouped {
