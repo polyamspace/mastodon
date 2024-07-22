@@ -97,6 +97,11 @@
       width: 0.625rem;
       height: 0.625rem;
     }
+
+    // Polyam: Show empty bar in announcements
+    .reactions-bar--empty {
+      display: flex;
+    }
   }
 
   // Polyam: Added display flex to align arrows better in FF, Chrome still slightly misaligned
@@ -234,6 +239,8 @@
   }
 
   &--empty {
+    display: none; // Polyam: hide by default
+
     .emoji-button {
       padding: 0;
     }
