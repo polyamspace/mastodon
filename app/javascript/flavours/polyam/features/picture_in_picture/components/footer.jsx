@@ -17,11 +17,11 @@ import BoostIcon from '@/svg-icons/boost.svg?react';
 import BoostDisabledIcon from '@/svg-icons/boost_disabled.svg?react';
 import BoostPrivateIcon from '@/svg-icons/boost_private.svg?react';
 import { replyCompose } from 'flavours/polyam/actions/compose';
-import { reblog, favourite, unreblog, unfavourite } from 'flavours/polyam/actions/interactions';
+import { toggleReblog, toggleFavourite } from 'flavours/polyam/actions/interactions';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
-import { me, boostModal } from 'flavours/polyam/initial_state';
+import { me } from 'flavours/polyam/initial_state';
 import { makeGetStatus } from 'flavours/polyam/selectors';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
@@ -104,16 +104,12 @@ class Footer extends ImmutablePureComponent {
     }
   };
 
-  handleFavouriteClick = () => {
+  handleFavouriteClick = e => {
     const { dispatch, status } = this.props;
     const { signedIn } = this.props.identity;
 
     if (signedIn) {
-      if (status.get('favourited')) {
-        dispatch(unfavourite(status));
-      } else {
-        dispatch(favourite(status));
-      }
+      dispatch(toggleFavourite(status.get('id'), e && e.shiftKey));
     } else {
       dispatch(openModal({
         modalType: 'INTERACTION',
@@ -126,23 +122,12 @@ class Footer extends ImmutablePureComponent {
     }
   };
 
-  _performReblog = (status, privacy) => {
-    const { dispatch } = this.props;
-    dispatch(reblog({ statusId: status.get('id'), visibility: privacy }));
-  };
-
   handleReblogClick = e => {
     const { dispatch, status } = this.props;
     const { signedIn } = this.props.identity;
 
     if (signedIn) {
-      if (status.get('reblogged')) {
-        dispatch(unreblog({ statusId: status.get('id') }));
-      } else if ((e && e.shiftKey) || !boostModal) {
-        this._performReblog(status);
-      } else {
-        dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this._performReblog } }));
-      }
+      dispatch(toggleReblog(status.get('id'), e && e.shiftKey));
     } else {
       dispatch(openModal({
         modalType: 'INTERACTION',
