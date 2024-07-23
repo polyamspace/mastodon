@@ -195,7 +195,7 @@
   }
 
   &--first-in-thread {
-    border-top: 1px solid lighten($ui-base-color, 8%);
+    border-top: 1px solid var(--background-border-color);
   }
 
   &__line {

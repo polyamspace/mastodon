@@ -444,7 +444,7 @@ $ui-header-logo-wordmark-width: 99px;
 .copy-paste-text {
   background: lighten($ui-base-color, 4%);
   border-radius: 8px;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--background-border-color);
   padding: 16px;
   color: $primary-text-color;
   font-size: 15px;
@@ -991,7 +991,7 @@ $ui-header-logo-wordmark-width: 99px;
 
   section {
     padding: 16px;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--background-border-color);
 
     &:last-child {
       border-bottom: 0;

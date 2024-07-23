@@ -132,7 +132,7 @@
     gap: 16px;
     flex: 0 1 auto;
     border-radius: 4px;
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     transition: border-color 300ms linear;
     min-height: 0;
     position: relative;
@@ -199,7 +199,7 @@
 
     .autosuggest-input {
       flex: 1 1 auto;
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-bottom: 1px solid var(--background-border-color);
     }
   }
 
@@ -859,7 +859,7 @@
       input {
         padding: 8px 12px;
         background: $ui-base-color;
-        border: 1px solid lighten($ui-base-color, 8%);
+        border: 1px solid var(--background-border-color);
         color: $darker-text-color;
 
         @media screen and (width <= 600px) {
