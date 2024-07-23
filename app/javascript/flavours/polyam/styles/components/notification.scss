@@ -513,6 +513,14 @@
     border: 0;
     padding: 0;
   }
+
+  // Polyam: Temporarily disable header in mentions (also affects PMs)
+  // This is easier and reversible than deleting it in the component
+  &--mention {
+    .notification-ungrouped__header {
+      display: none;
+    }
+  }
 }
 
 .notification-group--unread,
