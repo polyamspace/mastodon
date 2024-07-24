@@ -270,11 +270,13 @@ function shouldMarkNewNotificationsAsRead(
   );
 }
 
+// Polyam: Added `update` to always mark new notifications as unread.
 function updateLastReadId(
   state: NotificationGroupsState,
   group: NotificationGroup | undefined = undefined,
+  update = false,
 ) {
-  if (shouldMarkNewNotificationsAsRead(state)) {
+  if (update && shouldMarkNewNotificationsAsRead(state)) {
     group = group ?? state.groups.find(isNotificationGroup);
     if (
       group?.page_max_id &&
