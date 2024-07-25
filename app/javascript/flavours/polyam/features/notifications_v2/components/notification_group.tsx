@@ -2,8 +2,10 @@ import { useMemo } from 'react';
 
 import { HotKeys } from 'react-hotkeys';
 
+import { navigateToProfile } from 'flavours/polyam/actions/accounts';
+import { mentionComposeById } from 'flavours/polyam/actions/compose';
 import type { NotificationGroup as NotificationGroupModel } from 'flavours/polyam/models/notification_group';
-import { useAppSelector } from 'flavours/polyam/store';
+import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 import { NotificationAdminReport } from './notification_admin_report';
 import { NotificationAdminSignUp } from './notification_admin_sign_up';
@@ -31,6 +33,13 @@ export const NotificationGroup: React.FC<{
     ),
   );
 
+  const dispatch = useAppDispatch();
+
+  const accountId =
+    notificationGroup?.type === 'gap'
+      ? undefined
+      : notificationGroup?.sampleAccountIds[0];
+
   const handlers = useMemo(
     () => ({
       moveUp: () => {
@@ -40,8 +49,16 @@ export const NotificationGroup: React.FC<{
       moveDown: () => {
         onMoveDown(notificationGroupId);
       },
+
+      openProfile: () => {
+        if (accountId) dispatch(navigateToProfile(accountId));
+      },
+
+      mention: () => {
+        if (accountId) dispatch(mentionComposeById(accountId));
+      },
     }),
-    [notificationGroupId, onMoveUp, onMoveDown],
+    [dispatch, notificationGroupId, accountId, onMoveUp, onMoveDown],
   );
 
   if (!notificationGroup || notificationGroup.type === 'gap') return null;

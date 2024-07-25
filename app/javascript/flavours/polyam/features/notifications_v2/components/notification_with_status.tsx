@@ -2,10 +2,21 @@ import { useMemo } from 'react';
 
 import classNames from 'classnames';
 
+import { HotKeys } from 'react-hotkeys';
+
+import { replyComposeById } from 'flavours/polyam/actions/compose';
+import {
+  toggleReblog,
+  toggleFavourite,
+} from 'flavours/polyam/actions/interactions';
+import {
+  navigateToStatus,
+  toggleStatusSpoilers,
+} from 'flavours/polyam/actions/statuses';
 import type { IconProp } from 'flavours/polyam/components/icon';
 import { Icon } from 'flavours/polyam/components/icon';
 import Status from 'flavours/polyam/containers/status_container';
-import { useAppSelector } from 'flavours/polyam/store';
+import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 import { NamesList } from './names_list';
 import type { LabelRenderer } from './notification_group_with_status';
@@ -29,6 +40,8 @@ export const NotificationWithStatus: React.FC<{
   type,
   unread,
 }) => {
+  const dispatch = useAppDispatch();
+
   const label = useMemo(
     () =>
       labelRenderer({
@@ -37,37 +50,65 @@ export const NotificationWithStatus: React.FC<{
     [labelRenderer, accountIds, count],
   );
 
+  const handlers = useMemo(
+    () => ({
+      open: () => {
+        dispatch(navigateToStatus(statusId));
+      },
+
+      reply: () => {
+        dispatch(replyComposeById(statusId));
+      },
+
+      boost: () => {
+        dispatch(toggleReblog(statusId));
+      },
+
+      favourite: () => {
+        dispatch(toggleFavourite(statusId));
+      },
+
+      toggleHidden: () => {
+        // TODO: glitch-soc is different and needs different handling of CWs
+        dispatch(toggleStatusSpoilers(statusId));
+      },
+    }),
+    [dispatch, statusId],
+  );
+
   const isPrivateMention = useAppSelector(
     (state) => state.statuses.getIn([statusId, 'visibility']) === 'direct',
   );
 
   return (
-    <div
-      role='button'
-      className={classNames(
-        `notification-ungrouped focusable notification-ungrouped--${type}`,
-        {
-          'notification-ungrouped--unread': unread,
-          'notification-ungrouped--direct': isPrivateMention,
-        },
-      )}
-      tabIndex={0}
-    >
-      <div className='notification-ungrouped__header'>
-        <div className='notification-ungrouped__header__icon'>
-          <Icon icon={icon} id={iconId} />
+    <HotKeys handlers={handlers}>
+      <div
+        role='button'
+        className={classNames(
+          `notification-ungrouped focusable notification-ungrouped--${type}`,
+          {
+            'notification-ungrouped--unread': unread,
+            'notification-ungrouped--direct': isPrivateMention,
+          },
+        )}
+        tabIndex={0}
+      >
+        <div className='notification-ungrouped__header'>
+          <div className='notification-ungrouped__header__icon'>
+            <Icon icon={icon} id={iconId} />
+          </div>
+          {label}
         </div>
-        {label}
-      </div>
 
-      <Status
-        // @ts-expect-error -- <Status> is not yet typed
-        id={statusId}
-        contextType='notifications'
-        withDismiss
-        skipPrepend
-        avatarSize={40}
-      />
-    </div>
+        <Status
+          // @ts-expect-error -- <Status> is not yet typed
+          id={statusId}
+          contextType='notifications'
+          withDismiss
+          skipPrepend
+          avatarSize={40}
+        />
+      </div>
+    </HotKeys>
   );
 };

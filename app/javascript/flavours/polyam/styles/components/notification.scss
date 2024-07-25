@@ -371,6 +371,8 @@
   }
 
   &__embedded-status {
+    cursor: pointer;
+
     &__account {
       display: flex;
       align-items: center;
@@ -392,7 +394,6 @@
       font-size: 15px;
       line-height: 22px;
       color: $dark-text-color;
-      cursor: pointer;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       max-height: 4 * 22px;

@@ -1392,7 +1392,7 @@ img.modal-warning {
     &__input {
       @include search-input;
 
-      border: 1px solid lighten($ui-base-color, 8%);
+      border: 1px solid var(--background-border-color);
       padding: 4px 6px;
       color: $primary-text-color;
       font-size: 16px;
@@ -1427,7 +1427,7 @@ img.modal-warning {
       margin-top: -1px;
       padding-top: 5px;
       padding-bottom: 5px;
-      border: 1px solid lighten($ui-base-color, 8%);
+      border: 1px solid var(--background-border-color);
     }
 
     &.focused &__input {

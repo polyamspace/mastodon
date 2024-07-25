@@ -1,3 +1,5 @@
+import { browserHistory } from 'flavours/polyam/components/router';
+
 import api, { getLinks } from '../api';
 
 import {
@@ -783,6 +785,16 @@ export const updateAccount = ({ displayName, note, avatar, header, discoverable,
   return api().patch('/api/v1/accounts/update_credentials', data).then(response => {
     dispatch(importFetchedAccount(response.data));
   });
+};
+
+export const navigateToProfile = (accountId) => {
+  return (_dispatch, getState) => {
+    const acct = getState().accounts.getIn([accountId, 'acct']);
+
+    if (acct) {
+      browserHistory.push(`/@${acct}`);
+    }
+  };
 };
 
 export function fetchPinnedAccountsSuggestions(q) {

@@ -17,7 +17,7 @@ import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
 import { replyCompose } from 'flavours/polyam/actions/compose';
 import { markConversationRead, deleteConversation } from 'flavours/polyam/actions/conversations';
 import { openModal } from 'flavours/polyam/actions/modal';
-import { muteStatus, unmuteStatus, revealStatus, hideStatus } from 'flavours/polyam/actions/statuses';
+import { muteStatus, unmuteStatus, toggleStatusSpoilers } from 'flavours/polyam/actions/statuses';
 import AttachmentList from 'flavours/polyam/components/attachment_list';
 import AvatarComposite from 'flavours/polyam/components/avatar_composite';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -155,11 +155,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
   }, [dispatch, lastStatus]);
 
   const handleShowMore = useCallback(() => {
-    if (lastStatus.get('hidden')) {
-      dispatch(revealStatus(lastStatus.get('id')));
-    } else {
-      dispatch(hideStatus(lastStatus.get('id')));
-    }
+    dispatch(toggleStatusSpoilers(lastStatus.get('id')));
 
     if (lastStatus.get('spoiler_text')) {
       setExpanded(!expanded);
