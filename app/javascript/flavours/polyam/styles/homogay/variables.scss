@@ -60,7 +60,7 @@ $ui-button-destructive-focus-background-color: $red-500 !default;
 
 // Variables for texts
 $primary-text-color: $classic-secondary-color !default;
-$darker-text-color: #847198 !default;
+$darker-text-color: lighten(#847198, 2%) !default;
 $dark-text-color: $darker-text-color !default;
 $secondary-text-color: $ui-secondary-color !default;
 $highlight-text-color: lighten($ui-highlight-color, 8%) !default;
@@ -70,7 +70,7 @@ $active-passive-text-color: $success-green !default;
 
 // For texts on inverted backgrounds
 $inverted-text-color: $primary-text-color !default; // we don't do inverted backgrounds
-$lighter-text-color: lighten($darker-text-color, 7%) !default;
+$lighter-text-color: lighten($darker-text-color, 5%) !default;
 $light-text-color: $ui-primary-color !default;
 
 // Variables for components
