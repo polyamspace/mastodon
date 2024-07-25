@@ -88,4 +88,19 @@ body {
   --background-border-color: #{lighten($ui-base-color, 12%)};
   --background-color: #{$ui-base-color};
   --background-color-tint: #{$ui-base-color};
+  --toot-focus-background-color: #{color-mix(
+      in srgb,
+      var(--background-color),
+      $ui-highlight-color 5%
+    )};
+  --toot-private-background-color: #{color-mix(
+      in srgb,
+      var(--background-color),
+      $ui-highlight-color 5%
+    )};
+  --toot-private-background-focus-color: #{color-mix(
+      in srgb,
+      var(--background-color),
+      $ui-highlight-color 10%
+    )};
 }
