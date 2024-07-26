@@ -267,3 +267,17 @@ body.admin {
     }
   }
 }
+
+// Polyam: Make inputs darker than background
+.simple_form {
+  input[type='datetime-local'],
+  input[type='email'],
+  input[type='number'],
+  input[type='password'],
+  input[type='text'],
+  input[type='url'],
+  textarea,
+  select {
+    background-color: $black;
+  }
+}
