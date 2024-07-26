@@ -55,7 +55,7 @@
     %h4= t 'appearance.toot_layout'
 
     .fields-group
-      = ff.input :'web.visible_reactions', wrapper: :with_label, input_html: { type: 'number', min: '0', data: { default: '6' } }, hint: false, label: I18n.t('simple_form.labels.defaults.setting_visible_reactions'), polyam_only: true
+      = ff.input :'web.visible_reactions', as: :integer, wrapper: :with_label, input_html: { min: 0, data: { default: 6 } }, hint: false, label: I18n.t('simple_form.labels.defaults.setting_visible_reactions'), polyam_only: true
 
     %h4= t 'appearance.discovery'
 
