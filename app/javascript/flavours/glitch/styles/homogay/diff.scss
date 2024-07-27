@@ -254,10 +254,30 @@
 
 // settings
 
+// Polyam: Keep background in admin UI a bit darker
+body.admin {
+  --background-color: #{darken($ui-base-color, 4%)};
+}
+
 .admin-wrapper {
-  .sidebar ul .simple-navigation-active-leaf a,
-  .content__heading__tabs a.selected {
-    background-color: $ui-highlight-color;
-    text-shadow: 0 0 6px $faint-shadow-color;
+  // Polyam: Keep in different color to make it look less boring
+  .sidebar-wrapper {
+    &__inner {
+      background-color: $ui-base-color;
+    }
+  }
+}
+
+// Polyam: Make inputs darker than background
+.simple_form {
+  input[type='datetime-local'],
+  input[type='email'],
+  input[type='number'],
+  input[type='password'],
+  input[type='text'],
+  input[type='url'],
+  textarea,
+  select {
+    background-color: $black;
   }
 }

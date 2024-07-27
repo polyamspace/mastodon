@@ -60,7 +60,7 @@ $ui-button-destructive-focus-background-color: $red-500 !default;
 
 // Variables for texts
 $primary-text-color: $classic-secondary-color !default;
-$darker-text-color: #847198 !default;
+$darker-text-color: lighten(#847198, 2%) !default;
 $dark-text-color: $darker-text-color !default;
 $secondary-text-color: $ui-secondary-color !default;
 $highlight-text-color: lighten($ui-highlight-color, 8%) !default;
@@ -70,7 +70,7 @@ $active-passive-text-color: $success-green !default;
 
 // For texts on inverted backgrounds
 $inverted-text-color: $primary-text-color !default; // we don't do inverted backgrounds
-$lighter-text-color: lighten($darker-text-color, 7%) !default;
+$lighter-text-color: lighten($darker-text-color, 5%) !default;
 $light-text-color: $ui-primary-color !default;
 
 // Variables for components
@@ -81,12 +81,26 @@ $media-modal-media-max-height: 80%;
 
 $border-radius: 8px;
 
-// Overrides do not apply without "!important"
-:root {
-  --dropdown-background-color: #{$ui-base-lighter-color} !important;
-  --modal-background-color: #{$ui-base-color} !important;
-  --modal-background-variant-color: #{$ui-base-semi-lighter-color} !important;
-  --background-border-color: #{lighten($ui-base-color, 12%)} !important;
-  --background-color: #{$ui-base-color} !important;
-  --background-color-tint: #{$ui-base-color} !important;
+body {
+  --dropdown-background-color: #{$ui-base-lighter-color};
+  --modal-background-color: #{$ui-base-color};
+  --modal-background-variant-color: #{$ui-base-semi-lighter-color};
+  --background-border-color: #{lighten($ui-base-color, 12%)};
+  --background-color: #{$ui-base-color};
+  --background-color-tint: #{$ui-base-color};
+  --toot-focus-background-color: #{color-mix(
+      in srgb,
+      var(--background-color),
+      $ui-highlight-color 5%
+    )};
+  --toot-private-background-color: #{color-mix(
+      in srgb,
+      var(--background-color),
+      $ui-highlight-color 5%
+    )};
+  --toot-private-background-focus-color: #{color-mix(
+      in srgb,
+      var(--background-color),
+      $ui-highlight-color 10%
+    )};
 }

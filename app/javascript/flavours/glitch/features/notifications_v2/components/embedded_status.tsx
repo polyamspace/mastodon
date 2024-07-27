@@ -11,6 +11,7 @@ import PhotoLibraryIcon from '@/material-icons/400-24px/photo_library.svg?react'
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { Icon } from 'flavours/glitch/components/icon';
+import { StatusReactions } from 'flavours/glitch/components/status_reactions';
 import type { Status } from 'flavours/glitch/models/status';
 import { useAppSelector } from 'flavours/glitch/store';
 
@@ -154,6 +155,11 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
           )}
         </div>
       )}
+
+      <StatusReactions
+        statusId={status.get('id') as string}
+        reactions={status.get('reactions')}
+      />
     </div>
   );
 };
