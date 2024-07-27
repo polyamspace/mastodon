@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import ReactIcon from '@/material-icons/400-24px/add.svg?react';
+import ReactIcon from '@/material-icons/400-20px/mood.svg?react';
 import type { NotificationGroupReaction } from 'flavours/glitch/models/notification_group';
 import { useAppSelector } from 'flavours/glitch/store';
 

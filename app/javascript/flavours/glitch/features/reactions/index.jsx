@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import ReactIcon from '@/material-icons/400-24px/add.svg?react';
+import ReactIcon from '@/material-icons/400-20px/mood.svg?react';
 import RefreshIcon from '@/material-icons/400-24px/refresh.svg';
 import { fetchReactions, expandReactions } from 'flavours/glitch/actions/interactions';
 import ColumnHeader from 'flavours/glitch/components/column_header';

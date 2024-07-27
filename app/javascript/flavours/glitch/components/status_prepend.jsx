@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import ReactIcon from '@/material-icons/400-24px/add.svg?react';
+import ReactIcon from '@/material-icons/400-20px/mood.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
