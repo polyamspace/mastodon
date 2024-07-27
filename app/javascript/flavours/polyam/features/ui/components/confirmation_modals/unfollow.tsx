@@ -18,13 +18,19 @@ const messages = defineMessages({
     id: 'confirmations.unfollow.confirm',
     defaultMessage: 'Unfollow',
   },
+  cancelRequestConfirm: {
+    id: 'confirmations.cancel_follow_request.confirm',
+    defaultMessage: 'Withdraw request',
+  },
 });
 
+// Polyam: Kept different message for cancelling follow requests
 export const ConfirmUnfollowModal: React.FC<
   {
     account: Account;
+    requested: boolean;
   } & BaseConfirmationModalProps
-> = ({ account, onClose }) => {
+> = ({ account, requested, onClose }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
@@ -36,13 +42,23 @@ export const ConfirmUnfollowModal: React.FC<
     <ConfirmationModal
       title={intl.formatMessage(messages.unfollowTitle)}
       message={
-        <FormattedMessage
-          id='confirmations.unfollow.message'
-          defaultMessage='Are you sure you want to unfollow {name}?'
-          values={{ name: <strong>@{account.acct}</strong> }}
-        />
+        requested ? (
+          <FormattedMessage
+            id='confirmations.cancel_follow_request.message'
+            defaultMessage='Are you sure you want to withdraw your request to follow {name}?'
+            values={{ name: <strong>@{account.acct}</strong> }}
+          />
+        ) : (
+          <FormattedMessage
+            id='confirmations.unfollow.message'
+            defaultMessage='Are you sure you want to unfollow {name}?'
+            values={{ name: <strong>@{account.acct}</strong> }}
+          />
+        )
       }
-      confirm={intl.formatMessage(messages.unfollowConfirm)}
+      confirm={intl.formatMessage(
+        requested ? messages.cancelRequestConfirm : messages.unfollowConfirm,
+      )}
       onConfirm={onConfirm}
       onClose={onClose}
     />

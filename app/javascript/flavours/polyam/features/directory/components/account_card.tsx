@@ -29,10 +29,6 @@ const messages = defineMessages({
     id: 'account.cancel_follow_request',
     defaultMessage: 'Withdraw follow request',
   },
-  cancelFollowRequestConfirm: {
-    id: 'confirmations.cancel_follow_request.confirm',
-    defaultMessage: 'Withdraw request',
-  },
   requested: {
     id: 'account.requested',
     defaultMessage: 'Awaiting approval. Click to cancel follow request',
@@ -85,33 +81,18 @@ export const AccountCard: React.FC<{ accountId: string }> = ({ accountId }) => {
   const handleFollow = useCallback(() => {
     if (!account) return;
 
-    if (account.getIn(['relationship', 'following'])) {
-      // Polyam: Keep unfollow modal optional
-      if (unfollowModal) {
-        dispatch(
-          openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
-        );
-      } else {
-        dispatch(unfollowAccount(account.get('id')));
-      }
-    } else if (account.getIn(['relationship', 'requested'])) {
+    if (
+      account.getIn(['relationship', 'following']) ||
+      account.getIn(['relationship', 'requested'])
+    ) {
       // Polyam: Keep unfollow modal optional
       if (unfollowModal) {
         dispatch(
           openModal({
-            modalType: 'CONFIRM',
+            modalType: 'CONFIRM_UNFOLLOW',
             modalProps: {
-              message: (
-                <FormattedMessage
-                  id='confirmations.cancel_follow_request.message'
-                  defaultMessage='Are you sure you want to withdraw your request to follow {name}?'
-                  values={{ name: <strong>@{account.get('acct')}</strong> }}
-                />
-              ),
-              confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
-              onConfirm: () => {
-                dispatch(unfollowAccount(account.get('id')));
-              },
+              account,
+              requested: account.getIn(['relationship', 'requested']),
             },
           }),
         );
@@ -121,7 +102,7 @@ export const AccountCard: React.FC<{ accountId: string }> = ({ accountId }) => {
     } else {
       dispatch(followAccount(account.get('id')));
     }
-  }, [account, dispatch, intl]);
+  }, [account, dispatch]);
 
   const handleBlock = useCallback(() => {
     if (account?.relationship?.blocking) {
