@@ -1591,11 +1591,6 @@ body > [data-popper-placement] {
     }
   }
 
-  // Reactions
-  .reactions-bar--empty {
-    display: none;
-  }
-
   .notification__message {
     margin-bottom: 0;
     white-space: nowrap;
@@ -1893,11 +1888,6 @@ body > [data-popper-placement] {
   .status__prepend {
     padding: 0;
     margin-bottom: 16px;
-  }
-
-  // Reactions
-  .reactions-bar--empty {
-    display: none;
   }
 }
 
@@ -9121,6 +9111,11 @@ noscript {
       width: 0.625rem;
       height: 0.625rem;
     }
+
+    // Polyam: Show empty bar in announcements
+    .reactions-bar--empty {
+      display: flex;
+    }
   }
 
   &__pagination {
@@ -9250,6 +9245,8 @@ noscript {
   }
 
   &--empty {
+    display: none; // Polyam: hide by default
+
     .emoji-button {
       padding: 0;
     }
