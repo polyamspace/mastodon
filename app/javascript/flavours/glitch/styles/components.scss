@@ -1826,16 +1826,9 @@ body > [data-popper-placement] {
   }
 
   // Reactions
-  &-button {
-    .icon-plus {
-      padding-top: 1px;
-    }
-  }
-
-  // Polyam: Reactions -- needs more work, or different markup
-  .emoji-button {
-    padding-inline-start: 0;
-    padding-inline-end: 0;
+  & > .emoji-picker-dropdown {
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -1935,11 +1928,6 @@ body > [data-popper-placement] {
   display: flex;
   flex-direction: row;
   padding: 8px 0; // glitch: reduced padding
-
-  // Reactions
-  .icon-plus {
-    padding-top: 2px;
-  }
 }
 
 .detailed-status__wrapper-direct {
@@ -2351,11 +2339,6 @@ a.account__display-name {
   strong {
     color: $primary-text-color;
   }
-}
-
-// Reactions
-.detailed-status__button .emoji-button {
-  padding: 0;
 }
 
 .status__avatar {
