@@ -39,10 +39,6 @@ const messages = defineMessages({
   },
   unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
   unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
-  unfollowConfirm: {
-    id: 'confirmations.unfollow.confirm',
-    defaultMessage: 'Unfollow',
-  },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
 });
 
@@ -93,22 +89,7 @@ export const AccountCard: React.FC<{ accountId: string }> = ({ accountId }) => {
       // Polyam: Keep unfollow modal optional
       if (unfollowModal) {
         dispatch(
-          openModal({
-            modalType: 'CONFIRM',
-            modalProps: {
-              message: (
-                <FormattedMessage
-                  id='confirmations.unfollow.message'
-                  defaultMessage='Are you sure you want to unfollow {name}?'
-                  values={{ name: <strong>@{account.get('acct')}</strong> }}
-                />
-              ),
-              confirm: intl.formatMessage(messages.unfollowConfirm),
-              onConfirm: () => {
-                dispatch(unfollowAccount(account.get('id')));
-              },
-            },
-          }),
+          openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
         );
       } else {
         dispatch(unfollowAccount(account.get('id')));

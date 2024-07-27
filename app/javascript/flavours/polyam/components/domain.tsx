@@ -3,6 +3,8 @@ import { useCallback } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import UnblockIcon from '@/awesome-icons/solid/lock-open.svg?react';
+import { unblockDomain } from 'flavours/polyam/actions/domain_blocks';
+import { useAppDispatch } from 'flavours/polyam/store';
 
 import { IconButton } from './icon_button';
 
@@ -13,17 +15,15 @@ const messages = defineMessages({
   },
 });
 
-interface Props {
+export const Domain: React.FC<{
   domain: string;
-  onUnblockDomain: (domain: string) => void;
-}
-
-export const Domain: React.FC<Props> = ({ domain, onUnblockDomain }) => {
+}> = ({ domain }) => {
   const intl = useIntl();
+  const dispatch = useAppDispatch();
 
   const handleDomainUnblock = useCallback(() => {
-    onUnblockDomain(domain);
-  }, [domain, onUnblockDomain]);
+    dispatch(unblockDomain(domain));
+  }, [dispatch, domain]);
 
   return (
     <div className='domain'>

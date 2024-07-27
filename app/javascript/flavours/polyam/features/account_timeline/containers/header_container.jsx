@@ -25,8 +25,6 @@ import Header from '../components/header';
 
 const messages = defineMessages({
   cancelFollowRequestConfirm: { id: 'confirmations.cancel_follow_request.confirm', defaultMessage: 'Withdraw request' },
-  unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
-  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Block entire domain' },
 });
 
 const makeMapStateToProps = () => {
@@ -46,14 +44,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onFollow (account) {
     if (account.getIn(['relationship', 'following'])) {
       if (unfollowModal) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-            confirm: intl.formatMessage(messages.unfollowConfirm),
-            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
-          },
-        }));
+        dispatch(openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }));
       } else {
         dispatch(unfollowAccount(account.get('id')));
       }

@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
-import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
+import { useIntl, defineMessages } from 'react-intl';
 
 import { useIdentity } from '@/flavours/polyam/identity_context';
 import {
@@ -67,37 +67,11 @@ export const FollowButton: React.FC<{
 
     if (accountId === me) {
       return;
-    } else if (relationship.following || relationship.requested) {
+    } else if (account && (relationship.following || relationship.requested)) {
       // Polyam: Keep unfollow modal optional
       if (unfollowModal) {
         dispatch(
-          openModal({
-            modalType: 'CONFIRM',
-            modalProps: {
-              // Polyam: Keep different messages for canceling request
-              message: relationship.following ? (
-                <FormattedMessage
-                  id='confirmations.unfollow.message'
-                  defaultMessage='Are you sure you want to unfollow {name}?'
-                  values={{ name: <strong>@{account?.acct}</strong> }}
-                />
-              ) : (
-                <FormattedMessage
-                  id='confirmations.cancel_follow_request.message'
-                  defaultMessage='Are you sure you want to withdraw your request to follow {name}?'
-                  values={{ name: <strong>@{account?.acct}</strong> }}
-                />
-              ),
-              confirm: intl.formatMessage(
-                relationship.following
-                  ? messages.unfollow
-                  : messages.cancelFollowRequestConfirm,
-              ),
-              onConfirm: () => {
-                dispatch(unfollowAccount(accountId));
-              },
-            },
-          }),
+          openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
         );
       } else {
         dispatch(unfollowAccount(accountId));
@@ -105,7 +79,7 @@ export const FollowButton: React.FC<{
     } else {
       dispatch(followAccount(accountId));
     }
-  }, [dispatch, intl, accountId, relationship, account, signedIn]);
+  }, [dispatch, accountId, relationship, account, signedIn]);
 
   let label;
 
