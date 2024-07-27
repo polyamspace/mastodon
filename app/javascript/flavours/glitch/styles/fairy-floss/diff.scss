@@ -22,7 +22,7 @@ html {
 }
 
 body.admin {
-  background-color: $purple1;
+  --background-color: #{$purple1};
 }
 
 // Polyam: Make background of badge darker
@@ -206,26 +206,17 @@ button.icon-button.active {
 }
 
 .admin-wrapper {
+  // Polyam: Keep in different color to make it look less boring
+  .sidebar-wrapper {
+    &__inner {
+      background-color: darken($ui-base-color, 4%);
+    }
+  }
+
   .sidebar {
     ul {
-      a {
-        &:hover,
-        &:focus {
-          background-color: $purpleborder;
-        }
-      }
-
       ul {
         background-color: $purple1;
-      }
-
-      .simple-navigation-active-leaf a {
-        background-color: $purpleborder;
-
-        &:hover,
-        &:focus {
-          background-color: lighten($purpleborder, 8%);
-        }
       }
     }
   }
