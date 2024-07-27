@@ -81,12 +81,11 @@ $media-modal-media-max-height: 80%;
 
 $border-radius: 8px;
 
-// Overrides do not apply without "!important"
-:root {
-  --dropdown-background-color: #{$ui-base-lighter-color} !important;
-  --modal-background-color: #{$ui-base-color} !important;
-  --modal-background-variant-color: #{$ui-base-semi-lighter-color} !important;
-  --background-border-color: #{lighten($ui-base-color, 12%)} !important;
-  --background-color: #{$ui-base-color} !important;
-  --background-color-tint: #{$ui-base-color} !important;
+body {
+  --dropdown-background-color: #{$ui-base-lighter-color};
+  --modal-background-color: #{$ui-base-color};
+  --modal-background-variant-color: #{$ui-base-semi-lighter-color};
+  --background-border-color: #{lighten($ui-base-color, 12%)};
+  --background-color: #{$ui-base-color};
+  --background-color-tint: #{$ui-base-color};
 }
