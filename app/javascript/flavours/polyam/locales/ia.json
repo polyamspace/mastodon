@@ -25,6 +25,8 @@
   "account_note.glitch_placeholder": "No comment provided",
   "account_note.save": "Save",
   "column.reacted_by": "Reacted by",
+  "confirmations.cancel_follow_request.confirm": "Retirar requesta",
+  "confirmations.cancel_follow_request.message": "Es tu secur que tu vole retirar tu requesta de sequer {name}?",
   "footer.documentation": "Documentation",
   "home.column_settings.show_threads": "Show threads",
   "media_gallery.sensitive": "Sensitive",

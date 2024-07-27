@@ -27,6 +27,8 @@
   "column.reacted_by": "Reacted by",
   "compose_form.alt_text_warning.header": "Your attachments are missing a description!",
   "compose_form.alt_text_warning.message": "Descriptions are for users who are deaf, hard of hearing, blind, or have low vision that prevent them from seeing or hearing an image, video, or audio file. It's recommended that you provide a description for all attached media files so everyone can enjoy using Mastodon.",
+  "confirmations.cancel_follow_request.confirm": "रिक्वेस्ट वापस लें",
+  "confirmations.cancel_follow_request.message": "क्या आप सुनिश्चित है की आप {name} का फॉलो रिक्वेस्ट वापिस लेना चाहते हैं?",
   "footer.documentation": "प्रलेखन",
   "home.column_settings.show_threads": "Show threads",
   "media_gallery.sensitive": "Sensitive",
