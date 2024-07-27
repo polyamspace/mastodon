@@ -22,7 +22,7 @@ import Bundle from '../features/ui/components/bundle';
 import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
 import { SensitiveMediaContext } from '../features/ui/util/sensitive_media_context';
 import { identityContextPropShape, withIdentity } from '../identity_context';
-import { displayMedia, visibleReactions, domain } from '../initial_state';
+import { displayMedia, domain } from '../initial_state';
 
 import AttachmentList from './attachment_list';
 import { CollapseButton } from './collapse_button';
@@ -864,10 +864,6 @@ class Status extends ImmutablePureComponent {
             <StatusReactions
               statusId={status.get('id')}
               reactions={status.get('reactions')}
-              numVisible={visibleReactions}
-              addReaction={this.props.onReactionAdd}
-              removeReaction={this.props.onReactionRemove}
-              canReact={this.props.identity.signedIn}
             />
 
             {(!isCollapsed || !(muted || !settings.getIn(['collapsed', 'show_action_bar']))) && (
