@@ -1,4 +1,4 @@
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
@@ -23,10 +23,6 @@ import { unfollowModal } from '../../../initial_state';
 import { makeGetAccount, getAccountHidden } from '../../../selectors';
 import Header from '../components/header';
 
-const messages = defineMessages({
-  cancelFollowRequestConfirm: { id: 'confirmations.cancel_follow_request.confirm', defaultMessage: 'Withdraw request' },
-});
-
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
 
@@ -39,26 +35,12 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch, { intl }) => ({
+const mapDispatchToProps = (dispatch) => ({
 
   onFollow (account) {
-    if (account.getIn(['relationship', 'following'])) {
+    if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
       if (unfollowModal) {
-        dispatch(openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }));
-      } else {
-        dispatch(unfollowAccount(account.get('id')));
-      }
-    } else if (account.getIn(['relationship', 'requested'])) {
-      // Polyam: Kept from upstream as otherwise confusing
-      if (unfollowModal) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-            confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
-            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
-          },
-        }));
+        dispatch(openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account, requested: account.getIn(['relationship', 'requested']) } }));
       } else {
         dispatch(unfollowAccount(account.get('id')));
       }

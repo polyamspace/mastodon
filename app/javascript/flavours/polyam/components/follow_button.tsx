@@ -23,10 +23,6 @@ const messages = defineMessages({
     defaultMessage: 'Withdraw follow request',
   },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
-  cancelFollowRequestConfirm: {
-    id: 'confirmations.cancel_follow_request.confirm',
-    defaultMessage: 'Withdraw request',
-  },
 });
 
 export const FollowButton: React.FC<{
@@ -71,7 +67,10 @@ export const FollowButton: React.FC<{
       // Polyam: Keep unfollow modal optional
       if (unfollowModal) {
         dispatch(
-          openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
+          openModal({
+            modalType: 'CONFIRM_UNFOLLOW',
+            modalProps: { account, requested: relationship.requested },
+          }),
         );
       } else {
         dispatch(unfollowAccount(accountId));
