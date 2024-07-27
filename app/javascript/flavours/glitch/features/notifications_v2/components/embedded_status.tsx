@@ -8,11 +8,18 @@ import type { List as ImmutableList, RecordOf } from 'immutable';
 
 import BarChart4BarsIcon from '@/material-icons/400-24px/bar_chart_4_bars.svg?react';
 import PhotoLibraryIcon from '@/material-icons/400-24px/photo_library.svg?react';
+import {
+  addReaction,
+  removeReaction,
+} from 'flavours/glitch/actions/interactions';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { Icon } from 'flavours/glitch/components/icon';
+import StatusReactions from 'flavours/glitch/components/status_reactions';
+import { useIdentity } from 'flavours/glitch/identity_context';
+import { visibleReactions } from 'flavours/glitch/initial_state';
 import type { Status } from 'flavours/glitch/models/status';
-import { useAppSelector } from 'flavours/glitch/store';
+import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 
 import { EmbeddedStatusContent } from './embedded_status_content';
 
@@ -22,6 +29,10 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   statusId,
 }) => {
   const history = useHistory();
+  const dispatch = useAppDispatch();
+  // Polyam: TODO: Remove as notifications already require being signedIn
+  // This is currently only here to satisfy required "canReact" prop on StatusReactions.
+  const { signedIn } = useIdentity();
   const clickCoordinatesRef = useRef<[number, number] | null>();
 
   const status = useAppSelector(
@@ -30,6 +41,21 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
 
   const account = useAppSelector((state) =>
     state.accounts.get(status?.get('account') as string),
+  );
+
+  // Polyam: I'm not sure how useful it is to allow adding and removing of reactions here
+  const handleReactionAdd = useCallback(
+    (statusId: string, name: string, url: string) => {
+      dispatch(addReaction(statusId, name, url));
+    },
+    [dispatch],
+  );
+
+  const handleReactionRemove = useCallback(
+    (statusId: string, name: string) => {
+      dispatch(removeReaction(statusId, name));
+    },
+    [dispatch],
   );
 
   const handleMouseDown = useCallback<React.MouseEventHandler<HTMLDivElement>>(
@@ -154,6 +180,15 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
           )}
         </div>
       )}
+
+      <StatusReactions
+        statusId={status.get('id')}
+        reactions={status.get('reactions')}
+        numVisible={visibleReactions}
+        addReaction={handleReactionAdd}
+        removeReaction={handleReactionRemove}
+        canReact={signedIn}
+      />
     </div>
   );
 };
