@@ -28,6 +28,7 @@ class Instance < ApplicationRecord
   scope :domain_starts_with, ->(value) { where(arel_table[:domain].matches("#{sanitize_sql_like(value)}%", false, true)) }
   scope :by_domain_and_subdomains, ->(domain) { where("reverse('.' || domain) LIKE reverse(?)", "%.#{domain}") }
   scope :with_domain_follows, ->(domains) { where(domain: domains).where(domain_account_follows) }
+  scope :matches_comment, ->(value) { joins(:domain_block).where(DomainBlock.arel_table[:private_comment].matches("%#{value}%").or(DomainBlock.arel_table[:public_comment].matches("%#{value}%"))) }
 
   def self.domain_account_follows
     Arel.sql(
