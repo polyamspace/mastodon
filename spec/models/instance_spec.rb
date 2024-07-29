@@ -100,5 +100,26 @@ RSpec.describe Instance do
           .and not_include(none_domain)
       end
     end
+
+    describe '#matches_comment' do
+      let(:match_domain) { 'example.host' }
+      let(:match_other_domain) { 'other.host' }
+      let(:no_match_domain) { 'none.host' }
+
+      before do
+        Fabricate(:domain_block, domain: match_domain, private_comment: 'test')
+        Fabricate(:domain_block, domain: match_other_domain, public_comment: 'test')
+        Fabricate(:domain_block, domain: no_match_domain, public_comment: 'no match')
+      end
+
+      it 'returns matching instances' do
+        results = described_class.matches_comment('test').pluck(:domain)
+
+        expect(results)
+          .to include(match_domain)
+          .and include(match_other_domain)
+          .and not_include(no_match_domain)
+      end
+    end
   end
 end
