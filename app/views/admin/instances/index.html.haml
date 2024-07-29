@@ -41,6 +41,13 @@
                             class: 'string optional',
                             placeholder: I18n.t("admin.instances.#{key}")
 
+      - %i(by_comment).each do |key|
+        .input.string.optional
+          = form.text_field key,
+                            value: params[key],
+                            class: 'string optional',
+                            placeholder: I18n.t("admin.instances.#{key}")
+
       .actions
         %button.button= t('admin.accounts.search')
         = link_to t('admin.accounts.reset'), admin_instances_path, class: 'button negative'

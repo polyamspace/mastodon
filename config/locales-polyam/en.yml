@@ -15,6 +15,7 @@ en:
       visible_in_picker: Show in emoji picker
       visible_in_picker_hint: Makes this emoji available in the emoji picker and API.
     instances:
+      by_comment: Public or private comment
       content_policies:
         policies:
           noop: None

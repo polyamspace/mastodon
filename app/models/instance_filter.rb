@@ -6,6 +6,7 @@ class InstanceFilter
     suspended
     by_domain
     availability
+    by_comment
   ).freeze
 
   attr_reader :params
@@ -38,6 +39,8 @@ class InstanceFilter
       Instance.matches_domain(value)
     when 'availability'
       availability_scope(value)
+    when 'by_comment'
+      Instance.matches_comment(value)
     else
       raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
