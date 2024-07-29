@@ -12,6 +12,9 @@ Disallow: /
 User-agent: FacebookBot
 Disallow: /
 
+User-agent: Meta-ExternalAgent
+Disallow: /
+
 User-agent: CCBot
 Disallow: /
 
@@ -28,6 +31,15 @@ User-agent: cohere-ai
 Disallow: /
 
 User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: Timpibot
 Disallow: /
 
 User-agent: *
