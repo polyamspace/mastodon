@@ -183,8 +183,10 @@
 
     border-bottom: 0;
 
+    // Polyam: Reactions bar
     .status__content,
-    .status__action-bar {
+    .status__action-bar,
+    .reactions-bar {
       margin-inline-start: $thread-margin;
       width: calc(100% - $thread-margin);
     }
