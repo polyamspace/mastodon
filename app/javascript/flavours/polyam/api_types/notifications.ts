@@ -56,7 +56,7 @@ export interface BaseNotificationGroupJSON {
   group_key: string;
   notifications_count: number;
   type: NotificationType;
-  sample_accounts: ApiAccountJSON[];
+  sample_account_ids: string[];
   latest_page_notification_at: string; // FIXME: This will only be present if the notification group is returned in a paginated list, not requested directly
   most_recent_notification_id: string;
   page_min_id?: string;
@@ -160,3 +160,9 @@ export type ApiNotificationGroupJSON =
   | NotificationGroupWithStatusJSON
   | ModerationWarningNotificationGroupJSON
   | ReportNoteNotificationGroupJSON;
+
+export interface ApiNotificationGroupsResultJSON {
+  accounts: ApiAccountJSON[];
+  statuses: ApiStatusJSON[];
+  notification_groups: ApiNotificationGroupJSON[];
+}
