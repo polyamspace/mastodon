@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CheckIcon from '@/awesome-icons/solid/check.svg?react';
-import DeleteIcon from '@/awesome-icons/solid/xmark.svg?react';
+import DeleteIcon from '@/awesome-icons/solid/trash.svg?react';
 import { acceptNotificationRequest, dismissNotificationRequest } from 'flavours/polyam/actions/notifications';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { IconButton } from 'flavours/polyam/components/icon_button';

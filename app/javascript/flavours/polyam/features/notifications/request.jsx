@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import ArchiveIcon from '@/awesome-icons/solid/box-archive.svg?react';
 import CheckIcon from '@/awesome-icons/solid/check.svg?react';
-import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
+import DeleteIcon from '@/awesome-icons/solid/trash.svg?react';
 import { fetchNotificationRequest, fetchNotificationsForRequest, expandNotificationsForRequest, acceptNotificationRequest, dismissNotificationRequest } from 'flavours/polyam/actions/notifications';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
@@ -101,7 +101,7 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
         showBackButton
         extraButton={!removed && (
           <>
-            <IconButton className='column-header__button' iconComponent={MuteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
+            <IconButton className='column-header__button' iconComponent={DeleteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
             <IconButton className='column-header__button' iconComponent={CheckIcon} onClick={handleAccept} title={intl.formatMessage(messages.accept)} />
           </>
         )}
