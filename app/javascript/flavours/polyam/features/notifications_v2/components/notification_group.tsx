@@ -8,6 +8,7 @@ import type { NotificationGroup as NotificationGroupModel } from 'flavours/polya
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 import { NotificationAdminReport } from './notification_admin_report';
+import { NotificationAdminReportNote } from './notification_admin_report_note';
 import { NotificationAdminSignUp } from './notification_admin_sign_up';
 import { NotificationFavourite } from './notification_favourite';
 import { NotificationFollow } from './notification_follow';
@@ -147,6 +148,14 @@ export const NotificationGroup: React.FC<{
     case 'moderation_warning':
       content = (
         <NotificationModerationWarning
+          unread={unread}
+          notification={notificationGroup}
+        />
+      );
+      break;
+    case 'admin.report_note':
+      content = (
+        <NotificationAdminReportNote
           unread={unread}
           notification={notificationGroup}
         />

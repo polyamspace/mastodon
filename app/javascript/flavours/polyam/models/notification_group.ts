@@ -7,6 +7,7 @@ import type {
   NotificationType,
   NotificationWithStatusType,
 } from 'flavours/polyam/api_types/notifications';
+import type { ApiReportNoteJSON } from 'flavours/polyam/api_types/report_notes';
 import type { ApiReportJSON } from 'flavours/polyam/api_types/reports';
 
 // Maximum number of avatars displayed in a notification group
@@ -75,6 +76,11 @@ export interface NotificationGroupAdminReport
   report: Report;
 }
 
+export interface NotificationGroupAdminReportNote
+  extends BaseNotification<'admin.report_note'> {
+  reportNote: ApiReportNoteJSON;
+}
+
 export type NotificationGroup =
   | NotificationGroupFavourite
   | NotificationGroupReblog
@@ -88,7 +94,8 @@ export type NotificationGroup =
   | NotificationGroupModerationWarning
   | NotificationGroupSeveredRelationships
   | NotificationGroupAdminSignUp
-  | NotificationGroupAdminReport;
+  | NotificationGroupAdminReport
+  | NotificationGroupAdminReportNote;
 
 function createReportFromJSON(reportJSON: ApiReportJSON): Report {
   const { target_account, ...report } = reportJSON;
@@ -158,6 +165,14 @@ export function createNotificationGroupFromJSON(
         sampleAccountIds,
       };
     }
+    case 'admin.report_note': {
+      const { report_note, ...groupWithoutTargetAccount } = group;
+      return {
+        reportNote: report_note,
+        sampleAccountIds,
+        ...groupWithoutTargetAccount,
+      };
+    }
     default:
       return {
         sampleAccountIds,
@@ -205,6 +220,8 @@ export function createNotificationGroupFromNotificationJSON(
           notification.moderation_warning,
         ),
       };
+    case 'admin.report_note':
+      return { ...group, reportNote: notification.report_note };
     default:
       return group;
   }

@@ -25,6 +25,7 @@ import NotificationOverlayContainer from '../containers/overlay_container';
 import { ModerationWarning } from './moderation_warning';
 import { RelationshipsSeveranceEvent } from './relationships_severance_event';
 import Report from './report';
+import ReportNote from './report_note';
 
 const messages = defineMessages({
   follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
@@ -32,6 +33,7 @@ const messages = defineMessages({
   adminReport: { id: 'notification.admin.report', defaultMessage: '{name} reported {target}' },
   relationshipsSevered: { id: 'notification.relationships_severance_event', defaultMessage: 'Lost connections with {name}' },
   moderationWarning: { id: 'notification.moderation_warning', defaultMessage: 'You have received a moderation warning' },
+  adminReportNote: { id: 'notification.admin.report_note', defaultMessage: '{name} added a report note' },
 });
 
 const notificationForScreenReader = (intl, message, timestamp) => {
@@ -438,6 +440,33 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
+  renderAdminReportNote (notification, account, link) {
+    const { intl, unread } = this.props;
+
+    const reportNote = notification.get('report_note');
+
+    if (!reportNote) {
+      return null;
+    }
+
+    return (
+      <HotKeys handlers={this.getHandlers()}>
+        <div className={classNames('notification notification-admin-report-note focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.adminReportNote, { name: account.get('acct') }), notification.get('created_at'))}>
+          <div className='notification__message'>
+            <Icon id='flag' icon={FlagIcon} />
+
+            <span title={notification.get('created_at')}>
+              <FormattedMessage id='notification.admin.report_note' defaultMessage='{name} added a report note' values={{ name: link }} />
+            </span>
+          </div>
+
+          <ReportNote account={account} reportNote={notification.get('report_note')} hidden={this.props.hidden} />
+          <NotificationOverlayContainer notification={notification} />
+        </div>
+      </HotKeys>
+    );
+  }
+
   render () {
     const { notification } = this.props;
     const account          = notification.get('account');
@@ -482,6 +511,8 @@ class Notification extends ImmutablePureComponent {
       return this.renderAdminSignUp(notification, account, link);
     case 'admin.report':
       return this.renderAdminReport(notification, account, link);
+    case 'admin.report_note':
+      return this.renderAdminReportNote(notification, account, link);
     }
 
     return null;

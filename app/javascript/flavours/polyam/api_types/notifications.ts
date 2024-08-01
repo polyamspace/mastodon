@@ -3,6 +3,7 @@
 import type { AccountWarningAction } from 'flavours/polyam/models/notification_group';
 
 import type { ApiAccountJSON } from './accounts';
+import type { ApiReportNoteJSON } from './report_notes';
 import type { ApiReportJSON } from './reports';
 import type { ApiStatusJSON } from './statuses';
 
@@ -21,6 +22,7 @@ export const allNotificationTypes = [
   'admin.report',
   'moderation_warning',
   'severed_relationships',
+  'admin.report_note',
 ];
 
 export type NotificationWithStatusType =
@@ -39,7 +41,8 @@ export type NotificationType =
   | 'moderation_warning'
   | 'severed_relationships'
   | 'admin.sign_up'
-  | 'admin.report';
+  | 'admin.report'
+  | 'admin.report_note';
 
 export interface BaseNotificationJSON {
   id: string;
@@ -78,6 +81,16 @@ interface ReportNotificationGroupJSON extends BaseNotificationGroupJSON {
 interface ReportNotificationJSON extends BaseNotificationJSON {
   type: 'admin.report';
   report: ApiReportJSON;
+}
+
+interface ReportNoteNotificationGroupJSON extends BaseNotificationGroupJSON {
+  type: 'admin.report_note';
+  report_note: ApiReportNoteJSON;
+}
+
+interface ReportNoteNotificationJSON extends BaseNotificationJSON {
+  type: 'admin.report_note';
+  report_note: ApiReportNoteJSON;
 }
 
 type SimpleNotificationTypes = 'follow' | 'follow_request' | 'admin.sign_up';
@@ -137,11 +150,13 @@ export type ApiNotificationJSON =
   | ReportNotificationJSON
   | AccountRelationshipSeveranceNotificationJSON
   | NotificationWithStatusJSON
-  | ModerationWarningNotificationJSON;
+  | ModerationWarningNotificationJSON
+  | ReportNoteNotificationJSON;
 
 export type ApiNotificationGroupJSON =
   | SimpleNotificationGroupJSON
   | ReportNotificationGroupJSON
   | AccountRelationshipSeveranceNotificationGroupJSON
   | NotificationGroupWithStatusJSON
-  | ModerationWarningNotificationGroupJSON;
+  | ModerationWarningNotificationGroupJSON
+  | ReportNoteNotificationGroupJSON;
