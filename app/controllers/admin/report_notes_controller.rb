@@ -19,6 +19,8 @@ module Admin
           log_action :reopen, @report
         end
 
+        notify_staff!
+
         redirect_to after_create_redirect_path, notice: I18n.t('admin.report_notes.created_msg')
       else
         @report_notes = @report.notes.includes(:account).order(id: :desc)
@@ -55,6 +57,13 @@ module Admin
 
     def set_report_note
       @report_note = ReportNote.find(params[:id])
+    end
+
+    def notify_staff!
+      # TODO: Email notification
+      User.those_who_can(:manage_reports).includes(:account).find_each do |u|
+        LocalNotificationWorker.perform_async(u.account_id, @report_note.id, 'ReportNote', 'admin.report_note')
+      end
     end
   end
 end

@@ -13,6 +13,7 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
   belongs_to :report, if: :report_type?, serializer: REST::ReportSerializer
   belongs_to :account_relationship_severance_event, key: :event, if: :relationship_severance_event?, serializer: REST::AccountRelationshipSeveranceEventSerializer
   belongs_to :account_warning, key: :moderation_warning, if: :moderation_warning_event?, serializer: REST::AccountWarningSerializer
+  belongs_to :report_note, if: :report_note_type?, serializer: REST::ReportNoteSerializer
 
   def status_type?
     [:favourite, :reblog, :reaction, :status, :mention, :poll, :update].include?(object.type)
@@ -20,6 +21,10 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
 
   def report_type?
     object.type == :'admin.report'
+  end
+
+  def report_note_type?
+    object.type == :'admin.report_note'
   end
 
   def relationship_severance_event?
