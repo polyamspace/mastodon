@@ -8,6 +8,7 @@ class NotifyService < BaseService
   NON_EMAIL_TYPES = %i(
     admin.report
     admin.sign_up
+    admin.report_note
     update
     poll
     status
@@ -77,6 +78,7 @@ class NotifyService < BaseService
     NON_FILTERABLE_TYPES = %i(
       admin.sign_up
       admin.report
+      admin.report_note
       poll
       update
       account_warning
