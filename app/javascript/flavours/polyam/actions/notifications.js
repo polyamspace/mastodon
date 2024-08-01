@@ -183,6 +183,7 @@ const excludeTypesFromFilter = filter => {
     'update',
     'admin.sign_up',
     'admin.report',
+    'admin.report_note',
   ]);
 
   return allTypes.filterNot(item => item === filter).toJS();

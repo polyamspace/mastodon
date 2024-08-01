@@ -64,6 +64,7 @@ export const notificationToMap = (notification, markForDelete = false) => Immuta
   report: notification.report ? fromJS(notification.report) : null,
   event: notification.event ? fromJS(notification.event) : null,
   moderation_warning: notification.moderation_warning ? fromJS(notification.moderation_warning) : null,
+  report_note: notification.report_note ? fromJS(notification.report_note) : null,
 });
 
 const normalizeNotification = (state, notification, usePendingItems) => {

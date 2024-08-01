@@ -44,6 +44,7 @@ const initialState = ImmutableMap({
       update: false,
       'admin.sign_up': false,
       'admin.report': false,
+      'admin.report_note': false,
     }),
 
     quickFilter: ImmutableMap({
@@ -67,6 +68,7 @@ const initialState = ImmutableMap({
       update: true,
       'admin.sign_up': true,
       'admin.report': true,
+      'admin.report_note': true,
     }),
 
     sounds: ImmutableMap({
@@ -81,6 +83,7 @@ const initialState = ImmutableMap({
       update: true,
       'admin.sign_up': true,
       'admin.report': true,
+      'admin.report_note': true,
     }),
   }),
 

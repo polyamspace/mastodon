@@ -289,7 +289,8 @@
 
   &--relationships-severance-event &__icon,
   &--admin-report &__icon,
-  &--admin-sign-up &__icon {
+  &--admin-sign-up &__icon,
+  &--admin-report-note &__icon {
     color: $dark-text-color;
   }
 
@@ -320,6 +321,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      width: 100%; // Polyam: Consistent timestamp in report/report-note
 
       &__wrapper {
         display: flex;

@@ -265,6 +265,19 @@ class ColumnSettings extends PureComponent {
             </div>
           </section>
         )}
+
+        {((this.props.identity.permissions & PERMISSION_MANAGE_REPORTS) === PERMISSION_MANAGE_REPORTS) && (
+          <section role='group' aria-labelledby='notifications-admin-report'>
+            <h3 id='notifications-status'><FormattedMessage id='notifications.column_settings.admin.report_note' defaultMessage='New report notes:' /></h3>
+
+            <div className='column-settings__pillbar'>
+              <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'admin.report_note']} onChange={onChange} label={alertStr} />
+              {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'admin.report_note']} onChange={this.onPushChange} label={pushStr} />}
+              <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'admin.report_note']} onChange={onChange} label={showStr} />
+              <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'admin.report_note']} onChange={onChange} label={soundStr} />
+            </div>
+          </section>
+        )}
       </div>
     );
   }
