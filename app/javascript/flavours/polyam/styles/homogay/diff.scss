@@ -252,6 +252,11 @@
   }
 }
 
+// Polyam: Fix color of checkmark
+.report-dialog-modal .dialog-option .poll__input {
+  color: $ui-base-color;
+}
+
 // settings
 
 // Polyam: Keep background in admin UI a bit darker
