@@ -51,6 +51,7 @@ class Rules extends PureComponent {
               onToggle={this.handleRulesToggle}
               label={item.get('text')}
               multiple
+              description={item.get('hint')}
             />
           ))}
         </div>
