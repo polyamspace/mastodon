@@ -1,5 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
+import AlternateEmailIcon from '@/awesome-icons/solid/envelope.svg?react';
 import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
 import type { StatusVisibility } from 'flavours/polyam/api_types/statuses';
 import type { NotificationGroupMention } from 'flavours/polyam/models/notification_group';
@@ -39,7 +40,7 @@ export const NotificationMention: React.FC<{
   return (
     <NotificationWithStatus
       type='mention'
-      icon={ReplyIcon}
+      icon={statusVisibility === 'direct' ? AlternateEmailIcon : ReplyIcon}
       iconId='reply'
       accountIds={notification.sampleAccountIds}
       count={notification.notifications_count}

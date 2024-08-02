@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CheckIcon from '@/awesome-icons/solid/check.svg?react';
-import DeleteIcon from '@/awesome-icons/solid/xmark.svg?react';
+import DeleteIcon from '@/awesome-icons/solid/trash.svg?react';
 import { acceptNotificationRequest, dismissNotificationRequest } from 'flavours/polyam/actions/notifications';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -38,12 +38,11 @@ export const NotificationRequest = ({ id, accountId, notificationsCount }) => {
   return (
     <div className='notification-request'>
       <Link to={`/notifications/requests/${id}`} className='notification-request__link'>
-        <Avatar account={account} size={36} />
+        <Avatar account={account} size={40} counter={toCappedNumber(notificationsCount)} />
 
         <div className='notification-request__name'>
           <div className='notification-request__name__display-name'>
             <bdi><strong dangerouslySetInnerHTML={{ __html: account?.get('display_name_html') }} /></bdi>
-            <span className='filtered-notifications-banner__badge'>{toCappedNumber(notificationsCount)}</span>
           </div>
 
           <span>@{account?.get('acct')}</span>
