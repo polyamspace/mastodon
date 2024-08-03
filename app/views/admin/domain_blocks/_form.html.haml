@@ -34,7 +34,8 @@
                wrapper: :with_label
 .field-group
   = form.input :private_comment,
-               as: :string,
+               as: :text,
+               input_html: { rows: 8 },
                hint: t('admin.domain_blocks.private_comment_hint'),
                label: I18n.t('admin.domain_blocks.private_comment'),
                wrapper: :with_label
