@@ -123,6 +123,16 @@ describe StatusCacheHydrator do
             expect(subject).to eql(compare_to_hash)
           end
         end
+
+        context 'when it has been reacted to' do
+          before do
+            ReactService.new.call(account, reblog, '👍')
+          end
+
+          it 'renders same attributes as a full render' do
+            expect(subject).to eql(compare_to_hash)
+          end
+        end
       end
     end
 
