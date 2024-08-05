@@ -8,7 +8,7 @@ class ActivityPub::Activity::EmojiReact < ActivityPub::Activity
               !original_status.account.local? ||
               delete_arrived_first?(@json['id'])
 
-    if /^:.*:$/.match?(name)
+    if CUSTOM_EMOJI_REGEX.match?(name)
       name.delete! ':'
       custom_emoji = process_emoji_tags(name, @json['tag'])
 

@@ -23,7 +23,7 @@ class ActivityPub::Activity::Like < ActivityPub::Activity
     name = @json['content'] || @json['_misskey_reaction']
     return false if name.nil?
 
-    if /^:.*:$/.match?(name)
+    if CUSTOM_EMOJI_REGEX.match?(name)
       name.delete! ':'
       custom_emoji = process_emoji_tags(name, @json['tag'])
 
