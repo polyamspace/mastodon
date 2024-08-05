@@ -8,6 +8,9 @@ class ActivityPub::Activity
   SUPPORTED_TYPES = %w(Note Question).freeze
   CONVERTED_TYPES = %w(Image Audio Video Article Page Event).freeze
 
+  # Used for reactions
+  CUSTOM_EMOJI_REGEX = /^:#{CustomEmoji::SHORTCODE_RE_FRAGMENT}:$/
+
   def initialize(json, account, **options)
     @json    = json
     @account = account
