@@ -48,6 +48,7 @@ interface NotificationGroupsState {
   scrolledToTop: boolean;
   isLoading: boolean;
   lastReadId: string;
+  readMarkerId: string;
   mounted: number;
   isTabVisible: boolean;
 }
@@ -58,7 +59,8 @@ const initialState: NotificationGroupsState = {
   scrolledToTop: false,
   isLoading: false,
   // The following properties are used to track unread notifications
-  lastReadId: '0', // used for unread notifications
+  lastReadId: '0', // used internally for unread notifications
+  readMarkerId: '0', // user-facing and updated when focus changes
   mounted: 0, // number of mounted notification list components, usually 0 or 1
   isTabVisible: true,
 };
@@ -286,6 +288,12 @@ function updateLastReadId(
   }
 }
 
+function commitLastReadId(state: NotificationGroupsState) {
+  if (shouldMarkNewNotificationsAsRead(state)) {
+    state.readMarkerId = state.lastReadId;
+  }
+}
+
 export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
   initialState,
   (builder) => {
@@ -459,6 +467,7 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
           compareId(state.lastReadId, mostRecentGroup.page_max_id) < 0
         )
           state.lastReadId = mostRecentGroup.page_max_id;
+        commitLastReadId(state);
       })
       .addCase(fetchMarkers.fulfilled, (state, action) => {
         if (
@@ -472,6 +481,7 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
       })
       .addCase(mountNotifications, (state) => {
         state.mounted += 1;
+        commitLastReadId(state);
         updateLastReadId(state);
       })
       .addCase(unmountNotifications, (state) => {
@@ -479,6 +489,7 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
       })
       .addCase(focusApp, (state) => {
         state.isTabVisible = true;
+        commitLastReadId(state);
         updateLastReadId(state);
       })
       .addCase(unfocusApp, (state) => {
