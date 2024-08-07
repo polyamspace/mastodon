@@ -14,8 +14,8 @@ $content-width: 840px;
   .icon {
     width: 13px;
     height: 13px;
-    vertical-align: middle;
-    margin: 0 2px;
+    vertical-align: top;
+    margin: 3px 2px; // Polyam: 3px to simulate material padding
   }
 
   .sidebar-wrapper {
