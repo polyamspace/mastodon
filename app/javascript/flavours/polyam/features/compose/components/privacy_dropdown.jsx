@@ -11,9 +11,8 @@ import EnvelopeIcon from '@/awesome-icons/solid/envelope.svg?react';
 import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import LockIcon from '@/awesome-icons/solid/lock.svg?react';
 import UnlistedIcon from '@/awesome-icons/solid/unlock.svg?react';
+import { DropdownSelector } from 'flavours/polyam/components/dropdown_selector';
 import { Icon } from 'flavours/polyam/components/icon';
-
-import { PrivacyDropdownMenu } from './privacy_dropdown_menu';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
@@ -143,7 +142,7 @@ class PrivacyDropdown extends PureComponent {
           {({ props, placement }) => (
             <div {...props}>
               <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>
-                <PrivacyDropdownMenu
+                <DropdownSelector
                   items={this.options}
                   value={value}
                   onClose={this.handleClose}
