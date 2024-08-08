@@ -113,8 +113,8 @@ module ApplicationHelper
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
 
-  def material_symbol(icon, attributes = {})
-    return awesome_icon(material_to_awesome(icon), attributes) if current_flavour == 'polyam'
+  def material_symbol(icon, fa_icon, attributes = {})
+    return awesome_icon(fa_icon, attributes) if current_flavour == 'polyam'
 
     inline_svg_tag(
       "400-24px/#{icon}.svg",
@@ -129,35 +129,6 @@ module ApplicationHelper
       class: %w(icon).concat(attributes[:class].to_s.split),
       role: :img
     )
-  end
-
-  def material_to_awesome(icon)
-    icon = icon.chomp('-fill')
-
-    case icon
-    when 'add'
-      'plus'
-    when 'content_copy'
-      'copy'
-    when 'close'
-      'xmark'
-    when 'group'
-      'users'
-    when 'info'
-      'circle-info'
-    when 'person'
-      'user'
-    when 'tag'
-      'hashtag'
-    when 'visibility'
-      'eye'
-    when 'visibility_off'
-      'eye-slash'
-    when 'warning'
-      'triangle-exclamation'
-    else
-      icon.tr('_', '-')
-    end
   end
 
   def check_icon
