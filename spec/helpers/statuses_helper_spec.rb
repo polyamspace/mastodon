@@ -30,6 +30,10 @@ describe StatusesHelper do
   end
 
   describe 'fa_visibility_icon' do
+    # Polyam: We use current_flavour in material_symbol, which is undefined in specs
+    # This and the controller_helpers method make the variables available
+    before { helper.extend controller_helpers }
+
     context 'with a status that is public' do
       let(:status) { Status.new(visibility: 'public') }
 
@@ -67,6 +71,23 @@ describe StatusesHelper do
         result = helper.fa_visibility_icon(status)
 
         expect(result).to match('material-alternate_email')
+      end
+    end
+
+    private
+
+    def controller_helpers
+      Module.new do
+        def body_class_string = 'modal-layout compose-standalone'
+        def body_class_string = 'modal-layout compose-standalone'
+
+        def current_account
+          @current_account ||= Fabricate(:account)
+        end
+
+        def current_flavour = 'glitch'
+        def current_skin = 'default'
+        def system_skins = ['default', 'mastodon-light']
       end
     end
   end

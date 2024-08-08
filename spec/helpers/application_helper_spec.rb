@@ -219,6 +219,10 @@ describe ApplicationHelper do
   end
 
   describe 'visibility_icon' do
+    # Polyam: We use current_flavour in material_symbol, which is undefined in specs
+    # This and the controller_helpers method make the variables available
+    before { helper.extend controller_helpers }
+
     it 'returns a globe icon for a public visible status' do
       result = helper.visibility_icon Status.new(visibility: 'public')
       expect(result).to match(/globe/)
@@ -237,6 +241,16 @@ describe ApplicationHelper do
     it 'returns an at icon for a direct visible status' do
       result = helper.visibility_icon Status.new(visibility: 'direct')
       expect(result).to match(/alternate_email/)
+    end
+
+    private
+
+    def controller_helpers
+      Module.new do
+        def current_flavour = 'glitch'
+        def current_skin = 'default'
+        def system_skins = ['default', 'mastodon-light']
+      end
     end
   end
 
