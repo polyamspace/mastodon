@@ -201,6 +201,8 @@ module ApplicationHelper
       'gem'
     when 'logout'
       'right-from-bracket'
+    when 'delete' # maybe trash-can?
+      'trash'
     else
       icon.tr('_', '-')
     end
