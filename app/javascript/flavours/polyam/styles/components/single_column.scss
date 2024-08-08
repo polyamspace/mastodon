@@ -176,6 +176,11 @@
   .explore__search-header {
     display: flex;
   }
+
+  .explore__search-results {
+    border: 0;
+    border-radius: 0;
+  }
 }
 
 .compose-panel {

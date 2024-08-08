@@ -3101,6 +3101,11 @@ $ui-header-logo-wordmark-width: 99px;
   .explore__search-header {
     display: flex;
   }
+
+  .explore__search-results {
+    border: 0;
+    border-radius: 0;
+  }
 }
 
 .icon-with-badge {
@@ -7369,7 +7374,7 @@ a.status-card {
   display: flex;
   flex-shrink: 0;
 
-  @media screen and (max-width: $no-gap-breakpoint) {
+  @media screen and (max-width: $no-gap-breakpoint - 1px) {
     border-right: 0;
     border-left: 0;
   }
@@ -8091,16 +8096,17 @@ noscript {
       .verified {
         border: 1px solid rgba($valid-value-color, 0.5);
         margin-top: -1px;
+        margin-inline: -1px;
 
         &:first-child {
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
-          margin-top: 0;
         }
 
         &:last-child {
           border-bottom-left-radius: 4px;
           border-bottom-right-radius: 4px;
+          margin-bottom: -1px;
         }
 
         dt,
@@ -10634,6 +10640,25 @@ noscript {
       &:active {
         text-decoration: none;
       }
+    }
+  }
+
+  &__note {
+    &-label {
+      color: $dark-text-color;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    dd {
+      white-space: pre-line;
+      color: $secondary-text-color;
+      overflow: hidden;
+      line-clamp: 3; // Not yet supported in browers
+      display: -webkit-box; // The next 3 properties are needed
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
   }
 
