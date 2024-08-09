@@ -3,9 +3,8 @@ import { useCallback, useState, useRef } from 'react';
 
 import Overlay from 'react-overlays/Overlay';
 
+import { DropdownSelector } from 'flavours/polyam/components/dropdown_selector';
 import { IconButton } from 'flavours/polyam/components/icon_button';
-
-import { PrivacyDropdownMenu } from './privacy_dropdown_menu';
 
 export const DropdownIconButton = ({ value, disabled, icon, onChange, iconComponent, title, options }) => {
   const containerRef = useRef(null);
@@ -53,7 +52,7 @@ export const DropdownIconButton = ({ value, disabled, icon, onChange, iconCompon
         {({ props, placement }) => (
           <div {...props}>
             <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>
-              <PrivacyDropdownMenu
+              <DropdownSelector
                 items={options}
                 value={value}
                 onClose={handleClose}
