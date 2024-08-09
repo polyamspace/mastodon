@@ -1,12 +1,14 @@
 import classNames from 'classnames';
 
-import CheckIcon from '@/awesome-icons/solid/check.svg?react';
+import DoneIcon from '@/awesome-icons/solid/check.svg?react';
+import CheckIndeterminateSmallIcon from '@/awesome-icons/solid/minus.svg?react';
 
 import { Icon } from './icon';
 
 interface Props {
   value: string;
   checked: boolean;
+  indeterminate: boolean;
   name: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   label: React.ReactNode;
@@ -16,6 +18,7 @@ export const CheckBox: React.FC<Props> = ({
   name,
   value,
   checked,
+  indeterminate,
   onChange,
   label,
 }) => {
@@ -29,8 +32,14 @@ export const CheckBox: React.FC<Props> = ({
         onChange={onChange}
       />
 
-      <span className={classNames('check-box__input', { checked })}>
-        {checked && <Icon id='check' icon={CheckIcon} />}
+      <span
+        className={classNames('check-box__input', { checked, indeterminate })}
+      >
+        {indeterminate ? (
+          <Icon id='indeterminate' icon={CheckIndeterminateSmallIcon} />
+        ) : (
+          checked && <Icon id='check' icon={DoneIcon} />
+        )}
       </span>
 
       <span>{label}</span>
