@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -19,6 +19,7 @@ import VisibilityIcon from '@/awesome-icons/regular/eye.svg?react';
 import CommentIcon from '@/awesome-icons/solid/comment.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import { TimelineHint } from 'flavours/polyam/components/timeline_hint';
 import ScrollContainer from 'flavours/polyam/containers/scroll_container';
 import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
@@ -643,7 +644,7 @@ class Status extends ImmutablePureComponent {
   };
 
   render () {
-    let ancestors, descendants;
+    let ancestors, descendants, remoteHint;
     const { isLoading, status, settings, ancestorsIds, descendantsIds, intl, domain, multiColumn, pictureInPicture } = this.props;
     const { fullscreen } = this.state;
 
@@ -673,6 +674,10 @@ class Status extends ImmutablePureComponent {
 
     const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
     const isIndexable = !status.getIn(['account', 'noindex']);
+
+    if (!isLocal) {
+      remoteHint = <TimelineHint url={status.get('url')} resource={<FormattedMessage id='timeline_hint.resources.replies' defaultMessage='Some replies' />} />;
+    }
 
     const handlers = {
       moveUp: this.handleHotkeyMoveUp,
@@ -749,6 +754,7 @@ class Status extends ImmutablePureComponent {
             </HotKeys>
 
             {descendants}
+            {remoteHint}
           </div>
         </ScrollContainer>
 
