@@ -152,20 +152,24 @@ export const connectUserStream = () =>
 /**
  * @param {Object} options
  * @param {boolean} [options.onlyMedia]
+ * @param {boolean} [options.withReblogs]
+ * @param {boolean} [options.withReplies]
  * @returns {function(): void}
  */
-export const connectCommunityStream = ({ onlyMedia } = {}) =>
-  connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia })) });
+export const connectCommunityStream = ({ onlyMedia, withReblogs, withReplies } = {}) =>
+  connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia, withReblogs, withReplies })) });
 
 /**
  * @param {Object} options
  * @param {boolean} [options.onlyMedia]
  * @param {boolean} [options.onlyRemote]
  * @param {boolean} [options.allowLocalOnly]
+ * @param {boolean} [options.withReblogs]
+ * @param {boolean} [options.withReplies]
  * @returns {function(): void}
  */
-export const connectPublicStream = ({ onlyMedia, onlyRemote, allowLocalOnly } = {}) =>
-  connectTimelineStream(`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote, allowLocalOnly }) });
+export const connectPublicStream = ({ onlyMedia, onlyRemote, allowLocalOnly, withReblogs, withReplies } = {}) =>
+  connectTimelineStream(`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote, allowLocalOnly, withReblogs, withReplies }) });
 
 /**
  * @param {string} columnId

@@ -31,11 +31,15 @@ const mapStateToProps = (state, { columnId }) => {
   const index = columns.findIndex(c => c.get('uuid') === uuid);
   const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'community', 'other', 'onlyMedia']);
   const regex = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'regex', 'body']) : state.getIn(['settings', 'community', 'regex', 'body']);
-  const timelineState = state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`]);
+  const withReblogs = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'shows', 'reblog']) : state.getIn(['settings', 'community', 'shows', 'reblog']);
+  const withReplies = (columnId && index >=0) ? columns.get(index).getIn(['params', 'shows', 'reply']) : state.getIn(['settings', 'community', 'shows', 'reply']);
+  const timelineState = state.getIn(['timelines', `community${withReblogs ? ':reblogs' : ''}${withReplies ? ':replies' : ''}${onlyMedia ? ':media' : ''}`]);
 
   return {
     hasUnread: !!timelineState && timelineState.get('unread') > 0,
     onlyMedia,
+    withReblogs,
+    withReplies,
     regex,
   };
 };
@@ -54,6 +58,8 @@ class CommunityTimeline extends PureComponent {
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
     onlyMedia: PropTypes.bool,
+    withReblogs: PropTypes.bool,
+    withReplies: PropTypes.bool,
     regex: PropTypes.string,
   };
 
@@ -77,30 +83,30 @@ class CommunityTimeline extends PureComponent {
   };
 
   componentDidMount () {
-    const { dispatch, onlyMedia } = this.props;
+    const { dispatch, onlyMedia, withReblogs, withReplies } = this.props;
     const { signedIn } = this.props.identity;
 
-    dispatch(expandCommunityTimeline({ onlyMedia }));
+    dispatch(expandCommunityTimeline({ onlyMedia, withReblogs, withReplies }));
 
     if (signedIn) {
-      this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+      this.disconnect = dispatch(connectCommunityStream({ onlyMedia, withReblogs, withReplies }));
     }
   }
 
   componentDidUpdate (prevProps) {
     const { signedIn } = this.props.identity;
 
-    if (prevProps.onlyMedia !== this.props.onlyMedia) {
-      const { dispatch, onlyMedia } = this.props;
+    if (prevProps.onlyMedia !== this.props.onlyMedia || prevProps.withReblogs !== this.props.withReblogs || prevProps.withReplies !== this.props.withReplies) {
+      const { dispatch, onlyMedia, withReblogs, withReplies } = this.props;
 
       if (this.disconnect) {
         this.disconnect();
       }
 
-      dispatch(expandCommunityTimeline({ onlyMedia }));
+      dispatch(expandCommunityTimeline({ onlyMedia, withReblogs, withReplies }));
 
       if (signedIn) {
-        this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+        this.disconnect = dispatch(connectCommunityStream({ onlyMedia, withReblogs, withReplies }));
       }
     }
   }
@@ -117,13 +123,13 @@ class CommunityTimeline extends PureComponent {
   };
 
   handleLoadMore = maxId => {
-    const { dispatch, onlyMedia } = this.props;
+    const { dispatch, onlyMedia, withReblogs, withReplies } = this.props;
 
-    dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
+    dispatch(expandCommunityTimeline({ maxId, onlyMedia, withReblogs, withReplies }));
   };
 
   render () {
-    const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
+    const { intl, hasUnread, columnId, multiColumn, onlyMedia, withReblogs, withReplies } = this.props;
     const pinned = !!columnId;
 
     return (
@@ -146,12 +152,11 @@ class CommunityTimeline extends PureComponent {
           prepend={<DismissableBanner id='community_timeline'><FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} /></DismissableBanner>}
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
-          timelineId={`community${onlyMedia ? ':media' : ''}`}
+          timelineId={`community${withReblogs ? ':reblogs' : ''}${withReplies ? ':replies' : ''}${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
           bindToDocument={!multiColumn}
           regex={this.props.regex}
-          columnId={columnId}
         />
 
         <Helmet>
