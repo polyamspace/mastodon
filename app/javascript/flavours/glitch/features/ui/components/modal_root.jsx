@@ -19,6 +19,7 @@ import {
   InteractionModal,
   SubscribedLanguagesModal,
   ClosedRegistrationsModal,
+  IgnoreNotificationsModal,
 } from 'flavours/glitch/features/ui/util/async-components';
 import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
 
@@ -82,6 +83,7 @@ export const MODAL_COMPONENTS = {
   'INTERACTION': InteractionModal,
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
   'ALTTEXT': () => Promise.resolve({ default: AltTextModal }),
+  'IGNORE_NOTIFICATIONS': IgnoreNotificationsModal,
 };
 
 export default class ModalRoot extends PureComponent {
