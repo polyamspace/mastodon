@@ -154,6 +154,10 @@ export function SettingsModal () {
   return import(/* webpackChunkName: "flavours/polyam/async/settings_modal" */'../../local_settings');
 }
 
+export function IgnoreNotificationsModal () {
+  return import(/* webpackChunkName: "flavours/polyam/async/ignore_notifications_modal" */'../components/ignore_notifications_modal');
+}
+
 export function MediaGallery () {
   return import(/* webpackChunkName: "flavours/polyam/async/media_gallery" */'flavours/polyam/components/media_gallery');
 }
