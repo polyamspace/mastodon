@@ -427,6 +427,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  // Polyam: center icon
+  .icon {
+    align-self: center;
+  }
 }
 
 .status__wrapper-direct,
@@ -574,15 +579,16 @@
       background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
     }
   }
-}
 
-.detailed-status__action-bar {
-  border-top-color: mix(lighten($ui-base-color, 8%), $ui-highlight-color, 95%);
-}
+  .detailed-status__action-bar {
+    border-top-color: mix(
+      lighten($ui-base-color, 8%),
+      $ui-highlight-color,
+      95%
+    );
+  }
 
-// Polyam: Different from upstream as only icon should be in highlight color
-.status__prepend {
-  .icon {
+  .status__prepend {
     color: $highlight-text-color;
   }
 }
