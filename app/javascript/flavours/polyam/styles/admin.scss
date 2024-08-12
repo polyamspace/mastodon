@@ -66,16 +66,19 @@ $content-width: 840px;
           background: $ui-base-color;
         }
 
-        .fa-times {
+        .fa-xmark,
+        .material-close {
           display: none;
         }
 
         &.active {
-          .fa-times {
+          .fa-xmark,
+          .material-close {
             display: block;
           }
 
-          .fa-bars {
+          .fa-bars,
+          .material-menu {
             display: none;
           }
         }
