@@ -617,8 +617,9 @@
     padding-inline-end: 10px;
   }
 
+  // Polyam: top instead of middle to align FA icons
   .icon {
-    vertical-align: middle;
+    vertical-align: top;
   }
 
   .button {
