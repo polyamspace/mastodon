@@ -48,8 +48,8 @@ SimpleNavigation::Configuration.run do |navigation|
     n.item :trends, safe_join([material_symbol('trending_up', 'arrow-trend-up'), t('admin.trends.title')]), admin_trends_statuses_path, if: -> { current_user.can?(:manage_taxonomies) && !self_destruct } do |s|
       s.item :statuses, safe_join([material_symbol('chat_bubble', 'comments'), t('admin.trends.statuses.title')]), admin_trends_statuses_path, highlights_on: %r{/admin/trends/statuses}
       s.item :tags, safe_join([material_symbol('tag', 'hashtag'), t('admin.trends.tags.title')]), admin_trends_tags_path, highlights_on: %r{/admin/trends/tags}
-      s.item :links, safe_join([material_symbol('breaking_news', 'newspaper'), t('admin.trends.links.title')]), admin_trends_links_path, highlights_on: %r{/admin/trends/links}
-      s.item :follow_recommendations, safe_join([material_symbol('person_add', 'user-add'), t('admin.follow_recommendations.title')]), admin_follow_recommendations_path, highlights_on: %r{/admin/follow_recommendations}
+      s.item :links, safe_join([material_symbol('breaking_news', 'newspaper', variant: 'regular'), t('admin.trends.links.title')]), admin_trends_links_path, highlights_on: %r{/admin/trends/links}
+      s.item :follow_recommendations, safe_join([material_symbol('person_add', 'user-plus'), t('admin.follow_recommendations.title')]), admin_follow_recommendations_path, highlights_on: %r{/admin/follow_recommendations}
     end
 
     n.item :moderation, safe_join([material_symbol('gavel', 'gavel'), t('moderation.title')]), nil, if: -> { current_user.can?(:manage_reports, :view_audit_log, :manage_users, :manage_invites, :manage_taxonomies, :manage_federation, :manage_blocks) && !self_destruct } do |s|
