@@ -337,36 +337,6 @@
   }
 }
 
-// Polyam: Kept from upstream, but dead code
-button.icon-button .icon-retweet {
-  background-position: 0 0;
-  height: 19px;
-  transition: background-position 0.9s steps(10);
-  transition-duration: 0s;
-  vertical-align: middle;
-  width: 22px;
-
-  &::before {
-    display: none !important;
-  }
-}
-
-button.icon-button.active .icon-retweet {
-  transition-duration: 0.9s;
-  background-position: 0 100%;
-}
-
-.reduce-motion button.icon-button .icon-retweet,
-.reduce-motion button.icon-button.active .icon-retweet {
-  transition: none;
-}
-
-.reduce-motion button.icon-button.disabled .icon-retweet {
-  color: darken($action-button-color, 13%);
-}
-
-// End dead
-
 .text-btn {
   display: inline-flex;
   align-items: center;
