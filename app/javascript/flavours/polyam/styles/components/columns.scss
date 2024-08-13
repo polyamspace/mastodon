@@ -190,7 +190,7 @@ $ui-header-logo-wordmark-width: 99px;
   @include column-drawer;
 }
 
-@media screen and (width >= 631px) {
+@media screen and (width > $mobile-breakpoint) {
   .columns-area {
     padding: 0;
   }
