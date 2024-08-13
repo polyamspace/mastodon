@@ -261,6 +261,16 @@ const createConnection = (streamingAPIBaseURL, accessToken, channelName, { conne
     params.push('only_media=true');
   }
 
+  if (channelName.includes(':reblogs')) {
+    channelName = channelName.replace('/reblogs', '');
+    params.push('with_reblogs=true');
+  }
+
+  if (channelName.includes(':replies')) {
+    channelName = channelName.replace('/replies', '');
+    params.push('with_replies=true');
+  }
+
   params.push(`access_token=${accessToken}`);
 
   const es = new EventSource(`${streamingAPIBaseURL}/api/v1/streaming/${channelName}?${params.join('&')}`);

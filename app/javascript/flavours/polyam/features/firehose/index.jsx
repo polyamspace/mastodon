@@ -83,44 +83,44 @@ const Firehose = ({ feedType, multiColumn }) => {
   const allowLocalOnly = useAppSelector((state) => state.getIn(['settings', 'firehose', 'allowLocalOnly']));
   const regex = useAppSelector((state) => state.getIn(['settings', 'firehose', 'regex', 'body']));
 
-  const showReblogs = useAppSelector((state) => state.getIn(['settings', 'firehose', 'shows', 'reblog'], true));
-  const showReplies = useAppSelector((state) => state.getIn(['settings', 'firehose', 'shows', 'reply'], true));
+  const withReblogs = useAppSelector((state) => state.getIn(['settings', 'firehose', 'shows', 'reblog'], true));
+  const withReplies = useAppSelector((state) => state.getIn(['settings', 'firehose', 'shows', 'reply'], true));
 
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
-  const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
+  const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${withReblogs ? ':reblogs' : ''}${withReplies ? ':replies' : ''}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
 
   const handlePin = useCallback(
     () => {
       switch(feedType) {
       case 'community':
-        dispatch(addColumn('COMMUNITY', { other: { onlyMedia }, regex: { body: regex }, shows: { reblog: showReblogs, reply: showReplies} }));
+        dispatch(addColumn('COMMUNITY', { other: { onlyMedia }, regex: { body: regex }, shows: { reblog: withReblogs, reply: withReplies} }));
         break;
       case 'public':
-        dispatch(addColumn('PUBLIC', { other: { onlyMedia, allowLocalOnly }, regex: { body: regex }, shows: { reblog: showReblogs, reply: showReplies}  }));
+        dispatch(addColumn('PUBLIC', { other: { onlyMedia, allowLocalOnly }, regex: { body: regex }, shows: { reblog: withReblogs, reply: withReplies}  }));
         break;
       case 'public:remote':
-        dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true }, regex: { body: regex }, shows: { reblog: showReblogs, reply: showReplies}  }));
+        dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true }, regex: { body: regex }, shows: { reblog: withReblogs, reply: withReplies}  }));
         break;
       }
     },
-    [dispatch, onlyMedia, feedType, allowLocalOnly, regex, showReblogs, showReplies],
+    [dispatch, onlyMedia, feedType, allowLocalOnly, regex, withReblogs, withReplies],
   );
 
   const handleLoadMore = useCallback(
     (maxId) => {
       switch(feedType) {
       case 'community':
-        dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
+        dispatch(expandCommunityTimeline({ maxId, onlyMedia, withReblogs, withReplies }));
         break;
       case 'public':
-        dispatch(expandPublicTimeline({ maxId, onlyMedia, allowLocalOnly }));
+        dispatch(expandPublicTimeline({ maxId, onlyMedia, allowLocalOnly, withReblogs, withReplies }));
         break;
       case 'public:remote':
-        dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
+        dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true, withReblogs, withReplies }));
         break;
       }
     },
-    [dispatch, onlyMedia, allowLocalOnly, feedType],
+    [dispatch, onlyMedia, allowLocalOnly, feedType, withReblogs, withReplies],
   );
 
   const handleHeaderClick = useCallback(() => columnRef.current?.scrollTop(), []);
@@ -130,27 +130,27 @@ const Firehose = ({ feedType, multiColumn }) => {
 
     switch(feedType) {
     case 'community':
-      dispatch(expandCommunityTimeline({ onlyMedia }));
+      dispatch(expandCommunityTimeline({ onlyMedia, withReblogs, withReplies }));
       if (signedIn) {
-        disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+        disconnect = dispatch(connectCommunityStream({ onlyMedia, withReblogs, withReplies }));
       }
       break;
     case 'public':
-      dispatch(expandPublicTimeline({ onlyMedia, allowLocalOnly }));
+      dispatch(expandPublicTimeline({ onlyMedia, allowLocalOnly, withReblogs, withReplies }));
       if (signedIn) {
-        disconnect = dispatch(connectPublicStream({ onlyMedia, allowLocalOnly }));
+        disconnect = dispatch(connectPublicStream({ onlyMedia, allowLocalOnly, withReblogs, withReplies }));
       }
       break;
     case 'public:remote':
-      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote: true }));
+      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote: true, withReblogs, withReplies }));
       if (signedIn) {
-        disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote: true }));
+        disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote: true, withReblogs, withReplies }));
       }
       break;
     }
 
     return () => disconnect?.();
-  }, [dispatch, signedIn, feedType, onlyMedia, allowLocalOnly]);
+  }, [dispatch, signedIn, feedType, onlyMedia, allowLocalOnly, withReblogs, withReplies]);
 
   const prependBanner = feedType === 'community' ? (
     <DismissableBanner id='community_timeline'>
@@ -212,14 +212,13 @@ const Firehose = ({ feedType, multiColumn }) => {
 
       <StatusListContainer
         prepend={prependBanner}
-        timelineId={`${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`}
+        timelineId={`${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${withReblogs ? ':reblogs' : ''}${withReplies ? ':replies' : ''}${onlyMedia ? ':media' : ''}`}
         onLoadMore={handleLoadMore}
         trackScroll
         scrollKey='firehose'
         emptyMessage={emptyMessage}
         bindToDocument={!multiColumn}
         regex={regex}
-        firehose
       />
 
       <Helmet>

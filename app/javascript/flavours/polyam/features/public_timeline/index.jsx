@@ -32,14 +32,18 @@ const mapStateToProps = (state, { columnId }) => {
   const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']);
   const onlyRemote = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyRemote']) : state.getIn(['settings', 'public', 'other', 'onlyRemote']);
   const allowLocalOnly = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'allowLocalOnly']) : state.getIn(['settings', 'public', 'other', 'allowLocalOnly']);
+  const withReblogs = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'shows', 'reblog']) : state.getIn(['settings', 'public', 'shows', 'reblog']);
+  const withReplies = (columnId && index >=0) ? columns.get(index).getIn(['params', 'shows', 'reply']) : state.getIn(['settings', 'public', 'shows', 'reply']);
   const regex = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'regex', 'body']) : state.getIn(['settings', 'public', 'regex', 'body']);
-  const timelineState = state.getIn(['timelines', `public${onlyRemote ? ':remote' : allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`]);
+  const timelineState = state.getIn(['timelines', `public${onlyRemote ? ':remote' : allowLocalOnly ? ':allow_local_only' : ''}${withReblogs ? ':reblogs' : ''}${withReplies ? ':replies' : ''}${onlyMedia ? ':media' : ''}`]);
 
   return {
     hasUnread: !!timelineState && timelineState.get('unread') > 0,
     onlyMedia,
     onlyRemote,
     allowLocalOnly,
+    withReblogs,
+    withReplies,
     regex,
   };
 };
@@ -60,6 +64,8 @@ class PublicTimeline extends PureComponent {
     onlyMedia: PropTypes.bool,
     onlyRemote: PropTypes.bool,
     allowLocalOnly: PropTypes.bool,
+    withReblogs: PropTypes.bool,
+    withReplies: PropTypes.bool,
     regex: PropTypes.string,
   };
 
@@ -83,29 +89,29 @@ class PublicTimeline extends PureComponent {
   };
 
   componentDidMount () {
-    const { dispatch, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
+    const { dispatch, onlyMedia, onlyRemote, allowLocalOnly, withReblogs, withReplies } = this.props;
     const { signedIn } = this.props.identity;
 
-    dispatch(expandPublicTimeline({ onlyMedia, onlyRemote, allowLocalOnly }));
+    dispatch(expandPublicTimeline({ onlyMedia, onlyRemote, allowLocalOnly, withReblogs, withReplies }));
     if (signedIn) {
-      this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, allowLocalOnly }));
+      this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, allowLocalOnly, withReblogs, withReplies }));
     }
   }
 
   componentDidUpdate (prevProps) {
     const { signedIn } = this.props.identity;
 
-    if (prevProps.onlyMedia !== this.props.onlyMedia || prevProps.onlyRemote !== this.props.onlyRemote || prevProps.allowLocalOnly !== this.props.allowLocalOnly) {
-      const { dispatch, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
+    if (prevProps.onlyMedia !== this.props.onlyMedia || prevProps.onlyRemote !== this.props.onlyRemote || prevProps.allowLocalOnly !== this.props.allowLocalOnly || prevProps.withReblogs !== this.props.withReblogs || prevProps.withReplies !== this.props.withReplies) {
+      const { dispatch, onlyMedia, onlyRemote, allowLocalOnly, withReblogs, withReplies } = this.props;
 
       if (this.disconnect) {
         this.disconnect();
       }
 
-      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote, allowLocalOnly }));
+      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote, allowLocalOnly, withReblogs, withReplies }));
 
       if (signedIn) {
-        this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, allowLocalOnly }));
+        this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, allowLocalOnly, withReblogs, withReplies }));
       }
     }
   }
@@ -122,13 +128,13 @@ class PublicTimeline extends PureComponent {
   };
 
   handleLoadMore = maxId => {
-    const { dispatch, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
+    const { dispatch, onlyMedia, onlyRemote, allowLocalOnly, withReblogs, withReplies } = this.props;
 
-    dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote, allowLocalOnly }));
+    dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote, allowLocalOnly, withReblogs, withReplies }));
   };
 
   render () {
-    const { intl, columnId, hasUnread, multiColumn, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
+    const { intl, columnId, hasUnread, multiColumn, onlyMedia, onlyRemote, allowLocalOnly, withReblogs, withReplies } = this.props;
     const pinned = !!columnId;
 
     return (
@@ -149,14 +155,13 @@ class PublicTimeline extends PureComponent {
 
         <StatusListContainer
           prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.' values={{ domain }} /></DismissableBanner>}
-          timelineId={`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`}
+          timelineId={`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${withReblogs ? ':reblogs' : ''}${withReplies ? ':replies' : ''}${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}
           scrollKey={`public_timeline-${columnId}`}
           emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up' />}
           bindToDocument={!multiColumn}
           regex={this.props.regex}
-          columnId={columnId}
         />
 
         <Helmet>
