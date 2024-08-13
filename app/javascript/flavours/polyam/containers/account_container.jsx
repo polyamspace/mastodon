@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
   onFollow (account) {
     if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
       if (unfollowModal) {
-        dispatch(openModal({ modalType: 'COMFIRM_UNFOLLOW', modalProps: { account } }));
+        dispatch(openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }));
       } else {
         dispatch(unfollowAccount(account.get('id')));
       }
