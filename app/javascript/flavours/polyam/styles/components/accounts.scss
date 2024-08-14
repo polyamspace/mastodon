@@ -1,5 +1,6 @@
 .account {
   padding: 10px; // glitch: reduced padding
+  border-bottom: 1px solid var(--background-border-color);
 
   .account__display-name {
     flex: 1 1 auto;
