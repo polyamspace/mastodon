@@ -22,7 +22,7 @@ interface BaseNotificationGroup
 interface BaseNotificationWithStatus<Type extends NotificationWithStatusType>
   extends BaseNotificationGroup {
   type: Type;
-  statusId: string;
+  statusId: string | undefined;
 }
 
 interface BaseNotification<Type extends NotificationType>
@@ -136,7 +136,7 @@ export function createNotificationGroupFromJSON(
     case 'update': {
       const { status_id: statusId, ...groupWithoutStatus } = group;
       return {
-        statusId,
+        statusId: statusId ?? undefined,
         sampleAccountIds,
         ...groupWithoutStatus,
       };
@@ -202,7 +202,7 @@ export function createNotificationGroupFromNotificationJSON(
     case 'mention':
     case 'poll':
     case 'update':
-      return { ...group, statusId: notification.status.id };
+      return { ...group, statusId: notification.status?.id };
     case 'admin.report':
       return { ...group, report: createReportFromJSON(notification.report) };
     case 'severed_relationships':
