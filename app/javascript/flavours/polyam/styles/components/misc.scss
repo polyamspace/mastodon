@@ -479,6 +479,10 @@ input.glitch-setting-text {
   }
 }
 
+.timeline-hint--with-descendants {
+  border-top: 1px solid var(--background-border-color);
+}
+
 .scrollable > div > :first-child .notification__dismiss-overlay > .wrappy {
   border-top: 1px solid $ui-base-color;
 }
