@@ -315,12 +315,20 @@
     }
   }
 
+  // Polyam: Style for icon buttons
+  &--follow &__actions {
+    @include follow-unfollow-icons;
+  }
+
   &__main {
     display: flex;
     flex-direction: column;
     gap: 8px;
     flex: 1 1 auto;
     overflow: hidden;
+    container-type: inline-size;
+
+    // Polyam: Removed @container here as timestamps should remain visible
 
     &__header {
       display: flex;
@@ -361,6 +369,11 @@
       border: 1px solid var(--background-border-color);
       border-radius: 8px;
       padding: 8px;
+    }
+
+    &__additional-content {
+      color: $darker-text-color;
+      margin-top: -8px; // to offset the parent's `gap` property
     }
   }
 
