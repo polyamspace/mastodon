@@ -310,6 +310,11 @@
     }
   }
 
+  // Polyam: Style for icon buttons
+  &--follow &__actions {
+    @include follow-unfollow-icons;
+  }
+
   &__main {
     display: flex;
     flex-direction: column;

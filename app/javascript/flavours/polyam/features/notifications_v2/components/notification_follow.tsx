@@ -2,7 +2,7 @@ import { FormattedMessage } from 'react-intl';
 
 import PersonAddIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import { FollowersCounter } from 'flavours/polyam/components/counters';
-import { FollowButton } from 'flavours/polyam/components/follow_button';
+import { FollowIconButton } from 'flavours/polyam/components/follow_icon_button';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
 import type { NotificationGroupFollow } from 'flavours/polyam/models/notification_group';
 import { useAppSelector } from 'flavours/polyam/store';
@@ -40,7 +40,9 @@ export const NotificationFollow: React.FC<{
     const account = notification.sampleAccountIds[0];
 
     if (account) {
-      actions = <FollowButton accountId={notification.sampleAccountIds[0]} />;
+      actions = (
+        <FollowIconButton accountId={notification.sampleAccountIds[0]} />
+      );
       // Polyam: Don't show follower count
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       additionalContent = undefined && <FollowerCount accountId={account} />;
