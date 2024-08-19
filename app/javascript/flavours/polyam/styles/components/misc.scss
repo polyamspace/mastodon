@@ -446,7 +446,7 @@ input.glitch-setting-text {
   text-decoration: none;
 
   &:hover {
-    background: lighten($ui-base-color, 2%);
+    background: var(--on-surface-color);
   }
 }
 

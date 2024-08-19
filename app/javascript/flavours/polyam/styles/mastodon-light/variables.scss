@@ -65,5 +65,6 @@ body {
   --background-color: #fff;
   --background-color-tint: rgba(255, 255, 255, 90%);
   --background-filter: blur(10px);
+  --on-surface-color: #{transparentize($ui-base-color, 0.65)};
   --toot-focus-background-color: #{lighten($white, 4%)};
 }

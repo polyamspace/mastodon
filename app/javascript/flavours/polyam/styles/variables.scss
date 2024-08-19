@@ -115,6 +115,7 @@ $dismiss-overlay-width: 4rem;
   --surface-background-color: #{darken($ui-base-color, 4%)};
   --surface-variant-background-color: #{$ui-base-color};
   --surface-variant-active-background-color: #{lighten($ui-base-color, 4%)};
+  --on-surface-color: #{transparentize($ui-base-color, 0.5)};
   --avatar-border-radius: 8px;
   --toot-focus-background-color: #{color-mix(
       in srgb,
