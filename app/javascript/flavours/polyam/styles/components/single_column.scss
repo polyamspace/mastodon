@@ -182,26 +182,6 @@
   height: calc(100% - 10px);
   overflow-y: hidden;
 
-  .hero-widget {
-    box-shadow: none;
-
-    &__text,
-    &__img,
-    &__img img {
-      border-radius: 0;
-    }
-
-    &__text {
-      padding: 15px;
-      color: $secondary-text-color;
-
-      strong {
-        font-weight: 700;
-        color: $primary-text-color;
-      }
-    }
-  }
-
   .compose-form {
     flex: 1 1 auto;
     min-height: 0;
