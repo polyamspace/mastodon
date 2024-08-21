@@ -811,16 +811,6 @@ body > [data-popper-placement] {
     gap: 12px;
     flex-wrap: wrap;
 
-    .button {
-      display: block; // Otherwise text-ellipsis doesn't work
-      font-size: 14px;
-      line-height: normal;
-      font-weight: 700;
-      flex: 1 1 auto;
-      padding: 5px 12px;
-      border-radius: 4px;
-    }
-
     .icon-button {
       box-sizing: content-box;
       color: $highlight-text-color;
@@ -4436,7 +4426,7 @@ a.status-card {
   text-decoration: none;
 
   &:hover {
-    background: lighten($ui-base-color, 2%);
+    background: var(--on-surface-color);
   }
 }
 
@@ -4565,19 +4555,18 @@ a.status-card {
     display: flex;
   }
 
-  &__selection-mode {
-    flex-grow: 1;
-
-    .text-btn:hover {
-      text-decoration: underline;
-    }
+  &__select-menu:disabled {
+    visibility: hidden;
   }
 
-  &__actions {
-    .icon-button {
-      border-radius: 4px;
-      border: 1px solid var(--background-border-color);
-      padding: 5px;
+  &__mode-button {
+    margin-left: auto;
+    color: $highlight-text-color;
+    font-weight: bold;
+    font-size: 14px;
+
+    &:hover {
+      color: lighten($highlight-text-color, 6%);
     }
   }
 }
@@ -4930,6 +4919,7 @@ a.status-card {
   padding: 0;
   font-family: inherit;
   font-size: inherit;
+  font-weight: inherit;
   color: inherit;
   border: 0;
   background: transparent;
@@ -8147,10 +8137,6 @@ img.modal-warning {
   }
 }
 
-::-webkit-scrollbar-thumb {
-  border-radius: 0;
-}
-
 noscript {
   text-align: center;
 
@@ -11019,7 +11005,7 @@ noscript {
     cursor: pointer;
 
     &:hover {
-      background: lighten($ui-base-color, 1%);
+      background: var(--on-surface-color);
     }
 
     .notification-request__checkbox {
@@ -11187,8 +11173,10 @@ noscript {
     }
 
     &__additional-content {
-      color: $darker-text-color;
+      color: $dark-text-color;
       margin-top: -8px; // to offset the parent's `gap` property
+      font-size: 15px;
+      line-height: 22px;
     }
   }
 
@@ -11239,6 +11227,19 @@ noscript {
         color: inherit;
       }
     }
+  }
+}
+
+.notification-group__actions,
+.compose-form__actions {
+  .button {
+    display: block; // Otherwise text-ellipsis doesn't work
+    font-size: 14px;
+    line-height: normal;
+    font-weight: 700;
+    flex: 1 1 auto;
+    padding: 5px 12px;
+    border-radius: 4px;
   }
 }
 

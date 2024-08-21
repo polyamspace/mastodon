@@ -9,7 +9,7 @@ class Themes
   DISABLED_THEMES = ENV.fetch('DISABLED_SKINS', '').split(/\s*,\s*/).delete_if { |s| %w(system default mastodon-light).include?(s) }
 
   THEME_COLORS = {
-    dark: '#191b22',
+    dark: '#181820',
     light: '#ffffff',
   }.freeze
 
