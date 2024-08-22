@@ -134,6 +134,14 @@
     }
   }
 
+  .content-warning {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   .media-gallery,
   .video-player,
   .audio-player,
@@ -405,6 +413,14 @@
 
   .media-gallery__item-thumbnail {
     cursor: default;
+  }
+
+  .content-warning {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -1205,5 +1221,55 @@ a.status-card {
     &:active {
       color: $highlight-text-color;
     }
+  }
+}
+
+.content-warning {
+  background: rgba($ui-highlight-color, 0.05);
+  color: $secondary-text-color;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: rgba($ui-highlight-color, 0.15);
+  padding: 8px (5px + 8px);
+  position: relative;
+  font-size: 15px;
+  line-height: 22px;
+
+  p {
+    margin-bottom: 8px;
+  }
+
+  .link-button {
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: 500;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100%;
+    background: url('~images/warning-stripes.svg') repeat-y;
+    width: 5px;
+    top: 0;
+  }
+
+  &::before {
+    border-start-start-radius: 4px;
+    border-end-start-radius: 4px;
+    inset-inline-start: 0;
+  }
+
+  &::after {
+    border-start-end-radius: 4px;
+    border-end-end-radius: 4px;
+    inset-inline-end: 0;
+  }
+
+  &--filter::before,
+  &--filter::after {
+    background-image: url('~images/filter-stripes.svg');
   }
 }
