@@ -15,4 +15,4 @@
           %strong.emojify.p-name= display_name(account, custom_emojify: true)
         %span
           = acct(account)
-          = material_symbol('lock', { data: ({ hidden: true } unless account.locked?) })
+          = material_symbol('lock', 'lock', { data: ({ hidden: true } unless account.locked?) })

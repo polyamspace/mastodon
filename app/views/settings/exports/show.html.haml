@@ -15,11 +15,11 @@
       %tr
         %th= t('admin.accounts.follows')
         %td= number_with_delimiter @export.total_follows
-        %td= table_link_to 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
+        %td= table_link_to 'download', 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
       %tr
         %th= t('exports.lists')
         %td= number_with_delimiter @export.total_lists
-        %td= table_link_to 'download', t('exports.csv'), settings_exports_lists_path(format: :csv)
+        %td= table_link_to 'download', 'download', t('exports.csv'), settings_exports_lists_path(format: :csv)
       %tr
         %th= t('admin.accounts.followers')
         %td= number_with_delimiter @export.total_followers
@@ -27,19 +27,19 @@
       %tr
         %th= t('exports.mutes')
         %td= number_with_delimiter @export.total_mutes
-        %td= table_link_to 'download', t('exports.csv'), settings_exports_mutes_path(format: :csv)
+        %td= table_link_to 'download', 'download', t('exports.csv'), settings_exports_mutes_path(format: :csv)
       %tr
         %th= t('exports.blocks')
         %td= number_with_delimiter @export.total_blocks
-        %td= table_link_to 'download', t('exports.csv'), settings_exports_blocks_path(format: :csv)
+        %td= table_link_to 'download', 'download', t('exports.csv'), settings_exports_blocks_path(format: :csv)
       %tr
         %th= t('exports.domain_blocks')
         %td= number_with_delimiter @export.total_domain_blocks
-        %td= table_link_to 'download', t('exports.csv'), settings_exports_domain_blocks_path(format: :csv)
+        %td= table_link_to 'download', 'download', t('exports.csv'), settings_exports_domain_blocks_path(format: :csv)
       %tr
         %th= t('exports.bookmarks')
         %td= number_with_delimiter @export.total_bookmarks
-        %td= table_link_to 'download', t('exports.csv'), settings_exports_bookmarks_path(format: :csv)
+        %td= table_link_to 'download', 'download', t('exports.csv'), settings_exports_bookmarks_path(format: :csv)
 
 %hr.spacer/
 
@@ -64,6 +64,6 @@
             %td= l backup.created_at
             - if backup.processed?
               %td= number_to_human_size backup.dump_file_size
-              %td= table_link_to 'download', t('exports.archive_takeout.download'), download_backup_url(backup)
+              %td= table_link_to 'download', 'download', t('exports.archive_takeout.download'), download_backup_url(backup)
             - else
               %td{ colspan: 2 }= t('exports.archive_takeout.in_progress')

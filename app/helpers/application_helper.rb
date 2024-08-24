@@ -120,7 +120,8 @@ module ApplicationHelper
     inline_svg_tag(
       "#{attributes[:variant] || 'solid'}/#{icon}.svg",
       class: ['icon', "fa-#{icon}"].concat(attributes[:class].to_s.split),
-      role: :img
+      role: :img,
+      data: attributes[:data]
     )
   end
 
