@@ -25,10 +25,10 @@
                 - if count.zero?
                   = t('generic.none')
                 - else
-                  = table_link_to 'download', t('severed_relationships.download', count: count), following_severed_relationship_path(event, format: :csv)
+                  = table_link_to 'download', 'download', t('severed_relationships.download', count: count), following_severed_relationship_path(event, format: :csv)
               %td
                 - count = event.followers_count
                 - if count.zero?
                   = t('generic.none')
                 - else
-                  = table_link_to 'download', t('severed_relationships.download', count: count), followers_severed_relationship_path(event, format: :csv)
+                  = table_link_to 'download', 'download', t('severed_relationships.download', count: count), followers_severed_relationship_path(event, format: :csv)

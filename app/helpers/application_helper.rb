@@ -105,21 +105,14 @@ module ApplicationHelper
     policy(record).public_send(:"#{action}?")
   end
 
-  def fa_icon(icon, attributes = {})
-    class_names = attributes[:class]&.split || []
-    class_names << 'fa'
-    class_names += icon.split.map { |cl| "fa-#{cl}" }
-
-    content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
-  end
-
   def material_symbol(icon, fa_icon, attributes = {})
     return awesome_icon(fa_icon, attributes) if current_flavour == 'polyam'
 
     inline_svg_tag(
       "400-24px/#{icon}.svg",
       class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
-      role: :img
+      role: :img,
+      data: attributes[:data]
     )
   end
 
@@ -127,7 +120,8 @@ module ApplicationHelper
     inline_svg_tag(
       "#{attributes[:variant] || 'solid'}/#{icon}.svg",
       class: ['icon', "fa-#{icon}"].concat(attributes[:class].to_s.split),
-      role: :img
+      role: :img,
+      data: attributes[:data]
     )
   end
 

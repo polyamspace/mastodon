@@ -26,11 +26,24 @@ module SettingsHelper
     device = session.detection.device
 
     if device.mobile?
-      'mobile'
+      'smartphone'
     elsif device.tablet?
       'tablet'
     else
-      'desktop'
+      'desktop_mac'
+    end
+  end
+
+  # Polyam: Same as above but returns awesome icons
+  def session_device_awesome_icon(session)
+    device = session.detection.device
+
+    if device.mobile?
+      'mobile-screen'
+    elsif device.tablet?
+      'tablet-screen-button'
+    else
+      'computer'
     end
   end
 

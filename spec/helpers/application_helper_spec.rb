@@ -56,9 +56,15 @@ describe ApplicationHelper do
     end
   end
 
-  describe 'fa_icon' do
-    it 'returns a tag of fixed-width cog' do
-      expect(helper.fa_icon('cog fw')).to eq '<i class="fa fa-cog fa-fw"></i>'
+  describe '#material_symbol' do
+    # Polyam: Make current_flavour available in this context
+    before { helper.extend flavour_helpers }
+
+    it 'returns an svg with the icon and options' do
+      expect(helper.material_symbol('lock', 'lock', class: :test, data: { hidden: true }))
+        .to match('<svg.*/svg>')
+        .and match('class="icon material-lock test"')
+        .and match('data-hidden="true"')
     end
   end
 
@@ -220,8 +226,8 @@ describe ApplicationHelper do
 
   describe 'visibility_icon' do
     # Polyam: We use current_flavour in material_symbol, which is undefined in specs
-    # This and the controller_helpers method make the variables available
-    before { helper.extend controller_helpers }
+    # This and the flavour_helpers method make the variables available
+    before { helper.extend flavour_helpers }
 
     it 'returns a globe icon for a public visible status' do
       result = helper.visibility_icon Status.new(visibility: 'public')
@@ -241,16 +247,6 @@ describe ApplicationHelper do
     it 'returns an at icon for a direct visible status' do
       result = helper.visibility_icon Status.new(visibility: 'direct')
       expect(result).to match(/alternate_email/)
-    end
-
-    private
-
-    def controller_helpers
-      Module.new do
-        def current_flavour = 'glitch'
-        def current_skin = 'default'
-        def system_skins = ['default', 'mastodon-light']
-      end
     end
   end
 
@@ -329,6 +325,16 @@ describe ApplicationHelper do
         expect(helper.favicon_path(16)).to be_nil
         expect(helper.app_icon_path(16)).to be_nil
       end
+    end
+  end
+
+  private
+
+  def flavour_helpers
+    Module.new do
+      def current_flavour = 'glitch'
+      def current_skin = 'default'
+      def system_skins = ['default', 'mastodon-light']
     end
   end
 end
