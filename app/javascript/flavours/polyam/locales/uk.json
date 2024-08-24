@@ -34,6 +34,7 @@
   "media_gallery.sensitive": "Чутливі",
   "notification.admin.report_note": "{name} added a report note",
   "notification.reaction": "{name} reacted to your toot",
+  "notification.reaction.name_and_others_with_link": "{name} and <a>{count, plural, one {# other} other {# others}}</a> reacted to your toot",
   "notifications.column_settings.admin.report_note": "New report notes:",
   "notifications.column_settings.reaction": "Reactions",
   "notifications.filter.reactions": "Reactions",
