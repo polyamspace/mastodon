@@ -17,7 +17,7 @@ describe 'Instances' do
 
         expect(body_as_json)
           .to be_present
-          .and include(title: 'Mastodon Glitch Edition')
+          .and include(title: Setting.site_title) # Polyam: Configured title is checked here
           .and include_api_versions
           .and include_configuration_limits
       end
@@ -32,7 +32,7 @@ describe 'Instances' do
 
         expect(body_as_json)
           .to be_present
-          .and include(title: 'Mastodon Glitch Edition')
+          .and include(title: Setting.site_title) # Polyam: Configured title is checked here
           .and include_api_versions
           .and include_configuration_limits
       end
