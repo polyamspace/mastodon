@@ -17,7 +17,8 @@ describe 'Instances' do
 
         expect(body_as_json)
           .to be_present
-          .and include(title: Setting.site_title)
+          .and include(title: Setting.site_title) # Polyam: Configured title is checked here
+          .and include_api_versions
           .and include_configuration_limits
       end
     end
@@ -31,7 +32,8 @@ describe 'Instances' do
 
         expect(body_as_json)
           .to be_present
-          .and include(title: Setting.site_title)
+          .and include(title: Setting.site_title) # Polyam: Configured title is checked here
+          .and include_api_versions
           .and include_configuration_limits
       end
     end
@@ -53,6 +55,14 @@ describe 'Instances' do
           polls: include(
             max_options: PollValidator::MAX_OPTIONS
           )
+        )
+      )
+    end
+
+    def include_api_versions
+      include(
+        api_versions: include(
+          mastodon: anything
         )
       )
     end
