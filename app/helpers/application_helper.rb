@@ -254,22 +254,6 @@ module ApplicationHelper
     full_asset_url(instance_presenter.mascot&.file&.url || frontend_asset_path('images/elephant_ui_plane.svg'))
   end
 
-  def instance_presenter
-    @instance_presenter ||= InstancePresenter.new
-  end
-
-  def favicon_path(size = '48')
-    instance_presenter.favicon&.file&.url(size)
-  end
-
-  def app_icon_path(size = '48')
-    instance_presenter.app_icon&.file&.url(size)
-  end
-
-  def use_mask_icon?
-    instance_presenter.app_icon.blank?
-  end
-
   # glitch-soc addition to handle the multiple flavors
   def preload_locale_pack
     supported_locales = Themes.instance.flavour(current_flavour)['locales']
