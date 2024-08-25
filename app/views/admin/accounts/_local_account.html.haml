@@ -16,7 +16,7 @@
     - else
       = account.user_role&.name
   %td
-    = table_link_to 'contact_mail', 'address_card', t('admin.accounts.change_role.label'), admin_user_role_path(account.user) if can?(:change_role, account.user)
+    = table_link_to 'contact_mail', 'address-card', t('admin.accounts.change_role.label'), admin_user_role_path(account.user) if can?(:change_role, account.user)
 %tr
   %th{ rowspan: can?(:create, :email_domain_block) ? 3 : 2 }= t('admin.accounts.email')
   %td{ rowspan: can?(:create, :email_domain_block) ? 3 : 2 }= account.user_email
