@@ -891,10 +891,19 @@ $ui-header-logo-wordmark-width: 99px;
   opacity: 1;
   z-index: 1;
   position: relative;
+  border-left: 1px solid var(--background-border-color);
+  border-right: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--background-border-color);
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-left: 0;
+    border-right: 0;
+  }
 
   &.collapsed {
     max-height: 0;
     opacity: 0.5;
+    border-bottom: 0;
   }
 
   &.animating {
@@ -921,13 +930,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .column-header__collapsible-inner {
-  border: 1px solid var(--background-border-color);
   border-top: 0;
-
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border-left: 0;
-    border-right: 0;
-  }
 }
 
 .column-header__setting-btn {
