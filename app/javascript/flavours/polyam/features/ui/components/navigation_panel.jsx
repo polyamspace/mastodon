@@ -10,8 +10,9 @@ import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
 import BookmarkIcon from '@/awesome-icons/solid/bookmark.svg?react';
 import ExploreIcon from '@/awesome-icons/solid/compass.svg?react';
 import MoreHorizIcon from '@/awesome-icons/solid/ellipsis.svg?react';
+import ModerationIcon from '@/awesome-icons/solid/gavel.svg?react';
 import SettingsIcon from '@/awesome-icons/solid/gear.svg?react';
-import AppSettingsIcon from '@/awesome-icons/solid/gears.svg?react';
+import AdministrationIcon from '@/awesome-icons/solid/gears.svg?react';
 import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import HomeIcon from '@/awesome-icons/solid/house.svg?react';
 import ListIcon from '@/awesome-icons/solid/list-ul.svg?react';
@@ -24,6 +25,7 @@ import { NavigationPortal } from 'flavours/polyam/components/navigation_portal';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { timelinePreview, trendsEnabled } from 'flavours/polyam/initial_state';
 import { transientSingleColumn } from 'flavours/polyam/is_mobile';
+import { canManageReports, canViewAdminDashboard } from 'flavours/polyam/permissions';
 import { selectUnreadNotificationGroupsCount } from 'flavours/polyam/selectors/notifications';
 import { preferencesLink } from 'flavours/polyam/utils/backend_links';
 
@@ -42,6 +44,8 @@ const messages = defineMessages({
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  administration: { id: 'navigation_bar.administration', defaultMessage: 'Administration' },
+  moderation: { id: 'navigation_bar.moderation', defaultMessage: 'Moderation' },
   followsAndFollowers: { id: 'navigation_bar.follows_and_followers', defaultMessage: 'Follows and followers' },
   about: { id: 'navigation_bar.about', defaultMessage: 'About' },
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
@@ -106,7 +110,7 @@ class NavigationPanel extends Component {
 
   render() {
     const { intl, onOpenSettings } = this.props;
-    const { signedIn, disabledAccountId } = this.props.identity;
+    const { signedIn, disabledAccountId, permissions } = this.props.identity;
 
     let banner = undefined;
 
@@ -164,7 +168,10 @@ class NavigationPanel extends Component {
             <hr />
 
             {!!preferencesLink && <ColumnLink transparent href={preferencesLink} icon='cog' iconComponent={SettingsIcon} text={intl.formatMessage(messages.preferences)} />}
-            <ColumnLink transparent onClick={onOpenSettings} icon='cogs' iconComponent={AppSettingsIcon} text={intl.formatMessage(messages.app_settings)} />
+            <ColumnLink transparent onClick={onOpenSettings} icon='cogs' iconComponent={AdministrationIcon} text={intl.formatMessage(messages.app_settings)} />
+
+            {canManageReports(permissions) && <ColumnLink transparent href='/admin/reports' icon='flag' iconComponent={ModerationIcon} text={intl.formatMessage(messages.moderation)} />}
+            {canViewAdminDashboard(permissions) && <ColumnLink transparent href='/admin/dashboard' icon='tachometer' iconComponent={AdministrationIcon} text={intl.formatMessage(messages.administration)} />}
           </>
         )}
 
