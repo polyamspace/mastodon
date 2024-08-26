@@ -2,6 +2,7 @@
 
 # SVG icons
 Rails.application.config.assets.paths << Rails.root.join('app', 'javascript', 'images')
+Rails.application.config.assets.paths << Rails.root.join('app', 'javascript', 'svg-icons')
 
 # Material Design icons
 Rails.application.config.assets.paths << Rails.root.join('app', 'javascript', 'material-icons')
