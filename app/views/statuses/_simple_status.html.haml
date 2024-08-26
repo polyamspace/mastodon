@@ -61,7 +61,7 @@
       %span.icon-button__counter= obscured_counter status.replies_count
     %span.status__action-bar-button.icon-button
       - if status.distributable?
-        = material_symbol 'repeat', 'boost'
+        = material_symbol 'repeat', 'boost', variant: ''
       - elsif status.private_visibility? || status.limited_visibility?
         = material_symbol 'lock', 'lock'
       - else

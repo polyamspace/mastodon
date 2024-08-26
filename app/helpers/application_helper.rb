@@ -117,8 +117,10 @@ module ApplicationHelper
   end
 
   def awesome_icon(icon, attributes = {})
+    variant = "#{attributes[:variant] || 'solid'}/" unless attributes[:variant] == ''
+
     inline_svg_tag(
-      "#{attributes[:variant] || 'solid'}/#{icon}.svg",
+      "#{variant}#{icon}.svg",
       class: ['icon', "fa-#{icon}"].concat(attributes[:class].to_s.split),
       role: :img,
       data: attributes[:data]
