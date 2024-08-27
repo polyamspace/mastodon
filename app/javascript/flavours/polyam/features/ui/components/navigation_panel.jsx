@@ -27,6 +27,7 @@ import { timelinePreview, trendsEnabled } from 'flavours/polyam/initial_state';
 import { transientSingleColumn } from 'flavours/polyam/is_mobile';
 import { canManageReports, canViewAdminDashboard } from 'flavours/polyam/permissions';
 import { selectUnreadNotificationGroupsCount } from 'flavours/polyam/selectors/notifications';
+import { selectUseGroupedNotifications } from 'flavours/polyam/selectors/settings';
 import { preferencesLink } from 'flavours/polyam/utils/backend_links';
 
 import ColumnLink from './column_link';
@@ -56,7 +57,7 @@ const messages = defineMessages({
 });
 
 const NotificationsLink = () => {
-  const optedInGroupedNotifications = useSelector((state) => state.getIn(['settings', 'notifications', 'groupingBeta'], false));
+  const optedInGroupedNotifications = useSelector(selectUseGroupedNotifications);
   const count = useSelector(state => state.getIn(['local_settings', 'notifications', 'tab_badge']) ? state.getIn(['notifications', 'unread']) : 0);
   const intl = useIntl();
 

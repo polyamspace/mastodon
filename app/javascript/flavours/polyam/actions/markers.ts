@@ -2,6 +2,7 @@ import { debounce } from 'lodash';
 
 import type { MarkerJSON } from 'flavours/polyam/api_types/markers';
 import { getAccessToken } from 'flavours/polyam/initial_state';
+import { selectUseGroupedNotifications } from 'flavours/polyam/selectors/settings';
 import type { AppDispatch, RootState } from 'flavours/polyam/store';
 import { createAppAsyncThunk } from 'flavours/polyam/store/typed_functions';
 
@@ -75,13 +76,8 @@ interface MarkerParam {
 }
 
 function getLastNotificationId(state: RootState): string | undefined {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-  const enableBeta = state.settings.getIn(
-    ['notifications', 'groupingBeta'],
-    false,
-  ) as boolean;
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return enableBeta
+  return selectUseGroupedNotifications(state)
     ? state.notificationGroups.lastReadId
     : // @ts-expect-error state.notifications is not yet typed
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
