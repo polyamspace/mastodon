@@ -14,7 +14,7 @@ $content-width: 840px;
   .icon {
     width: 13px;
     height: 13px;
-    vertical-align: top;
+    vertical-align: text-bottom; // Polyam: `text-bottom` instead of `top` for better alignment
     margin: 3px 2px; // Polyam: 3px to simulate material padding
   }
 
