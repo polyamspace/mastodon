@@ -146,6 +146,11 @@ a.table-action-link {
   &:first-child {
     padding-inline-start: 0;
   }
+
+  // Polyam: Fix alignment due to `text-bottom` in admin-wrapper
+  .icon {
+    vertical-align: top;
+  }
 }
 
 .batch-table {
