@@ -126,6 +126,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
       trends_enabled: Setting.trends,
+      force_grouped_notifications: ENV['FORCE_GROUPED_NOTIFICATIONS'] == 'true',
       registrations_open: Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode,
       timeline_preview: Setting.timeline_preview,
       activity_api_enabled: Setting.activity_api_enabled,

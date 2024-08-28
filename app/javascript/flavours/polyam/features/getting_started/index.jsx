@@ -17,8 +17,9 @@ import BookmarkIcon from '@/awesome-icons/solid/bookmark.svg?react';
 import ExploreIcon from '@/awesome-icons/solid/compass.svg?react';
 import MoreHorizIcon from '@/awesome-icons/solid/ellipsis.svg?react';
 import EnvelopeIcon from '@/awesome-icons/solid/envelope.svg?react';
+import ModerationIcon from '@/awesome-icons/solid/gavel.svg?react';
 import SettingsIcon from '@/awesome-icons/solid/gear.svg?react';
-import AppSettingsIcon from '@/awesome-icons/solid/gears.svg?react';
+import AdministrationIcon from '@/awesome-icons/solid/gears.svg?react';
 import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import HomeIcon from '@/awesome-icons/solid/house.svg?react';
 import ListIcon from '@/awesome-icons/solid/list-ul.svg?react';
@@ -30,6 +31,7 @@ import { openModal } from 'flavours/polyam/actions/modal';
 import Column from 'flavours/polyam/features/ui/components/column';
 import LinkFooter from 'flavours/polyam/features/ui/components/link_footer';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
+import { canManageReports, canViewAdminDashboard } from 'flavours/polyam/permissions';
 import { preferencesLink } from 'flavours/polyam/utils/backend_links';
 
 import { me, showTrends } from '../../initial_state';
@@ -51,6 +53,8 @@ const messages = defineMessages({
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  administration: { id: 'navigation_bar.administration', defaultMessage: 'Administration' },
+  moderation: { id: 'navigation_bar.moderation', defaultMessage: 'Moderation' },
   settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
@@ -132,7 +136,7 @@ class GettingStarted extends ImmutablePureComponent {
 
   render () {
     const { intl, myAccount, columns, multiColumn, unreadFollowRequests, unreadNotifications, lists, openSettings } = this.props;
-    const { signedIn } = this.props.identity;
+    const { signedIn, permissions } = this.props.identity;
 
     const navItems = [];
     let listItems = [];
@@ -197,7 +201,9 @@ class GettingStarted extends ImmutablePureComponent {
                 {listItems}
                 <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
                 { preferencesLink !== undefined && <ColumnLink icon='cog' iconComponent={SettingsIcon} text={intl.formatMessage(messages.preferences)} href={preferencesLink} /> }
-                <ColumnLink icon='cogs' iconComponent={AppSettingsIcon} text={intl.formatMessage(messages.settings)} onClick={openSettings} />
+                <ColumnLink icon='cogs' iconComponent={AdministrationIcon} text={intl.formatMessage(messages.settings)} onClick={openSettings} />
+                {canManageReports(permissions) && <ColumnLink transparent href='/admin/reports' icon='flag' iconComponent={ModerationIcon} text={intl.formatMessage(messages.moderation)} />}
+                {canViewAdminDashboard(permissions) && <ColumnLink transparent href='/admin/dashboard' icon='tachometer' iconComponent={AdministrationIcon} text={intl.formatMessage(messages.administration)} />}
               </>
             )}
           </div>
