@@ -435,7 +435,8 @@
 }
 
 .status__wrapper-direct,
-.notification-ungrouped--direct {
+.notification-ungrouped--direct,
+.notification-group--direct {
   background: var(--toot-private-background-color);
 
   &:focus {
