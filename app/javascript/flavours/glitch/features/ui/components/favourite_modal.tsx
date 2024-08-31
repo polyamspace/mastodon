@@ -4,11 +4,11 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import StarIcon from '@/awesome-icons/solid/star.svg?react';
-import { Button } from 'flavours/polyam/components/button';
-import { Icon } from 'flavours/polyam/components/icon';
-import { EmbeddedStatus } from 'flavours/polyam/features/notifications_v2/components/embedded_status';
-import type { Status } from 'flavours/polyam/models/status';
+import StarIcon from '@/material-icons/400-24px/star.svg?react';
+import { Button } from 'flavours/glitch/components/button';
+import { Icon } from 'flavours/glitch/components/icon';
+import { EmbeddedStatus } from 'flavours/glitch/features/notifications_v2/components/embedded_status';
+import type { Status } from 'flavours/glitch/models/status';
 
 const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
