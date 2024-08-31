@@ -18,7 +18,7 @@ export const FavouriteModal: React.FC<{
   status: Status;
   onClose: () => void;
   onFavourite: (status: Status) => void;
-}> = ({ status, onClose, onFavourite }) => {
+}> = ({ status, onFavourite, onClose }) => {
   const intl = useIntl();
 
   const statusId = status.get('id') as string;
@@ -44,12 +44,12 @@ export const FavouriteModal: React.FC<{
             <h1>
               <FormattedMessage
                 id='favourite_modal.favourite'
-                defaultMessage='Favorite post?'
+                defaultMessage='Favourite post?'
               />
             </h1>
             <div>
               <FormattedMessage
-                id='favourite_modal.combo'
+                id='boost_modal.combo'
                 defaultMessage='You can press {combo} to skip this next time'
                 values={{
                   combo: (
@@ -70,6 +70,8 @@ export const FavouriteModal: React.FC<{
 
       <div className={classNames('safety-action-modal__bottom')}>
         <div className='safety-action-modal__actions'>
+          <div className='spacer' />
+
           <button onClick={handleCancel} className='link-button'>
             <FormattedMessage
               id='confirmation_modal.cancel'

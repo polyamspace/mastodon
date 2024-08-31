@@ -21,7 +21,6 @@
   "column.reacted_by": "Reacted by",
   "confirmations.cancel_follow_request.confirm": "Withdraw request",
   "confirmations.cancel_follow_request.message": "Are you sure you want to withdraw your request to follow {name}?",
-  "favourite_modal.favourite": "Favorite toot?",
   "footer.documentation": "Documentation",
   "home.column_settings.show_threads": "Show threads",
   "media_gallery.sensitive": "Sensitive",
