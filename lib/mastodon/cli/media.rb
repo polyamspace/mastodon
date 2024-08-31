@@ -157,7 +157,7 @@ module Mastodon::CLI
       when :filesystem
         require 'find'
 
-        root_path = Rails.configuration.x.file_storage_root_path.gsub(':rails_root', Rails.root.to_s)
+        root_path = ENV['RAILS_ENV'] == 'test' ? File.join('spec', 'test_files') : Rails.configuration.x.file_storage_root_path.gsub(':rails_root', Rails.root.to_s)
 
         Find.find(File.join(*[root_path, prefix].compact)) do |path|
           next if File.directory?(path)
