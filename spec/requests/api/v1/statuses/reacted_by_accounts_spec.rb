@@ -30,8 +30,8 @@ RSpec.describe 'API V1 Statuses Reacted By Accounts' do
         expect(response).to have_http_status(:success)
         expect(response.headers['Link'].links.size).to eq(2)
 
-        expect(body_as_json.size).to eq(2)
-        expect(body_as_json).to contain_exactly(include(id: alice.id.to_s), include(id: bob.id.to_s))
+        expect(response.parsed_body.size).to eq(2)
+        expect(response.parsed_body).to contain_exactly(include(id: alice.id.to_s), include(id: bob.id.to_s))
       end
 
       it 'does not return blocked users' do
@@ -39,8 +39,8 @@ RSpec.describe 'API V1 Statuses Reacted By Accounts' do
 
         subject
 
-        expect(body_as_json.size).to eq 1
-        expect(body_as_json.first[:id]).to eq(alice.id.to_s)
+        expect(response.parsed_body.size).to eq 1
+        expect(response.parsed_body.first[:id]).to eq(alice.id.to_s)
       end
     end
   end

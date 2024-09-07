@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe InviteRequestValidator do
+RSpec.describe InviteRequestValidator do
   let(:invite_request) { instance_double(UserInviteRequest, text: request_text, persisted?: false, errors: instance_double(ActiveModel::Errors, add: nil)) }
 
   before do

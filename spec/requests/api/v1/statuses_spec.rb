@@ -97,7 +97,7 @@ RSpec.describe '/api/v1/statuses' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:filtered][0]).to include({
+          expect(response.parsed_body[:filtered][0]).to include({
             filter: a_hash_including({
               id: CustomFilter.instance_filter.id.to_s,
               title: 'Hidden by moderators',

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusReactionValidator do
+RSpec.describe StatusReactionValidator do
   let(:status) { Fabricate(:status) }
   let(:account) { Fabricate(:account) }
   let(:remote_account) { Fabricate(:account, domain: 'example.com') }

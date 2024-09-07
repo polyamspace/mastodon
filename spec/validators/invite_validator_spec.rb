@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe InviteValidator do
+RSpec.describe InviteValidator do
   let(:user) { Fabricate(:user, created_at: 7.days.ago) }
   let(:invite) { instance_double(Invite, user: user, errors: errors) }
   let(:errors) { instance_double(ActiveModel::Errors, add: nil) }

@@ -30,7 +30,7 @@ RSpec.describe 'Reactions', :inline_jobs do
       it 'returns json with updated attributes' do
         subject
 
-        expect(body_as_json).to match(a_hash_including(id: status.id.to_s, reactions_count: 1, reactions: [include(me: true)]))
+        expect(response.parsed_body).to match(a_hash_including(id: status.id.to_s, reactions_count: 1, reactions: [include(me: true)]))
       end
     end
 
@@ -95,7 +95,7 @@ RSpec.describe 'Reactions', :inline_jobs do
       it 'returns json with updated attributes' do
         subject
 
-        expect(body_as_json).to match(a_hash_including(id: status.id.to_s, reactions_count: 0, reactions: []))
+        expect(response.parsed_body).to match(a_hash_including(id: status.id.to_s, reactions_count: 0, reactions: []))
       end
     end
 
@@ -115,7 +115,7 @@ RSpec.describe 'Reactions', :inline_jobs do
       it 'returns json with updated attributes' do
         subject
 
-        expect(body_as_json).to match(a_hash_including(id: status.id.to_s, reactions_count: 0, reactions: []))
+        expect(response.parsed_body).to match(a_hash_including(id: status.id.to_s, reactions_count: 0, reactions: []))
       end
     end
 
