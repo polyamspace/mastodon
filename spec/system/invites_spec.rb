@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Invites' do
   include ActionView::RecordIdentifier
 
-  let(:user) { Fabricate :user }
+  let(:user) { Fabricate :user, created_at: 7.days.ago }
 
   before do
     host! 'localhost:3000' # TODO: Move into before for all system specs?
@@ -77,8 +77,9 @@ RSpec.describe 'Invites' do
   end
 
   def fill_invite_form
-    select I18n.t('invites.max_uses', count: 100),
-           from: I18n.t('simple_form.labels.defaults.max_uses')
+    # Polyam: Changing max uses is not available without permission
+    # select I18n.t('invites.max_uses', count: 100),
+    #        from: I18n.t('simple_form.labels.defaults.max_uses')
     select I18n.t("invites.expires_in.#{30.minutes.to_i}"),
            from: I18n.t('simple_form.labels.defaults.expires_in')
     check I18n.t('simple_form.labels.defaults.autofollow')
