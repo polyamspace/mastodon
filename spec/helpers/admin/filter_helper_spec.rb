@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::FilterHelper do
+RSpec.describe Admin::FilterHelper do
   before { helper.extend controller_helpers }
 
   it 'Uses filter_link_to to create filter links' do

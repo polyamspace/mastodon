@@ -27,11 +27,20 @@ RSpec.describe 'API V1 Statuses Reacted By Accounts' do
       it 'returns http success and accounts who reacted to the status' do
         subject
 
-        expect(response).to have_http_status(:success)
-        expect(response.headers['Link'].links.size).to eq(2)
+        expect(response)
+          .to have_http_status(200)
+          .and include_pagination_headers(
+            prev: api_v1_status_reacted_by_index_url(limit: 2, since_id: StatusReaction.last.id),
+            next: api_v1_status_reacted_by_index_url(limit: 2, max_id: StatusReaction.first.id)
+          )
 
-        expect(body_as_json.size).to eq(2)
-        expect(body_as_json).to contain_exactly(include(id: alice.id.to_s), include(id: bob.id.to_s))
+        expect(response.parsed_body.size)
+          .to eq(2)
+        expect(response.parsed_body)
+          .to contain_exactly(
+            include(id: alice.id.to_s),
+            include(id: bob.id.to_s)
+          )
       end
 
       it 'does not return blocked users' do
@@ -39,8 +48,9 @@ RSpec.describe 'API V1 Statuses Reacted By Accounts' do
 
         subject
 
-        expect(body_as_json.size).to eq 1
-        expect(body_as_json.first[:id]).to eq(alice.id.to_s)
+        expect(response.parsed_body.size)
+          .to eq 1
+        expect(response.parsed_body.first[:id]).to eq(alice.id.to_s)
       end
     end
   end
@@ -61,7 +71,7 @@ RSpec.describe 'API V1 Statuses Reacted By Accounts' do
         it 'returns http unauthorized' do
           subject
 
-          expect(response).to have_http_status(:missing)
+          expect(response).to have_http_status(404)
         end
       end
     end
@@ -77,7 +87,7 @@ RSpec.describe 'API V1 Statuses Reacted By Accounts' do
         it 'returns http success' do
           subject
 
-          expect(response).to have_http_status(:success)
+          expect(response).to have_http_status(200)
         end
       end
     end

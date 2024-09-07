@@ -108,22 +108,32 @@ module ApplicationHelper
   def material_symbol(icon, fa_icon, attributes = {})
     return awesome_icon(fa_icon, attributes) if current_flavour == 'polyam'
 
-    inline_svg_tag(
-      "400-24px/#{icon}.svg",
-      class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
-      role: :img,
-      data: attributes[:data]
+    safe_join(
+      [
+        inline_svg_tag(
+          "400-24px/#{icon}.svg",
+          class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
+          role: :img,
+          data: attributes[:data]
+        ),
+        ' ',
+      ]
     )
   end
 
   def awesome_icon(icon, attributes = {})
     variant = "#{attributes[:variant] || 'solid'}/" unless attributes[:variant] == ''
 
-    inline_svg_tag(
-      "#{variant}#{icon}.svg",
-      class: ['icon', "fa-#{icon}"].concat(attributes[:class].to_s.split),
-      role: :img,
-      data: attributes[:data]
+    safe_join(
+      [
+        inline_svg_tag(
+          "#{variant}#{icon}.svg",
+          class: ['icon', "fa-#{icon}"].concat(attributes[:class].to_s.split),
+          role: :img,
+          data: attributes[:data]
+        ),
+        ' ',
+      ]
     )
   end
 
@@ -172,6 +182,7 @@ module ApplicationHelper
 
   def body_classes
     output = body_class_string.split
+    output << content_for(:body_classes)
     output << "flavour-#{current_flavour.parameterize}"
     output << "skin-#{current_skin.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui

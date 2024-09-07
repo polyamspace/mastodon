@@ -180,7 +180,7 @@
   @include filter-bar;
 }
 
-// Polyam: Split from .notification, .status__wrapper
+// Polyam: Split from .notification, .status__wrapper, .conversation
 .notification {
   @include notification-status-wrapper;
 }

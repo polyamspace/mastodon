@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe UnreactWorker do
+RSpec.describe UnreactWorker do
   let(:worker) { described_class.new }
 
   describe 'perform' do

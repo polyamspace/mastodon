@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Accounts Pins API' do
+RSpec.describe 'Accounts Pins API' do
   let(:user)     { Fabricate(:user) }
   let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)   { 'write:accounts' }
@@ -30,7 +30,7 @@ describe 'Accounts Pins API' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json[0][:id]).to eq kevin.account.id.to_s
+      expect(response.parsed_body[0][:id]).to eq kevin.account.id.to_s
     end
 
     context 'when requesting user is blocked' do
@@ -42,7 +42,7 @@ describe 'Accounts Pins API' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json.size).to eq 0
+        expect(response.parsed_body.size).to eq 0
       end
     end
   end
