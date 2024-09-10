@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -10,16 +10,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { debounce } from 'lodash';
 
-import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
-
-import { IconButton } from './icon_button';
-
-const messages = defineMessages({
-  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: '{number, plural, one {Hide image} other {Hide images}}' },
-});
 
 class Item extends PureComponent {
 
@@ -234,7 +227,6 @@ class MediaGallery extends PureComponent {
     lang: PropTypes.string,
     size: PropTypes.object,
     onOpenMedia: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
     defaultWidth: PropTypes.number,
     cacheWidth: PropTypes.func,
     visible: PropTypes.bool,
@@ -328,7 +320,7 @@ class MediaGallery extends PureComponent {
   }
 
   render () {
-    const { media, lang, intl, sensitive, letterbox, fullwidth, defaultWidth, autoplay } = this.props;
+    const { media, lang, sensitive, letterbox, fullwidth, defaultWidth, autoplay } = this.props;
     const { visible } = this.state;
     const size     = media.size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
@@ -362,9 +354,7 @@ class MediaGallery extends PureComponent {
           </span>
         </button>
       );
-    } else if (visible) {
-      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible, { number: size })} icon='eye-slash' iconComponent={VisibilityOffIcon} overlay onClick={this.handleOpen} ariaHidden />;
-    } else {
+    } else if (!visible) {
       spoilerButton = (
         <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>
           <span className='spoiler-button__overlay__label'>
@@ -377,20 +367,23 @@ class MediaGallery extends PureComponent {
 
     return (
       <div className={computedClass} style={style} ref={this.handleRef}>
-        <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible && !uncached, 'spoiler-button--click-thru': uncached })}>
-          {spoilerButton}
-          {visible && sensitive && (
-            <span className='sensitive-marker'>
-              <FormattedMessage id='media_gallery.sensitive' defaultMessage='Sensitive' />
-            </span>
-          )}
-        </div>
+        {(!visible || uncached) && (
+          <div className={classNames('spoiler-button', { 'spoiler-button--click-thru': uncached })}>
+            {spoilerButton}
+          </div>
+        )}
 
         {children}
+
+        {(visible && !uncached) && (
+          <div className='media-gallery__actions'>
+            <button className='media-gallery__actions__pill' onClick={this.handleOpen}><FormattedMessage id='media_gallery.hide' defaultMessage='Hide' /></button>
+          </div>
+        )}
       </div>
     );
   }
 
 }
 
-export default injectIntl(MediaGallery);
+export default MediaGallery;
