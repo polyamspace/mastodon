@@ -331,7 +331,7 @@ class MediaGallery extends PureComponent {
 
     const style = {};
 
-    const computedClass = classNames('media-gallery', { 'full-width': fullwidth });
+    const computedClass = classNames('media-gallery', `media-gallery--layout-${size}`, { 'full-width': fullwidth });
 
     if (this.isStandaloneEligible()) { // TODO: cropImages setting
       style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
