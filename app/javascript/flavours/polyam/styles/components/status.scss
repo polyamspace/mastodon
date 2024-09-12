@@ -490,18 +490,6 @@
   padding: 14px 10px; // glitch: reduced padding
   border-top: 1px solid var(--background-border-color);
 
-  &--flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    .status__content,
-    .detailed-status__meta {
-      flex: 100%;
-    }
-  }
-
   .status__content {
     font-size: 19px;
     line-height: 24px;
@@ -527,6 +515,29 @@
   .status__prepend {
     padding: 0;
     margin-bottom: 16px;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    color: $dark-text-color;
+  }
+}
+
+.embed {
+  position: relative;
+
+  &__overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .detailed-status {
+    border-top: 0;
   }
 }
 
