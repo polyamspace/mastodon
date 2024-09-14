@@ -36,8 +36,6 @@ import Status from 'flavours/polyam/components/status';
 import { deleteModal } from 'flavours/polyam/initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/polyam/selectors';
 
-import { showAlertForError } from '../actions/alerts';
-
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
   const getPictureInPicture = makeGetPictureInPicture();
@@ -121,10 +119,7 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
   onEmbed (status) {
     dispatch(openModal({
       modalType: 'EMBED',
-      modalProps: {
-        id: status.get('id'),
-        onError: error => dispatch(showAlertForError(error)),
-      },
+      modalProps: { id: status.get('id') },
     }));
   },
 

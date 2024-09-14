@@ -364,21 +364,12 @@
   position: absolute;
   z-index: 100;
 
-  &--minified {
-    display: flex; // Polyam: sensitive marker in images
-    inset-inline-start: 4px;
-    top: 4px;
-    width: auto;
-    height: auto;
-    align-items: center; // Polyam: sensitive marker in images
+  &--hidden {
+    display: none;
   }
 
   &--click-thru {
     pointer-events: none;
-  }
-
-  &--hidden {
-    display: none;
   }
 
   &__overlay {
@@ -392,19 +383,20 @@
     margin: 0;
     border: 0;
     color: $white;
+    line-height: 20px;
+    font-size: 14px;
 
     &__label {
       background-color: rgba($black, 0.45);
       backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
-      border-radius: 6px;
-      padding: 10px 15px;
+      border-radius: 8px;
+      padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 4px;
       flex-direction: column;
-      font-weight: 500;
-      font-size: 14px;
+      font-weight: 600;
     }
 
     &__action {

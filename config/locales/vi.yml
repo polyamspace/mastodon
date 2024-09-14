@@ -7,7 +7,6 @@ vi:
     hosted_on: "%{domain} vận hành nhờ Mastodon"
     title: Giới thiệu
   accounts:
-    follow: Theo dõi
     followers:
       other: Người theo dõi
     following: Theo dõi
@@ -23,7 +22,6 @@ vi:
   admin:
     account_actions:
       action: Thực hiện hành động
-      already_silenced: Tài khoản này đã bị hạn chế.
       already_suspended: Tài khoản này đã bị vô hiệu hóa.
       title: Áp đặt kiểm duyệt với %{acct}
     account_moderation_notes:
@@ -1217,8 +1215,6 @@ vi:
       your_appeal_approved: Khiếu nại của bạn được chấp nhận
       your_appeal_pending: Bạn đã gửi một khiếu nại
       your_appeal_rejected: Khiếu nại của bạn bị từ chối
-  domain_validator:
-    invalid_domain: không phải là một tên miền hợp lệ
   edit_profile:
     basic_information: Thông tin cơ bản
     hint_html: "<strong>Tùy chỉnh những gì mọi người nhìn thấy trên hồ sơ công khai và bên cạnh tút của bạn.</strong> Mọi người sẽ muốn theo dõi và tương tác với bạn hơn nếu bạn có ảnh đại diện và một hồ sơ hoàn chỉnh."
@@ -1706,21 +1702,12 @@ vi:
     edited_at_html: Sửa %{date}
     errors:
       in_reply_not_found: Bạn đang trả lời một tút không còn tồn tại.
-    open_in_web: Xem trong web
     over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
       direct: Không thể ghim những tút nhắn riêng
       limit: Bạn đã ghim quá số lượng tút cho phép
       ownership: Không thể ghim tút của người khác
       reblog: Không thể ghim tút đăng lại
-    poll:
-      total_people:
-        other: "%{count} người bình chọn"
-      total_votes:
-        other: "%{count} người bình chọn"
-      vote: Bình chọn
-    show_more: Đọc thêm
-    show_thread: Nội dung gốc
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Nhắn riêng
