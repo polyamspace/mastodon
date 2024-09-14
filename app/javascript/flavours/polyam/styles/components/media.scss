@@ -41,6 +41,7 @@
   inset-inline-start: 8px;
   display: flex;
   gap: 2px;
+  pointer-events: none; // Polyam: Fix clickable gif label
 
   &--layout-2 {
     .media-gallery__item:nth-child(1) {
