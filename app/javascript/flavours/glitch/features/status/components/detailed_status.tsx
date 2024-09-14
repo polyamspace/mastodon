@@ -352,7 +352,7 @@ export const DetailedStatus: React.FC<{
       <FormattedMessage
         id='status.reactions'
         defaultMessage='{count, plural, one {reaction} other {reactions}}'
-        values={{ count: status.get('reactions_count')}}
+        values={{ count: status.get('reactions_count') }}
       />
     </Link>
   );
@@ -406,10 +406,10 @@ export const DetailedStatus: React.FC<{
           {...(statusContentProps as any)}
         />
 
-          <StatusReactions
-            statusId={status.get('id')}
-            reactions={status.get('reactions')}
-          />
+        <StatusReactions
+          statusId={status.get('id')}
+          reactions={status.get('reactions')}
+        />
 
         <div className='detailed-status__meta'>
           <div className='detailed-status__meta__line'>
@@ -445,9 +445,7 @@ export const DetailedStatus: React.FC<{
           <div className='detailed-status__meta__line'>
             {reblogLink}
             {reblogLink && <>·</>}
-            {favouriteLink}
-            ·
-            {reactionLink}
+            {favouriteLink}·{reactionLink}
           </div>
         </div>
       </div>
