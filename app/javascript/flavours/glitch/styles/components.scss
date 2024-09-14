@@ -7486,25 +7486,7 @@ img.modal-warning {
   }
 }
 
-// Polyam: Different class because this is a button
-.media-gallery__alt__label {
-  display: block;
-  color: $white;
-  background: rgba($black, 0.65);
-  padding: 2px 6px;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 18px;
-  border: none;
-  border-radius: 4px;
-  z-index: 1;
-
-  &:hover,
-  &:focus {
-    background-color: rgba($black, 0.9);
-  }
-}
-
+.media-gallery__alt__label,
 .media-gallery__gifv__label {
   display: flex;
   align-items: center;
@@ -7519,6 +7501,16 @@ img.modal-warning {
   z-index: 1;
   pointer-events: none;
   line-height: 20px;
+}
+
+.media-gallery__alt__label {
+  border: 0;
+  pointer-events: auto;
+
+  &:hover,
+  &:focus {
+    background-color: rgba($black, 0.9);
+  }
 }
 
 .attachment-list {

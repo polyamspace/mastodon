@@ -55,6 +55,7 @@ export const DetailedStatus: React.FC<{
   onToggleHidden?: (status: any) => void;
   onToggleMediaVisibility?: () => void;
   expanded: boolean;
+  onOpenAltText?: (media: any) => void;
 }> = ({
   status,
   onOpenMedia,
@@ -69,6 +70,7 @@ export const DetailedStatus: React.FC<{
   onToggleMediaVisibility,
   onToggleHidden,
   expanded,
+  onOpenAltText,
 }) => {
   const properStatus = status?.get('reblog') ?? status;
   const [height, setHeight] = useState(0);
@@ -219,6 +221,7 @@ export const DetailedStatus: React.FC<{
           blurhash={attachment.get('blurhash')}
           height={150}
           onToggleVisibility={onToggleMediaVisibility}
+          onOpenAltText={onOpenAltText}
         />,
       );
       mediaIcons.push('music');
@@ -246,6 +249,7 @@ export const DetailedStatus: React.FC<{
           letterbox={letterboxMedia}
           fullwidth={fullwidthMedia}
           preventPlayback={!expanded}
+          onOpenAltText={onOpenAltText}
         />,
       );
       mediaIcons.push('video-camera');
@@ -263,6 +267,7 @@ export const DetailedStatus: React.FC<{
           onOpenMedia={onOpenMedia}
           visible={showMedia}
           onToggleVisibility={onToggleMediaVisibility}
+          onOpenAltText={onOpenAltText}
         />,
       );
       mediaIcons.push('picture-o');
