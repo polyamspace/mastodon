@@ -7,7 +7,6 @@ et:
     hosted_on: Mastodon majutatud %{domain}-is
     title: Teave
   accounts:
-    follow: Jälgi
     followers:
       one: Jälgija
       other: Jälgijaid
@@ -25,7 +24,6 @@ et:
   admin:
     account_actions:
       action: Täida tegevus
-      already_silenced: See konto on juba vaigistatud.
       already_suspended: See konto on juba peatatud.
       title: Rakenda moderaatori tegevus kasutajale %{acct}
     account_moderation_notes:
@@ -1213,8 +1211,6 @@ et:
       your_appeal_approved: Su vaidlustus on heakskiidetud
       your_appeal_pending: Vaidlustus on esitatud
       your_appeal_rejected: Vaidlustus on tagasi lükatud
-  domain_validator:
-    invalid_domain: ei ole sobiv domeeni nimi
   edit_profile:
     basic_information: Põhiinfo
     hint_html: "<strong>Kohanda, mida inimesed näevad su avalikul profiilil ja postituste kõrval.</strong> Inimesed alustavad tõenäolisemalt sinu jälgimist ja interakteeruvad sinuga, kui sul on täidetud profiil ja profiilipilt."
@@ -1704,23 +1700,12 @@ et:
     edited_at_html: Muudetud %{date}
     errors:
       in_reply_not_found: Postitus, millele üritad vastata, ei näi enam eksisteerivat.
-    open_in_web: Ava veebis
     over_character_limit: tähtmärkide limiit %{max} ületatud
     pin_errors:
       direct: Ei saa kinnitada postitusi, mis on nähtavad vaid mainitud kasutajatele
       limit: Kinnitatud on juba maksimaalne arv postitusi
       ownership: Kellegi teise postitust ei saa kinnitada
       reblog: Jagamist ei saa kinnitada
-    poll:
-      total_people:
-        one: "%{count} inimene"
-        other: "%{count} inimest"
-      total_votes:
-        one: "%{count} hääl"
-        other: "%{count} häält"
-      vote: Hääleta
-    show_more: Näita rohkem
-    show_thread: Kuva lõim
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Otsene

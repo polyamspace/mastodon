@@ -4,6 +4,20 @@ module StatusesHelper
   EMBEDDED_CONTROLLER = 'statuses'
   EMBEDDED_ACTION = 'embed'
 
+  VISIBLITY_ICONS = {
+    public: 'globe',
+    unlisted: 'lock_open',
+    private: 'lock',
+    direct: 'alternate_email',
+  }.freeze
+
+  FA_VISIBLITY_ICONS = {
+    public: 'globe',
+    unlisted: 'lock-open',
+    private: 'lock',
+    direct: 'envelope',
+  }.freeze
+
   def nothing_here(extra_classes = '')
     content_tag(:div, class: "nothing-here #{extra_classes}") do
       t('accounts.nothing_here')
@@ -57,17 +71,13 @@ module StatusesHelper
     embedded_view? ? '_blank' : nil
   end
 
+  def visibility_icon(status)
+    VISIBLITY_ICONS[status.visibility.to_sym]
+  end
+
+  # Polyam: Helper to return FA icon instead of Material.
   def fa_visibility_icon(status)
-    case status.visibility
-    when 'public'
-      material_symbol 'globe', 'globe'
-    when 'unlisted'
-      material_symbol 'lock_open', 'lock-open'
-    when 'private'
-      material_symbol 'lock', 'lock'
-    when 'direct'
-      material_symbol 'alternate_email', 'envelope'
-    end
+    FA_VISIBLITY_ICONS[status.visibility.to_sym]
   end
 
   def embedded_view?
