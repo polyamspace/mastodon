@@ -403,6 +403,7 @@ export const DetailedStatus: React.FC<{
           tagLinks={tagMisleadingLinks}
           rewriteMentions={rewriteMentions}
           parseClick={parseClick}
+          disabled
           {...(statusContentProps as any)}
         />
 
