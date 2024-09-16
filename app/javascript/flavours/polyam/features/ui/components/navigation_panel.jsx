@@ -27,7 +27,6 @@ import { timelinePreview, trendsEnabled } from 'flavours/polyam/initial_state';
 import { transientSingleColumn } from 'flavours/polyam/is_mobile';
 import { canManageReports, canViewAdminDashboard } from 'flavours/polyam/permissions';
 import { selectUnreadNotificationGroupsCount } from 'flavours/polyam/selectors/notifications';
-import { selectUseGroupedNotifications } from 'flavours/polyam/selectors/settings';
 import { preferencesLink } from 'flavours/polyam/utils/backend_links';
 
 import ColumnLink from './column_link';
@@ -57,18 +56,15 @@ const messages = defineMessages({
 });
 
 const NotificationsLink = () => {
-  const optedInGroupedNotifications = useSelector(selectUseGroupedNotifications);
-  const count = useSelector(state => state.getIn(['local_settings', 'notifications', 'tab_badge']) ? state.getIn(['notifications', 'unread']) : 0);
+  const count = useSelector(selectUnreadNotificationGroupsCount);
   const intl = useIntl();
-
-  const newCount = useSelector(selectUnreadNotificationGroupsCount);
 
   return (
     <ColumnLink
       key='notifications'
       transparent
       to='/notifications'
-      icon={<IconWithBadge id='bell' icon={NotificationsIcon} count={optedInGroupedNotifications ? newCount : count} className='column-link__icon' />}
+      icon={<IconWithBadge id='bell' icon={NotificationsIcon} count={count} className='column-link__icon' />}
       text={intl.formatMessage(messages.notifications)}
     />
   );
