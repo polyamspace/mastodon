@@ -16,20 +16,29 @@ $emojis-requiring-inversion: 'back' 'copyright' 'curly_loop' 'currency_exchange'
 }
 
 // Polyam: Kept from upstream -- Upstream uses different icons
-// Display a checkmark on active UI elements otherwise differing only by color
+// Displays a checkmark on active UI elements otherwise differing only by color
+// Changed to use SVG
 .status__action-bar-button,
 .detailed-status__button .icon-button {
   position: relative;
 
-  &.active::after {
-    position: absolute;
-    content: '\F00C';
-    font-size: 50%;
-    inset-inline-end: -0.55em;
-    top: -0.44em;
+  &.active {
+    &::after {
+      position: absolute;
+      content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" fill="#{hex-color($highlight-text-color)}"/></svg>');
+      top: -0.55em;
+      inset-inline-end: -0.34em;
+      width: 6px;
+      height: 6px;
+    }
 
-    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword -- this is an icon font, this can't use a generic font */
-    font-family: FontAwesome;
+    &.star-icon::after {
+      content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" fill="#{hex-color($gold-star)}"/></svg>');
+    }
+
+    &.bookmark-icon::after {
+      content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" fill="#{hex-color($red-bookmark)}"/></svg>');
+    }
   }
 }
 
