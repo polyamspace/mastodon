@@ -91,10 +91,10 @@ export const FollowButton: React.FC<{
   } else if (relationship.requested) {
     // Polyam: Kept from upstream as otherwise confusing
     label = intl.formatMessage(messages.cancel_follow_request);
-  } else if (!relationship.following && relationship.followed_by) {
-    label = intl.formatMessage(messages.followBack);
   } else if (relationship.following) {
     label = intl.formatMessage(messages.unfollow);
+  } else if (relationship.followed_by) {
+    label = intl.formatMessage(messages.followBack);
   } else {
     label = intl.formatMessage(messages.follow);
   }
