@@ -106,6 +106,7 @@ export const NotificationWithStatus: React.FC<{
           withDismiss
           skipPrepend
           avatarSize={40}
+          unfocusable
         />
       </div>
     </HotKeys>
