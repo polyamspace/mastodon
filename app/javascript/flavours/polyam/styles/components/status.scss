@@ -52,7 +52,7 @@
 .status__content__spoiler-link {
   display: inline-flex; // glitch: media icon in spoiler button
   border-radius: 2px;
-  background: transparent;
+  background: $action-button-color; // glitch: design used in more places
   border: 0;
   color: $inverted-text-color;
   font-weight: 700;
@@ -65,7 +65,8 @@
   align-items: center; // glitch: content indicator
 
   &:hover {
-    background: lighten($ui-base-color, 33%);
+    // glitch: design used in more places
+    background: lighten($action-button-color, 7%);
     text-decoration: none;
   }
 

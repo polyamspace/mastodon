@@ -411,6 +411,12 @@
       }
     }
 
+    /* glitch: used for CWs */
+    p {
+      font-size: 15px;
+      color: $darker-text-color;
+    }
+
     &__content {
       display: -webkit-box;
       font-size: 15px;
