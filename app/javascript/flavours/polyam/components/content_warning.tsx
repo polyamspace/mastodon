@@ -6,7 +6,8 @@ export const ContentWarning: React.FC<{
   text: string;
   expanded?: boolean;
   onClick?: () => void;
-}> = ({ text, expanded, onClick }) => (
+  icons?: React.ReactNode[];
+}> = ({ text, expanded, onClick, icons }) => (
   <p>
     <span dangerouslySetInnerHTML={{ __html: text }} className='translate' />{' '}
     <button
@@ -20,6 +21,7 @@ export const ContentWarning: React.FC<{
       ) : (
         <FormattedMessage id='status.show_more' defaultMessage='Show more' />
       )}
+      {icons}
     </button>
   </p>
 );
