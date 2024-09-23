@@ -88,6 +88,17 @@
   }
 }
 
+// Polyam: Applies to notifications
+.status__content__spoiler-link {
+  background-color: lighten($ui-base-color, 30%);
+
+  &:hover,
+  &:focus {
+    // higher for more visibility
+    background-color: lighten($ui-base-color, 37%);
+  }
+}
+
 // hashtags in primary color
 .status__content a {
   color: $highlight-text-color;
