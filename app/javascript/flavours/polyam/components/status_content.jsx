@@ -14,6 +14,7 @@ import PollIcon from '@/awesome-icons/solid/bars-progress.svg?react';
 import LinkIcon from '@/awesome-icons/solid/link.svg?react';
 import MusicIcon from '@/awesome-icons/solid/music.svg?react';
 import VideoIcon from '@/awesome-icons/solid/video.svg?react';
+import { ContentWarning } from 'flavours/polyam/components/content_warning';
 import { Icon } from 'flavours/polyam/components/icon';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { autoPlayGif, languages as preloadedLanguages } from 'flavours/polyam/initial_state';
@@ -358,7 +359,7 @@ class StatusContent extends PureComponent {
     const renderTranslate = this.props.onTranslate && this.props.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
 
     const content = { __html: highlightCode(statusContent ?? getStatusContent(status)) };
-    const spoilerContent = { __html: status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml') };
+    const spoilerHtml = status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml');
     const language = status.getIn(['translation', 'language']) || status.get('language');
     const classNames = classnames('status__content', {
       'status__content--with-action': parseClick && !disabled,
@@ -383,44 +384,26 @@ class StatusContent extends PureComponent {
         </Permalink>
       )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
-      let toggleText = null;
-      if (hidden) {
-        toggleText = [
-          <FormattedMessage
-            id='status.show_more'
-            defaultMessage='Show more'
-            key='0'
-          />,
-        ];
-        if (mediaIcons) {
-          const mediaComponents = {
-            'link': LinkIcon,
-            'picture-o': ImageIcon,
-            'tasks': PollIcon,
-            'video-camera': VideoIcon,
-            'music': MusicIcon,
-          };
+      let spoilerIcons = [];
+      if (hidden && mediaIcons) {
+        const mediaComponents = {
+          'link': LinkIcon,
+          'picture-o': ImageIcon,
+          'tasks': PollIcon,
+          'video-camera': VideoIcon,
+          'music': MusicIcon,
+        };
 
-          mediaIcons.forEach((mediaIcon, idx) => {
-            toggleText.push(
-              <Icon
-                className='status__content__spoiler-icon'
-                id={mediaIcon}
-                icon={mediaComponents[mediaIcon]}
-                aria-hidden='true'
-                key={`icon-${idx}`}
-              />,
-            );
-          });
-        }
-      } else {
-        toggleText = (
-          <FormattedMessage
-            id='status.show_less'
-            defaultMessage='Show less'
-            key='0'
+        spoilerIcons = mediaIcons.map((mediaIcon) => (
+          <Icon
+            fixedWidth
+            className='status__content__spoiler-icon'
+            id={mediaIcon}
+            icon={mediaComponents[mediaIcon]}
+            aria-hidden='true'
+            key={`icon-${mediaIcon}`}
           />
-        );
+        ));
       }
 
       if (hidden) {
@@ -429,15 +412,7 @@ class StatusContent extends PureComponent {
 
       return (
         <div className={classNames} tabIndex={0} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
-          <p
-            style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}
-          >
-            <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
-            {' '}
-            <button type='button' className='status__content__spoiler-link' onClick={this.handleSpoilerClick} aria-expanded={!hidden}>
-              {toggleText}
-            </button>
-          </p>
+          <ContentWarning text={spoilerHtml} expanded={!hidden} onClick={this.handleSpoilerClick} icons={spoilerIcons} />
 
           {mentionsPlaceholder}
 

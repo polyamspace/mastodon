@@ -8,12 +8,14 @@ import type { List as ImmutableList, RecordOf } from 'immutable';
 
 import PhotoLibraryIcon from '@/awesome-icons/regular/image.svg?react';
 import BarChart4BarsIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import { toggleStatusSpoilers } from 'flavours/polyam/actions/statuses';
 import { Avatar } from 'flavours/polyam/components/avatar';
+import { ContentWarning } from 'flavours/polyam/components/content_warning';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { Icon } from 'flavours/polyam/components/icon';
 import { StatusReactions } from 'flavours/polyam/components/status_reactions';
 import type { Status } from 'flavours/polyam/models/status';
-import { useAppSelector } from 'flavours/polyam/store';
+import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 import { EmbeddedStatusContent } from './embedded_status_content';
 
@@ -24,6 +26,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
 }) => {
   const history = useHistory();
   const clickCoordinatesRef = useRef<[number, number] | null>();
+  const dispatch = useAppDispatch();
 
   const status = useAppSelector(
     (state) => state.statuses.get(statusId) as Status | undefined,
@@ -97,15 +100,21 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
     [],
   );
 
+  const handleContentWarningClick = useCallback(() => {
+    dispatch(toggleStatusSpoilers(statusId));
+  }, [dispatch, statusId]);
+
   if (!status) {
     return null;
   }
 
   // Assign status attributes to variables with a forced type, as status is not yet properly typed
   const contentHtml = status.get('contentHtml') as string;
+  const contentWarning = status.get('spoilerHtml') as string;
   const poll = status.get('poll');
   const language = status.get('language') as string;
   const mentions = status.get('mentions') as ImmutableList<Mention>;
+  const expanded = !status.get('hidden') || !contentWarning;
   const mediaAttachmentsSize = (
     status.get('media_attachments') as ImmutableList<unknown>
   ).size;
@@ -125,14 +134,24 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         <DisplayName account={account} />
       </div>
 
-      <EmbeddedStatusContent
-        className='notification-group__embedded-status__content reply-indicator__content translate'
-        content={contentHtml}
-        language={language}
-        mentions={mentions}
-      />
+      {contentWarning && (
+        <ContentWarning
+          text={contentWarning}
+          onClick={handleContentWarningClick}
+          expanded={expanded}
+        />
+      )}
 
-      {(poll || mediaAttachmentsSize > 0) && (
+      {(!contentWarning || expanded) && (
+        <EmbeddedStatusContent
+          className='notification-group__embedded-status__content reply-indicator__content translate'
+          content={contentHtml}
+          language={language}
+          mentions={mentions}
+        />
+      )}
+
+      {expanded && (poll || mediaAttachmentsSize > 0) && (
         <div className='notification-group__embedded-status__attachments reply-indicator__attachments'>
           {!!poll && (
             <>

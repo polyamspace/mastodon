@@ -191,7 +191,7 @@
 
     &__border {
       // Polyam: Don't show stripes. Keep same as input
-      background: mix($ui-base-color, $ui-highlight-color, 85%);
+      background: rgba($ui-highlight-color, 0.05);
       width: 5px;
       flex: 0 0 auto;
 
@@ -232,7 +232,7 @@
 
   .spoiler-input__input {
     padding: 12px 12px - 5px;
-    background: mix($ui-base-color, $ui-highlight-color, 85%);
+    background: rgba($ui-highlight-color, 0.05);
     color: $highlight-text-color;
   }
 
