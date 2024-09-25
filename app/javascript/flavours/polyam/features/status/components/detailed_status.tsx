@@ -21,6 +21,7 @@ import { Permalink } from 'flavours/polyam/components/permalink';
 import PictureInPicturePlaceholder from 'flavours/polyam/components/picture_in_picture_placeholder';
 import { useAppHistory } from 'flavours/polyam/components/router';
 import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
+import PollContainer from 'flavours/polyam/containers/poll_container';
 import { useAppSelector } from 'flavours/polyam/store';
 
 import { Avatar } from '../../../components/avatar';
@@ -281,6 +282,17 @@ export const DetailedStatus: React.FC<{
       />,
     );
     mediaIcons.push('link');
+  }
+
+  if (status.get('poll')) {
+    contentMedia.push(
+      <PollContainer
+        pollId={status.get('poll')}
+        // @ts-expect-error -- Poll/PollContainer is not typed yet
+        lang={status.get('language')}
+      />,
+    );
+    contentMediaIcons.push('tasks');
   }
 
   if (status.get('application')) {
