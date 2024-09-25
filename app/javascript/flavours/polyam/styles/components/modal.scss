@@ -513,6 +513,14 @@
       display: flex;
       gap: 16px;
       align-items: center;
+
+      strong {
+        font-weight: 700;
+      }
+    }
+
+    &--deemphasized {
+      color: $secondary-text-color;
     }
 
     &__icon {
