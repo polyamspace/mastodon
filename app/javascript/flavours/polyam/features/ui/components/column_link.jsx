@@ -5,9 +5,9 @@ import { useRouteMatch, NavLink } from 'react-router-dom';
 
 import { Icon } from 'flavours/polyam/components/icon';
 
-const ColumnLink = ({ icon, activeIcon, iconComponent, activeIconComponent, text, to, onClick, href, method, badge, transparent, ...other }) => {
+const ColumnLink = ({ icon, activeIcon, iconComponent, activeIconComponent, text, to, onClick, href, method, badge, transparent, optional, ...other }) => {
   const match = useRouteMatch(to);
-  const className = classNames('column-link', { 'column-link--transparent': transparent });
+  const className = classNames('column-link', { 'column-link--transparent': transparent, 'column-link--optional': optional });
   const badgeElement = typeof badge !== 'undefined' ? <span className='column-link__badge'>{badge}</span> : null;
   const iconElement = (typeof icon === 'string' || iconComponent) ? <Icon id={icon} icon={iconComponent} className='column-link__icon' /> : icon;
   const activeIconElement = activeIcon ?? (activeIconComponent ? <Icon id={icon} icon={activeIconComponent} className='column-link__icon' /> : iconElement);
@@ -58,6 +58,7 @@ ColumnLink.propTypes = {
   method: PropTypes.string,
   badge: PropTypes.node,
   transparent: PropTypes.bool,
+  optional: PropTypes.bool,
 };
 
 export default ColumnLink;

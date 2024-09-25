@@ -192,12 +192,14 @@
   margin-top: 10px;
   margin-bottom: 10px;
   height: calc(100% - 20px);
-  overflow-y: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 
-  & > a {
-    flex: 0 0 auto;
+  &__menu {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
   }
 
   .logo {
@@ -207,6 +209,36 @@
 
   &__logo {
     margin-bottom: 12px;
+  }
+
+  @media screen and (height <= 710px) {
+    &__portal {
+      display: none;
+    }
+  }
+
+  @media screen and (height <= 765px) {
+    &__portal .trends__item:nth-child(n + 3) {
+      display: none;
+    }
+  }
+
+  @media screen and (height <= 820px) {
+    &__portal .trends__item:nth-child(n + 4) {
+      display: none;
+    }
+  }
+
+  @media screen and (height <= 920px) {
+    .column-link.column-link--optional {
+      display: none;
+    }
+  }
+
+  @media screen and (height <= 1040px) {
+    .list-panel {
+      display: none;
+    }
   }
 }
 
