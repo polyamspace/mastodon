@@ -264,6 +264,10 @@
     }
   }
 
+  &--with-counter {
+    padding-inline-end: 4px;
+  }
+
   &__counter {
     display: block;
     width: auto;

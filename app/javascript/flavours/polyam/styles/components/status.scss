@@ -205,6 +205,15 @@
     }
   }
 
+  &__action-bar__button-wrapper {
+    flex-basis: 0;
+    flex-grow: 1;
+
+    &:last-child {
+      flex-grow: 0;
+    }
+  }
+
   &--first-in-thread {
     border-top: 1px solid var(--background-border-color);
   }
