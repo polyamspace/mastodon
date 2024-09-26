@@ -138,8 +138,8 @@
   width: 100%;
   min-height: 64px;
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 2px;
 
   @include fullwidth-gallery;
@@ -152,6 +152,9 @@
   position: relative;
   border-radius: 8px;
   overflow: hidden;
+  outline: 1px solid var(--media-outline-color);
+  outline-offset: -1px;
+  z-index: 1;
 
   &--tall {
     grid-row: span 2;
@@ -168,15 +171,44 @@
   &.letterbox {
     background: $base-shadow-color;
   }
+
+  &--square {
+    aspect-ratio: 1;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    padding: 8px;
+    z-index: 1;
+
+    &--corner {
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+
+    .icon {
+      color: $white;
+      filter: var(--overlay-icon-shadow);
+    }
+  }
 }
 
 .media-gallery__item-thumbnail {
-  cursor: zoom-in;
+  cursor: pointer;
   display: block;
   text-decoration: none;
   color: $secondary-text-color;
   position: relative;
-  z-index: 1;
+  z-index: -1;
 
   &,
   img {
@@ -198,7 +230,7 @@
   position: absolute;
   top: 0;
   inset-inline-start: 0;
-  z-index: 0;
+  z-index: -2;
   background: $base-overlay-background;
 
   &--hidden {
@@ -211,10 +243,11 @@
   overflow: hidden;
   position: relative;
   width: 100%;
+  z-index: -1;
 }
 
 .media-gallery__item-gifv-thumbnail {
-  cursor: zoom-in;
+  cursor: pointer;
   height: 100%;
   width: 100%;
   object-fit: contain;
@@ -224,13 +257,6 @@
     height: 100%;
     object-fit: cover;
   }
-}
-
-.media-gallery__item-thumbnail-label {
-  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px);
-  overflow: hidden;
-  position: absolute;
 }
 
 .detailed,
@@ -253,6 +279,8 @@
   border-radius: 8px;
   padding-bottom: 44px;
   width: 100%;
+  outline: 1px solid var(--media-outline-color);
+  outline-offset: -1px;
 
   &.editable {
     border-radius: 0;
@@ -309,6 +337,7 @@
   .video-player__controls {
     padding-top: 10px;
     background: transparent;
+    z-index: 1;
   }
 }
 
@@ -322,14 +351,13 @@
   color: $white;
   display: flex;
   align-items: center;
+  outline: 1px solid var(--media-outline-color);
+  outline-offset: -1px;
+  z-index: 2;
 
   &.editable {
     border-radius: 0;
     height: 100% !important;
-  }
-
-  &:focus {
-    outline: 0;
   }
 
   .detailed-status & {
@@ -343,7 +371,7 @@
     display: block;
     max-width: 100vw;
     max-height: 80vh;
-    z-index: 1;
+    z-index: -2;
     position: relative;
   }
 
@@ -370,7 +398,7 @@
   &__controls {
     position: absolute;
     direction: ltr;
-    z-index: 2;
+    z-index: -1;
     bottom: 0;
     inset-inline-start: 0;
     inset-inline-end: 0;
