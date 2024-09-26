@@ -93,7 +93,7 @@
   &:disabled,
   &.disabled {
     background-color: $ui-primary-color;
-    cursor: default;
+    cursor: not-allowed;
   }
 
   &.copyable {
@@ -297,6 +297,10 @@
     &:hover {
       background: rgba($black, 0.9);
     }
+  }
+
+  &--with-counter {
+    padding-inline-end: 4px;
   }
 
   &__counter {
@@ -1515,6 +1519,16 @@ body > [data-popper-placement] {
 
     .status__content__read-more-button {
       margin-inline-start: $thread-margin;
+    }
+  }
+
+  &__action-bar__button-wrapper {
+    flex-basis: 0;
+
+    // glitch-soc: disable this for now; flex-grow: 1;
+
+    &:last-child {
+      flex-grow: 0;
     }
   }
 
