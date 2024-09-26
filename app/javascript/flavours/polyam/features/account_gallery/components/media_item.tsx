@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
 import HeadphonesIcon from '@/awesome-icons/solid/music.svg?react';
 import MovieIcon from '@/awesome-icons/solid/play.svg?react';
+import { AltTextBadge } from 'flavours/polyam/components/alt_text_badge';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon } from 'flavours/polyam/components/icon';
 import { formatTime } from 'flavours/polyam/features/video';
@@ -18,8 +19,7 @@ import type { Status, MediaAttachment } from 'flavours/polyam/models/status';
 export const MediaItem: React.FC<{
   attachment: MediaAttachment;
   onOpenMedia: (arg0: MediaAttachment) => void;
-  onOpenAltText: (arg0: MediaAttachment) => void;
-}> = ({ attachment, onOpenMedia, onOpenAltText }) => {
+}> = ({ attachment, onOpenMedia }) => {
   const [visible, setVisible] = useState(
     (displayMedia !== 'hide_all' &&
       !attachment.getIn(['status', 'sensitive'])) ||
@@ -65,21 +65,6 @@ export const MediaItem: React.FC<{
     [attachment, visible, onOpenMedia, setVisible],
   );
 
-  const handleAltClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      // Prevent media from opening in new tab
-      e.preventDefault();
-
-      if (visible) {
-        onOpenAltText(attachment);
-      }
-
-      // Prevent media modal from opening
-      e.stopPropagation();
-    },
-    [attachment, visible, onOpenAltText],
-  );
-
   const status = attachment.get('status') as Status;
   const description = (attachment.getIn(['translation', 'description']) ||
     attachment.get('description')) as string | undefined;
@@ -96,15 +81,7 @@ export const MediaItem: React.FC<{
   const badges = [];
 
   if (description && description.length > 0) {
-    badges.push(
-      <button
-        type='button'
-        className='media-gallery__alt__label'
-        onClick={handleAltClick}
-      >
-        <span>ALT</span>
-      </button>,
-    );
+    badges.push(<AltTextBadge key='alt' description={description} />);
   }
 
   if (!visible) {
@@ -179,13 +156,19 @@ export const MediaItem: React.FC<{
 
     if (type === 'gifv') {
       badges.push(
-        <span key='gif' className='media-gallery__gifv__label'>
+        <span
+          key='gif'
+          className='media-gallery__alt__label media-gallery__alt__label--non-interactive'
+        >
           GIF
         </span>,
       );
     } else {
       badges.push(
-        <span key='video' className='media-gallery__gifv__label'>
+        <span
+          key='video'
+          className='media-gallery__alt__label media-gallery__alt__label--non-interactive'
+        >
           {formatTime(Math.floor(duration))}
         </span>,
       );

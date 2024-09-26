@@ -10,6 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { debounce } from 'lodash';
 
+import { AltTextBadge } from 'flavours/polyam/components/alt_text_badge';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { formatTime } from 'flavours/polyam/features/video';
 
@@ -28,7 +29,6 @@ class Item extends PureComponent {
     displayWidth: PropTypes.number,
     visible: PropTypes.bool.isRequired,
     autoplay: PropTypes.bool,
-    onAltClick: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -78,19 +78,6 @@ class Item extends PureComponent {
     e.stopPropagation();
   };
 
-  handleAltClick = (e) => {
-    const { index, onAltClick } = this.props;
-
-    // prevent image to open in a new tab
-    e.preventDefault();
-
-    // open modal
-    onAltClick(index);
-
-    // Prevents opening of media modal
-    e.stopPropagation();
-  };
-
   handleImageLoad = () => {
     this.setState({ loaded: true });
   };
@@ -112,7 +99,7 @@ class Item extends PureComponent {
     }
 
     if (attachment.get('description')?.length > 0) {
-      badges.push(<button key='alt' type='button' className='media-gallery__alt__label' onClick={this.handleAltClick}><span>ALT</span></button>);
+      badges.push(<AltTextBadge key='alt' description={attachment.get('description')} />);
     }
 
     const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
@@ -172,9 +159,9 @@ class Item extends PureComponent {
       const duration = attachment.getIn(['meta', 'original', 'duration']);
 
       if (attachment.get('type') === 'gifv') {
-        badges.push(<span key='gif' className='media-gallery__gifv__label'>GIF</span>);
+        badges.push(<span key='gif' className='media-gallery__alt__label media-gallery__alt__label--non-interactive'>GIF</span>);
       } else {
-        badges.push(<span key='video' className='media-gallery__gifv__label'>{formatTime(Math.floor(duration))}</span>);
+        badges.push(<span key='video' className='media-gallery__alt__label media-gallery__alt__label--non-interactive'>{formatTime(Math.floor(duration))}</span>);
       }
 
 
