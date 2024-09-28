@@ -142,7 +142,7 @@ class Notification < ApplicationRecord
     return if filtered? || Notification::GROUPABLE_NOTIFICATION_TYPES.exclude?(type)
 
     type_prefix = case type
-                  when :favourite, :reblog
+                  when :favourite, :reblog, :reaction
                     [type, target_status&.id].join('-')
                   when :follow
                     type
