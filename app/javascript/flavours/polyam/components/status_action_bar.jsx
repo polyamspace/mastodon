@@ -322,38 +322,52 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     const filterButton = this.props.onFilter && (
-      <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.hide)} icon='eye' iconComponent={VisibilityIcon} onClick={this.handleHideClick} />
+      <div className='status__action-bar__button-wrapper'>
+        <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.hide)} icon='eye' iconComponent={VisibilityIcon} onClick={this.handleHideClick} />
+      </div>
     );
 
     const canReact = signedIn && status.get('reactions').filter(r => r.get('count') > 0 && r.get('me')).size < maxReactions;
 
     return (
       <div className='status__action-bar'>
-        <IconButton
-          className='status__action-bar-button'
-          title={replyTitle}
-          icon={replyIcon}
-          iconComponent={replyIconComponent}
-          onClick={this.handleReplyClick}
-          counter={showReplyCount ? status.get('replies_count') : undefined}
-          obfuscateCount
-        />
-        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon={reblogIcon} iconComponent={reblogIconComponent} onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
-        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={StarIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
-        <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} disabled={!canReact} inverted={false} />
-        <IconButton className='status__action-bar-button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' iconComponent={BookmarkIcon} onClick={this.handleBookmarkClick} />
+        <div className='status__action-bar__button-wrapper'>
+          <IconButton
+            className='status__action-bar-button'
+            title={replyTitle}
+            icon={replyIcon}
+            iconComponent={replyIconComponent}
+            onClick={this.handleReplyClick}
+            counter={showReplyCount ? status.get('replies_count') : undefined}
+            obfuscateCount
+          />
+        </div>
+        <div className='status__action-bar__button-wrapper'>
+          <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon={reblogIcon} iconComponent={reblogIconComponent} onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
+        </div>
+        <div className='status__action-bar__button-wrapper'>
+          <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={StarIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
+        </div>
+        <div className='status__action-bar__button-wrapper'>
+          <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} disabled={!canReact} inverted={false} />
+        </div>
+        <div className='status__action-bar__button-wrapper'>
+          <IconButton className='status__action-bar-button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' iconComponent={BookmarkIcon} onClick={this.handleBookmarkClick} />
+        </div>
 
         {filterButton}
 
-        <DropdownMenuContainer
-          scrollKey={scrollKey}
-          status={status}
-          items={menu}
-          icon='ellipsis-h'
-          iconComponent={MoreHorizIcon}
-          direction='right'
-          ariaLabel={intl.formatMessage(messages.more)}
-        />
+        <div className='status__action-bar__button-wrapper'>
+          <DropdownMenuContainer
+            scrollKey={scrollKey}
+            status={status}
+            items={menu}
+            icon='ellipsis-h'
+            iconComponent={MoreHorizIcon}
+            direction='right'
+            ariaLabel={intl.formatMessage(messages.more)}
+          />
+        </div>
 
         <div className='status__action-bar-spacer' />
         <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>

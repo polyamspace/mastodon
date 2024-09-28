@@ -71,7 +71,7 @@
   &:disabled,
   &.disabled {
     background-color: $ui-primary-color;
-    cursor: default;
+    cursor: not-allowed;
   }
 
   &.copyable {
@@ -262,6 +262,10 @@
     &:hover {
       background: rgba($black, 0.9);
     }
+  }
+
+  &--with-counter {
+    padding-inline-end: 4px;
   }
 
   &__counter {
