@@ -66,8 +66,10 @@ module Admin
 
         if @domain_block.severity == 'suspend'
           redirect_to admin_instances_path(suspended: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
-        else
+        elsif @domain_block.severity == 'silence'
           redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+        else
+          redirect_to admin_instances_path, notice: I18n.t('admin.domain_blocks.created_msg')
         end
       else
         render :new
