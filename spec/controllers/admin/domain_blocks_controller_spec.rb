@@ -121,6 +121,26 @@ RSpec.describe Admin::DomainBlocksController do
       end
     end
 
+    # Polyam: Redirect to "all"
+    context 'with "noop" severity and no conflict' do
+      before do
+        post :create, params: { domain_block: { domain: 'example.com', severity: 'noop' } }
+      end
+
+      it 'records a block' do
+        expect(DomainBlock.exists?(domain: 'example.com', severity: 'noop')).to be true
+      end
+
+      it 'calls DomainBlockWorker' do
+        expect(DomainBlockWorker).to have_received(:perform_async)
+      end
+
+      it 'redirects with a success message' do
+        expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
+        expect(response).to redirect_to(admin_instances_path)
+      end
+    end
+
     context 'when upgrading an existing block' do
       before do
         Fabricate(:domain_block, domain: 'example.com', severity: 'silence')
