@@ -138,7 +138,6 @@ class Video extends PureComponent {
     volume: PropTypes.number,
     muted: PropTypes.bool,
     componentIndex: PropTypes.number,
-    onOpenAltText: PropTypes.func,
     autoFocus: PropTypes.bool,
   };
 
@@ -532,11 +531,6 @@ class Video extends PureComponent {
     this.props.onCloseVideo();
   };
 
-  handleAltClick = () => {
-    this.video.pause();
-    this.props.onOpenAltText();
-  };
-
   getFrameRate () {
     if (this.props.frameRate && isNaN(this.props.frameRate)) {
       // The frame rate is returned as a fraction string so we
@@ -549,7 +543,7 @@ class Video extends PureComponent {
   }
 
   render () {
-    const { preview, src, inline, onOpenVideo, onCloseVideo, onOpenAltText, intl, alt, lang, letterbox, fullwidth, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
+    const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, lang, letterbox, fullwidth, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
     const { currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const muted = this.state.muted || volume === 0;
@@ -665,7 +659,6 @@ class Video extends PureComponent {
             </div>
 
             <div className='video-player__buttons right'>
-              {(!fullscreen && alt && onOpenAltText) && <button type='button' title={intl.formatMessage(messages.alt)} aria-label={intl.formatMessage(messages.alt)} className='player-button alt-button' onClick={this.handleAltClick}><span>ALT</span></button>}
               {(!onCloseVideo && !editable && !fullscreen && !this.props.alwaysVisible) && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} className='player-button' onClick={this.toggleReveal}><Icon id='eye-slash' icon={VisibilityOffIcon} /></button>}
               {(!fullscreen && onOpenVideo) && <button type='button' title={intl.formatMessage(messages.expand)} aria-label={intl.formatMessage(messages.expand)} className='player-button' onClick={this.handleOpenVideo}><Icon id='expand' icon={RectangleIcon} /></button>}
               {onCloseVideo && <button type='button' title={intl.formatMessage(messages.close)} aria-label={intl.formatMessage(messages.close)} className='player-button' onClick={this.handleCloseVideo}><Icon id='compress' icon={FullscreenExitIcon} /></button>}
