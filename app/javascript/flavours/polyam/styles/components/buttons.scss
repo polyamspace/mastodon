@@ -59,6 +59,18 @@
     outline: $ui-button-icon-focus-outline;
   }
 
+  &--dangerous {
+    background-color: var(--error-background-color);
+    color: var(--on-error-color);
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: var(--error-active-background-color);
+      transition: none;
+    }
+  }
+
   &--destructive {
     &:active,
     &:focus,
@@ -192,6 +204,7 @@
   flex: 0 0 auto;
 
   a {
+    display: flex;
     color: inherit;
     text-decoration: none;
   }

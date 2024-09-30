@@ -462,26 +462,16 @@ a.account__display-name {
 }
 
 .account-gallery__container {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 4px 2px;
-}
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
 
-.account-gallery__item {
-  border: 0;
-  box-sizing: border-box;
-  display: block;
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
-  margin: 2px;
+  .media-gallery__item {
+    border-radius: 0;
+  }
 
-  &__icons {
-    position: absolute;
-    top: 50%;
-    inset-inline-start: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 24px;
+  .load-more {
+    grid-column: span 3;
   }
 }
 
