@@ -128,7 +128,6 @@ class Status extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
-    onOpenAltText: PropTypes.func,
     ...WithOptionalRouterPropTypes,
   };
 
@@ -424,12 +423,6 @@ class Status extends ImmutablePureComponent {
     this.props.onOpenMedia(status.get('id'), media, index, lang);
   };
 
-  handleAltClick = (index) => {
-    const { status } = this.props;
-
-    this.props.onOpenAltText(status.getIn(['media_attachments', index ? index : 0]));
-  };
-
   handleHotkeyOpenMedia = e => {
     const { status, onOpenMedia, onOpenVideo } = this.props;
     const statusId = status.get('id');
@@ -549,7 +542,6 @@ class Status extends ImmutablePureComponent {
       onOpenVideo,
       onOpenMedia,
       notification,
-      onOpenAltText,
       history,
       ...other
     } = this.props;
@@ -665,6 +657,27 @@ class Status extends ImmutablePureComponent {
             key='media-unknown'
           />,
         );
+      } else if (['image', 'gifv'].includes(status.getIn(['media_attachments', 0, 'type'])) || status.get('media_attachments').size > 1) {
+        media.push(
+          <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
+            {Component => (
+              <Component
+                media={attachments}
+                lang={language}
+                sensitive={status.get('sensitive')}
+                letterbox={settings.getIn(['media', 'letterbox'])}
+                fullwidth={!rootId && settings.getIn(['media', 'fullwidth'])}
+                hidden={isCollapsed || !isExpanded}
+                onOpenMedia={this.handleOpenMedia}
+                cacheWidth={this.props.cacheMediaWidth}
+                defaultWidth={this.props.cachedMediaWidth}
+                visible={this.state.showMedia}
+                onToggleVisibility={this.handleToggleMediaVisibility}
+              />
+            )}
+          </Bundle>,
+        );
+        mediaIcons.push('picture-o');
       } else if (attachments.getIn([0, 'type']) === 'audio') {
         const attachment = status.getIn(['media_attachments', 0]);
         const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
@@ -689,7 +702,6 @@ class Status extends ImmutablePureComponent {
                 blurhash={attachment.get('blurhash')}
                 visible={this.state.showMedia}
                 onToggleVisibility={this.handleToggleMediaVisibility}
-                onOpenAltText={this.handleAltClick}
               />
             )}
           </Bundle>,
@@ -717,33 +729,10 @@ class Status extends ImmutablePureComponent {
               deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}
               visible={this.state.showMedia}
               onToggleVisibility={this.handleToggleMediaVisibility}
-              onOpenAltText={this.handleAltClick}
             />)}
           </Bundle>,
         );
         mediaIcons.push('video-camera');
-      } else {  //  Media type is 'image' or 'gifv'
-        media.push(
-          <Bundle key='bundle-gallery' fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
-            {Component => (
-              <Component
-                media={attachments}
-                lang={language}
-                sensitive={status.get('sensitive')}
-                letterbox={settings.getIn(['media', 'letterbox'])}
-                fullwidth={!rootId && settings.getIn(['media', 'fullwidth'])}
-                hidden={isCollapsed || !isExpanded}
-                onOpenMedia={this.handleOpenMedia}
-                cacheWidth={this.props.cacheMediaWidth}
-                defaultWidth={this.props.cachedMediaWidth}
-                visible={this.state.showMedia}
-                onToggleVisibility={this.handleToggleMediaVisibility}
-                onOpenAltText={this.handleAltClick}
-              />
-            )}
-          </Bundle>,
-        );
-        mediaIcons.push('picture-o');
       }
 
       if (!status.get('sensitive') && !(status.get('spoiler_text').length > 0) && settings.getIn(['collapsed', 'backgrounds', 'preview_images'])) {
