@@ -1,67 +1,21 @@
-import { useState, useCallback, useRef } from 'react';
+/* Polyam: Significantly different from upstream as modal instead of overlay */
+import { useCallback } from 'react';
 
-import { FormattedMessage } from 'react-intl';
-
-import Overlay from 'react-overlays/Overlay';
-import type {
-  OffsetValue,
-  UsePopperOptions,
-} from 'react-overlays/esm/usePopper';
-
-const offset = [0, 4] as OffsetValue;
-const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
+import { openModal } from 'flavours/polyam/actions/modal';
+import { useAppDispatch } from 'flavours/polyam/store';
 
 export const AltTextBadge: React.FC<{
   description: string;
 }> = ({ description }) => {
-  const anchorRef = useRef<HTMLButtonElement>(null);
-  const [open, setOpen] = useState(false);
+  const dispatch = useAppDispatch();
 
   const handleClick = useCallback(() => {
-    setOpen((v) => !v);
-  }, [setOpen]);
-
-  const handleClose = useCallback(() => {
-    setOpen(false);
-  }, [setOpen]);
+    dispatch(openModal({ modalType: 'ALTTEXT', modalProps: { description } }));
+  }, [dispatch, description]);
 
   return (
-    <>
-      <button
-        ref={anchorRef}
-        className='media-gallery__alt__label'
-        onClick={handleClick}
-      >
-        ALT
-      </button>
-
-      <Overlay
-        rootClose
-        onHide={handleClose}
-        show={open}
-        target={anchorRef.current}
-        placement='top-end'
-        flip
-        offset={offset}
-        popperConfig={popperConfig}
-      >
-        {({ props }) => (
-          <div {...props} className='hover-card-controller'>
-            <div
-              className='media-gallery__alt__popover dropdown-animation'
-              role='tooltip'
-            >
-              <h4>
-                <FormattedMessage
-                  id='alt_text_badge.title'
-                  defaultMessage='Alt text'
-                />
-              </h4>
-              <p>{description}</p>
-            </div>
-          </div>
-        )}
-      </Overlay>
-    </>
+    <button className='media-gallery__alt__label' onClick={handleClick}>
+      ALT
+    </button>
   );
 };
