@@ -392,12 +392,6 @@ class Status extends ImmutablePureComponent {
     }));
   };
 
-  handleAltClick = (index) => {
-    const { status } = this.props;
-
-    this.props.dispatch(openModal({ modalType: 'ALTTEXT', modalProps: { media: status.getIn(['media_attachments', index ? index : 0]) } }));
-  };
-
   handleHotkeyOpenMedia = e => {
     const { status } = this.props;
 
@@ -735,7 +729,6 @@ class Status extends ImmutablePureComponent {
                   showMedia={this.state.showMedia}
                   onToggleMediaVisibility={this.handleToggleMediaVisibility}
                   pictureInPicture={pictureInPicture}
-                  onOpenAltText={this.handleAltClick}
                 />
 
                 <ActionBar

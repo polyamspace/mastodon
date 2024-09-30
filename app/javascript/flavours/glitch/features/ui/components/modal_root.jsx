@@ -26,7 +26,6 @@ import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
 import BundleContainer from '../containers/bundle_container';
 
 import ActionsModal from './actions_modal';
-import { AltTextModal } from './alttext_modal';
 import AudioModal from './audio_modal';
 import { BoostModal } from './boost_modal';
 import BundleModalError from './bundle_modal_error';
@@ -82,7 +81,6 @@ export const MODAL_COMPONENTS = {
   'SUBSCRIBED_LANGUAGES': SubscribedLanguagesModal,
   'INTERACTION': InteractionModal,
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
-  'ALTTEXT': () => Promise.resolve({ default: AltTextModal }),
   'IGNORE_NOTIFICATIONS': IgnoreNotificationsModal,
 };
 

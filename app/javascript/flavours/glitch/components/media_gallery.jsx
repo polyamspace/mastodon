@@ -226,7 +226,6 @@ class MediaGallery extends PureComponent {
     visible: PropTypes.bool,
     autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
-    onOpenAltText: PropTypes.func,
   };
 
   static defaultProps = {
@@ -281,10 +280,6 @@ class MediaGallery extends PureComponent {
     this.props.onOpenMedia(this.props.media, index, this.props.lang);
   };
 
-  handleAltClick = (index) => {
-    this.props.onOpenAltText(index);
-  };
-
   handleRef = c => {
     this.node = c;
 
@@ -334,9 +329,9 @@ class MediaGallery extends PureComponent {
     }
 
     if (this.isStandaloneEligible()) {
-      children = <Item standalone autoplay={autoplay} onClick={this.handleClick} onAltClick={this.handleAltClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
+      children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
     } else {
-      children = media.map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} onAltClick={this.handleAltClick} attachment={attachment} index={i} lang={lang} size={size} letterbox={letterbox} displayWidth={width} visible={visible || uncached} />);
+      children = media.map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} letterbox={letterbox} displayWidth={width} visible={visible || uncached} />);
     }
 
     if (uncached) {
