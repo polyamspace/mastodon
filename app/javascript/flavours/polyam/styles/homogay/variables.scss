@@ -88,6 +88,7 @@ body {
   --background-border-color: #{lighten($ui-base-color, 12%)};
   --background-color: #{$ui-base-color};
   --background-color-tint: #{$ui-base-color};
+  --media-outline-color: #{rgba(#9c63c7, 0.15)};
   --toot-focus-background-color: #{color-mix(
       in srgb,
       var(--background-color),
