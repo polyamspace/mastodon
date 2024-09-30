@@ -1,11 +1,13 @@
-import PropTypes from 'prop-types';
 import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
 import { Button } from 'flavours/polyam/components/button';
 
-export const AltTextModal = ({ description, onClose}) => {
+export const AltTextModal: React.FC<{
+  description: string;
+  onClose: () => void;
+}> = ({ description, onClose }) => {
   const handleClick = useCallback(() => {
     onClose();
   }, [onClose]);
@@ -27,10 +29,3 @@ export const AltTextModal = ({ description, onClose}) => {
     </div>
   );
 };
-
-AltTextModal.propTypes = {
-  description: PropTypes.string.isRequired,
-  onClose: PropTypes.func.isRequired,
-};
-
-export default AltTextModal;
