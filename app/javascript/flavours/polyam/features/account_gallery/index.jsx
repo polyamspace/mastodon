@@ -172,7 +172,7 @@ class AccountGallery extends ImmutablePureComponent {
   handleOpenAltText = attachment => {
     const { dispatch } = this.props;
 
-    dispatch(openModal({ modalType: 'ALTTEXT', modalProps: { media: attachment } }));
+    dispatch(openModal({ modalType: 'ALTTEXT', modalProps: { description: attachment.getIn(['translation', 'description']) || attachment.get('description') } }));
   };
 
   handleRef = c => {

@@ -3,11 +3,9 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-
 import { Button } from 'flavours/polyam/components/button';
 
-export const AltTextModal = ({ media, onClose}) => {
+export const AltTextModal = ({ description, onClose}) => {
   const handleClick = useCallback(() => {
     onClose();
   }, [onClose]);
@@ -16,7 +14,7 @@ export const AltTextModal = ({ media, onClose}) => {
     <div className='modal-root__modal alttext-modal'>
       <div className='alttext-modal__top'>
         <div className='alttext-modal__description'>
-          <pre>{media.getIn(['translation', 'description']) || media.get('description')}</pre>
+          <pre>{description}</pre>
         </div>
       </div>
       <div className='alttext-modal__bottom'>
@@ -31,7 +29,7 @@ export const AltTextModal = ({ media, onClose}) => {
 };
 
 AltTextModal.propTypes = {
-  media: ImmutablePropTypes.map.isRequired,
+  description: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
