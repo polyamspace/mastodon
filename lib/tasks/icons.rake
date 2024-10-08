@@ -68,7 +68,7 @@ end
 def find_used_awesome_icons
   icons_by_variant = {}
 
-  Dir[Rails.root.join('app', 'javascript', '**', '*.*s*')].map do |path|
+  Rails.root.glob('app/javascript/**/*.*s*').map do |path|
     File.open(path, 'r') do |file|
       pattern = %r{\Aimport .* from '@/awesome-icons/(?<variant>\w+)/(?<icon>[\w-]+).svg\?react';}
       file.each_line do |line|

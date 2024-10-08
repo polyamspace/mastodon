@@ -58,6 +58,7 @@ export const NotificationFollow: React.FC<{
         <FollowIconButton accountId={notification.sampleAccountIds[0]} />
       );
       // Polyam: Don't show follower count
+      // @ts-expect-error -- it's supposed to be always falsy
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       additionalContent = undefined && <FollowerCount accountId={account} />;
     }
