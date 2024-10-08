@@ -37,4 +37,11 @@ module Admin::ActionLogsHelper
       link_to log.human_identifier, edit_admin_registration_filter_path(log.target_id)
     end
   end
+
+  def sorted_action_log_types
+    Admin::ActionLogFilter::ACTION_TYPE_MAP
+      .keys
+      .map { |key| [I18n.t("admin.action_logs.action_types.#{key}"), key] }
+      .sort_by(&:first)
+  end
 end

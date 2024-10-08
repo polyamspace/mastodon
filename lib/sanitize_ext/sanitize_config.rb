@@ -33,7 +33,7 @@ class Sanitize
       node.remove_attribute('data-codelang') unless VALID_LANGUAGES.include?(node['data-codelang'].downcase)
     end
 
-    CLASS_WHITELIST_TRANSFORMER = lambda do |env|
+    ALLOWED_CLASS_TRANSFORMER = lambda do |env|
       node = env[:node]
       class_list = node['class']&.split(/[\t\n\f\r ]/)
 
@@ -112,7 +112,7 @@ class Sanitize
       },
 
       transformers: [
-        CLASS_WHITELIST_TRANSFORMER,
+        ALLOWED_CLASS_TRANSFORMER,
         IMG_TAG_TRANSFORMER,
         TRANSLATE_TRANSFORMER,
         UNSUPPORTED_HREF_TRANSFORMER,
@@ -177,7 +177,7 @@ class Sanitize
       add_attributes: {},
 
       transformers: [
-        CLASS_WHITELIST_TRANSFORMER,
+        ALLOWED_CLASS_TRANSFORMER,
         IMG_TAG_TRANSFORMER,
         TRANSLATE_TRANSFORMER,
         UNSUPPORTED_HREF_TRANSFORMER,

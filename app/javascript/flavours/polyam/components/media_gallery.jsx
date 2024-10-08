@@ -362,13 +362,13 @@ class MediaGallery extends PureComponent {
 
     return (
       <div className={computedClass} style={style} ref={this.handleRef}>
+        {children}
+
         {(!visible || uncached) && (
           <div className={classNames('spoiler-button', { 'spoiler-button--click-thru': uncached })}>
             {spoilerButton}
           </div>
         )}
-
-        {children}
 
         {(visible && !uncached) && (
           <div className='media-gallery__actions'>
