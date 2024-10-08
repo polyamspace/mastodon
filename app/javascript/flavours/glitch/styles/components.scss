@@ -2273,7 +2273,6 @@ body > [data-popper-placement] {
   display: block;
   position: relative;
   border-radius: var(--avatar-border-radius);
-  background-color: var(--surface-background-color);
 
   img {
     width: 100%;
@@ -2283,7 +2282,11 @@ body > [data-popper-placement] {
     display: inline-block; // to not show broken images
   }
 
-  &-inline {
+  &--loading {
+    background-color: var(--surface-background-color);
+  }
+
+  &--inline {
     display: inline-block;
     vertical-align: middle;
     margin-inline-end: 5px;
@@ -11260,6 +11263,7 @@ noscript {
   gap: 8px;
 
   .logo {
+    width: 16px;
     height: 16px;
     color: $darker-text-color;
   }

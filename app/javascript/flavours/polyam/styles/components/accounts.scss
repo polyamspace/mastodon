@@ -201,7 +201,6 @@
   display: block;
   position: relative;
   border-radius: var(--avatar-border-radius);
-  background-color: var(--surface-background-color);
 
   img {
     width: 100%;
@@ -211,7 +210,11 @@
     display: inline-block; // to not show broken images
   }
 
-  &-inline {
+  &--loading {
+    background-color: var(--surface-background-color);
+  }
+
+  &--inline {
     display: inline-block;
     vertical-align: middle;
     margin-inline-end: 5px;
