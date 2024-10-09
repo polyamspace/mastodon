@@ -15,7 +15,7 @@
 class RegistrationFilter < ApplicationRecord
   self.inheritance_column = nil
 
-  enum type: { text: 0, regexp: 1 }, _suffix: :type
+  enum :type, { text: 0, regexp: 1 }, suffix: :type
 
   validates :phrase, presence: true
   validates :phrase, regex: true, if: :regexp_type?
