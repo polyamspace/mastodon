@@ -260,6 +260,7 @@ export const DetailedStatus: React.FC<{
           src={attachment.get('url')}
           alt={description}
           lang={language}
+          inline
           width={300}
           height={150}
           onOpenVideo={handleOpenVideo}
