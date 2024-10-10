@@ -16,6 +16,7 @@ import {
 import type { IconProp } from 'flavours/polyam/components/icon';
 import { Icon } from 'flavours/polyam/components/icon';
 import Status from 'flavours/polyam/containers/status_container';
+import { getStatusHidden } from 'flavours/polyam/selectors/filters';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 import { DisplayedName } from './displayed_name';
@@ -45,6 +46,12 @@ export const NotificationWithStatus: React.FC<{
   const label = useMemo(
     () => labelRenderer(<DisplayedName accountIds={accountIds} />, count),
     [labelRenderer, accountIds, count],
+  );
+
+  const isFiltered = useAppSelector(
+    (state) =>
+      statusId &&
+      getStatusHidden(state, { id: statusId, contextType: 'notifications' }),
   );
 
   const handlers = useMemo(
@@ -77,7 +84,7 @@ export const NotificationWithStatus: React.FC<{
     (state) => state.statuses.getIn([statusId, 'visibility']) === 'direct',
   );
 
-  if (!statusId) return null;
+  if (!statusId || isFiltered) return null;
 
   return (
     <HotKeys handlers={handlers}>
