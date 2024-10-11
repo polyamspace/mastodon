@@ -14,6 +14,7 @@ import { Icon } from 'flavours/polyam/components/icon';
 import {
   selectSettingsNotificationsQuickFilterActive,
   selectSettingsNotificationsQuickFilterAdvanced,
+  selectSettingsNotificationsQuickFilterShow,
 } from 'flavours/polyam/selectors/settings';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
@@ -65,6 +66,12 @@ export const FilterBar: React.FC = () => {
   const advancedMode = useAppSelector(
     selectSettingsNotificationsQuickFilterAdvanced,
   );
+
+  const useFilterBar = useAppSelector(
+    selectSettingsNotificationsQuickFilterShow,
+  );
+
+  if (!useFilterBar) return null;
 
   if (advancedMode)
     return (
