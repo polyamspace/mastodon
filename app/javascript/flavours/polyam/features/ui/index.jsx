@@ -22,6 +22,7 @@ import { Permalink } from 'flavours/polyam/components/permalink';
 import { PictureInPicture } from 'flavours/polyam/features/picture_in_picture';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { layoutFromWindow } from 'flavours/polyam/is_mobile';
+import { selectUnreadNotificationGroupsCount } from 'flavours/polyam/selectors/notifications';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
@@ -93,7 +94,7 @@ const mapStateToProps = state => ({
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < state.getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']),
   isWide: state.getIn(['local_settings', 'stretch']),
-  unreadNotifications: state.getIn(['notifications', 'unread']),
+  unreadNotifications: selectUnreadNotificationGroupsCount(state),
   showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
   hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
   moved: state.getIn(['accounts', me, 'moved']) && state.getIn(['accounts', state.getIn(['accounts', me, 'moved'])]),

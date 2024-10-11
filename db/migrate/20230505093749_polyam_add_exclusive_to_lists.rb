@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# This migration is a duplicate of 20230505093749
+# This migration is a duplicate of 20230605085710
 
-class AddExclusiveToLists < ActiveRecord::Migration[6.1]
+class PolyamAddExclusiveToLists < ActiveRecord::Migration[6.1]
   disable_ddl_transaction!
 
   def up
@@ -11,7 +11,5 @@ class AddExclusiveToLists < ActiveRecord::Migration[6.1]
     safety_assured { add_column :lists, :exclusive, :boolean, default: false, null: false }
   end
 
-  def down
-    remove_column :lists, :exclusive
-  end
+  def down; end
 end
