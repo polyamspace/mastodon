@@ -58,7 +58,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :accounts, safe_join([material_symbol('groups', 'users'), t('admin.accounts.title')]), admin_accounts_path(origin: 'local'), highlights_on: %r{/admin/accounts|admin/account_moderation_notes|/admin/pending_accounts|/admin/users}, if: -> { current_user.can?(:manage_users) }
       s.item :tags, safe_join([material_symbol('tag', 'hashtag'), t('admin.tags.title')]), admin_tags_path, highlights_on: %r{/admin/tags}, if: -> { current_user.can?(:manage_taxonomies) }
       s.item :invites, safe_join([material_symbol('person_add', 'user-plus'), t('admin.invites.title')]), admin_invites_path, if: -> { current_user.can?(:manage_invites) }
-      s.item :instances, safe_join([material_symbol('cloud', 'cloud'), t('admin.instances.title')]), admin_instances_path(limited: limited_federation_mode? ? nil : '1'), highlights_on: %r{/admin/instances|/admin/domain_blocks|/admin/domain_allows|/admin/export_domain_blocks}, if: lambda {
+      s.item :instances, safe_join([material_symbol('cloud', 'cloud'), t('admin.instances.title')]), admin_instances_path, highlights_on: %r{/admin/instances|/admin/domain_blocks|/admin/domain_allows|/admin/export_domain_blocks}, if: lambda {
         current_user.can?(:manage_federation)
       }
       s.item :email_domain_blocks, safe_join([material_symbol('mail', 'envelope'), t('admin.email_domain_blocks.title')]), admin_email_domain_blocks_path, highlights_on: %r{/admin/email_domain_blocks}, if: -> { current_user.can?(:manage_blocks) }
