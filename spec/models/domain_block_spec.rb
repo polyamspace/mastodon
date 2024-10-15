@@ -117,7 +117,7 @@ RSpec.describe DomainBlock do
     context 'when severity is noop' do
       let(:domain_block) { Fabricate.build :domain_block, severity: :noop, reject_media: true }
 
-      it { is_expected.to eq(%i(reject_media)) }
+      it { is_expected.to eq(%i(noop reject_media)) }
     end
 
     context 'when severity is silence' do
