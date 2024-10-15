@@ -96,6 +96,9 @@ export const accountDefaultValues: AccountShape = {
   moved: null,
   hide_collections: false,
   anniversary: false,
+  // This comes from `ApiMutedAccountJSON`, but we should eventually
+  // store that in a different object
+  mute_expires_at: null,
 };
 
 const AccountFactory = ImmutableRecord<AccountShape>(accountDefaultValues);
