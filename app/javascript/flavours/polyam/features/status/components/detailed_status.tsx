@@ -295,6 +295,7 @@ export const DetailedStatus: React.FC<{
       <PollContainer
         pollId={status.get('poll')}
         // @ts-expect-error -- Poll/PollContainer is not typed yet
+        status={status}
         lang={status.get('language')}
       />,
     );

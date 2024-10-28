@@ -41,12 +41,14 @@ const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
 class Poll extends ImmutablePureComponent {
   static propTypes = {
     identity: identityContextPropShape,
-    poll: ImmutablePropTypes.map,
+    poll: ImmutablePropTypes.map.isRequired,
+    status: ImmutablePropTypes.map.isRequired,
     lang: PropTypes.string,
     intl: PropTypes.object.isRequired,
     disabled: PropTypes.bool,
     refresh: PropTypes.func,
     onVote: PropTypes.func,
+    onInteractionModal: PropTypes.func,
     collapsed: PropTypes.bool,
   };
 
@@ -118,7 +120,11 @@ class Poll extends ImmutablePureComponent {
       return;
     }
 
-    this.props.onVote(Object.keys(this.state.selected));
+    if (this.props.identity.signedIn) {
+      this.props.onVote(Object.keys(this.state.selected));
+    } else {
+      this.props.onInteractionModal('vote', this.props.status);
+    }
   };
 
   handleRefresh = () => {
@@ -234,7 +240,7 @@ class Poll extends ImmutablePureComponent {
         </ul>
 
         <div className='poll__footer'>
-          {!showResults && <button tabIndex={collapsed ? -1 : null} className='button button-secondary' disabled={disabled || !this.props.identity.signedIn} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
+          {!showResults && <button tabIndex={collapsed ? -1 : null} className='button button-secondary' disabled={disabled} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
           {!showResults && <><button tabIndex={collapsed ? -1 : null} className='poll__link' onClick={this.handleReveal}><FormattedMessage id='poll.reveal' defaultMessage='See results' /></button> · </>}
           {showResults && !this.props.disabled && <><button tabIndex={collapsed ? -1 : null} className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </>}
           {votesCount}
