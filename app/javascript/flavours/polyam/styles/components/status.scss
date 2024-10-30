@@ -747,6 +747,7 @@
   overflow: hidden;
   border: 1px solid var(--background-border-color);
   border-radius: 8px;
+  contain: inline-size layout paint style;
 
   &.bottomless {
     border-radius: 8px 8px 0 0;

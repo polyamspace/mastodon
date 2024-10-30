@@ -50,6 +50,7 @@
       flex: 0 1 auto;
       display: flex;
       flex-direction: column;
+      contain: inline-size layout paint style;
 
       @media screen and (min-width: $no-gap-breakpoint) {
         max-width: 600px;
