@@ -2941,6 +2941,7 @@ a.account__display-name {
       flex: 0 1 auto;
       display: flex;
       flex-direction: column;
+      contain: inline-size layout paint style;
 
       @media screen and (min-width: $no-gap-breakpoint) {
         max-width: 600px;
@@ -4237,6 +4238,7 @@ input.glitch-setting-text {
   overflow: hidden;
   border: 1px solid var(--background-border-color);
   border-radius: 8px;
+  contain: inline-size layout paint style;
 
   &.bottomless {
     border-radius: 8px 8px 0 0;
