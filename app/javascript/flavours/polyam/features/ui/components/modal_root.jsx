@@ -20,6 +20,7 @@ import {
   SubscribedLanguagesModal,
   ClosedRegistrationsModal,
   IgnoreNotificationsModal,
+  AnnualReportModal,
 } from 'flavours/polyam/features/ui/util/async-components';
 import { getScrollbarWidth } from 'flavours/polyam/utils/scrollbar';
 
@@ -84,6 +85,7 @@ export const MODAL_COMPONENTS = {
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
   'ALTTEXT': () => Promise.resolve({ default: AltTextModal }),
   'IGNORE_NOTIFICATIONS': IgnoreNotificationsModal,
+  'ANNUAL_REPORT': AnnualReportModal,
 };
 
 export default class ModalRoot extends PureComponent {

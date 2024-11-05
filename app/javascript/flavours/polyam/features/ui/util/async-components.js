@@ -237,3 +237,7 @@ export function NotificationRequest () {
 export function LinkTimeline () {
   return import(/*webpackChunkName: "features/polyam/link_timeline" */'../../link_timeline');
 }
+
+export function AnnualReportModal () {
+  return import(/*webpackChunkName: "flavours/polyam/async/modals/annual_report_modal" */'../components/annual_report_modal');
+}
