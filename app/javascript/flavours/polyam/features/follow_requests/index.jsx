@@ -68,7 +68,7 @@ class FollowRequests extends ImmutablePureComponent {
     );
 
     return (
-      <Column bindToDocument={!multiColumn} name='follow-requests' icon='user-plus' iconComponent={FollowIcon} heading={intl.formatMessage(messages.heading)} >
+      <Column bindToDocument={!multiColumn} name='follow-requests' icon='user-plus' iconComponent={FollowIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='follow_requests'
           onLoadMore={this.handleLoadMore}
