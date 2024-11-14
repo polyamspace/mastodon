@@ -8,6 +8,7 @@ import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
 import type {
   ApiNotificationGroupJSON,
   ApiNotificationJSON,
+  NotificationType,
 } from 'flavours/polyam/api_types/notifications';
 import { allNotificationTypes } from 'flavours/polyam/api_types/notifications';
 import type { ApiStatusJSON } from 'flavours/polyam/api_types/statuses';
@@ -15,6 +16,7 @@ import { usePendingItems } from 'flavours/polyam/initial_state';
 import type { NotificationGap } from 'flavours/polyam/reducers/notification_groups';
 import {
   selectSettingsNotificationsExcludedTypes,
+  selectSettingsNotificationsGroupFollows,
   selectSettingsNotificationsQuickFilterActive,
   selectSettingsNotificationsShows,
 } from 'flavours/polyam/selectors/settings';
@@ -68,17 +70,19 @@ function dispatchAssociatedRecords(
     dispatch(importFetchedStatuses(fetchedStatuses));
 }
 
-const supportedGroupedNotificationTypes = ['favourite', 'reblog', 'reaction'];
+function selectNotificationGroupedTypes(state: RootState) {
+  const types: NotificationType[] = ['favourite', 'reblog', 'reaction'];
 
-export function shouldGroupNotificationType(type: string) {
-  return supportedGroupedNotificationTypes.includes(type);
+  if (selectSettingsNotificationsGroupFollows(state)) types.push('follow');
+
+  return types;
 }
 
 export const fetchNotifications = createDataLoadingThunk(
   'notificationGroups/fetch',
   async (_params, { getState }) =>
     apiFetchNotificationGroups({
-      grouped_types: supportedGroupedNotificationTypes,
+      grouped_types: selectNotificationGroupedTypes(getState()),
       exclude_types: getExcludedTypes(getState()),
     }),
   ({ notifications, accounts, statuses }, { dispatch }) => {
@@ -102,7 +106,7 @@ export const fetchNotificationsGap = createDataLoadingThunk(
   'notificationGroups/fetchGap',
   async (params: { gap: NotificationGap }, { getState }) =>
     apiFetchNotificationGroups({
-      grouped_types: supportedGroupedNotificationTypes,
+      grouped_types: selectNotificationGroupedTypes(getState()),
       max_id: params.gap.maxId,
       exclude_types: getExcludedTypes(getState()),
     }),
@@ -120,7 +124,7 @@ export const pollRecentNotifications = createDataLoadingThunk(
   'notificationGroups/pollRecentNotifications',
   async (_params, { getState }) => {
     return apiFetchNotificationGroups({
-      grouped_types: supportedGroupedNotificationTypes,
+      grouped_types: selectNotificationGroupedTypes(getState()),
       max_id: undefined,
       exclude_types: getExcludedTypes(getState()),
       // In slow mode, we don't want to include notifications that duplicate the already-displayed ones
@@ -168,7 +172,10 @@ export const processNewNotificationForGroups = createAppAsyncThunk(
     }
     dispatchAssociatedRecords(dispatch, [notification]);
 
-    return notification;
+    return {
+      notification,
+      groupedTypes: selectNotificationGroupedTypes(state),
+    };
   },
 );
 
