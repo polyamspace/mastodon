@@ -124,7 +124,6 @@ $dismiss-overlay-width: 4rem;
   --on-error-color: #fff;
   --rich-text-container-color: #{darken($ui-base-color, 4%)}; // Polyam: Keep previous color
   --rich-text-text-color: #{$primary-text-color}; // Polyam: Keep previous color
-  --rich-text-text-secondary-color: #{$darker-text-color};
   --rich-text-decorations-color: #{$darker-text-color}; // Polyam: Keep previous color
   --toot-focus-background-color: #{color-mix(
       in srgb,
