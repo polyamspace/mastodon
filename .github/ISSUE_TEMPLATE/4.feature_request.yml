@@ -1,6 +1,7 @@
 name: Feature Request
 description: I have a suggestion
-type: Suggestion
+labels: [suggestion]
+#type: Suggestion
 body:
   - type: markdown
     attributes:
