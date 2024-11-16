@@ -752,7 +752,7 @@ class Status extends ImmutablePureComponent {
 
     if (status.get('poll')) {
       const language = status.getIn(['translation', 'language']) || status.get('language');
-      contentMedia.push(<PollContainer key='media-poll' pollId={status.get('poll')} lang={language} />);
+      contentMedia.push(<PollContainer pollId={status.get('poll')} status={status} lang={language} />);
       contentMediaIcons.push('tasks');
     }
 
