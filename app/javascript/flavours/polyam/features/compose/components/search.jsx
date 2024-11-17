@@ -322,28 +322,19 @@ class Search extends PureComponent {
 
     return (
       <div className={classNames('search', { active: expanded })}>
-        {signedIn || searchPreview ? (
-          <input
-            ref={this.setRef}
-            className='search__input'
-            type='text'
-            placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
-            aria-label={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
-            value={value}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKeyDown}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-          />
-        ) : (
-          <input
-            ref={this.setRef}
-            className='search__input'
-            type='text'
-            placeholder={intl.formatMessage(messages.placeholderDisabled)}
-            readOnly
-          />
-        )}
+        <input
+          ref={this.setRef}
+          className='search__input'
+          type='text'
+          placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : searchPreview ? messages.placeholder : messages.placeholderDisabled)}
+          aria-label={intl.formatMessage(signedIn ? messages.placeholderSignedIn : searchPreview ? messages.placeholder : messages.placeholderDisabled)}
+          value={value}
+          disabled={!(signedIn || searchPreview)}
+          onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+        />
 
         <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
           <Icon id='search' icon={SearchIcon} className={hasValue ? '' : 'active'} />
