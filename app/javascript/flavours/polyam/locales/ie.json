@@ -41,7 +41,7 @@
   "polyam.privacy.unlisted.long": "Visibil por omnes, ma excludet de functiones de decovrition",
   "polyam.privacy.unlisted.short": "Delistat",
   "reply_indicator.reply_to": "Replying to:",
-  "search.disabled": "Search disabled",
+  "search.disabled": "Log in to search",
   "settings.picker_opts": "Emoji picker categories",
   "status.hidden_by_moderators": "This toot has been hidden by the moderators of {domain}.",
   "status.is_thread": "This toot is part of a thread",
