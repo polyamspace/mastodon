@@ -43,7 +43,7 @@
   "polyam.privacy.unlisted.long": "Für alle sichtbar, aber nicht über die Suche zu finden",
   "polyam.privacy.unlisted.short": "Nicht gelistet",
   "reply_indicator.reply_to": "Replying to:",
-  "search.disabled": "Suchfunktion deaktiviert",
+  "search.disabled": "Suchfunktion nur nach Log-in",
   "settings.picker_opts": "Emoji picker categories",
   "status.hidden_by_moderators": "This toot has been hidden by the moderators of {domain}.",
   "status.is_thread": "Dieser Toot ist Teil eines Threads",
