@@ -197,7 +197,7 @@ export const DetailedStatus: React.FC<{
     ) {
       media.push(<AttachmentList media={status.get('media_attachments')} />);
     } else if (
-      ['image', 'gifv'].includes(
+      ['image', 'gifv', 'unknown'].includes(
         status.getIn(['media_attachments', 0, 'type']) as string,
       ) ||
       status.get('media_attachments').size > 1
@@ -290,6 +290,7 @@ export const DetailedStatus: React.FC<{
       <PollContainer
         pollId={status.get('poll')}
         // @ts-expect-error -- Poll/PollContainer is not typed yet
+        status={status}
         lang={status.get('language')}
       />,
     );
