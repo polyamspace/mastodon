@@ -19,7 +19,7 @@ import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
-  placeholderDisabled: { id: 'search.disabled', defaultMessage: 'Search disabled' },
+  placeholderDisabled: { id: 'search.disabled', defaultMessage: 'Log in to search' },
   placeholderSignedIn: { id: 'search.search_or_paste', defaultMessage: 'Search or paste URL' },
 });
 
