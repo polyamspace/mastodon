@@ -591,6 +591,9 @@ class Status extends ImmutablePureComponent {
 
     let prepend, rebloggedByText;
 
+    const connectUp = previousId && previousId === status.get('in_reply_to_id');
+    const connectToRoot = rootId && rootId === status.get('in_reply_to_id');
+    const connectReply = nextInReplyToId && nextInReplyToId === status.get('id');
     const matchedFilters = status.get('matched_filters');
     const hidden_by_moderators = status.get('hidden_by_moderators');
 
@@ -605,10 +608,6 @@ class Status extends ImmutablePureComponent {
         </HotKeys>
       );
     }
-
-    const connectUp = previousId && previousId === status.get('in_reply_to_id');
-    const connectToRoot = rootId && rootId === status.get('in_reply_to_id');
-    const connectReply = nextInReplyToId && nextInReplyToId === status.get('id');
 
     if (this.state.forceFilter === undefined ? (hidden_by_moderators ? hidden_by_moderators : matchedFilters) : this.state.forceFilter) {
       const minHandlers = this.props.muted ? {} : {
