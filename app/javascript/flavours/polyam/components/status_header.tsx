@@ -30,6 +30,7 @@ export const StatusHeader: React.FC<Props> = ({
   const handleAccountClick: React.MouseEventHandler = useCallback(
     (e) => {
       parseClick(e, `/@${account.get('acct')}`);
+      e.stopPropagation();
     },
     [parseClick, account],
   );

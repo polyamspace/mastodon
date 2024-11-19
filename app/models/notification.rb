@@ -71,6 +71,9 @@ class Notification < ApplicationRecord
     moderation_warning: {
       filterable: false,
     }.freeze,
+    annual_report: {
+      filterable: false,
+    }.freeze,
     'admin.sign_up': {
       filterable: false,
     }.freeze,
@@ -110,6 +113,7 @@ class Notification < ApplicationRecord
     belongs_to :status_reaction, inverse_of: :notification
     belongs_to :account_relationship_severance_event, inverse_of: false
     belongs_to :account_warning, inverse_of: false
+    belongs_to :generated_annual_report, inverse_of: false
     belongs_to :report_note, inverse_of: false
   end
 
@@ -325,7 +329,7 @@ class Notification < ApplicationRecord
       self.from_account_id = activity&.status&.account_id
     when 'Account'
       self.from_account_id = activity&.id
-    when 'AccountRelationshipSeveranceEvent', 'AccountWarning'
+    when 'AccountRelationshipSeveranceEvent', 'AccountWarning', 'GeneratedAnnualReport'
       # These do not really have an originating account, but this is mandatory
       # in the data model, and the recipient's account will by definition
       # always exist
