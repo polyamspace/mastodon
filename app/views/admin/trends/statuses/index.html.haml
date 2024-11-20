@@ -34,22 +34,22 @@
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
-        = f.button safe_join([material_symbol('check', 'check'), t('admin.trends.statuses.allow')]),
+        = f.button safe_join([material_symbol('check'), t('admin.trends.statuses.allow')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.trends.statuses.confirm_allow') },
                    name: :approve,
                    type: :submit
-        = f.button safe_join([material_symbol('check', 'check'), t('admin.trends.statuses.allow_account')]),
+        = f.button safe_join([material_symbol('check'), t('admin.trends.statuses.allow_account')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.trends.statuses.confirm_allow_account') },
                    name: :approve_accounts,
                    type: :submit
-        = f.button safe_join([material_symbol('close', 'xmark'), t('admin.trends.statuses.disallow')]),
+        = f.button safe_join([material_symbol('close'), t('admin.trends.statuses.disallow')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.trends.statuses.confirm_disallow') },
                    name: :reject,
                    type: :submit
-        = f.button safe_join([material_symbol('close', 'xmark'), t('admin.trends.statuses.disallow_account')]),
+        = f.button safe_join([material_symbol('close'), t('admin.trends.statuses.disallow_account')]),
                    class: 'table-action-link',
                    data: { confirm: t('admin.trends.statuses.confirm_disallow_account') },
                    name: :reject_accounts,

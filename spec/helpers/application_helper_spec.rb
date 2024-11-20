@@ -71,7 +71,7 @@ RSpec.describe ApplicationHelper do
     before { helper.extend flavour_helpers }
 
     it 'returns an svg with the icon and options' do
-      expect(helper.material_symbol('lock', 'lock', class: :test, data: { hidden: true }))
+      expect(helper.material_symbol('lock', class: :test, data: { hidden: true }))
         .to match('<svg.*/svg>')
         .and match('class="icon material-lock test"')
         .and match('data-hidden="true"')

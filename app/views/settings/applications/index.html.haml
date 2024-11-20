@@ -22,6 +22,6 @@
               - application.scopes.to_s.split.each do |scope|
                 = tag.samp(scope, class: 'information-badge', title: t("doorkeeper.scopes.#{scope}"))
             %td
-              = table_link_to 'close', 'xmark', t('doorkeeper.applications.index.delete'), settings_application_path(application), method: :delete, data: { confirm: t('doorkeeper.applications.confirmations.destroy') }
+              = table_link_to 'close', t('doorkeeper.applications.index.delete'), settings_application_path(application), method: :delete, data: { confirm: t('doorkeeper.applications.confirmations.destroy') }
 
 = paginate @applications
