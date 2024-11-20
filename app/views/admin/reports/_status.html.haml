@@ -5,11 +5,11 @@
     .status__card
       - if status.reblog?
         .status__prepend
-          = material_symbol('repeat', 'boost', variant: '')
+          = material_symbol('repeat', variant: '')
           = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(status.proper.account, path: admin_account_status_path(status.proper.account.id, status.proper.id)))
       - elsif status.reply? && status.in_reply_to_id.present?
         .status__prepend
-          = material_symbol('reply', 'reply')
+          = material_symbol('reply')
           = t('admin.statuses.replied_to_html', acct_link: admin_account_inline_link_to(status.in_reply_to_account, path: admin_account_status_path(status.thread.account_id, status.in_reply_to_id)))
       .status__content><
         - if status.proper.spoiler_text.blank?
@@ -49,5 +49,5 @@
 
         - if status.proper.sensitive?
           ·
-          = material_symbol('visibility_off', 'eye-slash', variant: 'regular')
+          = material_symbol('visibility_off', variant: 'regular')
           = t('stream_entries.sensitive_content')

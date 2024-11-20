@@ -4,16 +4,16 @@
   %td
     - if relay.accepted?
       %span.positive-hint
-        = material_symbol('check', 'check')
+        = material_symbol('check')
         &nbsp;
         = t 'admin.relays.enabled'
     - elsif relay.pending?
-      = material_symbol('hourglass', 'hourglass-start')
+      = material_symbol('hourglass')
       &nbsp;
       = t 'admin.relays.pending'
     - else
       %span.negative-hint
-        = material_symbol('close', 'xmark')
+        = material_symbol('close')
         &nbsp;
         = t 'admin.relays.disabled'
   %td

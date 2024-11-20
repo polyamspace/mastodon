@@ -61,11 +61,11 @@
               .one-line= report.comment.presence || t('admin.reports.comment.none')
 
               %span.report-card__summary__item__content__icon{ title: t('admin.accounts.statuses') }
-                = material_symbol('comment', 'comment')
+                = material_symbol('comment')
                 = report.status_ids.size
 
               %span.report-card__summary__item__content__icon{ title: t('admin.accounts.media_attachments') }
-                = material_symbol('photo_camera', 'camera')
+                = material_symbol('photo_camera')
                 = report.media_attachments_count
 
               - if report.forwarded?

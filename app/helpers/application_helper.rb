@@ -102,8 +102,7 @@ module ApplicationHelper
     policy(record).public_send(:"#{action}?")
   end
 
-  # Polyam TODO: Remove _fa_icon
-  def material_symbol(icon, _fa_icon, attributes = {})
+  def material_symbol(icon, attributes = {})
     return awesome_icon(fa_icon(icon), attributes) if current_flavour == 'polyam'
 
     safe_join(
@@ -148,11 +147,11 @@ module ApplicationHelper
 
   def interrelationships_icon(relationships, account_id)
     if relationships.following[account_id] && relationships.followed_by[account_id]
-      material_symbol('sync_alt', 'arrow-right-arrow-left', title: I18n.t('relationships.mutual'), class: 'active passive')
+      material_symbol('sync_alt', title: I18n.t('relationships.mutual'), class: 'active passive')
     elsif relationships.following[account_id]
-      material_symbol(locale_direction == 'ltr' ? 'arrow_right_alt' : 'arrow_left_alt', locale_direction == 'ltr' ? 'arrow-right' : 'arrow-left', title: I18n.t('relationships.following'), class: 'active')
+      material_symbol(locale_direction == 'ltr' ? 'arrow_right_alt' : 'arrow_left_alt', title: I18n.t('relationships.following'), class: 'active')
     elsif relationships.followed_by[account_id]
-      material_symbol(locale_direction == 'ltr' ? 'arrow_left_alt' : 'arrow_right_alt', locale_direction == 'ltr' ? 'arrow-left' : 'arrow-right', title: I18n.t('relationships.followers'), class: 'passive')
+      material_symbol(locale_direction == 'ltr' ? 'arrow_left_alt' : 'arrow_right_alt', title: I18n.t('relationships.followers'), class: 'passive')
     end
   end
 

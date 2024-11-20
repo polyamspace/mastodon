@@ -10,11 +10,11 @@
   .back-link
     - if params[:report_id]
       = link_to admin_report_path(params[:report_id].to_i) do
-        = material_symbol 'chevron_left', 'chevron-left'
+        = material_symbol 'chevron_left'
         = t('admin.statuses.back_to_report')
     - else
       = link_to admin_account_path(@account.id) do
-        = material_symbol 'chevron_left', 'chevron-left'
+        = material_symbol 'chevron_left'
         = t('admin.statuses.back_to_account')
 
 %hr.spacer/
@@ -32,13 +32,13 @@
       .batch-table__toolbar__actions
         - unless @statuses.empty?
           - if params[:report_id]
-            = f.button safe_join([material_symbol('add', 'plus'), t('admin.statuses.batch.add_to_report', id: params[:report_id])]),
+            = f.button safe_join([material_symbol('add'), t('admin.statuses.batch.add_to_report', id: params[:report_id])]),
                        class: 'table-action-link',
                        data: { confirm: t('admin.reports.are_you_sure') },
                        name: :report,
                        type: :submit
           - else
-            = f.button safe_join([material_symbol('flag', 'flag'), t('admin.statuses.batch.report')]),
+            = f.button safe_join([material_symbol('flag'), t('admin.statuses.batch.report')]),
                        class: 'table-action-link',
                        data: { confirm: t('admin.reports.are_you_sure') },
                        name: :report,
