@@ -16,7 +16,7 @@ RSpec.describe Admin::FilterHelper do
   end
 
   it 'Uses table_link_to to create icon links' do
-    result = helper.table_link_to 'icon', 'fa_icon', 'text', 'path'
+    result = helper.table_link_to 'icon', 'text', 'path'
 
     expect(result).to match(/text/)
   end
