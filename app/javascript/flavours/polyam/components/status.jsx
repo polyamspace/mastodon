@@ -29,6 +29,7 @@ import { Avatar } from './avatar';
 import { AvatarOverlay } from './avatar_overlay';
 import { DisplayName } from './display_name';
 import { getHashtagBarForStatus } from './hashtag_bar';
+import { Permalink } from './permalink';
 import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
 import StatusIcons from './status_icons';
@@ -276,28 +277,18 @@ class Status extends ImmutablePureComponent {
   };
 
   handleClick = e => {
-    if (e && (e.button !== 0 || e.ctrlKey || e.metaKey)) {
-      return;
-    }
-
-    if (e) {
-      e.preventDefault();
-    }
-
-    this.handleHotkeyOpen();
+    e.preventDefault();
+    this.handleHotkeyOpen(e);
   };
 
-  handleAccountClick = (e, proper = true) => {
-    if (e && (e.button !== 0 || e.ctrlKey || e.metaKey)) {
+  handleMouseUp = e => {
+    // Only handle clicks on the empty space above the content
+
+    if (e.target !== e.currentTarget) {
       return;
     }
 
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-
-    this._openProfile(proper);
+    this.handleClick(e);
   };
 
   handleExpandedToggle = () => {
@@ -370,7 +361,7 @@ class Status extends ImmutablePureComponent {
     this.props.onMention(this.props.status.get('account'));
   };
 
-  handleHotkeyOpen = () => {
+  handleHotkeyOpen = (e) => {
     if (this.props.onClick) {
       this.props.onClick();
       return;
@@ -382,7 +373,13 @@ class Status extends ImmutablePureComponent {
       return;
     }
 
-    history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
+    const path = `/@${status.getIn(['account', 'acct'])}/${status.get('id')}`;
+
+    if (e?.button === 0 && !(e?.ctrlKey || e?.metaKey)) {
+      history.push(path);
+    } else if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
+      window.open(path, '_blank', 'noreferrer noopener');
+    }
   };
 
   handleHotkeyOpenProfile = () => {
@@ -719,21 +716,18 @@ class Status extends ImmutablePureComponent {
             {(connectReply || connectUp || connectToRoot) && <div className={classNames('status__line', { 'status__line--full': connectReply, 'status__line--first': !status.get('in_reply_to_id') && !connectToRoot })} />}
 
             {(!muted) && (
-              /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
-              <header onClick={this.handleClick} className='status__info'>
-                <a
-                  onClick={this.handleAccountClick}
+              <header onMouseUp={this.handleMouseUp} className='status__info'>
+                <Permalink
                   href={status.getIn(['account', 'url'])}
+                  to={`/@${status.getIn(['account', 'acct'])}`}
                   title={status.getIn(['account', 'acct'])}
                   data-hover-card-account={status.getIn(['account', 'id'])}
                   className='status__display-name'
-                  target='_blank'
-                  rel='noopener noreferrer'
                 >
                   <div className='status__avatar'>{statusAvatar}</div>
 
                   <DisplayName account={status.get('account')} />
-                </a>
+                </Permalink>
 
                 <StatusIcons
                   status={status}
