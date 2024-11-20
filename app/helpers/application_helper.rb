@@ -102,8 +102,9 @@ module ApplicationHelper
     policy(record).public_send(:"#{action}?")
   end
 
-  def material_symbol(icon, fa_icon, attributes = {})
-    return awesome_icon(fa_icon, attributes) if current_flavour == 'polyam'
+  # Polyam TODO: Remove _fa_icon
+  def material_symbol(icon, _fa_icon, attributes = {})
+    return awesome_icon(fa_icon(icon), attributes) if current_flavour == 'polyam'
 
     safe_join(
       [
