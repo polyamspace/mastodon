@@ -35,19 +35,6 @@ module SettingsHelper
     end
   end
 
-  # Polyam: Same as above but returns awesome icons
-  def session_device_awesome_icon(session)
-    device = session.detection.device
-
-    if device.mobile?
-      'mobile-screen'
-    elsif device.tablet?
-      'tablet-screen-button'
-    else
-      'computer'
-    end
-  end
-
   def compact_account_link_to(account)
     return if account.nil?
 
