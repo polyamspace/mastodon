@@ -1704,7 +1704,7 @@ $ui-header-logo-wordmark-width: 99px;
 
   &__text {
     flex: 1 1 auto;
-    font-style: 14px;
+    font-size: 14px;
     line-height: 20px;
 
     strong {
@@ -1762,7 +1762,7 @@ $ui-header-logo-wordmark-width: 99px;
   &__name {
     flex: 1 1 auto;
     color: $darker-text-color;
-    font-style: 14px;
+    font-size: 14px;
     line-height: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
