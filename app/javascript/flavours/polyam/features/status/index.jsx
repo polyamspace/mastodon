@@ -394,7 +394,7 @@ class Status extends ImmutablePureComponent {
 
   handleAltClick = (index) => {
     const { status } = this.props;
-    const media = status.getIn(['media_attachtments', index ? index : 0]);
+    const media = status.getIn(['media_attachments', index ? index : 0]);
 
     this.props.dispatch(openModal({ modalType: 'ALTTEXT', modalProps: { description: media.getIn(['translation', 'description']) || media.get('description') } }));
   };
