@@ -1191,7 +1191,8 @@ $ui-header-logo-wordmark-width: 99px;
   color: $dark-text-color;
   text-align: center;
   padding: 20px;
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 400;
   cursor: default;
   display: flex;
@@ -1210,6 +1211,17 @@ $ui-header-logo-wordmark-width: 99px;
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.empty-column-indicator {
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    inset-inline-start: 50%;
+    pointer-events: none;
+    transform: translate(100%, -100%) rotate(12deg);
+    transform-origin: center;
   }
 }
 
@@ -1815,4 +1827,37 @@ $ui-header-logo-wordmark-width: 99px;
       display: none;
     }
   }
+}
+
+.column-search-header {
+  display: flex;
+  border-radius: 4px 4px 0 0;
+  border: 1px solid var(--background-border-color);
+
+  .column-header__back-button.compact {
+    flex: 0 0 auto;
+    color: $primary-text-color;
+  }
+
+  input {
+    background: transparent;
+    border: 0;
+    color: $primary-text-color;
+    font-size: 16px;
+    display: block;
+    flex: 1 1 auto;
+
+    &::placeholder {
+      color: var(--input-placeholder-color);
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.column-footer {
+  padding: 16px;
 }
