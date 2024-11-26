@@ -7,15 +7,7 @@ export function Compose () {
 }
 
 export function Notifications () {
-  return import(/* webpackChunkName: "flavours/polyam/async/notifications_v1" */'../../notifications');
-}
-
-export function Notifications_v2 () {
-  return import(/* webpackChunkName: "flavours/polyam/async/notifications_v2" */'../../notifications_v2');
-}
-
-export function NotificationsWrapper () {
-  return import(/* webpackChunkName: "flavours/polyam/async/notifications" */'../../notifications_wrapper');
+  return import(/* webpackChunkName: "flavours/polyam/async/notifications" */'../../notifications_v2');
 }
 
 export function HomeTimeline () {
