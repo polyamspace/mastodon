@@ -7,12 +7,10 @@ import { useParams, Link } from 'react-router-dom';
 
 import { useDebouncedCallback } from 'use-debounce';
 
-import ArrowBackIcon from '@/awesome-icons/solid/arrow-left.svg?react';
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
 import ListAltIcon from '@/awesome-icons/solid/rectangle-list.svg?react';
 import RemoveIcon from '@/awesome-icons/solid/xmark.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
-import { fetchFollowing } from 'flavours/polyam/actions/accounts';
 import { importFetchedAccounts } from 'flavours/polyam/actions/importer';
 import { fetchList } from 'flavours/polyam/actions/lists';
 import { apiRequest } from 'flavours/polyam/api';
@@ -25,16 +23,14 @@ import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import Column from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
+import { ColumnSearchHeader } from 'flavours/polyam/components/column_search_header';
 import { FollowersCounter } from 'flavours/polyam/components/counters';
 import { DisplayName } from 'flavours/polyam/components/display_name';
-import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { Permalink } from 'flavours/polyam/components/permalink';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
 import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
-import { ButtonInTabsBar } from 'flavours/polyam/features/ui/util/columns_context';
-import { me } from 'flavours/polyam/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 const messages = defineMessages({
@@ -50,54 +46,6 @@ const messages = defineMessages({
 });
 
 type Mode = 'remove' | 'add';
-
-const ColumnSearchHeader: React.FC<{
-  onBack: () => void;
-  onSubmit: (value: string) => void;
-}> = ({ onBack, onSubmit }) => {
-  const intl = useIntl();
-  const [value, setValue] = useState('');
-
-  const handleChange = useCallback(
-    ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(value);
-      onSubmit(value);
-    },
-    [setValue, onSubmit],
-  );
-
-  const handleSubmit = useCallback(() => {
-    onSubmit(value);
-  }, [onSubmit, value]);
-
-  return (
-    <ButtonInTabsBar>
-      <form className='column-search-header' onSubmit={handleSubmit}>
-        <button
-          type='button'
-          className='column-header__back-button compact'
-          onClick={onBack}
-          aria-label={intl.formatMessage(messages.back)}
-        >
-          <Icon
-            id='chevron-left'
-            icon={ArrowBackIcon}
-            className='column-back-button__icon'
-          />
-        </button>
-
-        <input
-          type='search'
-          value={value}
-          onChange={handleChange}
-          placeholder={intl.formatMessage(messages.placeholder)}
-          /* eslint-disable-next-line jsx-a11y/no-autofocus */
-          autoFocus
-        />
-      </form>
-    </ButtonInTabsBar>
-  );
-};
 
 const AccountItem: React.FC<{
   accountId: string;
@@ -183,9 +131,6 @@ const ListMembers: React.FC<{
   const { id } = useParams<{ id: string }>();
   const intl = useIntl();
 
-  const followingAccountIds = useAppSelector(
-    (state) => state.user_lists.getIn(['following', me, 'items']) as string[],
-  );
   const [searching, setSearching] = useState(false);
   const [accountIds, setAccountIds] = useState<string[]>([]);
   const [searchAccountIds, setSearchAccountIds] = useState<string[]>([]);
@@ -207,8 +152,6 @@ const ListMembers: React.FC<{
         .catch(() => {
           setLoading(false);
         });
-
-      dispatch(fetchFollowing(me));
     }
   }, [dispatch, id]);
 
@@ -277,8 +220,8 @@ const ListMembers: React.FC<{
 
   let displayedAccountIds: string[];
 
-  if (mode === 'add') {
-    displayedAccountIds = searching ? searchAccountIds : followingAccountIds;
+  if (mode === 'add' && searching) {
+    displayedAccountIds = searchAccountIds;
   } else {
     displayedAccountIds = accountIds;
   }
@@ -288,31 +231,21 @@ const ListMembers: React.FC<{
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.heading)}
     >
-      {mode === 'remove' ? (
-        <ColumnHeader
-          title={intl.formatMessage(messages.heading)}
-          icon='list-ul'
-          iconComponent={ListAltIcon}
-          multiColumn={multiColumn}
-          showBackButton
-          extraButton={
-            <button
-              onClick={handleSearchClick}
-              type='button'
-              className='column-header__button'
-              title={intl.formatMessage(messages.enterSearch)}
-              aria-label={intl.formatMessage(messages.enterSearch)}
-            >
-              <Icon id='plus' icon={AddIcon} />
-            </button>
-          }
-        />
-      ) : (
-        <ColumnSearchHeader
-          onBack={handleDismissSearchClick}
-          onSubmit={handleSearch}
-        />
-      )}
+      <ColumnHeader
+        title={intl.formatMessage(messages.heading)}
+        icon='list-ul'
+        iconComponent={ListAltIcon}
+        multiColumn={multiColumn}
+        showBackButton
+      />
+
+      <ColumnSearchHeader
+        placeholder={intl.formatMessage(messages.placeholder)}
+        onBack={handleDismissSearchClick}
+        onSubmit={handleSearch}
+        onActivate={handleSearchClick}
+        active={mode === 'add'}
+      />
 
       <ScrollableList
         scrollKey='list_members'
@@ -322,17 +255,15 @@ const ListMembers: React.FC<{
         showLoading={loading && displayedAccountIds.length === 0}
         hasMore={false}
         footer={
-          mode === 'remove' && (
-            <>
-              {displayedAccountIds.length > 0 && <div className='spacer' />}
+          <>
+            {displayedAccountIds.length > 0 && <div className='spacer' />}
 
-              <div className='column-footer'>
-                <Link to={`/lists/${id}`} className='button button--block'>
-                  <FormattedMessage id='lists.done' defaultMessage='Done' />
-                </Link>
-              </div>
-            </>
-          )
+            <div className='column-footer'>
+              <Link to={`/lists/${id}`} className='button button--block'>
+                <FormattedMessage id='lists.done' defaultMessage='Done' />
+              </Link>
+            </div>
+          </>
         }
         emptyMessage={
           mode === 'remove' ? (

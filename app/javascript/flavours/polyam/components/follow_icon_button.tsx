@@ -106,7 +106,12 @@ export const FollowIconButton: React.FC<{
   return (
     <IconButton
       onClick={handleClick}
-      disabled={relationship.blocked_by || relationship.blocking}
+      disabled={
+        relationship.blocked_by ||
+        relationship.blocking ||
+        (!(relationship.following || relationship.requested) &&
+          (account?.suspended || !!account?.moved))
+      }
       active={following}
       icon={icon}
       iconComponent={iconComponent}
