@@ -108,7 +108,7 @@ class Trends::Statuses < Trends::Base
   private
 
   def eligible?(status)
-    status.created_at.past? && status.public_visibility? && status.account.discoverable? && !status.account.silenced? && !status.account.sensitized? && (status.spoiler_text.blank? || Setting.trending_status_cw) && (!status.sensitive? || Setting.trending_status_sensitive) && !status.reply? && valid_locale?(status.language)
+    status.created_at.past? && status.public_visibility? && status.account.discoverable? && !status.account.silenced? && !status.account.sensitized? && (status.spoiler_text.blank? || Setting.trending_status_cw) && (!status.sensitive? || Setting.trending_status_sensitive) && !status.reply? && valid_locale?(status.language) # rubocop:disable Layout/LineLength
   end
 
   def calculate_scores(statuses, at_time)
