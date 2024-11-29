@@ -1282,6 +1282,30 @@ $ui-header-logo-wordmark-width: 99px;
       line-height: 33px;
       font-weight: 700;
     }
+
+    &__buttons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .button {
+        flex-shrink: 1;
+        white-space: nowrap;
+        min-width: 80px;
+      }
+
+      .icon-button {
+        border: 1px solid var(--background-border-color);
+        border-radius: 4px;
+        box-sizing: content-box;
+        padding: 5px;
+
+        .icon {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
   }
 }
 

@@ -648,7 +648,7 @@ a.account__display-name {
       }
 
       .icon-button {
-        border: 1px solid lighten($ui-base-color, 12%);
+        border: 1px solid var(--background-border-color);
         border-radius: 4px;
         box-sizing: content-box;
         padding: 5px;
