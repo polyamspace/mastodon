@@ -730,20 +730,6 @@
     color: $primary-text-color;
   }
 
-  // Polyam: Code block background
-  .status__content code {
-    color: $primary-text-color;
-  }
-
-  .status__content__spoiler-link {
-    color: $primary-text-color;
-    background: $ui-primary-color;
-
-    &:hover {
-      background: lighten($ui-primary-color, 8%);
-    }
-  }
-
   .dialog-option {
     align-items: center;
     gap: 12px;
