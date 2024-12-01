@@ -34,7 +34,6 @@ class Header extends ImmutablePureComponent {
     hideTabs: PropTypes.bool,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
-    featured: PropTypes.bool,
   };
 
   handleFollow = () => {
@@ -105,12 +104,8 @@ class Header extends ImmutablePureComponent {
     this.props.onOpenAvatar(this.props.account);
   };
 
-  isFeaturedPageActive = (_, location) => {
-    return !location.pathname.match(/(\/featured\/accounts)\/?$/);
-  };
-
   render () {
-    const { account, hidden, hideTabs, featured } = this.props;
+    const { account, hidden, hideTabs } = this.props;
 
     if (account === null) {
       return null;
@@ -151,14 +146,7 @@ class Header extends ImmutablePureComponent {
           <div className='account__section-headline'>
             <NavLink exact to={`/@${account.get('acct')}`}><FormattedMessage id='account.posts' defaultMessage='Posts' /></NavLink>
             <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Posts and replies' /></NavLink>
-            <NavLink to={`/@${account.get('acct')}/featured`}><FormattedMessage id='account.featured' defaultMessage='Featured' /></NavLink>
             <NavLink exact to={`/@${account.get('acct')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
-          </div>
-        )}
-        {!(hideTabs || hidden) && featured && (
-          <div className='account__section-headline featured'>
-            <NavLink isActive={this.isFeaturedPageActive} exact to={`/@${account.get('acct')}/featured/tags`}><FormattedMessage id='explore.trending_tags' defaultMessage='Hashtags' /></NavLink>
-            <NavLink exact to={`/@${account.get('acct')}/featured/accounts`}><FormattedMessage id='explore.suggested_follows' defaultMessage='People' /></NavLink>
           </div>
         )}
       </div>
