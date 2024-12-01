@@ -90,10 +90,6 @@ export function Following () {
   return import(/* webpackChunkName: "flavours/glitch/async/following" */'../../following');
 }
 
-export function Featured () {
-  return import(/* webpackChunkName: "flavours/glitch/async/featured" */'../../featured');
-}
-
 export function Reblogs () {
   return import(/* webpackChunkName: "flavours/glitch/async/reblogs" */'../../reblogs');
 }
