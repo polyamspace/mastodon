@@ -14,7 +14,7 @@ import { fetchSuggestions } from 'flavours/polyam/actions/suggestions';
 import { markAsPartial } from 'flavours/polyam/actions/timelines';
 import { apiRequest } from 'flavours/polyam/api';
 import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
-import Column from 'flavours/polyam/components/column';
+import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { ColumnSearchHeader } from 'flavours/polyam/components/column_search_header';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';

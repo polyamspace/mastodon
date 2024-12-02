@@ -1,4 +1,4 @@
-import Column from 'flavours/polyam/components/column';
+import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import type { Props as ColumnHeaderProps } from 'flavours/polyam/components/column_header';
 

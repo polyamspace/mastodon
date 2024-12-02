@@ -14,7 +14,7 @@ import { fetchList } from 'flavours/polyam/actions/lists';
 import { createList, updateList } from 'flavours/polyam/actions/lists_typed';
 import { apiGetAccounts } from 'flavours/polyam/api/lists';
 import type { RepliesPolicyType } from 'flavours/polyam/api_types/lists';
-import Column from 'flavours/polyam/components/column';
+import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';

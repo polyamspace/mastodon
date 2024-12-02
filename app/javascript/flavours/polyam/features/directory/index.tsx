@@ -18,7 +18,8 @@ import {
   fetchDirectory,
   expandDirectory,
 } from 'flavours/polyam/actions/directory';
-import Column from 'flavours/polyam/components/column';
+import { Column } from 'flavours/polyam/components/column';
+import type { ColumnRef } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { LoadMore } from 'flavours/polyam/components/load_more';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
@@ -52,7 +53,7 @@ export const Directory: React.FC<{
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
-  const column = useRef<Column>(null);
+  const column = useRef<ColumnRef>(null);
 
   const [orderParam, setOrderParam] = useSearchParam('order');
   const [localParam, setLocalParam] = useSearchParam('local');

@@ -21,7 +21,7 @@ import {
 } from 'flavours/polyam/api/lists';
 import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
 import { Avatar } from 'flavours/polyam/components/avatar';
-import Column from 'flavours/polyam/components/column';
+import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { ColumnSearchHeader } from 'flavours/polyam/components/column_search_header';
 import { FollowersCounter } from 'flavours/polyam/components/counters';
