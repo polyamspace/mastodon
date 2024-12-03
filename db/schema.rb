@@ -191,8 +191,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_224825) do
     t.boolean "hide_collections"
     t.integer "avatar_storage_schema_version"
     t.integer "header_storage_schema_version"
-    t.datetime "sensitized_at", precision: nil
     t.integer "suspension_origin"
+    t.datetime "sensitized_at", precision: nil
     t.boolean "trendable"
     t.datetime "reviewed_at", precision: nil
     t.datetime "requested_review_at", precision: nil
@@ -556,12 +556,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_224825) do
   end
 
   create_table "ip_blocks", force: :cascade do |t|
-    t.inet "ip", default: "0.0.0.0", null: false
-    t.integer "severity", default: 0, null: false
-    t.datetime "expires_at", precision: nil
-    t.text "comment", default: "", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.datetime "expires_at", precision: nil
+    t.inet "ip", default: "0.0.0.0", null: false
+    t.integer "severity", default: 0, null: false
+    t.text "comment", default: "", null: false
     t.index ["ip"], name: "index_ip_blocks_on_ip", unique: true
   end
 
@@ -1399,53 +1399,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_224825) do
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade
   add_foreign_key "webauthn_credentials", "users", on_delete: :cascade
 
-  create_view "instances", materialized: true, sql_definition: <<-SQL
-      WITH domain_counts(domain, accounts_count) AS (
-           SELECT accounts.domain,
-              count(*) AS accounts_count
-             FROM accounts
-            WHERE (accounts.domain IS NOT NULL)
-            GROUP BY accounts.domain
-          )
-   SELECT domain_counts.domain,
-      domain_counts.accounts_count
-     FROM domain_counts
-  UNION
-   SELECT domain_blocks.domain,
-      COALESCE(domain_counts.accounts_count, (0)::bigint) AS accounts_count
-     FROM (domain_blocks
-       LEFT JOIN domain_counts ON (((domain_counts.domain)::text = (domain_blocks.domain)::text)))
-  UNION
-   SELECT domain_allows.domain,
-      COALESCE(domain_counts.accounts_count, (0)::bigint) AS accounts_count
-     FROM (domain_allows
-       LEFT JOIN domain_counts ON (((domain_counts.domain)::text = (domain_allows.domain)::text)));
-  SQL
-  add_index "instances", "reverse(('.'::text || (domain)::text)), domain", name: "index_instances_on_reverse_domain"
-  add_index "instances", ["domain"], name: "index_instances_on_domain", unique: true
-
-  create_view "user_ips", sql_definition: <<-SQL
-      SELECT user_id,
-      ip,
-      max(used_at) AS used_at
-     FROM ( SELECT users.id AS user_id,
-              users.sign_up_ip AS ip,
-              users.created_at AS used_at
-             FROM users
-            WHERE (users.sign_up_ip IS NOT NULL)
-          UNION ALL
-           SELECT session_activations.user_id,
-              session_activations.ip,
-              session_activations.updated_at
-             FROM session_activations
-          UNION ALL
-           SELECT login_activities.user_id,
-              login_activities.ip,
-              login_activities.created_at
-             FROM login_activities
-            WHERE (login_activities.success = true)) t0
-    GROUP BY user_id, ip;
-  SQL
   create_view "account_summaries", materialized: true, sql_definition: <<-SQL
       SELECT accounts.id AS account_id,
       mode() WITHIN GROUP (ORDER BY t0.language) AS language,
@@ -1496,4 +1449,51 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_224825) do
   SQL
   add_index "global_follow_recommendations", ["account_id"], name: "index_global_follow_recommendations_on_account_id", unique: true
 
+  create_view "instances", materialized: true, sql_definition: <<-SQL
+      WITH domain_counts(domain, accounts_count) AS (
+           SELECT accounts.domain,
+              count(*) AS accounts_count
+             FROM accounts
+            WHERE (accounts.domain IS NOT NULL)
+            GROUP BY accounts.domain
+          )
+   SELECT domain_counts.domain,
+      domain_counts.accounts_count
+     FROM domain_counts
+  UNION
+   SELECT domain_blocks.domain,
+      COALESCE(domain_counts.accounts_count, (0)::bigint) AS accounts_count
+     FROM (domain_blocks
+       LEFT JOIN domain_counts ON (((domain_counts.domain)::text = (domain_blocks.domain)::text)))
+  UNION
+   SELECT domain_allows.domain,
+      COALESCE(domain_counts.accounts_count, (0)::bigint) AS accounts_count
+     FROM (domain_allows
+       LEFT JOIN domain_counts ON (((domain_counts.domain)::text = (domain_allows.domain)::text)));
+  SQL
+  add_index "instances", "reverse(('.'::text || (domain)::text)), domain", name: "index_instances_on_reverse_domain"
+  add_index "instances", ["domain"], name: "index_instances_on_domain", unique: true
+
+  create_view "user_ips", sql_definition: <<-SQL
+      SELECT user_id,
+      ip,
+      max(used_at) AS used_at
+     FROM ( SELECT users.id AS user_id,
+              users.sign_up_ip AS ip,
+              users.created_at AS used_at
+             FROM users
+            WHERE (users.sign_up_ip IS NOT NULL)
+          UNION ALL
+           SELECT session_activations.user_id,
+              session_activations.ip,
+              session_activations.updated_at
+             FROM session_activations
+          UNION ALL
+           SELECT login_activities.user_id,
+              login_activities.ip,
+              login_activities.created_at
+             FROM login_activities
+            WHERE (login_activities.success = true)) t0
+    GROUP BY user_id, ip;
+  SQL
 end

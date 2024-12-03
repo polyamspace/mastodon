@@ -13,9 +13,9 @@ import { HotKeys } from 'react-hotkeys';
 import FlagIcon from '@/awesome-icons/solid/flag.svg?react';
 import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import UserIcon from '@/awesome-icons/solid/user.svg?react';
+import { Account } from 'flavours/polyam/components/account';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { Permalink } from 'flavours/polyam/components/permalink';
-import AccountContainer from 'flavours/polyam/containers/account_container';
 import StatusContainer from 'flavours/polyam/containers/status_container';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
@@ -134,7 +134,7 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <AccountContainer id={account.get('id')} hidden={this.props.hidden} />
+          <Account id={account.get('id')} hidden={this.props.hidden} />
           <NotificationOverlayContainer notification={notification} />
         </div>
       </HotKeys>
@@ -393,7 +393,7 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <AccountContainer id={account.get('id')} hidden={this.props.hidden} />
+          <Account id={account.get('id')} hidden={this.props.hidden} />
           <NotificationOverlayContainer notification={notification} />
         </div>
       </HotKeys>

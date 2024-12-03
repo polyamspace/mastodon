@@ -13,11 +13,11 @@ import { debounce } from 'lodash';
 import RefreshIcon from '@/awesome-icons/solid/arrows-rotate.svg?react';
 import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
 import { fetchReactions, expandReactions } from 'flavours/polyam/actions/interactions';
+import { Account } from 'flavours/polyam/components/account';
 import ColumnHeader from 'flavours/polyam/components/column_header';
 import { Icon } from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
-import AccountContainer from 'flavours/polyam/containers/account_container';
 import Column from 'flavours/polyam/features/ui/components/column';
 
 const messages = defineMessages({
@@ -101,7 +101,7 @@ class Reactions extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
-            <AccountContainer key={id} id={id} withNote={false} />,
+            <Account key={id} id={id} />,
           )}
         </ScrollableList>
 

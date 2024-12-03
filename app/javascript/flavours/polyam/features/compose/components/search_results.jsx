@@ -6,6 +6,7 @@ import HashtagIcon from '@/awesome-icons/solid/hashtag.svg?react';
 import QuoteRightIcon from '@/awesome-icons/solid/quote-right.svg?react';
 import PeopleIcon from '@/awesome-icons/solid/users.svg?react';
 import { expandSearch } from 'flavours/polyam/actions/search';
+import { Account } from 'flavours/polyam/components/account';
 import { Icon } from 'flavours/polyam/components/icon';
 import { LoadMore } from 'flavours/polyam/components/load_more';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
@@ -13,7 +14,6 @@ import { SearchSection } from 'flavours/polyam/features/explore/components/searc
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 import { ImmutableHashtag as Hashtag } from '../../../components/hashtag';
-import AccountContainer from '../../../containers/account_container';
 import StatusContainer from '../../../containers/status_container';
 
 const INITIAL_PAGE_LIMIT = 10;
@@ -49,7 +49,7 @@ export const SearchResults = () => {
   if (results.get('accounts') && results.get('accounts').size > 0) {
     accounts = (
       <SearchSection title={<><Icon id='users' icon={PeopleIcon} /><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></>}>
-        {withoutLastResult(results.get('accounts')).map(accountId => <AccountContainer key={accountId} id={accountId} />)}
+        {withoutLastResult(results.get('accounts')).map(accountId => <Account key={accountId} id={accountId} />)}
         {(results.get('accounts').size > INITIAL_PAGE_LIMIT && results.get('accounts').size % INITIAL_PAGE_LIMIT === 1) && <LoadMore visible onClick={handleLoadMoreAccounts} />}
       </SearchSection>
     );

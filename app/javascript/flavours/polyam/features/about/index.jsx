@@ -14,12 +14,12 @@ import ChevronDownIcon from '@/awesome-icons/solid/chevron-down.svg?react';
 import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import CircleInfo from '@/awesome-icons/solid/circle-info.svg?react';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'flavours/polyam/actions/server';
+import { Account } from 'flavours/polyam/components/account';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
 import { Icon } from 'flavours/polyam/components/icon';
 import { ServerHeroImage } from 'flavours/polyam/components/server_hero_image';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
-import Account from 'flavours/polyam/containers/account_container';
 import LinkFooter from 'flavours/polyam/features/ui/components/link_footer';
 
 import { ServerLimits } from './components/server_limits';

@@ -11,9 +11,13 @@ import AddIcon from '@/awesome-icons/solid/plus.svg?react';
 import ListAltIcon from '@/awesome-icons/solid/rectangle-list.svg?react';
 import RemoveIcon from '@/awesome-icons/solid/xmark.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
+import { fetchRelationships } from 'flavours/polyam/actions/accounts';
+import { showAlertForError } from 'flavours/polyam/actions/alerts';
 import { importFetchedAccounts } from 'flavours/polyam/actions/importer';
 import { fetchList } from 'flavours/polyam/actions/lists';
+import { openModal } from 'flavours/polyam/actions/modal';
 import { apiRequest } from 'flavours/polyam/api';
+import { apiFollowAccount } from 'flavours/polyam/api/accounts';
 import {
   apiGetAccounts,
   apiAddAccountToList,
@@ -31,13 +35,14 @@ import { Permalink } from 'flavours/polyam/components/permalink';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
 import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
+import { me } from 'flavours/polyam/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 const messages = defineMessages({
   heading: { id: 'column.list_members', defaultMessage: 'Manage list members' },
   placeholder: {
-    id: 'lists.search_placeholder',
-    defaultMessage: 'Search people you follow',
+    id: 'lists.search',
+    defaultMessage: 'Search',
   },
   enterSearch: { id: 'lists.add_to_list', defaultMessage: 'Add to list' },
   add: { id: 'lists.add_member', defaultMessage: 'Add' },
@@ -54,17 +59,51 @@ const AccountItem: React.FC<{
   onToggle: (accountId: string) => void;
 }> = ({ accountId, listId, partOfList, onToggle }) => {
   const intl = useIntl();
+  const dispatch = useAppDispatch();
   const account = useAppSelector((state) => state.accounts.get(accountId));
+  const relationship = useAppSelector((state) =>
+    accountId ? state.relationships.get(accountId) : undefined,
+  );
+  const following =
+    accountId === me || relationship?.following || relationship?.requested;
+
+  useEffect(() => {
+    if (accountId) {
+      dispatch(fetchRelationships([accountId]));
+    }
+  }, [dispatch, accountId]);
 
   const handleClick = useCallback(() => {
     if (partOfList) {
       void apiRemoveAccountFromList(listId, accountId);
+      onToggle(accountId);
     } else {
-      void apiAddAccountToList(listId, accountId);
+      if (following) {
+        void apiAddAccountToList(listId, accountId);
+        onToggle(accountId);
+      } else {
+        dispatch(
+          openModal({
+            modalType: 'CONFIRM_FOLLOW_TO_LIST',
+            modalProps: {
+              accountId,
+              onConfirm: () => {
+                apiFollowAccount(accountId)
+                  .then(() => apiAddAccountToList(listId, accountId))
+                  .then(() => {
+                    onToggle(accountId);
+                    return '';
+                  })
+                  .catch((err: unknown) => {
+                    dispatch(showAlertForError(err));
+                  });
+              },
+            },
+          }),
+        );
+      }
     }
-
-    onToggle(accountId);
-  }, [accountId, listId, partOfList, onToggle]);
+  }, [dispatch, accountId, following, listId, partOfList, onToggle]);
 
   if (!account) {
     return null;
@@ -198,8 +237,7 @@ const ListMembers: React.FC<{
         signal: searchRequestRef.current.signal,
         params: {
           q: value,
-          resolve: false,
-          following: true,
+          resolve: true,
         },
       })
         .then((data) => {

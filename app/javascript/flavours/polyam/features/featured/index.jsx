@@ -9,10 +9,10 @@ import { debounce } from 'lodash';
 
 import { lookupAccount, fetchAccount, fetchPinnedAccounts, expandPinnedAccounts } from 'flavours/polyam/actions/accounts';
 import { fetchFeaturedTags } from 'flavours/polyam/actions/featured_tags';
+import { Account } from 'flavours/polyam/components/account';
 import { Hashtag } from 'flavours/polyam/components/hashtag';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
-import Account from 'flavours/polyam/containers/account_container';
 import ProfileColumnHeader from 'flavours/polyam/features/account/components/profile_column_header';
 import HeaderContainer from 'flavours/polyam/features/account_timeline/containers/header_container';
 import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';

@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchServer } from 'flavours/polyam/actions/server';
+import { Account } from 'flavours/polyam/components/account';
 import { ServerHeroImage } from 'flavours/polyam/components/server_hero_image';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
-import Account from 'flavours/polyam/containers/account_container';
 import { domain } from 'flavours/polyam/initial_state';
 
 const messages = defineMessages({

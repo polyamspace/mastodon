@@ -13,10 +13,10 @@ import HashtagIcon from '@/awesome-icons/solid/hashtag.svg?react';
 import QuoteRightIcon from '@/awesome-icons/solid/quote-right.svg?react';
 import PeopleIcon from '@/awesome-icons/solid/users.svg?react';
 import { submitSearch, expandSearch } from 'flavours/polyam/actions/search';
+import { Account } from 'flavours/polyam/components/account';
 import { ImmutableHashtag as Hashtag } from 'flavours/polyam/components/hashtag';
 import { Icon } from 'flavours/polyam/components/icon';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
-import Account from 'flavours/polyam/containers/account_container';
 import Status from 'flavours/polyam/containers/status_container';
 
 import { SearchSection } from './components/search_section';

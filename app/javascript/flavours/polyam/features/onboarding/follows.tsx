@@ -14,11 +14,11 @@ import { fetchSuggestions } from 'flavours/polyam/actions/suggestions';
 import { markAsPartial } from 'flavours/polyam/actions/timelines';
 import { apiRequest } from 'flavours/polyam/api';
 import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
+import { Account } from 'flavours/polyam/components/account';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { ColumnSearchHeader } from 'flavours/polyam/components/column_search_header';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
-import Account from 'flavours/polyam/containers/account_container';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 const messages = defineMessages({
@@ -174,13 +174,7 @@ export const Follows: React.FC<{
         }
       >
         {displayedAccountIds.map((accountId) => (
-          <Account
-            /* @ts-expect-error inferred props are wrong */
-            id={accountId}
-            key={accountId}
-            minimal={false}
-            withBio
-          />
+          <Account id={accountId} key={accountId} minimal={false} withBio />
         ))}
       </ScrollableList>
 

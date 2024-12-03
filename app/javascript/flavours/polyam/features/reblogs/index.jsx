@@ -12,13 +12,13 @@ import { debounce } from 'lodash';
 
 import RefreshIcon from '@/awesome-icons/solid/arrows-rotate.svg?react';
 import BoostIcon from '@/svg-icons/boost.svg?react';
+import { Account } from 'flavours/polyam/components/account';
 import { Icon }  from 'flavours/polyam/components/icon';
 
 import { fetchReblogs, expandReblogs } from '../../actions/interactions';
 import ColumnHeader from '../../components/column_header';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
-import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 
 const messages = defineMessages({
@@ -102,7 +102,7 @@ class Reblogs extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
-            <AccountContainer key={id} id={id} withNote={false} />,
+            <Account key={id} id={id} />,
           )}
         </ScrollableList>
 
