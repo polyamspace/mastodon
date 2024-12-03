@@ -14,7 +14,7 @@ import { Icon }  from 'flavours/polyam/components/icon';
 import { fetchPinnedAccountsSuggestions, clearPinnedAccountsSuggestions, changePinnedAccountsSuggestions } from '../../../actions/accounts';
 
 const messages = defineMessages({
-  search: { id: 'lists.search', defaultMessage: 'Search among people you follow' },
+  search: { id: 'lists.search_placeholder', defaultMessage: 'Search people you follow' },
 });
 
 const mapStateToProps = state => ({
