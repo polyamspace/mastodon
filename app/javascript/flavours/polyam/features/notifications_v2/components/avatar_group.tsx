@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
-
 import { Avatar } from 'flavours/polyam/components/avatar';
+import { Permalink } from 'flavours/polyam/components/permalink';
 import { NOTIFICATIONS_GROUP_MAX_AVATARS } from 'flavours/polyam/models/notification_group';
 import { useAppSelector } from 'flavours/polyam/store';
 
@@ -10,13 +9,14 @@ const AvatarWrapper: React.FC<{ accountId: string }> = ({ accountId }) => {
   if (!account) return null;
 
   return (
-    <Link
+    <Permalink
+      href={account.url}
       to={`/@${account.acct}`}
       title={`@${account.acct}`}
       data-hover-card-account={account.id}
     >
       <Avatar account={account} size={28} />
-    </Link>
+    </Permalink>
   );
 };
 

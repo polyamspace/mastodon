@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-
+import { Permalink } from 'flavours/polyam/components/permalink';
 import { useAppSelector } from 'flavours/polyam/store';
 
 export const DisplayedName: React.FC<{
@@ -11,12 +10,13 @@ export const DisplayedName: React.FC<{
   if (!account) return null;
 
   return (
-    <Link
+    <Permalink
+      href={account.url}
       to={`/@${account.acct}`}
       title={`@${account.acct}`}
       data-hover-card-account={account.id}
     >
       <bdi dangerouslySetInnerHTML={{ __html: account.display_name_html }} />
-    </Link>
+    </Permalink>
   );
 };
