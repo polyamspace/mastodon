@@ -378,26 +378,29 @@ class Status extends ImmutablePureComponent {
     const { isCollapsed } = this.state;
     if (!history) return;
 
-    if (e.button === 0 && !(e.ctrlKey || e.altKey || e.metaKey)) {
-      if (isCollapsed) this.setCollapsed(false);
-      else if (e.shiftKey) {
-        this.setCollapsed(true);
-        document.getSelection().removeAllRanges();
-      } else if (this.props.onClick) {
-        this.props.onClick();
-        return;
-      } else {
-        if (destination === undefined) {
-          destination = `/@${
-            status.getIn(['reblog', 'account', 'acct'], status.getIn(['account', 'acct']))
-          }/${
-            status.getIn(['reblog', 'id'], status.get('id'))
-          }`;
-        }
-        history.push(destination);
-      }
-      e.preventDefault();
+    if (e.button !== 0 || e.ctrlKey || e.altKey || e.metaKey) {
+      return;
     }
+
+    if (isCollapsed) this.setCollapsed(false);
+    else if (e.shiftKey) {
+      this.setCollapsed(true);
+      document.getSelection().removeAllRanges();
+    } else if (this.props.onClick) {
+      this.props.onClick();
+      return;
+    } else {
+      if (destination === undefined) {
+        destination = `/@${
+          status.getIn(['reblog', 'account', 'acct'], status.getIn(['account', 'acct']))
+        }/${
+          status.getIn(['reblog', 'id'], status.get('id'))
+        }`;
+      }
+      history.push(destination);
+    }
+
+    e.preventDefault();
   };
 
   handleToggleMediaVisibility = () => {
@@ -664,7 +667,7 @@ class Status extends ImmutablePureComponent {
             key='media-unknown'
           />,
         );
-      } else if (['image', 'gifv'].includes(status.getIn(['media_attachments', 0, 'type'])) || status.get('media_attachments').size > 1) {
+      } else if (['image', 'gifv', 'unknown'].includes(status.getIn(['media_attachments', 0, 'type'])) || status.get('media_attachments').size > 1) {
         media.push(
           <Bundle key='bundle-gallery' fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
             {Component => (
@@ -829,7 +832,8 @@ class Status extends ImmutablePureComponent {
             {(connectReply || connectUp || connectToRoot) && <div className={classNames('status__line', { 'status__line--full': connectReply, 'status__line--first': !status.get('in_reply_to_id') && !connectToRoot })} />}
 
             {(!muted || !isCollapsed) && (
-              <header className='status__info'>
+              /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
+              <header onClick={this.parseClick} className='status__info'>
                 <StatusHeader
                   status={status}
                   friend={account}
