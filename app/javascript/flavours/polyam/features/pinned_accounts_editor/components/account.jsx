@@ -17,8 +17,8 @@ import { me } from '../../../initial_state';
 import { makeGetAccount } from '../../../selectors';
 
 const messages = defineMessages({
-  remove: { id: 'lists.account.remove', defaultMessage: 'Remove from list' },
-  add: { id: 'lists.account.add', defaultMessage: 'Add to list' },
+  remove: { id: 'lists.remove_member', defaultMessage: 'Remove' },
+  add: { id: 'lists.add_to_list', defaultMessage: 'Add to list' },
 });
 
 const makeMapStateToProps = () => {

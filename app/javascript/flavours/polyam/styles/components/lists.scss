@@ -1,4 +1,6 @@
 // Polyam TODO: Move to modal.scss
+
+// Polyam: Kept from upstream. Still used in pinned accounts editor
 .list-adder,
 .list-editor {
   backdrop-filter: var(--background-filter);
@@ -83,4 +85,55 @@
   .search {
     margin-bottom: 0;
   }
+}
+
+.lists__item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-inline-end: 13px;
+  border-bottom: 1px solid var(--background-border-color);
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 16px 13px;
+    flex: 1 1 auto;
+    font-size: 16px;
+    line-height: 24px;
+    color: $secondary-text-color;
+    text-decoration: none;
+
+    &:is(a):hover,
+    &:is(a):focus,
+    &:is(a):active {
+      color: $primary-text-color;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+
+      &::placeholder {
+        color: var(--input-placeholder-color);
+        opacity: 1;
+      }
+
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}
+
+.lists-scrollable {
+  min-height: 50vh;
 }
