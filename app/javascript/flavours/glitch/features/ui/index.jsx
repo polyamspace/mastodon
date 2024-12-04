@@ -54,7 +54,7 @@ import {
   Favourites,
   DirectTimeline,
   HashtagTimeline,
-  NotificationsWrapper,
+  Notifications,
   NotificationRequests,
   NotificationRequest,
   FollowRequests,
@@ -72,8 +72,9 @@ import {
   PinnedStatuses,
   GettingStartedMisc,
   Directory,
+  OnboardingProfile,
+  OnboardingFollows,
   Explore,
-  Onboarding,
   About,
   PrivacyPolicy,
   Reactions,
@@ -224,7 +225,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/lists/:id/edit' component={ListEdit} content={children} />
             <WrappedRoute path='/lists/:id/members' component={ListMembers} content={children} />
             <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
-            <WrappedRoute path='/notifications' component={NotificationsWrapper} content={children} exact />
+            <WrappedRoute path='/notifications' component={Notifications} content={children} exact />
             <WrappedRoute path='/notifications/requests' component={NotificationRequests} content={children} exact />
             <WrappedRoute path='/notifications/requests/:id' component={NotificationRequest} content={children} exact />
             <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
@@ -232,7 +233,8 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
             <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
-            <WrappedRoute path='/start' component={Onboarding} content={children} />
+            <WrappedRoute path={['/start', '/start/profile']} exact component={OnboardingProfile} content={children} />
+            <WrappedRoute path='/start/follows' component={OnboardingFollows} content={children} />
             <WrappedRoute path='/directory' component={Directory} content={children} />
             <WrappedRoute path={['/explore', '/search']} component={Explore} content={children} />
             <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
