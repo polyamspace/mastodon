@@ -38,13 +38,13 @@ const PinnedAccountsEditor = () => {
   }
 
   return (
-    <div className='modal-root__modal list-editor'>
+    <div className='modal-root__modal pinned-accounts-editor'>
       <h4><FormattedMessage id='endorsed_accounts_editor.endorsed_accounts' defaultMessage='Featured accounts' /></h4>
 
       <Search />
 
       <div className='drawer__pager'>
-        <div className='drawer__inner list-editor__accounts'>
+        <div className='drawer__inner pinned-accounts-editor__accounts'>
           {accountIds.map(accountId => <Account key={accountId} accountId={accountId} added />)}
         </div>
 

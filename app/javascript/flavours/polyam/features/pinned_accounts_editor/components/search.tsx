@@ -52,7 +52,7 @@ export const Search: React.FC = () => {
   const hasValue = value.length > 0;
 
   return (
-    <div className='list-editor__search search'>
+    <div className='pinned-accounts-editor__search search'>
       <label>
         <span style={{ display: 'none' }}>
           {intl.formatMessage(messages.search)}
