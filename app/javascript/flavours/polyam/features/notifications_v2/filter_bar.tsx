@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import InsertChartIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
 import HomeIcon from '@/awesome-icons/solid/house.svg?react';
 import ReplyAllIcon from '@/awesome-icons/solid/reply-all.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
@@ -30,6 +31,10 @@ const tooltips = defineMessages({
   statuses: {
     id: 'notifications.filter.statuses',
     defaultMessage: 'Updates from people you follow',
+  },
+  reactions: {
+    id: 'notifications.filter.reactions',
+    defaultMessage: 'Reactions',
   },
 });
 
@@ -105,6 +110,14 @@ export const FilterBar: React.FC = () => {
           title={intl.formatMessage(tooltips.boosts)}
         >
           <Icon id='retweet' icon={RepeatIcon} />
+        </BarButton>
+        <BarButton
+          selectedFilter={selectedFilter}
+          type='reaction'
+          key='reaction'
+          title={intl.formatMessage(tooltips.reactions)}
+        >
+          <Icon id='face-grin-wide' icon={ReactIcon} />
         </BarButton>
         <BarButton
           selectedFilter={selectedFilter}
