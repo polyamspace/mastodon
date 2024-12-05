@@ -81,7 +81,7 @@ export const FollowIconButton: React.FC<{
     }
   }, [dispatch, accountId, relationship, account, signedIn]);
 
-  if (!relationship) return null;
+  if (!relationship || accountId === me) return null;
 
   let label, icon, iconComponent;
 
