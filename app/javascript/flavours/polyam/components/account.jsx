@@ -9,14 +9,12 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import NotificationsDisabledIcon from '@/awesome-icons/solid/bell-slash.svg?react';
 import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
-import PendingApprovalIcon from '@/awesome-icons/solid/hourglass-half.svg?react';
 import UnblockIcon from '@/awesome-icons/solid/lock-open.svg?react';
 import BlockIcon from '@/awesome-icons/solid/lock.svg?react';
-import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
-import UnFollowIcon from '@/awesome-icons/solid/user-xmark.svg?react';
 import UnmuteIcon from '@/awesome-icons/solid/volume-high.svg?react';
 import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import { EmptyAccount } from 'flavours/polyam/components/empty_account';
+import { FollowIconButton } from 'flavours/polyam/components/follow_icon_button';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
 import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
 
@@ -30,9 +28,6 @@ import { Permalink } from './permalink';
 import { RelativeTimestamp } from './relative_timestamp';
 
 const messages = defineMessages({
-  follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   mute_notifications: { id: 'account.mute_notifications', defaultMessage: 'Mute notifications from @{name}' },
@@ -41,12 +36,8 @@ const messages = defineMessages({
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
 });
 
-const Account = ({ size = 46, account, onFollow, onBlock, onMute, onMuteNotifications, hidden, minimal = true, defaultAction, withBio }) => {
+const Account = ({ size = 46, account, onBlock, onMute, onMuteNotifications, hidden, minimal = true, defaultAction, withBio }) => {
   const intl = useIntl();
-
-  const handleFollow = useCallback(() => {
-    onFollow(account);
-  }, [onFollow, account]);
 
   const handleBlock = useCallback(() => {
     onBlock(account);
@@ -80,13 +71,12 @@ const Account = ({ size = 46, account, onFollow, onBlock, onMute, onMuteNotifica
   let buttons;
 
   if (account.get('id') !== me && account.get('relationship', null) !== null) {
-    const following = account.getIn(['relationship', 'following']);
     const requested = account.getIn(['relationship', 'requested']);
     const blocking  = account.getIn(['relationship', 'blocking']);
     const muting  = account.getIn(['relationship', 'muting']);
 
     if (requested) {
-      buttons = <IconButton disabled icon='hourglass' iconComponent={PendingApprovalIcon} title={intl.formatMessage(messages.requested)} />;
+      buttons = <FollowIconButton accountId={account.get('id')} />;
     } else if (blocking) {
       buttons = <IconButton active icon='unlock' iconComponent={UnblockIcon} title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={handleBlock} />;
     } else if (muting) {
@@ -108,9 +98,11 @@ const Account = ({ size = 46, account, onFollow, onBlock, onMute, onMuteNotifica
       buttons = <IconButton icon='volume-off' iconComponent={MuteIcon} title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={handleMute} />;
     } else if (defaultAction === 'block') {
       buttons = <IconButton icon='lock' iconComponent={BlockIcon} title={intl.formatMessage(messages.block, { name: account.get('username') })} onClick={handleBlock} />;
-    } else if (!account.get('suspended') && !account.get('moved') || following) {
-      buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} iconComponent={following ? UnFollowIcon : FollowIcon} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={handleFollow} active={following} />;
+    } else {
+      buttons = <FollowIconButton accountId={account.get('id')} />;
     }
+  } else {
+    buttons = <FollowIconButton accountId={account.get('id')} />;
   }
 
   let muteTimeRemaining;
@@ -173,7 +165,6 @@ const Account = ({ size = 46, account, onFollow, onBlock, onMute, onMuteNotifica
 Account.propTypes = {
   size: PropTypes.number,
   account: ImmutablePropTypes.record,
-  onFollow: PropTypes.func,
   onBlock: PropTypes.func,
   onMute: PropTypes.func,
   onMuteNotifications: PropTypes.func,

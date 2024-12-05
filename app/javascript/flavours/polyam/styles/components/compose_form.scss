@@ -13,10 +13,10 @@
 
   &__suggestions {
     box-shadow: var(--dropdown-shadow);
-    background: $ui-base-color;
+    background: var(--input-background-color);
     border: 1px solid var(--background-border-color);
     border-radius: 0 0 4px 4px;
-    color: $secondary-text-color;
+    color: var(--on-input-color);
     font-size: 14px;
     padding: 0;
 
@@ -29,7 +29,7 @@
       font-size: 14px;
       line-height: 20px;
       letter-spacing: 0.25px;
-      color: $secondary-text-color;
+      color: var(--on-input-color);
 
       &:last-child {
         border-radius: 0 0 4px 4px;
@@ -143,7 +143,7 @@
     transition: border-color 300ms linear;
     min-height: 0;
     position: relative;
-    background: $ui-base-color;
+    background: var(--input-background-color);
     overflow-y: auto;
 
     &.active {
@@ -217,7 +217,7 @@
     width: 100%;
     margin: 0;
     color: $secondary-text-color;
-    background: $ui-base-color;
+    background: var(--input-background-color);
     font-family: inherit;
     font-size: 14px;
     padding: 12px;

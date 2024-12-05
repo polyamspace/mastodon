@@ -49,21 +49,6 @@
   color: $dark-text-color;
 }
 
-.status__content__spoiler-link {
-  display: inline-block;
-  border-radius: 2px;
-  background: transparent;
-  border: 0;
-  color: $inverted-text-color;
-  font-weight: 700;
-  font-size: 11px;
-  padding: 0 6px;
-  text-transform: uppercase;
-  line-height: 20px;
-  cursor: pointer;
-  vertical-align: top;
-}
-
 .status__wrapper--filtered {
   color: $dark-text-color;
   border: 0;
@@ -510,11 +495,6 @@
       height: 24px;
       margin: -1px 0 0;
     }
-
-    .status__content__spoiler-link {
-      line-height: 24px;
-      margin: -1px 0 0;
-    }
   }
 
   .media-gallery,
@@ -713,17 +693,6 @@
 
   .status__avatar {
     opacity: 0.5;
-  }
-
-  a.status__content__spoiler-link {
-    background: $ui-base-lighter-color;
-    color: $inverted-text-color;
-
-    &:hover,
-    &:focus {
-      background: lighten($ui-base-lighter-color, 7%);
-      text-decoration: none;
-    }
   }
 }
 

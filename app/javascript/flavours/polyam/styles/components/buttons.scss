@@ -22,6 +22,10 @@
     color: $ui-primary-color;
     cursor: default;
   }
+
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
+  }
 }
 
 .button {

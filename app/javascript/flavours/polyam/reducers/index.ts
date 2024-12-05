@@ -37,7 +37,7 @@ import server from './server';
 import settings from './settings';
 import status_lists from './status_lists';
 import statuses from './statuses';
-import suggestions from './suggestions';
+import { suggestionsReducer } from './suggestions';
 import tags from './tags';
 import timelines from './timelines';
 import trends from './trends';
@@ -73,7 +73,7 @@ const reducers = {
   lists: listsReducer,
   filters,
   conversations,
-  suggestions,
+  suggestions: suggestionsReducer,
   pinnedAccountsEditor,
   polls,
   trends,
