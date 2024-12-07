@@ -41,9 +41,14 @@ export const ColumnSearchHeader: React.FC<{
     onActivate();
   }, [onActivate]);
 
-  const handleSubmit = useCallback(() => {
-    onSubmit(value);
-  }, [onSubmit, value]);
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      // Polyam: Fixes issue where pressing enter creates a CSP form-action violation
+      e.preventDefault();
+      onSubmit(value);
+    },
+    [onSubmit, value],
+  );
 
   return (
     <form className='column-search-header' onSubmit={handleSubmit}>
