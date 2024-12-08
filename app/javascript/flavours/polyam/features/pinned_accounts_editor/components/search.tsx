@@ -1,5 +1,4 @@
-import type { ChangeEventHandler, KeyboardEventHandler } from 'react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -7,13 +6,7 @@ import classNames from 'classnames';
 
 import CircleCloseIcon from '@/awesome-icons/solid/circle-xmark.svg?react';
 import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
-import {
-  fetchPinnedAccountsSuggestions,
-  clearPinnedAccountsSuggestions,
-  changePinnedAccountsSuggestions,
-} from 'flavours/polyam/actions/accounts';
 import { Icon } from 'flavours/polyam/components/icon';
-import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 const messages = defineMessages({
   search: {
@@ -22,31 +15,27 @@ const messages = defineMessages({
   },
 });
 
-export const Search: React.FC = () => {
-  const value = useAppSelector(
-    (state) =>
-      state.pinnedAccountsEditor.getIn(['suggestions', 'value']) as string,
-  );
-  const dispatch = useAppDispatch();
+export const Search: React.FC<{
+  onBack: () => void;
+  onSubmit: (value: string) => void;
+}> = ({ onBack, onSubmit }) => {
   const intl = useIntl();
 
-  const handleSubmit = useCallback<KeyboardEventHandler<HTMLInputElement>>(
-    ({ currentTarget, key }) => {
-      if (key === 'Enter')
-        dispatch(fetchPinnedAccountsSuggestions(currentTarget.value));
-    },
-    [dispatch],
-  );
+  const [value, setValue] = useState('');
 
-  const handleClear = useCallback(() => {
-    dispatch(clearPinnedAccountsSuggestions());
-  }, [dispatch]);
+  const handleSubmit = useCallback(() => {
+    onSubmit(value);
+  }, [onSubmit, value]);
 
-  const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
+  const handleBack = useCallback(() => {
+    onBack();
+  }, [onBack]);
+
+  const handleChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
     ({ currentTarget }) => {
-      dispatch(changePinnedAccountsSuggestions(currentTarget.value));
+      setValue(currentTarget.value);
     },
-    [dispatch],
+    [],
   );
 
   const hasValue = value.length > 0;
@@ -73,7 +62,7 @@ export const Search: React.FC = () => {
         role='button'
         tabIndex={0}
         className='search__icon'
-        onClick={handleClear}
+        onClick={handleBack}
       >
         <Icon
           id='search'
