@@ -438,23 +438,14 @@
   }
 }
 
-.status__wrapper-direct,
-.notification-ungrouped--direct,
-.notification-group--direct,
-.notification-group--annual_report {
-  background: var(--toot-private-background-color);
-
-  &:focus {
-    background: var(--toot-private-background-focus-color);
-  }
+// Polyam: Split from class also containing .notification-ungrouped--direct, .notification-group--direct, .notification-group--annual-report
+.status__wrapper-direct {
+  @include private-toot-background;
 }
 
-.status__wrapper-direct,
-.notification-ungrouped--direct {
-  .status__prepend,
-  .notification-ungrouped__header {
-    color: $highlight-text-color;
-  }
+// Polyam: Split from class also containing .notification-ungrouped--direct
+.status__wrapper-direct {
+  @include private-toot-header;
 }
 
 .status__action-bar {
