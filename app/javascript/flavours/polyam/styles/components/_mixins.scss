@@ -224,3 +224,20 @@
     border-radius: 4px;
   }
 }
+
+// Mixin for upstream's .status__wrapper-direct, .notification-ungrouped--direct, .notification-group--direct, .notification-group--annual-report
+@mixin private-toot-background {
+  background: var(--toot-private-background-color);
+
+  &:focus {
+    background: var(--toot-private-background-focus-color);
+  }
+}
+
+// Mixin for upstream's .status__wrapper-direct, .notification-ungrouped--direct
+@mixin private-toot-header {
+  .status__prepend,
+  .notification-ungrouped__header {
+    color: $highlight-text-color;
+  }
+}
