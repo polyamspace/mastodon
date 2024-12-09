@@ -1,0 +1,120 @@
+.trends {
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--background-border-color);
+    gap: 15px;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &__name {
+      flex: 1 1 auto;
+      color: $dark-text-color;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      strong {
+        font-weight: 500;
+      }
+
+      a {
+        color: $darker-text-color;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:hover,
+        &:focus,
+        &:active {
+          span {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    &__current {
+      flex: 0 0 auto;
+      font-size: 24px;
+      font-weight: 500;
+      text-align: end;
+      color: $secondary-text-color;
+      text-decoration: none;
+    }
+
+    &__sparkline {
+      flex: 0 0 auto;
+      width: 50px;
+
+      path:first-child {
+        fill: rgba($highlight-text-color, 0.25) !important;
+        fill-opacity: 1 !important;
+      }
+
+      path:last-child {
+        stroke: lighten($highlight-text-color, 6%) !important;
+        fill: none !important;
+      }
+    }
+
+    &--requires-review {
+      .trends__item__name {
+        color: $gold-star;
+
+        a {
+          color: $gold-star;
+        }
+      }
+
+      .trends__item__current {
+        color: $gold-star;
+      }
+
+      .trends__item__sparkline {
+        path:first-child {
+          fill: rgba($gold-star, 0.25) !important;
+        }
+
+        path:last-child {
+          stroke: lighten($gold-star, 6%) !important;
+        }
+      }
+    }
+
+    &--disabled {
+      .trends__item__name {
+        color: lighten($ui-base-color, 12%);
+
+        a {
+          color: lighten($ui-base-color, 12%);
+        }
+      }
+
+      .trends__item__current {
+        color: lighten($ui-base-color, 12%);
+      }
+
+      .trends__item__sparkline {
+        path:first-child {
+          fill: rgba(lighten($ui-base-color, 12%), 0.25) !important;
+        }
+
+        path:last-child {
+          stroke: lighten(lighten($ui-base-color, 12%), 6%) !important;
+        }
+      }
+    }
+  }
+
+  &--compact &__item {
+    padding: 10px;
+  }
+}
