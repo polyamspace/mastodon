@@ -20,7 +20,7 @@ import ColumnHeader from 'flavours/polyam/components/column_header';
 import { Icon } from 'flavours/polyam/components/icon';
 import { ServerHeroImage } from 'flavours/polyam/components/server_hero_image';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
-import LinkFooter from 'flavours/polyam/features/ui/components/link_footer';
+import { LinkFooter } from 'flavours/polyam/features/ui/components/link_footer';
 
 import { ServerLimits } from './components/server_limits';
 
