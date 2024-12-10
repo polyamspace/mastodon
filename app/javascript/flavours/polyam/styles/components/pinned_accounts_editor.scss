@@ -1,0 +1,55 @@
+// Polyam: Pinned accounts editor kept from upstream
+.pinned-accounts-editor {
+  backdrop-filter: var(--background-filter);
+  background: var(--modal-background-color);
+  border: 1px solid var(--modal-border-color);
+  flex-direction: column;
+  border-radius: 8px;
+  width: 380px;
+  overflow: hidden;
+
+  @media screen and (width <= 420px) {
+    width: 90%;
+  }
+
+  h4 {
+    padding: 15px 0;
+    background: lighten($ui-base-color, 13%);
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .drawer__pager {
+    height: 50vh;
+    border: 0;
+  }
+
+  .drawer__inner {
+    &.backdrop {
+      width: calc(100% - 60px);
+      box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+      border-radius: 0 0 0 8px;
+    }
+  }
+
+  &__accounts {
+    background: unset;
+    overflow-y: auto;
+  }
+
+  .account__display-name {
+    &:hover strong {
+      text-decoration: none;
+    }
+  }
+
+  .account__avatar {
+    cursor: default;
+  }
+
+  .search {
+    margin-bottom: 0;
+  }
+}
