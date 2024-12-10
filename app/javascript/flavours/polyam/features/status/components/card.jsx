@@ -56,10 +56,6 @@ export default class Card extends PureComponent {
     sensitive: PropTypes.bool,
   };
 
-  static defaultProps = {
-    compact: false,
-  };
-
   state = {
     previewLoaded: false,
     embedded: false,
