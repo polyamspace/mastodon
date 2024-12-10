@@ -16,6 +16,18 @@
   padding-bottom: 1px;
 }
 
+// Polyam: Split from class also containing .status__wrapper-direct
+.notification-ungrouped--direct,
+.notification-group--direct,
+.notification-group--annual_report {
+  @include private-toot-background;
+}
+
+// Polyam: Split from class also containing .status__wrapper-direct
+.notification-ungrouped--direct {
+  @include private-toot-header;
+}
+
 .notification__report {
   padding: 10px; // glitch: reduced padding
   border-bottom: 1px solid var(--background-border-color);
