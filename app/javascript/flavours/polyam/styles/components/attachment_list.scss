@@ -1,0 +1,60 @@
+.attachment-list {
+  display: flex;
+  font-size: 14px;
+  border: 1px solid var(--background-border-color);
+  border-radius: 4px;
+  margin-top: 14px; // glitch: reduced margins
+  overflow: hidden;
+
+  &__icon {
+    flex: 0 0 auto;
+    color: $dark-text-color;
+    padding: 8px 18px;
+    cursor: default;
+    border-inline-end: 1px solid var(--background-border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 4px 0;
+    padding-inline-start: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    li {
+      display: block;
+      padding: 4px 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: $dark-text-color;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &.compact {
+    border: 0;
+    margin-top: 4px; // glitch: reduced margins
+
+    .attachment-list__list {
+      padding: 0;
+      display: block;
+    }
+
+    .icon {
+      color: $dark-text-color;
+      vertical-align: middle;
+    }
+  }
+}
