@@ -183,8 +183,8 @@ a.status-card {
   position: relative;
 
   & > .icon {
-    width: 15px;
-    height: 15px;
+    width: 15px; // Polyam: Reduced icon size
+    height: 15px; // Polyam: Reduced icon size
     position: absolute;
     transform-origin: 50% 50%;
     top: 50%;
