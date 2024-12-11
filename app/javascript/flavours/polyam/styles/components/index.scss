@@ -1,6 +1,8 @@
 @import 'animations';
 @import 'mixins';
 @import 'misc';
+@import 'loading';
+@import 'upload_area';
 @import 'react';
 @import 'buttons';
 @import 'dropdown';
@@ -10,7 +12,9 @@
 @import 'notification';
 @import 'modals/index';
 @import 'compose/index';
+@import 'scrollable';
 @import 'columns';
+@import 'column_settings';
 @import 'onboarding';
 @import 'column_banners';
 @import 'hashtag_header';
