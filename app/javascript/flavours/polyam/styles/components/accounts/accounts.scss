@@ -327,6 +327,23 @@ a.account__display-name {
   text-overflow: ellipsis;
 }
 
+.display-name {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &__account {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.display-name__html {
+  font-weight: 500;
+}
+
 .inline-account {
   display: inline-flex;
   align-items: center;
