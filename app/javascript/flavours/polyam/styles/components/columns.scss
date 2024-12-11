@@ -138,21 +138,6 @@ $ui-header-logo-wordmark-width: 99px;
   }
 }
 
-.react-swipeable-view-container {
-  &,
-  .columns-area,
-  .column {
-    height: 100%;
-  }
-}
-
-.react-swipeable-view-container > * {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
 .column {
   width: 350px;
   position: relative;
