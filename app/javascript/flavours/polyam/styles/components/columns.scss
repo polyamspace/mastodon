@@ -191,36 +191,6 @@ $ui-header-logo-wordmark-width: 99px;
   @include column-drawer;
 }
 
-@media screen and (width > $mobile-breakpoint) {
-  .columns-area {
-    padding: 0;
-  }
-
-  .column,
-  .drawer {
-    flex: 0 0 auto;
-    padding: 10px;
-    padding-inline-start: 5px;
-    padding-inline-end: 5px;
-
-    &:first-child {
-      padding-inline-start: 10px;
-    }
-
-    &:last-child {
-      padding-inline-end: 10px;
-    }
-  }
-
-  .columns-area > div {
-    .column,
-    .drawer {
-      padding-inline-start: 5px;
-      padding-inline-end: 5px;
-    }
-  }
-}
-
 // .columns-area--mobile (Moved to single-column.scss by upstream)
 
 .column-link--transparent .icon-with-badge__badge {
