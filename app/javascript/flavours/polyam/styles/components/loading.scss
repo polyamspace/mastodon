@@ -1,0 +1,58 @@
+.load-more {
+  display: block;
+  color: $dark-text-color;
+  background-color: transparent;
+  border: 0;
+  font-size: inherit;
+  text-align: center;
+  line-height: inherit;
+  margin: 0;
+  padding: 15px;
+  box-sizing: border-box;
+  width: 100%;
+  clear: both;
+  text-decoration: none;
+
+  &:hover {
+    background: var(--on-surface-color);
+  }
+}
+
+.load-gap {
+  border-bottom: 1px solid var(--background-border-color);
+}
+
+.loading-indicator {
+  color: $dark-text-color;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  overflow: visible;
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button .loading-indicator {
+  position: static;
+  transform: none;
+
+  .circular-progress {
+    color: $primary-text-color;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.loading-bar {
+  background-color: $highlight-text-color;
+  height: 3px;
+  position: fixed;
+  top: 0;
+  inset-inline-start: 0;
+  z-index: 9999;
+}
