@@ -220,29 +220,6 @@ $ui-header-logo-wordmark-width: 99px;
   }
 }
 
-.onboarding__profile {
-  position: relative;
-  margin-bottom: 40px + 20px;
-  margin-top: -20px;
-
-  .app-form__avatar-input {
-    border: 2px solid var(--background-color);
-    position: absolute;
-    inset-inline-start: -2px;
-    bottom: -40px;
-    z-index: 2;
-  }
-
-  .app-form__header-input {
-    margin: 0 -20px;
-    border-radius: 0;
-
-    img {
-      border-radius: 0;
-    }
-  }
-}
-
 .column-back-button {
   box-sizing: border-box;
   width: 100%;
