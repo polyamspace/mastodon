@@ -197,81 +197,6 @@ body > [data-popper-placement] {
   }
 }
 
-input.glitch-setting-text {
-  box-sizing: border-box;
-  color: $darker-text-color;
-  background: transparent;
-  border: 0;
-  border-bottom: 2px solid $ui-primary-color;
-  outline: 0;
-  font-family: inherit;
-  margin-bottom: 10px;
-  padding: 7px 0;
-  width: 100%;
-
-  &:focus,
-  &:active {
-    color: $primary-text-color;
-    border-bottom-color: $ui-highlight-color;
-  }
-
-  @media screen and (width <= 600px) {
-    font-size: 16px;
-  }
-}
-
-.setting-text {
-  display: block;
-  box-sizing: border-box;
-  margin: 0;
-  color: $primary-text-color;
-  background: $ui-base-color;
-  padding: 7px 10px;
-  font-family: inherit;
-  font-size: 14px;
-  line-height: 22px;
-  border-radius: 4px;
-  border: 1px solid var(--background-border-color);
-
-  &:focus {
-    outline: 0;
-  }
-
-  &__wrapper {
-    background: $ui-base-color;
-    border: 1px solid var(--background-border-color);
-    margin-bottom: 10px;
-    border-radius: 4px;
-
-    .setting-text {
-      border: 0;
-      margin-bottom: 0;
-      border-radius: 0;
-
-      &:focus {
-        border: 0;
-      }
-    }
-
-    &__modifiers {
-      color: $inverted-text-color;
-      font-family: inherit;
-      font-size: 14px;
-      background: $white;
-    }
-  }
-
-  &__toolbar {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-
-  @media screen and (width <= 600px) {
-    font-size: 16px;
-  }
-}
-
 .timeline-hint {
   text-align: center;
   color: $dark-text-color;
@@ -300,16 +225,6 @@ input.glitch-setting-text {
   &--with-descendants {
     border-top: 1px solid var(--background-border-color);
   }
-}
-
-.setting-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.setting-toggle__label {
-  color: $darker-text-color;
 }
 
 .dropdown--active .emoji-button img {
