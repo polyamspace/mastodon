@@ -194,6 +194,10 @@ export function Explore () {
   return import(/* webpackChunkName: "flavours/polyam/async/explore" */'../../explore');
 }
 
+export function Search () {
+  return import(/* webpackChunkName: "features/polyam/async/explore" */'../../search');
+}
+
 export function FilterModal () {
   return import(/*webpackChunkName: "flavours/polyam/async/filter_modal" */'../components/filter_modal');
 }

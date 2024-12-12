@@ -75,6 +75,9 @@
 .explore__search-header {
   justify-content: center;
   align-items: center;
+  border: 1px solid var(--background-border-color);
+  border-top: 0;
+  border-bottom: 0;
   padding: 16px;
   padding-bottom: 8px;
 
@@ -93,10 +96,18 @@
     border: 1px solid var(--background-border-color);
   }
 
-  .search .icon {
+  .search__icon {
     top: 12px;
     inset-inline-end: 12px;
     color: $dark-text-color;
+  }
+}
+
+.layout-single-column .explore__search-header {
+  display: none;
+
+  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+    display: flex;
   }
 }
 
