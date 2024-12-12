@@ -14,6 +14,7 @@
 @import 'components/index';
 @import 'polls';
 @import 'modal';
+@import 'emoji_picker';
 @import 'annual_reports';
 @import 'about';
 @import 'tables';
@@ -22,4 +23,6 @@
 @import 'rtl';
 @import 'accessibility';
 @import 'rich_text';
+@import 'glitch_local_settings';
+@import 'glitch_doodle';
 @import 'node_modules/highlight.js/scss/github-dark';
