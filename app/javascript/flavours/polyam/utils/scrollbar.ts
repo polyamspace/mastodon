@@ -1,3 +1,5 @@
+import { isMobile } from '../is_mobile';
+
 let cachedScrollbarWidth: number | null = null;
 
 const getActualScrollbarWidth = () => {
@@ -20,7 +22,9 @@ export const getScrollbarWidth = () => {
     return cachedScrollbarWidth;
   }
 
-  const scrollbarWidth = getActualScrollbarWidth();
+  const scrollbarWidth = isMobile(window.innerWidth)
+    ? 0
+    : getActualScrollbarWidth();
   cachedScrollbarWidth = scrollbarWidth;
 
   return scrollbarWidth;
