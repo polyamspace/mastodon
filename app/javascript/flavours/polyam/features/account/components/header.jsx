@@ -19,6 +19,7 @@ import { Badge, AutomatedBadge, GroupBadge } from 'flavours/polyam/components/ba
 import { Button } from 'flavours/polyam/components/button';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import DropdownMenuContainer from 'flavours/polyam/containers/dropdown_menu_container';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { autoPlayGif, me, domain as localDomain } from 'flavours/polyam/initial_state';
@@ -199,7 +200,7 @@ class Header extends ImmutablePureComponent {
 
     if (me !== account.get('id')) {
       if (signedIn && !account.get('relationship')) { // Wait until the relationship is loaded
-        actionBtn = '';
+        actionBtn = <Button disabled><LoadingIndicator /></Button>;
       } else if (account.getIn(['relationship', 'requested'])) {
         actionBtn = <Button text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
@@ -349,14 +350,9 @@ class Header extends ImmutablePureComponent {
             </a>
 
             <div className='account__header__tabs__buttons'>
-              {!hidden && (
-                <>
-                  {actionBtn}
-                  {bellBtn}
-                </>
-              )}
-
+              {!hidden && bellBtn}
               <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' iconComponent={MoreVertIcon} size={24} direction='right' />
+              {!hidden && actionBtn}
             </div>
 
           </div>
