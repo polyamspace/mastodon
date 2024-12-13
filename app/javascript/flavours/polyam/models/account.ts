@@ -97,7 +97,7 @@ export const accountDefaultValues: AccountShape = {
   hide_collections: false,
   anniversary: false,
   // This comes from `ApiMutedAccountJSON`, but we should eventually
-  // store that in a different object
+  // store that in a different object.
   mute_expires_at: null,
 };
 

@@ -46,6 +46,7 @@ export const scrollRight = (node: Element, position: number) =>
       scroll(node, 'scrollLeft', position);
     }
   });
+
 export const scrollTop = (node: Element) =>
   requestIdleCallback(() => {
     if (isScrollBehaviorSupported) {

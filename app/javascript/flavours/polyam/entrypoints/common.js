@@ -3,5 +3,5 @@
 
 import '@/entrypoints/public-path';
 
-//  This is a hack to ensure that webpack compiles our images.
+// This is a hack to ensure that webpack compiles our images.
 require.context('../images', true, /\.(jpg|png|svg)$/);

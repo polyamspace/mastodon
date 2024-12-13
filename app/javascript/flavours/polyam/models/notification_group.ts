@@ -131,9 +131,9 @@ function createAccountRelationshipSeveranceEventFromJSON(
 }
 
 function createAnnualReportEventFromJSON(
-  eventJSON: ApiAnnualReportEventJSON,
+  eventJson: ApiAnnualReportEventJSON,
 ): AnnualReportEvent {
-  return eventJSON;
+  return eventJson;
 }
 
 export function createNotificationGroupFromJSON(
