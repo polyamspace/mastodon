@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import {
   followAccount,
-  unfollowAccount,
   unblockAccount,
   unmuteAccount,
   pinAccount,
@@ -19,7 +18,6 @@ import { initDomainBlockModal, unblockDomain } from '../../../actions/domain_blo
 import { openModal } from '../../../actions/modal';
 import { initMuteModal } from '../../../actions/mutes';
 import { initReport } from '../../../actions/reports';
-import { unfollowModal } from '../../../initial_state';
 import { makeGetAccount, getAccountHidden } from '../../../selectors';
 import Header from '../components/header';
 
@@ -39,11 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
 
   onFollow (account) {
     if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
-      if (unfollowModal) {
-        dispatch(openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account, requested: account.getIn(['relationship', 'requested']) } }));
-      } else {
-        dispatch(unfollowAccount(account.get('id')));
-      }
+      dispatch(openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account, requested: account.getIn(['relationship', 'requested']) } }));
     } else {
       dispatch(followAccount(account.get('id')));
     }

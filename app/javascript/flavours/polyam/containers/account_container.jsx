@@ -6,7 +6,6 @@ import { openModal } from 'flavours/polyam/actions/modal';
 
 import {
   followAccount,
-  unfollowAccount,
   blockAccount,
   unblockAccount,
   muteAccount,
@@ -14,7 +13,6 @@ import {
 } from '../actions/accounts';
 import { initMuteModal } from '../actions/mutes';
 import Account from '../components/account';
-import { unfollowModal } from '../initial_state';
 import { makeGetAccount } from '../selectors';
 
 const makeMapStateToProps = () => {
@@ -31,11 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
 
   onFollow (account) {
     if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
-      if (unfollowModal) {
-        dispatch(openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }));
-      } else {
-        dispatch(unfollowAccount(account.get('id')));
-      }
+      dispatch(openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }));
     } else {
       dispatch(followAccount(account.get('id')));
     }

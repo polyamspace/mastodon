@@ -43,7 +43,6 @@
  * @property {string} title
  * @property {boolean} show_trends
  * @property {boolean} trends_as_landing_page
- * @property {boolean} unfollow_modal
  * @property {boolean} use_blurhash
  * @property {boolean=} use_pending_items
  * @property {string} version
@@ -157,7 +156,6 @@ export const maxReactions = (initialState && initialState.max_reactions) || 1;
 export const visibleReactions = getMeta('visible_reactions');
 export const notificationSound = getMeta('notification_sound');
 export const searchPreview = getMeta('search_preview');
-export const unfollowModal = getMeta('unfollow_modal'); // Kept from upstream
 export const publishButtonText = getMeta('publish_button_text');
 export const showReblogsPublicTimelines = getMeta('show_reblogs_in_public_timelines');
 export const showRepliesPublicTimelines = getMeta('show_replies_in_public_timelines');
