@@ -518,6 +518,7 @@ a.account__display-name {
 
 .account__header {
   overflow: hidden;
+  container: account-header / inline-size;
 
   &.inactive {
     opacity: 0.5;
@@ -611,6 +612,16 @@ a.account__display-name {
         .icon {
           width: 24px;
           height: 24px;
+        }
+
+        &.copied {
+          border-color: $valid-value-color;
+        }
+      }
+
+      @container account-header (max-width: 372px) {
+        .optional {
+          display: none;
         }
       }
     }
