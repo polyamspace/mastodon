@@ -10,7 +10,7 @@ A full list of changes can be found [on the wiki](https://github.com/polyamspace
 
 ### Emoji reactions
 
-Want to give a toot a thumbs up? Show you love with a custom emoji? \
+Want to give a toot a thumbs up? Show your love with a custom emoji? \
 With polyam-glitch you can! \
 React to toots with emojis and custom emojis.
 
