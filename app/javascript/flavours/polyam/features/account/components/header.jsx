@@ -203,7 +203,8 @@ class Header extends ImmutablePureComponent {
     if ('share' in navigator) {
       shareBtn = <IconButton className='optional' iconComponent={ShareIcon} title={intl.formatMessage(messages.share, { name: account.get('username') })} onClick={this.handleShare} />;
     } else {
-      shareBtn = <CopyIconButton className='optional' title={intl.formatMessage(messages.copy)} value={account.get('url')} />;
+      // Polyam: Disable share button
+      shareBtn = null && <CopyIconButton className='optional' title={intl.formatMessage(messages.copy)} value={account.get('url')} />;
     }
 
     if (me !== account.get('id')) {
