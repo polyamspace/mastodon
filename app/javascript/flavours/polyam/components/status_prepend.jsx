@@ -16,27 +16,23 @@ import BoostIcon from '@/svg-icons/boost.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { me } from 'flavours/polyam/initial_state';
 
+import { Permalink } from './permalink';
 
 export default class StatusPrepend extends PureComponent {
 
   static propTypes = {
     type: PropTypes.string.isRequired,
     account: ImmutablePropTypes.record.isRequired,
-    parseClick: PropTypes.func.isRequired,
     notificationId: PropTypes.number,
     children: PropTypes.node,
-  };
-
-  handleClick = (e) => {
-    const { account, parseClick } = this.props;
-    parseClick(e, `/@${account.get('acct')}`);
   };
 
   Message = () => {
     const { type, account } = this.props;
     let link = (
-      <a
+      <Permalink
         onClick={this.handleClick}
+        to={`/@${account.get('acct')}`}
         href={account.get('url')}
         className='status__display-name'
         data-hover-card-account={account.get('id')}
@@ -48,7 +44,7 @@ export default class StatusPrepend extends PureComponent {
             }}
           />
         </bdi>
-      </a>
+      </Permalink>
     );
     switch (type) {
     case 'featured':
