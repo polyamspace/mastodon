@@ -1,14 +1,3 @@
-.notification__message-collapse-button {
-  text-align: end;
-  flex-grow: 2;
-
-  // Polyam: Different size, because smaller for polyam-glitch
-  .status__collapse-button .icon {
-    width: 16px;
-    height: 16px;
-  }
-}
-
 .notification__relative_time {
   color: $dark-text-color;
   float: right;

@@ -1,0 +1,66 @@
+// Polyam: Collapsing CSS kept from upstream
+
+.status__wrapper.collapsed {
+  .status {
+    background-position: center;
+    background-size: cover;
+    user-select: none;
+    min-height: 0;
+  }
+
+  .display-name:hover .display-name__html {
+    text-decoration: none;
+  }
+
+  .status__content {
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 0;
+    mask-image: linear-gradient(rgb(0 0 0 / 100%), transparent);
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    // Polyam extra change for backgrounds of code blocks
+    pre,
+    code {
+      padding: 0;
+    }
+  }
+
+  .notification__message {
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+}
+
+.status__collapse-button.active > .icon {
+  transform: rotate(-180deg);
+}
+
+.no-reduce-motion .status__collapse-button {
+  &.activate {
+    & > .icon {
+      animation: spring-flip-in 1s linear;
+    }
+  }
+
+  &.deactivate {
+    & > .icon {
+      animation: spring-flip-out 1s linear;
+    }
+  }
+}
+
+.notification__message-collapse-button {
+  text-align: end;
+  flex-grow: 2;
+
+  // Polyam: Different size, because smaller for polyam-glitch
+  .status__collapse-button .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
