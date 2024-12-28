@@ -387,6 +387,7 @@ class LocalSettingsPage extends PureComponent {
         </section>
       </div>
     ),
+    // Polyam: Collapsing kept from upstream
     ({ onChange, settings }) => (
       <div className='glitch local-settings__page collapsed'>
         <h1><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapsed toots' /></h1>

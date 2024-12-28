@@ -55,20 +55,11 @@ class StatusIcons extends PureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     mediaIcons: PropTypes.arrayOf(PropTypes.string),
-    collapsible: PropTypes.bool,
-    collapsed: PropTypes.bool,
-    setCollapsed: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     settings: ImmutablePropTypes.map.isRequired,
-  };
-
-  //  Handles clicks on collapsed button
-  handleCollapsedClick = (e) => {
-    const { collapsed, setCollapsed } = this.props;
-    if (e.button === 0) {
-      setCollapsed(!collapsed);
-      e.preventDefault();
-    }
+    collapsible: PropTypes.bool,
+    collapsed: PropTypes.bool,
+    setCollapsed: PropTypes.func,
   };
 
   renderIcon (mediaIcon) {
@@ -115,11 +106,11 @@ class StatusIcons extends PureComponent {
     const {
       status,
       mediaIcons,
+      settings,
+      intl,
       collapsible,
       collapsed,
       setCollapsed,
-      settings,
-      intl,
     } = this.props;
 
     return (

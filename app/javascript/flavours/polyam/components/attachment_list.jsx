@@ -17,6 +17,7 @@ export default class AttachmentList extends ImmutablePureComponent {
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
     compact: PropTypes.bool,
+    // Polyam additions
     collapsed: PropTypes.bool,
   };
 

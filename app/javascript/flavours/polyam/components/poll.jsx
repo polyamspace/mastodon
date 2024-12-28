@@ -49,6 +49,7 @@ class Poll extends ImmutablePureComponent {
     refresh: PropTypes.func,
     onVote: PropTypes.func,
     onInteractionModal: PropTypes.func,
+    // Polyam additions
     collapsed: PropTypes.bool,
   };
 
@@ -170,8 +171,8 @@ class Poll extends ImmutablePureComponent {
 
           {!showResults && (
             <span
+              tabIndex={collapsed ? -1 : null}
               className={classNames('poll__input', { checkbox: poll.get('multiple'), active })}
-              tabIndex={collapsed ? -1 : 0}
               role={poll.get('multiple') ? 'checkbox' : 'radio'}
               onKeyPress={this.handleOptionKeyPress}
               aria-checked={active}

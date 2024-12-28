@@ -25,11 +25,13 @@ import { identityContextPropShape, withIdentity } from '../identity_context';
 import { displayMedia, domain } from '../initial_state';
 
 import AttachmentList from './attachment_list';
-import { CollapseButton } from './collapse_button';
+import { Avatar } from './avatar';
+import { AvatarOverlay } from './avatar_overlay';
+import { DisplayName } from './display_name';
 import { getHashtagBarForStatus } from './hashtag_bar';
+import { Permalink } from './permalink';
 import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
-import { StatusHeader } from './status_header';
 import StatusIcons from './status_icons';
 import StatusPrepend from './status_prepend';
 import StatusReactions from './status_reactions';
@@ -104,6 +106,7 @@ class Status extends ImmutablePureComponent {
     onEmbed: PropTypes.func,
     onHeightChange: PropTypes.func,
     onToggleHidden: PropTypes.func,
+    onToggleCollapsed: PropTypes.func,
     onTranslate: PropTypes.func,
     onInteractionModal: PropTypes.func,
     muted: PropTypes.bool,
@@ -133,13 +136,14 @@ class Status extends ImmutablePureComponent {
   };
 
   state = {
-    isCollapsed: false,
-    autoCollapsed: false,
     isExpanded: undefined,
     showMedia: defaultMediaVisibility(this.props.status, this.props.settings) && !(this.context?.hideMediaByDefault),
     revealBehindCW: undefined,
     showCard: false,
     forceFilter: undefined,
+    // Polyam additions
+    isCollapsed: false,
+    autoCollapsed: false,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -162,19 +166,11 @@ class Status extends ImmutablePureComponent {
 
   updateOnStates = [
     'isExpanded',
-    'isCollapsed',
     'showMedia',
     'forceFilter',
+    'isCollapsed'
   ];
 
-  //  If our settings have changed to disable collapsed statuses, then we
-  //  need to make sure that we uncollapse every one. We do that by watching
-  //  for changes to `settings.collapsed.enabled` in
-  //  `getderivedStateFromProps()`.
-
-  //  We also need to watch for changes on the `collapse` prop---if this
-  //  changes to anything other than `undefined`, then we need to collapse or
-  //  uncollapse our status accordingly.
   static getDerivedStateFromProps(nextProps, prevState) {
     let update = {};
     let updated = false;
@@ -196,7 +192,6 @@ class Status extends ImmutablePureComponent {
         updated = true;
       }
     }
-
     // Handle uncollapsing toots when the shared CW state is expanded
     if (nextProps.settings.getIn(['content_warnings', 'shared_state']) &&
       nextProps.status?.get('spoiler_text')?.length && nextProps.status?.get('hidden') === false &&
@@ -232,27 +227,9 @@ class Status extends ImmutablePureComponent {
     return updated ? update : null;
   }
 
-  //  When mounting, we just check to see if our status should be collapsed,
-  //  and collapse it if so. We don't need to worry about whether collapsing
-  //  is enabled here, because `setCollapsed()` already takes that into
-  //  account.
-
-  //  The cases where a status should be collapsed are:
-  //
-  //   -  The `collapse` prop has been set to `true`
-  //   -  The user has decided in local settings to collapse all statuses.
-  //   -  The user has decided to collapse all notifications ('muted'
-  //      statuses).
-  //   -  The user has decided to collapse long statuses and the status is
-  //      over the user set value (default 400 without media, or 610px with).
-  //   -  The status is a reply and the user has decided to collapse all
-  //      replies.
-  //   -  The status contains media and the user has decided to collapse all
-  //      statuses with media.
-  //   -  The status is a reblog the user has decided to collapse all
-  //      statuses which are reblogs.
   componentDidMount () {
     const { node } = this;
+
     const {
       status,
       settings,
@@ -301,18 +278,20 @@ class Status extends ImmutablePureComponent {
     if (!this.props.getScrollPosition) return null;
 
     const { muted, hidden, status, settings } = this.props;
+    // Polyam: Collapsing
+    const { autoCollapsed } = this.state;
 
     const doShowCard = !muted && !hidden && status && status.get('card') && settings.get('inline_preview_cards');
-    if (this.state.autoCollapsed || (doShowCard && !this.state.showCard)) {
+    if (autoCollapsed || (doShowCard && !this.state.showCard)) {
       if (doShowCard) this.setState({ showCard: true });
-      if (this.state.autoCollapsed) this.setState({ autoCollapsed: false });
+      if (autoCollapsed) this.setState({ autoCollapsed: false });
       return this.props.getScrollPosition();
     } else {
       return null;
     }
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps, _prevState, snapshot) {
     if (snapshot !== null && this.props.updateScrollBottom && this.node.offsetTop < snapshot.top) {
       this.props.updateScrollBottom(snapshot.height - snapshot.top);
     }
@@ -343,7 +322,6 @@ class Status extends ImmutablePureComponent {
 
   //  `setCollapsed()` sets the value of `isCollapsed` in our state, that is,
   //  whether the toot is collapsed or not.
-
   //  `setCollapsed()` automatically checks for us whether toot collapsing
   //  is enabled, so we don't have to.
   setCollapsed = (value) => {
@@ -363,48 +341,40 @@ class Status extends ImmutablePureComponent {
     }
 
     this.setState({ isExpanded: value });
+
+    // Polyam: Collapsing
     if (value) {
       this.setCollapsed(false);
     }
   };
 
-  //  `parseClick()` takes a click event and responds appropriately.
-  //  If our status is collapsed, then clicking on it should uncollapse it.
-  //  If `Shift` is held, then clicking on it should collapse it.
-  //  Otherwise, we open the url handed to us in `destination`, if
-  //  applicable.
-  parseClick = (e, destination) => {
-    const { status, history } = this.props;
-    const { isCollapsed } = this.state;
-    if (!history) return;
-
-    if (e.button !== 0 || e.ctrlKey || e.altKey || e.metaKey) {
-      return;
-    }
-
-    if (isCollapsed) this.setCollapsed(false);
-    else if (e.shiftKey) {
-      this.setCollapsed(true);
-      document.getSelection().removeAllRanges();
-    } else if (this.props.onClick) {
-      this.props.onClick();
-      return;
-    } else {
-      if (destination === undefined) {
-        destination = `/@${
-          status.getIn(['reblog', 'account', 'acct'], status.getIn(['account', 'acct']))
-        }/${
-          status.getIn(['reblog', 'id'], status.get('id'))
-        }`;
-      }
-      history.push(destination);
-    }
-
-    e.preventDefault();
-  };
-
   handleToggleMediaVisibility = () => {
     this.setState({ showMedia: !this.state.showMedia });
+  };
+
+  // Polyam: Changed to also handle collapsing
+  // Clicking on a collapsed toot should uncollapse it
+  // When shift-clicking, it should collapse
+  // Otherwise handle clicks as usual
+  handleClick = e => {
+    e.preventDefault();
+    if (e.button === 0 && this.state.isCollapsed) {
+      this.setCollapsed(false);
+    } else if (e.button === 0 && e.shiftKey) {
+      this.setCollapsed(true);
+    } else {
+      this.handleHotkeyOpen(e);
+    }
+  };
+
+  handleMouseUp = e => {
+    // Only handle clicks on the empty space above the content
+
+    if (e.target !== e.currentTarget && e.detail >= 1) {
+      return;
+    }
+
+    this.handleClick(e);
   };
 
   handleExpandedToggle = () => {
@@ -477,13 +447,40 @@ class Status extends ImmutablePureComponent {
     this.props.onMention(this.props.status.get('account'));
   };
 
-  handleHotkeyOpen = () => {
+  handleHotkeyOpen = (e) => {
+    if (this.props.onClick) {
+      this.props.onClick();
+      return;
+    }
+    const { history } = this.props;
     const status = this.props.status;
-    this.props.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
+
+    if (!history) {
+      return;
+    }
+
+    const path = `/@${status.getIn(['account', 'acct'])}/${status.get('id')}`;
+
+    if (e?.button === 0 && !(e?.ctrlKey || e?.metaKey)) {
+      history.push(path);
+    } else if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
+      window.open(path, '_blank', 'noreferrer noopener');
+    }
   };
 
   handleHotkeyOpenProfile = () => {
-    this.props.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
+    this._openProfile();
+  };
+
+  _openProfile = () => {
+    const { history } = this.props;
+    const status = this.props.status;
+
+    if (!history) {
+      return;
+    }
+
+    history.push(`/@${status.getIn(['account', 'acct'])}`);
   };
 
   handleHotkeyMoveUp = e => {
@@ -494,10 +491,10 @@ class Status extends ImmutablePureComponent {
     this.props.onMoveDown(this.props.containerId || this.props.id, e.target.getAttribute('data-featured'));
   };
 
+  // Polyam: Collapsing
   handleHotkeyCollapse = () => {
     if (!this.props.settings.getIn(['collapsed', 'enabled']))
       return;
-
     this.setCollapsed(!this.state.isCollapsed);
   };
 
@@ -518,6 +515,10 @@ class Status extends ImmutablePureComponent {
     this.node = c;
   };
 
+  handleCollapsedToggle = isCollapsed => {
+    this.props.onToggleCollapsed(this.props.status, isCollapsed);
+  };
+
   handleTranslate = () => {
     this.props.onTranslate(this.props.status);
   };
@@ -536,15 +537,11 @@ class Status extends ImmutablePureComponent {
 
   render () {
     const { intl, hidden, featured, unfocusable, unread, pictureInPicture, previousId, nextInReplyToId, rootId, skipPrepend, avatarSize = 46 } = this.props;
-    const {
-      parseClick,
-      setCollapsed,
-    } = this;
+
     const {
       status,
       account,
       settings,
-      collapsed,
       muted,
       intersectionObserverWrapper,
       onOpenVideo,
@@ -554,7 +551,11 @@ class Status extends ImmutablePureComponent {
       history,
       ...other
     } = this.props;
+
+    // Polyam: Collapsing
+    const { setCollapsed } = this;
     const { isCollapsed } = this.state;
+
     let attachments = null;
 
     //  Depending on user settings, some media are considered as parts of the
@@ -566,6 +567,7 @@ class Status extends ImmutablePureComponent {
     let extraMediaIcons = [];
     let media = contentMedia;
     let mediaIcons = contentMediaIcons;
+    let statusAvatar;
 
     if (settings.getIn(['content_warnings', 'media_outside'])) {
       media = extraMedia;
@@ -589,9 +591,10 @@ class Status extends ImmutablePureComponent {
       moveDown: this.handleHotkeyMoveDown,
       toggleHidden: this.handleExpandedToggle,
       bookmark: this.handleHotkeyBookmark,
-      toggleCollapse: this.handleHotkeyCollapse,
       toggleSensitive: this.handleHotkeyToggleSensitive,
       openMedia: this.handleHotkeyOpenMedia,
+      // Polyam additions
+      toggleCollapse: this.handleHotkeyCollapse,
     };
 
     let prepend, rebloggedByText;
@@ -601,6 +604,9 @@ class Status extends ImmutablePureComponent {
     const connectReply = nextInReplyToId && nextInReplyToId === status.get('id');
     const matchedFilters = status.get('matched_filters');
     const hidden_by_moderators = status.get('hidden_by_moderators');
+
+    const collapseEnabled = settings.getIn(['collapsed', 'enabled']);
+    const showActionBar = settings.getIn(['collapsed', 'show_action_bar']);
 
     if (hidden) {
       return (
@@ -751,7 +757,7 @@ class Status extends ImmutablePureComponent {
 
     if (status.get('poll')) {
       const language = status.getIn(['translation', 'language']) || status.get('language');
-      contentMedia.push(<PollContainer key='media-poll' pollId={status.get('poll')} status={status} collapsed={isCollapsed} lang={language} />);
+      contentMedia.push(<PollContainer key='media-poll' pollId={status.get('poll')} status={status} lang={language} collapsed={isCollapsed} />);
       contentMediaIcons.push('tasks');
     }
 
@@ -776,20 +782,19 @@ class Status extends ImmutablePureComponent {
         <StatusPrepend
           type={this.props.prepend}
           account={account}
-          parseClick={parseClick}
           notificationId={this.props.notificationId}
-        >
-          {muted && settings.getIn(['collapsed', 'enabled']) && (
-            <div className='notification__message-collapse-button'>
-              <CollapseButton collapsed={isCollapsed} setCollapsed={setCollapsed} />
-            </div>
-          )}
-        </StatusPrepend>
+        />
       );
     }
 
     if (this.props.prepend === 'reblog') {
       rebloggedByText = intl.formatMessage({ id: 'status.reblogged_by', defaultMessage: '{name} boosted' }, { name: account.get('acct') });
+    }
+
+    if (account === undefined || account == null) {
+      statusAvatar = <Avatar account={status.get('account')} size={avatarSize} />;
+    } else {
+      statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
 
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
@@ -815,38 +820,43 @@ class Status extends ImmutablePureComponent {
             {(connectReply || connectUp || connectToRoot) && <div className={classNames('status__line', { 'status__line--full': connectReply, 'status__line--first': !status.get('in_reply_to_id') && !connectToRoot })} />}
 
             {(!muted || !isCollapsed) && (
-              /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
-              <header onClick={this.parseClick} className='status__info'>
-                <StatusHeader
-                  status={status}
-                  friend={account}
-                  collapsed={isCollapsed}
-                  parseClick={parseClick}
-                  avatarSize={avatarSize}
-                />
+              <header onMouseUp={this.handleMouseUp} className='status__info'>
+                <Permalink
+                  href={status.getIn(['account', 'url'])}
+                  to={`/@${status.getIn(['account', 'acct'])}`}
+                  title={status.getIn(['account', 'acct'])}
+                  data-hover-card-account={status.getIn(['account', 'id'])}
+                  className='status__display-name'
+                >
+                  <div className='status__avatar'>{statusAvatar}</div>
+
+                  <DisplayName account={status.get('account')} />
+                </Permalink>
 
                 <StatusIcons
                   status={status}
                   mediaIcons={contentMediaIcons.concat(extraMediaIcons)}
-                  collapsible={!muted && settings.getIn(['collapsed', 'enabled'])}
+                  settings={settings.get('status_icons')}
+                  collapsible={!muted && collapseEnabled}
                   collapsed={isCollapsed}
                   setCollapsed={setCollapsed}
-                  settings={settings.get('status_icons')}
                 />
               </header>
             )}
             <StatusContent
               status={status}
+              onClick={this.handleClick}
+              onTranslate={this.handleTranslate}
+              collapsible={!collapseEnabled}
               media={contentMedia}
               extraMedia={extraMedia}
               mediaIcons={contentMediaIcons}
               expanded={isExpanded}
               onExpandedToggle={this.handleExpandedToggle}
-              onTranslate={this.handleTranslate}
-              parseClick={parseClick}
-              disabled={!history}
+              onCollapsedToggle={this.handleCollapsedToggle}
               tagLinks={settings.get('tag_misleading_links')}
               rewriteMentions={settings.get('rewrite_mentions')}
+              collapsed={isCollapsed}
               {...statusContentProps}
             />
 
@@ -855,7 +865,7 @@ class Status extends ImmutablePureComponent {
               reactions={status.get('reactions')}
             />
 
-            {(!isCollapsed || !(muted || !settings.getIn(['collapsed', 'show_action_bar']))) && (
+            {(!isCollapsed || !(muted || !showActionBar)) && (
               <StatusActionBar
                 status={status}
                 account={status.get('account')}
@@ -864,6 +874,7 @@ class Status extends ImmutablePureComponent {
                 {...other}
               />
             )}
+
             {notification && (
               <NotificationOverlayContainer
                 notification={notification}

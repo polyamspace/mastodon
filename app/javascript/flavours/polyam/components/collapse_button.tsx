@@ -1,4 +1,6 @@
-import PropTypes from 'prop-types';
+// Polyam: This used to be an upstream component
+// It has been kept and converted to TS
+
 import { useCallback } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
@@ -12,16 +14,22 @@ const messages = defineMessages({
   uncollapse: { id: 'status.uncollapse', defaultMessage: 'Uncollapse' },
 });
 
-export const CollapseButton = ({ collapsed, setCollapsed }) => {
+export const CollapseButton: React.FC<{
+  collapsed: boolean;
+  setCollapsed: (value: boolean) => void;
+}> = ({ collapsed, setCollapsed }) => {
   const intl = useIntl();
 
-  const handleCollapsedClick = useCallback((e) => {
-    if (e.button === 0) {
-      setCollapsed(!collapsed);
-      e.preventDefault();
-      e.stopPropagation();
-    }
-  }, [collapsed, setCollapsed]);
+  const handleCollapsedClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (e.button === 0) {
+        setCollapsed(!collapsed);
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    },
+    [collapsed, setCollapsed],
+  );
 
   return (
     <IconButton
@@ -29,18 +37,13 @@ export const CollapseButton = ({ collapsed, setCollapsed }) => {
       animate
       active={collapsed}
       title={
-        collapsed ?
-          intl.formatMessage(messages.uncollapse) :
-          intl.formatMessage(messages.collapse)
+        collapsed
+          ? intl.formatMessage(messages.uncollapse)
+          : intl.formatMessage(messages.collapse)
       }
       icon='angle-double-up'
       iconComponent={CollapseIcon}
       onClick={handleCollapsedClick}
     />
   );
-};
-
-CollapseButton.propTypes = {
-  collapsed: PropTypes.bool,
-  setCollapsed: PropTypes.func.isRequired,
 };

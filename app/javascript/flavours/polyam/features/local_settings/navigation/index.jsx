@@ -63,6 +63,7 @@ class LocalSettingsNavigation extends PureComponent {
           iconComponent={WarningIcon}
           title={intl.formatMessage(messages.content_warnings)}
         />
+        {/* Polyam: Collapsing kept from upstream */}
         <LocalSettingsNavigationItem
           active={index === 3}
           index={3}
