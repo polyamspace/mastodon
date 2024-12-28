@@ -153,7 +153,9 @@ class StatusContent extends PureComponent {
     // from react-router
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    // Polyam additions
+    collapsed: PropTypes.bool,
   };
 
   static defaultProps = {

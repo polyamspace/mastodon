@@ -17,9 +17,12 @@ import VideoIcon from '@/awesome-icons/solid/video.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { languages } from 'flavours/polyam/initial_state';
 
+import { CollapseButton } from './collapse_button';
 import { VisibilityIcon } from './visibility_icon';
 
 const messages = defineMessages({
+  collapse: { id: 'status.collapse', defaultMessage: 'Collapse' },
+  uncollapse: { id: 'status.uncollapse', defaultMessage: 'Uncollapse' },
   inReplyTo: { id: 'status.in_reply_to', defaultMessage: 'This toot is a reply' },
   previewCard: { id: 'status.has_preview_card', defaultMessage: 'Features an attached preview card' },
   pictures: { id: 'status.has_pictures', defaultMessage: 'Features attached pictures' },
@@ -54,6 +57,9 @@ class StatusIcons extends PureComponent {
     mediaIcons: PropTypes.arrayOf(PropTypes.string),
     intl: PropTypes.object.isRequired,
     settings: ImmutablePropTypes.map.isRequired,
+    collapsible: PropTypes.bool,
+    collapsed: PropTypes.bool,
+    setCollapsed: PropTypes.func,
   };
 
   renderIcon (mediaIcon) {
@@ -102,6 +108,9 @@ class StatusIcons extends PureComponent {
       mediaIcons,
       settings,
       intl,
+      collapsible,
+      collapsed,
+      setCollapsed,
     } = this.props;
 
     return (
@@ -134,6 +143,7 @@ class StatusIcons extends PureComponent {
           />}
         {settings.get('media') && !!mediaIcons && mediaIcons.map(icon => this.renderIcon(icon))}
         {settings.get('visibility') && <VisibilityIcon visibility={status.get('visibility')} />}
+        {collapsible && <CollapseButton collapsed={collapsed} setCollapsed={setCollapsed} />}
       </div>
     );
   }

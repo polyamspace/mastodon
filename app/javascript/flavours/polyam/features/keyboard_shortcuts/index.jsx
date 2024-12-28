@@ -5,6 +5,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
 
 import QuestionIcon from '@/awesome-icons/solid/question.svg?react';
 import Column from 'flavours/polyam/components/column';
@@ -14,15 +15,20 @@ const messages = defineMessages({
   heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },
 });
 
+const mapStateToProps = state => ({
+  collapseEnabled: state.getIn(['local_settings', 'collapsed', 'enabled']),
+});
+
 class KeyboardShortcuts extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
+    collapseEnabled: PropTypes.bool,
   };
 
   render () {
-    const { intl, multiColumn } = this.props;
+    const { intl, collapseEnabled, multiColumn } = this.props;
 
     return (
       <Column>
@@ -82,6 +88,12 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><kbd>h</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.toggle_sensitivity' defaultMessage='to show/hide media' /></td>
               </tr>
+              {collapseEnabled && (
+                <tr>
+                  <td><kbd>shift</kbd>+<kbd>x</kbd></td>
+                  <td><FormattedMessage id='keyboard_shortcuts.toggle_collapse' defaultMessage='to collapse/uncollapse toots' /></td>
+                </tr>
+              )}
               <tr>
                 <td><kbd>up</kbd>, <kbd>k</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.up' defaultMessage='to move up in the list' /></td>
@@ -187,4 +199,4 @@ class KeyboardShortcuts extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(KeyboardShortcuts);
+export default connect(mapStateToProps)(injectIntl(KeyboardShortcuts));

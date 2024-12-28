@@ -49,6 +49,8 @@ class Poll extends ImmutablePureComponent {
     refresh: PropTypes.func,
     onVote: PropTypes.func,
     onInteractionModal: PropTypes.func,
+    // Polyam additions
+    collapsed: PropTypes.bool,
   };
 
   state = {
@@ -139,7 +141,7 @@ class Poll extends ImmutablePureComponent {
   };
 
   renderOption (option, optionIndex, showResults) {
-    const { poll, lang, disabled, intl } = this.props;
+    const { poll, lang, disabled, intl, collapsed } = this.props;
     const pollVotesCount  = poll.get('voters_count') || poll.get('votes_count');
     const percent         = pollVotesCount === 0 ? 0 : (option.get('votes_count') / pollVotesCount) * 100;
     const leading         = poll.get('options').filterNot(other => other.get('title') === option.get('title')).every(other => option.get('votes_count') >= other.get('votes_count'));
@@ -158,6 +160,7 @@ class Poll extends ImmutablePureComponent {
       <li key={option.get('title')}>
         <label className={classNames('poll__option', { selectable: !showResults })}>
           <input
+            tabIndex={collapsed ? -1 : null}
             name='vote-options'
             type={poll.get('multiple') ? 'checkbox' : 'radio'}
             value={optionIndex}
@@ -168,6 +171,7 @@ class Poll extends ImmutablePureComponent {
 
           {!showResults && (
             <span
+              tabIndex={collapsed ? -1 : null}
               className={classNames('poll__input', { checkbox: poll.get('multiple'), active })}
               role={poll.get('multiple') ? 'checkbox' : 'radio'}
               onKeyPress={this.handleOptionKeyPress}
@@ -211,7 +215,7 @@ class Poll extends ImmutablePureComponent {
   }
 
   render () {
-    const { poll, intl } = this.props;
+    const { poll, intl, collapsed } = this.props;
     const { revealed, expired } = this.state;
 
     if (!poll) {
@@ -237,9 +241,9 @@ class Poll extends ImmutablePureComponent {
         </ul>
 
         <div className='poll__footer'>
-          {!showResults && <button className='button button-secondary' disabled={disabled} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
-          {!showResults && <><button className='poll__link' onClick={this.handleReveal}><FormattedMessage id='poll.reveal' defaultMessage='See results' /></button> · </>}
-          {showResults && !this.props.disabled && <><button className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </>}
+          {!showResults && <button tabIndex={collapsed ? -1 : null} className='button button-secondary' disabled={disabled} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
+          {!showResults && <><button tabIndex={collapsed ? -1 : null} className='poll__link' onClick={this.handleReveal}><FormattedMessage id='poll.reveal' defaultMessage='See results' /></button> · </>}
+          {showResults && !this.props.disabled && <><button tabIndex={collapsed ? -1 : null} className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </>}
           {votesCount}
           {poll.get('expires_at') && <> · {timeRemaining}</>}
         </div>

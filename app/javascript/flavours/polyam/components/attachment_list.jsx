@@ -17,10 +17,12 @@ export default class AttachmentList extends ImmutablePureComponent {
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
     compact: PropTypes.bool,
+    // Polyam additions
+    collapsed: PropTypes.bool,
   };
 
   render () {
-    const { media, compact } = this.props;
+    const { media, compact, collapsed } = this.props;
 
     return (
       <div className={classNames('attachment-list', { compact })}>
@@ -36,7 +38,7 @@ export default class AttachmentList extends ImmutablePureComponent {
 
             return (
               <li key={attachment.get('id')}>
-                <a href={displayUrl} target='_blank' rel='noopener noreferrer'>
+                <a tabIndex={collapsed ? -1 : null} href={displayUrl} target='_blank' rel='noopener noreferrer'>
                   {compact && <Icon id='link' icon={LinkIcon} />}
                   {compact && ' ' }
                   {displayUrl ? filename(displayUrl) : <FormattedMessage id='attachments_list.unprocessed' defaultMessage='(unprocessed)' />}
