@@ -54,6 +54,11 @@ class MoveUserSettings < ActiveRecord::Migration[6.1]
     default_content_type: 'default_content_type',
     flavour: 'flavour',
     skin: 'skin',
+    # Polyam additions
+    alt_text_reminder: 'web.alt_text_reminder',
+    visible_reactions: 'web.visible_reactions',
+    notification_sound: 'web.notification_sound',
+    norss: 'norss',
   }.freeze
 
   class LegacySetting < ApplicationRecord
