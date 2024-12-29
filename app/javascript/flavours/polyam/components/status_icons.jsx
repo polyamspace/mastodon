@@ -6,15 +6,11 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import ImageIcon from '@/awesome-icons/regular/image.svg?react';
-import PollIcon from '@/awesome-icons/solid/bars-progress.svg?react';
 import CommentingIcon from '@/awesome-icons/solid/comment-dots.svg?react';
 import CommentIcon from '@/awesome-icons/solid/comment.svg?react';
 import HomeIcon from '@/awesome-icons/solid/house.svg?react';
-import LinkIcon from '@/awesome-icons/solid/link.svg?react';
-import MusicIcon from '@/awesome-icons/solid/music.svg?react';
-import VideoIcon from '@/awesome-icons/solid/video.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
+import { MediaIcon } from 'flavours/polyam/components/media_icon';
 import { languages } from 'flavours/polyam/initial_state';
 
 import { CollapseButton } from './collapse_button';
@@ -24,12 +20,7 @@ const messages = defineMessages({
   collapse: { id: 'status.collapse', defaultMessage: 'Collapse' },
   uncollapse: { id: 'status.uncollapse', defaultMessage: 'Uncollapse' },
   inReplyTo: { id: 'status.in_reply_to', defaultMessage: 'This toot is a reply' },
-  previewCard: { id: 'status.has_preview_card', defaultMessage: 'Features an attached preview card' },
-  pictures: { id: 'status.has_pictures', defaultMessage: 'Features attached pictures' },
-  poll: { id: 'status.is_poll', defaultMessage: 'This toot is a poll' },
   thread: { id: 'status.is_thread', defaultMessage: 'This toot is part of a thread' },
-  video: { id: 'status.has_video', defaultMessage: 'Features attached videos' },
-  audio: { id: 'status.has_audio', defaultMessage: 'Features attached audio files' },
   localOnly: { id: 'status.local_only', defaultMessage: 'Only visible from your instance' },
 });
 
@@ -61,46 +52,6 @@ class StatusIcons extends PureComponent {
     collapsed: PropTypes.bool,
     setCollapsed: PropTypes.func,
   };
-
-  renderIcon (mediaIcon) {
-    const { intl } = this.props;
-
-    let title, iconComponent;
-
-    switch (mediaIcon) {
-    case 'link':
-      title = messages.previewCard;
-      iconComponent = LinkIcon;
-      break;
-    case 'picture-o':
-      title = messages.pictures;
-      iconComponent = ImageIcon;
-      break;
-    case 'tasks':
-      title = messages.poll;
-      iconComponent = PollIcon;
-      break;
-    case 'video-camera':
-      title = messages.video;
-      iconComponent = VideoIcon;
-      break;
-    case 'music':
-      title = messages.audio;
-      iconComponent = MusicIcon;
-      break;
-    }
-
-    return (
-      <Icon
-        className='status__media-icon'
-        key={`media-icon--${mediaIcon}`}
-        id={mediaIcon}
-        icon={iconComponent}
-        aria-hidden='true'
-        title={title && intl.formatMessage(title)}
-      />
-    );
-  }
 
   render () {
     const {
@@ -141,7 +92,7 @@ class StatusIcons extends PureComponent {
             aria-hidden='true'
             title={intl.formatMessage(messages.localOnly)}
           />}
-        {settings.get('media') && !!mediaIcons && mediaIcons.map(icon => this.renderIcon(icon))}
+        {settings.get('media') && !!mediaIcons && mediaIcons.map(icon => (<MediaIcon key={`media-icon--${icon}`} className='status__media-icon' icon={icon} />))}
         {settings.get('visibility') && <VisibilityIcon visibility={status.get('visibility')} />}
         {collapsible && <CollapseButton collapsed={collapsed} setCollapsed={setCollapsed} />}
       </div>
