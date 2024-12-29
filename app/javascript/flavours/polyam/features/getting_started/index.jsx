@@ -29,7 +29,7 @@ import { fetchFollowRequests } from 'flavours/polyam/actions/accounts';
 import { fetchLists } from 'flavours/polyam/actions/lists';
 import { openModal } from 'flavours/polyam/actions/modal';
 import Column from 'flavours/polyam/features/ui/components/column';
-import LinkFooter from 'flavours/polyam/features/ui/components/link_footer';
+import { LinkFooter } from 'flavours/polyam/features/ui/components/link_footer';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { canManageReports, canViewAdminDashboard } from 'flavours/polyam/permissions';
 import { preferencesLink } from 'flavours/polyam/utils/backend_links';

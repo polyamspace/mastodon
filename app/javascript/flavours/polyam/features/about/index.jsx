@@ -14,13 +14,13 @@ import ChevronDownIcon from '@/awesome-icons/solid/chevron-down.svg?react';
 import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import CircleInfo from '@/awesome-icons/solid/circle-info.svg?react';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'flavours/polyam/actions/server';
+import { Account } from 'flavours/polyam/components/account';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
 import { Icon } from 'flavours/polyam/components/icon';
 import { ServerHeroImage } from 'flavours/polyam/components/server_hero_image';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
-import Account from 'flavours/polyam/containers/account_container';
-import LinkFooter from 'flavours/polyam/features/ui/components/link_footer';
+import { LinkFooter } from 'flavours/polyam/features/ui/components/link_footer';
 
 import { ServerLimits } from './components/server_limits';
 
@@ -144,7 +144,7 @@ class About extends PureComponent {
           <div className='about__header'>
             <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
             <h1>{isLoading ? <Skeleton width='10ch' /> : server.get('domain')}</h1>
-            <p>{server.get('description') ? server.get('description') : (<FormattedMessage id='about.powered_by' defaultMessage='Decentralized social media powered by {mastodon}' values={{ mastodon: <a href='https://joinmastodon.org' className='about__mail' target='_blank'>Mastodon</a> }} />)}</p>
+            <p>{server.get('description') ? server.get('description') : (<FormattedMessage id='about.powered_by' defaultMessage='Decentralized social media powered by {mastodon}' values={{ mastodon: <a href='https://joinmastodon.org' className='about__mail' target='_blank' rel='noopener'>Mastodon</a> }} />)}</p>
           </div>
 
           <div className='about__meta'>

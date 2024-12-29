@@ -11,11 +11,11 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
+import { Account } from 'flavours/polyam/components/account';
 
 import { fetchMutes, expandMutes } from '../../actions/mutes';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
-import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 
 const messages = defineMessages({
@@ -72,7 +72,7 @@ class Mutes extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
-            <AccountContainer key={id} id={id} defaultAction='mute' />,
+            <Account key={id} id={id} defaultAction='mute' />,
           )}
         </ScrollableList>
 

@@ -139,7 +139,9 @@
 
     .column > .scrollable,
     .tabs-bar__wrapper .column-header,
-    .tabs-bar__wrapper .column-back-button {
+    .tabs-bar__wrapper .column-back-button,
+    .explore__search-header,
+    .column-search-header {
       border-left: 0;
       border-right: 0;
     }
@@ -182,17 +184,9 @@
   }
 }
 
-.explore__search-header {
-  display: none;
-}
-
 @media screen and (max-width: $no-gap-breakpoint - 1px) {
   .columns-area__panels__pane--compositional {
     display: none;
-  }
-
-  .explore__search-header {
-    display: flex;
   }
 }
 

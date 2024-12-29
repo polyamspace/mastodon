@@ -71,27 +71,13 @@ export default class ErrorBoundary extends PureComponent {
   };
 
   render() {
-    const { hasError, copied, errorMessage, stackTrace, mappedStackTrace, componentStack } = this.state;
+    const { hasError, copied, errorMessage } = this.state;
 
     if (!hasError) {
       return this.props.children;
     }
 
     const likelyBrowserAddonIssue = errorMessage && errorMessage.includes('NotFoundError');
-
-    let debugInfo = '';
-    if (stackTrace) {
-      debugInfo += 'Stack trace\n-----------\n\n```\n' + errorMessage + '\n' + stackTrace.toString() + '\n```';
-    }
-    if (mappedStackTrace) {
-      debugInfo += 'Mapped stack trace\n-----------\n\n```\n' + errorMessage + '\n' + mappedStackTrace.toString() + '\n```';
-    }
-    if (componentStack) {
-      if (debugInfo) {
-        debugInfo += '\n\n\n';
-      }
-      debugInfo += 'React component stack\n---------------------\n\n```\n' + componentStack.toString() + '\n```';
-    }
 
     return (
       <div className='error-boundary'>
@@ -112,16 +98,7 @@ export default class ErrorBoundary extends PureComponent {
             )}
           </p>
 
-          { debugInfo !== '' && (
-            <textarea
-              className='web_app_crash-stacktrace'
-              value={debugInfo}
-              rows='10'
-              readOnly
-            />
-          )}
-
-          <p className='error-boundary__footer'>Mastodon v{version} · <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='errors.unexpected_crash.report_issue' defaultMessage='Report issue' /></a> · <button onClick={this.handleCopyStackTrace} className={copied ? 'copied' : ''}><FormattedMessage id='errors.unexpected_crash.copy_stacktrace' defaultMessage='Copy stacktrace to clipboard' /></button></p>
+          <p className='error-boundary__footer'>Mastodon v{version} · <a href={source_url} rel='noopener' target='_blank'><FormattedMessage id='errors.unexpected_crash.report_issue' defaultMessage='Report issue' /></a> · <button onClick={this.handleCopyStackTrace} className={copied ? 'copied' : ''}><FormattedMessage id='errors.unexpected_crash.copy_stacktrace' defaultMessage='Copy stacktrace to clipboard' /></button></p>
         </div>
 
         <Helmet>

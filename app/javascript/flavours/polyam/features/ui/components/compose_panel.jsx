@@ -5,11 +5,10 @@ import { connect } from 'react-redux';
 
 import { mountCompose, unmountCompose } from 'flavours/polyam/actions/compose';
 import ServerBanner from 'flavours/polyam/components/server_banner';
+import { Search } from 'flavours/polyam/features/compose/components/search';
 import ComposeFormContainer from 'flavours/polyam/features/compose/containers/compose_form_container';
-import SearchContainer from 'flavours/polyam/features/compose/containers/search_container';
+import { LinkFooter } from 'flavours/polyam/features/ui/components/link_footer';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
-
-import LinkFooter from './link_footer';
 
 class ComposePanel extends PureComponent {
 
@@ -33,7 +32,7 @@ class ComposePanel extends PureComponent {
 
     return (
       <div className='compose-panel'>
-        <SearchContainer openInRoute />
+        <Search openInRoute />
 
         {!signedIn && (
           <>

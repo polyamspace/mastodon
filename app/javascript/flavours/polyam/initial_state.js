@@ -50,6 +50,7 @@
  * @property {string} publish_button_text
  * @property {string} sso_redirect
  * @property {string} status_page_url
+ * @property {boolean} terms_of_service_enabled
  * @property {boolean} system_emoji_font
  * @property {string} default_content_type
  * @property {boolean} show_reblogs_in_public_timelines
@@ -143,6 +144,7 @@ export const languages = initialState?.languages;
 export const criticalUpdatesPending = initialState?.critical_updates_pending;
 export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
+export const termsOfServiceEnabled = getMeta('terms_of_service_enabled');
 
 // Glitch-soc-specific settings
 export const maxFeedHashtags = (initialState && initialState.max_feed_hashtags) || 4;

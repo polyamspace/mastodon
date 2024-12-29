@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { cancelReplyCompose } from 'flavours/polyam/actions/compose';
-import Account from 'flavours/polyam/components/account';
+import { Account } from 'flavours/polyam/components/account';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { me } from 'flavours/polyam/initial_state';
 
@@ -19,7 +19,6 @@ const messages = defineMessages({
 export const NavigationBar = () => {
   const dispatch = useDispatch();
   const intl = useIntl();
-  const account = useSelector(state => state.getIn(['accounts', me]));
   const isReplying = useSelector(state => !!state.getIn(['compose', 'in_reply_to']));
 
   const handleCancelClick = useCallback(() => {
@@ -28,7 +27,7 @@ export const NavigationBar = () => {
 
   return (
     <div className='navigation-bar'>
-      <Account account={account} minimal />
+      <Account id={me} minimal />
       {isReplying ? <IconButton title={intl.formatMessage(messages.cancel)} iconComponent={CloseIcon} onClick={handleCancelClick} /> : <ActionBar />}
     </div>
   );

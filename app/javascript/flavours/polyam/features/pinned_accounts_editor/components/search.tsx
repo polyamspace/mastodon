@@ -10,8 +10,8 @@ import { Icon } from 'flavours/polyam/components/icon';
 
 const messages = defineMessages({
   search: {
-    id: 'lists.search_placeholder',
-    defaultMessage: 'Search people you follow',
+    id: 'search.placeholder',
+    defaultMessage: 'Search',
   },
 });
 

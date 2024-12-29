@@ -13,7 +13,7 @@ import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
 import PersonIcon from '@/awesome-icons/solid/user.svg?react';
 import { updateAccount } from 'flavours/polyam/actions/accounts';
 import { Button } from 'flavours/polyam/components/button';
-import Column from 'flavours/polyam/components/column';
+import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { Icon } from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';

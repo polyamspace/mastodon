@@ -66,6 +66,7 @@ defaults: &defaults
   invite_text_filter: ''
   publish_button_text: ''
   captcha_enabled: false
+  allow_referer_origin: false
 
 development:
   <<: *defaults

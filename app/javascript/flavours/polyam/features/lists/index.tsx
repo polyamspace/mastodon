@@ -11,7 +11,7 @@ import ListAltIcon from '@/awesome-icons/solid/rectangle-list.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { fetchLists } from 'flavours/polyam/actions/lists';
 import { openModal } from 'flavours/polyam/actions/modal';
-import Column from 'flavours/polyam/components/column';
+import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { Icon } from 'flavours/polyam/components/icon';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';

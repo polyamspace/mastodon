@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 
 import ExploreIcon from '@/awesome-icons/solid/compass.svg?react';
 import { expandLinkTimeline } from 'flavours/polyam/actions/timelines';
-import Column from 'flavours/polyam/components/column';
+import { Column } from 'flavours/polyam/components/column';
+import type { ColumnRef } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import StatusListContainer from 'flavours/polyam/features/ui/containers/status_list_container';
 import type { Card } from 'flavours/polyam/models/status';
@@ -17,7 +18,7 @@ export const LinkTimeline: React.FC<{
   const { url } = useParams<{ url: string }>();
   const decodedUrl = url ? decodeURIComponent(url) : undefined;
   const dispatch = useAppDispatch();
-  const columnRef = useRef<Column>(null);
+  const columnRef = useRef<ColumnRef>(null);
   const firstStatusId = useAppSelector((state) =>
     decodedUrl
       ? // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
