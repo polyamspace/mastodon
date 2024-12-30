@@ -836,8 +836,9 @@ class Status extends ImmutablePureComponent {
 
             {status.get('spoiler_text').length > 0 && <ContentWarning text={status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml')} expanded={expanded} onClick={this.handleExpandedToggle} icons={mediaIcons} />}
 
+            {/* Polyam: div with className to allow collapsing */}
             {expanded && (
-              <>
+              <div className='status__content__wrapper'>
                 <StatusContent
                   status={status}
                   onClick={this.handleClick}
@@ -853,7 +854,7 @@ class Status extends ImmutablePureComponent {
 
                 {media}
                 {hashtagBar}
-              </>
+              </div>
             )}
 
             {/* This is a glitch-soc addition to have a placeholder */}
