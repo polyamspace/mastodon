@@ -11,14 +11,8 @@
   @include status-content;
 }
 
-.status__content {
-  // glitch: necessary for fullwidth media options
-  overflow: visible;
-}
-
 .status__content.status__content--collapsed .status__content__text {
   max-height: 20px * 15; // 15 lines is roughly above 500 characters
-  overflow: hidden;
 }
 
 .status__content__read-more-button,
@@ -168,9 +162,23 @@
     // Polyam: Reactions bar
     .status__content,
     .status__action-bar,
-    .reactions-bar {
+    .reactions-bar,
+    .media-gallery,
+    .video-player,
+    .audio-player,
+    .attachment-list,
+    .picture-in-picture-placeholder,
+    .more-from-author,
+    .status-card,
+    .hashtag-bar,
+    .content-warning,
+    .filter-warning {
       margin-inline-start: $thread-margin;
       width: calc(100% - $thread-margin);
+    }
+
+    .more-from-author {
+      width: calc(100% - $thread-margin + 2px);
     }
 
     .status__content__read-more-button {
@@ -326,14 +334,6 @@
 
   .media-gallery__item-thumbnail {
     cursor: default;
-  }
-
-  .content-warning {
-    margin-bottom: 16px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 }
 
