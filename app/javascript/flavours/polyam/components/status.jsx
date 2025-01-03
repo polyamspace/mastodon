@@ -358,12 +358,16 @@ class Status extends ImmutablePureComponent {
   // Otherwise handle clicks as usual
   handleClick = e => {
     e.preventDefault();
-    if (e.button === 0 && this.state.isCollapsed) {
-      this.setCollapsed(false);
-    } else if (e.button === 0 && e.shiftKey) {
-      this.setCollapsed(true);
-    } else {
-      this.handleHotkeyOpen(e);
+    if (e?.button === 0 && !(e?.ctrlKey || e?.metaKey)) {
+      if (this.state.isCollapsed) {
+        this.setCollapsed(false);
+      } else if (e?.shiftKey) {
+        this.setCollapsed(true);
+      } else {
+        this._openStatus();
+      }
+    } else if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
+      this._openStatus(true);
     }
   };
 
@@ -447,7 +451,11 @@ class Status extends ImmutablePureComponent {
     this.props.onMention(this.props.status.get('account'));
   };
 
-  handleHotkeyOpen = (e) => {
+  handleHotkeyOpen = () => {
+    this._openStatus();
+  };
+
+  _openStatus = (newTab = false) => {
     if (this.props.onClick) {
       this.props.onClick();
       return;
@@ -461,7 +469,7 @@ class Status extends ImmutablePureComponent {
 
     const path = `/@${status.getIn(['account', 'acct'])}/${status.get('id')}`;
 
-    if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
+    if (newTab) {
       window.open(path, '_blank', 'noopener');
     } else {
       history.push(path);
