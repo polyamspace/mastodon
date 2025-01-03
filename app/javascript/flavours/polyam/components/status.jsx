@@ -11,7 +11,6 @@ import { HotKeys } from 'react-hotkeys';
 
 import { ContentWarning } from 'flavours/polyam/components/content_warning';
 import PictureInPicturePlaceholder from 'flavours/polyam/components/picture_in_picture_placeholder';
-import NotificationOverlayContainer from 'flavours/polyam/features/notifications/containers/overlay_container';
 import { autoUnfoldCW } from 'flavours/polyam/utils/content_warning';
 import { withOptionalRouter, WithOptionalRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
@@ -873,12 +872,6 @@ class Status extends ImmutablePureComponent {
                 showReplyCount={settings.get('show_reply_count')}
                 onFilter={matchedFilters || hidden_by_moderators ? this.handleFilterClick : null}
                 {...other}
-              />
-            )}
-
-            {notification && (
-              <NotificationOverlayContainer
-                notification={notification}
               />
             )}
           </div>
