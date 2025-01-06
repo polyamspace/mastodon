@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe InvitePolicy do
   subject { described_class }
 
-  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+  let(:admin)   { Fabricate(:admin_user).account }
   let(:john)    { Fabricate(:user, created_at: 7.days.ago).account }
 
   permissions :index? do

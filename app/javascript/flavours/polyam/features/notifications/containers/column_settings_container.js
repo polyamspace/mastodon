@@ -3,7 +3,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { openModal } from 'flavours/polyam/actions/modal';
-import { initializeNotifications } from 'flavours/polyam/actions/notifications_migration';
+import { fetchNotifications } from 'flavours/polyam/actions/notification_groups';
 
 import { showAlert } from '../../../actions/alerts';
 import { setFilter, requestBrowserPermission } from '../../../actions/notifications';
@@ -61,7 +61,7 @@ const mapDispatchToProps = (dispatch) => ({
     }
 
     if (path[0] === 'group' && path[1] === 'follow') {
-      dispatch(initializeNotifications());
+      dispatch(fetchNotifications());
     }
   },
 

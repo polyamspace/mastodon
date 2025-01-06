@@ -11,7 +11,6 @@ import { HotKeys } from 'react-hotkeys';
 
 import { ContentWarning } from 'flavours/glitch/components/content_warning';
 import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
-import NotificationOverlayContainer from 'flavours/glitch/features/notifications/containers/overlay_container';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
 import { withOptionalRouter, WithOptionalRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
@@ -278,7 +277,12 @@ class Status extends ImmutablePureComponent {
 
   handleClick = e => {
     e.preventDefault();
-    this.handleHotkeyOpen(e);
+
+    if (e?.button === 0 && !(e?.ctrlKey || e?.metaKey)) {
+      this._openStatus();
+    } else if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
+      this._openStatus(true);
+    }
   };
 
   handleMouseUp = e => {
@@ -355,7 +359,11 @@ class Status extends ImmutablePureComponent {
     this.props.onMention(this.props.status.get('account'));
   };
 
-  handleHotkeyOpen = (e) => {
+  handleHotkeyOpen = () => {
+    this._openStatus();
+  };
+
+  _openStatus = (newTab = false) => {
     if (this.props.onClick) {
       this.props.onClick();
       return;
@@ -370,10 +378,10 @@ class Status extends ImmutablePureComponent {
 
     const path = `/@${status.getIn(['account', 'acct'])}/${status.get('id')}`;
 
-    if (e?.button === 0 && !(e?.ctrlKey || e?.metaKey)) {
-      history.push(path);
-    } else if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
+    if (newTab) {
       window.open(path, '_blank', 'noopener');
+    } else {
+      history.push(path);
     }
   };
 
@@ -478,6 +486,7 @@ class Status extends ImmutablePureComponent {
       bookmark: this.handleHotkeyBookmark,
       toggleSensitive: this.handleHotkeyToggleSensitive,
       openMedia: this.handleHotkeyOpenMedia,
+      onTranslate: this.handleTranslate,
     };
 
     let prepend, rebloggedByText;
@@ -744,12 +753,6 @@ class Status extends ImmutablePureComponent {
               onFilter={matchedFilters ? this.handleFilterClick : null}
               {...other}
             />
-
-            {notification && (
-              <NotificationOverlayContainer
-                notification={notification}
-              />
-            )}
           </div>
         </div>
       </HotKeys>

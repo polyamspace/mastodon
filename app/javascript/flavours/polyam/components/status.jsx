@@ -11,7 +11,6 @@ import { HotKeys } from 'react-hotkeys';
 
 import { ContentWarning } from 'flavours/polyam/components/content_warning';
 import PictureInPicturePlaceholder from 'flavours/polyam/components/picture_in_picture_placeholder';
-import NotificationOverlayContainer from 'flavours/polyam/features/notifications/containers/overlay_container';
 import { autoUnfoldCW } from 'flavours/polyam/utils/content_warning';
 import { withOptionalRouter, WithOptionalRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
@@ -359,12 +358,16 @@ class Status extends ImmutablePureComponent {
   // Otherwise handle clicks as usual
   handleClick = e => {
     e.preventDefault();
-    if (e.button === 0 && this.state.isCollapsed) {
-      this.setCollapsed(false);
-    } else if (e.button === 0 && e.shiftKey) {
-      this.setCollapsed(true);
-    } else {
-      this.handleHotkeyOpen(e);
+    if (e?.button === 0 && !(e?.ctrlKey || e?.metaKey)) {
+      if (this.state.isCollapsed) {
+        this.setCollapsed(false);
+      } else if (e?.shiftKey) {
+        this.setCollapsed(true);
+      } else {
+        this._openStatus();
+      }
+    } else if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
+      this._openStatus(true);
     }
   };
 
@@ -448,7 +451,11 @@ class Status extends ImmutablePureComponent {
     this.props.onMention(this.props.status.get('account'));
   };
 
-  handleHotkeyOpen = (e) => {
+  handleHotkeyOpen = () => {
+    this._openStatus();
+  };
+
+  _openStatus = (newTab = false) => {
     if (this.props.onClick) {
       this.props.onClick();
       return;
@@ -462,10 +469,10 @@ class Status extends ImmutablePureComponent {
 
     const path = `/@${status.getIn(['account', 'acct'])}/${status.get('id')}`;
 
-    if (e?.button === 0 && !(e?.ctrlKey || e?.metaKey)) {
-      history.push(path);
-    } else if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
+    if (newTab) {
       window.open(path, '_blank', 'noopener');
+    } else {
+      history.push(path);
     }
   };
 
@@ -586,6 +593,7 @@ class Status extends ImmutablePureComponent {
       bookmark: this.handleHotkeyBookmark,
       toggleSensitive: this.handleHotkeyToggleSensitive,
       openMedia: this.handleHotkeyOpenMedia,
+      onTranslate: this.handleTranslate,
       // Polyam additions
       toggleCollapse: this.handleHotkeyCollapse,
     };
@@ -872,12 +880,6 @@ class Status extends ImmutablePureComponent {
                 showReplyCount={settings.get('show_reply_count')}
                 onFilter={matchedFilters || hidden_by_moderators ? this.handleFilterClick : null}
                 {...other}
-              />
-            )}
-
-            {notification && (
-              <NotificationOverlayContainer
-                notification={notification}
               />
             )}
           </div>

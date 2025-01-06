@@ -140,7 +140,6 @@ export const trendsAsLanding = getMeta('trends_as_landing_page');
 export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
-export const languages = initialState?.languages;
 export const criticalUpdatesPending = initialState?.critical_updates_pending;
 export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
@@ -161,6 +160,17 @@ export const searchPreview = getMeta('search_preview');
 export const publishButtonText = getMeta('publish_button_text');
 export const showReblogsPublicTimelines = getMeta('show_reblogs_in_public_timelines');
 export const showRepliesPublicTimelines = getMeta('show_replies_in_public_timelines');
+
+const displayNames = Intl.DisplayNames && new Intl.DisplayNames(getMeta('locale'), {
+  type: 'language',
+  fallback: 'none',
+  languageDisplay: 'standard',
+});
+
+export const languages = initialState?.languages?.map(lang => {
+  // zh-YUE is not a valid CLDR unicode_language_id
+  return [lang[0], displayNames?.of(lang[0].replace('zh-YUE', 'yue')) || lang[1], lang[2]];
+});
 
 /**
  * @returns {string | undefined}
