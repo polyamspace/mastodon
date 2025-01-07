@@ -86,6 +86,7 @@ module IconHelper
     toggle_off: 'toggle-off',
     toggle_on: 'toggle-on',
     trending_up: 'arrow-trend-up',
+    tune: 'sliders',
     visibility: 'eye',
     visibility_off: 'eye-slash',
     warning: 'triangle-exclamation',
