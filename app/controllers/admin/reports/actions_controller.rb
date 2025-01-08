@@ -12,7 +12,7 @@ class Admin::Reports::ActionsController < Admin::BaseController
     authorize @report, :show?
 
     case action_from_button
-    when 'delete', 'hide', 'mark_as_sensitive'
+    when 'delete', 'mark_as_sensitive'
       status_batch_action = Admin::StatusBatchAction.new(
         type: action_from_button,
         status_ids: @report.status_ids,
@@ -58,8 +58,6 @@ class Admin::Reports::ActionsController < Admin::BaseController
       'suspend'
     elsif params[:moderation_action]
       params[:moderation_action]
-    elsif params[:hide]
-      'hide'
     end
   end
 end

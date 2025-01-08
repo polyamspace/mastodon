@@ -1,5 +1,5 @@
 - target_acct = @report.target_account.acct
-- warning_action = { 'delete' => 'delete_statuses', 'mark_as_sensitive' => 'mark_statuses_as_sensitive', 'hide' => 'hide_statuses' }.fetch(@moderation_action, @moderation_action)
+- warning_action = { 'delete' => 'delete_statuses', 'mark_as_sensitive' => 'mark_statuses_as_sensitive' }.fetch(@moderation_action, @moderation_action)
 
 - content_for :page_title do
   = t('admin.reports.confirm_action', acct: target_acct)
