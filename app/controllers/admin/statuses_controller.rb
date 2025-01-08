@@ -79,8 +79,6 @@ module Admin
         'remove_from_report'
       elsif params[:delete]
         'delete'
-      elsif params[:hide]
-        'hide'
       end
     end
   end

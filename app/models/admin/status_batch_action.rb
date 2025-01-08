@@ -37,8 +37,6 @@ class Admin::StatusBatchAction
       handle_report!
     when 'remove_from_report'
       handle_remove_from_report!
-    when 'hide'
-      handle_hide!
     end
   end
 
@@ -70,33 +68,6 @@ class Admin::StatusBatchAction
     process_notification!
 
     RemovalWorker.push_bulk(status_ids) { |status_id| [status_id, { 'preserve' => target_account.local?, 'immediate' => !target_account.local? }] }
-  end
-
-  def handle_hide!
-    statuses.find_each do |status|
-      next if status.discarded?
-
-      authorize([:admin, status], :update?)
-
-      CustomFilter.instance_filter.statuses.find_or_create_by(status_id: status.id)
-
-      log_action(:update, status)
-
-      if with_report?
-        report.resolve!(current_account)
-        log_action(:resolve, report)
-      end
-    end
-
-    @warning = target_account.strikes.create!(
-      action: :hide_statuses,
-      account: current_account,
-      report: report,
-      status_ids: status_ids,
-      text: text
-    )
-
-    UserMailer.warning(target_account.user, @warning).deliver_later! if warnable?
   end
 
   def handle_mark_as_sensitive!

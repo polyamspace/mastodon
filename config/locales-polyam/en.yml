@@ -43,15 +43,6 @@ en:
         text: Simple text
         text_hint: Use this for simple recurring keywords and if you do not know regular expressions.
       updated_msg: Registration text filter successfully updated!
-    reports:
-      actions:
-        hide_description_html: The reported toots will be hidden and a strike will be recorded to help you escalate on future infractions by the same account.
-      hide_and_resolve: Hide toots
-      summary:
-        action_preambles:
-          hide_html: 'You are about to <strong>hide</strong> some of <strong>@%{acct}</strong>''s toots. This will:'
-        actions:
-          hide_html: Hide the offending toots behind a warning
     roles:
       privileges:
         bypass_invite_limits: Bypass invite restrictions
