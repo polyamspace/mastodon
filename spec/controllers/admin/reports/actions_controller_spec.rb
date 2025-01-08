@@ -49,14 +49,6 @@ RSpec.describe Admin::Reports::ActionsController do
         expect(response).to have_http_status(200)
       end
     end
-
-    context 'when the action is "hide"' do
-      let(:action) { 'hide' }
-
-      it 'returns http success' do
-        expect(response).to have_http_status(200)
-      end
-    end
   end
 
   describe 'POST #create' do
@@ -127,30 +119,6 @@ RSpec.describe Admin::Reports::ActionsController do
         let(:action) { 'delete' }
 
         it_behaves_like 'common behavior'
-      end
-
-      context 'when the action is "hide"' do
-        let(:action) { 'hide' }
-        let(:statuses) { [reported_status, reported_deleted_status] }
-
-        let(:reported_deleted_status) { Fabricate(:status, account: target_account, deleted_at: 1.day.ago) }
-        let(:reported_status) { Fabricate(:status, account: target_account) }
-
-        before do
-          _status = Fabricate(:status, account: target_account)
-        end
-
-        it_behaves_like 'common behavior'
-
-        it 'adds the non-deleted to instance filter' do
-          subject
-          expect(CustomFilter.instance_filter.statuses.pluck(:status_id)).to eq [reported_status.id]
-        end
-
-        it 'marks the non-deleted as hidden' do
-          subject
-          expect(reported_status.reload.hidden_by_moderators?).to be true
-        end
       end
 
       context 'when the action is "mark_as_sensitive"' do
