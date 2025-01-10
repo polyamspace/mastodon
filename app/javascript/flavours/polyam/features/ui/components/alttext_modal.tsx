@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { Button } from 'flavours/polyam/components/button';
 
-export const AltTextModal: React.FC<{
+export const AltTextDisplayModal: React.FC<{
   description: string;
   onClose: () => void;
 }> = ({ description, onClose }) => {
