@@ -396,7 +396,7 @@ class Status extends ImmutablePureComponent {
     const { status } = this.props;
     const media = status.getIn(['media_attachments', index ? index : 0]);
 
-    this.props.dispatch(openModal({ modalType: 'ALTTEXT', modalProps: { description: media.getIn(['translation', 'description']) || media.get('description') } }));
+    this.props.dispatch(openModal({ modalType: 'ALTTEXT_SHOW', modalProps: { description: media.getIn(['translation', 'description']) || media.get('description') } }));
   };
 
   handleHotkeyOpenMedia = e => {

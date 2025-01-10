@@ -82,7 +82,7 @@ export const MODAL_COMPONENTS = {
   'SUBSCRIBED_LANGUAGES': SubscribedLanguagesModal,
   'INTERACTION': InteractionModal,
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
-  'ALTTEXT': () => Promise.resolve({ default: AltTextDisplayModal }),
+  'ALTTEXT_SHOW': () => Promise.resolve({ default: AltTextDisplayModal }),
   'IGNORE_NOTIFICATIONS': IgnoreNotificationsModal,
   'ANNUAL_REPORT': AnnualReportModal,
 };
