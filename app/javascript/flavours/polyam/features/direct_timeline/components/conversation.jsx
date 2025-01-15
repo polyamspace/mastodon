@@ -176,11 +176,6 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
     toggleHidden: handleShowMore,
   };
 
-  let media = null;
-  if (lastStatus.get('media_attachments').size > 0) {
-    media = <AttachmentList compact media={lastStatus.get('media_attachments')} />;
-  }
-
   return (
     <HotKeys handlers={handlers}>
       <div className={classNames('conversation focusable muted', { unread })} tabIndex={0}>
@@ -205,8 +200,14 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
             expanded={sharedCWState ? lastStatus.get('hidden') : expanded}
             onExpandedToggle={handleShowMore}
             collapsible
-            media={media}
           />
+
+          {lastStatus.get('media_attachments').size > 0 && (
+            <AttachmentList
+              compact
+              media={lastStatus.get('media_attachments')}
+            />
+          )}
 
           <div className='status__action-bar'>
             <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' iconComponent={ReplyIcon} onClick={handleReply} />

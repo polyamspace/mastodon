@@ -12,6 +12,7 @@ import AddPhotoAlternateIcon from '@/awesome-icons/solid/camera.svg?react';
 import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
 import PersonIcon from '@/awesome-icons/solid/user.svg?react';
 import { updateAccount } from 'flavours/polyam/actions/accounts';
+import { closeOnboarding } from 'flavours/polyam/actions/onboarding';
 import { Button } from 'flavours/polyam/components/button';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
@@ -70,7 +71,9 @@ export const Profile: React.FC<{
   );
   const [avatar, setAvatar] = useState<File>();
   const [header, setHeader] = useState<File>();
-  const [discoverable, setDiscoverable] = useState(true);
+  const [discoverable, setDiscoverable] = useState(
+    account?.discoverable ?? true,
+  );
   const [isSaving, setIsSaving] = useState(false);
   const [errors, setErrors] = useState<ApiAccountErrors>();
   const avatarFileRef = createRef<HTMLInputElement>();
@@ -144,6 +147,7 @@ export const Profile: React.FC<{
     )
       .then(() => {
         history.push('/start/follows');
+        dispatch(closeOnboarding());
         return '';
       })
       // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable

@@ -32,7 +32,7 @@ class Invite < ApplicationRecord
   validates :comment, length: { maximum: COMMENT_SIZE_LIMIT }
   validates_with InviteValidator
 
-  before_validation :set_code
+  before_validation :set_code, on: :create
 
   def valid_for_use?
     (max_uses.nil? || uses < max_uses) && !expired? && user&.functional?
