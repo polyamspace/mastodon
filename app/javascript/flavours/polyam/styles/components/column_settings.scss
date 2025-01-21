@@ -21,58 +21,6 @@ input.glitch-setting-text {
   }
 }
 
-.setting-text {
-  display: block;
-  box-sizing: border-box;
-  margin: 0;
-  color: $primary-text-color;
-  background: $ui-base-color;
-  padding: 7px 10px;
-  font-family: inherit;
-  font-size: 14px;
-  line-height: 22px;
-  border-radius: 4px;
-  border: 1px solid var(--background-border-color);
-
-  &:focus {
-    outline: 0;
-  }
-
-  &__wrapper {
-    background: $ui-base-color;
-    border: 1px solid var(--background-border-color);
-    margin-bottom: 10px;
-    border-radius: 4px;
-
-    .setting-text {
-      border: 0;
-      margin-bottom: 0;
-      border-radius: 0;
-
-      &:focus {
-        border: 0;
-      }
-    }
-
-    &__modifiers {
-      color: $inverted-text-color;
-      font-family: inherit;
-      font-size: 14px;
-      background: $white;
-    }
-  }
-
-  &__toolbar {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-
-  @media screen and (width <= 600px) {
-    font-size: 16px;
-  }
-}
-
 .setting-toggle {
   display: flex;
   align-items: center;

@@ -216,12 +216,7 @@
 @mixin compose-action-button {
   .button {
     display: block; // Otherwise text-ellipsis doesn't work
-    font-size: 14px;
-    line-height: normal;
-    font-weight: 700;
     flex: 1 1 auto;
-    padding: 5px 12px;
-    border-radius: 4px;
   }
 }
 

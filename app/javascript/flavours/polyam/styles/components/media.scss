@@ -364,11 +364,6 @@
   outline: 1px solid var(--media-outline-color);
   outline-offset: -1px;
 
-  &.editable {
-    border-radius: 0;
-    height: 100%;
-  }
-
   &.inactive {
     audio,
     .video-player__controls {
@@ -436,11 +431,6 @@
   outline: 1px solid var(--media-outline-color);
   outline-offset: -1px;
   z-index: 2;
-
-  &.editable {
-    border-radius: 0;
-    height: 100% !important;
-  }
 
   .detailed-status & {
     width: 100%;
@@ -780,6 +770,14 @@
 }
 
 .gifv {
+  position: relative;
+
+  canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
   video {
     max-width: 100vw;
     max-height: 80vh;

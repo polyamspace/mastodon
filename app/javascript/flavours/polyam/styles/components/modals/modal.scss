@@ -566,6 +566,35 @@
       gap: 16px;
       padding: 24px;
     }
+
+    &__preview {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: #000;
+
+      img {
+        display: block;
+      }
+
+      img,
+      .gifv video {
+        outline: 1px solid var(--media-outline-color);
+        outline-offset: -1px;
+        border-radius: 8px;
+      }
+
+      img,
+      .gifv video,
+      .video-player,
+      .audio-player {
+        max-width: 360px;
+        max-height: 45vh;
+      }
+    }
   }
 
   .copy-paste-text {
@@ -915,62 +944,6 @@
   margin-bottom: 29px;
 }
 
-.report-modal__comment {
-  padding: 20px;
-  border-inline-end: 1px solid var(--background-border-color);
-  max-width: 320px;
-
-  p {
-    font-size: 14px;
-    line-height: 20px;
-    margin-bottom: 20px;
-  }
-
-  .setting-text-label {
-    display: block;
-    color: $secondary-text-color;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-
-  .setting-text {
-    width: 100%;
-    resize: none;
-    min-height: 100px;
-    max-height: 50vh;
-    border: 0;
-
-    @media screen and (height <= 600px) {
-      max-height: 20vh;
-    }
-
-    @media screen and (max-width: $no-columns-breakpoint) {
-      max-height: 20vh;
-    }
-  }
-
-  .setting-toggle {
-    margin-top: 20px;
-    margin-bottom: 24px;
-
-    &__label {
-      color: $inverted-text-color;
-      font-size: 14px;
-    }
-  }
-
-  @media screen and (width <= 480px) {
-    padding: 10px;
-    max-width: 100%;
-    order: 2;
-
-    .setting-toggle {
-      margin-bottom: 4px;
-    }
-  }
-}
-
 .actions-modal {
   max-height: 80vh;
   max-width: 80vw;
@@ -1137,24 +1110,14 @@ img.modal-warning {
 
 .focal-point {
   position: relative;
-  cursor: move;
+  cursor: grab;
   overflow: hidden;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $base-shadow-color;
 
-  img,
-  video,
-  canvas {
-    display: block;
-    max-height: 80vh;
-    width: 100%;
-    height: auto;
-    margin: 0;
-    object-fit: contain;
-    background: $base-shadow-color;
+  &.dragging {
+    cursor: grabbing;
   }
 
   &__reticle {
@@ -1162,54 +1125,10 @@ img.modal-warning {
     width: 100px;
     height: 100px;
     transform: translate(-50%, -50%);
-    background: url('~images/reticle.png') no-repeat 0 0;
+    border: 2px solid #fff;
     border-radius: 50%;
     box-shadow: 0 0 0 9999em rgba($base-shadow-color, 0.35);
-  }
-
-  &__overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    inset-inline-start: 0;
-  }
-
-  &__preview {
-    position: absolute;
-    bottom: 10px;
-    inset-inline-end: 10px;
-    z-index: 2;
-    cursor: move;
-    transition: opacity 0.1s ease;
-
-    &:hover {
-      opacity: 0.5;
-    }
-
-    strong {
-      color: $primary-text-color;
-      font-size: 14px;
-      font-weight: 500;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    div {
-      border-radius: 4px;
-      box-shadow: 0 0 14px rgba($base-shadow-color, 0.2);
-    }
-  }
-
-  @media screen and (width <= 480px) {
-    img,
-    video {
-      max-height: 100%;
-    }
-
-    &__preview {
-      display: none;
-    }
+    pointer-events: none;
   }
 }
 
