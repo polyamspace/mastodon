@@ -28,6 +28,34 @@
   }
 }
 
+.help-button {
+  background: $ui-button-background-color;
+  border: 0;
+  color: $ui-button-color;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: $ui-button-focus-background-color;
+  }
+
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
+  }
+
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
 .button {
   background-color: $ui-button-background-color;
   border: 10px none;
