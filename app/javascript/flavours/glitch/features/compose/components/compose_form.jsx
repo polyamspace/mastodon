@@ -347,6 +347,7 @@ class ComposeForm extends ImmutablePureComponent {
                 />
                 <Button
                   type='submit'
+                  compact
                   text={publishText}
                   disabled={!this.canSubmit()}
                 />

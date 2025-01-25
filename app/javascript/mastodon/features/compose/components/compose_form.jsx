@@ -13,7 +13,6 @@ import { length } from 'stringz';
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import { Button } from '../../../components/button';
-import { publishButtonText as customPublishButtonText } from '../../../initial_state';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import LanguageDropdown from '../containers/language_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
@@ -227,16 +226,6 @@ class ComposeForm extends ImmutablePureComponent {
     const { highlighted } = this.state;
     const disabled = this.props.isSubmitting;
 
-    let publishText = '';
-
-    if (this.props.isEditing) {
-      publishText = intl.formatMessage(messages.saveChanges);
-    } else if (this.props.isInReply) {
-      publishText = intl.formatMessage(messages.reply);
-    } else {
-      publishText = customPublishButtonText || intl.formatMessage(messages.publish);
-    }
-
     return (
       <form className='compose-form' onSubmit={this.handleSubmit}>
         <ReplyIndicator />
@@ -312,7 +301,8 @@ class ComposeForm extends ImmutablePureComponent {
               <div className='compose-form__submit'>
                 <Button
                   type='submit'
-                  text={publishText}
+                  compact
+                  text={intl.formatMessage(this.props.isEditing ? messages.saveChanges : (this.props.isInReply ? messages.reply : messages.publish))}
                   disabled={!this.canSubmit()}
                 />
               </div>
