@@ -3,7 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Invites' do
-  let(:user) { Fabricate(:user) }
+  # Polyam: Set `created_at` to bypass invite restrictions
+  let(:user) { Fabricate(:user, created_at: 7.days.ago) }
 
   before { sign_in user }
 
