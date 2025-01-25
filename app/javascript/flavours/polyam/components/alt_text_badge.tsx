@@ -16,7 +16,11 @@ export const AltTextBadge: React.FC<{
   }, [description]);
 
   return (
-    <button className='media-gallery__alt__label' onClick={handleClick}>
+    <button
+      type='button'
+      className='media-gallery__alt__label'
+      onClick={handleClick}
+    >
       ALT
     </button>
   );
