@@ -26,7 +26,7 @@ import { getScrollbarWidth } from 'flavours/polyam/utils/scrollbar';
 import BundleContainer from '../containers/bundle_container';
 
 import ActionsModal from './actions_modal';
-import { AltTextModal } from './alttext_modal';
+import { AltTextDisplayModal } from './alttext_modal';
 import AudioModal from './audio_modal';
 import { BoostModal } from './boost_modal';
 import {
@@ -82,7 +82,7 @@ export const MODAL_COMPONENTS = {
   'SUBSCRIBED_LANGUAGES': SubscribedLanguagesModal,
   'INTERACTION': InteractionModal,
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
-  'ALTTEXT': () => Promise.resolve({ default: AltTextModal }),
+  'ALTTEXT_SHOW': () => Promise.resolve({ default: AltTextDisplayModal }),
   'IGNORE_NOTIFICATIONS': IgnoreNotificationsModal,
   'ANNUAL_REPORT': AnnualReportModal,
 };

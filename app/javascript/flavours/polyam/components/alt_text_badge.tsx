@@ -11,7 +11,7 @@ export const AltTextBadge: React.FC<{
   // Essentially: doing so throws an error and prevents attachments from loading.
   const handleClick = useCallback(() => {
     store.dispatch(
-      openModal({ modalType: 'ALTTEXT', modalProps: { description } }),
+      openModal({ modalType: 'ALTTEXT_SHOW', modalProps: { description } }),
     );
   }, [description]);
 
