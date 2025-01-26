@@ -217,13 +217,6 @@
 }
 
 // general modals
-.modal-root__modal:not(.safety-action-modal, .alttext-modal) {
-  background: $ui-base-color;
-}
-
-.report-modal__container {
-  border-top-color: $ui-base-lighter-color;
-}
 
 .doodle-modal__action-bar {
   background: $ui-base-semi-lighter-color;
