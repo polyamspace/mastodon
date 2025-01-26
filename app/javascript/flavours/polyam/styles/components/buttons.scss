@@ -63,6 +63,14 @@
     outline: $ui-button-icon-focus-outline;
   }
 
+  &--compact {
+    font-size: 14px;
+    line-height: normal;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 4px;
+  }
+
   &--dangerous {
     background-color: var(--error-background-color);
     color: var(--on-error-color);

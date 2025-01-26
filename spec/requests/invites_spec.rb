@@ -3,7 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Invites' do
-  let(:user) { Fabricate(:user) }
+  # Polyam: Set `created_at` to bypass invite restrictions
+  let(:user) { Fabricate(:user, created_at: 7.days.ago) }
 
   before { sign_in user }
 
@@ -26,6 +27,15 @@ RSpec.describe 'Invites' do
         expect(response)
           .to have_http_status(403)
       end
+    end
+  end
+
+  describe 'POST /invites' do
+    it 'gracefully handles invalid nested params' do
+      post invites_path(invite: 'invalid')
+
+      expect(response)
+        .to have_http_status(400)
     end
   end
 end
