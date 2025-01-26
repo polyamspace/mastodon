@@ -89,30 +89,6 @@
     no-repeat bottom / 100% auto;
 }
 
-// Restore old color of show more button
-.status__content {
-  .status__content__spoiler-link {
-    background-color: lighten($ui-base-color, 30%);
-
-    &:hover,
-    &:focus {
-      // higher for more visibility
-      background-color: lighten($ui-base-color, 37%);
-    }
-  }
-}
-
-// Polyam: Applies to notifications
-.status__content__spoiler-link {
-  background-color: lighten($ui-base-color, 30%);
-
-  &:hover,
-  &:focus {
-    // higher for more visibility
-    background-color: lighten($ui-base-color, 37%);
-  }
-}
-
 // hashtags in primary color
 .status__content a {
   color: $highlight-text-color;
@@ -182,9 +158,7 @@
 .emoji-picker-dropdown__menu,
 .emoji-mart-search input,
 .compose-form__highlightable,
-.boost-modal,
 .report-modal,
-.confirmation-modal,
 .actions-modal,
 .compare-history-modal {
   border-radius: $border-radius;
@@ -243,43 +217,9 @@
 }
 
 // general modals
-.modal-root__modal:not(.safety-action-modal, .alttext-modal) {
-  background: $ui-base-color;
-}
 
-.report-modal__container {
-  border-top-color: $ui-base-lighter-color;
-}
-
-.report-modal__comment {
-  border-right-color: $ui-base-lighter-color;
-}
-
-.report-modal__comment .setting-text {
-  background: $ui-base-color;
-}
-
-.boost-modal__action-bar,
-.doodle-modal__action-bar,
-.confirmation-modal__action-bar {
+.doodle-modal__action-bar {
   background: $ui-base-semi-lighter-color;
-}
-
-.confirmation-modal__secondary-button,
-.confirmation-modal__cancel-button {
-  color: $primary-text-color;
-
-  &:hover {
-    color: $ui-highlight-color;
-  }
-}
-
-.report-dialog-modal .status__content__spoiler-link {
-  background-color: lighten($ui-base-color, 30%);
-
-  &:hover {
-    background: lighten($ui-base-color, 33%);
-  }
 }
 
 // Polyam: Fix color of checkmark
