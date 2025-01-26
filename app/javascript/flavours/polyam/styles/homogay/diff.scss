@@ -89,30 +89,6 @@
     no-repeat bottom / 100% auto;
 }
 
-// Restore old color of show more button
-.status__content {
-  .status__content__spoiler-link {
-    background-color: lighten($ui-base-color, 30%);
-
-    &:hover,
-    &:focus {
-      // higher for more visibility
-      background-color: lighten($ui-base-color, 37%);
-    }
-  }
-}
-
-// Polyam: Applies to notifications
-.status__content__spoiler-link {
-  background-color: lighten($ui-base-color, 30%);
-
-  &:hover,
-  &:focus {
-    // higher for more visibility
-    background-color: lighten($ui-base-color, 37%);
-  }
-}
-
 // hashtags in primary color
 .status__content a {
   color: $highlight-text-color;
@@ -271,14 +247,6 @@
 
   &:hover {
     color: $ui-highlight-color;
-  }
-}
-
-.report-dialog-modal .status__content__spoiler-link {
-  background-color: lighten($ui-base-color, 30%);
-
-  &:hover {
-    background: lighten($ui-base-color, 33%);
   }
 }
 
