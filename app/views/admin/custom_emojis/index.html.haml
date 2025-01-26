@@ -41,8 +41,8 @@
                           placeholder: I18n.t("admin.custom_emojis.#{key}")
 
     .actions
-      %button.button= t('admin.accounts.search')
-      = link_to t('admin.accounts.reset'), admin_custom_emojis_path, class: 'button button--dangerous'
+      %button.button.button--block= t('admin.accounts.search')
+      = link_to t('admin.accounts.reset'), admin_custom_emojis_path, class: 'button button--block button--dangerous'
 
 = form_with model: @form, url: batch_admin_custom_emojis_path do |f|
   = hidden_field_tag :page, params[:page] || 1
