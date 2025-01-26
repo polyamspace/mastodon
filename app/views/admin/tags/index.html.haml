@@ -24,8 +24,8 @@
                         placeholder: t('admin.tags.name')
 
   .actions
-    %button.button= t('admin.tags.search')
-    = link_to t('admin.tags.reset'), admin_tags_path, class: 'button button--dangerous'
+    %button.button.button--block= t('admin.tags.search')
+    = link_to t('admin.tags.reset'), admin_tags_path, class: 'button button--block button--dangerous'
 
 %hr.spacer/
 
