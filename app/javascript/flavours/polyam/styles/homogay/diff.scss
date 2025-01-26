@@ -158,9 +158,7 @@
 .emoji-picker-dropdown__menu,
 .emoji-mart-search input,
 .compose-form__highlightable,
-.boost-modal,
 .report-modal,
-.confirmation-modal,
 .actions-modal,
 .compare-history-modal {
   border-radius: $border-radius;
@@ -227,27 +225,8 @@
   border-top-color: $ui-base-lighter-color;
 }
 
-.report-modal__comment {
-  border-right-color: $ui-base-lighter-color;
-}
-
-.report-modal__comment .setting-text {
-  background: $ui-base-color;
-}
-
-.boost-modal__action-bar,
-.doodle-modal__action-bar,
-.confirmation-modal__action-bar {
+.doodle-modal__action-bar {
   background: $ui-base-semi-lighter-color;
-}
-
-.confirmation-modal__secondary-button,
-.confirmation-modal__cancel-button {
-  color: $primary-text-color;
-
-  &:hover {
-    color: $ui-highlight-color;
-  }
 }
 
 // Polyam: Fix color of checkmark
