@@ -17,7 +17,7 @@ import { normalizeForLookup } from 'flavours/polyam/reducers/accounts_map';
 import { getAccountGallery } from 'flavours/polyam/selectors';
 
 import { expandAccountMediaTimeline } from '../../actions/timelines';
-import HeaderContainer from '../account_timeline/containers/header_container';
+import { AccountHeader } from '../account_timeline/components/account_header';
 import Column from '../ui/components/column';
 
 import { MediaItem } from './components/media_item';
@@ -211,7 +211,7 @@ class AccountGallery extends ImmutablePureComponent {
 
         <ScrollContainer scrollKey='account_gallery'>
           <div className='scrollable scrollable--flex' onScroll={this.handleScroll}>
-            <HeaderContainer accountId={this.props.accountId} />
+            <AccountHeader accountId={this.props.accountId} />
 
             {suspended ? (
               <div className='empty-column-indicator'>
