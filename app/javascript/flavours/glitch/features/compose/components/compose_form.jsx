@@ -10,12 +10,11 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
 
-import { missingAltTextModal } from 'flavours/glitch/initial_state';
+import { missingAltTextModal, publishButtonText as customPublishButtonText } from 'flavours/glitch/initial_state';
 
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import { Button } from '../../../components/button';
-import { publishButtonText as customPublishButtonText } from '../../../initial_state';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
