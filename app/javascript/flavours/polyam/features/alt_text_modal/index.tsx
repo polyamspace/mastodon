@@ -36,6 +36,8 @@ import type { MediaAttachment } from 'flavours/polyam/models/media_attachment';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 import { assetHost } from 'flavours/polyam/utils/config';
 
+import { InfoButton } from './components/info_button';
+
 const messages = defineMessages({
   placeholderVisual: {
     id: 'alt_text_modal.describe_for_people_with_visual_impairments',
@@ -504,6 +506,12 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
               </div>
 
               <div className='input__toolbar'>
+                <CharacterCounter
+                  max={MAX_LENGTH}
+                  text={isDetecting ? '' : description}
+                />
+
+                <div className='spacer' />
                 <button
                   className='link-button'
                   onClick={handleDetectClick}
@@ -515,10 +523,7 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
                   />
                 </button>
 
-                <CharacterCounter
-                  max={MAX_LENGTH}
-                  text={isDetecting ? '' : description}
-                />
+                <InfoButton />
               </div>
             </div>
           </form>

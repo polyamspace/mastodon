@@ -597,6 +597,20 @@
     }
   }
 
+  &__popout {
+    background: var(--dropdown-background-color);
+    backdrop-filter: var(--background-filter);
+    border: 1px solid var(--dropdown-border-color);
+    box-shadow: var(--dropdown-shadow);
+    max-width: 320px;
+    padding: 16px;
+    border-radius: 8px;
+    z-index: 9999 !important;
+    font-size: 14px;
+    line-height: 20px;
+    color: $darker-text-color;
+  }
+
   .copy-paste-text {
     margin-bottom: 0;
   }
