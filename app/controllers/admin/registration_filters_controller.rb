@@ -57,7 +57,7 @@ module Admin
     end
 
     def resource_params
-      params.require(:registration_filter).permit(:phrase, :type, :whole_word)
+      params.expect(registration_filter: [:phrase, :type, :whole_word])
     end
   end
 end
