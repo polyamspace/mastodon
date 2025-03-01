@@ -8,6 +8,7 @@ import Overlay from 'react-overlays/Overlay';
 
 import QuestionMarkIcon from '@/awesome-icons/solid/question.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
+import { useSelectableClick } from 'flavours/polyam/hooks/useSelectableClick';
 
 const messages = defineMessages({
   help: { id: 'info_button.label', defaultMessage: 'Help' },
@@ -22,6 +23,8 @@ export const InfoButton: React.FC = () => {
   const handleClick = useCallback(() => {
     setOpen(!open);
   }, [open, setOpen]);
+
+  const [handleMouseDown, handleMouseUp] = useSelectableClick(handleClick);
 
   return (
     <>
@@ -46,10 +49,13 @@ export const InfoButton: React.FC = () => {
         target={triggerRef}
       >
         {({ props }) => (
-          <div
+          <div // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
             {...props}
             className='dialog-modal__popout prose dropdown-animation'
+            role='region'
             id={accessibilityId}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
           >
             <FormattedMessage
               id='info_button.what_is_alt_text'
