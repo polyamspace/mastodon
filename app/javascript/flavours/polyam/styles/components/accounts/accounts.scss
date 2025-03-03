@@ -481,7 +481,8 @@ a.account__display-name {
     border-radius: 0;
   }
 
-  .load-more {
+  .load-more,
+  .timeline-hint {
     grid-column: span 3;
   }
 }
