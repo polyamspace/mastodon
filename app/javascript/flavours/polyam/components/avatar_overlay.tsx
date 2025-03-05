@@ -1,7 +1,6 @@
+import { useHovering } from 'flavours/polyam/hooks/useHovering';
+import { autoPlayGif } from 'flavours/polyam/initial_state';
 import type { Account } from 'flavours/polyam/models/account';
-
-import { useHovering } from '../hooks/useHovering';
-import { autoPlayGif } from '../initial_state';
 
 interface Props {
   account: Account | undefined; // FIXME: remove `undefined` once we know for sure its always there
