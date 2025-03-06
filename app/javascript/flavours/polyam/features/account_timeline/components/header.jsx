@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import ActionBar from '../../account/components/action_bar';
+import { ActionBar } from '../../account/components/action_bar';
 import InnerHeader from '../../account/components/header';
 
 import { AnniversaryNote } from './anniversary-note';
