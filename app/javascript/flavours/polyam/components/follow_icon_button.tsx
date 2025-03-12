@@ -59,7 +59,7 @@ export const FollowIconButton: React.FC<{
       );
     }
 
-    if (!relationship) return;
+    if (!relationship || !accountId) return;
 
     if (accountId === me) {
       return;

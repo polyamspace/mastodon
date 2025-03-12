@@ -14,11 +14,11 @@ import { Hashtag } from 'flavours/polyam/components/hashtag';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import ProfileColumnHeader from 'flavours/polyam/features/account/components/profile_column_header';
-import HeaderContainer from 'flavours/polyam/features/account_timeline/containers/header_container';
+import { AccountHeader } from 'flavours/polyam/features/account_timeline/components/account_header';
 import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
 import Column from 'flavours/polyam/features/ui/components/column';
 import { normalizeForLookup } from 'flavours/polyam/reducers/accounts_map';
-import { getAccountHidden } from 'flavours/polyam/selectors';
+import { getAccountHidden } from 'flavours/polyam/selectors/accounts';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 import { LimitedAccountHint } from '../account_timeline/components/limited_account_hint';
@@ -100,7 +100,7 @@ const Featured = ({ params, multiColumn, type }) => {
         isLoading={isLoading}
         onLoadMore={handleLoadMore}
         hasMore={!(suspended || hidden) && hasMore}
-        prepend={<HeaderContainer accountId={accountId} featured />}
+        prepend={<AccountHeader accountId={accountId} featured />}
         alwaysPrepend
         emptyMessage={emptyMessage}
         bindToDocument={!multiColumn}
