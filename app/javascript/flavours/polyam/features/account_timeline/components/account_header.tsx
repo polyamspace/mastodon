@@ -71,6 +71,10 @@ const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   followBack: { id: 'account.follow_back', defaultMessage: 'Follow back' },
   mutual: { id: 'account.mutual', defaultMessage: 'Mutual' },
+  request_follow: {
+    id: 'account.request_follow',
+    defaultMessage: 'Request follow',
+  },
   cancel_follow_request: {
     id: 'account.cancel_follow_request',
     defaultMessage: 'Withdraw follow request',
@@ -183,7 +187,10 @@ const titleFromAccount = (account: Account) => {
   return `${prefix} (@${acct})`;
 };
 
-const messageForFollowButton = (relationship?: Relationship) => {
+const messageForFollowButton = (
+  relationship?: Relationship,
+  locked?: boolean,
+) => {
   if (!relationship) return messages.follow;
 
   if (relationship.get('requested')) {
@@ -192,6 +199,8 @@ const messageForFollowButton = (relationship?: Relationship) => {
     return messages.unfollow;
   } else if (relationship.get('followed_by')) {
     return messages.followBack;
+  } else if (locked) {
+    return messages.request_follow;
   } else {
     return messages.follow;
   }
@@ -792,7 +801,9 @@ export const AccountHeader: React.FC<{
             'button--destructive':
               relationship?.following || relationship?.requested,
           })}
-          text={intl.formatMessage(messageForFollowButton(relationship))}
+          text={intl.formatMessage(
+            messageForFollowButton(relationship, account.locked),
+          )}
           onClick={signedIn ? handleFollow : handleInteractionModal}
         />
       );
