@@ -63,6 +63,7 @@ docker-compose.override.yml
 
 # Ignore emoji map file
 /app/javascript/mastodon/features/emoji/emoji_map.json
+/app/javascript/mastodon/features/emoji/emoji_sheet.json
 
 # Ignore locale files
 /app/javascript/mastodon/locales/*.json
@@ -86,6 +87,7 @@ AUTHORS.md
 
 # Ignore glitch-soc emoji map file
 /app/javascript/flavours/glitch/features/emoji/emoji_map.json
+/app/javascript/flavours/glitch/features/emoji/emoji_sheet.json
 
 # Ignore glitch-soc locale files
 /app/javascript/flavours/glitch/locales
@@ -106,6 +108,4 @@ app/javascript/flavours/polyam/styles/reset.scss
 
 # Ignore polyam-glitch emoji map file
 /app/javascript/flavours/polyam/features/emoji/emoji_map.json
-
-# Ignore polyam-glitch emoji data file
-/app/javascript/flavours/polyam/features/emoji/emoji_data.json
+/app/javascript/flavours/polyam/features/emoji/emoji_sheet.json
