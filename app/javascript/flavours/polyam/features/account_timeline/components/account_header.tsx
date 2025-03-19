@@ -960,7 +960,7 @@ export const AccountHeader: React.FC<{
                 onClickCapture={handleLinkClick}
               >
                 {account.id !== me && signedIn && (
-                  <AccountNoteContainer account={account} />
+                  <AccountNoteContainer accountId={accountId} />
                 )}
 
                 {/* Polyam: Hide fields when empty and show joined date on bottom */}
