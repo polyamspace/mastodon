@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -16,6 +16,7 @@ import PlayIcon from '@/awesome-icons/solid/play.svg?react';
 import VolumeOnIcon from '@/awesome-icons/solid/volume-high.svg?react';
 import VolumeOffIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
+import { SpoilerButton } from 'flavours/polyam/components/spoiler_button';
 import { formatTime, getPointerPosition, fileNameFromURL } from 'flavours/polyam/features/video';
 
 import { Blurhash } from '../../components/blurhash';
@@ -489,14 +490,6 @@ class Audio extends PureComponent {
     const progress = Math.min((currentTime / duration) * 100, 100);
     const muted = this.state.muted || volume === 0;
 
-    let warning;
-
-    if (sensitive) {
-      warning = <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />;
-    } else {
-      warning = <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />;
-    }
-
     return (
       <div className={classNames('audio-player', { editable, inactive: !revealed })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), aspectRatio: '16 / 9' }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} tabIndex={0} onKeyDown={this.handleKeyDown}>
 
@@ -534,14 +527,7 @@ class Audio extends PureComponent {
           lang={lang}
         />
 
-        <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>
-          <button type='button' className='spoiler-button__overlay' onClick={this.toggleReveal}>
-            <span className='spoiler-button__overlay__label'>
-              {warning}
-              <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
-            </span>
-          </button>
-        </div>
+        <SpoilerButton hidden={revealed || editable} sensitive={sensitive} onClick={this.toggleReveal} />
 
         {(revealed || editable) && <img
           src={this.props.poster}
