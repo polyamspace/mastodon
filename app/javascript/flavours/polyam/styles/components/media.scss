@@ -1,46 +1,3 @@
-.image-loader {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-
-  * {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE 10+ */
-  }
-
-  &::-webkit-scrollbar,
-  *::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-    background: transparent; /* Chrome/Safari/Webkit */
-  }
-
-  .image-loader__preview-canvas {
-    max-width: $media-modal-media-max-width;
-    max-height: $media-modal-media-max-height;
-    background: url('~images/void.png') repeat;
-    object-fit: contain;
-  }
-
-  .loading-bar__container {
-    position: relative;
-  }
-
-  .loading-bar {
-    position: absolute;
-  }
-
-  &.image-loader--amorphous .image-loader__preview-canvas {
-    display: none;
-  }
-}
-
 .zoomable-image {
   position: relative;
   width: 100%;
@@ -48,13 +5,61 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  scrollbar-width: none;
+  overflow: hidden;
+  user-select: none;
 
   img {
     max-width: $media-modal-media-max-width;
     max-height: $media-modal-media-max-height;
     width: auto;
     height: auto;
-    object-fit: contain;
+    outline: 1px solid var(--media-outline-color);
+    outline-offset: -1px;
+    border-radius: 8px;
+    touch-action: none;
+  }
+
+  &--zoomed-in {
+    z-index: 9999;
+    cursor: grab;
+
+    img {
+      outline: none;
+      border-radius: 0;
+    }
+  }
+
+  &--dragging {
+    cursor: grabbing;
+  }
+
+  &--error img {
+    visibility: hidden;
+  }
+
+  &__preview {
+    max-width: $media-modal-media-max-width;
+    max-height: $media-modal-media-max-height;
+    position: absolute;
+    z-index: 1;
+    outline: 1px solid var(--media-outline-color);
+    outline-offset: -1px;
+    border-radius: 8px;
+    overflow: hidden;
+
+    canvas {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+  }
+
+  .loading-indicator {
+    z-index: 2;
+    mix-blend-mode: luminosity;
   }
 }
 
