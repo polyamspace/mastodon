@@ -6,7 +6,7 @@
 import type { CSSProperties } from 'react';
 import { useState, useRef, useCallback } from 'react';
 
-import { FormattedDate, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,7 @@ import AttachmentList from 'flavours/polyam/components/attachment_list';
 import { ContentWarning } from 'flavours/polyam/components/content_warning';
 import EditedTimestamp from 'flavours/polyam/components/edited_timestamp';
 import { FilterWarning } from 'flavours/polyam/components/filter_warning';
+import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 import type { StatusLike } from 'flavours/polyam/components/hashtag_bar';
 import { getHashtagBarForStatus } from 'flavours/polyam/components/hashtag_bar';
 import { IconLogo } from 'flavours/polyam/components/logo';
@@ -441,7 +442,7 @@ export const DetailedStatus: React.FC<{
               target='_blank'
               rel='noopener noreferrer'
             >
-              <FormattedDate
+              <FormattedDateWrapper
                 value={new Date(status.get('created_at') as string)}
                 year='numeric'
                 month='short'
