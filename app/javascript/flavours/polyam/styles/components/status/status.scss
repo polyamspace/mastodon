@@ -1,3 +1,8 @@
+@use 'sass:color';
+@use '../../variables' as *;
+@use '../../functions' as *;
+@use '../mixins' as *;
+
 .status__content--with-action {
   cursor: pointer;
 }
@@ -515,18 +520,22 @@
 .detailed-status__wrapper-direct {
   .detailed-status,
   .detailed-status__action-bar {
-    background: mix($ui-base-color, $ui-highlight-color, 95%);
+    background: color.mix($ui-base-color, $ui-highlight-color, 95%);
   }
 
   &:focus {
     .detailed-status,
     .detailed-status__action-bar {
-      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+      background: color.mix(
+        lighten($ui-base-color, 4%),
+        $ui-highlight-color,
+        95%
+      );
     }
   }
 
   .detailed-status__action-bar {
-    border-top-color: mix(
+    border-top-color: color.mix(
       lighten($ui-base-color, 8%),
       $ui-highlight-color,
       95%

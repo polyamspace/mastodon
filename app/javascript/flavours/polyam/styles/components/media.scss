@@ -1,3 +1,7 @@
+@use '../variables' as *;
+@use '../functions' as *;
+@use '../mixins' as *;
+
 .zoomable-image {
   position: relative;
   width: 100%;

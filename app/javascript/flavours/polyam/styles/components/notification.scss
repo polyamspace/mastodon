@@ -1,3 +1,7 @@
+@use '../variables' as *;
+@use '../functions' as *;
+@use 'mixins' as *;
+
 .notification__relative_time {
   color: $dark-text-color;
   float: right;

@@ -1,3 +1,7 @@
+@use '../../variables' as *;
+@use '../../functions' as *;
+@use '../mixins' as *;
+
 .account {
   padding: 10px; // glitch: reduced padding
   border-bottom: 1px solid var(--background-border-color);

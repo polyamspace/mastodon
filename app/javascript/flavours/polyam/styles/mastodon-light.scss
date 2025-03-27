@@ -1,4 +1,5 @@
-@import 'mastodon-light/variables';
-@import 'application';
-@import 'mastodon-light/diff';
-@import 'node_modules/highlight.js/scss/github';
+@use 'mastodon-light/variables';
+@use 'mastodon-light/css_variables';
+@use 'application';
+@use 'mastodon-light/diff';
+@use 'node_modules/highlight.js/scss/github';

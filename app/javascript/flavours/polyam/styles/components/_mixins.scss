@@ -4,6 +4,8 @@
 // and makes it necessary to put overrides in files where they don't belong
 // or split classes anyway and apply changes to all of them.
 
+@use '../variables' as *;
+
 // Mixin for upstream's .status__content, .edit-indicator__content, .reply-indicator__content class
 @mixin status-content() {
   position: relative;

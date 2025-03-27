@@ -1,3 +1,6 @@
+@use '../variables' as *;
+@use '../functions' as *;
+
 .load-more {
   display: flex;
   align-items: center;

@@ -1,3 +1,6 @@
+@use '../../variables' as *;
+@use '../../functions' as *;
+
 // Polyam: Pinned accounts editor kept from upstream
 .pinned-accounts-editor {
   backdrop-filter: var(--background-filter);
