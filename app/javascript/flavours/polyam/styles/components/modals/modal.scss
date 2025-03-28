@@ -44,6 +44,7 @@
   z-index: 9999;
   pointer-events: none;
   user-select: none;
+  overscroll-behavior: none;
 }
 
 .modal-root__modal {
@@ -177,7 +178,7 @@
   .picture-in-picture__footer {
     border-radius: 0;
     background: transparent;
-    padding: 20px 0;
+    padding: 16px;
 
     .icon-button {
       color: $white;

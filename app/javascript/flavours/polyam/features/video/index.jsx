@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -20,6 +20,7 @@ import UnmuteIcon from '@/awesome-icons/solid/volume-high.svg?react';
 import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon }  from 'flavours/polyam/components/icon';
+import { SpoilerButton } from 'flavours/polyam/components/spoiler_button';
 import { playerSettings } from 'flavours/polyam/settings';
 
 import { displayMedia, useBlurhash } from '../../initial_state';
@@ -141,6 +142,7 @@ class Video extends PureComponent {
     componentIndex: PropTypes.number,
     onOpenAltText: PropTypes.func,
     autoFocus: PropTypes.bool,
+    matchedFilters: PropTypes.arrayOf(PropTypes.string),
   };
 
   static defaultProps = {
@@ -550,7 +552,7 @@ class Video extends PureComponent {
   }
 
   render () {
-    const { preview, src, inline, onOpenVideo, onCloseVideo, onOpenAltText, intl, alt, lang, letterbox, fullwidth, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
+    const { preview, src, inline, onOpenVideo, onCloseVideo, onOpenAltText, intl, alt, lang, letterbox, fullwidth, detailed, sensitive, editable, blurhash, autoFocus, matchedFilters } = this.props;
     const { currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const muted = this.state.muted || volume === 0;
@@ -569,14 +571,6 @@ class Video extends PureComponent {
       preload = 'metadata';
     } else {
       preload = 'none';
-    }
-
-    let warning;
-
-    if (sensitive) {
-      warning = <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />;
-    } else {
-      warning = <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />;
     }
 
     return (
@@ -619,14 +613,7 @@ class Video extends PureComponent {
           style={{ ...playerStyle, width: '100%' }}
         />}
 
-        <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>
-          <button type='button' className='spoiler-button__overlay' onClick={this.toggleReveal}>
-            <span className='spoiler-button__overlay__label'>
-              {warning}
-              <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
-            </span>
-          </button>
-        </div>
+        <SpoilerButton hidden={revealed || editable} sensitive={sensitive} onClick={this.toggleReveal} matchedFilters={matchedFilters} />
 
         <div className={classNames('video-player__controls', { active: paused || hovered })}>
           <div className='video-player__seek' onMouseDown={this.handleMouseDown} ref={this.setSeekRef}>

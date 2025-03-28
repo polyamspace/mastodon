@@ -36,6 +36,7 @@ import {
 } from 'flavours/polyam/components/badge';
 import { Button } from 'flavours/polyam/components/button';
 import { CopyIconButton } from 'flavours/polyam/components/copy_icon_button';
+import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
@@ -1029,11 +1030,14 @@ export const AccountHeader: React.FC<{
                     id='account.joined'
                     defaultMessage='Joined {date}'
                     values={{
-                      date: intl.formatDate(account.get('created_at'), {
-                        year: 'numeric',
-                        month: 'short',
-                        day: '2-digit',
-                      }),
+                      date: (
+                        <FormattedDateWrapper
+                          value={account.created_at}
+                          year='numeric'
+                          month='short'
+                          day='2-digit'
+                        />
+                      ),
                     }}
                   />
                 </div>

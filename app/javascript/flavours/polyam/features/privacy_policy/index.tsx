@@ -1,11 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-import {
-  FormattedMessage,
-  FormattedDate,
-  useIntl,
-  defineMessages,
-} from 'react-intl';
+import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
@@ -15,6 +10,7 @@ import type { ApiPrivacyPolicyJSON } from 'flavours/polyam/api_types/instance';
 import { Column } from 'flavours/polyam/components/column';
 import type { ColumnRef } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
+import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
 
 const messages = defineMessages({
@@ -76,7 +72,7 @@ const PrivacyPolicy: React.FC<{
                 date: loading ? (
                   <Skeleton width='10ch' />
                 ) : (
-                  <FormattedDate
+                  <FormattedDateWrapper
                     value={response?.updated_at}
                     year='numeric'
                     month='short'
