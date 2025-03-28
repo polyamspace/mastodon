@@ -1,3 +1,8 @@
+@use 'sass:color';
+@use '../functions' as *;
+@use 'variables' as *;
+@use '../variables' as *;
+
 // Polyam: Fix scrollbar in chromium browsers
 // Keep in sync with values in reset.scss
 // uses background-border-color value from main variables.scss
@@ -131,7 +136,7 @@
   background: $ui-base-extra-light-color;
 
   &.active {
-    background: adjust-color($ui-button-background-color, $alpha: -0.5);
+    background: color.adjust($ui-button-background-color, $alpha: -0.5);
 
     .reactions-bar__item__count {
       color: $ui-button-color;

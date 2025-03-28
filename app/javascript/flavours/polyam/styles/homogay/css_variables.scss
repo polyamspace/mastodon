@@ -1,0 +1,29 @@
+@use 'sass:color';
+@use '../variables' as *;
+@use 'variables' as *;
+@use '../functions' as *;
+
+body {
+  --dropdown-background-color: #{$ui-base-lighter-color};
+  --modal-background-color: #{$ui-base-color};
+  --modal-background-variant-color: #{$ui-base-semi-lighter-color};
+  --background-border-color: #{lighten($ui-base-color, 12%)};
+  --background-color: #{$ui-base-color};
+  --background-color-tint: #{$ui-base-color};
+  --media-outline-color: #{rgba(#9c63c7, 0.15)};
+  --toot-focus-background-color: #{color-mix(
+      in srgb,
+      var(--background-color),
+      $ui-highlight-color 5%
+    )};
+  --toot-private-background-color: #{color-mix(
+      in srgb,
+      var(--background-color),
+      $ui-highlight-color 5%
+    )};
+  --toot-private-background-focus-color: #{color-mix(
+      in srgb,
+      var(--background-color),
+      $ui-highlight-color 10%
+    )};
+}
