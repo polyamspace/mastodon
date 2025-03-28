@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'functions' as *;
 
 %emoji-color-inversion {
   filter: invert(1);
