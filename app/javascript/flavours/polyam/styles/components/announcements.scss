@@ -1,3 +1,7 @@
+@use 'sass:color';
+@use '../variables' as *;
+@use '../functions' as *;
+
 .announcements__item__content {
   word-wrap: break-word;
   overflow-y: auto;
@@ -191,7 +195,7 @@
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: mix(
+      background-color: color.mix(
         lighten($ui-base-color, 12%),
         $ui-highlight-color,
         80%

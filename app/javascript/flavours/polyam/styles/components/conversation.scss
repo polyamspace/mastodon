@@ -1,3 +1,7 @@
+@use '../variables' as *;
+@use '../functions' as *;
+@use 'mixins' as *;
+
 .conversation {
   display: flex;
   border-bottom: 1px solid var(--background-border-color);

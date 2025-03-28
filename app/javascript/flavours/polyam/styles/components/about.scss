@@ -1,3 +1,6 @@
+@use '../variables' as *;
+@use '../functions' as *;
+
 .image {
   position: relative;
   overflow: hidden;

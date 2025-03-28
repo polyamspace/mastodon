@@ -1,3 +1,7 @@
+@use '../../variables' as *;
+@use '../../functions' as *;
+@use '../../mixins' as *;
+
 .modal-container--preloader {
   background: lighten($ui-base-color, 8%);
 }

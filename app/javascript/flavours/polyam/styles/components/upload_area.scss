@@ -1,3 +1,5 @@
+@use '../variables' as *;
+
 .upload-area {
   align-items: center;
   background: rgba($base-overlay-background, 0.8);

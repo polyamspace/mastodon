@@ -1,3 +1,5 @@
+@use '../../variables' as *;
+
 .upload-progress {
   color: $darker-text-color;
   overflow: hidden;

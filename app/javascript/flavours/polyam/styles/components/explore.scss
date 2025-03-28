@@ -1,3 +1,6 @@
+@use 'mixins' as *;
+@use '../variables' as *;
+
 // Polyam: Split from .account__relationship
 .explore__suggestions__card {
   @include follow-unfollow-icons;

@@ -1,3 +1,7 @@
+@use '../variables' as *;
+
+$ui-header-height: 55px;
+
 @media screen and (width > $mobile-breakpoint) {
   .columns-area {
     padding: 0;

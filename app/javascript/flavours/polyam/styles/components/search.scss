@@ -1,3 +1,6 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
 .search {
   margin-bottom: 32px;
   position: relative;
