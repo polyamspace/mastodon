@@ -1,3 +1,8 @@
+@use 'sass:color';
+@use '../functions' as *;
+@use '../variables' as *;
+@use 'variables' as *;
+
 html {
   scrollbar-color: $purple3 rgba($purple3, 0.25);
 }
@@ -84,7 +89,11 @@ button.icon-button.active {
     }
 
     &.active {
-      background-color: mix(lighten($purple2, 4%), $ui-highlight-color, 80%);
+      background-color: color.mix(
+        lighten($purple2, 4%),
+        $ui-highlight-color,
+        80%
+      );
 
       .reactions-bar__item__count {
         color: lighten($highlight-text-color, 16%);
