@@ -1,0 +1,15 @@
+@use 'sass:color';
+@use '../variables' as *;
+@use 'variables' as *;
+@use '../functions' as *;
+
+body {
+  --dropdown-border-color: #{lighten($purple3, 4%)};
+  --dropdown-background-color: #{$purple3};
+  --modal-background-color: #{lighten($ui-base-color, 8%)};
+  --modal-background-variant-color: #{$ui-base-color};
+  --background-border-color: #{lighten($ui-base-color, 8%)};
+  --background-color: #{darken($ui-base-color, 4%)};
+  --background-color-tint: #{darken($ui-base-color, 4%)};
+  --surface-background-color: #{$purple1};
+}
