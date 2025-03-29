@@ -1,3 +1,22 @@
+@use 'sass:color';
+@use '../functions' as *;
+@use 'variables' as *;
+@use '../variables' as *;
+
+// Polyam: Fix scrollbar in chromium browsers
+// Keep in sync with values in reset.scss
+// uses background-border-color value from main variables.scss
+.custom-scrollbars {
+  ::-webkit-scrollbar-thumb {
+    border-color: lighten($ui-base-color, 4%);
+    box-shadow: inset 0 0 0 2px lighten($ui-base-color, 4%);
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: lighten($ui-base-color, 4%);
+  }
+}
+
 .button {
   text-shadow: 0 0 6px $faint-shadow-color;
 }
@@ -75,19 +94,6 @@
     no-repeat bottom / 100% auto;
 }
 
-// Restore old color of show more button
-.status__content {
-  .status__content__spoiler-link {
-    background-color: lighten($ui-base-color, 30%);
-
-    &:hover,
-    &:focus {
-      // higher for more visibility
-      background-color: lighten($ui-base-color, 37%);
-    }
-  }
-}
-
 // hashtags in primary color
 .status__content a {
   color: $highlight-text-color;
@@ -130,7 +136,7 @@
   background: $ui-base-extra-light-color;
 
   &.active {
-    background: adjust-color($ui-button-background-color, $alpha: -0.5);
+    background: color.adjust($ui-button-background-color, $alpha: -0.5);
 
     .reactions-bar__item__count {
       color: $ui-button-color;
@@ -157,12 +163,15 @@
 .emoji-picker-dropdown__menu,
 .emoji-mart-search input,
 .compose-form__highlightable,
-.boost-modal,
 .report-modal,
-.confirmation-modal,
 .actions-modal,
 .compare-history-modal {
   border-radius: $border-radius;
+}
+
+// Polyam: increased radius looks off in compose, so set to default
+.compose-form__actions .button {
+  border-radius: 4px;
 }
 
 .dropdown-menu {
@@ -213,43 +222,14 @@
 }
 
 // general modals
-.modal-root__modal:not(.safety-action-modal, .alttext-modal) {
-  background: $ui-base-color;
-}
 
-.report-modal__container {
-  border-top-color: $ui-base-lighter-color;
-}
-
-.report-modal__comment {
-  border-right-color: $ui-base-lighter-color;
-}
-
-.report-modal__comment .setting-text {
-  background: $ui-base-color;
-}
-
-.boost-modal__action-bar,
-.doodle-modal__action-bar,
-.confirmation-modal__action-bar {
+.doodle-modal__action-bar {
   background: $ui-base-semi-lighter-color;
 }
 
-.confirmation-modal__secondary-button,
-.confirmation-modal__cancel-button {
-  color: $primary-text-color;
-
-  &:hover {
-    color: $ui-highlight-color;
-  }
-}
-
-.report-dialog-modal .status__content__spoiler-link {
-  background-color: lighten($ui-base-color, 30%);
-
-  &:hover {
-    background: lighten($ui-base-color, 33%);
-  }
+// Polyam: Fix color of checkmark
+.report-dialog-modal .dialog-option .poll__input {
+  color: $ui-base-color;
 }
 
 // settings
