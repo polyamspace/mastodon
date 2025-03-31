@@ -1,23 +1,23 @@
 @use 'sass:color';
 @use '../functions' as *;
 
-// Commonly used web colors
+// Overrides of default vars
+
 $blurple-600: #a71494;
 $blurple-500: #d61ebe;
 $blurple-300: #ef6ede;
 
-// Values from the classic Mastodon UI
 $classic-base-color: #190e25;
 $classic-primary-color: #d4b6cb;
 $classic-secondary-color: #ffe8fc;
 
-// Variables for defaults in UI
-$faint-shadow-color: color.adjust(#000000, $alpha: -0.6);
+// Homogay variables
 
-// Tell UI to use selected colors
 $ui-base-darker-color: darken($classic-base-color, 5%) !default;
 $ui-base-semi-lighter-color: lighten($classic-base-color, 3%) !default;
 $ui-base-extra-light-color: lighten($classic-base-color, 18%) !default;
+
+$faint-shadow-color: color.adjust(#000000, $alpha: -0.6);
 
 $border-radius: 8px;
 
