@@ -7,8 +7,6 @@ $red-500: #df405a !default; // Cerise
 $blurple-600: #a71494;
 $blurple-500: #d61ebe;
 $blurple-300: #ef6ede;
-$grey-600: #4e4c5a; // Trout
-$grey-100: #dadaf3; // Topaz
 
 // Values from the classic Mastodon UI
 $classic-base-color: #190e25;
@@ -26,17 +24,6 @@ $ui-base-extra-light-color: lighten($classic-base-color, 18%) !default;
 $ui-button-disabled-background-color: #a686a2;
 
 $ui-button-secondary-focus-background-color: $blurple-600 !default;
-
-// Variables for texts
-$primary-text-color: $classic-secondary-color !default;
-$darker-text-color: lighten(#847198, 2%) !default;
-$dark-text-color: $darker-text-color !default;
-
-// Variables for components
-$media-modal-media-max-width: 100%;
-
-// put margins on top and bottom of image to avoid the screen covered by image.
-$media-modal-media-max-height: 80%;
 
 $border-radius: 8px;
 
