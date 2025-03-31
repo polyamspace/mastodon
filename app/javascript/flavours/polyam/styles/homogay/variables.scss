@@ -18,7 +18,6 @@ $faint-shadow-color: color.adjust(#000000, $alpha: -0.6);
 $ui-base-darker-color: darken($classic-base-color, 5%) !default;
 $ui-base-semi-lighter-color: lighten($classic-base-color, 3%) !default;
 $ui-base-extra-light-color: lighten($classic-base-color, 18%) !default;
-$ui-button-disabled-background-color: #a686a2;
 
 $ui-button-secondary-focus-background-color: $blurple-600 !default;
 
@@ -42,6 +41,8 @@ $border-radius: 8px;
   $ui-button-color: #ffe9fc,
   $ui-button-background-color: $blurple-500,
   $ui-button-focus-background-color: $blurple-300,
+
+  $ui-button-disabled-color: #a686a2,
 
   $ui-button-secondary-color: $blurple-500,
   $ui-button-secondary-border-color: $blurple-500,
