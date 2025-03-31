@@ -46,12 +46,12 @@ $border-radius: 8px;
   $warning-red: #c96932,
   $gold-star: #e4ba3d,
 
+  $simple-background-color: lighten($classic-base-color, 10%),
   $ui-base-color: $classic-base-color,
   $ui-base-lighter-color: lighten($classic-base-color, 10%),
   $ui-primary-color: $classic-primary-color,
   $ui-secondary-color: $classic-secondary-color,
   $ui-highlight-color: $classic-highlight-color,
-  $simple-background-color: lighten($classic-base-color, 10%),
   $ui-button-color: #ffe9fc,
   $ui-button-background-color: $blurple-500,
   $ui-button-focus-background-color: $blurple-300,
