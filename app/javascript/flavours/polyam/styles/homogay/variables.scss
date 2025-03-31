@@ -19,8 +19,6 @@ $ui-base-darker-color: darken($classic-base-color, 5%) !default;
 $ui-base-semi-lighter-color: lighten($classic-base-color, 3%) !default;
 $ui-base-extra-light-color: lighten($classic-base-color, 18%) !default;
 
-$ui-button-secondary-focus-background-color: $blurple-600 !default;
-
 $border-radius: 8px;
 
 @use '../variables' with (
