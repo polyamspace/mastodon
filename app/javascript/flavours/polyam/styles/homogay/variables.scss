@@ -10,7 +10,6 @@ $blurple-300: #ef6ede;
 $classic-base-color: #190e25;
 $classic-primary-color: #d4b6cb;
 $classic-secondary-color: #ffe8fc;
-$classic-highlight-color: $blurple-500;
 
 // Variables for defaults in UI
 $faint-shadow-color: color.adjust(#000000, $alpha: -0.6);
@@ -39,7 +38,7 @@ $border-radius: 8px;
   $ui-base-lighter-color: lighten($classic-base-color, 10%),
   $ui-primary-color: $classic-primary-color,
   $ui-secondary-color: $classic-secondary-color,
-  $ui-highlight-color: $classic-highlight-color,
+  $ui-highlight-color: $blurple-500,
   $ui-button-color: #ffe9fc,
   $ui-button-background-color: $blurple-500,
   $ui-button-focus-background-color: $blurple-300,
