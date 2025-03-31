@@ -807,7 +807,7 @@ export const Video: React.FC<{
   // The outer wrapper is necessary to avoid reflowing the layout when going into full screen
   // Polyam: Kept 16:9 in timeline
   return (
-    <div style={{ aspectRatio: inline ? '16 / 9' : aspectRatio }}>
+    <div>
       <div
         role='menuitem'
         className={classNames('video-player', {
