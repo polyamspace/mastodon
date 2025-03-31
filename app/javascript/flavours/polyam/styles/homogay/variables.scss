@@ -17,6 +17,8 @@ $ui-base-darker-color: darken($classic-base-color, 5%) !default;
 $ui-base-semi-lighter-color: lighten($classic-base-color, 3%) !default;
 $ui-base-extra-light-color: lighten($classic-base-color, 18%) !default;
 
+$text-darker: lighten(#847198, 2%);
+
 $faint-shadow-color: color.adjust(#000000, $alpha: -0.6);
 
 $border-radius: 8px;
@@ -51,10 +53,10 @@ $border-radius: 8px;
   $ui-button-tertiary-focus-background-color: #674e83,
 
   $primary-text-color: $classic-secondary-color,
-  $darker-text-color: lighten(#847198, 2%),
-  $dark-text-color: lighten(#847198, 2%),
-  $action-button-color: lighten(#847198, 2%),
+  $darker-text-color: $text-darker,
+  $dark-text-color: $text-darker,
+  $action-button-color: $text-darker,
   // we don't do inverted backgrounds
   $inverted-text-color: $classic-secondary-color,
-  $lighter-text-color: lighten(lighten(#847198, 2%), 5%)
+  $lighter-text-color: lighten($text-darker, 5%)
 );
