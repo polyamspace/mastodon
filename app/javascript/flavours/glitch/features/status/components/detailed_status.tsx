@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import { AnimatedNumber } from 'flavours/glitch/components/animated_number';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import EditedTimestamp from 'flavours/glitch/components/edited_timestamp';
+import { FilterWarning } from 'flavours/glitch/components/filter_warning';
 import type { StatusLike } from 'flavours/glitch/components/hashtag_bar';
 import { getHashtagBarForStatus } from 'flavours/glitch/components/hashtag_bar';
 import { IconLogo } from 'flavours/glitch/components/logo';
@@ -72,6 +73,7 @@ export const DetailedStatus: React.FC<{
 }) => {
   const properStatus = status?.get('reblog') ?? status;
   const [height, setHeight] = useState(0);
+  const [showDespiteFilter, setShowDespiteFilter] = useState(false);
   const nodeRef = useRef<HTMLDivElement>();
   const history = useAppHistory();
 
@@ -107,6 +109,10 @@ export const DetailedStatus: React.FC<{
     },
     [onOpenVideo, status],
   );
+
+  const handleFilterToggle = useCallback(() => {
+    setShowDespiteFilter(!showDespiteFilter);
+  }, [showDespiteFilter, setShowDespiteFilter]);
 
   const _measureHeight = useCallback(
     (heightJustChanged?: boolean) => {
@@ -358,6 +364,8 @@ export const DetailedStatus: React.FC<{
   );
   contentMedia.push(hashtagBar);
 
+  const matchedFilters = status.get('matched_filters');
+
   return (
     <div style={outerStyle}>
       <div
@@ -386,22 +394,32 @@ export const DetailedStatus: React.FC<{
           )}
         </Permalink>
 
-        <StatusContent
-          status={status}
-          media={contentMedia}
-          extraMedia={extraMedia}
-          mediaIcons={contentMediaIcons}
-          expanded={expanded}
-          collapsed={false}
-          onExpandedToggle={onToggleHidden}
-          onTranslate={handleTranslate}
-          onUpdate={handleChildUpdate}
-          tagLinks={tagMisleadingLinks}
-          rewriteMentions={rewriteMentions}
-          parseClick={parseClick}
-          disabled
-          {...(statusContentProps as any)}
-        />
+        {matchedFilters && (
+          <FilterWarning
+            title={matchedFilters.join(', ')}
+            expanded={showDespiteFilter}
+            onClick={handleFilterToggle}
+          />
+        )}
+
+        {(!matchedFilters || showDespiteFilter) && (
+          <StatusContent
+            status={status}
+            media={contentMedia}
+            extraMedia={extraMedia}
+            mediaIcons={contentMediaIcons}
+            expanded={expanded}
+            collapsed={false}
+            onExpandedToggle={onToggleHidden}
+            onTranslate={handleTranslate}
+            onUpdate={handleChildUpdate}
+            tagLinks={tagMisleadingLinks}
+            rewriteMentions={rewriteMentions}
+            parseClick={parseClick}
+            disabled
+            {...(statusContentProps as any)}
+          />
+        )}
 
         <div className='detailed-status__meta'>
           <div className='detailed-status__meta__line'>
