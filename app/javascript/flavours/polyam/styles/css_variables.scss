@@ -30,19 +30,7 @@
   --input-placeholder-color: #{$dark-text-color};
   --input-background-color: var(--surface-variant-background-color);
   --on-input-color: #{$secondary-text-color};
-  --toot-focus-background-color: #{color-mix(
-      in srgb,
-      var(--background-color),
-      $ui-highlight-color 5%
-    )};
-  --toot-private-background-color: #{color-mix(
-      in srgb,
-      var(--background-color),
-      $ui-highlight-color 5%
-    )};
-  --toot-private-background-focus-color: #{color-mix(
-      in srgb,
-      var(--background-color),
-      $ui-highlight-color 10%
-    )};
+  --toot-focus-background-color: #{rgba($ui-highlight-color, 0.05)};
+  --toot-private-background-color: #{rgba($ui-highlight-color, 0.05)};
+  --toot-private-background-focus-color: #{rgba($ui-highlight-color, 0.1)};
 }
