@@ -11,19 +11,4 @@ body {
   --background-color: #{$ui-base-color};
   --background-color-tint: #{$ui-base-color};
   --media-outline-color: #{rgba(#9c63c7, 0.15)};
-  --toot-focus-background-color: #{color-mix(
-      in srgb,
-      var(--background-color),
-      $ui-highlight-color 5%
-    )};
-  --toot-private-background-color: #{color-mix(
-      in srgb,
-      var(--background-color),
-      $ui-highlight-color 5%
-    )};
-  --toot-private-background-focus-color: #{color-mix(
-      in srgb,
-      var(--background-color),
-      $ui-highlight-color 10%
-    )};
 }
