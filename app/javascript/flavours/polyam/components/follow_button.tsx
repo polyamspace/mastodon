@@ -23,7 +23,7 @@ const messages = defineMessages({
     id: 'account.cancel_follow_request',
     defaultMessage: 'Withdraw follow request',
   },
-  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
+  editProfile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
 });
 
 export const FollowButton: React.FC<{
@@ -82,7 +82,7 @@ export const FollowButton: React.FC<{
   if (!signedIn) {
     label = intl.formatMessage(messages.follow);
   } else if (accountId === me) {
-    label = intl.formatMessage(messages.edit_profile);
+    label = intl.formatMessage(messages.editProfile);
   } else if (!relationship) {
     label = <LoadingIndicator />;
   } else if (relationship.requested) {
