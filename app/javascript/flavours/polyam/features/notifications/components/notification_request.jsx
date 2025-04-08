@@ -17,7 +17,7 @@ import { initReport } from 'flavours/polyam/actions/reports';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { CheckBox } from 'flavours/polyam/components/check_box';
 import { IconButton } from 'flavours/polyam/components/icon_button';
-import DropdownMenuContainer from 'flavours/polyam/containers/dropdown_menu_container';
+import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
 import { makeGetAccount } from 'flavours/polyam/selectors';
 import { toCappedNumber } from 'flavours/polyam/utils/numbers';
 
@@ -105,11 +105,10 @@ export const NotificationRequest = ({ id, accountId, notificationsCount, checked
 
       <div className='notification-request__actions'>
         <IconButton iconComponent={DeleteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
-        <DropdownMenuContainer
+        <Dropdown
           items={menu}
-          icons='ellipsis-h'
+          icon='ellipsis-h'
           iconComponent={MoreHorizIcon}
-          direction='right'
           title={intl.formatMessage(messages.more)}
         />
       </div>

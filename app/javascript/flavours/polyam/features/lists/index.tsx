@@ -13,9 +13,9 @@ import { fetchLists } from 'flavours/polyam/actions/lists';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
+import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
 import { Icon } from 'flavours/polyam/components/icon';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
-import DropdownMenuContainer from 'flavours/polyam/containers/dropdown_menu_container';
 import { getOrderedLists } from 'flavours/polyam/selectors/lists';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
@@ -60,12 +60,11 @@ const ListItem: React.FC<{
         <span>{title}</span>
       </Link>
 
-      <DropdownMenuContainer
+      <Dropdown
         scrollKey='lists'
         items={menu}
-        icons='ellipsis-h'
+        icon='ellipsis-h'
         iconComponent={MoreHorizIcon}
-        direction='right'
         title={intl.formatMessage(messages.more)}
       />
     </div>

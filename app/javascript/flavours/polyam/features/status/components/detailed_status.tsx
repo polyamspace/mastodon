@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import { AnimatedNumber } from 'flavours/polyam/components/animated_number';
 import AttachmentList from 'flavours/polyam/components/attachment_list';
 import { ContentWarning } from 'flavours/polyam/components/content_warning';
-import EditedTimestamp from 'flavours/polyam/components/edited_timestamp';
+import { EditedTimestamp } from 'flavours/polyam/components/edited_timestamp';
 import { FilterWarning } from 'flavours/polyam/components/filter_warning';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 import type { StatusLike } from 'flavours/polyam/components/hashtag_bar';

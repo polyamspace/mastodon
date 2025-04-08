@@ -23,7 +23,7 @@ import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
 import { Icon } from 'flavours/polyam/components/icon';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
-import DropdownMenuContainer from 'flavours/polyam/containers/dropdown_menu_container';
+import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
 
 import { NotificationRequest } from './components/notification_request';
 import { PolicyControls } from './components/policy_controls';
@@ -126,11 +126,10 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
       <div className='column-header__select-row__checkbox'>
         <CheckBox checked={selectAllChecked} indeterminate={selectedCount > 0 && !selectAllChecked} onChange={handleSelectAll} />
       </div>
-      <DropdownMenuContainer
+      <Dropdown
         items={menu}
-        icons='ellipsis-h'
+        icon='ellipsis-h'
         iconComponent={MoreHorizIcon}
-        direction='right'
         title={intl.formatMessage(messages.more)}
       >
         <button className='dropdown-button column-header__select-row__select-menu' disabled={selectedItems.length === 0}>
@@ -139,7 +138,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
           </span>
           <Icon id='down' icon={ArrowDropDownIcon} />
         </button>
-      </DropdownMenuContainer>
+      </Dropdown>
       <div className='column-header__select-row__mode-button'>
         <button className='text-btn' tabIndex={0} onClick={handleToggleSelectionMode}>
           {selectionMode ? (

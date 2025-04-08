@@ -12,8 +12,8 @@ import {
 } from 'flavours/polyam/actions/tags_typed';
 import type { ApiHashtagJSON } from 'flavours/polyam/api_types/tags';
 import { Button } from 'flavours/polyam/components/button';
+import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
-import DropdownMenu from 'flavours/polyam/containers/dropdown_menu_container';
 import { useIdentity } from 'flavours/polyam/identity_context';
 import { PERMISSION_MANAGE_TAXONOMIES } from 'flavours/polyam/permissions';
 import { useAppDispatch } from 'flavours/polyam/store';
@@ -153,13 +153,11 @@ export const HashtagHeader: React.FC<{
 
         <div className='hashtag-header__header__buttons'>
           {menu.length > 0 && (
-            <DropdownMenu
+            <Dropdown
               disabled={menu.length === 0}
               items={menu}
               icon='ellipsis-v'
               iconComponent={MoreHorizIcon}
-              size={24}
-              direction='right'
             />
           )}
 

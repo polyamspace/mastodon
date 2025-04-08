@@ -22,7 +22,7 @@ import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/
 import { accountAdminLink, instanceAdminLink, statusAdminLink } from 'flavours/polyam/utils/backend_links';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
-import DropdownMenuContainer from '../containers/dropdown_menu_container';
+import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
 import EmojiPickerDropdown from '../features/compose/containers/emoji_picker_dropdown_container';
 import { me, maxReactions } from '../initial_state';
 
@@ -363,7 +363,7 @@ class StatusActionBar extends ImmutablePureComponent {
         {filterButton}
 
         <div className='status__action-bar__button-wrapper'>
-          <DropdownMenuContainer
+          <Dropdown
             scrollKey={scrollKey}
             status={status}
             items={menu}
