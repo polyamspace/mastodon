@@ -79,6 +79,7 @@ import {
   About,
   PrivacyPolicy,
   TermsOfService,
+  AccountFeatured,
   Reactions,
 } from './util/async-components';
 import { ColumnsContextProvider } from './util/columns_context';
@@ -250,6 +251,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
 
             <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
+            <WrappedRoute path={['/@:acct/featured', '/accounts/:id/featured']} component={AccountFeatured} content={children} />
             <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
             <WrappedRoute path={['/accounts/:id/followers', '/users/:acct/followers', '/@:acct/followers']} component={Followers} content={children} />
