@@ -2,7 +2,7 @@
 // That is because Button just doesn't work in the advanced UI and
 // takes up a lot of space, obscuring other elements.
 
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
@@ -19,6 +19,7 @@ import {
   muteAccount,
   unmuteAccount,
 } from 'flavours/polyam/actions/accounts';
+import { openModal } from 'flavours/polyam/actions/modal';
 import { initMuteModal } from 'flavours/polyam/actions/mutes';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { FollowersCounter } from 'flavours/polyam/components/counters';
@@ -30,7 +31,7 @@ import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp
 import { ShortNumber } from 'flavours/polyam/components/short_number';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
 import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
-import { me } from 'flavours/polyam/initial_state';
+import type { MenuItem } from 'flavours/polyam/models/dropdown_menu';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 import { Permalink } from './permalink';
@@ -55,6 +56,14 @@ const messages = defineMessages({
   mute: { id: 'account.mute_short', defaultMessage: 'Mute' },
   block: { id: 'account.block_short', defaultMessage: 'Block' },
   more: { id: 'status.more', defaultMessage: 'More' },
+  addToLists: {
+    id: 'account.add_or_remove_from_list',
+    defaultMessage: 'Add or Remove from lists',
+  },
+  openOriginalPage: {
+    id: 'account.open_original_page',
+    defaultMessage: 'Open original page',
+  },
 });
 
 export const Account: React.FC<{
@@ -69,6 +78,7 @@ export const Account: React.FC<{
   const account = useAppSelector((state) => state.accounts.get(id));
   const relationship = useAppSelector((state) => state.relationships.get(id));
   const dispatch = useAppDispatch();
+  const accountUrl = account?.url;
 
   const handleBlock = useCallback(() => {
     if (relationship?.blocking) {
@@ -86,13 +96,62 @@ export const Account: React.FC<{
     }
   }, [dispatch, id, account, relationship]);
 
-  const handleMuteNotifications = useCallback(() => {
-    dispatch(muteAccount(id, true));
-  }, [dispatch, id]);
+  const menu = useMemo(() => {
+    let arr: MenuItem[] = [];
 
-  const handleUnmuteNotifications = useCallback(() => {
-    dispatch(muteAccount(id, false));
-  }, [dispatch, id]);
+    if (defaultAction === 'mute') {
+      const handleMuteNotifications = () => {
+        dispatch(muteAccount(id, true));
+      };
+
+      const handleUnmuteNotifications = () => {
+        dispatch(muteAccount(id, false));
+      };
+
+      arr = [
+        {
+          text: intl.formatMessage(
+            relationship?.muting_notifications
+              ? messages.unmute_notifications
+              : messages.mute_notifications,
+          ),
+          action: relationship?.muting_notifications
+            ? handleUnmuteNotifications
+            : handleMuteNotifications,
+        },
+      ];
+    } else if (defaultAction !== 'block') {
+      const handleAddToLists = () => {
+        dispatch(
+          openModal({
+            modalType: 'LIST_ADDER',
+            modalProps: {
+              accountId: id,
+            },
+          }),
+        );
+      };
+
+      arr = [
+        {
+          text: intl.formatMessage(messages.addToLists),
+          action: handleAddToLists,
+        },
+      ];
+
+      if (accountUrl) {
+        arr.unshift(
+          {
+            text: intl.formatMessage(messages.openOriginalPage),
+            href: accountUrl,
+          },
+          null,
+        );
+      }
+    }
+
+    return arr;
+  }, [dispatch, intl, id, accountUrl, relationship, defaultAction]);
 
   if (hidden) {
     return (
@@ -103,80 +162,47 @@ export const Account: React.FC<{
     );
   }
 
-  let buttons;
+  let button: React.ReactNode, dropdown: React.ReactNode;
 
-  if (account && account.id !== me && relationship) {
-    const { requested, blocking, muting } = relationship;
-
-    if (requested) {
-      buttons = <FollowIconButton accountId={id} />;
-    } else if (blocking) {
-      buttons = (
-        <IconButton
-          title={intl.formatMessage(messages.unblock)}
-          icon='unlock'
-          iconComponent={UnblockIcon}
-          active
-          onClick={handleBlock}
-        />
-      );
-    } else if (muting) {
-      const menu = [
-        {
-          text: intl.formatMessage(
-            relationship.muting_notifications
-              ? messages.unmute_notifications
-              : messages.mute_notifications,
-          ),
-          action: relationship.muting_notifications
-            ? handleUnmuteNotifications
-            : handleMuteNotifications,
-        },
-      ];
-
-      buttons = (
-        <>
-          <Dropdown
-            items={menu}
-            icon='ellipsis-h'
-            iconComponent={MoreHorizIcon}
-            title={intl.formatMessage(messages.more)}
-          />
-
-          <IconButton
-            title={intl.formatMessage(messages.unmute)}
-            icon='volume-high'
-            iconComponent={UnmuteIcon}
-            onClick={handleMute}
-          />
-        </>
-      );
-    } else if (defaultAction === 'mute') {
-      buttons = (
-        <IconButton
-          title={intl.formatMessage(messages.mute)}
-          icon='volume-xmark'
-          iconComponent={MuteIcon}
-          onClick={handleMute}
-        />
-      );
-    } else if (defaultAction === 'block') {
-      buttons = (
-        <IconButton
-          title={intl.formatMessage(messages.block)}
-          icon='lock'
-          iconComponent={BlockIcon}
-          onClick={handleBlock}
-        />
-      );
-    } else {
-      buttons = <FollowIconButton accountId={id} />;
-    }
-  } else {
-    buttons = <FollowIconButton accountId={id} />;
+  if (menu.length > 0) {
+    dropdown = (
+      <Dropdown
+        items={menu}
+        icon='ellipsis-h'
+        iconComponent={MoreHorizIcon}
+        title={intl.formatMessage(messages.more)}
+      />
+    );
   }
 
-  let muteTimeRemaining;
+  // Polyam: IconButton instead of Button
+  if (defaultAction === 'block') {
+    button = (
+      <IconButton
+        title={intl.formatMessage(
+          relationship?.blocking ? messages.unblock : messages.block,
+        )}
+        icon={relationship?.blocking ? 'unlock' : 'lock'}
+        iconComponent={relationship?.blocking ? UnblockIcon : BlockIcon}
+        onClick={handleBlock}
+      />
+    );
+  } else if (defaultAction === 'mute') {
+    button = (
+      <IconButton
+        title={intl.formatMessage(
+          relationship?.muting ? messages.unmute : messages.mute,
+        )}
+        icon={relationship?.muting ? 'volume-high' : 'volume-xmark'}
+        iconComponent={relationship?.muting ? UnmuteIcon : MuteIcon}
+        onClick={handleMute}
+      />
+    );
+  } else {
+    button = <FollowIconButton accountId={id} />;
+  }
+
+  let muteTimeRemaining: React.ReactNode;
 
   if (account?.mute_expires_at) {
     muteTimeRemaining = (
@@ -186,7 +212,7 @@ export const Account: React.FC<{
     );
   }
 
-  let verification;
+  let verification: React.ReactNode;
 
   const firstVerifiedField = account?.fields.find((item) => !!item.verified_at);
 
@@ -259,7 +285,12 @@ export const Account: React.FC<{
           </div>
         </Permalink>
 
-        {!minimal && <div className='account__relationship'>{buttons}</div>}
+        {!minimal && (
+          <div className='account__relationship'>
+            {dropdown}
+            {button}
+          </div>
+        )}
       </div>
 
       {minimal && accountNote}
