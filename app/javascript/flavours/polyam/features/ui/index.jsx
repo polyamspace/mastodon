@@ -35,6 +35,7 @@ import initialState, { me, owner, singleUserMode, trendsEnabled, trendsAsLanding
 import BundleColumnError from './components/bundle_column_error';
 import Header from './components/header';
 import { UploadArea } from './components/upload_area';
+import { HashtagMenuController } from './components/hashtag_menu_controller';
 import ColumnsAreaContainer from './containers/columns_area_container';
 import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
@@ -688,6 +689,7 @@ class UI extends PureComponent {
           {layout !== 'mobile' && <PictureInPicture />}
           <AlertsController />
           {!disableHoverCards && <HoverCardController />}
+          <HashtagMenuController />
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
