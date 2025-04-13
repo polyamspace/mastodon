@@ -6,6 +6,7 @@ import { LOCAL_SETTING_CHANGE, LOCAL_SETTING_DELETE } from 'flavours/polyam/acti
 import { STORE_HYDRATE } from 'flavours/polyam/actions/store';
 
 const initialState = ImmutableMap({
+  fullwidth_columns: false,
   stretch   : true,
   side_arm  : 'none',
   side_arm_reply_mode : 'keep',
