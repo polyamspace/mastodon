@@ -512,9 +512,7 @@ export const AccountHeader: React.FC<{
 
         arr.push({
           text: intl.formatMessage(
-            account.getIn(['relationship', 'endorsed'])
-              ? messages.unendorse
-              : messages.endorse,
+            relationship.endorsed ? messages.unendorse : messages.endorse,
           ),
           action: handleEndorseToggle,
         });
@@ -772,7 +770,7 @@ export const AccountHeader: React.FC<{
     badges.push(<GroupBadge key='group-badge' />);
   }
 
-  account.get('roles', []).forEach((role) => {
+  account.roles.forEach((role) => {
     badges.push(
       <Badge
         key={`role-badge-${role.get('id')}`}
