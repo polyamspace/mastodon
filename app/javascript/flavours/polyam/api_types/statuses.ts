@@ -138,3 +138,8 @@ export interface ApiStatusJSON {
   hidden_by_moderators: boolean;
   reactions: ApiReactionJSON[];
 }
+
+export interface ApiContextJSON {
+  ancestors: ApiStatusJSON[];
+  descendants: ApiStatusJSON[];
+}
