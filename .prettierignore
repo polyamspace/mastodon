@@ -108,4 +108,4 @@ app/javascript/flavours/polyam/styles/reset.scss
 
 # Ignore polyam-glitch emoji map file
 /app/javascript/flavours/polyam/features/emoji/emoji_map.json
-/app/javascript/flavours/polyam/features/emoji/emoji_sheet.json
+/app/javascript/flavours/polyam/features/emoji/emoji_data.json
