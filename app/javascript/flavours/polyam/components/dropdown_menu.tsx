@@ -26,41 +26,18 @@ import {
 import { openModal, closeModal } from 'flavours/polyam/actions/modal';
 import { CircularProgress } from 'flavours/polyam/components/circular_progress';
 import { isUserTouching } from 'flavours/polyam/is_mobile';
-import type {
-  MenuItem,
-  ActionMenuItem,
-  ExternalLinkMenuItem,
+import {
+  isMenuItem,
+  isActionItem,
+  isExternalLinkItem,
 } from 'flavours/polyam/models/dropdown_menu';
+import type { MenuItem } from 'flavours/polyam/models/dropdown_menu';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 import type { IconProp } from './icon';
 import { IconButton } from './icon_button';
 
 let id = 0;
-
-const isMenuItem = (item: unknown): item is MenuItem => {
-  if (item === null) {
-    return true;
-  }
-
-  return typeof item === 'object' && 'text' in item;
-};
-
-const isActionItem = (item: unknown): item is ActionMenuItem => {
-  if (!item || !isMenuItem(item)) {
-    return false;
-  }
-
-  return 'action' in item;
-};
-
-const isExternalLinkItem = (item: unknown): item is ExternalLinkMenuItem => {
-  if (!item || !isMenuItem(item)) {
-    return false;
-  }
-
-  return 'href' in item;
-};
 
 type RenderItemFn<Item = MenuItem> = (
   item: Item,
@@ -354,6 +331,9 @@ export const Dropdown = <Item = MenuItem,>({
   const open = currentId === openDropdownId;
   const activeElement = useRef<HTMLElement | null>(null);
   const targetRef = useRef<HTMLButtonElement | null>(null);
+  const prefetchAccountId = status
+    ? status.getIn(['account', 'id'])
+    : undefined;
 
   const handleClose = useCallback(() => {
     if (activeElement.current) {
@@ -402,8 +382,8 @@ export const Dropdown = <Item = MenuItem,>({
       } else {
         onOpen?.();
 
-        if (status) {
-          dispatch(fetchRelationships([status.getIn(['account', 'id'])]));
+        if (prefetchAccountId) {
+          dispatch(fetchRelationships([prefetchAccountId]));
         }
 
         if (isUserTouching()) {
@@ -411,7 +391,6 @@ export const Dropdown = <Item = MenuItem,>({
             openModal({
               modalType: 'ACTIONS',
               modalProps: {
-                status,
                 actions: items,
                 onClick: handleItemClick,
               },
@@ -431,11 +410,11 @@ export const Dropdown = <Item = MenuItem,>({
     [
       dispatch,
       currentId,
+      prefetchAccountId,
       scrollKey,
       onOpen,
       handleItemClick,
       open,
-      status,
       items,
       handleClose,
     ],
