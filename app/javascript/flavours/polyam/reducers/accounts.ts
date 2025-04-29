@@ -4,9 +4,9 @@ import { Map as ImmutableMap } from 'immutable';
 import {
   followAccountSuccess,
   unfollowAccountSuccess,
-  importAccounts,
   revealAccount,
 } from 'flavours/polyam/actions/accounts_typed';
+import { importAccounts } from 'flavours/polyam/actions/importer/accounts';
 import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
 import { me } from 'flavours/polyam/initial_state';
 import type { Account } from 'flavours/polyam/models/account';

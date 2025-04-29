@@ -7,18 +7,20 @@ import { useParams } from 'react-router';
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
+import { fetchEndorsedAccounts } from 'flavours/polyam/actions/accounts_typed';
 import { fetchFeaturedTags } from 'flavours/polyam/actions/featured_tags';
 import { expandAccountFeaturedTimeline } from 'flavours/polyam/actions/timelines';
+import { Account } from 'flavours/polyam/components/account';
 import { ColumnBackButton } from 'flavours/polyam/components/column_back_button';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { RemoteHint } from 'flavours/polyam/components/remote_hint';
 import StatusContainer from 'flavours/polyam/containers/status_container';
+import { AccountHeader } from 'flavours/polyam/features/account_timeline/components/account_header';
+import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
+import Column from 'flavours/polyam/features/ui/components/column';
 import { useAccountId } from 'flavours/polyam/hooks/useAccountId';
 import { useAccountVisibility } from 'flavours/polyam/hooks/useAccountVisibility';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
-
-import { AccountHeader } from '../account_timeline/components/account_header';
-import Column from '../ui/components/column';
 
 import { EmptyMessage } from './components/empty_message';
 import { FeaturedTag } from './components/featured_tag';
@@ -29,7 +31,9 @@ interface Params {
   id?: string;
 }
 
-const AccountFeatured = () => {
+const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
+  multiColumn,
+}) => {
   const accountId = useAccountId();
   const { suspended, blockedBy, hidden } = useAccountVisibility(accountId);
   const forceEmptyState = suspended || blockedBy || hidden;
@@ -40,7 +44,8 @@ const AccountFeatured = () => {
   useEffect(() => {
     if (accountId) {
       void dispatch(expandAccountFeaturedTimeline(accountId));
-      dispatch(fetchFeaturedTags(accountId));
+      void dispatch(fetchFeaturedTags({ accountId }));
+      void dispatch(fetchEndorsedAccounts({ accountId }));
     }
   }, [accountId, dispatch]);
 
@@ -68,6 +73,18 @@ const AccountFeatured = () => {
       ) as ImmutableList<string>,
   );
 
+  const featuredAccountIds = useAppSelector(
+    (state) =>
+      state.user_lists.getIn(
+        ['featured_accounts', accountId, 'items'],
+        ImmutableList(),
+      ) as ImmutableList<string>,
+  );
+
+  if (accountId === null) {
+    return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
+  }
+
   if (isLoading) {
     return (
       <AccountFeaturedWrapper accountId={accountId}>
@@ -78,7 +95,11 @@ const AccountFeatured = () => {
     );
   }
 
-  if (featuredStatusIds.isEmpty() && featuredTags.isEmpty()) {
+  if (
+    featuredStatusIds.isEmpty() &&
+    featuredTags.isEmpty() &&
+    featuredAccountIds.isEmpty()
+  ) {
     return (
       <AccountFeaturedWrapper accountId={accountId}>
         <EmptyMessage
@@ -128,6 +149,19 @@ const AccountFeatured = () => {
                 id={statusId}
                 contextType='account'
               />
+            ))}
+          </>
+        )}
+        {!featuredAccountIds.isEmpty() && (
+          <>
+            <h4 className='column-subheading'>
+              <FormattedMessage
+                id='account.featured.accounts'
+                defaultMessage='Profiles'
+              />
+            </h4>
+            {featuredAccountIds.map((featuredAccountId) => (
+              <Account key={featuredAccountId} id={featuredAccountId} />
             ))}
           </>
         )}

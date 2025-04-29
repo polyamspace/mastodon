@@ -1,5 +1,7 @@
-import { apiRequestPost } from 'flavours/polyam/api';
+import { apiRequestPost, apiRequestGet } from 'flavours/polyam/api';
+import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
 import type { ApiRelationshipJSON } from 'flavours/polyam/api_types/relationships';
+import type { ApiHashtagJSON } from 'flavours/polyam/api_types/tags';
 
 export const apiSubmitAccountNote = (id: string, value: string) =>
   apiRequestPost<ApiRelationshipJSON>(`v1/accounts/${id}/note`, {
@@ -23,3 +25,9 @@ export const apiRemoveAccountFromFollowers = (id: string) =>
   apiRequestPost<ApiRelationshipJSON>(
     `v1/accounts/${id}/remove_from_followers`,
   );
+
+export const apiGetFeaturedTags = (id: string) =>
+  apiRequestGet<ApiHashtagJSON>(`v1/accounts/${id}/featured_tags`);
+
+export const apiGetEndorsedAccounts = (id: string) =>
+  apiRequestGet<ApiAccountJSON>(`v1/accounts/${id}/endorsements`);
