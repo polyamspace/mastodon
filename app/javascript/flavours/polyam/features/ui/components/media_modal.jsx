@@ -18,7 +18,7 @@ import { getAverageFromBlurhash } from 'flavours/polyam/blurhash';
 import { GIFV } from 'flavours/polyam/components/gifv';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
-import Footer from 'flavours/polyam/features/picture_in_picture/components/footer';
+import { Footer } from 'flavours/polyam/features/picture_in_picture/components/footer';
 import { Video } from 'flavours/polyam/features/video';
 import { disableSwiping } from 'flavours/polyam/initial_state';
 

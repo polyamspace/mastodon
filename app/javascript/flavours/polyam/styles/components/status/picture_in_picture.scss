@@ -6,6 +6,7 @@
   bottom: 20px;
   inset-inline-end: 20px;
   width: 300px;
+  box-shadow: var(--dropdown-shadow);
 
   // glitch: feature to chose which side the pop-in player is displayed
   &.left {
@@ -15,19 +16,28 @@
 
   &__footer {
     border-radius: 0 0 4px 4px;
-    background: lighten($ui-base-color, 4%);
-    padding: 10px;
-    padding-top: 12px;
+    background: var(--modal-background-variant-color);
+    backdrop-filter: var(--background-filter);
+    border: 1px solid var(--modal-border-color);
+    border-top: 0;
+    padding: 12px;
     display: flex;
     justify-content: space-between;
   }
 
   &__header {
     border-radius: 4px 4px 0 0;
-    background: lighten($ui-base-color, 4%);
-    padding: 10px;
+    background: var(--modal-background-variant-color);
+    backdrop-filter: var(--background-filter);
+    border: 1px solid var(--modal-border-color);
+    border-bottom: 0;
+    padding: 12px;
     display: flex;
     justify-content: space-between;
+
+    .icon-button {
+      padding: 6px;
+    }
 
     &__account {
       display: flex;
@@ -36,7 +46,7 @@
     }
 
     .account__avatar {
-      margin-inline-end: 10px;
+      margin-inline-end: 8px;
     }
 
     .display-name {
@@ -63,29 +73,35 @@
 }
 
 .picture-in-picture-placeholder {
+  border-radius: 8px;
   box-sizing: border-box;
-  border: 2px dashed var(--background-border-color);
-  background: $base-shadow-color;
+  border: 1px dashed var(--background-border-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
-  font-size: 16px;
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 21px;
   font-weight: 500;
   cursor: pointer;
-  color: $darker-text-color;
+  color: $dark-text-color;
   aspect-ratio: 16 / 9;
 
   .icon {
-    width: 21px;
-    height: 21px;
-    margin-bottom: 10px;
+    width: 45px;
+    height: 45px;
+    margin-bottom: 8px;
   }
 
   &:hover,
-  &:focus,
-  &:active {
-    border-color: lighten($ui-base-color, 12%);
+  &:active,
+  &:focus {
+    color: $darker-text-color;
+  }
+
+  &:focus-visible {
+    outline: $ui-button-focus-outline;
+    border-color: transparent;
   }
 }
