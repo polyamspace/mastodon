@@ -64,6 +64,7 @@ import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 import { ActionBar } from '../../account/components/action_bar';
 
 import { AnniversaryNote } from './anniversary-note';
+import { FamiliarFollowers } from './familiar_followers';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 
@@ -1011,6 +1012,7 @@ export const AccountHeader: React.FC<{
                   />
                 </div>
               </div>
+              <FamiliarFollowers accountId={accountId} />
             </div>
           )}
         </div>

@@ -1,5 +1,8 @@
 import { apiRequestPost, apiRequestGet } from 'flavours/polyam/api';
-import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
+import type {
+  ApiAccountJSON,
+  ApiFamiliarFollowersJSON,
+} from 'flavours/polyam/api_types/accounts';
 import type { ApiRelationshipJSON } from 'flavours/polyam/api_types/relationships';
 import type { ApiHashtagJSON } from 'flavours/polyam/api_types/tags';
 
@@ -31,3 +34,8 @@ export const apiGetFeaturedTags = (id: string) =>
 
 export const apiGetEndorsedAccounts = (id: string) =>
   apiRequestGet<ApiAccountJSON>(`v1/accounts/${id}/endorsements`);
+
+export const apiGetFamiliarFollowers = (id: string) =>
+  apiRequestGet<ApiFamiliarFollowersJSON>('/v1/accounts/familiar_followers', {
+    id,
+  });
