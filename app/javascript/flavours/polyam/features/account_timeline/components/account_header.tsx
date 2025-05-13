@@ -1012,7 +1012,7 @@ export const AccountHeader: React.FC<{
                   />
                 </div>
               </div>
-              <FamiliarFollowers accountId={accountId} />
+              {signedIn && <FamiliarFollowers accountId={accountId} />}
             </div>
           )}
         </div>
