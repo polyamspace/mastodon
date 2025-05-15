@@ -9,15 +9,22 @@ import { isFulfilled } from '@reduxjs/toolkit';
 
 import Toggle from 'react-toggle';
 
+import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import ListAltIcon from '@/awesome-icons/solid/rectangle-list.svg?react';
 import { fetchList } from 'flavours/polyam/actions/lists';
 import { createList, updateList } from 'flavours/polyam/actions/lists_typed';
 import { apiGetAccounts } from 'flavours/polyam/api/lists';
+import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
 import type { RepliesPolicyType } from 'flavours/polyam/api_types/lists';
+import { Avatar } from 'flavours/polyam/components/avatar';
+import { AvatarGroup } from 'flavours/polyam/components/avatar_group';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
+import { Icon } from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
+
+import { messages as membersMessages } from './members';
 
 const messages = defineMessages({
   edit: { id: 'column.edit_list', defaultMessage: 'Edit list' },
@@ -27,42 +34,40 @@ const messages = defineMessages({
 const MembersLink: React.FC<{
   id: string;
 }> = ({ id }) => {
-  const [count, setCount] = useState(0);
-  const [avatars, setAvatars] = useState<string[]>([]);
+  const intl = useIntl();
+  const [avatarCount, setAvatarCount] = useState(0);
+  const [avatarAccounts, setAvatarAccounts] = useState<ApiAccountJSON[]>([]);
 
   useEffect(() => {
     void apiGetAccounts(id)
       .then((data) => {
-        setCount(data.length);
-        setAvatars(data.slice(0, 3).map((a) => a.avatar));
-        return '';
+        setAvatarCount(data.length);
+        setAvatarAccounts(data.slice(0, 3));
       })
       .catch(() => {
         // Nothing
       });
-  }, [id, setCount, setAvatars]);
+  }, [id]);
 
   return (
     <Link to={`/lists/${id}/members`} className='app-form__link'>
       <div className='app-form__link__text'>
         <strong>
-          <FormattedMessage
-            id='lists.list_members'
-            defaultMessage='List members'
-          />
+          {intl.formatMessage(membersMessages.manageMembers)}
+          <Icon id='chevron_right' icon={ChevronRightIcon} />
         </strong>
         <FormattedMessage
           id='lists.list_members_count'
           defaultMessage='{count, plural, one {# member} other {# members}}'
-          values={{ count }}
+          values={{ count: avatarCount }}
         />
       </div>
 
-      <div className='avatar-pile'>
-        {avatars.map((url) => (
-          <img key={url} src={url} alt='' />
+      <AvatarGroup compact>
+        {avatarAccounts.map((a) => (
+          <Avatar key={a.id} account={a} size={30} />
         ))}
-      </div>
+      </AvatarGroup>
     </Link>
   );
 };

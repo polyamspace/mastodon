@@ -7,6 +7,7 @@ import { HotKeys } from 'react-hotkeys';
 
 import { replyComposeById } from 'flavours/polyam/actions/compose';
 import { navigateToStatus } from 'flavours/polyam/actions/statuses';
+import { Avatar } from 'flavours/polyam/components/avatar';
 import { AvatarGroup } from 'flavours/polyam/components/avatar_group';
 import type { IconProp } from 'flavours/polyam/components/icon';
 import { Icon } from 'flavours/polyam/components/icon';
@@ -16,6 +17,14 @@ import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 import { DisplayedName } from './displayed_name';
 import { EmbeddedStatus } from './embedded_status';
+
+export const AvatarById: React.FC<{ accountId: string }> = ({ accountId }) => {
+  const account = useAppSelector((state) => state.accounts.get(accountId));
+
+  if (!account) return null;
+
+  return <Avatar withLink account={account} size={28} />;
+};
 
 export type LabelRenderer = (
   displayedName: JSX.Element,
@@ -99,12 +108,13 @@ export const NotificationGroupWithStatus: React.FC<{
         <div className='notification-group__main'>
           <div className='notification-group__main__header'>
             <div className='notification-group__main__header__wrapper'>
-              <AvatarGroup
-                accountIds={accountIds.slice(
-                  0,
-                  NOTIFICATIONS_GROUP_MAX_AVATARS,
-                )}
-              />
+              <AvatarGroup>
+                {accountIds
+                  .slice(0, NOTIFICATIONS_GROUP_MAX_AVATARS)
+                  .map((id) => (
+                    <AvatarById key={id} accountId={id} />
+                  ))}
+              </AvatarGroup>
 
               {actions && (
                 <div className='notification-group__actions'>{actions}</div>
