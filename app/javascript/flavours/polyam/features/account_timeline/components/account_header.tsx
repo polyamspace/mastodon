@@ -924,6 +924,8 @@ export const AccountHeader: React.FC<{
             <div className='account__header__badges'>{badges}</div>
           )}
 
+          {signedIn && <FamiliarFollowers accountId={accountId} />}
+
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
               <div
@@ -1012,7 +1014,6 @@ export const AccountHeader: React.FC<{
                   />
                 </div>
               </div>
-              {signedIn && <FamiliarFollowers accountId={accountId} />}
             </div>
           )}
         </div>
