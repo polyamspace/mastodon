@@ -18,9 +18,12 @@ import {
   unblockAccount,
   muteAccount,
   unmuteAccount,
+  followAccountSuccess,
 } from 'flavours/polyam/actions/accounts';
+import { showAlertForError } from 'flavours/polyam/actions/alerts';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { initMuteModal } from 'flavours/polyam/actions/mutes';
+import { apiFollowAccount } from 'flavours/polyam/api/accounts';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { FollowersCounter } from 'flavours/polyam/components/counters';
 import { DisplayName } from 'flavours/polyam/components/display_name';
@@ -31,6 +34,7 @@ import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp
 import { ShortNumber } from 'flavours/polyam/components/short_number';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
 import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
+import { me } from 'flavours/polyam/initial_state';
 import type { MenuItem } from 'flavours/polyam/models/dropdown_menu';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
@@ -122,14 +126,43 @@ export const Account: React.FC<{
       ];
     } else if (defaultAction !== 'block') {
       const handleAddToLists = () => {
-        dispatch(
-          openModal({
-            modalType: 'LIST_ADDER',
-            modalProps: {
-              accountId: id,
-            },
-          }),
-        );
+        const openAddToListModal = () => {
+          dispatch(
+            openModal({
+              modalType: 'LIST_ADDER',
+              modalProps: {
+                accountId: id,
+              },
+            }),
+          );
+        };
+        if (relationship?.following || relationship?.requested || id === me) {
+          openAddToListModal();
+        } else {
+          dispatch(
+            openModal({
+              modalType: 'CONFIRM_FOLLOW_TO_LIST',
+              modalProps: {
+                accountId: id,
+                onConfirm: () => {
+                  apiFollowAccount(id)
+                    .then((relationship) => {
+                      dispatch(
+                        followAccountSuccess({
+                          relationship,
+                          alreadyFollowing: false,
+                        }),
+                      );
+                      openAddToListModal();
+                    })
+                    .catch((err: unknown) => {
+                      dispatch(showAlertForError(err));
+                    });
+                },
+              },
+            }),
+          );
+        }
       };
 
       arr = [
