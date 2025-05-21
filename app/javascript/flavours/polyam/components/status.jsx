@@ -85,6 +85,7 @@ class Status extends ImmutablePureComponent {
     id: PropTypes.string,
     status: ImmutablePropTypes.map,
     account: ImmutablePropTypes.record,
+    children: PropTypes.node,
     previousId: PropTypes.string,
     nextInReplyToId: PropTypes.string,
     rootId: PropTypes.string,
@@ -116,6 +117,7 @@ class Status extends ImmutablePureComponent {
     withDismiss: PropTypes.bool,
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
+    isQuotedPost: PropTypes.bool,
     getScrollPosition: PropTypes.func,
     updateScrollBottom: PropTypes.func,
     expanded: PropTypes.bool,
@@ -543,7 +545,7 @@ class Status extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, hidden, featured, unfocusable, unread, pictureInPicture, previousId, nextInReplyToId, rootId, skipPrepend, avatarSize = 46 } = this.props;
+    const { intl, hidden, featured, unfocusable, unread, pictureInPicture, previousId, nextInReplyToId, rootId, skipPrepend, avatarSize = 46, children } = this.props;
 
     const {
       status,
@@ -556,6 +558,7 @@ class Status extends ImmutablePureComponent {
       notification,
       onOpenAltText,
       history,
+      isQuotedPost,
       ...other
     } = this.props;
 
@@ -812,7 +815,7 @@ class Status extends ImmutablePureComponent {
           {!skipPrepend && prepend}
 
           <div
-            className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), 'status--in-thread': !!rootId, 'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted })}
+            className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), 'status--in-thread': !!rootId, 'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted, 'status--is-quote': isQuotedPost })}
             data-id={status.get('id')}
           >
             {(connectReply || connectUp || connectToRoot) && <div className={classNames('status__line', { 'status__line--full': connectReply, 'status__line--first': !status.get('in_reply_to_id') && !connectToRoot })} />}
@@ -860,6 +863,8 @@ class Status extends ImmutablePureComponent {
                   {...statusContentProps}
                 />
 
+                {children}
+
                 {media}
                 {hashtagBar}
               </div>
@@ -873,7 +878,7 @@ class Status extends ImmutablePureComponent {
               reactions={status.get('reactions')}
             />
 
-            {(!isCollapsed || !(muted || !showActionBar)) && (
+            {!isQuotedPost && (!isCollapsed || !(muted || !showActionBar)) && (
               <StatusActionBar
                 status={status}
                 account={status.get('account')}

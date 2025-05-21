@@ -27,6 +27,7 @@ import { MentionsPlaceholder } from 'flavours/polyam/components/mentions_placeho
 import { Permalink } from 'flavours/polyam/components/permalink';
 import { PictureInPicturePlaceholder } from 'flavours/polyam/components/picture_in_picture_placeholder';
 import StatusContent from 'flavours/polyam/components/status_content';
+import { QuotedStatus } from 'flavours/polyam/components/status_quoted';
 import { StatusReactions } from 'flavours/polyam/components/status_reactions';
 import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 import { Audio } from 'flavours/polyam/features/audio';
@@ -432,6 +433,10 @@ export const DetailedStatus: React.FC<{
               collapsed={false}
               {...(statusContentProps as any)}
             />
+
+            {status.get('quote') && (
+              <QuotedStatus quote={status.get('quote')} />
+            )}
 
             {media}
             {hashtagBar}

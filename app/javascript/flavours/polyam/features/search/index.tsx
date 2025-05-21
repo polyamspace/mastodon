@@ -17,7 +17,7 @@ import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { CompatibilityHashtag as Hashtag } from 'flavours/polyam/components/hashtag';
 import { Icon } from 'flavours/polyam/components/icon';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
-import Status from 'flavours/polyam/containers/status_container';
+import { StatusQuoteManager } from 'flavours/polyam/components/status_quoted';
 import { Search } from 'flavours/polyam/features/compose/components/search';
 import { useSearchParam } from 'flavours/polyam/hooks/useSearchParam';
 import type { Hashtag as HashtagType } from 'flavours/polyam/models/tags';
@@ -53,8 +53,7 @@ const renderHashtags = (hashtags: HashtagType[]) =>
 
 const renderStatuses = (statusIds: string[]) =>
   hidePeek<string>(statusIds).map((id) => (
-    // @ts-expect-error inferred props are wrong
-    <Status key={id} id={id} />
+    <StatusQuoteManager key={id} id={id} />
   ));
 
 type SearchType = 'all' | ApiSearchType;
@@ -190,8 +189,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                   onClickMore={handleSelectStatuses}
                 >
                   {results.statuses.slice(0, INITIAL_DISPLAY).map((id) => (
-                    // @ts-expect-error inferred props are wrong
-                    <Status key={id} id={id} />
+                    <StatusQuoteManager key={id} id={id} />
                   ))}
                 </SearchSection>
               )}

@@ -14,7 +14,7 @@ import { Account } from 'flavours/polyam/components/account';
 import { ColumnBackButton } from 'flavours/polyam/components/column_back_button';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { RemoteHint } from 'flavours/polyam/components/remote_hint';
-import StatusContainer from 'flavours/polyam/containers/status_container';
+import { StatusQuoteManager } from 'flavours/polyam/components/status_quoted';
 import { AccountHeader } from 'flavours/polyam/features/account_timeline/components/account_header';
 import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
 import Column from 'flavours/polyam/features/ui/components/column';
@@ -143,9 +143,8 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
               />
             </h4>
             {featuredStatusIds.map((statusId) => (
-              <StatusContainer
+              <StatusQuoteManager
                 key={`f-${statusId}`}
-                // @ts-expect-error inferred props are wrong
                 id={statusId}
                 contextType='account'
               />

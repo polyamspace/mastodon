@@ -3,9 +3,9 @@
 .content-warning {
   display: block;
   box-sizing: border-box;
-  background: rgba($ui-highlight-color, 0.05);
-  color: $secondary-text-color;
-  border: 1px solid rgba($ui-highlight-color, 0.15);
+  background: var(--nested-card-background);
+  color: var(--nested-card-text);
+  border: var(--nested-card-border);
   border-radius: 8px;
   padding: 8px (5px + 8px);
   position: relative;
