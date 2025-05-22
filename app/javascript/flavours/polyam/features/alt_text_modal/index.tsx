@@ -30,7 +30,7 @@ import { Skeleton } from 'flavours/polyam/components/skeleton';
 import Audio from 'flavours/polyam/features/audio';
 import { CharacterCounter } from 'flavours/polyam/features/compose/components/character_counter';
 import { Tesseract as fetchTesseract } from 'flavours/polyam/features/ui/util/async-components';
-import Video, { getPointerPosition } from 'flavours/polyam/features/video';
+import { Video, getPointerPosition } from 'flavours/polyam/features/video';
 import { me } from 'flavours/polyam/initial_state';
 import type { MediaAttachment } from 'flavours/polyam/models/media_attachment';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
@@ -134,17 +134,7 @@ const Preview: React.FC<{
         return;
       }
 
-      const { x, y } = getPointerPosition(nodeRef.current, e);
-      setDragging(true);
-      draggingRef.current = true;
-      onPositionChange([x, y]);
-    },
-    [setDragging, onPositionChange],
-  );
-
-  const handleTouchStart = useCallback(
-    (e: React.TouchEvent) => {
-      const { x, y } = getPointerPosition(nodeRef.current, e);
+      const { x, y } = getPointerPosition(nodeRef.current, e.nativeEvent);
       setDragging(true);
       draggingRef.current = true;
       onPositionChange([x, y]);
@@ -165,28 +155,12 @@ const Preview: React.FC<{
       }
     };
 
-    const handleTouchEnd = () => {
-      setDragging(false);
-      draggingRef.current = false;
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (draggingRef.current) {
-        const { x, y } = getPointerPosition(nodeRef.current, e);
-        onPositionChange([x, y]);
-      }
-    };
-
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('touchend', handleTouchEnd);
-    document.addEventListener('touchmove', handleTouchMove);
 
     return () => {
       document.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('touchend', handleTouchEnd);
-      document.removeEventListener('touchmove', handleTouchMove);
     };
   }, [setDragging, onPositionChange]);
 
@@ -204,7 +178,6 @@ const Preview: React.FC<{
           alt=''
           role='presentation'
           onMouseDown={handleMouseDown}
-          onTouchStart={handleTouchStart}
         />
         <div
           className='focal-point__reticle'
@@ -220,7 +193,6 @@ const Preview: React.FC<{
           src={media.get('url') as string}
           alt=''
           onMouseDown={handleMouseDown}
-          onTouchStart={handleTouchStart}
         />
         <div
           className='focal-point__reticle'
@@ -233,6 +205,7 @@ const Preview: React.FC<{
       <Video
         preview={media.get('preview_url') as string}
         frameRate={media.getIn(['meta', 'original', 'frame_rate']) as string}
+        aspectRatio={`${media.getIn(['meta', 'original', 'width']) as number} / ${media.getIn(['meta', 'original', 'height']) as number}`}
         blurhash={media.get('blurhash') as string}
         src={media.get('url') as string}
         detailed

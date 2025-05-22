@@ -19,7 +19,7 @@ import { GIFV } from 'flavours/polyam/components/gifv';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import Footer from 'flavours/polyam/features/picture_in_picture/components/footer';
-import Video from 'flavours/polyam/features/video';
+import { Video } from 'flavours/polyam/features/video';
 import { disableSwiping } from 'flavours/polyam/initial_state';
 
 import { ZoomableImage } from './zoomable_image';
@@ -202,9 +202,9 @@ class MediaModal extends ImmutablePureComponent {
             width={image.get('width')}
             height={image.get('height')}
             frameRate={image.getIn(['meta', 'original', 'frame_rate'])}
-            currentTime={currentTime || 0}
-            autoPlay={autoPlay || false}
-            volume={volume || 1}
+            startTime={currentTime || 0}
+            startPlaying={autoPlay || false}
+            startVolume={volume || 1}
             onCloseVideo={onClose}
             detailed
             alt={description}

@@ -11,7 +11,7 @@ import Poll from 'flavours/polyam/components/poll';
 import Audio from 'flavours/polyam/features/audio';
 import Card from 'flavours/polyam/features/status/components/card';
 import MediaModal from 'flavours/polyam/features/ui/components/media_modal';
-import Video from 'flavours/polyam/features/video';
+import { Video } from 'flavours/polyam/features/video';
 import { IntlProvider } from 'flavours/polyam/locales';
 import { getScrollbarWidth } from 'flavours/polyam/utils/scrollbar';
 
