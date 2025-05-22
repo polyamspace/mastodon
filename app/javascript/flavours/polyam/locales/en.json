@@ -19,7 +19,6 @@
   "column.reacted_by": "Reacted by",
   "confirmations.cancel_follow_request.confirm": "Withdraw request",
   "confirmations.cancel_follow_request.message": "Are you sure you want to withdraw your request to follow {name}?",
-  "endorsed_accounts_editor.endorsed_accounts": "Featured accounts",
   "footer.documentation": "Documentation",
   "home.column_settings.show_threads": "Show threads",
   "keyboard_shortcuts.toggle_collapse": "to collapse/uncollapse toots",

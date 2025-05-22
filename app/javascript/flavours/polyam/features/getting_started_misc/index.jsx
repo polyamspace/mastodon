@@ -12,9 +12,7 @@ import HashtagIcon from '@/awesome-icons/solid/hashtag.svg?react';
 import QuestionIcon from '@/awesome-icons/solid/question.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import PinIcon from '@/awesome-icons/solid/thumbtack.svg?react';
-import PeopleIcon from '@/awesome-icons/solid/users.svg?react';
 import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
-import { openModal } from 'flavours/polyam/actions/modal';
 import Column from 'flavours/polyam/features/ui/components/column';
 import ColumnLink from 'flavours/polyam/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/polyam/features/ui/components/column_subheading';
@@ -41,12 +39,6 @@ class GettingStartedMisc extends ImmutablePureComponent {
     dispatch: PropTypes.func.isRequired,
   };
 
-  openFeaturedAccountsModal = () => {
-    this.props.dispatch(openModal({
-      modalType: 'PINNED_ACCOUNTS_EDITOR',
-    }));
-  };
-
   render () {
     const { intl } = this.props;
     const { signedIn } = this.props.identity;
@@ -58,7 +50,6 @@ class GettingStartedMisc extends ImmutablePureComponent {
           {signedIn && (<ColumnLink key='favourites' icon='star' iconComponent={StarIcon} text={intl.formatMessage(messages.favourites)} to='/favourites' />)}
           {signedIn && (<ColumnLink key='followed_hashtags' icon='hashtag' iconComponent={HashtagIcon} text={intl.formatMessage(messages.followed_tags)} to='/followed_tags' />)}
           {signedIn && (<ColumnLink key='pinned' icon='thumb-tack' iconComponent={PinIcon} text={intl.formatMessage(messages.pins)} to='/pinned' />)}
-          {signedIn && (<ColumnLink key='featured_users' icon='users' iconComponent={PeopleIcon} text={intl.formatMessage(messages.featured_users)} onClick={this.openFeaturedAccountsModal} />)}
           {signedIn && (<ColumnLink key='mutes' icon='volume-off' iconComponent={MuteIcon} text={intl.formatMessage(messages.mutes)} to='/mutes' />)}
           {signedIn && (<ColumnLink key='blocks' icon='ban' iconComponent={BanIcon} text={intl.formatMessage(messages.blocks)} to='/blocks' />)}
           {signedIn && (<ColumnLink key='domain_blocks' icon='minus-circle' iconComponent={CircleMinusIcon} text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />)}
