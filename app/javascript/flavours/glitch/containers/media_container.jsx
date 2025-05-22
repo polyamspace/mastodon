@@ -11,7 +11,7 @@ import Poll from 'flavours/glitch/components/poll';
 import Audio from 'flavours/glitch/features/audio';
 import Card from 'flavours/glitch/features/status/components/card';
 import MediaModal from 'flavours/glitch/features/ui/components/media_modal';
-import Video from 'flavours/glitch/features/video';
+import { Video } from 'flavours/glitch/features/video';
 import { IntlProvider } from 'flavours/glitch/locales';
 import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
 
