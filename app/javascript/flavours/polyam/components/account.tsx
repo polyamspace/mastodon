@@ -238,7 +238,7 @@ export const Account: React.FC<{
             {
               // TODO: Show muteTimeRemaining
               // @ts-expect-error -- Polyam: Don't show this */
-              // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+              // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, no-constant-binary-expression
               null && !minimal && (
                 <div className='account__details'>
                   {account ? (
