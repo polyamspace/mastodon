@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
-import PollContainer from 'flavours/polyam/containers/poll_container';
+import { Poll } from 'flavours/polyam/components/poll';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { autoPlayGif, languages as preloadedLanguages } from 'flavours/polyam/initial_state';
 import { highlightCode } from 'flavours/polyam/utils/html';
@@ -350,7 +350,7 @@ class StatusContent extends PureComponent {
     );
 
     const poll = !!status.get('poll') && (
-      <PollContainer pollId={status.get('poll')} status={status} lang={language} />
+      <Poll pollId={status.get('poll')} status={status} lang={language} />
     );
 
     if (this.props.onClick) {

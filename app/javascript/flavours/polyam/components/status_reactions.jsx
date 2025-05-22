@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 
 import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { useDispatch } from 'react-redux';
 
-import TransitionMotion from 'react-motion/lib/TransitionMotion';
-import spring from 'react-motion/lib/spring';
+import { animated, useTransition } from '@react-spring/web';
 
 import { addReaction, removeReaction } from '../actions/interactions';
 import { unicodeMapping } from '../features/emoji/emoji_unicode_mapping_light';
@@ -18,44 +17,29 @@ import { assetHost } from '../utils/config';
 import { AnimatedNumber } from './animated_number';
 
 export const StatusReactions = ({statusId, reactions, canReact = true}) => {
-  const willEnter = useCallback(() => {
-    return { scale: reduceMotion ? 1 : 0 };
-  }, []);
+  const shownReactions = useMemo(() => reactions.filter(x => x.get('count') > 0).sort((a, b) => b.get('count') - a.get('count')).filter((x, i) => i < visibleReactions || x.get('me')).toArray(), [reactions]);
 
-  const willLeave = useCallback(() => {
-    return { scale: reduceMotion ? 0 : spring(0, { stiffness: 170, damping: 26 }) };
-  }, []);
-
-  let shownReactions = reactions
-    .filter(x => x.get('count') > 0)
-    .sort((a, b) => b.get('count') - a.get('count'));
-
-  if (visibleReactions >= 0) {
-    shownReactions = shownReactions.filter((x, i) => i < visibleReactions || x.get('me'));
-  }
-
-  const styles = shownReactions.map(reaction => ({
-    key: reaction.get('name'),
-    data: reaction,
-    style: { scale: reduceMotion ? 1 : spring(1, { stiffness: 150, damping: 13 }) },
-  })).toArray();
+  const transitions = useTransition(shownReactions, {
+    from: { scale: 0 },
+    initial: { scale: 1 },
+    enter: { scale: 1 },
+    leave: { scale: 0 },
+    immediate: reduceMotion,
+    keys: shownReactions.map(x => x.get('name')),
+  });
 
   return (
-    <TransitionMotion styles={styles} willEnter={willEnter} willLeave={willLeave}>
-      {items => (
-        <div className={classNames('reactions-bar', { 'reactions-bar--empty': shownReactions.isEmpty() })}>
-          {items.map(({ key, data, style }) => (
-            <Reaction
-              key={key}
-              statusId={statusId}
-              reaction={data}
-              style={{ transform: `scale(${style.scale})`, position: style.scale < 0.5 ? 'absolute' : 'static' }}
-              canReact={canReact}
-            />
-          ))}
-        </div>
-      )}
-    </TransitionMotion>
+    <div className={classNames('reactions-bar', { 'reactions-bar--empty': shownReactions.length === 0 })}>
+      {transitions(({ scale }, reaction) => (
+        <Reaction
+          key={reaction.get('name')}
+          statusId={statusId}
+          reaction={reaction}
+          style={{ transform: scale.to((s) => `scale(${s})`) }}
+          canReact={canReact}
+        />
+      ))}
+    </div>
   );
 };
 
@@ -88,7 +72,7 @@ const Reaction = ({statusId, reaction, canReact, style}) => {
   }, [setHovered]);
 
   return (
-    <button
+    <animated.button
       className={classNames('reactions-bar__item', { active: reaction.get('me') })}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
@@ -107,7 +91,7 @@ const Reaction = ({statusId, reaction, canReact, style}) => {
       <span className='reactions-bar__item__count'>
         <AnimatedNumber value={reaction.get('count')} />
       </span>
-    </button>
+    </animated.button>
   );
 };
 
