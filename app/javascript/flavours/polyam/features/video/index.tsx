@@ -60,6 +60,7 @@ const messages = defineMessages({
 });
 
 const DOUBLE_CLICK_THRESHOLD = 250;
+const HOVER_FADE_DELAY = 4000;
 
 export const formatTime = (secondsNum: number) => {
   const hours = Math.floor(secondsNum / 3600);
@@ -246,6 +247,7 @@ export const Video: React.FC<{
   const seekRef = useRef<HTMLDivElement>(null);
   const volumeRef = useRef<HTMLDivElement>(null);
   const doubleClickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>();
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>();
 
   const [style, api] = useSpring(() => ({
     progress: '0%',
@@ -680,6 +682,26 @@ export const Video: React.FC<{
 
   const handleMouseEnter = useCallback(() => {
     setHovered(true);
+
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHovered(false);
+    }, HOVER_FADE_DELAY);
+  }, [setHovered]);
+
+  const handleMouseMove = useCallback(() => {
+    setHovered(true);
+
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHovered(false);
+    }, HOVER_FADE_DELAY);
   }, [setHovered]);
 
   const handleMouseLeave = useCallback(() => {
@@ -807,7 +829,7 @@ export const Video: React.FC<{
   // The outer wrapper is necessary to avoid reflowing the layout when going into full screen
   // Polyam: Kept 16:9 in timeline
   return (
-    <div style={{ aspectRatio: inline ? '16 / 9' : aspectRatio }}>
+    <div>
       <div
         role='menuitem'
         className={classNames('video-player', {
@@ -821,6 +843,7 @@ export const Video: React.FC<{
         style={{ aspectRatio: inline ? '16 / 9' : aspectRatio }}
         ref={playerRef}
         onMouseEnter={handleMouseEnter}
+        onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onClick={handleClickRoot}
         onKeyDown={handleKeyDown}

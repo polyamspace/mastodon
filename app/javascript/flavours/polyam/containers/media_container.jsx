@@ -13,6 +13,7 @@ import Card from 'flavours/polyam/features/status/components/card';
 import MediaModal from 'flavours/polyam/features/ui/components/media_modal';
 import { Video } from 'flavours/polyam/features/video';
 import { IntlProvider } from 'flavours/polyam/locales';
+import { createPollFromServerJSON } from 'flavours/polyam/models/poll';
 import { getScrollbarWidth } from 'flavours/polyam/utils/scrollbar';
 
 const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
@@ -88,7 +89,7 @@ export default class MediaContainer extends PureComponent {
             Object.assign(props, {
               ...(media   ? { media:   fromJS(media)   } : {}),
               ...(card    ? { card:    fromJS(card)    } : {}),
-              ...(poll    ? { poll:    fromJS(poll)    } : {}),
+              ...(poll    ? { poll:    createPollFromServerJSON(poll)    } : {}),
               ...(hashtag ? { hashtag: fromJS(hashtag) } : {}),
 
               ...(componentName === 'Video' ? {

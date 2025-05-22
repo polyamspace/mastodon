@@ -13,6 +13,7 @@ import Card from 'flavours/glitch/features/status/components/card';
 import MediaModal from 'flavours/glitch/features/ui/components/media_modal';
 import { Video } from 'flavours/glitch/features/video';
 import { IntlProvider } from 'flavours/glitch/locales';
+import { createPollFromServerJSON } from 'flavours/glitch/models/poll';
 import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
 
 const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
@@ -88,7 +89,7 @@ export default class MediaContainer extends PureComponent {
             Object.assign(props, {
               ...(media   ? { media:   fromJS(media)   } : {}),
               ...(card    ? { card:    fromJS(card)    } : {}),
-              ...(poll    ? { poll:    fromJS(poll)    } : {}),
+              ...(poll    ? { poll:    createPollFromServerJSON(poll)    } : {}),
               ...(hashtag ? { hashtag: fromJS(hashtag) } : {}),
 
               ...(componentName === 'Video' ? {

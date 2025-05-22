@@ -7498,8 +7498,10 @@ img.modal-warning {
 
   &.fullscreen {
     width: 100% !important;
-    height: 100% !important;
     margin: 0;
+    height: 100% !important;
+    outline: none;
+    border-radius: 0;
 
     video {
       max-width: 100% !important;
