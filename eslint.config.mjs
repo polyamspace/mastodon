@@ -171,15 +171,18 @@ export const baseConfig = [
             // Forbid imports from vanilla and glitch in polyam flavour
             {
               target: 'app/javascript/flavours/polyam/',
-              from: ['app/javascript/mastodon/', 'app/javascript/flavours/glitch/'],
-              message: 'Import from flavours/polyam/ instead'
+              from: [
+                'app/javascript/mastodon/',
+                'app/javascript/flavours/glitch/',
+              ],
+              message: 'Import from flavours/polyam/ instead',
             },
             // Forbid imports from material-icons in polyam flavour
             {
               target: 'app/javascript/flavours/polyam/',
               from: 'app/javascript/material-icons',
               message: 'Use awesome-icons instead',
-            }
+            },
           ],
         },
       ],
