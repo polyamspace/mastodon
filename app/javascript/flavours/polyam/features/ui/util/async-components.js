@@ -38,10 +38,6 @@ export function Lists () {
   return import(/* webpackChunkName: "flavours/polyam/async/lists" */'../../lists');
 }
 
-export function PinnedAccountsEditor () {
-  return import(/* webpackChunkName: "flavours/polyam/async/pinned_accounts_editor" */'../../pinned_accounts_editor');
-}
-
 export function DirectTimeline() {
   return import(/* webpackChunkName: "flavours/polyam/async/direct_timeline" */'../../direct_timeline');
 }
