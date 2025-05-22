@@ -776,7 +776,7 @@ export const AccountHeader: React.FC<{
     );
   } else {
     // @ts-expect-error -- Polyam: Disabled share button
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, no-constant-binary-expression
     shareBtn = null && (
       <CopyIconButton
         className='optional'

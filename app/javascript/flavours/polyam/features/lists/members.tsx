@@ -131,7 +131,7 @@ const AccountItem: React.FC<{
 
             {
               // @ts-expect-error -- Polyam: Don't show this.*/
-              // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+              // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, no-constant-binary-expression
               null && (
                 <div className='account__details'>
                   <ShortNumber

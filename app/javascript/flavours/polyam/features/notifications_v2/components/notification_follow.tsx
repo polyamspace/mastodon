@@ -70,7 +70,7 @@ export const NotificationFollow: React.FC<{
       );
       // Polyam: Don't show follower count
       // @ts-expect-error -- it's supposed to be always falsy
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, no-constant-binary-expression
       additionalContent = undefined && <FollowerCount accountId={account} />;
     }
   }
