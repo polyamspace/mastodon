@@ -36,10 +36,10 @@ import {
 } from 'flavours/polyam/components/badge';
 import { Button } from 'flavours/polyam/components/button';
 import { CopyIconButton } from 'flavours/polyam/components/copy_icon_button';
+import { FollowButton } from 'flavours/polyam/components/follow_button';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
-import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import DropdownMenuContainer from 'flavours/polyam/containers/dropdown_menu_container';
 import { DomainPill } from 'flavours/polyam/features/account/components/domain_pill';
 import AccountNoteContainer from 'flavours/polyam/features/account/containers/account_note_container';
@@ -53,7 +53,6 @@ import {
 } from 'flavours/polyam/initial_state';
 import type { Account } from 'flavours/polyam/models/account';
 import type { DropdownMenu } from 'flavours/polyam/models/dropdown_menu';
-import type { Relationship } from 'flavours/polyam/models/relationship';
 import {
   PERMISSION_MANAGE_USERS,
   PERMISSION_MANAGE_FEDERATION,
@@ -188,25 +187,6 @@ const titleFromAccount = (account: Account) => {
   return `${prefix} (@${acct})`;
 };
 
-const messageForFollowButton = (
-  relationship?: Relationship,
-  locked?: boolean,
-) => {
-  if (!relationship) return messages.follow;
-
-  if (relationship.get('requested')) {
-    return messages.cancel_follow_request;
-  } else if (relationship.get('following')) {
-    return messages.unfollow;
-  } else if (relationship.get('followed_by')) {
-    return messages.followBack;
-  } else if (locked) {
-    return messages.request_follow;
-  } else {
-    return messages.follow;
-  }
-};
-
 const dateFormatOptions: Intl.DateTimeFormatOptions = {
   month: 'short',
   day: 'numeric',
@@ -229,23 +209,6 @@ export const AccountHeader: React.FC<{
   );
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
   const handleLinkClick = useLinks();
-
-  const handleFollow = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.following || relationship?.requested) {
-      dispatch(
-        openModal({
-          modalType: 'CONFIRM_UNFOLLOW',
-          modalProps: { account, requested: relationship.requested },
-        }),
-      );
-    } else {
-      dispatch(followAccount(account.id));
-    }
-  }, [dispatch, account, relationship]);
 
   const handleBlock = useCallback(() => {
     if (!account) {
@@ -383,23 +346,6 @@ export const AccountHeader: React.FC<{
     );
   }, [dispatch, account]);
 
-  const handleInteractionModal = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(
-      openModal({
-        modalType: 'INTERACTION',
-        modalProps: {
-          type: 'follow',
-          accountId: account.id,
-          url: account.uri,
-        },
-      }),
-    );
-  }, [dispatch, account]);
-
   const handleOpenAvatar = useCallback(
     (e: React.MouseEvent) => {
       if (e.button !== 0 || e.ctrlKey || e.metaKey) {
@@ -441,10 +387,6 @@ export const AccountHeader: React.FC<{
       url: account.url,
     });
   }, [account]);
-
-  const handleEditProfile = useCallback(() => {
-    window.open('/settings/profile', '_blank');
-  }, []);
 
   const handleMouseEnter = useCallback(
     ({ currentTarget }: React.MouseEvent) => {
@@ -705,9 +647,12 @@ export const AccountHeader: React.FC<{
     return null;
   }
 
-  let actionBtn, bellBtn, lockedIcon, shareBtn;
+  let actionBtn: React.ReactNode,
+    bellBtn: React.ReactNode,
+    lockedIcon: React.ReactNode,
+    shareBtn: React.ReactNode;
 
-  const info = [];
+  const info: React.ReactNode[] = [];
 
   if (me !== account.id && relationship?.followed_by) {
     info.push(
@@ -786,45 +731,15 @@ export const AccountHeader: React.FC<{
     );
   }
 
-  if (me !== account.id) {
-    if (signedIn && !relationship) {
-      // Wait until the relationship is loaded
-      actionBtn = (
-        <Button disabled>
-          <LoadingIndicator />
-        </Button>
-      );
-    } else if (!relationship?.blocking) {
-      actionBtn = (
-        <Button
-          disabled={relationship?.blocked_by}
-          className={classNames({
-            'button--destructive':
-              relationship?.following || relationship?.requested,
-          })}
-          text={intl.formatMessage(
-            messageForFollowButton(relationship, account.locked),
-          )}
-          onClick={signedIn ? handleFollow : handleInteractionModal}
-        />
-      );
-    } else {
-      actionBtn = (
-        <Button
-          text={intl.formatMessage(messages.unblock, {
-            name: account.username,
-          })}
-          onClick={handleBlock}
-        />
-      );
-    }
-  } else {
+  if (relationship?.blocking) {
     actionBtn = (
       <Button
-        text={intl.formatMessage(messages.edit_profile)}
-        onClick={handleEditProfile}
+        text={intl.formatMessage(messages.unblock, { name: account.username })}
+        onClick={handleBlock}
       />
     );
+  } else {
+    actionBtn = <FollowButton accountId={accountId} />;
   }
 
   if (account.moved && !relationship?.following) {
