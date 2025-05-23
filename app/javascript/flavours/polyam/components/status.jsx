@@ -746,7 +746,7 @@ class Status extends ImmutablePureComponent {
         );
         mediaIcons.push('video-camera');
       }
-    } else if (status.get('card') && settings.get('inline_preview_cards') && !this.props.muted) {
+    } else if (status.get('card') && settings.get('inline_preview_cards') && !this.props.muted && !status.get('quote')) {
       media.push(
         <Card
           onOpenMedia={this.handleOpenMedia}
@@ -815,7 +815,17 @@ class Status extends ImmutablePureComponent {
           {!skipPrepend && prepend}
 
           <div
-            className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), 'status--in-thread': !!rootId, 'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted, 'status--is-quote': isQuotedPost })}
+            className={
+              classNames('status', `status-${status.get('visibility')}`,
+              {
+                'status-reply': !!status.get('in_reply_to_id'),
+                'status--in-thread': !!rootId,
+                'status--first-in-thread': previousId && (!connectUp || connectToRoot),
+                muted: this.props.muted,
+                'status--is-quote': isQuotedPost,
+                'status--has-quote': !!status.get('quote'),
+              })
+            }
             data-id={status.get('id')}
           >
             {(connectReply || connectUp || connectToRoot) && <div className={classNames('status__line', { 'status__line--full': connectReply, 'status__line--first': !status.get('in_reply_to_id') && !connectToRoot })} />}
