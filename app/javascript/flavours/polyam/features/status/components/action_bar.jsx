@@ -20,7 +20,7 @@ import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/
 import { accountAdminLink, instanceAdminLink, statusAdminLink } from 'flavours/polyam/utils/backend_links';
 
 import { IconButton } from '../../../components/icon_button';
-import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
+import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
 import { me, maxReactions } from '../../../initial_state';
 import EmojiPickerDropdown from "../../compose/containers/emoji_picker_dropdown_container";
 
@@ -258,7 +258,7 @@ class ActionBar extends PureComponent {
         <div className='detailed-status__button'><IconButton className='bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={bookmarkTitle} icon='bookmark' iconComponent={BookmarkIcon} onClick={this.handleBookmarkClick} /></div>
 
         <div className='detailed-status__action-bar-dropdown'>
-          <DropdownMenuContainer icon='ellipsis-h' iconComponent={MoreHorizIcon} items={menu} direction='left' title={intl.formatMessage(messages.more)} />
+          <Dropdown icon='ellipsis-h' iconComponent={MoreHorizIcon} items={menu} title={intl.formatMessage(messages.more)} />
         </div>
       </div>
     );

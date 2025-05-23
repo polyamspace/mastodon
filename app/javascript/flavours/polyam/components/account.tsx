@@ -23,13 +23,13 @@ import { initMuteModal } from 'flavours/polyam/actions/mutes';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { FollowersCounter } from 'flavours/polyam/components/counters';
 import { DisplayName } from 'flavours/polyam/components/display_name';
+import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
 import { FollowIconButton } from 'flavours/polyam/components/follow_icon_button';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
 import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
-import DropdownMenu from 'flavours/polyam/containers/dropdown_menu_container';
 import { me } from 'flavours/polyam/initial_state';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
@@ -136,11 +136,10 @@ export const Account: React.FC<{
 
       buttons = (
         <>
-          <DropdownMenu
+          <Dropdown
             items={menu}
             icon='ellipsis-h'
             iconComponent={MoreHorizIcon}
-            direction='right'
             title={intl.formatMessage(messages.more)}
           />
 

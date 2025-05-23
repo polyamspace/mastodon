@@ -16,12 +16,12 @@ import { Avatar } from 'flavours/glitch/components/avatar';
 import { Button } from 'flavours/glitch/components/button';
 import { FollowersCounter } from 'flavours/glitch/components/counters';
 import { DisplayName } from 'flavours/glitch/components/display_name';
+import { Dropdown } from 'flavours/glitch/components/dropdown_menu';
 import { FollowButton } from 'flavours/glitch/components/follow_button';
 import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
 import { ShortNumber } from 'flavours/glitch/components/short_number';
 import { Skeleton } from 'flavours/glitch/components/skeleton';
 import { VerifiedBadge } from 'flavours/glitch/components/verified_badge';
-import DropdownMenu from 'flavours/glitch/containers/dropdown_menu_container';
 import { me } from 'flavours/glitch/initial_state';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 
@@ -125,11 +125,10 @@ export const Account: React.FC<{
 
       buttons = (
         <>
-          <DropdownMenu
+          <Dropdown
             items={menu}
             icon='ellipsis-h'
             iconComponent={MoreHorizIcon}
-            direction='right'
             title={intl.formatMessage(messages.more)}
           />
 

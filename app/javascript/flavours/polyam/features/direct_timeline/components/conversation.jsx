@@ -24,7 +24,7 @@ import { IconButton } from 'flavours/polyam/components/icon_button';
 import { Permalink } from 'flavours/polyam/components/permalink';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
 import StatusContent from 'flavours/polyam/components/status_content';
-import DropdownMenuContainer from 'flavours/polyam/containers/dropdown_menu_container';
+import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
 import { autoPlayGif } from 'flavours/polyam/initial_state';
 import { makeGetStatus } from 'flavours/polyam/selectors';
 
@@ -213,7 +213,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
             <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' iconComponent={ReplyIcon} onClick={handleReply} />
 
             <div className='status__action-bar-dropdown'>
-              <DropdownMenuContainer
+              <Dropdown
                 scrollKey={scrollKey}
                 status={lastStatus}
                 items={menu}

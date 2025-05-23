@@ -36,11 +36,11 @@ import {
 } from 'flavours/polyam/components/badge';
 import { Button } from 'flavours/polyam/components/button';
 import { CopyIconButton } from 'flavours/polyam/components/copy_icon_button';
+import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
 import { FollowButton } from 'flavours/polyam/components/follow_button';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
-import DropdownMenuContainer from 'flavours/polyam/containers/dropdown_menu_container';
 import { DomainPill } from 'flavours/polyam/features/account/components/domain_pill';
 import AccountNoteContainer from 'flavours/polyam/features/account/containers/account_note_container';
 import FollowRequestNoteContainer from 'flavours/polyam/features/account/containers/follow_request_note_container';
@@ -52,7 +52,7 @@ import {
   domain as localDomain,
 } from 'flavours/polyam/initial_state';
 import type { Account } from 'flavours/polyam/models/account';
-import type { DropdownMenu } from 'flavours/polyam/models/dropdown_menu';
+import type { MenuItem } from 'flavours/polyam/models/dropdown_menu';
 import {
   PERMISSION_MANAGE_USERS,
   PERMISSION_MANAGE_FEDERATION,
@@ -423,7 +423,7 @@ export const AccountHeader: React.FC<{
   const remoteDomain = isRemote ? account?.acct.split('@')[1] : null;
 
   const menu = useMemo(() => {
-    const arr: DropdownMenu = [];
+    const arr: MenuItem[] = [];
 
     if (!account) {
       return arr;
@@ -835,13 +835,11 @@ export const AccountHeader: React.FC<{
             <div className='account__header__tabs__buttons'>
               {!hidden && bellBtn}
               {!hidden && shareBtn}
-              <DropdownMenuContainer
+              <Dropdown
                 disabled={menu.length === 0}
                 items={menu}
                 icon='ellipsis-v'
                 iconComponent={MoreHorizIcon}
-                size={24}
-                direction='right'
               />
               {!hidden && actionBtn}
             </div>
