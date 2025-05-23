@@ -21,12 +21,11 @@ flavourFiles.forEach((flavourFile) => {
   // Polyam: Skip vanilla flavour unless enabled
   if (name === 'vanilla' && env.ENABLE_VANILLA !== 'true') return;
 
-  const { locales, inherit_locales, pack_directory } = load(readFileSync(flavourFile), 'utf8');
+  const { locales, pack_directory } = load(readFileSync(flavourFile), 'utf8');
 
   flavours[basename(dirname(flavourFile))] = {
     name: name,
     locales: locales ? join(dirname(flavourFile), locales) : null,
-    inherit_locales,
     pack_directory: pack_directory,
     skin: {},
   };

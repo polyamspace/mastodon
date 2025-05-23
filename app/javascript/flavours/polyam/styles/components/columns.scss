@@ -784,6 +784,13 @@ $ui-header-logo-wordmark-width: 99px;
   }
 }
 
+.fullwidth-columns .columns-area:not(.columns-area--mobile) {
+  .column {
+    flex: auto;
+    max-width: unset;
+  }
+}
+
 .column-inline-form {
   padding: 15px;
   display: flex;
