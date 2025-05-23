@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
@@ -11,7 +13,10 @@ import QuoteIcon from '@/images/quote.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import StatusContainer from 'flavours/polyam/containers/status_container';
 import type { Status } from 'flavours/polyam/models/status';
+import type { RootState } from 'flavours/polyam/store';
 import { useAppSelector } from 'flavours/polyam/store';
+
+import { makeGetStatus } from '../selectors';
 
 const MAX_QUOTE_POSTS_NESTING_LEVEL = 1;
 
@@ -64,6 +69,10 @@ const QuoteLink: React.FC<{
 };
 
 type QuoteMap = ImmutableMap<'state' | 'quoted_status', string | null>;
+type GetStatusSelector = (
+  state: RootState,
+  props: { id?: string | null; contextType?: string },
+) => Status | null;
 
 export const QuotedStatus: React.FC<{
   quote: QuoteMap;
@@ -72,35 +81,51 @@ export const QuotedStatus: React.FC<{
   nestingLevel?: number;
 }> = ({ quote, contextType, nestingLevel = 1, variant = 'full' }) => {
   const quotedStatusId = quote.get('quoted_status');
-  const state = quote.get('state');
+  const quoteState = quote.get('state');
   const status = useAppSelector((state) =>
     quotedStatusId ? state.statuses.get(quotedStatusId) : undefined,
   );
 
   let quoteError: React.ReactNode = null;
 
-  if (state === 'deleted') {
+  // In order to find out whether the quoted post should be completely hidden
+  // due to a matching filter, we run it through the selector used by `status_container`.
+  // If this returns null even though `status` exists, it's because it's filtered.
+  const getStatus = useMemo(() => makeGetStatus(), []) as GetStatusSelector;
+  const statusWithExtraData = useAppSelector((state) =>
+    getStatus(state, { id: quotedStatusId, contextType }),
+  );
+  const isFilteredAndHidden = status && statusWithExtraData === null;
+
+  if (isFilteredAndHidden) {
+    quoteError = (
+      <FormattedMessage
+        id='status.quote_error.filtered'
+        defaultMessage='Hidden due to one of your filters'
+      />
+    );
+  } else if (quoteState === 'deleted') {
     quoteError = (
       <FormattedMessage
         id='status.quote_error.removed'
         defaultMessage='This post was removed by its author.'
       />
     );
-  } else if (state === 'unauthorized') {
+  } else if (quoteState === 'unauthorized') {
     quoteError = (
       <FormattedMessage
         id='status.quote_error.unauthorized'
         defaultMessage='This post cannot be displayed as you are not authorized to view it.'
       />
     );
-  } else if (state === 'pending') {
+  } else if (quoteState === 'pending') {
     quoteError = (
       <FormattedMessage
         id='status.quote_error.pending_approval'
         defaultMessage='This post is pending approval from the original author.'
       />
     );
-  } else if (state === 'rejected' || state === 'revoked') {
+  } else if (quoteState === 'rejected' || quoteState === 'revoked') {
     quoteError = (
       <FormattedMessage
         id='status.quote_error.rejected'
