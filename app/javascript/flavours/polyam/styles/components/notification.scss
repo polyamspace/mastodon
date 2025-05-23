@@ -456,8 +456,6 @@
     overflow: hidden;
     container-type: inline-size;
 
-    // Polyam: Removed @container here as timestamps should remain visible
-
     &__header {
       display: flex;
       flex-direction: column;
@@ -471,7 +469,8 @@
 
       &__label {
         display: flex;
-        gap: 8px;
+        flex-wrap: wrap;
+        gap: 2px 8px;
         font-size: 15px;
         line-height: 22px;
         color: $darker-text-color;
@@ -489,6 +488,13 @@
 
         time {
           color: $dark-text-color;
+        }
+
+        // Polyam: Removed time as it should be visible.
+        @container (width < 350px) {
+          &-separator {
+            display: none;
+          }
         }
       }
     }

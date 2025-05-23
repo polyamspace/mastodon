@@ -274,14 +274,18 @@ a .account__avatar {
 
 .avatar-group {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+
+  --avatar-height: 28px;
+
+  &:not(.avatar-group--compact) {
+    gap: 8px;
+    flex-wrap: wrap;
+    height: var(--avatar-height);
+    overflow-y: clip;
+  }
 }
 
 .avatar-group--compact {
-  gap: 0;
-  flex-wrap: nowrap;
-
   & > :not(:first-child) {
     margin-inline-start: -12px;
   }
