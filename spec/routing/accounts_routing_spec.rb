@@ -42,12 +42,6 @@ RSpec.describe 'Routes under accounts/' do
       expect(get("/@#{username}/media")).to route_to('accounts#show', username: username)
     end
 
-    it 'routes /@:username/featured' do
-      expect(get("/@#{username}/featured")).to route_to('accounts#show', username: username)
-      expect(get("/@#{username}/featured/tags")).to route_to('accounts#show', username: username)
-      expect(get("/@#{username}/featured/accounts")).to route_to('accounts#show', username: username)
-    end
-
     it 'routes /@:username/tagged/:tag' do
       expect(get("/@#{username}/tagged/foo")).to route_to('accounts#show', username: username, tag: 'foo')
     end
@@ -137,12 +131,6 @@ RSpec.describe 'Routes under accounts/' do
 
     it 'routes /@:username/media' do
       expect(get("/@#{username}/media")).to route_to('home#index', username_with_domain: username, any: 'media')
-    end
-
-    it 'routes /@:username/featured' do
-      expect(get("/@#{username}/featured")).to route_to('home#index', username_with_domain: username, any: 'featured')
-      expect(get("/@#{username}/featured/tags")).to route_to('home#index', username_with_domain: username, any: 'featured/tags')
-      expect(get("/@#{username}/featured/accounts")).to route_to('home#index', username_with_domain: username, any: 'featured/accounts')
     end
 
     it 'routes /@:username/tagged/:tag' do

@@ -78,10 +78,6 @@ export function Following () {
   return import(/* webpackChunkName: "flavours/polyam/async/following" */'../../following');
 }
 
-export function Featured () {
-  return import(/* webpackChunkName: "flavours/polyam/async/featured" */'../../featured');
-}
-
 export function Reblogs () {
   return import(/* webpackChunkName: "flavours/polyam/async/reblogs" */'../../reblogs');
 }
