@@ -17,7 +17,7 @@ import { initReport } from 'flavours/glitch/actions/reports';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { CheckBox } from 'flavours/glitch/components/check_box';
 import { IconButton } from 'flavours/glitch/components/icon_button';
-import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
+import { Dropdown } from 'flavours/glitch/components/dropdown_menu';
 import { makeGetAccount } from 'flavours/glitch/selectors';
 import { toCappedNumber } from 'flavours/glitch/utils/numbers';
 
