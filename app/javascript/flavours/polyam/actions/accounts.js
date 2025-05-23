@@ -74,14 +74,6 @@ export const FOLLOW_REQUEST_AUTHORIZE_FAIL    = 'FOLLOW_REQUEST_AUTHORIZE_FAIL';
 export const FOLLOW_REQUEST_REJECT_REQUEST = 'FOLLOW_REQUEST_REJECT_REQUEST';
 export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
 
-export const PINNED_ACCOUNTS_FETCH_REQUEST = 'PINNED_ACCOUNTS_FETCH_REQUEST';
-export const PINNED_ACCOUNTS_FETCH_SUCCESS = 'PINNED_ACCOUNTS_FETCH_SUCCESS';
-export const PINNED_ACCOUNTS_FETCH_FAIL    = 'PINNED_ACCOUNTS_FETCH_FAIL';
-
-export const PINNED_ACCOUNTS_EXPAND_REQUEST = 'PINNED_ACCOUNTS_EXPAND_REQUEST';
-export const PINNED_ACCOUNTS_EXPAND_SUCCESS = 'PINNED_ACCOUNTS_EXPAND_SUCCESS';
-export const PINNED_ACCOUNTS_EXPAND_FAIL    = 'PINNED_ACCOUNTS_EXPAND_FAIL';
-
 export const ACCOUNT_REVEAL = 'ACCOUNT_REVEAL';
 
 export * from './accounts_typed';
@@ -638,14 +630,11 @@ export function rejectFollowRequestFail(id, error) {
 }
 
 export function pinAccount(id) {
-  return (dispatch, getState) => {
-    const me = getState().getIn(['meta', 'me']);
-
+  return (dispatch) => {
     dispatch(pinAccountRequest(id));
 
     api().post(`/api/v1/accounts/${id}/pin`).then(response => {
       dispatch(pinAccountSuccess({ relationship: response.data }));
-      dispatch(fetchPinnedAccounts(me));
     }).catch(error => {
       dispatch(pinAccountFail(error));
     });
@@ -653,14 +642,12 @@ export function pinAccount(id) {
 }
 
 export function unpinAccount(id) {
-  return (dispatch, getState) => {
-    const me = getState().getIn(['meta', 'me']);
+  return (dispatch) => {
 
     dispatch(unpinAccountRequest(id));
 
     api().post(`/api/v1/accounts/${id}/unpin`).then(response => {
       dispatch(unpinAccountSuccess({ relationship: response.data }));
-      dispatch(fetchPinnedAccounts(me));
     }).catch(error => {
       dispatch(unpinAccountFail(error));
     });
@@ -694,90 +681,6 @@ export function unpinAccountFail(error) {
     error,
   };
 }
-
-export function fetchPinnedAccounts(id, limit = 0) {
-  return (dispatch) => {
-    dispatch(fetchPinnedAccountsRequest(id));
-
-    api().get(`/api/v1/accounts/${id}/pinned`, { params: { limit } }).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
-
-      dispatch(importFetchedAccounts(response.data));
-      dispatch(fetchPinnedAccountsSuccess(id, response.data, next ? next.uri : null));
-      dispatch(fetchRelationships(response.data.map(item => item.id)));
-    }).catch(err => dispatch(fetchPinnedAccountsFail(id, err)));
-  };
-}
-
-export function fetchPinnedAccountsRequest(id) {
-  return {
-    type: PINNED_ACCOUNTS_FETCH_REQUEST,
-    id,
-  };
-}
-
-export function fetchPinnedAccountsSuccess(id, accounts, next) {
-  return {
-    type: PINNED_ACCOUNTS_FETCH_SUCCESS,
-    id,
-    accounts,
-    next,
-  };
-}
-
-export function fetchPinnedAccountsFail(id, error) {
-  return {
-    type: PINNED_ACCOUNTS_FETCH_FAIL,
-    id,
-    error,
-  };
-}
-
-export const expandPinnedAccounts = (id) => {
-  return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'featured_accounts', id, 'next']);
-
-    if (url === null) {
-      return;
-    }
-
-    dispatch(expandPinnedAccountsRequest(id));
-
-    api().get(url).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
-
-      dispatch(importFetchedAccounts(response.data));
-      dispatch(expandPinnedAccountsSuccess(id, response.data, next ? next.uri : null));
-      dispatch(fetchRelationships(response.data.map(item => item.id)));
-    }).catch(error => {
-      dispatch(expandPinnedAccountsFail(id, error));
-    });
-  };
-};
-
-export const expandPinnedAccountsRequest = (id) => {
-  return {
-    type: PINNED_ACCOUNTS_EXPAND_REQUEST,
-    id,
-  };
-};
-
-export const expandPinnedAccountsSuccess = (id, accounts, next) => {
-  return {
-    type: PINNED_ACCOUNTS_EXPAND_SUCCESS,
-    id,
-    accounts,
-    next,
-  };
-};
-
-export const expandPinnedAccountsFail = (id, error) => {
-  return {
-    type: PINNED_ACCOUNTS_EXPAND_FAIL,
-    id,
-    error,
-  };
-};
 
 export const updateAccount = ({ displayName, note, avatar, header, discoverable, indexable }) => (dispatch) => {
   const data = new FormData();
