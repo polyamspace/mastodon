@@ -129,6 +129,7 @@ Rails.application.routes.draw do
   constraints(username: %r{[^@/.]+}) do
     with_options to: 'accounts#show' do
       get '/@:username', as: :short_account
+      get '/@:username/featured'
       get '/@:username/with_replies', as: :short_account_with_replies
       get '/@:username/featured', as: :short_account_featured
       get '/@:username/featured/tags', as: :short_account_featured_tags

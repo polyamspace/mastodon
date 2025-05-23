@@ -11,7 +11,6 @@
   "about.limits.max_toot_length": "Toot character limit:",
   "about.limits.max_video_size": "Video size limit:",
   "account.anniversary": "It's {acct}'s {years, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} fediversary!",
-  "account.featured": "Featured",
   "account.featured_accounts.empty": "This user doesn't feature any accounts yet.",
   "account.featured_tags.empty": "This user doesn't feature any hashtags yet.",
   "account.joined": "Joined {date}",
