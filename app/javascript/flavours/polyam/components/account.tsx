@@ -175,7 +175,7 @@ export const Account: React.FC<{
     );
   }
 
-  if (defaultAction === 'block') {
+  if (defaultAction === 'block' || relationship?.blocking) {
     button = (
       <IconButton
         title={intl.formatMessage(
@@ -186,7 +186,7 @@ export const Account: React.FC<{
         onClick={handleBlock}
       />
     );
-  } else if (defaultAction === 'mute') {
+  } else if (defaultAction === 'mute' || relationship?.muting) {
     button = (
       <IconButton
         title={intl.formatMessage(
