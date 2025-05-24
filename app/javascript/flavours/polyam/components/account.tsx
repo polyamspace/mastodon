@@ -73,7 +73,16 @@ export const Account: React.FC<{
   minimal?: boolean;
   defaultAction?: 'block' | 'mute';
   withBio?: boolean;
-}> = ({ id, size = 46, hidden, minimal = true, defaultAction, withBio }) => {
+  noDropdown?: boolean;
+}> = ({
+  id,
+  size = 46,
+  hidden,
+  minimal = true,
+  defaultAction,
+  withBio,
+  noDropdown,
+}) => {
   const intl = useIntl();
   const account = useAppSelector((state) => state.accounts.get(id));
   const relationship = useAppSelector((state) => state.relationships.get(id));
@@ -285,7 +294,7 @@ export const Account: React.FC<{
         </Permalink>
 
         <div className='account__relationship'>
-          {dropdown}
+          {!noDropdown && dropdown}
           {button}
         </div>
       </div>
