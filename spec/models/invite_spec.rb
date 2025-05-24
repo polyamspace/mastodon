@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Invite do
-  include_examples 'Expireable'
+  it_behaves_like 'Expireable'
 
   # Polyam TODO: Get this to work
   # Disabled because user is nil and no known way to fix.
