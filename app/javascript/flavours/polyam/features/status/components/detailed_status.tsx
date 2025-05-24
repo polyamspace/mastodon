@@ -13,27 +13,26 @@ import { Link } from 'react-router-dom';
 
 import { AnimatedNumber } from 'flavours/polyam/components/animated_number';
 import AttachmentList from 'flavours/polyam/components/attachment_list';
+import { Avatar } from 'flavours/polyam/components/avatar';
 import { ContentWarning } from 'flavours/polyam/components/content_warning';
+import { DisplayName } from 'flavours/polyam/components/display_name';
 import { EditedTimestamp } from 'flavours/polyam/components/edited_timestamp';
 import { FilterWarning } from 'flavours/polyam/components/filter_warning';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 import type { StatusLike } from 'flavours/polyam/components/hashtag_bar';
 import { getHashtagBarForStatus } from 'flavours/polyam/components/hashtag_bar';
 import { IconLogo } from 'flavours/polyam/components/logo';
+import MediaGallery from 'flavours/polyam/components/media_gallery';
 import { MentionsPlaceholder } from 'flavours/polyam/components/mentions_placeholder';
 import { Permalink } from 'flavours/polyam/components/permalink';
-import PictureInPicturePlaceholder from 'flavours/polyam/components/picture_in_picture_placeholder';
+import { PictureInPicturePlaceholder } from 'flavours/polyam/components/picture_in_picture_placeholder';
+import StatusContent from 'flavours/polyam/components/status_content';
+import { StatusReactions } from 'flavours/polyam/components/status_reactions';
 import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
+import { Audio } from 'flavours/polyam/features/audio';
+import scheduleIdleTask from 'flavours/polyam/features/ui/util/schedule_idle_task';
 import { Video } from 'flavours/polyam/features/video';
 import { useAppSelector } from 'flavours/polyam/store';
-
-import { Avatar } from '../../../components/avatar';
-import { DisplayName } from '../../../components/display_name';
-import MediaGallery from '../../../components/media_gallery';
-import StatusContent from '../../../components/status_content';
-import { StatusReactions } from '../../../components/status_reactions';
-import Audio from '../../audio';
-import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 
 import Card from './card';
 
@@ -150,6 +149,25 @@ export const DetailedStatus: React.FC<{
   let media;
   let applicationLink;
   let reblogLink;
+  let attachmentAspectRatio;
+
+  if (properStatus.get('media_attachments').getIn([0, 'type']) === 'video') {
+    attachmentAspectRatio = `${properStatus.get('media_attachments').getIn([0, 'meta', 'original', 'width'])} / ${properStatus.get('media_attachments').getIn([0, 'meta', 'original', 'height'])}`;
+  } else if (
+    properStatus.get('media_attachments').getIn([0, 'type']) === 'audio'
+  ) {
+    attachmentAspectRatio = '16 / 9';
+  } else {
+    attachmentAspectRatio =
+      properStatus.get('media_attachments').size === 1 &&
+      properStatus
+        .get('media_attachments')
+        .getIn([0, 'meta', 'small', 'aspect'])
+        ? properStatus
+            .get('media_attachments')
+            .getIn([0, 'meta', 'small', 'aspect'])
+        : '3 / 2';
+  }
 
   const mediaIcons: string[] = [];
 
@@ -163,7 +181,7 @@ export const DetailedStatus: React.FC<{
     status.getIn(['translation', 'language']) || status.get('language');
 
   if (pictureInPicture.get('inUse')) {
-    media = <PictureInPicturePlaceholder />;
+    media = <PictureInPicturePlaceholder aspectRatio={attachmentAspectRatio} />;
     mediaIcons.push('video-camera');
   } else if (status.get('media_attachments').size > 0) {
     if (
@@ -209,18 +227,17 @@ export const DetailedStatus: React.FC<{
           src={attachment.get('url')}
           alt={description}
           lang={language}
-          duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
           poster={
             attachment.get('preview_url') ||
             status.getIn(['account', 'avatar_static'])
           }
+          duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
           backgroundColor={attachment.getIn(['meta', 'colors', 'background'])}
           foregroundColor={attachment.getIn(['meta', 'colors', 'foreground'])}
           accentColor={attachment.getIn(['meta', 'colors', 'accent'])}
           sensitive={status.get('sensitive')}
           visible={showMedia}
           blurhash={attachment.get('blurhash')}
-          height={150}
           onToggleVisibility={onToggleMediaVisibility}
           matchedFilters={status.get('matched_media_filters')}
           onOpenAltText={onOpenAltText}

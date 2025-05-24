@@ -6,7 +6,6 @@ import AlternateEmailIcon from '@/awesome-icons/solid/at.svg?react';
 import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
 import { me } from 'flavours/polyam/initial_state';
 import type { NotificationGroupMention } from 'flavours/polyam/models/notification_group';
-import type { Status } from 'flavours/polyam/models/status';
 import { useAppSelector } from 'flavours/polyam/store';
 
 import type { LabelRenderer } from './notification_group_with_status';
@@ -40,7 +39,7 @@ export const NotificationMention: React.FC<{
 }> = ({ notification, unread }) => {
   const [isDirect, isReply] = useAppSelector((state) => {
     const status = notification.statusId
-      ? (state.statuses.get(notification.statusId) as Status | undefined)
+      ? state.statuses.get(notification.statusId)
       : undefined;
 
     if (!status) return [false, false] as const;

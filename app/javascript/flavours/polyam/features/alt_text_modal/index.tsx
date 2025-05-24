@@ -27,7 +27,7 @@ import { Button } from 'flavours/polyam/components/button';
 import { GIFV } from 'flavours/polyam/components/gifv';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
-import Audio from 'flavours/polyam/features/audio';
+import { Audio } from 'flavours/polyam/features/audio';
 import { CharacterCounter } from 'flavours/polyam/features/compose/components/character_counter';
 import { Tesseract as fetchTesseract } from 'flavours/polyam/features/ui/util/async-components';
 import { Video, getPointerPosition } from 'flavours/polyam/features/video';
@@ -213,11 +213,11 @@ const Preview: React.FC<{
     return (
       <Audio
         src={media.get('url') as string}
-        duration={media.getIn(['meta', 'original', 'duration'], 0) as number}
         poster={
           (media.get('preview_url') as string | undefined) ??
           account?.avatar_static
         }
+        duration={media.getIn(['meta', 'original', 'duration'], 0) as number}
         backgroundColor={
           media.getIn(['meta', 'colors', 'background']) as string
         }
