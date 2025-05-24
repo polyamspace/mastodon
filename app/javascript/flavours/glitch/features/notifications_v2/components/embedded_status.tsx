@@ -14,7 +14,6 @@ import { ContentWarning } from 'flavours/glitch/components/content_warning';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { Icon } from 'flavours/glitch/components/icon';
 import { StatusReactions } from 'flavours/glitch/components/status_reactions';
-import type { Status } from 'flavours/glitch/models/status';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 
 import { EmbeddedStatusContent } from './embedded_status_content';
@@ -28,9 +27,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   const clickCoordinatesRef = useRef<[number, number] | null>();
   const dispatch = useAppDispatch();
 
-  const status = useAppSelector(
-    (state) => state.statuses.get(statusId) as Status | undefined,
-  );
+  const status = useAppSelector((state) => state.statuses.get(statusId));
 
   const account = useAppSelector((state) =>
     state.accounts.get(status?.get('account') as string),
