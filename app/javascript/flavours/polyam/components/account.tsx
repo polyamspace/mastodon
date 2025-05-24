@@ -175,8 +175,8 @@ export const Account: React.FC<{
     );
   }
 
-  // Polyam: IconButton instead of Button
-  if (defaultAction === 'block') {
+  // Polyam: IconButton instead of Button and relationship in if
+  if (defaultAction === 'block' || relationship?.blocking) {
     button = (
       <IconButton
         title={intl.formatMessage(
@@ -187,7 +187,7 @@ export const Account: React.FC<{
         onClick={handleBlock}
       />
     );
-  } else if (defaultAction === 'mute') {
+  } else if (defaultAction === 'mute' || relationship?.muting) {
     button = (
       <IconButton
         title={intl.formatMessage(
