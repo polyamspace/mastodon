@@ -25,7 +25,7 @@ import { getScrollbarWidth } from 'flavours/polyam/utils/scrollbar';
 
 import BundleContainer from '../containers/bundle_container';
 
-import ActionsModal from './actions_modal';
+import { ActionsModal } from './actions_modal';
 import { AltTextDisplayModal } from './alttext_modal';
 import AudioModal from './audio_modal';
 import { BoostModal } from './boost_modal';
