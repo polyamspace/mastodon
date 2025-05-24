@@ -378,23 +378,6 @@ a.account__display-name {
   @include panel-button;
 }
 
-.relationship-tag {
-  color: $white;
-  margin-bottom: 4px;
-  display: block;
-  background-color: rgba($black, 0.45);
-  font-size: 11px;
-  text-transform: uppercase;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 4px;
-  opacity: 0.7;
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
 .account__disclaimer {
   display: flex;
   padding: 10px;
@@ -539,8 +522,11 @@ a.account__display-name {
 
   &__info {
     position: absolute;
-    top: 10px;
-    inset-inline-start: 10px;
+    top: 20px;
+    inset-inline-end: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
   }
 
   &__image {

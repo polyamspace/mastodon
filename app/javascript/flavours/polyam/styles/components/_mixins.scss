@@ -22,6 +22,14 @@
     outline: 0;
   }
 
+  &.status__content--with-spoiler {
+    white-space: normal;
+
+    .status__content__text {
+      white-space: pre-wrap;
+    }
+  }
+
   .emojione {
     width: 20px;
     height: 20px;
@@ -68,10 +76,10 @@
     }
   }
 
-  .status__content__spoiler {
+  .status__content__text {
     display: none;
 
-    &.status__content__spoiler--visible {
+    &.status__content__text--visible {
       display: block;
     }
   }

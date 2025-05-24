@@ -487,16 +487,6 @@
   }
 }
 
-.notification__dismiss-overlay {
-  .wrappy {
-    box-shadow: unset;
-
-    .ckbox {
-      text-shadow: unset;
-    }
-  }
-}
-
 // Polyam: Fix focused gradient
 .focusable:focus.collapsed:not(.status-direct) .status__content::after {
   background: linear-gradient(transparent, var(--toot-focus-background-color));

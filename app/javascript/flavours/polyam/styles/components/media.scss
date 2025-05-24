@@ -113,7 +113,8 @@
   pointer-events: none;
 }
 
-.media-gallery__alt__label {
+.media-gallery__alt__label,
+.relationship-tag {
   display: block;
   text-align: center;
   color: $white;
@@ -132,6 +133,11 @@
   &--non-interactive {
     pointer-events: none;
   }
+}
+
+.relationship-tag {
+  text-transform: uppercase;
+  cursor: default;
 }
 
 .media-gallery__alt__popover {
