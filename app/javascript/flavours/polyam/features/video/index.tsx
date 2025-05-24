@@ -7,9 +7,9 @@ import classNames from 'classnames';
 import { useSpring, animated, config } from '@react-spring/web';
 import { throttle } from 'lodash';
 
-import Replay5Icon from '@/awesome-icons/solid/backward-step.svg?react';
+import Replay5Icon from '@/awesome-icons/solid/backward.svg?react';
 import CompressIcon from '@/awesome-icons/solid/down-left-and-up-right-to-center.svg?react';
-import Forward5Icon from '@/awesome-icons/solid/forward-step.svg?react';
+import Forward5Icon from '@/awesome-icons/solid/forward.svg?react';
 import FullscreenIcon from '@/awesome-icons/solid/maximize.svg?react';
 import FullscreenExitIcon from '@/awesome-icons/solid/minimize.svg?react';
 import PauseIcon from '@/awesome-icons/solid/pause.svg?react';
