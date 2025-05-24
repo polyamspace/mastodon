@@ -198,8 +198,7 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
 export const AccountHeader: React.FC<{
   accountId: string;
   hideTabs?: boolean;
-  featured?: boolean;
-}> = ({ accountId, hideTabs, featured }) => {
+}> = ({ accountId, hideTabs }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
   const { signedIn, permissions } = useIdentity();
@@ -369,13 +368,6 @@ export const AccountHeader: React.FC<{
       );
     },
     [dispatch, account],
-  );
-
-  const isFeaturedPageActive = useCallback(
-    (_: unknown, location: { pathname: string }) => {
-      return !/(\/featured\/accounts)\/?$/.exec(location.pathname);
-    },
-    [],
   );
 
   const handleShare = useCallback(() => {
@@ -971,31 +963,8 @@ export const AccountHeader: React.FC<{
               defaultMessage='Posts and replies'
             />
           </NavLink>
-          <NavLink to={`/@${account.get('acct')}/featured`}>
-            <FormattedMessage id='account.featured' defaultMessage='Featured' />
-          </NavLink>
           <NavLink exact to={`/@${account.acct}/media`}>
             <FormattedMessage id='account.media' defaultMessage='Media' />
-          </NavLink>
-        </div>
-      )}
-      {!(hideTabs || hidden) && featured && (
-        <div className='account__section-headline featured'>
-          <NavLink
-            isActive={isFeaturedPageActive}
-            exact
-            to={`/@${account.get('acct')}/featured/tags`}
-          >
-            <FormattedMessage
-              id='explore.trending_tags'
-              defaultMessage='Hashtags'
-            />
-          </NavLink>
-          <NavLink exact to={`/@${account.get('acct')}/featured/accounts`}>
-            <FormattedMessage
-              id='explore.suggested_follows'
-              defaultMessage='People'
-            />
           </NavLink>
         </div>
       )}
