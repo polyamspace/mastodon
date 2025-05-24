@@ -27,7 +27,7 @@ export const NavigationBar = () => {
 
   return (
     <div className='navigation-bar'>
-      <Account id={me} minimal />
+      <Account id={me} minimal noDropdown />
       {isReplying ? <IconButton title={intl.formatMessage(messages.cancel)} iconComponent={CloseIcon} onClick={handleCancelClick} /> : <ActionBar />}
     </div>
   );
