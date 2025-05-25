@@ -380,7 +380,7 @@
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
-  background: var(--player-background-color), var(--background-color);
+  background: var(--player-background-color, var(--background-color));
   color: var(--player-foreground-color);
   border-radius: 8px;
   padding-bottom: 44px;
