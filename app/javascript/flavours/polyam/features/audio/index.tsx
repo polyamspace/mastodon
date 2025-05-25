@@ -762,6 +762,23 @@ export const Audio: React.FC<{
         matchedFilters={matchedFilters}
       />
 
+      {/* Polyam: "Hide" button in corner instead */}
+      {!editable && revealed && (
+        <div
+          className={classNames('media-gallery__actions', {
+            active: paused || hovered,
+          })}
+        >
+          <button
+            type='button'
+            className='media-gallery__actions__pill'
+            onClick={toggleReveal}
+          >
+            <FormattedMessage id='media_gallery.hide' defaultMessage='Hide' />
+          </button>
+        </div>
+      )}
+
       <div
         className={classNames('video-player__controls', { active: hovered })}
       >
@@ -828,29 +845,17 @@ export const Audio: React.FC<{
                 <span>ALT</span>
               </button>
             )}
+            {/* Polyam: Moved "hide" button outside player buttons */}
             {!editable && (
-              <>
-                <button
-                  type='button'
-                  className='player-button'
-                  onClick={toggleReveal}
-                >
-                  <FormattedMessage
-                    id='media_gallery.hide'
-                    defaultMessage='Hide'
-                  />
-                </button>
-
-                <a
-                  title={intl.formatMessage(messages.download)}
-                  aria-label={intl.formatMessage(messages.download)}
-                  className='video-player__download__icon player-button'
-                  href={src}
-                  download
-                >
-                  <Icon id='download' icon={DownloadIcon} />
-                </a>
-              </>
+              <a
+                title={intl.formatMessage(messages.download)}
+                aria-label={intl.formatMessage(messages.download)}
+                className='video-player__download__icon player-button'
+                href={src}
+                download
+              >
+                <Icon id='download' icon={DownloadIcon} />
+              </a>
             )}
           </div>
         </div>
