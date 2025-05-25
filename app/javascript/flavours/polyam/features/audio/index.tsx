@@ -834,7 +834,7 @@ export const Audio: React.FC<{
           </div>
 
           <div className='video-player__buttons right'>
-            {alt && (
+            {alt && onOpenAltText && (
               <button
                 type='button'
                 title={intl.formatMessage(messages.alt)}
