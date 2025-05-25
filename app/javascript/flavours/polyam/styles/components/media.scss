@@ -376,6 +376,7 @@
   }
 }
 
+// Polyam: Removed container as there is enough space
 .audio-player {
   overflow: hidden;
   box-sizing: border-box;
@@ -388,7 +389,6 @@
   outline: 1px solid var(--media-outline-color);
   outline-offset: -1px;
   aspect-ratio: 16 / 9;
-  container: audio-player / inline-size;
 
   &__controls {
     display: grid;
@@ -486,12 +486,7 @@
     color: currentColor;
   }
 
-  @container audio-player (max-width: 400px) {
-    .video-player__time,
-    .player-button.video-player__download__icon {
-      display: none;
-    }
-  }
+  // Polyam: container removed
 
   .video-player__seek::before,
   .video-player__seek__buffer,
