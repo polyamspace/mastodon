@@ -38,8 +38,11 @@ import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
 import { me } from 'flavours/polyam/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
-const messages = defineMessages({
-  heading: { id: 'column.list_members', defaultMessage: 'Manage list members' },
+export const messages = defineMessages({
+  manageMembers: {
+    id: 'column.list_members',
+    defaultMessage: 'Manage list members',
+  },
   placeholder: {
     id: 'lists.search',
     defaultMessage: 'Search',
@@ -267,10 +270,10 @@ const ListMembers: React.FC<{
   return (
     <Column
       bindToDocument={!multiColumn}
-      label={intl.formatMessage(messages.heading)}
+      label={intl.formatMessage(messages.manageMembers)}
     >
       <ColumnHeader
-        title={intl.formatMessage(messages.heading)}
+        title={intl.formatMessage(messages.manageMembers)}
         icon='list-ul'
         iconComponent={ListAltIcon}
         multiColumn={multiColumn}
@@ -343,7 +346,7 @@ const ListMembers: React.FC<{
       </ScrollableList>
 
       <Helmet>
-        <title>{intl.formatMessage(messages.heading)}</title>
+        <title>{intl.formatMessage(messages.manageMembers)}</title>
         <meta name='robots' content='noindex' />
       </Helmet>
     </Column>

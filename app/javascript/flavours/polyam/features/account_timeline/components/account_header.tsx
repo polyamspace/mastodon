@@ -64,6 +64,7 @@ import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 import { ActionBar } from '../../account/components/action_bar';
 
 import { AnniversaryNote } from './anniversary-note';
+import { FamiliarFollowers } from './familiar_followers';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 
@@ -921,6 +922,10 @@ export const AccountHeader: React.FC<{
 
           {badges.length > 0 && (
             <div className='account__header__badges'>{badges}</div>
+          )}
+
+          {account.id !== me && signedIn && (
+            <FamiliarFollowers accountId={accountId} />
           )}
 
           {!(suspended || hidden) && (

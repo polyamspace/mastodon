@@ -19,6 +19,7 @@ class UserSettings
   setting :default_privacy, default: nil, in: %w(public unlisted private)
   setting :default_content_type, default: -> { ::Setting.default_content_type }
   setting :hide_followers_count, default: false
+  setting :default_quote_policy, default: 'public', in: %w(public followers nobody)
   setting :system_dark, default: -> { ::Setting.system_dark }
   setting :system_light, default: -> { ::Setting.system_light }
 
