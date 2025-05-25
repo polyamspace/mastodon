@@ -192,11 +192,11 @@
   align-items: center;
 }
 
+// Polyam: Removed background to fix transparent avatars
 .account__avatar {
   display: block;
   position: relative;
   border-radius: var(--avatar-border-radius);
-  background: var(--surface-background-color);
 
   img {
     width: 100%;
