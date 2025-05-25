@@ -6,9 +6,9 @@ import classNames from 'classnames';
 
 import { useSpring, animated, config } from '@react-spring/web';
 
-import Replay5Icon from '@/awesome-icons/solid/backward-step.svg?react';
+import Replay5Icon from '@/awesome-icons/solid/backward.svg?react';
 import DownloadIcon from '@/awesome-icons/solid/download.svg?react';
-import Forward5Icon from '@/awesome-icons/solid/forward-step.svg?react';
+import Forward5Icon from '@/awesome-icons/solid/forward.svg?react';
 import PauseIcon from '@/awesome-icons/solid/pause.svg?react';
 import PlayArrowIcon from '@/awesome-icons/solid/play.svg?react';
 import VolumeUpIcon from '@/awesome-icons/solid/volume-high.svg?react';
