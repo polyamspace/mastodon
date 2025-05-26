@@ -42,14 +42,6 @@ export async function loadLocale() {
 
     const { default: localeData } = await localeFile();
 
-    const polyamLocaleData = await import(
-      /* webpackMode: "lazy" */
-      /* webpackChunkName: "locales/polyam/[request]" */
-      /* webpackInclude: /\.json$/ */
-      /* webpackPreload: true */
-      `flavours/polyam/locales/${locale}.json`
-    ) as LocaleData['messages'];
-
-    setLocale({ messages: { ...upstreamLocaleData, ...localeData, ...polyamLocaleData }, locale });
+    setLocale({ messages: { ...upstreamLocaleData, ...localeData }, locale });
   });
 }
