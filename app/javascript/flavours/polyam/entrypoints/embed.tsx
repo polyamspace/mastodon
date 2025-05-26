@@ -1,14 +1,9 @@
 import { createRoot } from 'react-dom/client';
 
-import '@/entrypoints/public-path';
-
-import { start } from 'flavours/polyam/common';
 import { Status } from 'flavours/polyam/features/standalone/status';
 import { afterInitialRender } from 'flavours/polyam/hooks/useRenderSignal';
 import { loadPolyfills } from 'flavours/polyam/polyfills';
 import ready from 'flavours/polyam/ready';
-
-start();
 
 function loaded() {
   const mountNode = document.getElementById('mastodon-status');

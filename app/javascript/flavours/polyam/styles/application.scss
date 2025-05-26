@@ -2,8 +2,8 @@
 @use 'mixins';
 @use 'variables';
 @use 'css_variables';
-@use 'styles/fonts/roboto';
-@use 'styles/fonts/roboto-mono';
+@use '@/styles/fonts/roboto';
+@use '@/styles/fonts/roboto-mono';
 
 @use 'reset';
 @use 'basics';
@@ -27,4 +27,4 @@
 @use 'rich_text';
 @use 'glitch_local_settings';
 @use 'glitch_doodle';
-@use 'node_modules/highlight.js/scss/github-dark';
+@use 'highlight.js/scss/github-dark';

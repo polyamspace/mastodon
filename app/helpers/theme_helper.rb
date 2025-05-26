@@ -4,13 +4,16 @@ module ThemeHelper
   def theme_style_tags(flavour_and_skin)
     flavour, theme, dark, light = flavour_and_skin
 
+    # Polyam: light should never be 'default', but it is possible
     if theme == 'system'
       ''.html_safe.tap do |tags|
-        tags << stylesheet_pack_tag("skins/#{flavour}/#{light}", media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
-        tags << stylesheet_pack_tag("skins/#{flavour}/#{dark}", media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
+        tags << vite_stylesheet_tag("skins/#{flavour}/#{light == 'default' ? 'mastodon-light' : light}.scss", media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
+        tags << vite_stylesheet_tag("skins/#{flavour}/#{dark == 'default' ? 'application' : dark}.scss", media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
       end
+    elsif theme == 'default'
+      vite_stylesheet_tag "skins/#{flavour}/application.scss", media: 'all', crossorigin: 'anonymous'
     else
-      stylesheet_pack_tag "skins/#{flavour}/#{theme}", media: 'all', crossorigin: 'anonymous'
+      vite_stylesheet_tag "skins/#{flavour}/#{theme}.scss", media: 'all', crossorigin: 'anonymous'
     end
   end
 
