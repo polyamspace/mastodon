@@ -20,6 +20,9 @@
 
   .status {
     border-bottom: 0;
+
+    // glitch-soc fix for width-constrained
+    contain: inline-size;
   }
 
   &__header {
