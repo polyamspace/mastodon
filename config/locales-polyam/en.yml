@@ -52,7 +52,6 @@ en:
         desc_html: Affects all users who have not changed this setting themselves
         title: Opt users out of having an RSS feed of their public toots by default
       discovery:
-        rss: RSS
         search: Search
       system_dark:
         desc_html: Skin used as dark skin in system skin. Applies to all flavours
