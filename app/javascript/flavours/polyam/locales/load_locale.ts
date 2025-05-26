@@ -28,7 +28,7 @@ export async function loadLocale() {
     if (isLocaleLoaded()) return;
 
     // If there is no locale file, then fallback to english
-    const upstreamLocaleFile = Object.hasOwn(upstreamLocaleFiles, `@/mastodon/locales/${locale}.json`)
+    const upstreamLocaleFile = Object.hasOwn(upstreamLocaleFiles, `/mastodon/locales/${locale}.json`)
       ? upstreamLocaleFiles[`/mastodon/locales/${locale}.json`]
       : upstreamLocaleFiles['/mastodon/locales/en.json'];
 
@@ -37,7 +37,7 @@ export async function loadLocale() {
     const { default: upstreamLocaleData } = await upstreamLocaleFile();
 
     // If there is no locale file, then fallback to english
-    const glitchLocaleFile = Object.hasOwn(glitchLocaleFiles, `@/flavours/glitch/locales/${locale}.json`)
+    const glitchLocaleFile = Object.hasOwn(glitchLocaleFiles, `/flavours/glitch/locales/${locale}.json`)
       ? glitchLocaleFiles[`/flavours/glitch/locales/${locale}.json`]
       : glitchLocaleFiles['/flavours/glitch/locales/en.json'];
 
