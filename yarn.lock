@@ -2517,7 +2517,6 @@ __metadata:
     fast-glob: "npm:^3.3.2"
     favico.js: "npm:^0.3.10"
     fuzzysort: "npm:^3.0.0"
-    glob: "npm:^10.2.6"
     globals: "npm:^16.0.0"
     highlight.js: "npm:^11.11.1"
     history: "npm:^4.10.1"
@@ -6937,7 +6936,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.2.2, glob@npm:^10.2.6, glob@npm:^10.3.10":
+"glob@npm:^10.2.2, glob@npm:^10.3.10":
   version: 10.4.5
   resolution: "glob@npm:10.4.5"
   dependencies:
