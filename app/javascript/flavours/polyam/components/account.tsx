@@ -106,7 +106,8 @@ export const Account: React.FC<{
   const menu = useMemo(() => {
     let arr: MenuItem[] = [];
 
-    if (defaultAction === 'mute') {
+    // Polyam: Relationship check to show items for muted accounts
+    if (defaultAction === 'mute' || relationship?.muting) {
       const handleMuteNotifications = () => {
         dispatch(muteAccount(id, true));
       };
