@@ -108,7 +108,6 @@
     }
   }
 
-  // Polyam: Added display flex to align arrows better in FF, Chrome still slightly misaligned
   &__pagination {
     padding: 15px;
     color: $darker-text-color;
@@ -116,6 +115,7 @@
     bottom: 3px;
     inset-inline-end: 0;
     display: flex;
+    align-items: center;
 
     // Polyam: Fix arrow size in announcements
     .icon {
