@@ -17,7 +17,7 @@ $classic-secondary-color: #ffe8fc;
 $classic-highlight-color: $blurple-500;
 
 // Variables for defaults in UI
-$faint-shadow-color: color.adjust(#000000, $alpha: -0.6);
+$faint-shadow-color: color.adjust(#000, $alpha: -0.6);
 
 // Tell UI to use selected colors
 $ui-base-darker-color: darken($classic-base-color, 5%) !default;

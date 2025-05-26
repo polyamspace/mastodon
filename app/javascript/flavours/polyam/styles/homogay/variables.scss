@@ -19,7 +19,7 @@ $ui-base-extra-light-color: lighten($classic-base-color, 18%) !default;
 
 $text-darker: lighten(#847198, 2%);
 
-$faint-shadow-color: color.adjust(#000000, $alpha: -0.6);
+$faint-shadow-color: color.adjust(#000, $alpha: -0.6);
 
 $border-radius: 8px;
 
