@@ -35,7 +35,6 @@ de:
       updated_msg: Beitrittsfilter erfolgreich bearbeitet!
     settings:
       discovery:
-        rss: RSS
         search: Suche
   notification_mailer:
     reaction:

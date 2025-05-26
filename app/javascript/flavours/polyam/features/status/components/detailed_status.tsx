@@ -27,6 +27,7 @@ import { MentionsPlaceholder } from 'flavours/polyam/components/mentions_placeho
 import { Permalink } from 'flavours/polyam/components/permalink';
 import { PictureInPicturePlaceholder } from 'flavours/polyam/components/picture_in_picture_placeholder';
 import StatusContent from 'flavours/polyam/components/status_content';
+import { QuotedStatus } from 'flavours/polyam/components/status_quoted';
 import { StatusReactions } from 'flavours/polyam/components/status_reactions';
 import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 import { Audio } from 'flavours/polyam/features/audio';
@@ -271,7 +272,7 @@ export const DetailedStatus: React.FC<{
       );
       mediaIcons.push('video-camera');
     }
-  } else if (status.get('card')) {
+  } else if (status.get('card') && !status.get('quote')) {
     media = (
       <Card
         sensitive={status.get('sensitive')}
@@ -377,6 +378,9 @@ export const DetailedStatus: React.FC<{
         className={classNames(
           'detailed-status',
           `detailed-status-${status.get('visibility')}`,
+          {
+            'status--has-quote': !!status.get('quote'),
+          },
         )}
         data-status-by={status.getIn(['account', 'acct'])}
       >
@@ -432,6 +436,10 @@ export const DetailedStatus: React.FC<{
               collapsed={false}
               {...(statusContentProps as any)}
             />
+
+            {status.get('quote') && (
+              <QuotedStatus quote={status.get('quote')} />
+            )}
 
             {media}
             {hashtagBar}

@@ -272,7 +272,8 @@ a.status-card {
   padding: 15px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 4px 8px;
 
   .logo {
     width: 16px;

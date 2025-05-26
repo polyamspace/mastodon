@@ -46,6 +46,8 @@
   .fields-group
     = f.input :search_preview, as: :boolean, wrapper: :with_label, polyam_only: true
 
+  %h4= t('admin.settings.discovery.privacy')
+
   .fields-group
     = f.input :noindex,
               as: :boolean,
@@ -53,10 +55,20 @@
               label: t('admin.settings.default_noindex.title'),
               wrapper: :with_label
 
-  %h4= t('admin.settings.discovery.rss')
+  .fields-group
+    = f.input :norss,
+              as: :boolean,
+              hint: t('admin.settings.default_norss.desc_html'),
+              label: t('admin.settings.default_norss.title'),
+              wrapper: :with_label,
+              polyam_only: true
 
   .fields-group
-    = f.input :norss, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_norss.title'), hint: t('admin.settings.default_norss.desc_html'), polyam_only: true
+    = f.input :allow_referrer_origin,
+              as: :boolean,
+              hint: t('admin.settings.allow_referrer_origin.desc'),
+              label: t('admin.settings.allow_referrer_origin.title'),
+              wrapper: :with_label
 
   %h4= t('admin.settings.discovery.publish_statistics')
 
@@ -65,8 +77,6 @@
               as: :boolean,
               wrapper: :with_label,
               recommended: :recommended
-
-  %h4= t('admin.settings.discovery.publish_discovered_servers')
 
   .fields-group
     = f.input :peers_api_enabled,

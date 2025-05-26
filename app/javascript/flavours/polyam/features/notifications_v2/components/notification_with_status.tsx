@@ -15,7 +15,7 @@ import {
 } from 'flavours/polyam/actions/statuses';
 import type { IconProp } from 'flavours/polyam/components/icon';
 import { Icon } from 'flavours/polyam/components/icon';
-import Status from 'flavours/polyam/containers/status_container';
+import { StatusQuoteManager } from 'flavours/polyam/components/status_quoted';
 import { getStatusHidden } from 'flavours/polyam/selectors/filters';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
@@ -106,8 +106,7 @@ export const NotificationWithStatus: React.FC<{
           {label}
         </div>
 
-        <Status
-          // @ts-expect-error -- <Status> is not yet typed
+        <StatusQuoteManager
           id={statusId}
           contextType='notifications'
           withDismiss
