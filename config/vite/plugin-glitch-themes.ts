@@ -34,7 +34,10 @@ export function GlitchThemes(): Plugin {
         const flavourName = path.basename(path.dirname(flavourFile));
 
         // Polyam: Skip vanilla unless enabled
-        if (flavourName === 'vanilla' && process.env.ENABLE_VANILLA !== 'true') {
+        if (
+          flavourName === 'vanilla' &&
+          process.env.ENABLE_VANILLA !== 'true'
+        ) {
           continue;
         }
 
