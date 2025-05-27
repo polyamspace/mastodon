@@ -9,6 +9,8 @@ module IconHelper
     alternate_email: 'envelope',
     arrow_right_alt: 'arrow-right',
     arrow_left_alt: 'arrow-left',
+    arrow_upward: 'arrow-up',
+    arrow_downward: 'arrow-down',
     breaking_news: 'newspaper',
     brush: 'broom',
     campaign: 'bullhorn',
