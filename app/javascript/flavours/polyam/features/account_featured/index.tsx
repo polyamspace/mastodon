@@ -4,17 +4,14 @@ import { FormattedMessage } from 'react-intl';
 
 import { useParams } from 'react-router';
 
-import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
 import { fetchEndorsedAccounts } from 'flavours/polyam/actions/accounts_typed';
 import { fetchFeaturedTags } from 'flavours/polyam/actions/featured_tags';
-import { expandAccountFeaturedTimeline } from 'flavours/polyam/actions/timelines';
 import { Account } from 'flavours/polyam/components/account';
 import { ColumnBackButton } from 'flavours/polyam/components/column_back_button';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { RemoteHint } from 'flavours/polyam/components/remote_hint';
-import { StatusQuoteManager } from 'flavours/polyam/components/status_quoted';
 import { AccountHeader } from 'flavours/polyam/features/account_timeline/components/account_header';
 import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
 import Column from 'flavours/polyam/features/ui/components/column';
@@ -43,7 +40,6 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
 
   useEffect(() => {
     if (accountId) {
-      void dispatch(expandAccountFeaturedTimeline(accountId));
       void dispatch(fetchFeaturedTags({ accountId }));
       void dispatch(fetchEndorsedAccounts({ accountId }));
     }
@@ -52,10 +48,6 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
   const isLoading = useAppSelector(
     (state) =>
       !accountId ||
-      !!(state.timelines as ImmutableMap<string, unknown>).getIn([
-        `account:${accountId}:pinned`,
-        'isLoading',
-      ]) ||
       !!state.user_lists.getIn(['featured_tags', accountId, 'isLoading']),
   );
   const featuredTags = useAppSelector(
@@ -65,14 +57,6 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
         ImmutableList(),
       ) as ImmutableList<TagMap>,
   );
-  const featuredStatusIds = useAppSelector(
-    (state) =>
-      (state.timelines as ImmutableMap<string, unknown>).getIn(
-        [`account:${accountId}:pinned`, 'items'],
-        ImmutableList(),
-      ) as ImmutableList<string>,
-  );
-
   const featuredAccountIds = useAppSelector(
     (state) =>
       state.user_lists.getIn(
@@ -95,11 +79,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     );
   }
 
-  if (
-    featuredStatusIds.isEmpty() &&
-    featuredTags.isEmpty() &&
-    featuredAccountIds.isEmpty()
-  ) {
+  if (featuredTags.isEmpty() && featuredAccountIds.isEmpty()) {
     return (
       <AccountFeaturedWrapper accountId={accountId}>
         <EmptyMessage
@@ -131,23 +111,6 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
             </h4>
             {featuredTags.map((tag) => (
               <FeaturedTag key={tag.get('id')} tag={tag} account={acct} />
-            ))}
-          </>
-        )}
-        {!featuredStatusIds.isEmpty() && (
-          <>
-            <h4 className='column-subheading'>
-              <FormattedMessage
-                id='account.featured.posts'
-                defaultMessage='Posts'
-              />
-            </h4>
-            {featuredStatusIds.map((statusId) => (
-              <StatusQuoteManager
-                key={`f-${statusId}`}
-                id={statusId}
-                contextType='account'
-              />
             ))}
           </>
         )}
