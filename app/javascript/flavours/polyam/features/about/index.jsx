@@ -3,30 +3,26 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
-import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import ChevronDownIcon from '@/awesome-icons/solid/chevron-down.svg?react';
-import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import CircleInfo from '@/awesome-icons/solid/circle-info.svg?react';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'flavours/polyam/actions/server';
 import { Account } from 'flavours/polyam/components/account';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
-import { Icon } from 'flavours/polyam/components/icon';
 import { ServerHeroImage } from 'flavours/polyam/components/server_hero_image';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
 import { LinkFooter } from 'flavours/polyam/features/ui/components/link_footer';
 
 import { ServerLimits } from './components/server_limits';
+import { Section } from './components/section';
+import { RulesSection } from './components/rules';
 
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },
-  rules: { id: 'about.rules', defaultMessage: 'Server rules' },
   blocks: { id: 'about.blocks', defaultMessage: 'Moderated servers' },
   silenced: { id: 'about.domain_blocks.silenced.title', defaultMessage: 'Limited' },
   silencedExplanation: { id: 'about.domain_blocks.silenced.explanation', defaultMessage: 'You will generally not see profiles and content from this server, unless you explicitly look it up or opt into it by following.' },
@@ -53,45 +49,6 @@ const mapStateToProps = state => ({
   extendedDescription: state.getIn(['server', 'extendedDescription']),
   domainBlocks: state.getIn(['server', 'domainBlocks']),
 });
-
-class Section extends PureComponent {
-
-  static propTypes = {
-    title: PropTypes.string,
-    children: PropTypes.node,
-    open: PropTypes.bool,
-    onOpen: PropTypes.func,
-  };
-
-  state = {
-    collapsed: !this.props.open,
-  };
-
-  handleClick = () => {
-    const { onOpen } = this.props;
-    const { collapsed } = this.state;
-
-    this.setState({ collapsed: !collapsed }, () => onOpen && onOpen());
-  };
-
-  render () {
-    const { title, children } = this.props;
-    const { collapsed } = this.state;
-
-    return (
-      <div className={classNames('about__section', { active: !collapsed })}>
-        <div className='about__section__title' role='button' tabIndex={0} onClick={this.handleClick}>
-          <Icon id={collapsed ? 'chevron-right' : 'chevron-down'} icon={collapsed ? ChevronRightIcon : ChevronDownIcon} /> {title}
-        </div>
-
-        {!collapsed && (
-          <div className='about__section__body'>{children}</div>
-        )}
-      </div>
-    );
-  }
-
-}
 
 class About extends PureComponent {
 
@@ -190,23 +147,7 @@ class About extends PureComponent {
             <ServerLimits />
           </Section>
 
-          <Section title={intl.formatMessage(messages.rules)}>
-            {!isLoading && (server.get('rules', ImmutableList()).isEmpty() ? (
-              <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
-            ) : (
-              <ol className='rules-list'>
-                {server.get('rules').map(rule => {
-                  const text = rule.getIn(['translations', locale, 'text']) || rule.getIn(['translations', locale.split('-')[0], 'text']) || rule.get('text');
-                  const hint = rule.getIn(['translations', locale, 'hint']) || rule.getIn(['translations', locale.split('-')[0], 'hint']) || rule.get('hint');
-                  return (
-                    <li key={rule.get('id')}>
-                      <div className='rules-list__text'>{text}</div>
-                      {hint.length > 0 && (<div className='rules-list__hint'>{hint}</div>)}
-                    </li>
-                  )})}
-              </ol>
-            ))}
-          </Section>
+          <RulesSection />
 
           <Section title={intl.formatMessage(messages.blocks)} onOpen={this.handleDomainBlocksOpen}>
             {domainBlocks.get('isLoading') ? (
