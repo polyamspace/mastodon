@@ -1,5 +1,11 @@
 import type { ComponentPropsWithRef } from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -15,6 +21,7 @@ import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import { expandAccountFeaturedTimeline } from '@/flavours/polyam/actions/timelines';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
 import StatusContainer from '@/flavours/polyam/containers/status_container';
+import { usePrevious } from '@/flavours/polyam/hooks/usePrevious';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
 const messages = defineMessages({
@@ -74,6 +81,7 @@ export const FeaturedCarousel: React.FC<{
   const [currentSlideHeight, setCurrentSlideHeight] = useState(
     wrapperRef.current?.scrollHeight ?? 0,
   );
+  const previousSlideHeight = usePrevious(currentSlideHeight);
   const observerRef = useRef<ResizeObserver>(
     new ResizeObserver(() => {
       handleSlideChange(0);
@@ -82,8 +90,10 @@ export const FeaturedCarousel: React.FC<{
   const wrapperStyles = useSpring({
     x: `-${slideIndex * 100}%`,
     height: currentSlideHeight,
+    // Don't animate from zero to the height of the initial slide
+    immediate: !previousSlideHeight,
   });
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Update slide height when the component mounts
     if (currentSlideHeight === 0) {
       handleSlideChange(0);
