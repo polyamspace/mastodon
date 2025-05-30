@@ -86,7 +86,7 @@ class NotificationGroup < ActiveModelSerializers::Model
             groups.group_key,
             (SELECT id FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key #{upper_bound_cond} ORDER BY id DESC LIMIT 1),
             array(SELECT from_account_id FROM (SELECT DISTINCT ON (from_account_id) * FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key #{upper_bound_cond}) dedup ORDER BY id DESC LIMIT $2),
-            (SELECT count(*) FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key #{upper_bound_cond}) AS notifications_count,
+            (SELECT count(DISTINCT from_account_id) FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key #{upper_bound_cond}) AS notifications_count,
             (SELECT id FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key AND id >= $4 ORDER BY id ASC LIMIT 1) AS min_id,
             (SELECT created_at FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key #{upper_bound_cond} ORDER BY id DESC LIMIT 1)
           FROM
@@ -99,13 +99,13 @@ class NotificationGroup < ActiveModelSerializers::Model
           ActiveRecord::Relation::QueryAttribute.new('group_keys', group_keys, ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Array.new(ActiveModel::Type::String.new)),
         ]
 
-        # Polyam: Added SELECT DISTINCT ON to deduplicate account IDs
+        # Polyam: Added SELECT DISTINCT ON to deduplicate account IDs and DISTINCT to count
         ActiveRecord::Base.connection.select_all(<<~SQL.squish, 'grouped_notifications', binds).cast_values.to_h { |k, *values| [k, values] }
           SELECT
             groups.group_key,
             (SELECT id FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key ORDER BY id DESC LIMIT 1),
             array(SELECT from_account_id FROM (SELECT DISTINCT ON (from_account_id) * FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key) dedup ORDER BY id DESC LIMIT $2),
-            (SELECT count(*) FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key) AS notifications_count
+            (SELECT count(DISTINCT from_account_id) FROM notifications WHERE notifications.account_id = $1 AND notifications.group_key = groups.group_key) AS notifications_count
           FROM
             unnest($3::text[]) AS groups(group_key);
         SQL
