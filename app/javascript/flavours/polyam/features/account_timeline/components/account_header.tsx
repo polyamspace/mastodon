@@ -835,7 +835,7 @@ export const AccountHeader: React.FC<{
         key={`role-badge-${role.get('id')}`}
         label={<span>{role.get('name')}</span>}
         roleId={role.get('id')}
-        className={`user-role-${role.get('id')}`}
+        roleColor={role.get('color')}
       />,
     );
   });
