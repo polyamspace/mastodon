@@ -23,7 +23,7 @@
 
     - unless ['vanilla', 'glitch'].include? current_user.setting_flavour
       .fields-row__column.fields-row__column-6
-        .user-role__preview
+        .user-role__preview{ id: 'user_role_preview' }
           .item.dark
             .account-role{ class: "user-role-#{form.object.id}", id: 'user-role-preview-1' }
               = person_icon

@@ -380,6 +380,16 @@ Rails.delegate(document, '#registration_new_user,#new_user', 'submit', () => {
 });
 
 // User role preview
+document
+  .querySelectorAll<HTMLInputElement>('input#user_role_color')
+  .forEach((content) => {
+    const preview = document.getElementById('user_role_preview');
+
+    if (preview) {
+      preview.style.cssText = `--user-role-background: ${content.value}39; --user-role-border: ${content.value};`;
+    }
+  });
+
 Rails.delegate(document, '#user_role_color', 'change', ({ target }) => {
   if (target instanceof HTMLInputElement) {
     for (let i = 1; i <= 3; i++) {
