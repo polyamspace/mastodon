@@ -1,5 +1,12 @@
 import type { ComponentPropsWithRef } from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useId,
+} from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -12,9 +19,12 @@ import { useDrag } from '@use-gesture/react';
 
 import ChevronLeftIcon from '@/awesome-icons/solid/chevron-left.svg?react';
 import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
+import PushPinIcon from '@/awesome-icons/solid/thumbtack.svg?react';
 import { expandAccountFeaturedTimeline } from '@/flavours/polyam/actions/timelines';
+import { Icon } from '@/flavours/polyam/components/icon';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
 import StatusContainer from '@/flavours/polyam/containers/status_container';
+import { usePrevious } from '@/flavours/polyam/hooks/usePrevious';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
 const messages = defineMessages({
@@ -31,6 +41,7 @@ export const FeaturedCarousel: React.FC<{
   tagged?: string;
 }> = ({ accountId, tagged }) => {
   const intl = useIntl();
+  const accessibilityId = useId();
 
   // Load pinned statuses
   const dispatch = useAppDispatch();
@@ -74,6 +85,7 @@ export const FeaturedCarousel: React.FC<{
   const [currentSlideHeight, setCurrentSlideHeight] = useState(
     wrapperRef.current?.scrollHeight ?? 0,
   );
+  const previousSlideHeight = usePrevious(currentSlideHeight);
   const observerRef = useRef<ResizeObserver>(
     new ResizeObserver(() => {
       handleSlideChange(0);
@@ -82,8 +94,10 @@ export const FeaturedCarousel: React.FC<{
   const wrapperStyles = useSpring({
     x: `-${slideIndex * 100}%`,
     height: currentSlideHeight,
+    // Don't animate from zero to the height of the initial slide
+    immediate: !previousSlideHeight,
   });
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Update slide height when the component mounts
     if (currentSlideHeight === 0) {
       handleSlideChange(0);
@@ -110,11 +124,15 @@ export const FeaturedCarousel: React.FC<{
       className='featured-carousel'
       {...bind()}
       aria-roledescription='carousel'
-      aria-labelledby='featured-carousel-title'
+      aria-labelledby={`${accessibilityId}-title`}
       role='region'
     >
       <div className='featured-carousel__header'>
-        <h4 className='featured-carousel__title' id='featured-carousel-title'>
+        <h4
+          className='featured-carousel__title'
+          id={`${accessibilityId}-title`}
+        >
+          <Icon id='thumb-tack' icon={PushPinIcon} />
           <FormattedMessage
             id='featured_carousel.header'
             defaultMessage='{count, plural, one {Pinned Post} other {Pinned Posts}}'
