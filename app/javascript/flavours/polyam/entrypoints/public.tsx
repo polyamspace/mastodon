@@ -392,13 +392,10 @@ document
 
 Rails.delegate(document, '#user_role_color', 'change', ({ target }) => {
   if (target instanceof HTMLInputElement) {
-    for (let i = 1; i <= 3; i++) {
-      const preview = document.getElementById(`user-role-preview-${i}`);
+    const preview = document.getElementById('user_role_preview');
 
-      if (preview) {
-        preview.style.backgroundColor = `${target.value}39`;
-        preview.style.borderColor = target.value;
-      }
+    if (preview) {
+      preview.style.cssText = `--user-role-background: ${target.value}39; --user-role-border: ${target.value};`;
     }
   }
 });
