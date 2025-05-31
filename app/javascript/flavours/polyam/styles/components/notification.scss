@@ -488,6 +488,8 @@
 
         time {
           color: $dark-text-color;
+          text-align: end; // Polyam: Fixes wrapped timestamp leaving gap
+          white-space: nowrap; // Polyam: Prevent wrapping
         }
 
         // Polyam: Removed time as it should be visible.
@@ -643,6 +645,14 @@
   .notification__report {
     border: 0;
     padding: 0;
+  }
+
+  // Polyam: Temporarily disable header in mentions (also affects PMs)
+  // This is easier and reversible than deleting it in the component
+  &--mention {
+    .notification-ungrouped__header {
+      display: none;
+    }
   }
 }
 
