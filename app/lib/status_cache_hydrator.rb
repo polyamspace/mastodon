@@ -72,7 +72,7 @@ class StatusCacheHydrator
     payload[:pinned]     = StatusPin.exists?(account_id: account_id, status_id: status.id) if status.account_id == account_id
     payload[:filtered]   = mapped_applied_custom_filter(account_id, status)
     payload[:quote] = hydrate_quote_payload(payload[:quote], status.quote, account_id, nested:) if payload[:quote]
-    payload[:reactions]  = serialized_reactions(account_id, status)
+    payload[:reactions] = serialized_reactions(account_id, status)
   end
 
   def hydrate_quote_payload(empty_payload, quote, account_id, nested: false)
