@@ -2,14 +2,22 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
-
 import SmartToyIcon from '@/awesome-icons/solid/robot.svg?react';
 import GroupsIcon from '@/awesome-icons/solid/user-group.svg?react';
 import PersonIcon from '@/awesome-icons/solid/user.svg?react';
 
-export const Badge = ({ icon = <PersonIcon />, label, domain, className, roleId }) => (
-  <div className={classNames('account-role', className)} data-account-role-id={roleId}>
+export const Badge = ({ icon = <PersonIcon />, label, domain, roleId, roleColor }) => (
+  <div
+    className='account-role'
+    data-account-role-id={roleId}
+    style={
+      roleColor ?
+      {
+        '--user-role-background': `${roleColor}39`,
+        '--user-role-border': roleColor,
+      } : undefined
+    }
+  >
     {icon}
     {label}
     {domain && <span className='account-role__domain'>{domain}</span>}
@@ -20,8 +28,8 @@ Badge.propTypes = {
   icon: PropTypes.node,
   label: PropTypes.node,
   domain: PropTypes.node,
-  className: PropTypes.string,
   roleId: PropTypes.string,
+  roleColor: PropTypes.string,
 };
 
 export const GroupBadge = () => (
