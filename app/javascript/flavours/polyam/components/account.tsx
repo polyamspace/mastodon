@@ -64,7 +64,7 @@ export const Account: React.FC<{
   minimal?: boolean;
   defaultAction?: 'block' | 'mute';
   withBio?: boolean;
-}> = ({ id, size = 46, hidden, minimal = true, defaultAction, withBio }) => {
+}> = ({ id, size = 46, hidden, minimal, defaultAction, withBio }) => {
   const intl = useIntl();
   const account = useAppSelector((state) => state.accounts.get(id));
   const relationship = useAppSelector((state) => state.relationships.get(id));
@@ -214,7 +214,8 @@ export const Account: React.FC<{
     ));
 
   return (
-    <div className={classNames('account', { 'account--minimal': minimal })}>
+    // Polyam: Use withBio for minimal class
+    <div className={classNames('account', { 'account--minimal': !withBio })}>
       <div className='account__wrapper'>
         <Permalink
           className='account__display-name'
@@ -258,7 +259,7 @@ export const Account: React.FC<{
           </div>
         </Permalink>
 
-        <div className='account__relationship'>{buttons}</div>
+        {!minimal && <div className='account__relationship'>{buttons}</div>}
       </div>
 
       {minimal && accountNote}
