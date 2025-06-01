@@ -56,6 +56,18 @@
   }
 }
 
+// Polyam: Loading indicator with icon-button
+.icon-button .loading-indicator {
+  position: static;
+  transform: none;
+
+  .circular-progress {
+    color: $primary-text-color;
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .load-more .loading-indicator .circular-progress {
   color: lighten($ui-base-color, 26%);
 }

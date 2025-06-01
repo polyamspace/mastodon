@@ -13,6 +13,7 @@ import {
 } from 'flavours/polyam/actions/accounts';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { me } from 'flavours/polyam/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
@@ -75,7 +76,7 @@ export const FollowIconButton: React.FC<{
     }
   }, [dispatch, accountId, relationship, account, signedIn]);
 
-  if (!relationship || accountId === me) return null;
+  if (accountId === me) return null;
 
   let label, icon, iconComponent;
 
@@ -83,6 +84,12 @@ export const FollowIconButton: React.FC<{
     label = intl.formatMessage(messages.follow);
     icon = 'user-add';
     iconComponent = FollowIcon;
+  } else if (!relationship) {
+    return (
+      <div className='icon-button'>
+        <LoadingIndicator />
+      </div>
+    );
   } else if (relationship.requested) {
     label = intl.formatMessage(messages.cancel_follow_request);
     icon = 'hourglass';
@@ -101,9 +108,9 @@ export const FollowIconButton: React.FC<{
     <IconButton
       onClick={handleClick}
       disabled={
-        relationship.blocked_by ||
-        relationship.blocking ||
-        (!(relationship.following || relationship.requested) &&
+        relationship?.blocked_by ||
+        relationship?.blocking ||
+        (!(relationship?.following || relationship?.requested) &&
           (account?.suspended || !!account?.moved))
       }
       active={following}
