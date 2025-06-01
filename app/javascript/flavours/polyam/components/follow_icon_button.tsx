@@ -4,6 +4,7 @@ import { useCallback, useEffect } from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 
 import PendingApprovalIcon from '@/awesome-icons/solid/hourglass-half.svg?react';
+import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
 import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import UnfollowIcon from '@/awesome-icons/solid/user-xmark.svg?react';
 import { useIdentity } from '@/flavours/polyam/identity_context';
@@ -24,6 +25,7 @@ const messages = defineMessages({
     id: 'account.cancel_follow_request',
     defaultMessage: 'Withdraw follow request',
   },
+  editProfile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
 });
 
 export const FollowIconButton: React.FC<{
@@ -76,7 +78,9 @@ export const FollowIconButton: React.FC<{
     }
   }, [dispatch, accountId, relationship, account, signedIn]);
 
-  if (accountId === me) return null;
+  const handleEditProfile = useCallback(() => {
+    window.open('/settings/profile', '_blank');
+  }, []);
 
   let label, icon, iconComponent;
 
@@ -84,6 +88,10 @@ export const FollowIconButton: React.FC<{
     label = intl.formatMessage(messages.follow);
     icon = 'user-add';
     iconComponent = FollowIcon;
+  } else if (accountId === me) {
+    label = intl.formatMessage(messages.editProfile);
+    icon = 'pencil';
+    iconComponent = EditIcon;
   } else if (!relationship) {
     return (
       <div className='icon-button'>
@@ -102,6 +110,17 @@ export const FollowIconButton: React.FC<{
     label = intl.formatMessage(messages.follow);
     icon = 'user-add';
     iconComponent = FollowIcon;
+  }
+
+  if (accountId === me) {
+    return (
+      <IconButton
+        onClick={handleEditProfile}
+        icon={icon}
+        iconComponent={iconComponent}
+        title={label}
+      />
+    );
   }
 
   return (
