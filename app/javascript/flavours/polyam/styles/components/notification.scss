@@ -474,7 +474,6 @@
         font-size: 15px;
         line-height: 22px;
         color: $darker-text-color;
-        justify-content: space-between; // Polyam: Consistent timestamps
 
         a {
           color: inherit;
@@ -488,10 +487,22 @@
 
         time {
           color: $dark-text-color;
+          text-align: end; // Polyam: Fixes timestamp leaving gap
+          white-space: nowrap; // Polyam: Prevent wrapping
         }
 
-        // Polyam: Removed time as it should be visible.
+        // Polyam: Align timestamp to end
+        &-separator {
+          text-align: end;
+          flex-grow: 1;
+        }
+
         @container (width < 350px) {
+          // Polyam: Prevent reflow on timestamp change
+          display: grid;
+          grid-template-columns: 1fr minmax(10%, max-content);
+
+          // Polyam: Removed time as it should be visible.
           &-separator {
             display: none;
           }
