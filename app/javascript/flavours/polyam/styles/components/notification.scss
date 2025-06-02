@@ -342,12 +342,12 @@
       }
 
       &__label {
-        display: flex;
+        display: grid; // Polyam: grid to prevent reflow
+        grid-template-columns: 1fr minmax(10%, max-content); // Polyam
         gap: 8px;
         font-size: 15px;
         line-height: 22px;
         color: $darker-text-color;
-        justify-content: space-between; // Polyam: Consistent timestamps
 
         a {
           color: inherit;
@@ -361,6 +361,8 @@
 
         time {
           color: $dark-text-color;
+          text-align: end; // Polyam: Fixes timestamp leaving gap
+          white-space: nowrap; // Polyam: Prevent wrapping
         }
       }
     }
