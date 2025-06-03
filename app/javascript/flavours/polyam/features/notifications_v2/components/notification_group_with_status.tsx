@@ -65,7 +65,13 @@ export const NotificationGroupWithStatus: React.FC<{
   const dispatch = useAppDispatch();
 
   // Polyam: collapsing
-  const [collapsed, setCollapsed] = useState(!unread);
+
+  const collapseEnabled = useAppSelector(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    (state) => state.local_settings.getIn(['collapsed', 'enabled']) as boolean,
+  );
+
+  const [collapsed, setCollapsed] = useState(collapseEnabled && !unread);
 
   const collapsibleType = ['favourite', 'reblog', 'reaction'].includes(type);
 
@@ -109,7 +115,7 @@ export const NotificationGroupWithStatus: React.FC<{
           {
             'notification-group--unread': unread,
             'notification-group--direct': isPrivateMention,
-            collapsed: collapsed,
+            collapsed: collapseEnabled && collapsed,
           },
         )}
         tabIndex={0}
@@ -132,7 +138,7 @@ export const NotificationGroupWithStatus: React.FC<{
               {actions && (
                 <div className='notification-group__actions'>{actions}</div>
               )}
-              {collapsibleType && (
+              {collapseEnabled && collapsibleType && (
                 <CollapseButton
                   collapsed={collapsed}
                   setCollapsed={handleCollapseClick}
