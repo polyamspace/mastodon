@@ -342,12 +342,12 @@
       }
 
       &__label {
-        display: flex;
+        display: grid; // Polyam: grid to prevent reflow
+        grid-template-columns: 1fr minmax(10%, max-content); // Polyam
         gap: 8px;
         font-size: 15px;
         line-height: 22px;
         color: $darker-text-color;
-        justify-content: space-between; // Polyam: Consistent timestamps
 
         a {
           color: inherit;
@@ -361,6 +361,8 @@
 
         time {
           color: $dark-text-color;
+          text-align: end; // Polyam: Fixes timestamp leaving gap
+          white-space: nowrap; // Polyam: Prevent wrapping
         }
       }
     }
@@ -512,6 +514,14 @@
   .notification__report {
     border: 0;
     padding: 0;
+  }
+
+  // Polyam: Temporarily disable header in mentions (also affects PMs)
+  // This is easier and reversible than deleting it in the component
+  &--mention {
+    .notification-ungrouped__header {
+      display: none;
+    }
   }
 }
 
