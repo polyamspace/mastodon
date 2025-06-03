@@ -118,8 +118,16 @@ export const NotificationGroupWithStatus: React.FC<{
       reply: () => {
         dispatch(replyComposeById(statusId));
       },
+
+      toggleCollapse: () => {
+        if (!collapseEnabled || !collapsibleType) {
+          return;
+        }
+
+        setCollapsed(!collapsed);
+      },
     }),
-    [dispatch, statusId],
+    [dispatch, statusId, collapseEnabled, collapsibleType, collapsed],
   );
 
   return (
