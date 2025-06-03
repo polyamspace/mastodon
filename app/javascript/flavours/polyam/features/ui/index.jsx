@@ -141,7 +141,9 @@ const keyMap = {
   bookmark: 'd',
   toggleSensitive: 'h',
   openMedia: 'e',
-  onTranslate: 't'
+  onTranslate: 't',
+  // Polyam
+  toggleCollapse: 'shift+x',
 };
 
 class SwitchingColumnsArea extends PureComponent {
