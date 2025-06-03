@@ -3,6 +3,8 @@ import type { JSX } from 'react';
 
 import classNames from 'classnames';
 
+import type { Map as ImmutableMap } from 'immutable';
+
 import { HotKeys } from 'react-hotkeys';
 
 import { replyComposeById } from 'flavours/polyam/actions/compose';
@@ -67,20 +69,19 @@ export const NotificationGroupWithStatus: React.FC<{
   // Polyam: collapsing
 
   const collapseEnabled = useAppSelector(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-    (state) => state.local_settings.getIn(['collapsed', 'enabled']) as boolean,
+    (state) =>
+      (state.local_settings as ImmutableMap<string, unknown>).getIn([
+        'collapsed',
+        'enabled',
+      ]) as boolean,
   );
 
   const autoCollapse = useAppSelector((state) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-    const autoCollapseSettings = state.local_settings.getIn([
-      'collapsed',
-      'auto',
-    ]);
+    const autoCollapseSettings = (
+      state.local_settings as ImmutableMap<string, unknown>
+    ).getIn(['collapsed', 'auto']) as ImmutableMap<string, unknown>;
     return (
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       (autoCollapseSettings.get('all') as boolean) ||
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       (autoCollapseSettings.get('notifications') as boolean)
     );
   });
