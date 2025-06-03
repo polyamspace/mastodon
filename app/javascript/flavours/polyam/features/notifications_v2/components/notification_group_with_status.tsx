@@ -71,7 +71,23 @@ export const NotificationGroupWithStatus: React.FC<{
     (state) => state.local_settings.getIn(['collapsed', 'enabled']) as boolean,
   );
 
-  const [collapsed, setCollapsed] = useState(collapseEnabled && !unread);
+  const autoCollapse = useAppSelector((state) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    const autoCollapseSettings = state.local_settings.getIn([
+      'collapsed',
+      'auto',
+    ]);
+    return (
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      (autoCollapseSettings.get('all') as boolean) ||
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      (autoCollapseSettings.get('notifications') as boolean)
+    );
+  });
+
+  const [collapsed, setCollapsed] = useState(
+    collapseEnabled && autoCollapse && !unread,
+  );
 
   const collapsibleType = ['favourite', 'reblog', 'reaction'].includes(type);
 
@@ -115,7 +131,7 @@ export const NotificationGroupWithStatus: React.FC<{
           {
             'notification-group--unread': unread,
             'notification-group--direct': isPrivateMention,
-            collapsed: collapseEnabled && collapsed,
+            collapsed: collapseEnabled && autoCollapse && collapsed,
           },
         )}
         tabIndex={0}
