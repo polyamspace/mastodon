@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import type { JSX } from 'react';
 
 import classNames from 'classnames';
@@ -9,6 +9,7 @@ import { replyComposeById } from 'flavours/polyam/actions/compose';
 import { navigateToStatus } from 'flavours/polyam/actions/statuses';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { AvatarGroup } from 'flavours/polyam/components/avatar_group';
+import { CollapseButton } from 'flavours/polyam/components/collapse_button';
 import type { IconProp } from 'flavours/polyam/components/icon';
 import { Icon } from 'flavours/polyam/components/icon';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
@@ -63,6 +64,15 @@ export const NotificationGroupWithStatus: React.FC<{
 }) => {
   const dispatch = useAppDispatch();
 
+  // Polyam: collapsing
+  const [collapsed, setCollapsed] = useState(!unread);
+
+  const collapsibleType = ['favourite', 'reblog', 'reaction'].includes(type);
+
+  const handleCollapseClick = useCallback(() => {
+    setCollapsed(!collapsed);
+  }, [collapsed, setCollapsed]);
+
   const label = useMemo(
     () =>
       labelRenderer(
@@ -99,6 +109,7 @@ export const NotificationGroupWithStatus: React.FC<{
           {
             'notification-group--unread': unread,
             'notification-group--direct': isPrivateMention,
+            collapsed: collapsed,
           },
         )}
         tabIndex={0}
@@ -120,6 +131,12 @@ export const NotificationGroupWithStatus: React.FC<{
 
               {actions && (
                 <div className='notification-group__actions'>{actions}</div>
+              )}
+              {collapsibleType && (
+                <CollapseButton
+                  collapsed={collapsed}
+                  setCollapsed={handleCollapseClick}
+                />
               )}
             </div>
 

@@ -64,3 +64,9 @@
     height: 16px;
   }
 }
+
+.notification-group.collapsed {
+  .notification-group__main__status {
+    display: none;
+  }
+}
