@@ -303,8 +303,7 @@
   color: $action-button-color;
   gap: 4px;
 
-  // Polyam: Different class as otherwise doesn't apply to collapse icon
-  .icon {
+  & > .icon {
     width: 16px;
     height: 16px;
   }
