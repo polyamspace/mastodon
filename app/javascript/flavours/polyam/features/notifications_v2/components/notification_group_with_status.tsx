@@ -86,15 +86,11 @@ export const NotificationGroupWithStatus: React.FC<{
     );
   });
 
-  const [collapsed, setCollapsed] = useState(
-    collapseEnabled && autoCollapse && !unread,
-  );
-
-  const collapsibleType = ['favourite', 'reblog', 'reaction'].includes(type);
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
-    setCollapsed(collapsibleType && collapseEnabled && autoCollapse && !unread);
-  }, [autoCollapse, collapseEnabled, collapsibleType, unread]);
+    setCollapsed(collapseEnabled && autoCollapse && !unread);
+  }, [autoCollapse, collapseEnabled, unread]);
 
   const handleCollapseClick = useCallback(() => {
     setCollapsed(!collapsed);
@@ -125,14 +121,14 @@ export const NotificationGroupWithStatus: React.FC<{
       },
 
       toggleCollapse: () => {
-        if (!collapseEnabled || !collapsibleType) {
+        if (!collapseEnabled) {
           return;
         }
 
         setCollapsed(!collapsed);
       },
     }),
-    [dispatch, statusId, collapseEnabled, collapsibleType, collapsed],
+    [dispatch, statusId, collapseEnabled, collapsed],
   );
 
   return (
@@ -166,7 +162,7 @@ export const NotificationGroupWithStatus: React.FC<{
               {actions && (
                 <div className='notification-group__actions'>{actions}</div>
               )}
-              {collapseEnabled && collapsibleType && (
+              {collapseEnabled && statusId && (
                 <CollapseButton
                   collapsed={collapsed}
                   setCollapsed={handleCollapseClick}
