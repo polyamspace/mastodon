@@ -143,6 +143,33 @@ RSpec.describe 'Notifications' do
       end
     end
 
+    # Polyam: Reactions
+    context 'when there are reaction notifications from same account' do
+      before do
+        user.account.notifications.destroy_all
+        stub_const('StatusReactionValidator::LIMIT', 2)
+        ReactService.new.call(bob.account, user.account.statuses.first, '👍')
+        ReactService.new.call(bob.account, user.account.statuses.first, '👎')
+      end
+
+      it 'returns a notification group with single sample account' do
+        subject
+
+        notification_ids = user.account.notifications.order(id: :asc).pluck(:id)
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body[:notification_groups].size)
+          .to eq(1)
+        expect(response.parsed_body.dig(:notification_groups, 0))
+          .to include(type: 'reaction')
+          .and(include(sample_account_ids: have_attributes(size: 1)))
+          .and(include(page_max_id: notification_ids.last.to_s))
+          .and(include(page_min_id: notification_ids.first.to_s))
+      end
+    end
+
     context 'when there are numerous notifications for the same final group' do
       before do
         user.account.notifications.destroy_all
