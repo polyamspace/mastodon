@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback, useEffect } from 'react';
 import type { JSX } from 'react';
 
 import classNames from 'classnames';
@@ -92,6 +92,10 @@ export const NotificationGroupWithStatus: React.FC<{
 
   const collapsibleType = ['favourite', 'reblog', 'reaction'].includes(type);
 
+  useEffect(() => {
+    setCollapsed(collapsibleType && collapseEnabled && autoCollapse && !unread);
+  }, [autoCollapse, collapseEnabled, collapsibleType, unread]);
+
   const handleCollapseClick = useCallback(() => {
     setCollapsed(!collapsed);
   }, [collapsed, setCollapsed]);
@@ -140,7 +144,6 @@ export const NotificationGroupWithStatus: React.FC<{
           {
             'notification-group--unread': unread,
             'notification-group--direct': isPrivateMention,
-            collapsed: collapseEnabled && autoCollapse && collapsed,
           },
         )}
         tabIndex={0}
@@ -184,7 +187,7 @@ export const NotificationGroupWithStatus: React.FC<{
             </div>
           </div>
 
-          {statusId && (
+          {!collapsed && statusId && (
             <div className='notification-group__main__status'>
               <EmbeddedStatus statusId={statusId} />
             </div>
