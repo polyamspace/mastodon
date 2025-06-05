@@ -2,6 +2,7 @@ import { browserHistory } from 'flavours/polyam/components/router';
 import { debounceWithDispatchAndArguments } from 'flavours/polyam/utils/debounce';
 
 import api, { getLinks } from '../api';
+import { me } from '../initial_state';
 
 import {
   followAccountSuccess, unfollowAccountSuccess,
@@ -12,6 +13,7 @@ import {
   blockAccountSuccess, unblockAccountSuccess,
   pinAccountSuccess, unpinAccountSuccess,
   fetchRelationshipsSuccess,
+  fetchEndorsedAccounts,
 } from './accounts_typed';
 import { importFetchedAccount, importFetchedAccounts } from './importer';
 
@@ -635,6 +637,7 @@ export function pinAccount(id) {
 
     api().post(`/api/v1/accounts/${id}/pin`).then(response => {
       dispatch(pinAccountSuccess({ relationship: response.data }));
+      dispatch(fetchEndorsedAccounts({ accountId: me }));
     }).catch(error => {
       dispatch(pinAccountFail(error));
     });
@@ -648,6 +651,7 @@ export function unpinAccount(id) {
 
     api().post(`/api/v1/accounts/${id}/unpin`).then(response => {
       dispatch(unpinAccountSuccess({ relationship: response.data }));
+      dispatch(fetchEndorsedAccounts({ accountId: me }));
     }).catch(error => {
       dispatch(unpinAccountFail(error));
     });
