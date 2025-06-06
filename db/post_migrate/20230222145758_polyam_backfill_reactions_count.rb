@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BackfillReactionsCount < ActiveRecord::Migration[6.1]
+class PolyamBackfillReactionsCount < ActiveRecord::Migration[6.1]
   disable_ddl_transaction!
 
   class StatusReaction < ApplicationRecord; end

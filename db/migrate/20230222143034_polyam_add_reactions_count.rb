@@ -2,7 +2,7 @@
 
 require Rails.root.join('lib', 'mastodon', 'migration_helpers')
 
-class AddReactionsCount < ActiveRecord::Migration[6.1]
+class PolyamAddReactionsCount < ActiveRecord::Migration[6.1]
   include Mastodon::MigrationHelpers
 
   disable_ddl_transaction!
