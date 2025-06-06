@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_20_204643) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_06_113926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -623,7 +623,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_20_204643) do
     t.integer "replies_policy", default: 0, null: false
     t.boolean "exclusive", default: false, null: false
     t.index ["account_id"], name: "index_lists_on_account_id"
-    t.check_constraint "exclusive IS NOT NULL", name: "lists_exclusive_null"
   end
 
   create_table "login_activities", force: :cascade do |t|
