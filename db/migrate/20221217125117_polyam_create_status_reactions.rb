@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateStatusReactions < ActiveRecord::Migration[6.1]
+class PolyamCreateStatusReactions < ActiveRecord::Migration[6.1]
   def change
     create_table :status_reactions do |t|
       t.references :account, null: false, foreign_key: true
