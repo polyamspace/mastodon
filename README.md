@@ -42,7 +42,24 @@ All features are available for it.
 
 ## Installation and updating
 
-Installation is pretty much the same as upstream. \
-Please read the [glitch-soc docs](https://glitch-soc.github.io/docs/) for instructions.
+### Installing from scratch
 
-Update steps are also the same, but for convenience an update script is available on the [scripts repo](https://github.com/polyamspace/scripts)
+Installation is the same as described in the [Mastodon documentation](https://docs.joinmastodon.org/admin/install/) \
+Replace the repo URL with this one.
+
+### Switching to Polyam-glitch
+
+It is possible to switch from vanilla and glitch-soc to polyam-glitch the same way as switching from vanilla to glitch-soc. \
+Please read the [glitch-soc docs](https://glitch-soc.github.io/docs/) for instructions. \
+Replace the glitch-soc repo with this one. \
+Alternatively, while primarily intended for updating existing polyam-glitch installations, the [update script](https://github.com/polyamspace/scripts/blob/main/update.sh) can be used.
+
+Switching from other forks might require some manual adjustments due to duplicate migrations. \
+Especially forks running upstream's status reactions PR as polyam-glitch's version is based on a prior iteration of it.
+
+### Switching from Polyam-glitch
+
+It is technically possible to switch to other forks. \
+This comes with a few caveats (some are mentioned in the upstream docs) and not every scenario can be accounted for. \
+Do this at your own risk. \
+Keep in mind that downgrades (switching to older code) are not supported.
