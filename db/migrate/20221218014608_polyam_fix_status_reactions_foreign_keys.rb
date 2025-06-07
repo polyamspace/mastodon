@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PolyamChangeStatusReactionsTable < ActiveRecord::Migration[6.1]
+class PolyamFixStatusReactionsForeignKeys < ActiveRecord::Migration[6.1]
   disable_ddl_transaction!
 
   # Thanks to kescherCode
