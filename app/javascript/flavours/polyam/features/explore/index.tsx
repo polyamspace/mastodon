@@ -9,7 +9,9 @@ import ExploreIcon from '@/awesome-icons/solid/compass.svg?react';
 import { Column } from 'flavours/polyam/components/column';
 import type { ColumnRef } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
+import { SymbolLogo } from 'flavours/polyam/components/logo';
 import { Search } from 'flavours/polyam/features/compose/components/search';
+import { useBreakpoint } from 'flavours/polyam/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'flavours/polyam/identity_context';
 
 import Links from './links';
@@ -25,6 +27,7 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const { signedIn } = useIdentity();
   const intl = useIntl();
   const columnRef = useRef<ColumnRef>(null);
+  const logoRequired = useBreakpoint('full');
 
   const handleHeaderClick = useCallback(() => {
     columnRef.current?.scrollTop();
@@ -38,7 +41,7 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     >
       <ColumnHeader
         icon={'explore'}
-        iconComponent={ExploreIcon}
+        iconComponent={logoRequired ? SymbolLogo : ExploreIcon}
         title={intl.formatMessage(messages.title)}
         onClick={handleHeaderClick}
         multiColumn={multiColumn}

@@ -14,7 +14,7 @@ import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import PinIcon from '@/awesome-icons/solid/thumbtack.svg?react';
 import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import Column from 'flavours/polyam/features/ui/components/column';
-import ColumnLink from 'flavours/polyam/features/ui/components/column_link';
+import { ColumnLink } from 'flavours/polyam/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/polyam/features/ui/components/column_subheading';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 

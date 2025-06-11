@@ -10,12 +10,14 @@ import { connect } from 'react-redux';
 
 import AnnouncementIcon from '@/awesome-icons/solid/bullhorn.svg?react';
 import HomeIcon from '@/awesome-icons/solid/house.svg?react';
+import { SymbolLogo } from 'flavours/polyam/components/logo';
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/polyam/actions/announcements';
 import { IconWithBadge } from 'flavours/polyam/components/icon_with_badge';
 import { NotSignedInIndicator } from 'flavours/polyam/components/not_signed_in_indicator';
 import AnnouncementsContainer from 'flavours/polyam/features/getting_started/containers/announcements_container';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { criticalUpdatesPending } from 'flavours/polyam/initial_state';
+import { withBreakpoint } from 'flavours/polyam/features/ui/hooks/useBreakpoint';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { expandHomeTimeline } from '../../actions/timelines';
@@ -54,6 +56,7 @@ class HomeTimeline extends PureComponent {
     hasAnnouncements: PropTypes.bool,
     unreadAnnouncements: PropTypes.number,
     showAnnouncements: PropTypes.bool,
+    matchesBreakpoint: PropTypes.bool,
     regex: PropTypes.string,
   };
 
@@ -124,7 +127,7 @@ class HomeTimeline extends PureComponent {
   };
 
   render () {
-    const { intl, hasUnread, columnId, multiColumn, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
+    const { intl, hasUnread, columnId, multiColumn, hasAnnouncements, unreadAnnouncements, showAnnouncements, matchesBreakpoint } = this.props;
     const pinned = !!columnId;
     const { signedIn } = this.props.identity;
     const banners = [];
@@ -134,6 +137,7 @@ class HomeTimeline extends PureComponent {
     if (hasAnnouncements) {
       announcementsButton = (
         <button
+          type='button'
           className={classNames('column-header__button', { 'active': showAnnouncements })}
           title={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
           aria-label={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
@@ -152,7 +156,7 @@ class HomeTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} name='home' label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='home'
-          iconComponent={HomeIcon}
+          iconComponent={matchesBreakpoint ? SymbolLogo : HomeIcon}
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
@@ -190,4 +194,4 @@ class HomeTimeline extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(withIdentity(injectIntl(HomeTimeline)));
+export default connect(mapStateToProps)(withBreakpoint(withIdentity(injectIntl(HomeTimeline))));

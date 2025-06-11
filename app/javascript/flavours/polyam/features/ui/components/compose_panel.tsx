@@ -3,6 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { useLayout } from '@/flavours/polyam/hooks/useLayout';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 import {
+  changeComposing,
   mountCompose,
   unmountCompose,
 } from 'flavours/polyam/actions/compose';
@@ -14,6 +15,9 @@ import { useIdentity } from 'flavours/polyam/identity_context';
 
 export const ComposePanel: React.FC = () => {
   const dispatch = useAppDispatch();
+  const handleFocus = useCallback(() => {
+    dispatch(changeComposing(true));
+  }, [dispatch]);
   const { signedIn } = useIdentity();
   const hideComposer = useAppSelector((state) => {
     const mounted = state.compose.get('mounted');
@@ -33,7 +37,7 @@ export const ComposePanel: React.FC = () => {
   const { singleColumn } = useLayout();
 
   return (
-    <div className='compose-panel'>
+    <div className='compose-panel' onFocus={handleFocus}>
       <Search singleColumn={singleColumn} />
 
       {!signedIn && (
