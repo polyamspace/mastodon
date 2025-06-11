@@ -155,6 +155,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
+  transform: scaleX(var(--text-x-direction));
 
   &:hover,
   &:focus,
@@ -163,11 +164,11 @@
   }
 }
 
-.media-modal__nav--left {
+.media-modal__nav--prev {
   inset-inline-start: 0;
 }
 
-.media-modal__nav--right {
+.media-modal__nav--next {
   inset-inline-end: 0;
 }
 

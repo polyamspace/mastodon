@@ -38,3 +38,12 @@
   --toot-private-background-color: #{rgba($ui-highlight-color, 0.05)};
   --toot-private-background-focus-color: #{rgba($ui-highlight-color, 0.1)};
 }
+
+body {
+  // Variable for easily inverting directional UI elements,
+  --text-x-direction: 1;
+
+  &.rtl {
+    --text-x-direction: -1;
+  }
+}
