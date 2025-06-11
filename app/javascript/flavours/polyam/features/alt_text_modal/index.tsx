@@ -27,7 +27,7 @@ import { Audio } from 'flavours/polyam/features/audio';
 import { CharacterCounter } from 'flavours/polyam/features/compose/components/character_counter';
 import { Tesseract as fetchTesseract } from 'flavours/polyam/features/ui/util/async-components';
 import { Video, getPointerPosition } from 'flavours/polyam/features/video';
-import { me, reduceMotion } from 'flavours/polyam/initial_state';
+import { me } from 'flavours/polyam/initial_state';
 import type { MediaAttachment } from 'flavours/polyam/models/media_attachment';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 import { assetHost } from 'flavours/polyam/utils/config';
@@ -110,7 +110,7 @@ const Preview: React.FC<{
       left: `${x * 100}%`,
       top: `${y * 100}%`,
     },
-    immediate: reduceMotion || draggingRef.current,
+    immediate: draggingRef.current,
   });
   const media = useAppSelector((state) =>
     (

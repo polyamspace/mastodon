@@ -4,7 +4,6 @@ import { animated, useSpring } from '@react-spring/web';
 
 import UploadFileIcon from '@/awesome-icons/solid/upload.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
-import { reduceMotion } from 'flavours/polyam/initial_state';
 
 interface UploadProgressProps {
   active: boolean;
@@ -21,7 +20,7 @@ export const UploadProgress: React.FC<UploadProgressProps> = ({
     from: { width: '0%' },
     to: { width: `${progress}%` },
     reset: true,
-    immediate: reduceMotion || !active, // If this is not active, update the UI immediately
+    immediate: !active, // If this is not active, update the UI immediately
   });
   if (!active) {
     return null;

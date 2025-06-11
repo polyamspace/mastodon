@@ -11,7 +11,7 @@ import { animated, useTransition } from '@react-spring/web';
 import { addReaction, removeReaction } from '../actions/interactions';
 import { unicodeMapping } from '../features/emoji/emoji_unicode_mapping_light';
 import { useIdentity } from '../identity_context';
-import { autoPlayGif, reduceMotion, visibleReactions } from '../initial_state';
+import { autoPlayGif, visibleReactions } from '../initial_state';
 import { assetHost } from '../utils/config';
 
 import { AnimatedNumber } from './animated_number';
@@ -24,7 +24,6 @@ export const StatusReactions = ({statusId, reactions, canReact = true}) => {
     initial: { scale: 1 },
     enter: { scale: 1 },
     leave: { scale: 0 },
-    immediate: reduceMotion,
     keys: shownReactions.map(x => x.get('name')),
   });
 
