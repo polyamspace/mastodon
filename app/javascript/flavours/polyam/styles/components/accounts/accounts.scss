@@ -190,6 +190,16 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  justify-content: end;
+}
+
+.account__wrapper--with-bio {
+  align-items: start;
+}
+
+.account__info-wrapper {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 // Polyam: Removed background to fix transparent avatars
@@ -324,7 +334,7 @@ a .account__avatar {
   gap: 8px;
 }
 
-// Polyam: Split from .explore__suggestions__card
+// Polyam: Split from .explore-suggestions-card
 .account__relationship {
   @include follow-unfollow-icons;
 }
