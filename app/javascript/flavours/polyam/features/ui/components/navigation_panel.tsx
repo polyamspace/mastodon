@@ -16,7 +16,6 @@ import BookmarksIcon from '@/awesome-icons/solid/bookmark.svg?react';
 import InfoIcon from '@/awesome-icons/solid/circle-info.svg?react';
 import ExploreIcon from '@/awesome-icons/solid/compass.svg?react';
 import AlternateEmailIcon from '@/awesome-icons/solid/envelope.svg?react';
-import ModerationIcon from '@/awesome-icons/solid/gavel.svg?react';
 import SettingsIcon from '@/awesome-icons/solid/gear.svg?react';
 import AdministrationIcon from '@/awesome-icons/solid/gears.svg?react';
 import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
@@ -44,16 +43,13 @@ import {
   me,
 } from 'flavours/polyam/initial_state';
 import { transientSingleColumn } from 'flavours/polyam/is_mobile';
-import {
-  canManageReports,
-  canViewAdminDashboard,
-} from 'flavours/polyam/permissions';
 import { selectUnreadNotificationGroupsCount } from 'flavours/polyam/selectors/notifications';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 import { ColumnLink } from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import { ListPanel } from './list_panel';
+import { MoreLink } from './more_link';
 import SignInBanner from './sign_in_banner';
 
 const messages = defineMessages({
@@ -71,11 +67,6 @@ const messages = defineMessages({
     id: 'navigation_bar.preferences',
     defaultMessage: 'Preferences',
   },
-  administration: {
-    id: 'navigation_bar.administration',
-    defaultMessage: 'Administration',
-  },
-  moderation: { id: 'navigation_bar.moderation', defaultMessage: 'Moderation' },
   followsAndFollowers: {
     id: 'navigation_bar.follows_and_followers',
     defaultMessage: 'Follows and followers',
@@ -227,7 +218,7 @@ const MENU_WIDTH = 284;
 
 export const NavigationPanel: React.FC = () => {
   const intl = useIntl();
-  const { signedIn, disabledAccountId, permissions } = useIdentity();
+  const { signedIn, disabledAccountId } = useIdentity();
   const open = useAppSelector((state) => state.navigation.open);
   const dispatch = useAppDispatch();
   const openable = useBreakpoint('openable');
@@ -463,31 +454,13 @@ export const NavigationPanel: React.FC = () => {
                   text={intl.formatMessage(messages.app_settings)}
                 />
 
-                {canManageReports(permissions) && (
-                  <ColumnLink
-                    optional
-                    transparent
-                    href='/admin/reports'
-                    icon='flag'
-                    iconComponent={ModerationIcon}
-                    text={intl.formatMessage(messages.moderation)}
-                  />
-                )}
-                {canViewAdminDashboard(permissions) && (
-                  <ColumnLink
-                    optional
-                    transparent
-                    href='/admin/dashboard'
-                    icon='tachometer'
-                    iconComponent={AdministrationIcon}
-                    text={intl.formatMessage(messages.administration)}
-                  />
-                )}
+                <MoreLink />
               </>
             )}
 
             <div className='navigation-panel__legal'>
               <hr />
+
               <ColumnLink
                 transparent
                 to='/about'
