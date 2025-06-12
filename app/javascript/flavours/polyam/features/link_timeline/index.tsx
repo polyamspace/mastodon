@@ -3,7 +3,7 @@ import { useRef, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom';
 
-import ExploreIcon from '@/awesome-icons/solid/compass.svg?react';
+import TrendingUpIcon from '@/awesome-icons/solid/arrow-trend-up.svg?react';
 import { expandLinkTimeline } from 'flavours/polyam/actions/timelines';
 import { Column } from 'flavours/polyam/components/column';
 import type { ColumnRef } from 'flavours/polyam/components/column';
@@ -50,7 +50,7 @@ export const LinkTimeline: React.FC<{
     <Column bindToDocument={!multiColumn} ref={columnRef} label={story?.title}>
       <ColumnHeader
         icon='explore'
-        iconComponent={ExploreIcon}
+        iconComponent={TrendingUpIcon}
         title={story?.title}
         onClick={handleHeaderClick}
         multiColumn={multiColumn}

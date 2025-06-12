@@ -11,10 +11,10 @@ import type { Map as ImmutableMap } from 'immutable';
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 
+import TrendingUpIcon from '@/awesome-icons/solid/arrow-trend-up.svg?react';
 import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
 import BookmarksIcon from '@/awesome-icons/solid/bookmark.svg?react';
 import InfoIcon from '@/awesome-icons/solid/circle-info.svg?react';
-import ExploreIcon from '@/awesome-icons/solid/compass.svg?react';
 import AlternateEmailIcon from '@/awesome-icons/solid/envelope.svg?react';
 import SettingsIcon from '@/awesome-icons/solid/gear.svg?react';
 import AdministrationIcon from '@/awesome-icons/solid/gears.svg?react';
@@ -56,7 +56,7 @@ const messages = defineMessages({
     id: 'tabs_bar.notifications',
     defaultMessage: 'Notifications',
   },
-  explore: { id: 'explore.title', defaultMessage: 'Explore' },
+  explore: { id: 'explore.title', defaultMessage: 'Trending' },
   firehose: { id: 'column.firehose', defaultMessage: 'Live feeds' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
@@ -181,7 +181,7 @@ const SearchLink: React.FC = () => {
       transparent
       to='/explore'
       icon='explore'
-      iconComponent={ExploreIcon}
+      iconComponent={TrendingUpIcon}
       text={intl.formatMessage(messages.explore)}
     />
   );
