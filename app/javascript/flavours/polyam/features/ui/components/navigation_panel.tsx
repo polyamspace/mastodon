@@ -22,7 +22,6 @@ import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import HomeIcon from '@/awesome-icons/solid/house.svg?react';
 import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
-import LogoutIcon from '@/awesome-icons/solid/right-from-bracket.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import PersonAddIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import { fetchFollowRequests } from 'flavours/polyam/actions/accounts';
@@ -32,7 +31,6 @@ import {
   closeNavigation,
 } from 'flavours/polyam/actions/navigation';
 import { Account } from 'flavours/polyam/components/account';
-import { IconButton } from 'flavours/polyam/components/icon_button';
 import { IconWithBadge } from 'flavours/polyam/components/icon_with_badge';
 import { NavigationPortal } from 'flavours/polyam/components/navigation_portal';
 import { useBreakpoint } from 'flavours/polyam/features/ui/hooks/useBreakpoint';
@@ -190,13 +188,6 @@ const SearchLink: React.FC = () => {
 };
 
 const ProfileCard: React.FC = () => {
-  const intl = useIntl();
-  const dispatch = useAppDispatch();
-
-  const handleLogoutClick = useCallback(() => {
-    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT', modalProps: {} }));
-  }, [dispatch]);
-
   if (!me) {
     return null;
   }
@@ -204,12 +195,6 @@ const ProfileCard: React.FC = () => {
   return (
     <div className='navigation-bar'>
       <Account id={me} minimal size={36} />
-      <IconButton
-        icon='sign-out'
-        iconComponent={LogoutIcon}
-        title={intl.formatMessage(messages.logout)}
-        onClick={handleLogoutClick}
-      />
     </div>
   );
 };
