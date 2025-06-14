@@ -7,7 +7,7 @@ RSpec.describe 'Admin Registration Filters' do
     before { sign_in Fabricate(:admin_user) }
 
     it 'gracefully handles invalid nested params' do
-      post admin_email_domain_blocks_path(phrase: 'invalid')
+      post admin_registration_filters_path(phrase: 'invalid')
 
       expect(response)
         .to have_http_status(400)
