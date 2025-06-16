@@ -15,10 +15,6 @@ import {
 import { useAppDispatch } from 'flavours/polyam/store';
 
 const messages = defineMessages({
-  followedTags: {
-    id: 'navigation_bar.followed_tags',
-    defaultMessage: 'Followed hashtags',
-  },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   domainBlocks: {
     id: 'navigation_bar.domain_blocks',
@@ -57,11 +53,6 @@ export const MoreLink: React.FC = () => {
 
   const menu = useMemo(() => {
     const arr: MenuItem[] = [
-      {
-        text: intl.formatMessage(messages.followedTags),
-        to: '/followed_tags',
-      },
-      null,
       { text: intl.formatMessage(messages.filters), href: '/filters' },
       { text: intl.formatMessage(messages.mutes), to: '/mutes' },
       { text: intl.formatMessage(messages.blocks), to: '/blocks' },
