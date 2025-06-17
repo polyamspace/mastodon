@@ -906,6 +906,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_06_113926) do
     t.string "activity_uri"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "legacy", default: false, null: false
     t.index ["account_id", "quoted_account_id"], name: "index_quotes_on_account_id_and_quoted_account_id"
     t.index ["activity_uri"], name: "index_quotes_on_activity_uri", unique: true, where: "(activity_uri IS NOT NULL)"
     t.index ["approval_uri"], name: "index_quotes_on_approval_uri", where: "(approval_uri IS NOT NULL)"

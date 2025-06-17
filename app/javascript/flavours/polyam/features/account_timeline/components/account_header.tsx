@@ -42,8 +42,8 @@ import { FollowButton } from 'flavours/polyam/components/follow_button';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+import { AccountNote } from 'flavours/polyam/features/account/components/account_note';
 import { DomainPill } from 'flavours/polyam/features/account/components/domain_pill';
-import AccountNoteContainer from 'flavours/polyam/features/account/containers/account_note_container';
 import FollowRequestNoteContainer from 'flavours/polyam/features/account/containers/follow_request_note_container';
 import { useLinks } from 'flavours/polyam/hooks/useLinks';
 import { useIdentity } from 'flavours/polyam/identity_context';
@@ -935,7 +935,7 @@ export const AccountHeader: React.FC<{
                 onClickCapture={handleLinkClick}
               >
                 {account.id !== me && signedIn && (
-                  <AccountNoteContainer accountId={accountId} />
+                  <AccountNote accountId={accountId} />
                 )}
 
                 {/* Polyam: Hide fields when empty and show joined date on bottom */}
