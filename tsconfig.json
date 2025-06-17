@@ -32,11 +32,14 @@
   },
   "include": [
     "vite.config.mts",
+    "vitest.config.mts",
     "config/vite",
     "app/javascript/mastodon",
     "app/javascript/entrypoints",
     "app/javascript/types",
     "app/javascript/flavours/glitch",
-    "app/javascript/flavours/polyam"
+    "app/javascript/flavours/polyam",
+    ".storybook/*.ts",
+    ".storybook/*.tsx"
   ]
 }
