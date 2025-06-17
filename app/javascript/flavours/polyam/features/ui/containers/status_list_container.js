@@ -67,7 +67,7 @@ const makeGetStatusIds = (pending = false) => createSelector([
       return false;
     }
 
-    if (columnSettings.getIn(['shows', 'reply']) === false && statusForId.get('in_reply_to_id') !== null || statusForId.get('in_reply_to_account_id') !== me || statusForId.get('in_reply_to_account_id') !== statusForId.get('account')) {
+    if (columnSettings.getIn(['shows', 'reply']) === false && statusForId.get('in_reply_to_id') !== null && statusForId.get('in_reply_to_account_id') !== me && statusForId.get('in_reply_to_account_id') !== statusForId.get('account')) {
       return false;
     }
 
