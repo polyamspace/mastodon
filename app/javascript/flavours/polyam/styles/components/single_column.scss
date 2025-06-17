@@ -251,6 +251,7 @@ $ui-header-height: 55px;
     &__header {
       display: flex;
       align-items: center;
+      padding-inline-end: 4px;
 
       &__sep {
         width: 0;
