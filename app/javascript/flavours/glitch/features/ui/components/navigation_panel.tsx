@@ -15,12 +15,9 @@ import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import BookmarksActiveIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
 import BookmarksIcon from '@/material-icons/400-24px/bookmarks.svg?react';
-import ExploreActiveIcon from '@/material-icons/400-24px/explore-fill.svg?react';
-import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
 import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home.svg?react';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
-import LogoutIcon from '@/material-icons/400-24px/logout.svg?react';
 import AdministrationIcon from '@/material-icons/400-24px/manufacturing.svg?react';
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
@@ -31,6 +28,7 @@ import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import StarActiveIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import StarIcon from '@/material-icons/400-24px/star.svg?react';
+import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
 import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { openModal } from 'flavours/glitch/actions/modal';
 import {
@@ -38,7 +36,6 @@ import {
   closeNavigation,
 } from 'flavours/glitch/actions/navigation';
 import { Account } from 'flavours/glitch/components/account';
-import { IconButton } from 'flavours/glitch/components/icon_button';
 import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
 import { NavigationPortal } from 'flavours/glitch/components/navigation_portal';
 import { useBreakpoint } from 'flavours/glitch/features/ui/hooks/useBreakpoint';
@@ -64,7 +61,7 @@ const messages = defineMessages({
     id: 'tabs_bar.notifications',
     defaultMessage: 'Notifications',
   },
-  explore: { id: 'explore.title', defaultMessage: 'Explore' },
+  explore: { id: 'explore.title', defaultMessage: 'Trending' },
   firehose: { id: 'column.firehose', defaultMessage: 'Live feeds' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
@@ -205,21 +202,13 @@ const SearchLink: React.FC = () => {
       transparent
       to='/explore'
       icon='explore'
-      iconComponent={ExploreIcon}
-      activeIconComponent={ExploreActiveIcon}
+      iconComponent={TrendingUpIcon}
       text={intl.formatMessage(messages.explore)}
     />
   );
 };
 
 const ProfileCard: React.FC = () => {
-  const intl = useIntl();
-  const dispatch = useAppDispatch();
-
-  const handleLogoutClick = useCallback(() => {
-    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT', modalProps: {} }));
-  }, [dispatch]);
-
   if (!me) {
     return null;
   }
@@ -227,12 +216,6 @@ const ProfileCard: React.FC = () => {
   return (
     <div className='navigation-bar'>
       <Account id={me} minimal size={36} />
-      <IconButton
-        icon='sign-out'
-        iconComponent={LogoutIcon}
-        title={intl.formatMessage(messages.logout)}
-        onClick={handleLogoutClick}
-      />
     </div>
   );
 };
