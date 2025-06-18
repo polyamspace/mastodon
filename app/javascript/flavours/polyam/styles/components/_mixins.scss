@@ -196,7 +196,7 @@
   }
 }
 
-// Mixin for upstream's .account__relationship, .explore__suggestions__card
+// Mixin for upstream's .account__relationship, .explore-suggestions-card
 @mixin follow-unfollow-icons {
   .icon-button {
     border: 1px solid var(--background-border-color);

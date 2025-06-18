@@ -1,8 +1,10 @@
 import { createRoot } from 'react-dom/client';
 
+import { Globals } from '@react-spring/web';
+
 import { setupBrowserNotifications } from 'flavours/polyam/actions/notifications';
 import Mastodon from 'flavours/polyam/containers/mastodon';
-import { me } from 'flavours/polyam/initial_state';
+import { me, reduceMotion } from 'flavours/polyam/initial_state';
 import * as perf from 'flavours/polyam/performance';
 import ready from 'flavours/polyam/ready';
 import { store } from 'flavours/polyam/store';
@@ -20,6 +22,12 @@ function main() {
     const props = JSON.parse(
       mountNode.getAttribute('data-props') ?? '{}',
     ) as Record<string, unknown>;
+
+    if (reduceMotion) {
+      Globals.assign({
+        skipAnimation: true,
+      });
+    }
 
     const root = createRoot(mountNode);
     root.render(<Mastodon {...props} />);

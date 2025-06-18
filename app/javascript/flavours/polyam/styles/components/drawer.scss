@@ -20,15 +20,13 @@
     min-width: 0;
 
     &__display-name {
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: 0.15px;
+      font-size: 14px;
+      line-height: 20px;
       font-weight: 500;
 
       .display-name__account {
         font-size: 14px;
-        line-height: 20px;
-        letter-spacing: 0.1px;
+        font-weight: 400;
       }
     }
   }

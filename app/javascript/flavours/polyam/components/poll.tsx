@@ -14,7 +14,6 @@ import { fetchPoll, vote } from 'flavours/polyam/actions/polls';
 import { Icon } from 'flavours/polyam/components/icon';
 import emojify from 'flavours/polyam/features/emoji/emoji';
 import { useIdentity } from 'flavours/polyam/identity_context';
-import { reduceMotion } from 'flavours/polyam/initial_state';
 import { makeEmojiMap } from 'flavours/polyam/models/custom_emoji';
 import type * as Model from 'flavours/polyam/models/poll';
 import type { Status } from 'flavours/polyam/models/status';
@@ -265,7 +264,6 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
     to: {
       width: `${percent}%`,
     },
-    immediate: reduceMotion,
   });
 
   return (

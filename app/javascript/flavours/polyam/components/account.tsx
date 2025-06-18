@@ -80,6 +80,7 @@ interface AccountProps {
   minimal?: boolean;
   defaultAction?: 'block' | 'mute';
   withBio?: boolean;
+  withMenu?: boolean;
 }
 
 export const Account: React.FC<AccountProps> = ({
@@ -89,6 +90,7 @@ export const Account: React.FC<AccountProps> = ({
   minimal,
   defaultAction,
   withBio,
+  withMenu = true,
 }) => {
   const intl = useIntl();
   const { signedIn } = useIdentity();
@@ -235,9 +237,10 @@ export const Account: React.FC<AccountProps> = ({
     );
   }
 
-  let button: React.ReactNode, dropdown: React.ReactNode;
+  let button: React.ReactNode;
+  let dropdown: React.ReactNode;
 
-  if (menu.length > 0) {
+  if (menu.length > 0 && withMenu) {
     dropdown = (
       <Dropdown
         items={menu}
@@ -314,49 +317,61 @@ export const Account: React.FC<AccountProps> = ({
 
   return (
     // Polyam: Use withBio for minimal class
-    <div className={classNames('account', { 'account--minimal': !withBio })}>
-      <div className='account__wrapper'>
-        <Permalink
-          className='account__display-name'
-          title={account?.acct}
-          href={account?.url}
-          to={`/@${account?.acct}`}
-          data-hover-card-account={id}
-        >
-          <div className='account__avatar-wrapper'>
-            {account ? (
-              <Avatar account={account} size={size} />
-            ) : (
-              <Skeleton width={size} height={size} />
-            )}
-          </div>
+    <div
+      className={classNames('account', {
+        'account--minimal': !withBio,
+      })}
+    >
+      <div
+        className={classNames('account__wrapper', {
+          'account__wrapper--with-bio': account && withBio,
+        })}
+      >
+        <div className='account__info-wrapper'>
+          <Permalink
+            className='account__display-name'
+            title={account?.acct}
+            href={account?.url}
+            to={`/@${account?.acct}`}
+            data-hover-card-account={id}
+          >
+            <div className='account__avatar-wrapper'>
+              {account ? (
+                <Avatar account={account} size={size} />
+              ) : (
+                <Skeleton width={size} height={size} />
+              )}
+            </div>
 
-          <div className='account__contents'>
-            <DisplayName account={account} />
+            <div className='account__contents'>
+              <DisplayName account={account} />
 
-            {
-              // TODO: Show muteTimeRemaining
-              // @ts-expect-error -- Polyam: Don't show this */
-              // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, no-constant-binary-expression
-              null && !minimal && (
-                <div className='account__details'>
-                  {account ? (
-                    <>
-                      <ShortNumber
-                        value={account.followers_count}
-                        renderer={FollowersCounter}
-                      />{' '}
-                      {verification} {muteTimeRemaining}
-                    </>
-                  ) : (
-                    <Skeleton width='7ch' />
-                  )}
-                </div>
-              )
-            }
-            {!minimal && accountNote}
-          </div>
-        </Permalink>
+              {
+                // TODO: Show muteTimeRemaining
+                // @ts-expect-error -- Polyam: Don't show this */
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, no-constant-binary-expression
+                null && !minimal && (
+                  <div className='account__details'>
+                    {account ? (
+                      <>
+                        <ShortNumber
+                          value={account.followers_count}
+                          renderer={FollowersCounter}
+                        />{' '}
+                        {verification} {muteTimeRemaining}
+                      </>
+                    ) : (
+                      <Skeleton width='7ch' />
+                    )}
+                  </div>
+                )
+              }
+              {!minimal && accountNote}
+            </div>
+          </Permalink>
+
+          {minimal && accountNote}
+        </div>
 
         {!minimal && (
           <div className='account__relationship'>
@@ -365,8 +380,6 @@ export const Account: React.FC<AccountProps> = ({
           </div>
         )}
       </div>
-
-      {minimal && accountNote}
     </div>
   );
 };
