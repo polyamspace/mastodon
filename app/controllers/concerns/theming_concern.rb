@@ -12,14 +12,14 @@ module ThemingConcern
   def current_skin
     @current_skin ||= begin
       skins = Themes.instance.skins_for(current_flavour)
-      [current_user&.setting_skin, Setting.skin, 'system', 'application'].find { |skin| skins.include?(skin) }
+      [current_user&.setting_skin, Setting.skin, 'system', 'default'].find { |skin| skins.include?(skin) }
     end
   end
 
   def system_skins
     @system_skins ||= begin
       skins = Themes.instance.skins_for(current_flavour)
-      system_dark = [current_user&.setting_system_dark, Setting.system_dark, 'application'].find { |skin| skins.include?(skin) }
+      system_dark = [current_user&.setting_system_dark, Setting.system_dark, 'default'].find { |skin| skins.include?(skin) }
       system_light = [current_user&.setting_system_light, Setting.system_light, 'mastodon-light'].find { |skin| skins.include?(skin) }
       [system_dark, system_light]
     end
