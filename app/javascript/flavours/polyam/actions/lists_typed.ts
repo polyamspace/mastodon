@@ -1,4 +1,4 @@
-import { apiCreate, apiUpdate } from 'flavours/polyam/api/lists';
+import { apiCreate, apiUpdate, apiGetLists } from 'flavours/polyam/api/lists';
 import type { List } from 'flavours/polyam/models/list';
 import { createDataLoadingThunk } from 'flavours/polyam/store/typed_functions';
 
@@ -10,4 +10,8 @@ export const createList = createDataLoadingThunk(
 export const updateList = createDataLoadingThunk(
   'list/update',
   (list: Partial<List>) => apiUpdate(list),
+);
+
+export const fetchLists = createDataLoadingThunk('lists/fetch', () =>
+  apiGetLists(),
 );

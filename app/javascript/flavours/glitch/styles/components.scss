@@ -708,7 +708,12 @@ body > [data-popper-placement] {
 
   &__upload {
     position: relative;
-    cursor: grab;
+
+    &.draggable {
+      will-change: transform, opacity;
+      touch-action: none;
+      cursor: grab;
+    }
 
     &.dragging {
       opacity: 0;
@@ -718,18 +723,6 @@ body > [data-popper-placement] {
       height: 100%;
       border-radius: 8px;
       pointer-events: none;
-    }
-
-    &__drag-handle {
-      position: absolute;
-      top: 50%;
-      inset-inline-start: 0;
-      transform: translateY(-50%);
-      color: $white;
-      background: transparent;
-      border: 0;
-      padding: 8px 3px;
-      cursor: grab;
     }
 
     &__actions {
@@ -3217,10 +3210,9 @@ a.account__display-name {
       height: 100vh;
     }
 
-    .navigation-panel__sign-in-banner,
     .navigation-panel__banner,
-    .getting-started__trends,
-    .navigation-panel__logo {
+    .navigation-panel__logo,
+    .getting-started__trends {
       display: none;
     }
   }
@@ -3554,15 +3546,24 @@ a.account__display-name {
     &__header {
       display: flex;
       align-items: center;
-      padding-inline-end: 12px;
+
+      &__sep {
+        width: 0;
+        height: 24px;
+        border-left: 1px solid var(--background-border-color);
+      }
 
       .column-link {
         flex: 1 1 auto;
       }
+
+      .icon-button {
+        padding: 8px;
+      }
     }
 
     &__items {
-      padding-inline-start: 24px + 5px;
+      padding-inline-start: 24px + 8px;
 
       .icon {
         display: none;
@@ -3573,14 +3574,16 @@ a.account__display-name {
   &__compose-button {
     display: flex;
     justify-content: flex-start;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-inline-start: 13px - 7px;
-    padding-inline-end: 13px;
-    gap: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-inline-start: 12px - 7px;
+    padding-inline-end: 12px;
+    gap: 8px;
     margin: 12px;
-    margin-bottom: 4px;
     border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
 
     .icon {
       width: 24px;
@@ -3590,7 +3593,11 @@ a.account__display-name {
 
   .navigation-bar {
     padding: 16px;
-    border-bottom: 1px solid var(--background-border-color);
+  }
+
+  .search {
+    margin: 16px;
+    margin-bottom: 12px;
   }
 
   .logo {
@@ -3602,26 +3609,36 @@ a.account__display-name {
     margin-bottom: 12px;
   }
 
-  @media screen and (height <= 710px) {
-    &__portal {
+  .getting-started__trends h4 {
+    padding: 10px 12px;
+    padding-inline-start: 16px;
+  }
+
+  .getting-started__trends .trends__item {
+    padding: 10px 12px;
+    padding-inline-start: 16px;
+  }
+
+  @media screen and (height <= 930px) {
+    &__portal .trends__item:nth-child(n + 5) {
       display: none;
     }
   }
 
-  @media screen and (height <= 765px) {
-    &__portal .trends__item:nth-child(n + 3) {
-      display: none;
-    }
-  }
-
-  @media screen and (height <= 820px) {
+  @media screen and (height <= 930px - 56px) {
     &__portal .trends__item:nth-child(n + 4) {
       display: none;
     }
   }
 
-  @media screen and (height <= 920px) {
-    .column-link.column-link--optional {
+  @media screen and (height <= 930px - (56px * 2)) {
+    &__portal .trends__item:nth-child(n + 3) {
+      display: none;
+    }
+  }
+
+  @media screen and (height <= 930px - (56px * 3)) {
+    &__portal {
       display: none;
     }
   }
@@ -3894,9 +3911,10 @@ a.account__display-name {
 .column-link {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   font-size: 16px;
-  padding: 13px;
+  font-weight: 400;
+  padding: 12px;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
@@ -4745,7 +4763,8 @@ a.status-card {
 }
 
 .load-more .loading-indicator,
-.button .loading-indicator {
+.button .loading-indicator,
+.icon-button .loading-indicator {
   position: static;
   transform: none;
 
@@ -4754,6 +4773,13 @@ a.status-card {
     width: 22px;
     height: 22px;
   }
+}
+
+.icon-button .loading-indicator .circular-progress {
+  color: lighten($ui-base-color, 26%);
+  width: 12px;
+  height: 12px;
+  margin: 6px;
 }
 
 .load-more .loading-indicator .circular-progress {
@@ -7631,6 +7657,7 @@ img.modal-warning {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.1s ease;
+    will-change: opacity, pointer-events;
 
     &.active {
       opacity: 1;
@@ -7736,6 +7763,9 @@ img.modal-warning {
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0 5px;
+
+    // Ensure digits maintain a consistent width
+    font-variant-numeric: tabular-nums;
   }
 
   &__time-sep,
@@ -11291,6 +11321,11 @@ noscript {
     }
   }
 
+  &__limited-account-note {
+    text-align: center;
+    font-weight: 500;
+  }
+
   .display-name {
     font-size: 15px;
     line-height: 22px;
@@ -11507,7 +11542,6 @@ noscript {
 }
 
 .featured-carousel {
-  background: var(--surface-background-color);
   overflow: hidden;
   flex-shrink: 0;
   border-bottom: 1px solid var(--background-border-color);

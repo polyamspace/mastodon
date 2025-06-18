@@ -39,7 +39,7 @@ import { NavigationBar } from '../compose/components/navigation_bar';
 import { ColumnLink } from '../ui/components/column_link';
 import ColumnSubheading from '../ui/components/column_subheading';
 
-import TrendsContainer from './containers/trends_container';
+import { Trends } from 'flavours/polyam/features/navigation_panel/components/trends';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -211,7 +211,7 @@ class GettingStarted extends ImmutablePureComponent {
           <LinkFooter multiColumn />
         </div>
 
-        {(multiColumn && showTrends) && <TrendsContainer />}
+        {(multiColumn && showTrends) && <Trends />}
 
         <Helmet>
           <title>{intl.formatMessage(messages.menu)}</title>
