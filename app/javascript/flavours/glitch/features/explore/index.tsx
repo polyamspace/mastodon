@@ -9,7 +9,9 @@ import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
 import { Column } from 'flavours/glitch/components/column';
 import type { ColumnRef } from 'flavours/glitch/components/column';
 import { ColumnHeader } from 'flavours/glitch/components/column_header';
+import { SymbolLogo } from 'flavours/glitch/components/logo';
 import { Search } from 'flavours/glitch/features/compose/components/search';
+import { useBreakpoint } from 'flavours/glitch/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'flavours/glitch/identity_context';
 
 import Links from './links';
@@ -25,6 +27,7 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const { signedIn } = useIdentity();
   const intl = useIntl();
   const columnRef = useRef<ColumnRef>(null);
+  const logoRequired = useBreakpoint('full');
 
   const handleHeaderClick = useCallback(() => {
     columnRef.current?.scrollTop();
@@ -38,7 +41,7 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     >
       <ColumnHeader
         icon={'explore'}
-        iconComponent={ExploreIcon}
+        iconComponent={logoRequired ? SymbolLogo : ExploreIcon}
         title={intl.formatMessage(messages.title)}
         onClick={handleHeaderClick}
         multiColumn={multiColumn}
