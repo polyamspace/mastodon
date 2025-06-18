@@ -11,10 +11,10 @@ import type { Map as ImmutableMap } from 'immutable';
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 
+import TrendingUpIcon from '@/awesome-icons/solid/arrow-trend-up.svg?react';
 import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
 import BookmarksIcon from '@/awesome-icons/solid/bookmark.svg?react';
 import InfoIcon from '@/awesome-icons/solid/circle-info.svg?react';
-import ExploreIcon from '@/awesome-icons/solid/compass.svg?react';
 import AlternateEmailIcon from '@/awesome-icons/solid/envelope.svg?react';
 import SettingsIcon from '@/awesome-icons/solid/gear.svg?react';
 import AdministrationIcon from '@/awesome-icons/solid/gears.svg?react';
@@ -22,7 +22,6 @@ import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import HomeIcon from '@/awesome-icons/solid/house.svg?react';
 import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
-import LogoutIcon from '@/awesome-icons/solid/right-from-bracket.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import PersonAddIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import { fetchFollowRequests } from 'flavours/polyam/actions/accounts';
@@ -32,7 +31,6 @@ import {
   closeNavigation,
 } from 'flavours/polyam/actions/navigation';
 import { Account } from 'flavours/polyam/components/account';
-import { IconButton } from 'flavours/polyam/components/icon_button';
 import { IconWithBadge } from 'flavours/polyam/components/icon_with_badge';
 import { NavigationPortal } from 'flavours/polyam/components/navigation_portal';
 import { useBreakpoint } from 'flavours/polyam/features/ui/hooks/useBreakpoint';
@@ -58,7 +56,7 @@ const messages = defineMessages({
     id: 'tabs_bar.notifications',
     defaultMessage: 'Notifications',
   },
-  explore: { id: 'explore.title', defaultMessage: 'Explore' },
+  explore: { id: 'explore.title', defaultMessage: 'Trending' },
   firehose: { id: 'column.firehose', defaultMessage: 'Live feeds' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
@@ -183,20 +181,13 @@ const SearchLink: React.FC = () => {
       transparent
       to='/explore'
       icon='explore'
-      iconComponent={ExploreIcon}
+      iconComponent={TrendingUpIcon}
       text={intl.formatMessage(messages.explore)}
     />
   );
 };
 
 const ProfileCard: React.FC = () => {
-  const intl = useIntl();
-  const dispatch = useAppDispatch();
-
-  const handleLogoutClick = useCallback(() => {
-    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT', modalProps: {} }));
-  }, [dispatch]);
-
   if (!me) {
     return null;
   }
@@ -204,12 +195,6 @@ const ProfileCard: React.FC = () => {
   return (
     <div className='navigation-bar'>
       <Account id={me} minimal size={36} />
-      <IconButton
-        icon='sign-out'
-        iconComponent={LogoutIcon}
-        title={intl.formatMessage(messages.logout)}
-        onClick={handleLogoutClick}
-      />
     </div>
   );
 };

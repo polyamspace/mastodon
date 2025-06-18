@@ -1991,6 +1991,13 @@ body > [data-popper-placement] {
     }
   }
 
+  &__avatar-wrapper .account__avatar {
+    @container (width < 360px) {
+      width: 35px !important;
+      height: 35px !important;
+    }
+  }
+
   &__domain-pill {
     display: inline-flex;
     background: rgba($highlight-text-color, 0.2);
@@ -2161,11 +2168,6 @@ body > [data-popper-placement] {
   position: relative;
   border-radius: var(--avatar-border-radius);
   background: var(--surface-background-color);
-
-  @container (width < 360px) {
-    width: 35px !important;
-    height: 35px !important;
-  }
 
   img {
     width: 100%;

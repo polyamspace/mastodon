@@ -37,6 +37,13 @@
     }
   }
 
+  &__avatar-wrapper .account__avatar {
+    @container (width < 360px) {
+      width: 35px !important;
+      height: 35px !important;
+    }
+  }
+
   &__domain-pill {
     display: inline-flex;
     background: rgba($highlight-text-color, 0.2);
