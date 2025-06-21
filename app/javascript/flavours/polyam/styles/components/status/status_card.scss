@@ -134,6 +134,7 @@ a.status-card {
 .status-card.expanded .status-card__title {
   white-space: normal;
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
