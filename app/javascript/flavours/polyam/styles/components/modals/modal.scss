@@ -417,6 +417,7 @@
       font-size: 15px;
       line-height: 22px;
       color: $dark-text-color;
+      line-clamp: 4;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       max-height: 4 * 22px;
@@ -1258,7 +1259,7 @@ img.modal-warning {
     }
   }
 
-  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+  @media screen and (max-width: ($no-gap-breakpoint - 1px)) {
     &__choices {
       flex-direction: column;
 

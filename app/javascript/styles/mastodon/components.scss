@@ -1185,6 +1185,7 @@ body > [data-popper-placement] {
     line-height: 20px;
     letter-spacing: 0.25px;
     display: -webkit-box;
+    line-clamp: 4;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     padding: 0;
@@ -1263,6 +1264,7 @@ body > [data-popper-placement] {
     letter-spacing: 0.25px;
     padding-top: 0 !important;
     display: -webkit-box;
+    line-clamp: 4;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     max-height: 4 * 20px;
@@ -2111,6 +2113,7 @@ body > [data-popper-placement] {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
+    line-clamp: 1;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-top: 10px;
@@ -3135,7 +3138,7 @@ a.account__display-name {
   }
 }
 
-@media screen and (max-width: $no-gap-breakpoint - 1px) {
+@media screen and (max-width: ($no-gap-breakpoint - 1px)) {
   $sidebar-width: 285px;
 
   .columns-area__panels__main {
@@ -3335,7 +3338,7 @@ a.account__display-name {
   }
 }
 
-@media screen and (max-width: $no-gap-breakpoint - 1px) {
+@media screen and (max-width: ($no-gap-breakpoint - 1px)) {
   .columns-area__panels__pane--compositional {
     display: none;
   }
@@ -3576,19 +3579,19 @@ a.account__display-name {
     }
   }
 
-  @media screen and (height <= 930px - 56px) {
+  @media screen and (height <= (930px - 56px)) {
     &__portal .trends__item:nth-child(n + 4) {
       display: none;
     }
   }
 
-  @media screen and (height <= 930px - (56px * 2)) {
+  @media screen and (height <= (930px - 56px * 2)) {
     &__portal .trends__item:nth-child(n + 3) {
       display: none;
     }
   }
 
-  @media screen and (height <= 930px - (56px * 3)) {
+  @media screen and (height <= (930px - 56px * 3)) {
     &__portal {
       display: none;
     }
@@ -4121,6 +4124,7 @@ a.status-card {
 .status-card.expanded .status-card__title {
   white-space: normal;
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
@@ -6164,6 +6168,7 @@ a.status-card {
       font-size: 15px;
       line-height: 22px;
       color: $dark-text-color;
+      line-clamp: 4;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       max-height: 4 * 22px;
@@ -7728,7 +7733,7 @@ a.status-card {
   display: flex;
   flex-shrink: 0;
 
-  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+  @media screen and (max-width: ($no-gap-breakpoint - 1px)) {
     border-right: 0;
     border-left: 0;
   }
@@ -8137,7 +8142,7 @@ noscript {
         }
 
         // Fallback for older browsers with no container queries support
-        @media screen and (max-width: 372px + 55px) {
+        @media screen and (max-width: (372px + 55px)) {
           display: none;
         }
       }
@@ -8606,7 +8611,7 @@ noscript {
     width: 124px;
     flex: 0 0 auto;
 
-    @media screen and (max-width: 124px + 300px) {
+    @media screen and (max-width: (124px + 300px)) {
       display: none;
     }
   }
@@ -8616,7 +8621,7 @@ noscript {
     flex: 0 0 auto;
     position: relative;
 
-    @media screen and (max-width: 124px + 300px) {
+    @media screen and (max-width: (124px + 300px)) {
       width: 100%;
     }
   }
@@ -8709,7 +8714,6 @@ noscript {
         height: 100%;
         min-width: auto;
         min-height: auto;
-        vertical-align: bottom;
         object-fit: contain;
       }
     }
@@ -8745,6 +8749,7 @@ noscript {
   }
 
   .emoji-picker-dropdown {
+    display: flex;
     margin: 2px;
   }
 
@@ -8970,7 +8975,7 @@ noscript {
 .layout-single-column .explore__search-header {
   display: none;
 
-  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+  @media screen and (max-width: ($no-gap-breakpoint - 1px)) {
     display: flex;
   }
 }
@@ -9368,7 +9373,7 @@ noscript {
     }
   }
 
-  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+  @media screen and (max-width: ($no-gap-breakpoint - 1px)) {
     &__choices {
       flex-direction: column;
 
@@ -10913,6 +10918,7 @@ noscript {
     font-size: 14px;
     line-height: 20px;
     display: -webkit-box;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     max-height: 2 * 20px;

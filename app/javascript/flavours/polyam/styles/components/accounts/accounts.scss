@@ -164,6 +164,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
+    line-clamp: 1;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-top: 10px;
@@ -894,6 +895,7 @@ a.account__display-name {
   // Polyam: This is used to display account bios properly in follow reqs in onboarding.
   > .account__note {
     margin-top: 0;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
   }
 }

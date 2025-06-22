@@ -126,7 +126,7 @@
 .layout-single-column .explore__search-header {
   display: none;
 
-  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+  @media screen and (max-width: ($no-gap-breakpoint - 1px)) {
     display: flex;
   }
 }

@@ -133,7 +133,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       trends_as_landing_page: Setting.trends_as_landing_page,
       trends_enabled: Setting.trends,
       version: instance_presenter.version,
-      terms_of_service_enabled: TermsOfService.live.exists?,
+      terms_of_service_enabled: TermsOfService.current.present?,
       search_preview: Setting.search_preview,
       publish_button_text: Setting.publish_button_text,
       show_reblogs_in_public_timelines: Setting.show_reblogs_in_public_timelines,
