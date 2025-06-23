@@ -19,7 +19,6 @@
   "footer.documentation": "Documentation",
   "home.column_settings.show_threads": "Show threads",
   "keyboard_shortcuts.toggle_collapse": "to collapse/uncollapse toots",
-  "navigation_bar.featured_users": "Featured users",
   "notification.admin.report_note": "{name} added a report note",
   "notification.reaction": "{name} reacted to your toot",
   "notification.reaction.name_and_others_with_link": "{name} and <a>{count, plural, one {# other} other {# others}}</a> reacted to your toot",
