@@ -225,6 +225,21 @@
     width: 100%;
   }
 
+  &.loading {
+    cursor: wait;
+
+    .button__label-wrapper {
+      // Hide the label only visually, so that
+      // it keeps its layout and accessibility
+      opacity: 0;
+    }
+
+    .loading-indicator {
+      position: absolute;
+      inset: 0;
+    }
+  }
+
   .icon {
     width: 15px;
     height: 15px;
