@@ -6,7 +6,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
 
-import type { Map as ImmutableMap } from 'immutable';
+import type { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
@@ -185,13 +185,207 @@ const isFirehoseActive = (
 
 const MENU_WIDTH = 284;
 
-export const NavigationPanel: React.FC = () => {
+export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
+  multiColumn = false,
+}) => {
   const intl = useIntl();
   const { signedIn, disabledAccountId } = useIdentity();
+  const location = useLocation();
+  const showSearch = useBreakpoint('full') && !multiColumn;
+  const dispatch = useAppDispatch();
+
+  // Polyam: Hide redundant menu entries
+  type ColumnMap = ImmutableMap<'id' | 'uuid' | 'params', string>;
+
+  const columns = useAppSelector(
+    (state) =>
+      (state.settings as ImmutableMap<string, unknown>).get(
+        'columns',
+      ) as ImmutableList<ColumnMap>,
+  );
+
+  const isPinned = (id: string) => {
+    return columns.some((column) => column.get('id') === id);
+  };
+
+  let banner: React.ReactNode;
+
+  if (transientSingleColumn) {
+    banner = (
+      <div className='switch-to-advanced'>
+        {intl.formatMessage(messages.openedInClassicInterface)}{' '}
+        <a
+          href={`/deck${location.pathname}`}
+          className='switch-to-advanced__toggle'
+        >
+          {intl.formatMessage(messages.advancedInterface)}
+        </a>
+      </div>
+    );
+  }
+
+  const handleOpenSettings = useCallback<MouseEventHandler>(
+    (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      dispatch(
+        openModal({
+          modalType: 'SETTINGS',
+          modalProps: {},
+        }),
+      );
+    },
+    [dispatch],
+  );
+
+  return (
+    <div className='navigation-panel'>
+      {showSearch && <Search singleColumn />}
+
+      {!multiColumn && <ProfileCard />}
+
+      {banner && <div className='navigation-panel__banner'>{banner}</div>}
+
+      <div className='navigation-panel__menu'>
+        {signedIn && (
+          <>
+            {!multiColumn && (
+              <ColumnLink
+                to='/publish'
+                icon='plus'
+                iconComponent={AddIcon}
+                activeIconComponent={AddIcon}
+                text={intl.formatMessage(messages.compose)}
+                className='button navigation-panel__compose-button'
+              />
+            )}
+            {(!multiColumn || !isPinned('HOME')) && (
+              <ColumnLink
+                transparent
+                to='/home'
+                icon='home'
+                iconComponent={HomeIcon}
+                text={intl.formatMessage(messages.home)}
+              />
+            )}
+          </>
+        )}
+
+        {trendsEnabled && (
+          <ColumnLink
+            transparent
+            to='/explore'
+            icon='explore'
+            iconComponent={TrendingUpIcon}
+            text={intl.formatMessage(messages.explore)}
+          />
+        )}
+
+        {(signedIn || timelinePreview) && (
+          <ColumnLink
+            transparent
+            to='/public/local'
+            icon='globe'
+            iconComponent={PublicIcon}
+            isActive={isFirehoseActive}
+            text={intl.formatMessage(messages.firehose)}
+          />
+        )}
+
+        {signedIn && (
+          <>
+            {(!multiColumn || !isPinned('NOTIFICATIONS')) && (
+              <NotificationsLink />
+            )}
+
+            <FollowRequestsLink />
+
+            <hr />
+
+            <ListPanel />
+
+            <FollowedTagsPanel />
+
+            {(!multiColumn || !isPinned('FAVOURITES')) && (
+              <ColumnLink
+                transparent
+                to='/favourites'
+                icon='star'
+                iconComponent={StarIcon}
+                text={intl.formatMessage(messages.favourites)}
+              />
+            )}
+            {(!multiColumn || !isPinned('BOOKMARKS')) && (
+              <ColumnLink
+                transparent
+                to='/bookmarks'
+                icon='bookmarks'
+                iconComponent={BookmarksIcon}
+                text={intl.formatMessage(messages.bookmarks)}
+              />
+            )}
+            {(!multiColumn || !isPinned('DIRECT')) && (
+              <ColumnLink
+                transparent
+                to='/conversations'
+                icon='at'
+                iconComponent={AlternateEmailIcon}
+                text={intl.formatMessage(messages.direct)}
+              />
+            )}
+
+            <hr />
+
+            <ColumnLink
+              transparent
+              href='/settings/preferences'
+              icon='cog'
+              iconComponent={SettingsIcon}
+              text={intl.formatMessage(messages.preferences)}
+            />
+            <ColumnLink
+              transparent
+              onClick={handleOpenSettings}
+              icon='cogs'
+              iconComponent={AdministrationIcon}
+              text={intl.formatMessage(messages.app_settings)}
+            />
+
+            <MoreLink />
+          </>
+        )}
+
+        <div className='navigation-panel__legal'>
+          <ColumnLink
+            transparent
+            to='/about'
+            icon='ellipsis-h'
+            iconComponent={InfoIcon}
+            text={intl.formatMessage(messages.about)}
+          />
+        </div>
+
+        {!signedIn && (
+          <div className='navigation-panel__sign-in-banner'>
+            <hr />
+
+            {disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner />}
+          </div>
+        )}
+      </div>
+
+      <div className='flex-spacer' />
+
+      <Trends />
+    </div>
+  );
+};
+
+export const CollapsibleNavigationPanel: React.FC = () => {
   const open = useAppSelector((state) => state.navigation.open);
   const dispatch = useAppDispatch();
   const openable = useBreakpoint('openable');
-  const showSearch = useBreakpoint('full');
   const location = useLocation();
   const overlayRef = useRef<HTMLDivElement | null>(null);
 
@@ -293,37 +487,6 @@ export const NavigationPanel: React.FC = () => {
     }
   }, [open]);
 
-  let banner: React.ReactNode;
-
-  if (transientSingleColumn) {
-    banner = (
-      <div className='switch-to-advanced'>
-        {intl.formatMessage(messages.openedInClassicInterface)}{' '}
-        <a
-          href={`/deck${location.pathname}`}
-          className='switch-to-advanced__toggle'
-        >
-          {intl.formatMessage(messages.advancedInterface)}
-        </a>
-      </div>
-    );
-  }
-
-  const handleOpenSettings = useCallback<MouseEventHandler>(
-    (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      dispatch(
-        openModal({
-          modalType: 'SETTINGS',
-          modalProps: {},
-        }),
-      );
-    },
-    [dispatch],
-  );
-
   const showOverlay = openable && open;
 
   return (
@@ -339,137 +502,7 @@ export const NavigationPanel: React.FC = () => {
         {...bind()}
         style={openable ? { x } : undefined}
       >
-        <div className='navigation-panel'>
-          {showSearch && <Search singleColumn />}
-
-          <ProfileCard />
-
-          {banner && <div className='navigation-panel__banner'>{banner}</div>}
-
-          <div className='navigation-panel__menu'>
-            {signedIn && (
-              <>
-                <ColumnLink
-                  to='/publish'
-                  icon='plus'
-                  iconComponent={AddIcon}
-                  activeIconComponent={AddIcon}
-                  text={intl.formatMessage(messages.compose)}
-                  className='button navigation-panel__compose-button'
-                />
-                <ColumnLink
-                  transparent
-                  to='/home'
-                  icon='home'
-                  iconComponent={HomeIcon}
-                  text={intl.formatMessage(messages.home)}
-                />
-              </>
-            )}
-
-            {trendsEnabled && (
-              <ColumnLink
-                transparent
-                to='/explore'
-                icon='explore'
-                iconComponent={TrendingUpIcon}
-                text={intl.formatMessage(messages.explore)}
-              />
-            )}
-
-            {(signedIn || timelinePreview) && (
-              <ColumnLink
-                transparent
-                to='/public/local'
-                icon='globe'
-                iconComponent={PublicIcon}
-                isActive={isFirehoseActive}
-                text={intl.formatMessage(messages.firehose)}
-              />
-            )}
-
-            {signedIn && (
-              <>
-                <NotificationsLink />
-
-                <FollowRequestsLink />
-
-                <hr />
-
-                <ListPanel />
-
-                <FollowedTagsPanel />
-
-                <ColumnLink
-                  transparent
-                  to='/favourites'
-                  icon='star'
-                  iconComponent={StarIcon}
-                  text={intl.formatMessage(messages.favourites)}
-                />
-                <ColumnLink
-                  transparent
-                  to='/bookmarks'
-                  icon='bookmarks'
-                  iconComponent={BookmarksIcon}
-                  text={intl.formatMessage(messages.bookmarks)}
-                />
-                <ColumnLink
-                  transparent
-                  to='/conversations'
-                  icon='at'
-                  iconComponent={AlternateEmailIcon}
-                  text={intl.formatMessage(messages.direct)}
-                />
-
-                <hr />
-
-                <ColumnLink
-                  transparent
-                  href='/settings/preferences'
-                  icon='cog'
-                  iconComponent={SettingsIcon}
-                  text={intl.formatMessage(messages.preferences)}
-                />
-                <ColumnLink
-                  transparent
-                  onClick={handleOpenSettings}
-                  icon='cogs'
-                  iconComponent={AdministrationIcon}
-                  text={intl.formatMessage(messages.app_settings)}
-                />
-
-                <MoreLink />
-              </>
-            )}
-
-            <div className='navigation-panel__legal'>
-              <ColumnLink
-                transparent
-                to='/about'
-                icon='ellipsis-h'
-                iconComponent={InfoIcon}
-                text={intl.formatMessage(messages.about)}
-              />
-            </div>
-
-            {!signedIn && (
-              <div className='navigation-panel__sign-in-banner'>
-                <hr />
-
-                {disabledAccountId ? (
-                  <DisabledAccountBanner />
-                ) : (
-                  <SignInBanner />
-                )}
-              </div>
-            )}
-          </div>
-
-          <div className='flex-spacer' />
-
-          <Trends />
-        </div>
+        <NavigationPanel />
       </animated.div>
     </div>
   );

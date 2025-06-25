@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useCallback, useRef } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
@@ -7,8 +7,10 @@ import { Helmet } from 'react-helmet';
 import { isFulfilled } from '@reduxjs/toolkit';
 
 import TagIcon from '@/awesome-icons/solid/hashtag.svg?react';
-import { unfollowHashtag } from 'flavours/polyam/actions/tags_typed';
-import { apiGetFollowedTags } from 'flavours/polyam/api/tags';
+import {
+  fetchFollowedHashtags,
+  unfollowHashtag,
+} from 'flavours/polyam/actions/tags_typed';
 import type { ApiHashtagJSON } from 'flavours/polyam/api_types/tags';
 import { Button } from 'flavours/polyam/components/button';
 import { Column } from 'flavours/polyam/components/column';
@@ -16,7 +18,7 @@ import type { ColumnRef } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { Hashtag } from 'flavours/polyam/components/hashtag';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
-import { useAppDispatch } from 'flavours/polyam/store';
+import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 const messages = defineMessages({
   heading: { id: 'followed_tags', defaultMessage: 'Followed hashtags' },
@@ -59,55 +61,32 @@ const FollowedTag: React.FC<{
 
 const FollowedTags: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const intl = useIntl();
-  const [tags, setTags] = useState<ApiHashtagJSON[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [next, setNext] = useState<string | undefined>();
+  const dispatch = useAppDispatch();
+  const { tags, loading, next, stale } = useAppSelector(
+    (state) => state.followedTags,
+  );
   const hasMore = !!next;
-  const columnRef = useRef<ColumnRef>(null);
 
   useEffect(() => {
-    setLoading(true);
-
-    void apiGetFollowedTags()
-      .then(({ tags, links }) => {
-        const next = links.refs.find((link) => link.rel === 'next');
-
-        setTags(tags);
-        setLoading(false);
-        setNext(next?.uri);
-
-        return '';
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [setTags, setLoading, setNext]);
+    if (stale) {
+      void dispatch(fetchFollowedHashtags());
+    }
+  }, [dispatch, stale]);
 
   const handleLoadMore = useCallback(() => {
-    setLoading(true);
-
-    void apiGetFollowedTags(next)
-      .then(({ tags, links }) => {
-        const next = links.refs.find((link) => link.rel === 'next');
-
-        setLoading(false);
-        setTags((previousTags) => [...previousTags, ...tags]);
-        setNext(next?.uri);
-
-        return '';
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [setTags, setLoading, setNext, next]);
+    if (next) {
+      void dispatch(fetchFollowedHashtags({ next }));
+    }
+  }, [dispatch, next]);
 
   const handleUnfollow = useCallback(
     (tagId: string) => {
-      setTags((tags) => tags.filter((tag) => tag.name !== tagId));
+      void dispatch(unfollowHashtag({ tagId }));
     },
-    [setTags],
+    [dispatch],
   );
 
+  const columnRef = useRef<ColumnRef>(null);
   const handleHeaderClick = useCallback(() => {
     columnRef.current?.scrollTop();
   }, []);
