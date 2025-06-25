@@ -12,9 +12,10 @@ import { length } from 'stringz';
 
 import { missingAltTextModal, publishButtonText as customPublishButtonText } from 'flavours/polyam/initial_state';
 
-import AutosuggestInput from '../../../components/autosuggest_input';
-import AutosuggestTextarea from '../../../components/autosuggest_textarea';
-import { Button } from '../../../components/button';
+import AutosuggestInput from 'flavours/polyam/components/autosuggest_input';
+import AutosuggestTextarea from 'flavours/polyam/components/autosuggest_textarea';
+import { Button } from 'flavours/polyam/components/button';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
@@ -245,9 +246,9 @@ class ComposeForm extends ImmutablePureComponent {
       autoFocus,
       withoutNavigation,
       maxChars,
+      isSubmitting,
       highlighted
     } = this.props;
-    const disabled = this.props.isSubmitting;
 
     // Polyam: Custom publish button text
     let publishText = '';
@@ -277,7 +278,7 @@ class ComposeForm extends ImmutablePureComponent {
                 <AutosuggestInput
                   placeholder={intl.formatMessage(messages.spoiler_placeholder)}
                   value={this.props.spoilerText}
-                  disabled={disabled}
+                  disabled={isSubmitting}
                   onChange={this.handleChangeSpoilerText}
                   onKeyDown={this.handleKeyDown}
                   ref={this.setSpoilerText}
@@ -299,7 +300,7 @@ class ComposeForm extends ImmutablePureComponent {
             <AutosuggestTextarea
               ref={this.textareaRef}
               placeholder={intl.formatMessage(messages.placeholder)}
-              disabled={disabled}
+              disabled={isSubmitting}
               value={this.props.text}
               onChange={this.handleChange}
               suggestions={this.props.suggestions}
@@ -345,9 +346,11 @@ class ComposeForm extends ImmutablePureComponent {
                 <Button
                   type='submit'
                   compact
-                  text={publishText}
                   disabled={!this.canSubmit()}
-                />
+                  loading={isSubmitting}
+                >
+                  {publishText}
+                </Button>
               </div>
             </div>
           </div>

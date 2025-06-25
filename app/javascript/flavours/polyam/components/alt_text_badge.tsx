@@ -33,8 +33,8 @@ export const AltTextBadge: React.FC<{
   return (
     <>
       <button
-        ref={anchorRef}
         type='button'
+        ref={anchorRef}
         className='media-gallery__alt__label'
         onClick={handleClick}
         aria-expanded={open}
