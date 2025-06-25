@@ -79,6 +79,11 @@
   background: var(--background-color);
   backdrop-filter: var(--background-filter);
   border-top: 1px solid var(--background-border-color);
+  box-sizing: border-box;
+
+  .with-modals--active & {
+    padding-right: var(--root-scrollbar-width);
+  }
 
   .layout-multiple-columns & {
     display: none;
