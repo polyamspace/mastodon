@@ -6,7 +6,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
 
-import type { Map as ImmutableMap } from 'immutable';
+import type { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
@@ -194,6 +194,20 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
   const showSearch = useBreakpoint('full') && !multiColumn;
   const dispatch = useAppDispatch();
 
+  // Polyam: Hide redundant menu entries
+  type ColumnMap = ImmutableMap<'id' | 'uuid' | 'params', string>;
+
+  const columns = useAppSelector(
+    (state) =>
+      (state.settings as ImmutableMap<string, unknown>).get(
+        'columns',
+      ) as ImmutableList<ColumnMap>,
+  );
+
+  const isPinned = (id: string) => {
+    return columns.some((column) => column.get('id') === id);
+  };
+
   let banner: React.ReactNode;
 
   if (transientSingleColumn) {
@@ -246,13 +260,15 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
                 className='button navigation-panel__compose-button'
               />
             )}
-            <ColumnLink
-              transparent
-              to='/home'
-              icon='home'
-              iconComponent={HomeIcon}
-              text={intl.formatMessage(messages.home)}
-            />
+            {(!multiColumn || !isPinned('HOME')) && (
+              <ColumnLink
+                transparent
+                to='/home'
+                icon='home'
+                iconComponent={HomeIcon}
+                text={intl.formatMessage(messages.home)}
+              />
+            )}
           </>
         )}
 
@@ -279,7 +295,9 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
 
         {signedIn && (
           <>
-            <NotificationsLink />
+            {(!multiColumn || !isPinned('NOTIFICATIONS')) && (
+              <NotificationsLink />
+            )}
 
             <FollowRequestsLink />
 
@@ -289,27 +307,33 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
 
             <FollowedTagsPanel />
 
-            <ColumnLink
-              transparent
-              to='/favourites'
-              icon='star'
-              iconComponent={StarIcon}
-              text={intl.formatMessage(messages.favourites)}
-            />
-            <ColumnLink
-              transparent
-              to='/bookmarks'
-              icon='bookmarks'
-              iconComponent={BookmarksIcon}
-              text={intl.formatMessage(messages.bookmarks)}
-            />
-            <ColumnLink
-              transparent
-              to='/conversations'
-              icon='at'
-              iconComponent={AlternateEmailIcon}
-              text={intl.formatMessage(messages.direct)}
-            />
+            {(!multiColumn || !isPinned('FAVOURITES')) && (
+              <ColumnLink
+                transparent
+                to='/favourites'
+                icon='star'
+                iconComponent={StarIcon}
+                text={intl.formatMessage(messages.favourites)}
+              />
+            )}
+            {(!multiColumn || !isPinned('BOOKMARKS')) && (
+              <ColumnLink
+                transparent
+                to='/bookmarks'
+                icon='bookmarks'
+                iconComponent={BookmarksIcon}
+                text={intl.formatMessage(messages.bookmarks)}
+              />
+            )}
+            {(!multiColumn || !isPinned('DIRECT')) && (
+              <ColumnLink
+                transparent
+                to='/conversations'
+                icon='at'
+                iconComponent={AlternateEmailIcon}
+                text={intl.formatMessage(messages.direct)}
+              />
+            )}
 
             <hr />
 
