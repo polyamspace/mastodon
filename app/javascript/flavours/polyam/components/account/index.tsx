@@ -41,7 +41,7 @@ import { me } from 'flavours/polyam/initial_state';
 import type { MenuItem } from 'flavours/polyam/models/dropdown_menu';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
-import { Permalink } from './permalink';
+import { Permalink } from '../permalink';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },

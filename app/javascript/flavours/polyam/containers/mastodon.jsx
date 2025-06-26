@@ -19,6 +19,7 @@ import initialState, { title as siteTitle } from 'flavours/polyam/initial_state'
 import { IntlProvider } from 'flavours/polyam/locales';
 import { store } from 'flavours/polyam/store';
 import { isProduction } from 'flavours/polyam/utils/environment';
+import { BodyScrollLock } from 'flavours/polyam/features/ui/components/body_scroll_lock';
 
 const title = isProduction() ? siteTitle : `${siteTitle} (Dev)`;
 
@@ -63,6 +64,7 @@ export default class Mastodon extends PureComponent {
                 <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
                   <Route path='/' component={UI} />
                 </ScrollContext>
+                <BodyScrollLock />
               </Router>
 
               <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
