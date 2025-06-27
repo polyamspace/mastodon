@@ -17,7 +17,7 @@ import { useIdentity } from 'flavours/polyam/identity_context';
 
 import { useAppHistory } from './router';
 
-const messages = defineMessages({
+export const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
   hide: { id: 'column_header.hide_settings', defaultMessage: 'Hide settings' },
   moveLeft: {
