@@ -11,7 +11,6 @@ class NotifyService < BaseService
     update
     poll
     status
-    reaction
     moderation_warning
     severed_relationships
     annual_report
