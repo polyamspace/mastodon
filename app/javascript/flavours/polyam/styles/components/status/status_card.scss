@@ -33,7 +33,7 @@
       background: rgba($base-shadow-color, 0.6);
       border-radius: 8px;
       padding: 12px 9px;
-      backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+      backdrop-filter: $backdrop-blur-filter;
       flex: 0 0 auto;
       display: flex;
       justify-content: center;

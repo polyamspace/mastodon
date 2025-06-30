@@ -62,7 +62,7 @@
 
     &__popout {
       background: var(--dropdown-background-color);
-      backdrop-filter: var(--background-filter);
+      backdrop-filter: $backdrop-blur-filter;
       border: 1px solid var(--dropdown-border-color);
       box-shadow: var(--dropdown-shadow);
       max-width: 320px;

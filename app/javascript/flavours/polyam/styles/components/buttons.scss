@@ -323,7 +323,7 @@
   &.overlayed {
     box-sizing: content-box;
     background: rgba($black, 0.65);
-    backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+    backdrop-filter: $backdrop-blur-filter;
     color: rgba($white, 0.7);
     border-radius: 4px;
     padding: 2px;
@@ -508,7 +508,7 @@
 
     &__label {
       background-color: rgba($black, 0.45);
-      backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+      backdrop-filter: $backdrop-blur-filter;
       border-radius: 8px;
       padding: 12px 16px;
       display: flex;

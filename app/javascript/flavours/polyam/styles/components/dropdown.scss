@@ -88,7 +88,7 @@
 
 .dropdown-menu {
   background: var(--dropdown-background-color);
-  backdrop-filter: var(--background-filter);
+  backdrop-filter: $backdrop-blur-filter;
   border: 1px solid var(--dropdown-border-color);
   padding: 2px; // glitch: reduced padding
   border-radius: 4px;
@@ -207,7 +207,7 @@
 .language-dropdown__dropdown {
   box-shadow: var(--dropdown-shadow);
   background: var(--dropdown-background-color);
-  backdrop-filter: var(--background-filter);
+  backdrop-filter: $backdrop-blur-filter;
   border: 1px solid var(--dropdown-border-color);
   padding: 4px;
   border-radius: 4px;
