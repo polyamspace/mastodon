@@ -95,7 +95,7 @@
     color: $white;
     border: 0;
     background: rgba($black, 0.65);
-    backdrop-filter: blur(10px) saturate(100%) contrast(75%) brightness(70%);
+    backdrop-filter: $backdrop-blur-filter;
     padding: 3px 12px;
     border-radius: 99px;
     font-size: 14px;
@@ -120,7 +120,7 @@
   color: $white;
   border: 0;
   background: rgba($black, 0.65);
-  backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+  backdrop-filter: $backdrop-blur-filter;
   padding: 3px 8px;
   border-radius: 4px;
   font-size: 12px;
@@ -142,7 +142,7 @@
 
 .media-gallery__alt__popover {
   background: rgba($black, 0.65);
-  backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+  backdrop-filter: $backdrop-blur-filter;
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
   padding: 16px;
@@ -879,7 +879,7 @@
     inset-inline-start: 50%;
     transform: translate(-50%, -50%);
     background: rgba($base-shadow-color, 0.45);
-    backdrop-filter: var(--background-filter);
+    backdrop-filter: $backdrop-blur-filter;
     color: $white;
     border-radius: 8px;
     padding: 16px 24px;

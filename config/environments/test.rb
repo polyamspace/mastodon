@@ -75,7 +75,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 end
 
-# Polyam: This is ignored by specs
 Paperclip::Attachment.default_options[:path] = Rails.root.join('spec', 'test_files', ':class', ':id_partition', ':style.:extension')
 
 # Enable fake_data for PAM

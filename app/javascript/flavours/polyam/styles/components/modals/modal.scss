@@ -278,7 +278,7 @@
   min-height: 478px;
   flex-direction: column;
   background: var(--modal-background-color);
-  backdrop-filter: var(--background-filter);
+  backdrop-filter: $backdrop-blur-filter;
   border: 1px solid var(--modal-border-color);
   border-radius: 16px;
 
@@ -322,7 +322,7 @@
     padding: 24px;
     flex-direction: column;
     background: var(--modal-background-color);
-    backdrop-filter: var(--background-filter);
+    backdrop-filter: $backdrop-blur-filter;
     border: 1px solid var(--modal-border-color);
   }
 
@@ -541,7 +541,7 @@
   max-height: 80vh;
   flex-direction: column;
   background: var(--modal-background-color);
-  backdrop-filter: var(--background-filter);
+  backdrop-filter: $backdrop-blur-filter;
   border: 1px solid var(--modal-border-color);
   border-radius: 16px;
 
@@ -608,7 +608,7 @@
 
   &__popout {
     background: var(--dropdown-background-color);
-    backdrop-filter: var(--background-filter);
+    backdrop-filter: $backdrop-blur-filter;
     border: 1px solid var(--dropdown-border-color);
     box-shadow: var(--dropdown-shadow);
     max-width: 320px;
@@ -971,7 +971,7 @@
 .actions-modal {
   border-radius: 8px 8px 0 0;
   background: var(--dropdown-background-color);
-  backdrop-filter: var(--background-filter);
+  backdrop-filter: $backdrop-blur-filter;
   border-color: var(--dropdown-border-color);
   box-shadow: var(--dropdown-shadow);
   max-height: 80vh;
@@ -1120,7 +1120,7 @@ img.modal-warning {
   display: block;
   border-radius: 16px;
   background: var(--modal-background-color);
-  backdrop-filter: var(--background-filter);
+  backdrop-filter: $backdrop-blur-filter;
   border: 1px solid var(--modal-border-color);
   padding: 24px;
   box-sizing: border-box;

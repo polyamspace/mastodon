@@ -13,7 +13,7 @@
     padding: 24px;
     flex-direction: column;
     background: var(--modal-background-color);
-    backdrop-filter: var(--background-filter);
+    backdrop-filter: $backdrop-blur-filter;
     border: 1px solid var(--modal-border-color);
   }
 
