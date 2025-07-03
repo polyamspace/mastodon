@@ -136,10 +136,6 @@ RSpec.configure do |config|
     else
       Sidekiq::Testing.fake!
     end
-
-    # Polyam: Fix specs writing to public/system
-    Paperclip::Attachment.default_options[:path] = File.join(ENV.fetch('PAPERCLIP_ROOT_PATH', File.join('spec', 'test_files')), ':prefix_path:class', ':attachment', ':id_partition', ':style', ':filename') unless example.metadata[:type] == :system
-
     example.run
   end
 
