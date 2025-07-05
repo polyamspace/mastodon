@@ -71,7 +71,7 @@ module IconHelper
     power_off: 'power-off',
     radio_button_checked: 'power-off',
     radio_button_unchecked: 'power-off',
-    refresh: 'rotate',
+    refresh: 'rotate-left',
     repeat: 'boost',
     reply: 'reply',
     report: 'circle-exclamation',
