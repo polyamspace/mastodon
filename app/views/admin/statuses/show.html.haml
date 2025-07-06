@@ -59,7 +59,7 @@
 .status__card
   - if @status.reblog?
     .status__prepend
-      = material_symbol('repeat', variant: '')
+      = material_symbol('repeat', variant: 'custom')
       = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(@status.proper.account, path: admin_account_status_path(@status.proper.account.id, @status.proper.id)))
   - elsif @status.reply? && @status.in_reply_to_id.present?
     .status__prepend
