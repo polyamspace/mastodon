@@ -119,7 +119,7 @@ module ApplicationHelper
   end
 
   def awesome_icon(icon, attributes = {})
-    variant = "#{attributes[:variant] || 'solid'}/" unless attributes[:variant] == ''
+    variant = "#{attributes[:variant] || 'solid'}/" unless attributes[:variant] == 'custom'
 
     safe_join(
       [
