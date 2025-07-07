@@ -65,7 +65,7 @@ def download_awesome_icon(icon, variant)
   File.write(path, HTTP.get(url).to_s)
 end
 
-def find_used_awesome_icons
+def find_used_awesome_icons(with_backend: false)
   icons_by_variant = {}
 
   Rails.root.glob('app/javascript/**/*.*s*').map do |path|
@@ -83,7 +83,37 @@ def find_used_awesome_icons
     end
   end
 
+  icons_by_variant.merge!(find_used_backend_icons) { |_, new, old| old.merge(new) } if with_backend
+
   icons_by_variant
+end
+
+def find_used_backend_icons(material: false)
+  icons = {}
+
+  Rails.root.glob(['app/views/**/*.html.haml', 'config/navigation.rb']).map do |path|
+    File.open(path, 'r') do |file|
+      pattern = /(?:material_symbol|table_link_to)[\(\s]'(?<icon>[^']*)'(?:[\s,]+variant:\s'(?<variant>[^']*)')?/
+      file.each_line do |line|
+        match = pattern.match(line)
+        next if match.blank?
+
+        if material
+          icons[400] ||= {}
+          icons[400][24] ||= Set.new
+          icons[400][24] << match['icon']
+        else
+          variant = match['variant'].present? ? match['variant'].to_s : 'solid'
+          fa_icon = IconHelper::MATERIAL_TO_FA[match['icon'].to_sym]
+
+          icons[variant] ||= Set.new
+          icons[variant] << fa_icon unless fa_icon.nil?
+        end
+      end
+    end
+  end
+
+  icons
 end
 
 namespace :icons do
@@ -101,7 +131,10 @@ namespace :icons do
 
   desc 'Download used FA icons'
   task download_awesome: :environment do
-    find_used_awesome_icons.each do |variant, icons|
+    find_used_awesome_icons(with_backend: true).each do |variant, icons|
+      # Skip custom icons as they can't be downloaded
+      next if variant == 'custom'
+
       icons.each do |icon|
         download_awesome_icon(icon, variant)
       end
