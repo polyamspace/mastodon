@@ -88,7 +88,7 @@ def find_used_awesome_icons(with_backend: false)
   icons_by_variant
 end
 
-def find_used_backend_icons(material: false)
+def find_used_backend_icons(material: false, convert: true)
   icons = {}
 
   Rails.root.glob(['app/views/**/*.html.haml', 'config/navigation.rb']).map do |path|
@@ -104,10 +104,15 @@ def find_used_backend_icons(material: false)
           icons[400][24] << match['icon']
         else
           variant = match['variant'].present? ? match['variant'].to_s : 'solid'
-          fa_icon = IconHelper::MATERIAL_TO_FA[match['icon'].to_sym]
 
           icons[variant] ||= Set.new
-          icons[variant] << fa_icon unless fa_icon.nil?
+
+          if convert
+            fa_icon = IconHelper::MATERIAL_TO_FA[match['icon'].to_sym]
+            icons[variant] << fa_icon unless fa_icon.nil?
+          else
+            icons[variant] << match['icon']
+          end
         end
       end
     end
