@@ -37,6 +37,7 @@ module IconHelper
     diamond: 'gem',
     download: 'download',
     edit: 'pencil', # Also pen-to-square
+    extension: 'puzzle-piece',
     feedback: 'comment',
     flag: 'flag',
     filter_alt: 'filter',
@@ -74,6 +75,7 @@ module IconHelper
     refresh: 'rotate-left',
     repeat: 'boost',
     reply: 'reply',
+    report: 'circle-exclamation',
     safety_check: 'mobile-screen',
     save: 'floppy-disk',
     search: 'magnifying-glass',
