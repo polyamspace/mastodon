@@ -88,7 +88,7 @@ def find_used_awesome_icons(with_backend: false)
   icons_by_variant
 end
 
-def find_used_backend_icons(material: false)
+def find_used_backend_icons(material: false, convert: true)
   icons = {}
 
   Rails.root.glob(['app/views/**/*.html.haml', 'config/navigation.rb']).map do |path|
@@ -104,10 +104,15 @@ def find_used_backend_icons(material: false)
           icons[400][24] << match['icon']
         else
           variant = match['variant'].present? ? match['variant'].to_s : 'solid'
-          fa_icon = IconHelper::MATERIAL_TO_FA[match['icon'].to_sym]
 
           icons[variant] ||= Set.new
-          icons[variant] << fa_icon unless fa_icon.nil?
+
+          if convert
+            fa_icon = IconHelper::MATERIAL_TO_FA[match['icon'].to_sym]
+            icons[variant] << fa_icon unless fa_icon.nil?
+          else
+            icons[variant] << match['icon']
+          end
         end
       end
     end
@@ -139,5 +144,32 @@ namespace :icons do
         download_awesome_icon(icon, variant)
       end
     end
+  end
+
+  desc 'Check used icons'
+  task check: :environment do
+    pastel = Pastel.new
+
+    missing_icons = []
+    missing_icon_files = []
+
+    find_used_backend_icons(convert: false).each do |variant, icons|
+      icons.each do |icon|
+        fa_icon = IconHelper::MATERIAL_TO_FA[icon.to_sym]
+        if fa_icon.nil?
+          missing_icons << icon.to_s
+        elsif variant == 'custom'
+          missing_icon_files << "svg-icons/#{fa_icon}.svg" unless File.exist?(File.join('app', 'javascript', 'svg-icons', "#{fa_icon}.svg"))
+        elsif !File.exist?(File.join('app', 'javascript', 'awesome-icons', variant, "#{fa_icon}.svg"))
+          missing_icon_files << "#{variant}/#{fa_icon}.svg"
+        end
+      end
+    end
+
+    puts pastel.red("The following icons are missing in IconHelper: #{pastel.bold(missing_icons.join(', '))}") unless missing_icons.empty?
+    puts pastel.red("The following icon files are missing: #{pastel.bold(missing_icon_files.join(', '))}") unless missing_icon_files.empty?
+    exit(1) unless missing_icons.empty? && missing_icon_files.empty?
+
+    puts pastel.green('OK')
   end
 end
