@@ -64,6 +64,7 @@ module IconHelper
     menu: 'bars',
     mood: 'face-smile',
     more_horiz: 'ellipsis',
+    open_in_new: 'arrow-up-right-from-square',
     person: 'user',
     person_add: 'user-plus',
     person_remove: 'user-xmark',
