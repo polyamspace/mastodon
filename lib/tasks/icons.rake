@@ -97,7 +97,10 @@ namespace :icons do
         end
       end
     end
+  end
 
+  desc 'Download used FA icons'
+  task download_awesome: :environment do
     find_used_awesome_icons.each do |variant, icons|
       icons.each do |icon|
         download_awesome_icon(icon, variant)
