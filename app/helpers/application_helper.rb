@@ -119,12 +119,12 @@ module ApplicationHelper
   end
 
   def awesome_icon(icon, attributes = {})
-    variant = "#{attributes[:variant] || 'solid'}/" unless attributes[:variant] == 'custom'
+    variant = "#{attributes[:variant] || fa_variant(icon)}/"
 
     safe_join(
       [
         inline_svg_tag(
-          "#{variant}#{icon}.svg",
+          "#{variant if variant != 'custom/'}#{icon}.svg",
           class: ['icon', "fa-#{icon}"].concat(attributes[:class].to_s.split),
           role: :img,
           data: attributes[:data]

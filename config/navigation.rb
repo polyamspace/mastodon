@@ -52,7 +52,7 @@ SimpleNavigation::Configuration.run do |navigation|
     n.item :trends, safe_join([material_symbol('trending_up'), t('admin.trends.title')]), admin_trends_statuses_path, if: -> { current_user.can?(:manage_taxonomies) && !self_destruct } do |s|
       s.item :statuses, safe_join([material_symbol('chat_bubble'), t('admin.trends.statuses.title')]), admin_trends_statuses_path, highlights_on: %r{/admin/trends/statuses}
       s.item :tags, safe_join([material_symbol('tag'), t('admin.trends.tags.title')]), admin_trends_tags_path, highlights_on: %r{/admin/trends/tags}
-      s.item :links, safe_join([material_symbol('breaking_news', variant: 'regular'), t('admin.trends.links.title')]), admin_trends_links_path, highlights_on: %r{/admin/trends/links}
+      s.item :links, safe_join([material_symbol('breaking_news'), t('admin.trends.links.title')]), admin_trends_links_path, highlights_on: %r{/admin/trends/links}
       s.item :follow_recommendations, safe_join([material_symbol('person_add'), t('admin.follow_recommendations.title')]), admin_follow_recommendations_path, highlights_on: %r{/admin/follow_recommendations}
     end
 
@@ -79,13 +79,13 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :warning_presets, safe_join([material_symbol('warning'), t('admin.warning_presets.title')]), admin_warning_presets_path, highlights_on: %r{/admin/warning_presets}, if: -> { current_user.can?(:manage_settings) }
       s.item :roles, safe_join([material_symbol('contact_mail'), t('admin.roles.title')]), admin_roles_path, highlights_on: %r{/admin/roles}, if: -> { current_user.can?(:manage_roles) }
       s.item :announcements, safe_join([material_symbol('campaign'), t('admin.announcements.title')]), admin_announcements_path, highlights_on: %r{/admin/announcements}, if: -> { current_user.can?(:manage_announcements) }
-      s.item :custom_emojis, safe_join([material_symbol('mood', variant: 'regular'), t('admin.custom_emojis.title')]), admin_custom_emojis_path, highlights_on: %r{/admin/custom_emojis}, if: -> { current_user.can?(:manage_custom_emojis) }
+      s.item :custom_emojis, safe_join([material_symbol('mood'), t('admin.custom_emojis.title')]), admin_custom_emojis_path, highlights_on: %r{/admin/custom_emojis}, if: -> { current_user.can?(:manage_custom_emojis) }
       s.item :webhooks, safe_join([material_symbol('inbox'), t('admin.webhooks.title')]), admin_webhooks_path, highlights_on: %r{/admin/webhooks}, if: -> { current_user.can?(:manage_webhooks) }
       s.item :fasp, safe_join([material_symbol('extension'), t('admin.fasp.title')]), admin_fasp_providers_path, highlights_on: %r{/admin/fasp}, if: -> { current_user.can?(:manage_federation) } if Mastodon::Feature.fasp_enabled?
       s.item :relays, safe_join([material_symbol('captive_portal'), t('admin.relays.title')]), admin_relays_path, highlights_on: %r{/admin/relays}, if: -> { !limited_federation_mode? && current_user.can?(:manage_federation) }
     end
 
-    n.item :sidekiq, safe_join([material_symbol('diamond', variant: 'regular'), 'Sidekiq']), sidekiq_path, link_html: { target: 'sidekiq' }, if: -> { current_user.can?(:view_devops) }
+    n.item :sidekiq, safe_join([material_symbol('diamond'), 'Sidekiq']), sidekiq_path, link_html: { target: 'sidekiq' }, if: -> { current_user.can?(:view_devops) }
     n.item :pghero, safe_join([material_symbol('database'), 'PgHero']), pghero_path, link_html: { target: 'pghero' }, if: -> { current_user.can?(:view_devops) }
     n.item :logout, safe_join([material_symbol('logout'), t('auth.logout')]), destroy_user_session_path, link_html: { 'data-method' => 'delete' }
   end
