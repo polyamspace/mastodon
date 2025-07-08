@@ -55,10 +55,6 @@ const labelForRecentSearch = (search: RecentSearch) => {
   }
 };
 
-const unfocus = () => {
-  document.querySelector('.ui')?.parentElement?.focus();
-};
-
 const ClearButton: React.FC<{
   onClick: () => void;
   hasValue: boolean;
@@ -114,6 +110,11 @@ export const Search: React.FC<{
     setQuickActions([]);
   }, [initialValue]);
   const searchOptions: SearchOption[] = [];
+
+  const unfocus = useCallback(() => {
+    document.querySelector('.ui')?.parentElement?.focus();
+    setExpanded(false);
+  }, []);
 
   if (searchEnabled) {
     searchOptions.push(
@@ -290,7 +291,7 @@ export const Search: React.FC<{
       history.push({ pathname: '/search', search: queryParams.toString() });
       unfocus();
     },
-    [dispatch, history],
+    [dispatch, history, unfocus],
   );
 
   const handleChange = useCallback(
@@ -410,7 +411,7 @@ export const Search: React.FC<{
 
       setQuickActions(newQuickActions);
     },
-    [dispatch, history, signedIn, setValue, setQuickActions, submit],
+    [signedIn, dispatch, unfocus, history, submit],
   );
 
   const handleClear = useCallback(() => {
@@ -418,7 +419,7 @@ export const Search: React.FC<{
     setQuickActions([]);
     setSelectedOption(-1);
     unfocus();
-  }, [setValue, setQuickActions, setSelectedOption]);
+  }, [unfocus]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -469,7 +470,7 @@ export const Search: React.FC<{
           break;
       }
     },
-    [navigableOptions, value, selectedOption, setSelectedOption, submit],
+    [unfocus, navigableOptions, selectedOption, submit, value],
   );
 
   const handleFocus = useCallback(() => {
@@ -489,12 +490,38 @@ export const Search: React.FC<{
   }, [setExpanded, setSelectedOption, singleColumn]);
 
   const handleBlur = useCallback(() => {
-    setExpanded(false);
     setSelectedOption(-1);
-  }, [setExpanded, setSelectedOption]);
+  }, [setSelectedOption]);
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    // If the search popover is expanded, close it when tabbing or
+    // clicking outside of it or the search form, while allowing
+    // tabbing or clicking inside of the popover
+    if (expanded) {
+      function closeOnLeave(event: FocusEvent | MouseEvent) {
+        const form = formRef.current;
+        const isClickInsideForm =
+          form &&
+          (form === event.target || form.contains(event.target as Node));
+        if (!isClickInsideForm) {
+          setExpanded(false);
+        }
+      }
+      document.addEventListener('focusin', closeOnLeave);
+      document.addEventListener('click', closeOnLeave);
+
+      return () => {
+        document.removeEventListener('focusin', closeOnLeave);
+        document.removeEventListener('click', closeOnLeave);
+      };
+    }
+    return () => null;
+  }, [expanded]);
 
   return (
-    <form className={classNames('search', { active: expanded })}>
+    <form ref={formRef} className={classNames('search', { active: expanded })}>
       <input
         ref={searchInputRef}
         className='search__input'
@@ -523,7 +550,7 @@ export const Search: React.FC<{
 
       <ClearButton hasValue={hasValue} onClick={handleClear} />
 
-      <div className='search__popout'>
+      <div className='search__popout' tabIndex={-1}>
         {!hasValue && (
           <>
             <h4>
