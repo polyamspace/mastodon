@@ -1,0 +1,30 @@
+name: Check icons
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'stable-*'
+  pull_request:
+    branches:
+      - 'main'
+      - 'stable-*'
+
+env:
+  RAILS_ENV: test
+
+permissions:
+  contents: read
+
+jobs:
+  check-icons:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
+
+      - name: Check icons
+        run: bin/rake icons:check
