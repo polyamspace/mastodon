@@ -58,9 +58,9 @@
         - if params[:local] == '1'
           = f.button safe_join([material_symbol('save'), t('generic.save_changes')]), name: :update, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
-          = f.button safe_join([material_symbol('visibility', variant: 'regular'), t('admin.custom_emojis.list')]), name: :list, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+          = f.button safe_join([material_symbol('visibility'), t('admin.custom_emojis.list')]), name: :list, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
-          = f.button safe_join([material_symbol('visibility_off', variant: 'regular'), t('admin.custom_emojis.unlist')]), name: :unlist, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+          = f.button safe_join([material_symbol('visibility_off'), t('admin.custom_emojis.unlist')]), name: :unlist, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
         = f.button safe_join([material_symbol('radio_button_checked'), t('admin.custom_emojis.enable')]), name: :enable, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 

@@ -103,12 +103,12 @@ def find_used_backend_icons(material: false, convert: true)
           icons[400][24] ||= Set.new
           icons[400][24] << match['icon']
         else
-          variant = match['variant'].present? ? match['variant'].to_s : 'solid'
+          fa_icon = fa_icon(match['icon'])
+          variant = match['variant'].present? ? match['variant'].to_s : fa_variant(fa_icon)
 
           icons[variant] ||= Set.new
 
           if convert
-            fa_icon = IconHelper::MATERIAL_TO_FA[match['icon'].to_sym]
             icons[variant] << fa_icon unless fa_icon.nil?
           else
             icons[variant] << match['icon']
@@ -136,6 +136,8 @@ namespace :icons do
 
   desc 'Download used FA icons'
   task download_awesome: :environment do
+    include IconHelper
+
     find_used_awesome_icons(with_backend: true).each do |variant, icons|
       # Skip custom icons as they can't be downloaded
       next if variant == 'custom'
@@ -148,6 +150,8 @@ namespace :icons do
 
   desc 'Check used icons'
   task check: :environment do
+    include IconHelper
+
     pastel = Pastel.new
 
     missing_icons = []
@@ -155,7 +159,7 @@ namespace :icons do
 
     find_used_backend_icons(convert: false).each do |variant, icons|
       icons.each do |icon|
-        fa_icon = IconHelper::MATERIAL_TO_FA[icon.to_sym]
+        fa_icon = fa_icon(icon)
         if fa_icon.nil?
           missing_icons << icon.to_s
         elsif variant == 'custom'

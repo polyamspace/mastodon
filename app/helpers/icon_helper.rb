@@ -95,7 +95,25 @@ module IconHelper
     warning: 'triangle-exclamation',
   }.freeze
 
+  FA_VARIANT = {
+    bell: 'regular',
+    boost: 'custom',
+    eye: 'regular',
+    'eye-slash': 'regular',
+    'face-smile': 'regular',
+    gem: 'regular',
+    'id-badge': 'regular',
+    image: 'regular',
+    markdown: 'brands',
+    newspaper: 'regular',
+    square: 'regular',
+  }.freeze
+
   def fa_icon(icon)
     MATERIAL_TO_FA[icon.to_sym]
+  end
+
+  def fa_variant(icon)
+    FA_VARIANT[icon.to_sym] || 'solid'
   end
 end
