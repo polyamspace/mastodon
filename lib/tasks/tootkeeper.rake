@@ -37,7 +37,7 @@ namespace :tootkeeper do
     puts 'Checking json files...'
     pastel = Pastel.new
     matches = false
-    Rails.root.glob(FRONTEND_PATHS.map { |a| "#{a}/en.json" }).map do |path|
+    Rails.root.glob(FRONTEND_PATHS.map { |a| "#{a}/en*.json" }).map do |path|
       JSON.load_file(path).each do |k, v|
         next if k.in?(IGNORED_KEYS)
 
