@@ -1,6 +1,5 @@
 // @ts-check
 
-
 /**
  * @typedef {[code: string, name: string, localName: string]} InitialStateLanguage
  */
@@ -79,6 +78,7 @@
  * @property {object} local_settings
  * @property {number} max_feed_hashtags
  * @property {number} poll_limits
+ * @property {string[]} features
  * @property {number} max_reactions
  */
 
@@ -181,6 +181,14 @@ export const showRepliesPublicTimelines = getMeta('show_replies_in_public_timeli
  */
 export function getAccessToken() {
   return getMeta('access_token');
+}
+
+/**
+ * @param {string} feature
+ * @returns {boolean}
+ */
+export function isFeatureEnabled(feature) {
+  return initialState?.features?.includes(feature) || false;
 }
 
 export default initialState;
