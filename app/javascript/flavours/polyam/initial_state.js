@@ -74,6 +74,7 @@
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
  * @property {Role?} role
+ * @property {string[]} features
  * @property {object} local_settings
  * @property {number} max_feed_hashtags
  * @property {{max_options: number, max_option_chars: number, min_expiration: number, max_expiration: number}} poll_limits
@@ -179,6 +180,14 @@ export const languages = initialState?.languages?.map(lang => {
  */
 export function getAccessToken() {
   return getMeta('access_token');
+}
+
+/**
+ * @param {string} feature
+ * @returns {boolean}
+ */
+export function isFeatureEnabled(feature) {
+  return initialState?.features?.includes(feature) || false;
 }
 
 export default initialState;
