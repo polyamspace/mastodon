@@ -12,6 +12,7 @@ import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import MoreHorizIcon from '@/awesome-icons/solid/ellipsis-vertical.svg?react';
 import LockIcon from '@/awesome-icons/solid/lock.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
+import { AccountBio } from '@/flavours/polyam/components/account_bio';
 import {
   followAccount,
   unblockAccount,
@@ -782,7 +783,6 @@ export const AccountHeader: React.FC<{
     );
   }
 
-  const content = { __html: account.note_emojified };
   const displayNameHtml = { __html: account.display_name_html };
   const fields = account.fields;
   const isLocal = !account.acct.includes('@');
@@ -962,12 +962,11 @@ export const AccountHeader: React.FC<{
                 )}
 
                 {/* Polyam: Show bio after fields as they are visually distracting */}
-                {account.note.length > 0 && account.note !== '<p></p>' && (
-                  <div
-                    className='account__header__content translate'
-                    dangerouslySetInnerHTML={content}
-                  />
-                )}
+                <AccountBio
+                  note={account.note_emojified}
+                  dropdownAccountId={accountId}
+                  className='account__header__content'
+                />
 
                 {/* Polyam: Joined date at bottom */}
                 <div className='account__header__joined'>
