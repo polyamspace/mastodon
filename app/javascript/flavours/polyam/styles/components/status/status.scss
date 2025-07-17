@@ -519,7 +519,10 @@
 }
 
 .status__quote {
-  --quote-margin: 36px;
+  // --status-gutter-width is currently only set inside of
+  // .notification-ungrouped, so everywhere else this will fall back
+  // to the pixel values
+  --quote-margin: var(--status-gutter-width, 36px);
 
   position: relative;
   margin-block-start: 16px;
@@ -530,7 +533,7 @@
   border: var(--nested-card-border);
 
   @container (width > 460px) {
-    --quote-margin: 56px;
+    --quote-margin: var(--status-gutter-width, 56px);
   }
 }
 
