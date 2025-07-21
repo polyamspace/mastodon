@@ -5,13 +5,12 @@ import classNames from 'classnames';
 
 import type { Map as ImmutableMap } from 'immutable';
 
-import { HotKeys } from 'react-hotkeys';
-
 import { replyComposeById } from 'flavours/polyam/actions/compose';
 import { navigateToStatus } from 'flavours/polyam/actions/statuses';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { AvatarGroup } from 'flavours/polyam/components/avatar_group';
 import { CollapseButton } from 'flavours/polyam/components/collapse_button';
+import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import type { IconProp } from 'flavours/polyam/components/icon';
 import { Icon } from 'flavours/polyam/components/icon';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
@@ -132,7 +131,7 @@ export const NotificationGroupWithStatus: React.FC<{
   );
 
   return (
-    <HotKeys handlers={handlers}>
+    <Hotkeys handlers={handlers}>
       <div
         role='button'
         className={classNames(
@@ -196,6 +195,6 @@ export const NotificationGroupWithStatus: React.FC<{
           )}
         </div>
       </div>
-    </HotKeys>
+    </Hotkeys>
   );
 };

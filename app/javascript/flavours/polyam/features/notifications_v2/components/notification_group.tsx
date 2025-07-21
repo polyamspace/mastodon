@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
 
-import { HotKeys } from 'react-hotkeys';
-
 import { navigateToProfile } from 'flavours/polyam/actions/accounts';
 import { mentionComposeById } from 'flavours/polyam/actions/compose';
+import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import type { NotificationGroup as NotificationGroupModel } from 'flavours/polyam/models/notification_group';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
@@ -174,5 +173,5 @@ export const NotificationGroup: React.FC<{
       return null;
   }
 
-  return <HotKeys handlers={handlers}>{content}</HotKeys>;
+  return <Hotkeys handlers={handlers}>{content}</Hotkeys>;
 };

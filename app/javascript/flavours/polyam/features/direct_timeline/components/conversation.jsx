@@ -10,14 +10,13 @@ import { createSelector } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { HotKeys } from 'react-hotkeys';
-
 import MoreHorizIcon from '@/awesome-icons/solid/ellipsis.svg?react';
 import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
 import { replyCompose } from 'flavours/polyam/actions/compose';
 import { markConversationRead, deleteConversation } from 'flavours/polyam/actions/conversations';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { muteStatus, unmuteStatus, toggleStatusSpoilers } from 'flavours/polyam/actions/statuses';
+import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import AttachmentList from 'flavours/polyam/components/attachment_list';
 import AvatarComposite from 'flavours/polyam/components/avatar_composite';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -177,7 +176,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
   };
 
   return (
-    <HotKeys handlers={handlers}>
+    <Hotkeys handlers={handlers}>
       <div className={classNames('conversation focusable muted', { unread })} tabIndex={0}>
         <div className='conversation__avatar' onClick={handleClick} role='presentation'>
           <AvatarComposite accounts={accounts} size={48} />
@@ -227,7 +226,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
           </div>
         </div>
       </div>
-    </HotKeys>
+    </Hotkeys>
   );
 };
 

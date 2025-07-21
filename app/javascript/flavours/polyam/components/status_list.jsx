@@ -70,6 +70,7 @@ export default class StatusList extends ImmutablePureComponent {
 
   _selectChild (index, align_top) {
     const container = this.node.node;
+    // TODO: This breaks at the inline-follow-suggestions container
     const element = container.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
 
     if (element) {
