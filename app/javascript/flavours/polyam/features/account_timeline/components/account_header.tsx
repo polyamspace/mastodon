@@ -963,8 +963,7 @@ export const AccountHeader: React.FC<{
 
                 {/* Polyam: Show bio after fields as they are visually distracting */}
                 <AccountBio
-                  note={account.note_emojified}
-                  dropdownAccountId={accountId}
+                  accountId={accountId}
                   className='account__header__content'
                 />
 
