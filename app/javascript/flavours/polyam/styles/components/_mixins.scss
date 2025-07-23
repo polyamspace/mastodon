@@ -182,6 +182,10 @@
 @mixin notification-status-wrapper {
   position: relative;
 
+  // When scrolling these elements into view, take into account
+  // the column header height
+  scroll-margin-top: var(--column-header-height, 0);
+
   &.unread {
     &::before {
       content: '';
