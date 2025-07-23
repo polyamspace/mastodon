@@ -4,7 +4,6 @@ import EMOJI_REGEX from 'emojibase-regex/emoji-loose';
 import { autoPlayGif } from '@/flavours/polyam/initial_state';
 import { assetHost } from '@/flavours/polyam/utils/config';
 
-import { loadEmojiLocale } from '.';
 import {
   EMOJI_MODE_NATIVE,
   EMOJI_MODE_NATIVE_WITH_FLAGS,
@@ -17,6 +16,7 @@ import {
   searchCustomEmojisByShortcodes,
   searchEmojisByHexcodes,
 } from './database';
+import { loadEmojiLocale } from './index';
 import {
   emojiToUnicodeHex,
   twemojiHasBorder,
