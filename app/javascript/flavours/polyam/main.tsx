@@ -4,16 +4,16 @@ import { Globals } from '@react-spring/web';
 
 import { setupBrowserNotifications } from 'flavours/polyam/actions/notifications';
 import Mastodon from 'flavours/polyam/containers/mastodon';
-import {
-  isFeatureEnabled,
-  me,
-  reduceMotion,
-} from 'flavours/polyam/initial_state';
+import { me, reduceMotion } from 'flavours/polyam/initial_state';
 import * as perf from 'flavours/polyam/performance';
 import ready from 'flavours/polyam/ready';
 import { store } from 'flavours/polyam/store';
 
-import { isProduction, isDevelopment } from './utils/environment';
+import {
+  isProduction,
+  isDevelopment,
+  isModernEmojiEnabled,
+} from './utils/environment';
 
 function main() {
   perf.start('main()');
@@ -33,7 +33,7 @@ function main() {
       });
     }
 
-    if (isFeatureEnabled('modern_emojis')) {
+    if (isModernEmojiEnabled()) {
       const { initializeEmoji } = await import(
         '@/flavours/polyam/features/emoji'
       );

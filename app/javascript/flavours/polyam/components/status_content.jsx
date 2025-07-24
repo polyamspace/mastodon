@@ -13,10 +13,11 @@ import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { Poll } from 'flavours/polyam/components/poll';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
-import { autoPlayGif, isFeatureEnabled, languages as preloadedLanguages } from 'flavours/polyam/initial_state';
+import { autoPlayGif, languages as preloadedLanguages } from 'flavours/polyam/initial_state';
 import { highlightCode } from 'flavours/polyam/utils/html';
 import { decode as decodeIDNA } from 'flavours/polyam/utils/idna';
 import { EmojiHTML } from '../features/emoji/emoji_html';
+import { isModernEmojiEnabled } from '../utils/environment';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -81,7 +82,7 @@ const isLinkMisleading = (link) => {
  * @returns {string}
  */
 export function getStatusContent(status) {
-  if (isFeatureEnabled('modern_emojis')) {
+  if (isModernEmojiEnabled()) {
     return status.getIn(['translation', 'content']) || status.get('content');
   }
   return status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
