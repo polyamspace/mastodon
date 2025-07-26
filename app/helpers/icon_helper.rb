@@ -114,6 +114,8 @@ module IconHelper
   end
 
   def fa_variant(icon)
+    return 'solid' if icon.nil?
+
     FA_VARIANT[icon.to_sym] || 'solid'
   end
 end
