@@ -625,30 +625,32 @@
     }
   }
 
-  .status {
+  .status:not(.status--is-quote) {
     border: 0;
     padding: 0;
-
-    &__avatar {
-      width: 40px;
-      height: 40px;
-    }
   }
 
   .status__wrapper-direct {
     background: transparent;
   }
 
-  $icon-margin: 48px; // 40px avatar + 8px gap
+  .status {
+    // 40px avatar + 8px gap
+    --status-gutter-width: 48px;
+  }
+
+  .status--is-quote {
+    --status-gutter-width: 0;
+  }
 
   // Polyam: Removed margin and restricted width of elements here
 
   .more-from-author {
-    width: calc(100% - $icon-margin + 2px);
+    width: calc(100% - var(--status-gutter-width) + 2px);
   }
 
   .status__content__read-more-button {
-    margin-inline-start: $icon-margin;
+    margin-inline-start: var(--status-gutter-width);
   }
 
   .notification__report {
