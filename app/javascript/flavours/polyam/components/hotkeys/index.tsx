@@ -68,6 +68,16 @@ function optionPlus(key: string): KeyMatcher {
 }
 
 /**
+ * Matches a single key combined with shift modifier
+ */
+function shiftPlus(key: string): KeyMatcher {
+  return (event) => ({
+    isMatch: event.shiftKey && event.code === `Key${key.toUpperCase()}`,
+    priority: hotkeyPriority.combo,
+  });
+}
+
+/**
  * Matches when all provided keys are pressed in sequence.
  */
 function sequence(...sequence: string[]): KeyMatcher {
@@ -139,7 +149,8 @@ const hotkeyMatcherMap = {
     'a',
     'enter',
   ),
-  // Polyam TODO: toggleCollapse
+  // Polyam
+  toggleCollapse: shiftPlus('x'),
 } as const;
 
 type HotkeyName = keyof typeof hotkeyMatcherMap;
