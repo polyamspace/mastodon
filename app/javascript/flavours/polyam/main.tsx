@@ -4,7 +4,11 @@ import { Globals } from '@react-spring/web';
 
 import { setupBrowserNotifications } from 'flavours/polyam/actions/notifications';
 import Mastodon from 'flavours/polyam/containers/mastodon';
-import { me, reduceMotion } from 'flavours/polyam/initial_state';
+import {
+  isFeatureEnabled,
+  me,
+  reduceMotion,
+} from 'flavours/polyam/initial_state';
 import * as perf from 'flavours/polyam/performance';
 import ready from 'flavours/polyam/ready';
 import { store } from 'flavours/polyam/store';
@@ -27,6 +31,13 @@ function main() {
       Globals.assign({
         skipAnimation: true,
       });
+    }
+
+    if (isFeatureEnabled('modern_emojis')) {
+      const { initializeEmoji } = await import(
+        '@/flavours/polyam/features/emoji'
+      );
+      await initializeEmoji();
     }
 
     const root = createRoot(mountNode);

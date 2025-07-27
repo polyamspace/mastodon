@@ -49,6 +49,8 @@
     }
 
     &__main {
+      --column-header-height: 62px;
+
       box-sizing: border-box;
       width: 100%;
       flex: 0 1 auto;
