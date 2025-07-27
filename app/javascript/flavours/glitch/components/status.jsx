@@ -7,8 +7,7 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { HotKeys } from 'react-hotkeys';
-
+import { Hotkeys } from 'flavours/glitch/components/hotkeys';
 import { ContentWarning } from 'flavours/glitch/components/content_warning';
 import { PictureInPicturePlaceholder } from 'flavours/glitch/components/picture_in_picture_placeholder';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
@@ -505,13 +504,13 @@ class Status extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <HotKeys handlers={handlers} tabIndex={unfocusable ? null : -1}>
+        <Hotkeys handlers={handlers} focusable={!unfocusable}>
           <div ref={this.handleRef} className='status focusable' tabIndex={unfocusable ? null : 0}>
             <span>{status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}</span>
             {status.get('spoiler_text').length > 0 && (<span>{status.get('spoiler_text')}</span>)}
             {expanded && <span>{status.get('content')}</span>}
           </div>
-        </HotKeys>
+        </Hotkeys>
       );
     }
 
@@ -524,7 +523,7 @@ class Status extends ImmutablePureComponent {
       const message = hidden_by_moderators ? <FormattedMessage id='status.hidden_by_moderators' defaultMessage='This toot has been hidden by the moderators of {domain}.' values={{ domain }} /> : <><FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.</>;
 
       return (
-        <HotKeys handlers={minHandlers} tabIndex={unfocusable ? null : -1}>
+        <Hotkeys handlers={minHandlers} focusable={!unfocusable}>
           <div className='status__wrapper status__wrapper--filtered focusable' tabIndex={unfocusable ? null : 0} ref={this.handleRef}>
             {message}
             {' '}
@@ -532,7 +531,7 @@ class Status extends ImmutablePureComponent {
               <FormattedMessage id='status.show_filter_reason' defaultMessage='Show anyway' />
             </button>
           </div>
-        </HotKeys>
+        </Hotkeys>
       );
     }
 
@@ -689,7 +688,7 @@ class Status extends ImmutablePureComponent {
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
 
     return (
-      <HotKeys handlers={handlers} tabIndex={unfocusable ? null : -1}>
+      <Hotkeys handlers={handlers} focusable={!unfocusable}>
         <div
           className={classNames('status__wrapper', 'focusable', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), unread })}
           {...selectorAttribs}
@@ -776,7 +775,7 @@ class Status extends ImmutablePureComponent {
             }
           </div>
         </div>
-      </HotKeys>
+      </Hotkeys>
     );
   }
 

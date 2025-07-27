@@ -10,11 +10,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { HotKeys } from 'react-hotkeys';
-
 import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
 import VisibilityIcon from '@/awesome-icons/regular/eye.svg?react';
 import CommentIcon from '@/awesome-icons/solid/comment.svg?react';
+import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { TimelineHint } from 'flavours/polyam/components/timeline_hint';
@@ -669,7 +668,7 @@ class Status extends ImmutablePureComponent {
           <div className={classNames('scrollable', { fullscreen })} ref={this.setContainerRef}>
             {ancestors}
 
-            <HotKeys handlers={handlers}>
+            <Hotkeys handlers={handlers}>
               <div className={classNames('focusable', 'detailed-status__wrapper', `detailed-status__wrapper-${status.get('visibility')}`)} tabIndex={0} aria-label={textForScreenReader(intl, status, false, isExpanded)} ref={this.setStatusRef}>
                 <DetailedStatus
                   key={`details-${status.get('id')}`}
@@ -709,7 +708,7 @@ class Status extends ImmutablePureComponent {
                   onEmbed={this.handleEmbed}
                 />
               </div>
-            </HotKeys>
+            </Hotkeys>
 
             {descendants}
             {remoteHint}

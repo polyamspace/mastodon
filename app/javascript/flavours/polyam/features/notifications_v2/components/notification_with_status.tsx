@@ -2,8 +2,6 @@ import { useMemo } from 'react';
 
 import classNames from 'classnames';
 
-import { HotKeys } from 'react-hotkeys';
-
 import { replyComposeById } from 'flavours/polyam/actions/compose';
 import {
   toggleReblog,
@@ -13,6 +11,7 @@ import {
   navigateToStatus,
   toggleStatusSpoilers,
 } from 'flavours/polyam/actions/statuses';
+import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import type { IconProp } from 'flavours/polyam/components/icon';
 import { Icon } from 'flavours/polyam/components/icon';
 import { StatusQuoteManager } from 'flavours/polyam/components/status_quoted';
@@ -87,7 +86,7 @@ export const NotificationWithStatus: React.FC<{
   if (!statusId || isFiltered) return null;
 
   return (
-    <HotKeys handlers={handlers}>
+    <Hotkeys handlers={handlers}>
       <div
         role='button'
         className={classNames(
@@ -115,6 +114,6 @@ export const NotificationWithStatus: React.FC<{
           unfocusable
         />
       </div>
-    </HotKeys>
+    </Hotkeys>
   );
 };

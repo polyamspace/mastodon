@@ -11,13 +11,13 @@ import { connect } from 'react-redux';
 
 import Favico from 'favico.js';
 import { debounce } from 'lodash';
-import { HotKeys } from 'react-hotkeys';
 
 import { focusApp, unfocusApp, changeLayout } from 'flavours/polyam/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/polyam/actions/markers';
 import { fetchNotifications } from 'flavours/polyam/actions/notification_groups';
 import { INTRODUCTION_VERSION } from 'flavours/polyam/actions/onboarding';
 import { AlertsController } from 'flavours/polyam/components/alerts_controller';
+import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import { HoverCardController } from 'flavours/polyam/components/hover_card_controller';
 import { Permalink } from 'flavours/polyam/components/permalink';
 import { PictureInPicture } from 'flavours/polyam/features/picture_in_picture';
@@ -107,43 +107,6 @@ const mapStateToProps = state => ({
   firstLaunch: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
   username: state.getIn(['accounts', me, 'username']),
 });
-
-const keyMap = {
-  help: '?',
-  new: 'n',
-  search: ['s', '/'],
-  forceNew: 'option+n',
-  toggleComposeSpoilers: 'option+x',
-  focusColumn: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  reply: 'r',
-  favourite: 'f',
-  boost: 'b',
-  mention: 'm',
-  open: ['enter', 'o'],
-  openProfile: 'p',
-  moveDown: ['down', 'j'],
-  moveUp: ['up', 'k'],
-  back: 'backspace',
-  goToHome: 'g h',
-  goToNotifications: 'g n',
-  goToLocal: 'g l',
-  goToFederated: 'g t',
-  goToDirect: 'g d',
-  goToStart: 'g s',
-  goToFavourites: 'g f',
-  goToPinned: 'g p',
-  goToProfile: 'g u',
-  goToBlocked: 'g b',
-  goToMuted: 'g m',
-  goToRequests: 'g r',
-  toggleHidden: 'x',
-  bookmark: 'd',
-  toggleSensitive: 'h',
-  openMedia: 'e',
-  onTranslate: 't',
-  // Polyam
-  toggleCollapse: 'shift+x',
-};
 
 class SwitchingColumnsArea extends PureComponent {
 
@@ -424,6 +387,10 @@ class UI extends PureComponent {
     }
   };
 
+  handleDonate = () => {
+    location.href = 'https://joinmastodon.org/sponsors#donate';
+  }
+
   componentDidMount () {
     const { signedIn } = this.props.identity;
 
@@ -450,10 +417,6 @@ class UI extends PureComponent {
 
       setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }
-
-    this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
-      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
-    };
 
     if (typeof document.hidden !== 'undefined') { // Opera 12.10 and Firefox 18 and later support
       this.visibilityHiddenProp = 'hidden';
@@ -564,10 +527,6 @@ class UI extends PureComponent {
     }
   };
 
-  setHotkeysRef = c => {
-    this.hotkeys = c;
-  };
-
   handleHotkeyToggleHelp = () => {
     if (this.props.location.pathname === '/keyboard-shortcuts') {
       this.props.history.goBack();
@@ -655,10 +614,11 @@ class UI extends PureComponent {
       goToBlocked: this.handleHotkeyGoToBlocked,
       goToMuted: this.handleHotkeyGoToMuted,
       goToRequests: this.handleHotkeyGoToRequests,
+      // Polyam: Removed "cheat"
     };
 
     return (
-      <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
+      <Hotkeys global handlers={handlers}>
         <div className={className} ref={this.setRef}>
           {moved && (<div className='flash-message alert'>
             <FormattedMessage
@@ -687,7 +647,7 @@ class UI extends PureComponent {
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
         </div>
-      </HotKeys>
+      </Hotkeys>
     );
   }
 
