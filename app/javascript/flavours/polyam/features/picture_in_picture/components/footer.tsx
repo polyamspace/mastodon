@@ -21,6 +21,7 @@ import { openModal } from 'flavours/polyam/actions/modal';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { useIdentity } from 'flavours/polyam/identity_context';
 import { me } from 'flavours/polyam/initial_state';
+import type { Account } from 'flavours/polyam/models/account';
 import type { Status } from 'flavours/polyam/models/status';
 import { makeGetStatus } from 'flavours/polyam/selectors';
 import type { RootState } from 'flavours/polyam/store';
@@ -66,10 +67,7 @@ export const Footer: React.FC<{
   const dispatch = useAppDispatch();
   const getStatus = useMemo(() => makeGetStatus(), []) as GetStatusSelector;
   const status = useAppSelector((state) => getStatus(state, { id: statusId }));
-  const accountId = status?.get('account') as string | undefined;
-  const account = useAppSelector((state) =>
-    accountId ? state.accounts.get(accountId) : undefined,
-  );
+  const account = status?.get('account') as Account | undefined;
   const askReplyConfirmation = useAppSelector(
     (state) => (state.compose.get('text') as string).trim().length !== 0,
   );
