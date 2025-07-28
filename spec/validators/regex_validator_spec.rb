@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe RegexpSyntaxValidator do
+RSpec.describe RegexValidator do
   let(:record_class) do
     Class.new do
       include ActiveModel::Validations
 
       attr_accessor :text
 
-      validates :text, regexp_syntax: true
+      validates :text, regex: true
     end
   end
 
