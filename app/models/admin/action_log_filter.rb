@@ -79,6 +79,9 @@ class Admin::ActionLogFilter
     update_user_role: { target_type: 'UserRole', action: 'update' }.freeze,
     update_ip_block: { target_type: 'IpBlock', action: 'update' }.freeze,
     unblock_email_account: { target_type: 'Account', action: 'unblock_email' }.freeze,
+    create_username_block: { target_type: 'UsernameBlock', action: 'create' }.freeze,
+    update_username_block: { target_type: 'UsernameBlock', action: 'update' }.freeze,
+    destroy_username_block: { target_type: 'UsernameBlock', action: 'destroy' }.freeze,
     update_registration_filter: { target_type: 'RegistrationFilter', action: 'update' }.freeze,
   }.freeze
 

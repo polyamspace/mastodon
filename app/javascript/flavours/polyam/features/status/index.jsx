@@ -628,7 +628,6 @@ class Status extends ImmutablePureComponent {
       remoteHint = (
         <RefreshController
           statusId={status.get('id')}
-          withBorder={!!descendants}
         />
       );
     }
@@ -708,8 +707,8 @@ class Status extends ImmutablePureComponent {
               </div>
             </Hotkeys>
 
-            {descendants}
             {remoteHint}
+            {descendants}
           </div>
         </ScrollContainer>
 
