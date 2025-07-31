@@ -454,6 +454,16 @@ class LocalSettingsPage extends PureComponent {
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
+            item={['collapsed', 'auto', 'quotes']}
+            id='mastodon-settings--collapsed-auto-quotes'
+            onChange={onChange}
+            dependsOn={[['collapsed', 'enabled']]}
+            dependsOnNot={[['collapsed', 'auto', 'all']]}
+          >
+            <FormattedMessage id='settings.auto_collapse_quotes' defaultMessage='Quotes' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
             item={['collapsed', 'auto', 'media']}
             id='mastodon-settings--collapsed-auto-media'
             onChange={onChange}
