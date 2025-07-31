@@ -237,6 +237,7 @@ class Status extends ImmutablePureComponent {
       collapse,
       muted,
       prepend,
+      isQuotedPost,
     } = this.props;
 
     // Prevent a crash when node is undefined. Not completely sure why this
@@ -260,7 +261,8 @@ class Status extends ImmutablePureComponent {
       (autoCollapseSettings.get('lengthy') && node.clientHeight > autoCollapseHeight) ||
       (autoCollapseSettings.get('reblogs') && prepend === 'reblogged_by') ||
       (autoCollapseSettings.get('replies') && status.get('in_reply_to_id', null) !== null) ||
-      (autoCollapseSettings.get('media') && !(status.get('spoiler_text').length) && status.get('media_attachments').size > 0)
+      (autoCollapseSettings.get('media') && !(status.get('spoiler_text').length) && status.get('media_attachments').size > 0) ||
+      (autoCollapseSettings.get('quotes') && isQuotedPost)
     ) {
       this.setCollapsed(true);
       // Hack to fix timeline jumps on second rendering when auto-collapsing
