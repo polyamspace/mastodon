@@ -36,6 +36,7 @@
   "settings.auto_collapse_lengthy": "Lengthy toots",
   "settings.auto_collapse_media": "Toots with media",
   "settings.auto_collapse_notifications": "Notifications",
+  "settings.auto_collapse_quotes": "Quotes",
   "settings.auto_collapse_reblogs": "Boosts",
   "settings.auto_collapse_replies": "Replies",
   "settings.collapsed_statuses": "Collapsed toots",

@@ -35,6 +35,7 @@ const initialState = ImmutableMap({
       reblogs          : false,
       replies          : false,
       media            : false,
+      quotes           : false,
       height           : 400,
     }),
     show_action_bar : true,
