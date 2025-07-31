@@ -84,6 +84,7 @@ module IconHelper
     smartphone: 'mobile-screen',
     speed: 'gauge-high',
     'star-fill': 'star',
+    supervised_user_circle_off: 'user-slash',
     sync_alt: 'arrow-right-arrow-left',
     tag: 'hashtag',
     toggle_off: 'toggle-off',
