@@ -15,6 +15,7 @@ export const allNotificationTypes = [
   'reblog',
   'reaction',
   'mention',
+  'quote',
   'poll',
   'status',
   'update',
@@ -32,6 +33,7 @@ export type NotificationWithStatusType =
   | 'reaction'
   | 'status'
   | 'mention'
+  | 'quote'
   | 'poll'
   | 'update';
 

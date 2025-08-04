@@ -9,6 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import FlagIcon from '@/awesome-icons/solid/flag.svg?react';
+import FormatQuoteIcon from '@/awesome-icons/solid/quote-right.svg?react'
 import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import UserIcon from '@/awesome-icons/solid/user.svg?react';
 import { Account } from 'flavours/polyam/components/account';
@@ -32,6 +33,7 @@ const messages = defineMessages({
   relationshipsSevered: { id: 'notification.relationships_severance_event', defaultMessage: 'Lost connections with {name}' },
   moderationWarning: { id: 'notification.moderation_warning', defaultMessage: 'You have received a moderation warning' },
   adminReportNote: { id: 'notification.admin.report_note', defaultMessage: '{name} added a report note' },
+  quote: { id: 'notification.label.quote', defaultMessage: '{name} quoted your post' },
 });
 
 const notificationForScreenReader = (intl, message, timestamp) => {
@@ -252,6 +254,36 @@ class Notification extends ImmutablePureComponent {
         withDismiss
         unread={this.props.unread}
       />
+    );
+  }
+
+  renderQuote (notification, link) {
+    const { intl, unread } = this.props;
+
+    return (
+      <Hotkeys handlers={this.getHandlers()}>
+        <div className={classNames('notification notification-quote focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.quote, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
+          <div className='notification__message'>
+            <Icon id='quote' icon={FormatQuoteIcon} />
+
+            <span title={notification.get('created_at')}>
+              <FormattedMessage id='notification.label.quote' defaultMessage='{name} quoted your post' values={{ name: link }} />
+            </span>
+          </div>
+
+          <StatusQuoteManager
+            id={notification.get('status')}
+            account={notification.get('account')}
+            muted
+            withDismiss
+            hidden={this.props.hidden}
+            getScrollPosition={this.props.getScrollPosition}
+            updateScrollBottom={this.props.updateScrollBottom}
+            cachedMediaWidth={this.props.cachedMediaWidth}
+            cacheMediaWidth={this.props.cacheMediaWidth}
+          />
+        </div>
+      </Hotkeys>
     );
   }
 
@@ -484,6 +516,8 @@ class Notification extends ImmutablePureComponent {
       return this.renderFollowRequest(notification, account, link);
     case 'mention':
       return this.renderMention(notification);
+    case 'quote':
+      return this.renderQuote(notification);
     case 'favourite':
       return this.renderFavourite(notification);
     case 'reaction':
