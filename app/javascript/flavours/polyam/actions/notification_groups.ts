@@ -162,7 +162,9 @@ export const processNewNotificationForGroups = createAppAsyncThunk(
     if (!showInColumn) return;
 
     if (
-      (notification.type === 'mention' || notification.type === 'update') &&
+      (notification.type === 'mention' ||
+        notification.type === 'update' ||
+        notification.type === 'quote') &&
       notification.status?.filtered
     ) {
       const filters = notification.status.filtered.filter((result) =>
