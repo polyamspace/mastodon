@@ -1688,8 +1688,8 @@ en:
     poll:
       subject: A poll by %{name} has ended
     quote:
-      body: 'Your post was quoted by %{name}:'
-      subject: "%{name} quoted your post"
+      body: 'Your toot was quoted by %{name}:'
+      subject: "%{name} quoted your toot"
       title: New quote
     reblog:
       body: 'Your toot was boosted by %{name}:'
