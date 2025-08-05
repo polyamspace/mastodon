@@ -2,10 +2,10 @@ import { createRoot } from 'react-dom/client';
 
 import { Globals } from '@react-spring/web';
 
+import * as perf from '@/flavours/polyam/utils/performance';
 import { setupBrowserNotifications } from 'flavours/polyam/actions/notifications';
 import Mastodon from 'flavours/polyam/containers/mastodon';
 import { me, reduceMotion } from 'flavours/polyam/initial_state';
-import * as perf from 'flavours/polyam/performance';
 import ready from 'flavours/polyam/ready';
 import { store } from 'flavours/polyam/store';
 
@@ -37,7 +37,7 @@ function main() {
       const { initializeEmoji } = await import(
         '@/flavours/polyam/features/emoji'
       );
-      await initializeEmoji();
+      initializeEmoji();
     }
 
     const root = createRoot(mountNode);
