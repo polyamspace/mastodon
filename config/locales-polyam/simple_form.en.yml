@@ -23,4 +23,6 @@ en:
       form_admin_settings:
         publish_button_text: Publish button text
         search_preview: Allow unauthenticated access to search
+      notification_emails:
+        reaction: Someone reacted to your toot
     polyam_only: polyam-glitch
