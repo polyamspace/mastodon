@@ -61,8 +61,8 @@ RSpec.describe NotificationMailer do
     it 'renders the email' do
       expect(mail)
         .to be_present
-        .and(have_subject('bob quoted your post'))
-        .and(have_body_text('Your post was quoted by bob'))
+        .and(have_subject('bob quoted your toot'))
+        .and(have_body_text('Your toot was quoted by bob'))
         .and(have_body_text('The body of the foreign status'))
         .and have_thread_headers
         .and have_standard_headers('quote').for(receiver)
