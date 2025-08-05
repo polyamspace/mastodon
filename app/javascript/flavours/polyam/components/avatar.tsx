@@ -10,7 +10,9 @@ import { Permalink } from './permalink';
 
 interface Props {
   account:
-    | Pick<Account, 'id' | 'url' | 'acct' | 'avatar' | 'avatar_static'>
+    | (Pick<Account, 'id' | 'acct' | 'avatar' | 'avatar_static'> & {
+        url?: string;
+      })
     | undefined; // FIXME: remove `undefined` once we know for sure its always there
   size?: number;
   style?: React.CSSProperties;
