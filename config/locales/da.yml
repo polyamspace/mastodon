@@ -1687,6 +1687,10 @@ da:
       title: Ny omtale
     poll:
       subject: En afstemning fra %{name} er afsluttet
+    quote:
+      body: 'Dit indlæg blev citeret af %{name}:'
+      subject: "%{name} citerede dit indlæg"
+      title: Nyt citat
     reblog:
       body: 'Dit indlæg blev fremhævet af %{name}:'
       subject: "%{name} fremhævede dit indlæg"
