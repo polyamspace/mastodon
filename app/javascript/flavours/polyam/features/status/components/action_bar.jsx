@@ -6,6 +6,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
 
 import BookmarkIcon from '@/awesome-icons/solid/bookmark.svg?react';
 import MoreHorizIcon from '@/awesome-icons/solid/ellipsis.svg?react';
@@ -55,19 +56,29 @@ const messages = defineMessages({
   admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
   copy: { id: 'status.copy', defaultMessage: 'Copy link to post' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
+  revokeQuote: { id: 'status.revoke_quote', defaultMessage: 'Remove my post from @{name}’s post' },
 });
+
+const mapStateToProps = (state, { status }) => {
+  const quotedStatusId = status.getIn(['quote', 'quoted_status']);
+  return ({
+    quotedAccountId: quotedStatusId ? state.getIn(['statuses', quotedStatusId, 'account']) : null,
+  });
+};
 
 class ActionBar extends PureComponent {
 
   static propTypes = {
     identity: identityContextPropShape,
     status: ImmutablePropTypes.map.isRequired,
+    quotedAccountId: ImmutablePropTypes.string,
     onReply: PropTypes.func.isRequired,
     onReblog: PropTypes.func.isRequired,
     onFavourite: PropTypes.func.isRequired,
     onReactionAdd: PropTypes.func.isRequired,
     onBookmark: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
+    onRevokeQuote: PropTypes.func,
     onEdit: PropTypes.func.isRequired,
     onDirect: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
@@ -103,6 +114,10 @@ class ActionBar extends PureComponent {
   handleDeleteClick = () => {
     this.props.onDelete(this.props.status);
   };
+
+  handleRevokeQuoteClick = () => {
+    this.props.onRevokeQuote(this.props.status);
+  }
 
   handleRedraftClick = () => {
     this.props.onDelete(this.props.status, true);
@@ -158,7 +173,7 @@ class ActionBar extends PureComponent {
   handleNoOp = () => {}; // hack for reaction add button
 
   render () {
-    const { status, intl } = this.props;
+    const { status, quotedAccountId, intl } = this.props;
     const { signedIn, permissions } = this.props.identity;
 
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
@@ -201,6 +216,11 @@ class ActionBar extends PureComponent {
         menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
         menu.push({ text: intl.formatMessage(messages.direct, { name: status.getIn(['account', 'username']) }), action: this.handleDirectClick });
         menu.push(null);
+
+        if (quotedAccountId === me) {
+          menu.push({ text: intl.formatMessage(messages.revokeQuote, { name: status.getIn(['account', 'username']) }), action: this.handleRevokeQuoteClick });
+        }
+
         menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick });
         menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
         menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
@@ -266,4 +286,4 @@ class ActionBar extends PureComponent {
 
 }
 
-export default withIdentity(injectIntl(ActionBar));
+export default connect(mapStateToProps)(withIdentity(injectIntl(ActionBar)));
