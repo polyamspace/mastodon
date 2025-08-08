@@ -4,7 +4,15 @@ import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 import { apiUpdateMedia } from 'flavours/polyam/api/compose';
 import type { ApiMediaAttachmentJSON } from 'flavours/polyam/api_types/media_attachments';
 import type { MediaAttachment } from 'flavours/polyam/models/media_attachment';
-import { createDataLoadingThunk } from 'flavours/polyam/store/typed_functions';
+import {
+  createDataLoadingThunk,
+  createAppThunk,
+} from 'flavours/polyam/store/typed_functions';
+
+import type { ApiQuotePolicy } from '../api_types/quotes';
+import type { Status } from '../models/status';
+
+import { ensureComposeIsVisible } from './compose';
 
 type SimulatedMediaAttachmentJSON = ApiMediaAttachmentJSON & {
   unattached?: boolean;
@@ -71,3 +79,26 @@ export const changeUploadCompose = createDataLoadingThunk(
 );
 
 export const removeHighlight = createAction('compose/remove_highlight');
+
+export const quoteComposeByStatus = createAppThunk(
+  'compose/quoteComposeStatus',
+  (status: Status, { getState }) => {
+    ensureComposeIsVisible(getState);
+    return status;
+  },
+);
+
+export const quoteComposeById = createAppThunk(
+  (statusId: string, { dispatch, getState }) => {
+    const status = getState().statuses.get(statusId);
+    if (status) {
+      dispatch(quoteComposeByStatus(status));
+    }
+  },
+);
+
+export const quoteComposeCancel = createAction('compose/quoteComposeCancel');
+
+export const setQuotePolicy = createAction<ApiQuotePolicy>(
+  'compose/setQuotePolicy',
+);
