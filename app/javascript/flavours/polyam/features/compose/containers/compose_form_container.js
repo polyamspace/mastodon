@@ -58,7 +58,7 @@ const mapStateToProps = state => ({
   highlighted: state.getIn(['compose', 'highlighted']),
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, props) => ({
 
   onChange (text) {
     dispatch(changeCompose(text));
@@ -71,7 +71,11 @@ const mapDispatchToProps = (dispatch) => ({
         modalProps: { overridePrivacy },
       }));
     } else {
-      dispatch(submitCompose(overridePrivacy));
+      dispatch(submitCompose(overridePrivacy, (status) => {
+        if (props.redirectOnSuccess) {
+          window.location.assign(status.url);
+        }
+      }));
     }
   },
 
