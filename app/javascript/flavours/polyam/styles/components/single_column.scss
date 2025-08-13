@@ -230,11 +230,10 @@ $ui-header-height: 55px;
   display: flex;
   flex-direction: column;
   height: calc(100% - 10px);
-  overflow-y: hidden;
+  overflow-y: auto;
 
   .compose-form {
     flex: 1 1 auto;
-    min-height: 0;
   }
 }
 
