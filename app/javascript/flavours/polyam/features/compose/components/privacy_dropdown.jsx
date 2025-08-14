@@ -14,7 +14,7 @@ import UnlistedIcon from '@/awesome-icons/solid/unlock.svg?react';
 import { DropdownSelector } from 'flavours/polyam/components/dropdown_selector';
 import { Icon } from 'flavours/polyam/components/icon';
 
-const messages = defineMessages({
+export const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   public_long: { id: 'polyam.privacy.public.long', defaultMessage: 'Visible for all' },
   unlisted_short: { id: 'polyam.privacy.unlisted.short', defaultMessage: 'Unlisted' },
