@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../variables' as *;
 @use '../../functions' as *;
 @use '../../mixins' as *;
@@ -97,7 +98,7 @@
     align-items: center;
 
     .icon-button {
-      color: rgba($white, 0.7);
+      color: color.change($white, $alpha: 0.7);
       padding: 8px;
 
       .icon {
@@ -110,11 +111,11 @@
       &:focus,
       &:active {
         color: $white;
-        background-color: rgba($white, 0.15);
+        background-color: color.change($white, $alpha: 0.15);
       }
 
       &:focus {
-        background-color: rgba($white, 0.3);
+        background-color: color.change($white, $alpha: 0.3);
       }
     }
   }
@@ -155,7 +156,7 @@
   background: transparent;
   box-sizing: border-box;
   border: 0;
-  color: rgba($white, 0.7);
+  color: color.change($white, $alpha: 0.7);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -209,11 +210,11 @@
       &:focus,
       &:active {
         color: $white;
-        background-color: rgba($white, 0.15);
+        background-color: color.change($white, $alpha: 0.15);
       }
 
       &:focus {
-        background-color: rgba($white, 0.3);
+        background-color: color.change($white, $alpha: 0.3);
       }
 
       &.active {
@@ -222,11 +223,11 @@
         &:hover,
         &:focus,
         &:active {
-          background: rgba($highlight-text-color, 0.15);
+          background: color.change($highlight-text-color, $alpha: 0.15);
         }
 
         &:focus {
-          background: rgba($highlight-text-color, 0.3);
+          background: color.change($highlight-text-color, $alpha: 0.3);
         }
       }
 
@@ -236,11 +237,11 @@
         &:hover,
         &:focus,
         &:active {
-          background: rgba($gold-star, 0.15);
+          background: color.change($gold-star, $alpha: 0.15);
         }
 
         &:focus {
-          background: rgba($gold-star, 0.3);
+          background: color.change($gold-star, $alpha: 0.3);
         }
       }
 
@@ -1122,7 +1123,7 @@ img.modal-warning {
     transform: translate(-50%, -50%);
     border: 2px solid #fff;
     border-radius: 50%;
-    box-shadow: 0 0 0 9999em rgba($base-shadow-color, 0.35);
+    box-shadow: 0 0 0 9999em color.change($base-shadow-color, $alpha: 0.35);
     pointer-events: none;
   }
 }

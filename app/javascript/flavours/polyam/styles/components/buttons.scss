@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../variables' as *;
 @use '../functions' as *;
 
@@ -271,7 +272,7 @@
   &:active,
   &:focus-visible {
     color: lighten($action-button-color, 7%);
-    background-color: rgba($action-button-color, 0.15);
+    background-color: color.change($action-button-color, $alpha: 0.15);
   }
 
   &:focus-visible {
@@ -291,7 +292,7 @@
     &:active,
     &:focus-visible {
       color: darken($lighter-text-color, 7%);
-      background-color: rgba($lighter-text-color, 0.15);
+      background-color: color.change($lighter-text-color, $alpha: 0.15);
     }
 
     &:focus-visible {
@@ -322,16 +323,16 @@
   // Polyam: Added width/height to match button size with upstream
   &.overlayed {
     box-sizing: content-box;
-    background: rgba($black, 0.65);
+    background: color.change($black, $alpha: 0.65);
     backdrop-filter: $backdrop-blur-filter;
-    color: rgba($white, 0.7);
+    color: color.change($white, $alpha: 0.7);
     border-radius: 4px;
     padding: 2px;
     width: 24px;
     height: 24px;
 
     &:hover {
-      background: rgba($black, 0.9);
+      background: color.change($black, $alpha: 0.9);
     }
   }
 
@@ -354,7 +355,7 @@
     border-color: $valid-value-color;
     color: $valid-value-color;
     transition: none;
-    background-color: rgba($valid-value-color, 0.15);
+    background-color: color.change($valid-value-color, $alpha: 0.15);
   }
 }
 
@@ -374,7 +375,7 @@
   &:active,
   &:focus {
     color: darken($lighter-text-color, 7%);
-    background-color: rgba($lighter-text-color, 0.15);
+    background-color: color.change($lighter-text-color, $alpha: 0.15);
   }
 
   &:focus-visible {
@@ -507,7 +508,7 @@
     font-size: 14px;
 
     &__label {
-      background-color: rgba($black, 0.45);
+      background-color: color.change($black, $alpha: 0.45);
       backdrop-filter: $backdrop-blur-filter;
       border-radius: 8px;
       padding: 12px 16px;
@@ -527,7 +528,7 @@
     &:hover,
     &:focus {
       .spoiler-button__overlay__label {
-        background-color: rgba($black, 0.9);
+        background-color: color.change($black, $alpha: 0.9);
       }
     }
   }

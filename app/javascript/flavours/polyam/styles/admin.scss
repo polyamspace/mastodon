@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'sass:math';
 @use 'functions' as *;
 @use 'variables' as *;
@@ -1069,11 +1070,11 @@ a.name-tag,
         color: $classic-secondary-color;
         background-color: var(
           --user-role-background,
-          rgba($classic-secondary-color, 0.1)
+          color.change($classic-secondary-color, $alpha: 0.1)
         );
         border-color: var(
           --user-role-border,
-          rgba($classic-secondary-color, 0.5)
+          color.change($classic-secondary-color, $alpha: 0.5)
         );
       }
     }
@@ -1085,9 +1086,12 @@ a.name-tag,
         color: $classic-base-color;
         background-color: var(
           --user-role-background,
-          rgba($classic-base-color, 0.1)
+          color.change($classic-base-color, $alpha: 0.1)
         );
-        border-color: var(--user-role-border, rgba($classic-base-color, 0.5));
+        border-color: var(
+          --user-role-border,
+          color.change($classic-base-color, $alpha: 0.5)
+        );
       }
     }
   }
@@ -1331,7 +1335,7 @@ a.name-tag,
     }
 
     path:first-child {
-      fill: rgba($highlight-text-color, 0.25) !important;
+      fill: color.change($highlight-text-color, $alpha: 0.25) !important;
       fill-opacity: 1 !important;
     }
 

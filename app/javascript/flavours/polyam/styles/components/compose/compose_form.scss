@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../variables' as *;
 @use '../../functions' as *;
 @use '../mixins' as *;
@@ -34,7 +35,7 @@
   &__warning {
     color: $inverted-text-color;
     background: $ui-primary-color;
-    box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
+    box-shadow: 0 2px 6px color.change($base-shadow-color, $alpha: 0.3);
     padding: 8px 10px;
     border-radius: 4px;
     font-size: 13px;
@@ -70,7 +71,7 @@
 
     &__border {
       // Polyam: Don't show stripes. Keep same as input
-      background: rgba($ui-highlight-color, 0.05);
+      background: color.change($ui-highlight-color, $alpha: 0.05);
       width: 5px;
       flex: 0 0 auto;
 
@@ -111,7 +112,7 @@
 
   .spoiler-input__input {
     padding: 12px 12px - 5px;
-    background: rgba($ui-highlight-color, 0.05);
+    background: color.change($ui-highlight-color, $alpha: 0.05);
     color: $highlight-text-color;
   }
 

@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'variables' as *;
 @use 'functions' as *;
 
@@ -161,7 +162,7 @@
 
 .nothing-here {
   background: $ui-base-color;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  box-shadow: 0 0 15px color.change($base-shadow-color, $alpha: 0.2);
   color: $darker-text-color;
   font-size: 14px;
   font-weight: 500;
@@ -201,16 +202,20 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  background-color: rgba($ui-secondary-color, 0.1);
-  border: 1px solid rgba($ui-secondary-color, 0.5);
+  background-color: color.change($ui-secondary-color, $alpha: 0.1);
+  border: 1px solid color.change($ui-secondary-color, $alpha: 0.5);
 }
 
 .account-role {
   display: inline-flex;
   padding: 4px;
   padding-inline-end: 8px;
-  border: 1px solid var(--user-role-border, rgba($ui-secondary-color, 0.5));
-  background-color: var(--user-role-background, rgba($ui-secondary-color, 0.1));
+  border: 1px solid
+    var(--user-role-border, color.change($ui-secondary-color, $alpha: 0.5));
+  background-color: var(
+    --user-role-background,
+    color.change($ui-secondary-color, $alpha: 0.1)
+  );
   color: $ui-secondary-color;
   font-weight: 500;
   font-size: 12px;
@@ -249,27 +254,27 @@
 .information-badge {
   &.superapp {
     color: $success-green;
-    background-color: rgba($success-green, 0.1);
-    border-color: rgba($success-green, 0.5);
+    background-color: color.change($success-green, $alpha: 0.1);
+    border-color: color.change($success-green, $alpha: 0.5);
   }
 }
 
 .simple_form .not_recommended {
   color: lighten($error-red, 12%);
-  background-color: rgba(lighten($error-red, 12%), 0.1);
-  border-color: rgba(lighten($error-red, 12%), 0.5);
+  background-color: color.change(lighten($error-red, 12%), $alpha: 0.1);
+  border-color: color.change(lighten($error-red, 12%), $alpha: 0.5);
 }
 
 .simple_form .glitch_only {
   color: lighten($warning-red, 12%);
-  background-color: rgba(lighten($warning-red, 12%), 0.1);
-  border-color: rgba(lighten($warning-red, 12%), 0.5);
+  background-color: color.change(lighten($warning-red, 12%), $alpha: 0.1);
+  border-color: color.change(lighten($warning-red, 12%), $alpha: 0.5);
 }
 
 .simple_form .polyam_only {
   color: lighten($warning-red, 18%);
-  background-color: rgba(lighten($warning-red, 18%), 0.1);
-  border-color: rgba(lighten($warning-red, 18%), 0.5);
+  background-color: color.change(lighten($warning-red, 18%), $alpha: 0.1);
+  border-color: color.change(lighten($warning-red, 18%), $alpha: 0.5);
 }
 
 .account__header__fields {
@@ -305,7 +310,7 @@
     width: 120px;
     flex: 0 0 auto;
     color: $secondary-text-color;
-    background: rgba(darken($ui-base-color, 8%), 0.5);
+    background: color.change(darken($ui-base-color, 8%), $alpha: 0.5);
   }
 
   dd {
@@ -330,8 +335,8 @@
   }
 
   .verified {
-    border: 1px solid rgba($valid-value-color, 0.5);
-    background: rgba($valid-value-color, 0.25);
+    border: 1px solid color.change($valid-value-color, $alpha: 0.5);
+    background: color.change($valid-value-color, $alpha: 0.25);
 
     a {
       color: $valid-value-color;

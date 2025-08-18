@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../variables' as *;
 @use '../functions' as *;
 @use 'mixins' as *;
@@ -364,7 +365,7 @@
   z-index: 1;
 
   &.active {
-    box-shadow: 0 1px 0 rgba($highlight-text-color, 0.3);
+    box-shadow: 0 1px 0 color.change($highlight-text-color, $alpha: 0.3);
 
     &::before {
       display: block;
@@ -380,8 +381,8 @@
       z-index: 1;
       background: radial-gradient(
         ellipse,
-        rgba($ui-highlight-color, 0.23) 0%,
-        rgba($ui-highlight-color, 0) 60%
+        color.change($ui-highlight-color, $alpha: 0.23) 0%,
+        color.change($ui-highlight-color, $alpha: 0) 60%
       );
     }
   }
@@ -475,7 +476,7 @@
   &.active {
     .column-header__icon {
       color: $highlight-text-color;
-      text-shadow: 0 0 10px rgba($highlight-text-color, 0.4);
+      text-shadow: 0 0 10px color.change($highlight-text-color, $alpha: 0.4);
     }
   }
 

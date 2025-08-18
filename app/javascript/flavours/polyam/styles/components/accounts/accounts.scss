@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../variables' as *;
 @use '../../functions' as *;
 @use '../mixins' as *;
@@ -46,7 +47,7 @@
 
   &__domain-pill {
     display: inline-flex;
-    background: rgba($highlight-text-color, 0.2);
+    background: color.change($highlight-text-color, $alpha: 0.2);
     border-radius: 4px;
     border: 0;
     color: $highlight-text-color;
@@ -107,7 +108,7 @@
 
       &__handle {
         border: 2px dashed $highlight-text-color;
-        background: rgba($highlight-text-color, 0.1);
+        background: color.change($highlight-text-color, $alpha: 0.1);
         padding: 12px 8px;
         color: $highlight-text-color;
         border-radius: 4px;
@@ -792,7 +793,7 @@ a.account__display-name {
       }
 
       .verified {
-        border: 1px solid rgba($valid-value-color, 0.5);
+        border: 1px solid color.change($valid-value-color, $alpha: 0.5);
         margin-top: -1px;
         margin-inline: -1px;
 

@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../variables' as *;
 
 .dismissable-banner,
@@ -7,7 +8,7 @@
   margin-bottom: 5px;
   border-radius: 8px;
   border: 1px solid $highlight-text-color;
-  background: rgba($highlight-text-color, 0.15);
+  background: color.change($highlight-text-color, $alpha: 0.15);
   overflow: hidden;
   flex-shrink: 0;
 
@@ -62,7 +63,7 @@
     }
 
     .button-tertiary {
-      background: rgba($ui-base-color, 0.15);
+      background: color.change($ui-base-color, $alpha: 0.15);
       backdrop-filter: blur(8px);
     }
   }
@@ -79,7 +80,7 @@
 
 .warning-banner {
   border: 1px solid $warning-red;
-  background: rgba($warning-red, 0.15);
+  background: color.change($warning-red, $alpha: 0.15);
 
   &__message {
     h1 {
