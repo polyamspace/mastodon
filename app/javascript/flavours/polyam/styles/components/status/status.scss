@@ -226,6 +226,7 @@
   align-items: center;
   gap: 10px;
   overflow: hidden;
+  flex-grow: 1;
 
   .display-name {
     bdi {
@@ -240,6 +241,11 @@
       text-overflow: ellipsis;
     }
   }
+}
+
+.status__quote-cancel {
+  align-self: self-start;
+  order: 5;
 }
 
 .status__info {

@@ -420,6 +420,24 @@
       }
     }
   }
+
+  .status__quote {
+    margin: 0 8px;
+    max-height: 220px;
+    overflow: hidden;
+
+    // Override .status__content .status__content__text.status__content__text--visible
+    .status__content__text.status__content__text {
+      display: -webkit-box;
+    }
+
+    .status__content__text {
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
 }
 
 .character-counter {
