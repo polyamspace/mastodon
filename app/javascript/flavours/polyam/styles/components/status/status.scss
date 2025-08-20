@@ -128,20 +128,21 @@
 
     border-bottom: 0;
 
-    // Polyam: Reactions bar
-    .status__content,
-    .status__action-bar,
-    .reactions-bar,
-    .media-gallery,
-    .video-player,
-    .audio-player,
-    .attachment-list,
-    .picture-in-picture-placeholder,
-    .more-from-author,
-    .status-card,
-    .hashtag-bar,
-    .content-warning,
-    .filter-warning {
+    // Polyam: .reactions-bar and .status__content__wrapper
+    & > .status__content__wrapper,
+    & > .status__action-bar,
+    & > .reactions-bar,
+    & > .media-gallery,
+    & > .video-player,
+    & > .audio-player,
+    & > .attachment-list,
+    & > .picture-in-picture-placeholder,
+    & > .more-from-author,
+    & > .status-card,
+    & > .hashtag-bar,
+    & > .content-warning,
+    & > .filter-warning,
+    & > .status__quote {
       margin-inline-start: var(--thread-margin);
       width: calc(100% - var(--thread-margin));
     }
