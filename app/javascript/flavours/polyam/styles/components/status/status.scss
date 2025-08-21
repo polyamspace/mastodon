@@ -629,7 +629,8 @@
 .status__relative-time,
 .detailed-status__display-name,
 .detailed-status__datetime,
-.detailed-status__application {
+.detailed-status__application,
+.detailed-status__link {
   @include no-text-decoration;
 }
 
@@ -651,7 +652,8 @@
 }
 
 .detailed-status__application,
-.detailed-status__datetime {
+.detailed-status__datetime,
+.detailed-status__link {
   color: inherit;
 }
 
@@ -699,8 +701,9 @@
 }
 
 .status__relative-time,
-.detailed-status__datetime {
-  &:hover {
+.detailed-status__datetime,
+.detailed-status__link {
+  &:is(a):hover {
     text-decoration: underline;
   }
 }
