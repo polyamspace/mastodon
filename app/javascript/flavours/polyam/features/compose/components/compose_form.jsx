@@ -15,10 +15,8 @@ import { missingAltTextModal, publishButtonText as customPublishButtonText } fro
 import AutosuggestInput from 'flavours/polyam/components/autosuggest_input';
 import AutosuggestTextarea from 'flavours/polyam/components/autosuggest_textarea';
 import { Button } from 'flavours/polyam/components/button';
-import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
-import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { countableText } from '../util/counter';
@@ -36,6 +34,7 @@ import { ThreadModeButton } from './thread_mode_button';
 import { UploadForm } from './upload_form';
 import { Warning } from './warning';
 import { ComposeQuotedStatus } from './quoted_post';
+import { VisibilityButton } from './visibility_button';
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
@@ -347,7 +346,7 @@ class ComposeForm extends ImmutablePureComponent {
 
           <div className='compose-form__footer'>
             <div className='compose-form__dropdowns'>
-              <PrivacyDropdownContainer disabled={this.props.isEditing} />
+              <VisibilityButton disabled={this.props.isEditing} />
               <LanguageDropdown />
             </div>
 

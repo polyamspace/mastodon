@@ -33,11 +33,10 @@ import {
   translateStatus,
   undoStatusTranslation,
 } from 'flavours/polyam/actions/statuses';
+import { setStatusQuotePolicy } from 'flavours/polyam/actions/statuses_typed';
 import Status from 'flavours/polyam/components/status';
 import { deleteModal } from 'flavours/polyam/initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/polyam/selectors';
-
-import { quoteComposeCancel } from '../actions/compose_typed';
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -131,18 +130,18 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     }
   },
 
-  onQuoteCancel() {
-    if (contextType === 'compose') {
-      dispatch(quoteComposeCancel());
-    }
-  },
-
   onRevokeQuote (status) {
     dispatch(openModal({ modalType: 'CONFIRM_REVOKE_QUOTE', modalProps: { statusId: status.get('id'), quotedStatusId: status.getIn(['quote', 'quoted_status']) }}));
   },
 
   onQuotePolicyChange(status) {
-    dispatch(openModal({ modalType: 'COMPOSE_PRIVACY', modalProps: { statusId: status.get('id') } }));
+    const statusId = status.get('id');
+    const handleChange = (_, quotePolicy) => {
+      dispatch(
+        setStatusQuotePolicy({ policy: quotePolicy, statusId }),
+      );
+    }
+    dispatch(openModal({ modalType: 'COMPOSE_PRIVACY', modalProps: { statusId, onChange: handleChange } }));
   },
 
   onEdit (status) {
