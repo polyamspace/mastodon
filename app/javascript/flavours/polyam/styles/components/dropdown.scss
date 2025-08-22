@@ -260,6 +260,8 @@
 
 .privacy-dropdown__option,
 .visibility-dropdown__option {
+  --dropdown-text-color: $primary-text-color;
+
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.25px;
@@ -269,7 +271,22 @@
   align-items: center;
   gap: 12px;
   border-radius: 4px;
-  color: $primary-text-color;
+  color: var(--dropdown-text-color);
+
+  // Make sure adjacent hover/active states don't have a meeting radius.
+  &:hover + &:is(:focus, .active),
+  &:is(:focus, .active) + &:hover,
+  &:is(:focus, .active) + &:is(:focus, .active) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &:hover:has(+ :focus, .active),
+  &:is(:focus, .active):has(+ :hover),
+  &:is(:focus, .active):has(+ :is(:focus, .active)) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 
   &:hover,
   &:active {
@@ -279,7 +296,7 @@
   &:focus,
   &.active {
     background: $ui-highlight-color;
-    color: $primary-text-color;
+    color: var(--dropdown-text-color);
     outline: 0;
 
     .privacy-dropdown__option__content,
@@ -288,7 +305,7 @@
     .visibility-dropdown__option__content,
     .visibility-dropdown__option__content strong,
     .visibility-dropdown__option__additional {
-      color: $primary-text-color;
+      color: var(--dropdown-text-color);
     }
   }
 
