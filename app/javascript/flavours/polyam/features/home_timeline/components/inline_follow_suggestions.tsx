@@ -19,6 +19,7 @@ import { DisplayName } from 'flavours/polyam/components/display_name';
 import { FollowButton } from 'flavours/polyam/components/follow_button';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
 import { domain } from 'flavours/polyam/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
@@ -56,9 +57,7 @@ const messages = defineMessages({
   },
 });
 
-const Source: React.FC<{
-  id: ApiSuggestionSourceJSON;
-}> = ({ id }) => {
+const Source: React.FC<{ id: ApiSuggestionSourceJSON }> = ({ id }) => {
   const intl = useIntl();
 
   let label, hint;
@@ -168,9 +167,9 @@ const Card: React.FC<{
 
 const DISMISSIBLE_ID = 'home/follow-suggestions';
 
-export const InlineFollowSuggestions: React.FC<{
-  hidden?: boolean;
-}> = ({ hidden }) => {
+export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
+  hidden,
+}) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const suggestions = useAppSelector((state) => state.suggestions.items);
@@ -288,13 +287,17 @@ export const InlineFollowSuggestions: React.FC<{
           ref={bodyRef}
           onScroll={handleScroll}
         >
-          {suggestions.map((suggestion) => (
-            <Card
-              key={suggestion.account_id}
-              id={suggestion.account_id}
-              sources={suggestion.sources}
-            />
-          ))}
+          {isLoading ? (
+            <LoadingIndicator />
+          ) : (
+            suggestions.map((suggestion) => (
+              <Card
+                key={suggestion.account_id}
+                id={suggestion.account_id}
+                sources={suggestion.sources}
+              />
+            ))
+          )}
         </div>
 
         {canScrollLeft && (
