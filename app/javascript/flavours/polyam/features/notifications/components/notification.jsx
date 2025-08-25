@@ -9,7 +9,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import FlagIcon from '@/awesome-icons/solid/flag.svg?react';
-import FormatQuoteIcon from '@/awesome-icons/solid/quote-right.svg?react'
 import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import UserIcon from '@/awesome-icons/solid/user.svg?react';
 import { Account } from 'flavours/polyam/components/account';
@@ -315,6 +314,31 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
+  renderQuotedUpdate (notification) {
+    return (
+      <StatusQuoteManager
+        containerId={notification.get('id')}
+        hidden={!!this.props.hidden}
+        id={notification.get('status')}
+        account={notification.get('account')}
+        prepend='quoted_update'
+        muted
+        notification={notification}
+        onMoveDown={this.handleMoveDown}
+        onMoveUp={this.handleMoveUp}
+        onMention={this.props.onMention}
+        contextType='notifications'
+        getScrollPosition={this.props.getScrollPosition}
+        updateScrollBottom={this.props.updateScrollBottom}
+        cachedMediaWidth={this.props.cachedMediaWidth}
+        cacheMediaWidth={this.props.cacheMediaWidth}
+        onUnmount={this.props.onUnmount}
+        withDismiss
+        unread={this.props.unread}
+      />
+    );
+  }
+
   renderPoll (notification) {
     return (
       <StatusQuoteManager
@@ -506,6 +530,8 @@ class Notification extends ImmutablePureComponent {
       return this.renderStatus(notification);
     case 'update':
       return this.renderUpdate(notification);
+    case 'quoted_update':
+      return this.renderQuotedUpdate(notification);
     case 'poll':
       return this.renderPoll(notification);
     case 'severed_relationships':
