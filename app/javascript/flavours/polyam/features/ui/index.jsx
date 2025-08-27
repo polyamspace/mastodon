@@ -79,6 +79,7 @@ import {
   PrivacyPolicy,
   TermsOfService,
   AccountFeatured,
+  Quotes,
   Reactions,
 } from './util/async-components';
 import { ColumnsContextProvider } from './util/columns_context';
@@ -221,6 +222,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/@:acct/:statusId/reblogs' component={Reblogs} content={children} />
             <WrappedRoute path='/@:acct/:statusId/favourites' component={Favourites} content={children} />
             <WrappedRoute path='/@:acct/:statusId/reactions' component={Reactions} content={children} />
+            <WrappedRoute path='/@:acct/:statusId/quotes' component={Quotes} content={children} />
 
             {/* Legacy routes, cannot be easily factored with other routes because they share a param name */}
             <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
