@@ -485,12 +485,20 @@ kab:
         title: Ihacṭagen inezzaɣ
         trending_rank: 'Anezzuɣ #%{rank}'
       trending: Inezzaɣ
+    username_blocks:
+      add_new: Rnu amaynut
+      comparison:
+        contains: Igber
+      new:
+        create: Rnu alugen
+        title: Rnu alugen n useqdac amaynut
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
     webhooks:
       delete: Kkes
       enable: Rmed
+      enabled: D urmid
   admin_mailer:
     new_report:
       body: "%{reporter} yettwazen ɣef %{target}"
@@ -559,6 +567,7 @@ kab:
       accept: Qbel
       back: Tuɣalin
       invited_by: 'Tzemreḍ ad tkecmeḍ ɣer %{domain} s tanemmirt i tinnubga i d-teṭṭfeḍ sɣur :'
+      preamble: Tiyi ttwasemmant-d yerna ttwaḍemnent sɣur imḍebbren n %{domain}.
       preamble_invited: Uqbel ad tkemmleḍ, ttxil-k·m ẓer ilugan i d-sbedden yimkariyen n %{domain}.
       title: Kra n yilugan igejdanen.
       title_invited: Tettwaɛerḍeḍ.
@@ -570,6 +579,7 @@ kab:
       preamble_html: Kcem ar <strong>%{domain}</strong> s inekcam-inek n tuqqna. Ma yella yezga-d umiḍan-ik deg uqeddac-nniḍen, ur tezmireḍ ara ad tkecmeḍ sya.
       title: Akeččum ɣer %{domain}
     sign_up:
+      preamble: S umiḍan yellan deg uqeddac-a n Mastodon, ad tizimreḍ ad t-ḍefreḍ yal yiwen nniḍen i yellan deg fediverse, akken yebɣu yili wanda i yella umiḍan-nsen.
       title: Iyya ad d-nessewjed tiɣawsiwin i %{domain}.
     status:
       account_status: Addad n umiḍan
@@ -623,6 +633,7 @@ kab:
     other: Ayen nniḍen
   emoji_styles:
     auto: Awurman
+    twemoji: Twemoji
   errors:
     '404': Asebter i tettnadiḍ ulac-it da.
     '500':
@@ -735,6 +746,8 @@ kab:
       action: Err
       body: 'Yuder-ik·ikem-id %{name} deg:'
       subject: Yuder-ik·ikem-id %{name}
+    quote:
+      title: Tabdert tamaynut
     reblog:
       subject: "%{name} yesselha addad-ik·im"
       title: Azuzer amaynut
@@ -858,6 +871,8 @@ kab:
         other: "%{count} n tbidyutin"
     edited_at_html: Tettwaẓreg ass n %{date}
     quote_policies:
+      followers: Ala wid i k·m-yeṭṭafaṛen
+      nobody: Ula yiwen
       public: Yal yiwen
     title: '%{name} : "%{quote}"'
     visibilities:
@@ -904,6 +919,8 @@ kab:
   user_mailer:
     appeal_approved:
       action: Iɣewwaṛen n umiḍan
+    suspicious_sign_in:
+      change_password: snifel awal-ik·im n uɛeddi
     terms_of_service_changed:
       sign_off: Agraw n %{domain}
     warning:

@@ -143,8 +143,13 @@ module User::HasSettings
     settings['hide_followers_count']
   end
 
+  # Polyam
   def setting_notification_sound
     settings['web.notification_sound']
+  end
+
+  def setting_default_quote_policy
+    settings['default_quote_policy'] || 'public'
   end
 
   def allows_report_emails?
