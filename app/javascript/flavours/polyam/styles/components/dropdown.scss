@@ -204,7 +204,8 @@
 }
 
 .privacy-dropdown__dropdown,
-.language-dropdown__dropdown {
+.language-dropdown__dropdown,
+.visibility-dropdown__dropdown {
   box-shadow: var(--dropdown-shadow);
   background: var(--dropdown-background-color);
   backdrop-filter: $backdrop-blur-filter;
@@ -224,7 +225,8 @@
   }
 }
 
-.privacy-dropdown__option {
+.privacy-dropdown__option,
+.visibility-dropdown__option {
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.25px;
@@ -367,5 +369,38 @@
         }
       }
     }
+  }
+}
+
+.visibility-dropdown {
+  &__overlay[data-popper-placement] {
+    z-index: 9999;
+  }
+
+  &__label.disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  &__button {
+    color: $primary-text-color;
+    background: var(--dropdown-background-color);
+    border: 1px solid var(--dropdown-border-color);
+    padding: 8px 12px;
+    width: 100%;
+    text-align: left;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 40px;
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  &__helper {
+    margin-top: 4px;
+    font-size: 0.8em;
+    color: $dark-text-color;
   }
 }

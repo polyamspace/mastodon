@@ -48,6 +48,7 @@ import { ImageModal } from './image_modal';
 import MediaModal from './media_modal';
 import { ModalPlaceholder } from './modal_placeholder';
 import VideoModal from './video_modal';
+import { VisibilityModal } from './visibility_modal';
 
 export const MODAL_COMPONENTS = {
   'MEDIA': () => Promise.resolve({ default: MediaModal }),
@@ -86,6 +87,7 @@ export const MODAL_COMPONENTS = {
   'ALTTEXT_SHOW': () => Promise.resolve({ default: AltTextDisplayModal }),
   'IGNORE_NOTIFICATIONS': IgnoreNotificationsModal,
   'ANNUAL_REPORT': AnnualReportModal,
+  'COMPOSE_PRIVACY': () => Promise.resolve({ default: VisibilityModal }),
 };
 
 export default class ModalRoot extends PureComponent {
