@@ -54,6 +54,7 @@ sudo apt-get install \
   pkg-config \
   protobuf-compiler \
   zlib1g-dev \
+  libvips42t64 \
   -y
 
 # Fix openssl
@@ -140,7 +141,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "ubuntu/jammy64"
+  config.vm.box = "bento/ubuntu-24.04"
 
   config.vm.provider :virtualbox do |vb|
     vb.name = "mastodon"

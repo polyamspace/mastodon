@@ -36,7 +36,7 @@ class CustomEmojiFilter
     when 'remote'
       CustomEmoji.remote
     when 'by_domain'
-      CustomEmoji.where(domain: value.strip.downcase)
+      CustomEmoji.where(domain: value)
     when 'shortcode'
       CustomEmoji.search(value.strip)
     when 'availability'
