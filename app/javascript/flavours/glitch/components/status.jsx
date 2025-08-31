@@ -115,13 +115,12 @@ class Status extends ImmutablePureComponent {
     onToggleCollapsed: PropTypes.func,
     onTranslate: PropTypes.func,
     onInteractionModal: PropTypes.func,
+    onQuoteCancel: PropTypes.func,
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
     unread: PropTypes.bool,
     prepend: PropTypes.string,
     withDismiss: PropTypes.bool,
-    onMoveUp: PropTypes.func,
-    onMoveDown: PropTypes.func,
     isQuotedPost: PropTypes.bool,
     getScrollPosition: PropTypes.func,
     updateScrollBottom: PropTypes.func,
@@ -415,14 +414,6 @@ class Status extends ImmutablePureComponent {
     history.push(`/@${status.getIn(['account', 'acct'])}`);
   };
 
-  handleHotkeyMoveUp = e => {
-    this.props.onMoveUp(this.props.containerId || this.props.id, e.target.getAttribute('data-featured'));
-  };
-
-  handleHotkeyMoveDown = e => {
-    this.props.onMoveDown(this.props.containerId || this.props.id, e.target.getAttribute('data-featured'));
-  };
-
   handleHotkeyToggleSensitive = () => {
     this.handleToggleMediaVisibility();
   };
@@ -496,8 +487,6 @@ class Status extends ImmutablePureComponent {
       mention: this.handleHotkeyMention,
       open: this.handleHotkeyOpen,
       openProfile: this.handleHotkeyOpenProfile,
-      moveUp: this.handleHotkeyMoveUp,
-      moveDown: this.handleHotkeyMoveDown,
       toggleHidden: this.handleExpandedToggle,
       bookmark: this.handleHotkeyBookmark,
       toggleSensitive: this.handleHotkeyToggleSensitive,
@@ -738,7 +727,7 @@ class Status extends ImmutablePureComponent {
                 </Permalink>
 
 
-                {this.props.contextType === 'compose' && isQuotedPost ? (
+                {isQuotedPost && !!this.props.onQuoteCancel ? (
                   <IconButton
                     onClick={this.handleQuoteCancel}
                     className='status__quote-cancel'
