@@ -8,6 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import ReactIcon from '@/material-icons/400-20px/mood.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
+import FormatQuoteIcon from '@/material-icons/400-24px/format_quote.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
 import PushPinIcon from '@/material-icons/400-24px/push_pin.svg?react';
@@ -110,6 +111,14 @@ export default class StatusPrepend extends PureComponent {
           values={{ name: link }}
         />
       );
+    case 'quoted_update':
+      return (
+        <FormattedMessage
+          id='notification.quoted_update'
+          defaultMessage='{name} edited a post you have quoted'
+          values={{ name: link }}
+        />
+      );
     case 'quote':
       return (
         <FormattedMessage
@@ -155,9 +164,13 @@ export default class StatusPrepend extends PureComponent {
       iconComponent = HomeIcon;
       break;
     case 'update':
+    case 'quoted_update':
       iconId = 'pencil';
       iconComponent = EditIcon;
       break;
+    case 'quote':
+      iconId = 'quote';
+      iconComponent = FormatQuoteIcon;
     }
 
     return !type ? null : (

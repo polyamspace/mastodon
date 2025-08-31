@@ -10,6 +10,7 @@ import PollIcon from '@/awesome-icons/solid/bars-progress.svg?react';
 import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
 import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
 import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
+import FormatQuoteIcon from '@/awesome-icons/solid/quote-right.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import PinIcon from '@/awesome-icons/solid/thumbtack.svg?react';
 import BoostIcon from '@/svg-icons/boost.svg?react';
@@ -102,6 +103,14 @@ export default class StatusPrepend extends PureComponent {
           />
         );
       }
+    case 'quoted_update':
+      return (
+        <FormattedMessage
+          id='notification.quoted_update'
+          defaultMessage='{name} edited a post you have quoted'
+          values={{ name: link }}
+        />
+      );
     case 'update':
       return (
         <FormattedMessage
@@ -147,9 +156,13 @@ export default class StatusPrepend extends PureComponent {
       iconComponent = NotificationsIcon;
       break;
     case 'update':
+    case 'quoted_update':
       iconId = 'pencil';
       iconComponent = EditIcon;
       break;
+    case 'quote':
+      iconId = 'quote';
+      iconComponent = FormatQuoteIcon;
     }
 
     return !type ? null : (
