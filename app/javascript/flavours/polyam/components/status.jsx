@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import CancelFillIcon from '@/awesome-icons/solid/circle-xmark.svg?react';
 import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import { ContentWarning } from 'flavours/polyam/components/content_warning';
 import { PictureInPicturePlaceholder } from 'flavours/polyam/components/picture_in_picture_placeholder';
@@ -34,6 +35,7 @@ import StatusContent from './status_content';
 import StatusIcons from './status_icons';
 import StatusPrepend from './status_prepend';
 import StatusReactions from './status_reactions';
+import { IconButton } from './icon_button';
 
 const domParser = new DOMParser();
 
@@ -73,6 +75,10 @@ export const defaultMediaVisibility = (status, settings) => {
 
   return !status.get('matched_media_filters') && (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
 };
+
+const messages = defineMessages({
+  quote_cancel: { id: 'status.quote.cancel', defaultMessage: 'Cancel quote' },
+});
 
 class Status extends ImmutablePureComponent {
 
@@ -132,6 +138,7 @@ class Status extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
+    contextType: PropTypes.string,
     onOpenAltText: PropTypes.func,
     ...WithOptionalRouterPropTypes,
   };
@@ -429,6 +436,10 @@ class Status extends ImmutablePureComponent {
     const { deployPictureInPicture, status } = this.props;
 
     deployPictureInPicture(status, type, mediaProps);
+  };
+
+  handleQuoteCancel = () => {
+    this.props.onQuoteCancel?.();
   };
 
   handleHotkeyReply = e => {
@@ -849,14 +860,24 @@ class Status extends ImmutablePureComponent {
                   <DisplayName account={status.get('account')} />
                 </Permalink>
 
-                <StatusIcons
-                  status={status}
-                  mediaIcons={mediaIcons}
-                  settings={settings.get('status_icons')}
-                  collapsible={!muted && collapseEnabled}
-                  collapsed={isCollapsed}
-                  setCollapsed={setCollapsed}
-                />
+                {this.props.contextType === 'compose' && isQuotedPost ? (
+                  <IconButton
+                    onClick={this.handleQuoteCancel}
+                    className='status__quote-cancel'
+                    title={intl.formatMessage(messages.quote_cancel)}
+                    icon='cancel-fill'
+                    iconComponent={CancelFillIcon}
+                  />
+                ) : (
+                  <StatusIcons
+                    status={status}
+                    mediaIcons={mediaIcons}
+                    settings={settings.get('status_icons')}
+                    collapsible={!muted && collapseEnabled}
+                    collapsed={isCollapsed}
+                    setCollapsed={setCollapsed}
+                  />
+                )}
               </header>
             )}
 

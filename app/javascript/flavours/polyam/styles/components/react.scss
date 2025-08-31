@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../variables' as *;
 
 .react-swipeable-view-container {
@@ -24,7 +25,10 @@
   border-radius: 10px;
   padding: 0;
   user-select: none;
-  -webkit-tap-highlight-color: rgba($base-overlay-background, 0);
+  -webkit-tap-highlight-color: color.change(
+    $base-overlay-background,
+    $alpha: 0
+  );
   -webkit-tap-highlight-color: transparent;
 }
 

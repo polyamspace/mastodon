@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../variables' as *;
 @use '../../functions' as *;
 
@@ -30,7 +31,7 @@
     cursor: pointer;
 
     & > div {
-      background: rgba($base-shadow-color, 0.6);
+      background: color.change($base-shadow-color, $alpha: 0.6);
       border-radius: 8px;
       padding: 12px 9px;
       backdrop-filter: $backdrop-blur-filter;

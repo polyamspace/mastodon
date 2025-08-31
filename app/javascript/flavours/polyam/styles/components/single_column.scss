@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../variables' as *;
 
 $ui-header-height: 55px;
@@ -201,7 +202,7 @@ $ui-header-height: 55px;
 
 .columns-area__panels__pane--overlay {
   pointer-events: auto;
-  background: rgba($base-overlay-background, 0.5);
+  background: color.change($base-overlay-background, $alpha: 0.5);
   z-index: 3;
 
   .columns-area__panels__pane__inner {

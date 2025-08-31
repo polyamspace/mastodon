@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../variables' as *;
 @use '../functions' as *;
 
@@ -54,7 +55,7 @@
       width: 50px;
 
       path:first-child {
-        fill: rgba($highlight-text-color, 0.25) !important;
+        fill: color.change($highlight-text-color, $alpha: 0.25) !important;
         fill-opacity: 1 !important;
       }
 
@@ -79,7 +80,7 @@
 
       .trends__item__sparkline {
         path:first-child {
-          fill: rgba($gold-star, 0.25) !important;
+          fill: color.change($gold-star, $alpha: 0.25) !important;
         }
 
         path:last-child {

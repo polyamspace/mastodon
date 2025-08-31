@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../variables' as *;
 @use '../functions' as *;
 
@@ -8,7 +9,7 @@
   padding: 16px 0;
   padding-bottom: 0;
   border-bottom: 1px solid var(--background-border-color);
-  background: rgba($ui-highlight-color, 0.05);
+  background: color.change($ui-highlight-color, $alpha: 0.05);
 
   &__header {
     display: flex;

@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../variables' as *;
 @use '../functions' as *;
 @use '../mixins' as *;
@@ -94,7 +95,7 @@
     display: block;
     color: $white;
     border: 0;
-    background: rgba($black, 0.65);
+    background: color.change($black, $alpha: 0.65);
     backdrop-filter: $backdrop-blur-filter;
     padding: 3px 12px;
     border-radius: 99px;
@@ -119,7 +120,7 @@
   text-align: center;
   color: $white;
   border: 0;
-  background: rgba($black, 0.65);
+  background: color.change($black, $alpha: 0.65);
   backdrop-filter: $backdrop-blur-filter;
   padding: 3px 8px;
   border-radius: 4px;
@@ -141,7 +142,7 @@
 }
 
 .media-gallery__alt__popover {
-  background: rgba($black, 0.65);
+  background: color.change($black, $alpha: 0.65);
   backdrop-filter: $backdrop-blur-filter;
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
@@ -163,7 +164,7 @@
   p {
     font-size: 15px;
     line-height: 20px;
-    color: rgba($white, 0.85);
+    color: color.change($white, $alpha: 0.85);
     white-space: pre-line;
   }
 }
@@ -575,8 +576,8 @@
     box-sizing: border-box;
     background: linear-gradient(
       0deg,
-      rgba($base-shadow-color, 0.85) 0,
-      rgba($base-shadow-color, 0.45) 60%,
+      color.change($base-shadow-color, $alpha: 0.85) 0,
+      color.change($base-shadow-color, $alpha: 0.45) 60%,
       transparent
     );
     padding: 0 15px;
@@ -683,7 +684,7 @@
       background: transparent;
       font-size: 16px;
       border: 0;
-      color: rgba($white, 0.75);
+      color: color.change($white, $alpha: 0.75);
       font-weight: 500;
 
       &:active,
@@ -752,7 +753,7 @@
     &::before {
       content: '';
       width: 50px;
-      background: rgba($white, 0.35);
+      background: color.change($white, $alpha: 0.35);
       border-radius: 4px;
       display: block;
       position: absolute;
@@ -784,7 +785,7 @@
       margin-inline-start: -6px;
       transform: translate(0, -50%);
       background: $white;
-      box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
+      box-shadow: 1px 2px 6px color.change($base-shadow-color, $alpha: 0.2);
       opacity: 0;
 
       .no-reduce-motion & {
@@ -841,7 +842,7 @@
     }
 
     &__buffer {
-      background: rgba($white, 0.2);
+      background: color.change($white, $alpha: 0.2);
     }
 
     &__handle {
@@ -854,7 +855,7 @@
       top: 10px;
       margin-inline-start: -6px;
       background: $white;
-      box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
+      box-shadow: 1px 2px 6px color.change($base-shadow-color, $alpha: 0.2);
 
       .no-reduce-motion & {
         transition: opacity 0.1s ease;
@@ -878,7 +879,7 @@
     top: 50%;
     inset-inline-start: 50%;
     transform: translate(-50%, -50%);
-    background: rgba($base-shadow-color, 0.45);
+    background: color.change($base-shadow-color, $alpha: 0.45);
     backdrop-filter: $backdrop-blur-filter;
     color: $white;
     border-radius: 8px;
