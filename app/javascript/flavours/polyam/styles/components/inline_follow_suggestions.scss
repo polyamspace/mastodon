@@ -11,6 +11,10 @@
   border-bottom: 1px solid var(--background-border-color);
   background: color.change($ui-highlight-color, $alpha: 0.05);
 
+  &.focusable:focus-visible {
+    background: color.change($ui-highlight-color, $alpha: 0.05);
+  }
+
   &__header {
     display: flex;
     align-items: center;
@@ -83,8 +87,10 @@
     }
 
     &__scrollable {
+      box-sizing: border-box;
       display: flex;
       flex-wrap: nowrap;
+      min-height: 228px;
       gap: 16px;
       padding: 16px;
       scroll-snap-type: x mandatory;

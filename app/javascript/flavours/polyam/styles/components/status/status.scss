@@ -84,9 +84,9 @@
 
 .focusable {
   &:focus-visible {
-    outline: 0;
+    outline: 2px solid $ui-button-focus-outline-color;
+    outline-offset: -2px;
     background: var(--toot-focus-background-color);
-    box-shadow: inset 0 0 0 2px $ui-button-focus-outline-color;
   }
 }
 
@@ -128,20 +128,21 @@
 
     border-bottom: 0;
 
-    // Polyam: Reactions bar
-    .status__content,
-    .status__action-bar,
-    .reactions-bar,
-    .media-gallery,
-    .video-player,
-    .audio-player,
-    .attachment-list,
-    .picture-in-picture-placeholder,
-    .more-from-author,
-    .status-card,
-    .hashtag-bar,
-    .content-warning,
-    .filter-warning {
+    // Polyam: .reactions-bar and .status__content__wrapper
+    & > .status__content__wrapper,
+    & > .status__action-bar,
+    & > .reactions-bar,
+    & > .media-gallery,
+    & > .video-player,
+    & > .audio-player,
+    & > .attachment-list,
+    & > .picture-in-picture-placeholder,
+    & > .more-from-author,
+    & > .status-card,
+    & > .hashtag-bar,
+    & > .content-warning,
+    & > .filter-warning,
+    & > .status__quote {
       margin-inline-start: var(--thread-margin);
       width: calc(100% - var(--thread-margin));
     }
@@ -628,7 +629,8 @@
 .status__relative-time,
 .detailed-status__display-name,
 .detailed-status__datetime,
-.detailed-status__application {
+.detailed-status__application,
+.detailed-status__link {
   @include no-text-decoration;
 }
 
@@ -650,7 +652,8 @@
 }
 
 .detailed-status__application,
-.detailed-status__datetime {
+.detailed-status__datetime,
+.detailed-status__link {
   color: inherit;
 }
 
@@ -698,8 +701,9 @@
 }
 
 .status__relative-time,
-.detailed-status__datetime {
-  &:hover {
+.detailed-status__datetime,
+.detailed-status__link {
+  &:is(a):hover {
     text-decoration: underline;
   }
 }
