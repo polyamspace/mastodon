@@ -65,6 +65,7 @@ import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from
 import ActionBar from './components/action_bar';
 import { DetailedStatus } from './components/detailed_status';
 import { RefreshController } from './components/refresh_controller';
+import { quoteComposeById } from '@/flavours/glitch/actions/compose_typed';
 
 const messages = defineMessages({
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
@@ -444,6 +445,10 @@ class Status extends ImmutablePureComponent {
     this.handleBookmarkClick(this.props.status);
   };
 
+  handleHotkeyQuote = () => {
+    this.props.dispatch(quoteComposeById(this.props.status.get('id')));
+  };
+
   handleHotkeyMention = e => {
     e.preventDefault();
     this.handleMentionClick(this.props.status);
@@ -588,6 +593,7 @@ class Status extends ImmutablePureComponent {
       reply: this.handleHotkeyReply,
       favourite: this.handleHotkeyFavourite,
       boost: this.handleHotkeyBoost,
+      quote: this.handleHotkeyQuote,
       bookmark: this.handleHotkeyBookmark,
       mention: this.handleHotkeyMention,
       openProfile: this.handleHotkeyOpenProfile,

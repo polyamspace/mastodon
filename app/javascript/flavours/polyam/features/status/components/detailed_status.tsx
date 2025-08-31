@@ -33,6 +33,7 @@ import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 import { Audio } from 'flavours/polyam/features/audio';
 import scheduleIdleTask from 'flavours/polyam/features/ui/util/schedule_idle_task';
 import { Video } from 'flavours/polyam/features/video';
+import { me } from 'flavours/polyam/initial_state';
 import { useAppSelector } from 'flavours/polyam/store';
 
 import Card from './card';
@@ -332,6 +333,22 @@ export const DetailedStatus: React.FC<{
 
   if (['private', 'direct'].includes(status.get('visibility') as string)) {
     quotesLink = '';
+  } else if (status.getIn(['account', 'id']) === me) {
+    quotesLink = (
+      <Link
+        to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/quotes`}
+        className='detailed-status__link'
+      >
+        <span className='detailed-status__quotes'>
+          <AnimatedNumber value={status.get('quotes_count')} />
+        </span>
+        <FormattedMessage
+          id='status.quotes'
+          defaultMessage='{count, plural, one {quote} other {quotes}}'
+          values={{ count: status.get('quotes_count') }}
+        />
+      </Link>
+    );
   } else {
     quotesLink = (
       <span className='detailed-status__link'>
@@ -459,7 +476,10 @@ export const DetailedStatus: React.FC<{
             {hashtagBar}
 
             {status.get('quote') && (
-              <QuotedStatus quote={status.get('quote')} />
+              <QuotedStatus
+                quote={status.get('quote')}
+                parentQuotePostId={status.get('id')}
+              />
             )}
           </>
         )}
