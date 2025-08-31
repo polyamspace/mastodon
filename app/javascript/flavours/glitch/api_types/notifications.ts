@@ -33,7 +33,8 @@ export type NotificationWithStatusType =
   | 'mention'
   | 'quote'
   | 'poll'
-  | 'update';
+  | 'update'
+  | 'quoted_update';
 
 export type NotificationType =
   | NotificationWithStatusType

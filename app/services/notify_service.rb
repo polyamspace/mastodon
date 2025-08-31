@@ -9,6 +9,7 @@ class NotifyService < BaseService
     admin.sign_up
     admin.report_note
     update
+    quoted_update
     poll
     status
     reaction

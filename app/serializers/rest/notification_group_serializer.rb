@@ -25,7 +25,7 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
   end
 
   def status_type?
-    [:favourite, :reblog, :status, :mention, :poll, :update, :quote, :reaction].include?(object.type)
+    [:favourite, :reblog, :status, :mention, :poll, :update, :quote, :quoted_update, :reaction].include?(object.type)
   end
 
   def report_type?
