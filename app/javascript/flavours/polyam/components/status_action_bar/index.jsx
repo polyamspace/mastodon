@@ -20,13 +20,14 @@ import { accountAdminLink, instanceAdminLink, statusAdminLink } from 'flavours/p
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
 import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
-import EmojiPickerDropdown from '../features/compose/containers/emoji_picker_dropdown_container';
-import { me, maxReactions } from '../initial_state';
+import EmojiPickerDropdown from '../../features/compose/containers/emoji_picker_dropdown_container';
+import { me, maxReactions } from '../../initial_state';
 
-import { IconButton } from './icon_button';
-import { RelativeTimestamp } from './relative_timestamp';
-import { isFeatureEnabled } from '../utils/environment';
-import { ReblogButton } from './status/reblog_button';
+import { IconButton } from '../icon_button';
+import { RelativeTimestamp } from '../relative_timestamp';
+import { isFeatureEnabled } from '../../utils/environment';
+import { ReblogButton } from '../status/reblog_button';
+import { RemoveQuoteHint } from './remove_quote_hint';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -76,6 +77,7 @@ class StatusActionBar extends ImmutablePureComponent {
     identity: identityContextPropShape,
     status: ImmutablePropTypes.map.isRequired,
     quotedAccountId: PropTypes.string,
+    contextType: PropTypes.string,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
     onReactionAdd: PropTypes.func,
@@ -220,7 +222,7 @@ class StatusActionBar extends ImmutablePureComponent {
   handleNoOp = () => {}; // hack for reaction add button
 
   render () {
-    const { status, quotedAccountId, intl, withDismiss, withCounters, showReplyCount, scrollKey } = this.props;
+    const { status, quotedAccountId, contextType, intl, withDismiss, withCounters, showReplyCount, scrollKey } = this.props;
     const { signedIn, permissions } = this.props.identity;
 
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
@@ -228,6 +230,7 @@ class StatusActionBar extends ImmutablePureComponent {
     const mutingConversation = status.get('muted');
     const writtenByMe        = status.getIn(['account', 'id']) === me;
     const isRemote           = status.getIn(['account', 'username']) !== status.getIn(['account', 'acct']);
+    const isQuotingMe        = quotedAccountId === me;
 
     let menu = [];
     let reblogIcon = 'retweet';
@@ -278,7 +281,7 @@ class StatusActionBar extends ImmutablePureComponent {
           menu.push(null);
         }
 
-        if (quotedAccountId === me) {
+        if (isQuotingMe) {
           menu.push({ text: intl.formatMessage(messages.revokeQuote, { name: status.getIn(['account', 'username']) }), action: this.handleRevokeQuoteClick });
         }
 
@@ -331,6 +334,8 @@ class StatusActionBar extends ImmutablePureComponent {
     const bookmarkTitle = intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark);
     const favouriteTitle = intl.formatMessage(status.get('favourited') ? messages.removeFavourite : messages.favourite);
 
+    const shouldShowQuoteRemovalHint = isQuotingMe && contextType === 'notifications';
+
     return (
       <div className='status__action-bar'>
         <div className='status__action-bar__button-wrapper'>
@@ -359,17 +364,24 @@ class StatusActionBar extends ImmutablePureComponent {
 
         {filterButton}
 
-        <div className='status__action-bar__button-wrapper'>
-          <Dropdown
-            scrollKey={scrollKey}
-            status={status}
-            items={menu}
-            icon='ellipsis-h'
-            iconComponent={MoreHorizIcon}
-            direction='right'
-            ariaLabel={intl.formatMessage(messages.more)}
-          />
-        </div>
+        <RemoveQuoteHint className='status__action-bar__button-wrapper' canShowHint={shouldShowQuoteRemovalHint}>
+          {(dismissQuoteHint) => (
+            <Dropdown
+              scrollKey={scrollKey}
+              status={status}
+              items={menu}
+              icon='ellipsis-h'
+              size={18}
+              iconComponent={MoreHorizIcon}
+              direction='right'
+              ariaLabel={intl.formatMessage(messages.more)}
+              onOpen={() => {
+                dismissQuoteHint();
+                return true;
+              }}
+            />
+          )}
+        </RemoveQuoteHint>
 
         <div className='status__action-bar-spacer' />
         <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>

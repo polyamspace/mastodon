@@ -34,8 +34,8 @@
   }
 }
 
-body > [data-popper-placement] {
-  z-index: 3;
+[data-popper-placement] {
+  z-index: 9999;
 }
 
 .invisible {
