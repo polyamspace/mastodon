@@ -18,7 +18,7 @@ export const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   public_long: { id: 'polyam.privacy.public.long', defaultMessage: 'Visible for all' },
   unlisted_short: { id: 'polyam.privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  unlisted_long: { id: 'polyam.privacy.unlisted.long', defaultMessage: 'Visible for all, but opted-out of discovery features' },
+  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Hidden from Mastodon search results, trending, and public timelines' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers' },
   private_long: { id: 'privacy.private.long', defaultMessage: 'Only your followers' },
   direct_short: { id: 'polyam.privacy.direct.short', defaultMessage: 'Mentioned people only' },
