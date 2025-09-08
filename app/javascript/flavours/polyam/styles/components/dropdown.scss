@@ -440,6 +440,8 @@
   }
 
   &__button {
+    display: flex;
+    align-items: center;
     color: $primary-text-color;
     background: var(--dropdown-background-color);
     border: 1px solid var(--dropdown-border-color);
@@ -453,6 +455,14 @@
     &:disabled {
       cursor: default;
     }
+  }
+
+  // Polyam: Different icon size
+  &__icon {
+    margin-inline: auto -4px;
+    width: 15px;
+    height: 15px;
+    opacity: 0.5;
   }
 
   &__helper {
