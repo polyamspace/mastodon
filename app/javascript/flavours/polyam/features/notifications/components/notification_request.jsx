@@ -16,6 +16,7 @@ import { acceptNotificationRequest, dismissNotificationRequest } from 'flavours/
 import { initReport } from 'flavours/polyam/actions/reports';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { CheckBox } from 'flavours/polyam/components/check_box';
+import { DisplayName } from '@/flavours/polyam/components/display_name';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
 import { makeGetAccount } from 'flavours/polyam/selectors';
@@ -96,7 +97,7 @@ export const NotificationRequest = ({ id, accountId, notificationsCount, checked
 
         <div className='notification-request__name'>
           <div className='notification-request__name__display-name'>
-            <bdi><strong dangerouslySetInnerHTML={{ __html: account?.get('display_name_html') }} /></bdi>
+            <DisplayName account={account} variant='simple' />
           </div>
 
           <span>@{account?.get('acct')}</span>

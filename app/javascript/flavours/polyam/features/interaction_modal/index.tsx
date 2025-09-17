@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { escapeRegExp } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
 
+import { DisplayName } from '@/flavours/polyam/components/display_name';
 import { openModal, closeModal } from 'flavours/polyam/actions/modal';
 import { apiRequest } from 'flavours/polyam/api';
 import { Button } from 'flavours/polyam/components/button';
@@ -404,15 +405,13 @@ const InteractionModal: React.FC<{
   url: string;
 }> = ({ accountId, url }) => {
   const dispatch = useAppDispatch();
-  const displayNameHtml = useAppSelector(
-    (state) => state.accounts.get(accountId)?.display_name_html ?? '',
-  );
   const signupUrl = useAppSelector(
     (state) =>
       (state.server.getIn(['server', 'registrations', 'url'], null) ||
         '/auth/sign_up') as string,
   );
-  const name = <bdi dangerouslySetInnerHTML={{ __html: displayNameHtml }} />;
+  const account = useAppSelector((state) => state.accounts.get(accountId));
+  const name = <DisplayName account={account} variant='simple' />;
 
   const handleSignupClick = useCallback(() => {
     dispatch(

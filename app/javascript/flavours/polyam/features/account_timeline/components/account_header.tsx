@@ -13,6 +13,7 @@ import MoreHorizIcon from '@/awesome-icons/solid/ellipsis-vertical.svg?react';
 import LockIcon from '@/awesome-icons/solid/lock.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
 import { AccountBio } from '@/flavours/polyam/components/account_bio';
+import { DisplayName } from '@/flavours/polyam/components/display_name';
 import {
   followAccount,
   unblockAccount,
@@ -783,7 +784,6 @@ export const AccountHeader: React.FC<{
     );
   }
 
-  const displayNameHtml = { __html: account.display_name_html };
   const fields = account.fields;
   const isLocal = !account.acct.includes('@');
   const username = account.acct.split('@')[0];
@@ -875,7 +875,7 @@ export const AccountHeader: React.FC<{
 
           <div className='account__header__tabs__name'>
             <h1>
-              <span dangerouslySetInnerHTML={displayNameHtml} />
+              <DisplayName account={account} variant='simple' />
               <small>
                 <span>
                   @{username}
