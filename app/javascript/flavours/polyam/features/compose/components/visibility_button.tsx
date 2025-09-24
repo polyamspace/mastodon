@@ -16,10 +16,8 @@ import type { ApiQuotePolicy } from '@/flavours/polyam/api_types/quotes';
 import type { StatusVisibility } from '@/flavours/polyam/api_types/statuses';
 import { Icon } from '@/flavours/polyam/components/icon';
 import { useAppSelector, useAppDispatch } from '@/flavours/polyam/store';
-import { isFeatureEnabled } from '@/flavours/polyam/utils/environment';
 
 import type { VisibilityModalCallback } from '../../ui/components/visibility_modal';
-import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 
 import { messages as privacyMessages } from './privacy_dropdown';
 
@@ -43,9 +41,6 @@ interface PrivacyDropdownProps {
 }
 
 export const VisibilityButton: FC<PrivacyDropdownProps> = (props) => {
-  if (!isFeatureEnabled('outgoing_quotes')) {
-    return <PrivacyDropdownContainer {...props} />;
-  }
   return <PrivacyModalButton {...props} />;
 };
 

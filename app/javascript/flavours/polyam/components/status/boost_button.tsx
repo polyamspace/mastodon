@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import type { FC, KeyboardEvent, MouseEvent, MouseEventHandler } from 'react';
+import type { FC, KeyboardEvent, MouseEvent } from 'react';
 
 import { useIntl } from 'react-intl';
 
@@ -11,7 +11,6 @@ import { openModal } from '@/flavours/polyam/actions/modal';
 import type { ActionMenuItem } from '@/flavours/polyam/models/dropdown_menu';
 import type { Status } from '@/flavours/polyam/models/status';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
-import { isFeatureEnabled } from '@/flavours/polyam/utils/environment';
 import type { SomeRequired } from '@/flavours/polyam/utils/types';
 
 import type { RenderItemFn, RenderItemFnHandlers } from '../dropdown_menu';
@@ -47,10 +46,7 @@ interface ReblogButtonProps {
 
 type ActionMenuItemWithIcon = SomeRequired<ActionMenuItem, 'icon'>;
 
-export const StatusBoostButton: FC<ReblogButtonProps> = ({
-  status,
-  counters,
-}) => {
+export const BoostButton: FC<ReblogButtonProps> = ({ status, counters }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const statusState = useAppSelector((state) =>
@@ -190,69 +186,5 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
         <DropdownMenuItemContent item={item} />
       </button>
     </li>
-  );
-};
-
-// Legacy helpers
-
-// Switch between the legacy and new reblog button based on feature flag.
-export const BoostButton: FC<ReblogButtonProps> = (props) => {
-  if (isFeatureEnabled('outgoing_quotes')) {
-    return <StatusBoostButton {...props} />;
-  }
-  return <LegacyReblogButton {...props} />;
-};
-
-export const LegacyReblogButton: FC<ReblogButtonProps> = ({
-  status,
-  counters,
-}) => {
-  const intl = useIntl();
-  const statusState = useAppSelector((state) =>
-    selectStatusState(state, status),
-  );
-
-  const { title, meta, iconComponent, disabled } = useMemo(
-    () => boostItemState(statusState),
-    [statusState],
-  );
-
-  const dispatch = useAppDispatch();
-  const handleClick: MouseEventHandler = useCallback(
-    (event) => {
-      if (statusState.isLoggedIn) {
-        dispatch(toggleReblog(status.get('id') as string, event.shiftKey));
-      } else {
-        dispatch(
-          openModal({
-            modalType: 'INTERACTION',
-            modalProps: {
-              accountId: status.getIn(['account', 'id']),
-              url: status.get('uri'),
-            },
-          }),
-        );
-      }
-    },
-    [dispatch, status, statusState.isLoggedIn],
-  );
-
-  // Polyam: Added missing className
-  return (
-    <IconButton
-      className='status__action-bar-button'
-      disabled={disabled}
-      active={!!status.get('reblogged')}
-      title={intl.formatMessage(meta ?? title)}
-      icon='retweet'
-      iconComponent={iconComponent}
-      onClick={!disabled ? handleClick : undefined}
-      counter={
-        counters
-          ? (status.get('reblogs_count') as number) +
-            (status.get('quotes_count') as number)
-          : undefined
-      }
-    />
   );
 };

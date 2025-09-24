@@ -38,7 +38,6 @@ import { setStatusQuotePolicy } from 'flavours/polyam/actions/statuses_typed';
 import Status from 'flavours/polyam/components/status';
 import { deleteModal } from 'flavours/polyam/initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/polyam/selectors';
-import { isFeatureEnabled } from 'flavours/polyam/utils/environment';
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -86,9 +85,7 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
   },
 
   onQuote (status) {
-    if (isFeatureEnabled('outgoing_quotes')) {
-      dispatch(quoteComposeById(status.get('id')));
-    }
+    dispatch(quoteComposeById(status.get('id')));
   },
 
   onReblog (status, e) {
