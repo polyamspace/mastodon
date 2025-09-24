@@ -258,6 +258,21 @@
   }
 }
 
+.notification-bar__loading-indicator {
+  --spinner-size: 22px;
+
+  position: relative;
+  height: var(--spinner-size);
+  width: var(--spinner-size);
+  margin-inline-start: 2px;
+
+  svg {
+    color: $white;
+    height: var(--spinner-size);
+    width: var(--spinner-size);
+  }
+}
+
 .filtered-notifications-banner {
   display: flex;
   align-items: center;

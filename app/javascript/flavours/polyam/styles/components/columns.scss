@@ -14,7 +14,6 @@
   flex: 1 1 auto;
   flex-direction: row;
   justify-content: flex-start;
-  overflow-x: auto;
   position: relative;
 
   &.unscrollable {
@@ -171,6 +170,29 @@
         border-bottom: 0;
       }
     }
+  }
+}
+
+.column__alert {
+  position: sticky;
+  bottom: 1rem;
+  z-index: 10;
+  box-sizing: border-box;
+  display: grid;
+  width: 100%;
+  max-width: 360px;
+  padding-inline: 10px;
+  margin-top: 1rem;
+  margin-inline: auto;
+
+  @media (max-width: #{$mobile-menu-breakpoint - 1}) {
+    bottom: 4rem;
+  }
+
+  & > * {
+    // Make all nested alerts occupy the same space
+    // rather than stack
+    grid-area: 1 / 1;
   }
 }
 

@@ -704,8 +704,8 @@ class Status extends ImmutablePureComponent {
               </div>
             </Hotkeys>
 
-            {remoteHint}
             {descendants}
+            {remoteHint}
           </div>
         </ScrollContainer>
 
