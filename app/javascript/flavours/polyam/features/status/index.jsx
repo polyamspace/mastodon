@@ -17,7 +17,7 @@ import CommentIcon from '@/awesome-icons/solid/comment.svg?react';
 import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
-import ScrollContainer from 'flavours/polyam/containers/scroll_container';
+import { ScrollContainer } from 'flavours/polyam/containers/scroll_container';
 import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { autoUnfoldCW } from 'flavours/polyam/utils/content_warning';
@@ -573,9 +573,9 @@ class Status extends ImmutablePureComponent {
     this.setState({ fullscreen: isFullscreen() });
   };
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
+  shouldUpdateScroll = (prevLocation, location) => {
     // Do not change scroll when opening a modal
-    if (location.state?.mastodonModalKey !== prevRouterProps?.location?.state?.mastodonModalKey) {
+    if (location.state?.mastodonModalKey !== prevLocation?.state?.mastodonModalKey) {
       return false;
     }
 

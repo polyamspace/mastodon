@@ -5,8 +5,6 @@ import { Route } from 'react-router-dom';
 
 import { Provider as ReduxProvider } from 'react-redux';
 
-import { ScrollContext } from 'react-router-scroll-4';
-
 import { fetchCustomEmojis } from 'flavours/polyam/actions/custom_emojis';
 import { checkDeprecatedLocalSettings } from 'flavours/polyam/actions/local_settings';
 import { hydrateStore } from 'flavours/polyam/actions/store';
@@ -20,6 +18,8 @@ import { IntlProvider } from 'flavours/polyam/locales';
 import { store } from 'flavours/polyam/store';
 import { isProduction } from 'flavours/polyam/utils/environment';
 import { BodyScrollLock } from 'flavours/polyam/features/ui/components/body_scroll_lock';
+
+import { ScrollContext } from './scroll_container/scroll_context';
 
 const title = isProduction() ? siteTitle : `${siteTitle} (Dev)`;
 
@@ -50,10 +50,6 @@ export default class Mastodon extends PureComponent {
     }
   }
 
-  shouldUpdateScroll (prevRouterProps, { location }) {
-    return !(location.state?.mastodonModalKey && location.state?.mastodonModalKey !== prevRouterProps?.location?.state?.mastodonModalKey);
-  }
-
   render () {
     return (
       <IdentityContext.Provider value={this.identity}>
@@ -61,7 +57,7 @@ export default class Mastodon extends PureComponent {
           <ReduxProvider store={store}>
             <ErrorBoundary>
               <Router>
-                <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
+                <ScrollContext>
                   <Route path='/' component={UI} />
                 </ScrollContext>
                 <BodyScrollLock />
