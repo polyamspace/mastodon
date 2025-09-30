@@ -14,6 +14,7 @@ import LockIcon from '@/awesome-icons/solid/lock.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
 import { AccountBio } from '@/flavours/polyam/components/account_bio';
 import { DisplayName } from '@/flavours/polyam/components/display_name';
+import { AnimateEmojiProvider } from '@/flavours/polyam/components/emoji/context';
 import {
   followAccount,
   unblockAccount,
@@ -789,8 +790,8 @@ export const AccountHeader: React.FC<{
         <AnniversaryNote account={account} />
       )}
 
-      <div
-        className={classNames('account__header animate-parent', {
+      <AnimateEmojiProvider
+        className={classNames('account__header', {
           inactive: !!account.moved,
         })}
       >
@@ -956,7 +957,7 @@ export const AccountHeader: React.FC<{
             </div>
           )}
         </div>
-      </div>
+      </AnimateEmojiProvider>
 
       <ActionBar account={account} />
 

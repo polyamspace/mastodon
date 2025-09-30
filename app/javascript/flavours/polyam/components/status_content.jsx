@@ -13,11 +13,12 @@ import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { Poll } from 'flavours/polyam/components/poll';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
-import { autoPlayGif, languages as preloadedLanguages } from 'flavours/polyam/initial_state';
+import { languages as preloadedLanguages } from 'flavours/polyam/initial_state';
 import { highlightCode } from 'flavours/polyam/utils/html';
 import { decode as decodeIDNA } from 'flavours/polyam/utils/idna';
-import { EmojiHTML } from '../features/emoji/emoji_html';
 import { isModernEmojiEnabled } from '../utils/environment';
+
+import { EmojiHTML } from './emoji/html';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 

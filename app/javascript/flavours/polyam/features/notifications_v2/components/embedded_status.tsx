@@ -8,6 +8,7 @@ import type { List as ImmutableList, RecordOf } from 'immutable';
 
 import PhotoLibraryIcon from '@/awesome-icons/regular/image.svg?react';
 import BarChart4BarsIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import { AnimateEmojiProvider } from '@/flavours/polyam/components/emoji/context';
 import { toggleStatusSpoilers } from 'flavours/polyam/actions/statuses';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { ContentWarning } from 'flavours/polyam/components/content_warning';
@@ -97,8 +98,8 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   ).size;
 
   return (
-    <div
-      className='notification-group__embedded-status animate-parent'
+    <AnimateEmojiProvider
+      className='notification-group__embedded-status'
       role='button'
       tabIndex={-1}
       onMouseDown={handleMouseDown}
@@ -154,6 +155,6 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         statusId={status.get('id') as string}
         reactions={status.get('reactions')}
       />
-    </div>
+    </AnimateEmojiProvider>
   );
 };
