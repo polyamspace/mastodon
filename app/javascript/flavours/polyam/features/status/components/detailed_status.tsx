@@ -33,7 +33,7 @@ import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 import { Audio } from 'flavours/polyam/features/audio';
 import scheduleIdleTask from 'flavours/polyam/features/ui/util/schedule_idle_task';
 import { Video } from 'flavours/polyam/features/video';
-import { me } from 'flavours/polyam/initial_state';
+import { useIdentity } from 'flavours/polyam/identity_context';
 import { useAppSelector } from 'flavours/polyam/store';
 
 import Card from './card';
@@ -81,6 +81,8 @@ export const DetailedStatus: React.FC<{
   const [height, setHeight] = useState(0);
   const [showDespiteFilter, setShowDespiteFilter] = useState(false);
   const nodeRef = useRef<HTMLDivElement>();
+
+  const { signedIn } = useIdentity();
 
   const rewriteMentions = useAppSelector(
     (state) => state.local_settings.get('rewrite_mentions', false) as boolean,
@@ -333,7 +335,7 @@ export const DetailedStatus: React.FC<{
 
   if (['private', 'direct'].includes(status.get('visibility') as string)) {
     quotesLink = '';
-  } else if (status.getIn(['account', 'id']) === me) {
+  } else if (signedIn) {
     quotesLink = (
       <Link
         to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/quotes`}
