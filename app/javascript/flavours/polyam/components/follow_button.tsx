@@ -8,7 +8,6 @@ import { useIdentity } from '@/flavours/polyam/identity_context';
 import {
   fetchRelationships,
   followAccount,
-  unblockAccount,
   unmuteAccount,
 } from 'flavours/polyam/actions/accounts';
 import { openModal } from 'flavours/polyam/actions/modal';
@@ -59,7 +58,8 @@ export const FollowButton: React.FC<{
   accountId?: string;
   compact?: boolean;
   labelLength?: 'auto' | 'short' | 'long';
-}> = ({ accountId, compact, labelLength = 'auto' }) => {
+  className?: string;
+}> = ({ accountId, compact, labelLength = 'auto', className }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
@@ -96,15 +96,27 @@ export const FollowButton: React.FC<{
       return;
     } else if (relationship.muting) {
       dispatch(unmuteAccount(accountId));
-    } else if (account && (relationship.following || relationship.requested)) {
+    } else if (account && relationship.following) {
       dispatch(
         openModal({
           modalType: 'CONFIRM_UNFOLLOW',
-          modalProps: { account, requested: relationship.requested },
+          modalProps: { account },
+        }),
+      );
+    } else if (account && relationship.requested) {
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_WITHDRAW_REQUEST',
+          modalProps: { account },
         }),
       );
     } else if (relationship.blocking) {
-      dispatch(unblockAccount(accountId));
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_UNBLOCK',
+          modalProps: { account },
+        }),
+      );
     } else {
       dispatch(followAccount(accountId));
     }
@@ -147,7 +159,7 @@ export const FollowButton: React.FC<{
         href='/settings/profile'
         target='_blank'
         rel='noopener'
-        className={classNames('button button-secondary', {
+        className={classNames(className, 'button button-secondary', {
           'button--compact': compact,
         })}
       >
@@ -161,13 +173,12 @@ export const FollowButton: React.FC<{
       onClick={handleClick}
       disabled={
         relationship?.blocked_by ||
-        relationship?.blocking ||
         (!(relationship?.following || relationship?.requested) &&
           (account?.suspended || !!account?.moved))
       }
       secondary={following}
       compact={compact}
-      className={following ? 'button--destructive' : undefined}
+      className={classNames(className, { 'button--destructive': following })}
     >
       {label}
     </Button>
