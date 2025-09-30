@@ -14,7 +14,7 @@ import { hydrateStore } from 'flavours/polyam/actions/store';
 import { Router } from 'flavours/polyam/components/router';
 import { DetailedStatus } from 'flavours/polyam/features/status/components/detailed_status';
 import { useRenderSignal } from 'flavours/polyam/hooks/useRenderSignal';
-import initialState from 'flavours/polyam/initial_state';
+import { initialState } from 'flavours/polyam/initial_state';
 import { IntlProvider } from 'flavours/polyam/locales';
 import {
   makeGetStatus,

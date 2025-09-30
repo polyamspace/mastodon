@@ -13,7 +13,7 @@ import ErrorBoundary from 'flavours/polyam/components/error_boundary';
 import { Router } from 'flavours/polyam/components/router';
 import UI from 'flavours/polyam/features/ui';
 import { IdentityContext, createIdentityContext} from 'flavours/polyam/identity_context';
-import initialState, { title as siteTitle } from 'flavours/polyam/initial_state';
+import { initialState, title as siteTitle } from 'flavours/polyam/initial_state';
 import { IntlProvider } from 'flavours/polyam/locales';
 import { store } from 'flavours/polyam/store';
 import { isProduction } from 'flavours/polyam/utils/environment';
