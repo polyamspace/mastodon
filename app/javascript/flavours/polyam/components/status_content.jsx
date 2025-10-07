@@ -84,9 +84,6 @@ const isLinkMisleading = (link) => {
  * @returns {string}
  */
 export function getStatusContent(status) {
-  if (isModernEmojiEnabled()) {
-    return status.getIn(['translation', 'content']) || status.get('content');
-  }
   return status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
 }
 
