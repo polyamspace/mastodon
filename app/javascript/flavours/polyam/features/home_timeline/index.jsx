@@ -14,7 +14,6 @@ import { SymbolLogo } from 'flavours/polyam/components/logo';
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/polyam/actions/announcements';
 import { IconWithBadge } from 'flavours/polyam/components/icon_with_badge';
 import { NotSignedInIndicator } from 'flavours/polyam/components/not_signed_in_indicator';
-import AnnouncementsContainer from 'flavours/polyam/features/getting_started/containers/announcements_container';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { criticalUpdatesPending } from 'flavours/polyam/initial_state';
 import { withBreakpoint } from 'flavours/polyam/features/ui/hooks/useBreakpoint';
@@ -27,6 +26,7 @@ import StatusListContainer from '../ui/containers/status_list_container';
 
 import { ColumnSettings } from './components/column_settings';
 import { CriticalUpdateBanner } from './components/critical_update_banner';
+import { Announcements } from './components/announcements';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -165,7 +165,7 @@ class HomeTimeline extends PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           extraButton={announcementsButton}
-          appendContent={hasAnnouncements && showAnnouncements && <AnnouncementsContainer />}
+          appendContent={hasAnnouncements && showAnnouncements && <Announcements />}
         >
           <ColumnSettings />
         </ColumnHeader>
