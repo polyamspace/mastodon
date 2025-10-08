@@ -8,11 +8,11 @@ import { NavLink } from 'react-router-dom';
 
 import NotificationsIcon from '@/awesome-icons/regular/bell.svg?react';
 import NotificationsActiveIcon from '@/awesome-icons/solid/bell.svg?react';
-import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import MoreHorizIcon from '@/awesome-icons/solid/ellipsis-vertical.svg?react';
 import LockIcon from '@/awesome-icons/solid/lock.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
 import { AccountBio } from '@/flavours/polyam/components/account_bio';
+import { AccountFields } from '@/flavours/polyam/components/account_fields';
 import { DisplayName } from '@/flavours/polyam/components/display_name';
 import { AnimateEmojiProvider } from '@/flavours/polyam/components/emoji/context';
 import {
@@ -193,14 +193,6 @@ const titleFromAccount = (account: Account) => {
     displayName.trim().length === 0 ? account.username : displayName;
 
   return `${prefix} (@${acct})`;
-};
-
-const dateFormatOptions: Intl.DateTimeFormatOptions = {
-  month: 'short',
-  day: 'numeric',
-  year: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit',
 };
 
 export const AccountHeader: React.FC<{
@@ -885,52 +877,7 @@ export const AccountHeader: React.FC<{
                 {/* Polyam: Hide fields when empty and show joined date on bottom */}
                 {fields.size > 0 && (
                   <div className='account__header__fields'>
-                    {fields.map((pair, i) => (
-                      <dl
-                        key={i}
-                        className={classNames({
-                          verified: pair.verified_at,
-                        })}
-                      >
-                        <dt
-                          dangerouslySetInnerHTML={{
-                            __html: pair.name_emojified,
-                          }}
-                          title={pair.name}
-                          className='translate'
-                        />
-
-                        <dd
-                          className='translate'
-                          title={pair.value_plain ?? ''}
-                        >
-                          {pair.verified_at && (
-                            <span
-                              title={intl.formatMessage(
-                                messages.linkVerifiedOn,
-                                {
-                                  date: intl.formatDate(
-                                    pair.verified_at,
-                                    dateFormatOptions,
-                                  ),
-                                },
-                              )}
-                            >
-                              <Icon
-                                id='check'
-                                icon={CheckIcon}
-                                className='verified__mark'
-                              />
-                            </span>
-                          )}{' '}
-                          <span
-                            dangerouslySetInnerHTML={{
-                              __html: pair.value_emojified,
-                            }}
-                          />
-                        </dd>
-                      </dl>
-                    ))}
+                    <AccountFields fields={fields} emojis={account.emojis} />
                   </div>
                 )}
 
