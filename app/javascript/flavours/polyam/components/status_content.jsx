@@ -312,7 +312,7 @@ class StatusContent extends PureComponent {
           href={element.href}
           text={element.innerText}
           hashtagAccountId={this.props.status.getIn(['account', 'id'])}
-          mentionAccountId={mention?.get('id')}
+          mention={mention?.toJSON()}
           key={key}
         />
       );
