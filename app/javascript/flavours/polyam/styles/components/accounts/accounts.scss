@@ -558,7 +558,7 @@ a.account__display-name {
   font-weight: 400;
   overflow: hidden;
   word-break: normal;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   margin-top: 16px; // Polyam: Note is shown after fields
 
   p {

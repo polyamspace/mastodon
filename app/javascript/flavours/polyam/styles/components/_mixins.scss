@@ -9,7 +9,7 @@
 // Mixin for upstream's .status__content, .edit-indicator__content, .reply-indicator__content class
 @mixin status-content() {
   position: relative;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
