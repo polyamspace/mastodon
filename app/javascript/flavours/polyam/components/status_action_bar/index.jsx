@@ -253,6 +253,10 @@ class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.share), action: this.handleShareClick });
     }
 
+    if (publicStatus && !isRemote) {
+      menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+    }
+
     if (quickBoosting && signedIn) {
       const quoteItem = quoteItemState(statusQuoteState);
       menu.push(null);
@@ -264,11 +268,6 @@ class StatusActionBar extends ImmutablePureComponent {
         disabled: quoteItem.disabled,
         action: this.handleQuoteClick,
       });
-      menu.push(null);
-    }
-
-    if (publicStatus && !isRemote) {
-      menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
     }
 
     if (signedIn) {
