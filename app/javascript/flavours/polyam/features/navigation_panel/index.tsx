@@ -42,6 +42,7 @@ import {
   me,
 } from 'flavours/polyam/initial_state';
 import { transientSingleColumn } from 'flavours/polyam/is_mobile';
+import { canViewFeed } from 'flavours/polyam/permissions';
 import { selectUnreadNotificationGroupsCount } from 'flavours/polyam/selectors/notifications';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
@@ -190,7 +191,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
   multiColumn = false,
 }) => {
   const intl = useIntl();
-  const { signedIn, disabledAccountId } = useIdentity();
+  const { signedIn, permissions, disabledAccountId } = useIdentity();
   const location = useLocation();
   const showSearch = useBreakpoint('full') && !multiColumn;
   const dispatch = useAppDispatch();
@@ -283,13 +284,12 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
           />
         )}
 
-        {(signedIn ||
-          localLiveFeedAccess === 'public' ||
-          remoteLiveFeedAccess === 'public') && (
+        {(canViewFeed(signedIn, permissions, localLiveFeedAccess) ||
+          canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) && (
           <ColumnLink
             transparent
             to={
-              signedIn || localLiveFeedAccess === 'public'
+              canViewFeed(signedIn, permissions, localLiveFeedAccess)
                 ? '/public/local'
                 : '/public/remote'
             }
