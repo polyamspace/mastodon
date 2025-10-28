@@ -2,7 +2,7 @@ import Trie from 'substring-trie';
 
 import { assetHost } from 'flavours/polyam/utils/config';
 
-import { autoPlayGif, useSystemEmojiFont } from '../../initial_state';
+import { autoPlayGif } from '../../initial_state';
 
 import { unicodeMapping } from './emoji_unicode_mapping_light';
 
@@ -41,11 +41,11 @@ const emojifyTextNode = (node, customEmojis) => {
 
     // Skip to the next potential emoji to replace (either custom emoji or custom emoji :shortcode:)
     if (customEmojis === null) {
-      while (i < str.length && (useSystemEmojiFont || !(unicode_emoji = trie.search(str.slice(i))))) {
+      while (i < str.length && (!(unicode_emoji = trie.search(str.slice(i))))) {
         i += str.codePointAt(i) < 65536 ? 1 : 2;
       }
     } else {
-      while (i < str.length && str[i] !== ':' && (useSystemEmojiFont || !(unicode_emoji = trie.search(str.slice(i))))) {
+      while (i < str.length && str[i] !== ':' && !(unicode_emoji = trie.search(str.slice(i)))) {
         i += str.codePointAt(i) < 65536 ? 1 : 2;
       }
     }
