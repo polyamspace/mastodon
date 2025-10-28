@@ -199,8 +199,13 @@ export function directCompose(account) {
 }
 
 /**
+ * @callback ComposeSuccessCallback
+ * @param {Object} status
+ */
+
+/**
  * @param {null | string} overridePrivacy
- * @param {undefined | Function} successCallback
+ * @param {undefined | ComposeSuccessCallback} successCallback
  */
 export function submitCompose(overridePrivacy = null, successCallback = undefined) {
   return function (dispatch, getState) {
