@@ -47,7 +47,6 @@ import { IconButton } from 'flavours/polyam/components/icon_button';
 import { AccountNote } from 'flavours/polyam/features/account/components/account_note';
 import { DomainPill } from 'flavours/polyam/features/account/components/domain_pill';
 import FollowRequestNoteContainer from 'flavours/polyam/features/account/containers/follow_request_note_container';
-import { useLinks } from 'flavours/polyam/hooks/useLinks';
 import { useIdentity } from 'flavours/polyam/identity_context';
 import {
   autoPlayGif,
@@ -207,7 +206,6 @@ export const AccountHeader: React.FC<{
     state.relationships.get(accountId),
   );
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
-  const handleLinkClick = useLinks();
 
   const handleBlock = useCallback(() => {
     if (!account) {
@@ -866,10 +864,7 @@ export const AccountHeader: React.FC<{
 
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
-              <div
-                className='account__header__bio'
-                onClickCapture={handleLinkClick}
-              >
+              <div className='account__header__bio'>
                 {account.id !== me && signedIn && (
                   <AccountNote accountId={accountId} />
                 )}

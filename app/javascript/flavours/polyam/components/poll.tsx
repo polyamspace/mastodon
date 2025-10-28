@@ -13,9 +13,7 @@ import { EmojiHTML } from '@/flavours/polyam/components/emoji/html';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { fetchPoll, vote } from 'flavours/polyam/actions/polls';
 import { Icon } from 'flavours/polyam/components/icon';
-import emojify from 'flavours/polyam/features/emoji/emoji';
 import { useIdentity } from 'flavours/polyam/identity_context';
-import { makeEmojiMap } from 'flavours/polyam/models/custom_emoji';
 import type * as Model from 'flavours/polyam/models/poll';
 import type { Status } from 'flavours/polyam/models/status';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
@@ -235,12 +233,11 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
     let titleHtml = option.translation?.titleHtml ?? option.titleHtml;
 
     if (!titleHtml) {
-      const emojiMap = makeEmojiMap(poll.emojis);
-      titleHtml = emojify(escapeTextContentForBrowser(title), emojiMap);
+      titleHtml = escapeTextContentForBrowser(title);
     }
 
     return titleHtml;
-  }, [option, poll, title]);
+  }, [option, title]);
 
   // Handlers
   const handleOptionChange = useCallback(() => {

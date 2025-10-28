@@ -1,6 +1,5 @@
 import Trie from 'substring-trie';
 
-import { isModernEmojiEnabled } from '@/flavours/polyam/utils/environment';
 import { assetHost } from 'flavours/polyam/utils/config';
 
 import { autoPlayGif, useSystemEmojiFont } from '../../initial_state';
@@ -152,13 +151,9 @@ const emojifyNode = (node, customEmojis) => {
  * Legacy emoji processing function.
  * @param {string} str
  * @param {object} customEmojis
- * @param {boolean} force If true, always emojify even if modern emoji is enabled
  * @returns {string}
  */
-const emojify = (str, customEmojis = {}, force = false) => {
-  if (isModernEmojiEnabled() && !force) {
-    return str;
-  }
+const emojify = (str, customEmojis = {}) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;
 
