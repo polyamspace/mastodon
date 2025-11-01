@@ -36,7 +36,8 @@ module IconHelper
     desktop_mac: 'computer',
     diamond: 'gem',
     download: 'download',
-    edit: 'pencil', # Also pen-to-square
+    edit: 'pencil',
+    edit_square: 'pen-to-square',
     extension: 'puzzle-piece',
     feedback: 'comment',
     flag: 'flag',
