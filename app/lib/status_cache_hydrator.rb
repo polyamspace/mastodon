@@ -75,6 +75,17 @@ class StatusCacheHydrator
     payload[:quote_approval][:current_user] = status.quote_policy_for_account(Account.find_by(id: account_id)) if payload[:quote_approval]
     payload[:quote] = hydrate_quote_payload(payload[:quote], status.quote, account_id, nested:) if payload[:quote]
     payload[:reactions] = serialized_reactions(account_id, status)
+
+    # Nested statuses are more likely to have a stale cache
+    fill_status_stats(payload, status) if nested
+  end
+
+  def fill_status_stats(payload, status)
+    payload[:replies_count] = status.replies_count
+    payload[:reblogs_count] = status.untrusted_reblogs_count || status.reblogs_count
+    payload[:favourites_count] = status.untrusted_favourites_count || status.favourites_count
+    payload[:quotes_count] = status.quotes_count
+    payload[:reactions_count] = status.reactions_count
   end
 
   def hydrate_quote_payload(empty_payload, quote, account_id, nested: false)
