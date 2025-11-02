@@ -20,7 +20,7 @@ import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
 import { me, maxReactions } from '../../../initial_state';
 import EmojiPickerDropdown from "../../compose/containers/emoji_picker_dropdown_container";
 import { isFeatureEnabled } from '@/flavours/polyam/utils/environment';
-import { ReblogButton } from '@/flavours/polyam/components/status/reblog_button';
+import { BoostButton } from '@/flavours/polyam/components/status/boost_button';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -255,7 +255,7 @@ class ActionBar extends PureComponent {
       <div className='detailed-status__action-bar'>
         <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} iconComponent={status.get('in_reply_to_id', null) === null ? ReplyIcon : ReplyAllIcon} onClick={this.handleReplyClick} /></div>
         <div className='detailed-status__button'>
-          <ReblogButton status={status} />
+          <BoostButton status={status} />
         </div>
         <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={favouriteTitle} icon='star' iconComponent={StarIcon} onClick={this.handleFavouriteClick} /></div>
         <div className='detailed-status__button'>

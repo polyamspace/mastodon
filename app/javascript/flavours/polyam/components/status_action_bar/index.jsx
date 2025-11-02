@@ -8,27 +8,26 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import BookmarkIcon from '@/material-icons/400-24px/bookmark-fill.svg?react';
-import BookmarkBorderIcon from '@/material-icons/400-24px/bookmark.svg?react';
-import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
-import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
-import ReplyAllIcon from '@/material-icons/400-24px/reply_all.svg?react';
-import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
-import StarBorderIcon from '@/material-icons/400-24px/star.svg?react';
-import VisibilityIcon from '@/material-icons/400-24px/visibility.svg?react';
-import { identityContextPropShape, withIdentity } from 'flavours/glitch/identity_context';
-import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/glitch/permissions';
-import { accountAdminLink, statusAdminLink } from 'flavours/glitch/utils/backend_links';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import VisibilityIcon from '@/awesome-icons/regular/eye.svg?react';
+import BookmarkIcon from '@/awesome-icons/solid/bookmark.svg?react';
+import MoreHorizIcon from '@/awesome-icons/solid/ellipsis.svg?react';
+import ReplyAllIcon from '@/awesome-icons/solid/reply-all.svg?react';
+import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
+import StarIcon from '@/awesome-icons/solid/star.svg?react';
+import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
+import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/polyam/permissions';
+import { accountAdminLink, instanceAdminLink, statusAdminLink } from 'flavours/polyam/utils/backend_links';
+import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
-import { Dropdown } from 'flavours/glitch/components/dropdown_menu';
-import EmojiPickerDropdown from '../features/compose/containers/emoji_picker_dropdown_container';
-import { me, maxReactions } from '../initial_state';
+import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
+import EmojiPickerDropdown from '../../features/compose/containers/emoji_picker_dropdown_container';
+import { me, maxReactions } from '../../initial_state';
 
-import { IconButton } from './icon_button';
-import { RelativeTimestamp } from './relative_timestamp';
-import { isFeatureEnabled } from '../utils/environment';
-import { ReblogButton } from './status/reblog_button';
+import { IconButton } from '../icon_button';
+import { RelativeTimestamp } from '../relative_timestamp';
+import { isFeatureEnabled } from '../../utils/environment';
+import { BoostButton } from '../status/boost_button';
+import { RemoveQuoteHint } from './remove_quote_hint';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -78,6 +77,7 @@ class StatusActionBar extends ImmutablePureComponent {
     identity: identityContextPropShape,
     status: ImmutablePropTypes.map.isRequired,
     quotedAccountId: PropTypes.string,
+    contextType: PropTypes.string,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
     onReactionAdd: PropTypes.func,
@@ -222,7 +222,7 @@ class StatusActionBar extends ImmutablePureComponent {
   handleNoOp = () => {}; // hack for reaction add button
 
   render () {
-    const { status, quotedAccountId, intl, withDismiss, withCounters, showReplyCount, scrollKey } = this.props;
+    const { status, quotedAccountId, contextType, intl, withDismiss, withCounters, showReplyCount, scrollKey } = this.props;
     const { signedIn, permissions } = this.props.identity;
 
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
@@ -230,6 +230,7 @@ class StatusActionBar extends ImmutablePureComponent {
     const mutingConversation = status.get('muted');
     const writtenByMe        = status.getIn(['account', 'id']) === me;
     const isRemote           = status.getIn(['account', 'username']) !== status.getIn(['account', 'acct']);
+    const isQuotingMe        = quotedAccountId === me;
 
     let menu = [];
     let reblogIcon = 'retweet';
@@ -268,27 +269,27 @@ class StatusActionBar extends ImmutablePureComponent {
 
       if (writtenByMe) {
         menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
-        menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick, dangerous: true });
-        menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick, dangerous: true });
+        menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
+        menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
       } else {
         menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
         menu.push({ text: intl.formatMessage(messages.direct, { name: status.getIn(['account', 'username']) }), action: this.handleDirectClick });
         menu.push(null);
 
         if (!this.props.onFilter) {
-          menu.push({ text: intl.formatMessage(messages.filter), action: this.handleFilterClick, dangerous: true });
+          menu.push({ text: intl.formatMessage(messages.filter), action: this.handleFilterClick });
           menu.push(null);
         }
 
-        if (quotedAccountId === me) {
-          menu.push({ text: intl.formatMessage(messages.revokeQuote, { name: status.getIn(['account', 'username']) }), action: this.handleRevokeQuoteClick, dangerous: true });
+        if (isQuotingMe) {
+          menu.push({ text: intl.formatMessage(messages.revokeQuote, { name: status.getIn(['account', 'username']) }), action: this.handleRevokeQuoteClick });
         }
 
-        menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick, dangerous: true });
-        menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick, dangerous: true });
-        menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport, dangerous: true });
+        menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick });
+        menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
+        menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
 
-        if (((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && (accountAdminLink || statusAdminLink)) || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION)) {
+        if (((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && (accountAdminLink || statusAdminLink)) || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) && instanceAdminLink) {
           menu.push(null);
           if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
             if (accountAdminLink !== undefined) {
@@ -299,8 +300,10 @@ class StatusActionBar extends ImmutablePureComponent {
             }
           }
           if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
-            const domain = status.getIn(['account', 'acct']).split('@')[1];
-            menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: `/admin/instances/${domain}` });
+            if (instanceAdminLink !== undefined) {
+              const domain = status.getIn(['account', 'acct']).split('@')[1];
+              menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: instanceAdminLink(domain) });
+            }
           }
         }
       }
@@ -327,8 +330,11 @@ class StatusActionBar extends ImmutablePureComponent {
     );
 
     const canReact = signedIn && status.get('reactions').filter(r => r.get('count') > 0 && r.get('me')).size < maxReactions;
+
     const bookmarkTitle = intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark);
     const favouriteTitle = intl.formatMessage(status.get('favourited') ? messages.removeFavourite : messages.favourite);
+
+    const shouldShowQuoteRemovalHint = isQuotingMe && contextType === 'notifications';
 
     return (
       <div className='status__action-bar'>
@@ -344,32 +350,38 @@ class StatusActionBar extends ImmutablePureComponent {
           />
         </div>
         <div className='status__action-bar__button-wrapper'>
-          <ReblogButton status={status} counters={withCounters} />
+          <BoostButton status={status} counters={withCounters} />
         </div>
         <div className='status__action-bar__button-wrapper'>
-          <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={favouriteTitle} icon='star' iconComponent={status.get('favourited') ? StarIcon : StarBorderIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
+          <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={favouriteTitle} icon='star' iconComponent={StarIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
         </div>
         <div className='status__action-bar__button-wrapper'>
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} disabled={!canReact} inverted={false} />
         </div>
         <div className='status__action-bar__button-wrapper'>
-          <IconButton className='status__action-bar-button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={bookmarkTitle} icon='bookmark' iconComponent={status.get('bookmarked') ? BookmarkIcon : BookmarkBorderIcon} onClick={this.handleBookmarkClick} />
+          <IconButton className='status__action-bar-button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={bookmarkTitle} icon='bookmark' iconComponent={BookmarkIcon} onClick={this.handleBookmarkClick} />
         </div>
 
         {filterButton}
 
-        <div className='status__action-bar__button-wrapper'>
-          <Dropdown
-            scrollKey={scrollKey}
-            status={status}
-            items={menu}
-            icon='ellipsis-h'
-            size={18}
-            iconComponent={MoreHorizIcon}
-            direction='right'
-            ariaLabel={intl.formatMessage(messages.more)}
-          />
-        </div>
+        <RemoveQuoteHint className='status__action-bar__button-wrapper' canShowHint={shouldShowQuoteRemovalHint}>
+          {(dismissQuoteHint) => (
+            <Dropdown
+              scrollKey={scrollKey}
+              status={status}
+              items={menu}
+              icon='ellipsis-h'
+              size={18}
+              iconComponent={MoreHorizIcon}
+              direction='right'
+              ariaLabel={intl.formatMessage(messages.more)}
+              onOpen={() => {
+                dismissQuoteHint();
+                return true;
+              }}
+            />
+          )}
+        </RemoveQuoteHint>
 
         <div className='status__action-bar-spacer' />
         <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>
