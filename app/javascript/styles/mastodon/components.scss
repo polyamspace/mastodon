@@ -1630,7 +1630,7 @@
   align-items: center;
   gap: 10px;
   overflow: hidden;
-  flex-grow: 1;
+  margin-inline-end: auto;
 
   .display-name {
     bdi {
@@ -2918,16 +2918,23 @@ a.account__display-name {
     &:focus,
     &:hover,
     &:active {
-      &:not(:disabled) {
+      &:not(:disabled, [aria-disabled='true']) {
         background: var(--dropdown-border-color);
         outline: 0;
       }
     }
   }
 
-  button:disabled {
+  button:disabled,
+  button[aria-disabled='true'] {
     color: $dark-text-color;
     cursor: default;
+
+    &:focus {
+      color: rgb(from $dark-text-color r g b / 70%);
+      background: var(--dropdown-border-color);
+      outline: 0;
+    }
   }
 }
 
@@ -9534,13 +9541,6 @@ noscript {
   p.hint {
     margin-bottom: 14px;
     font-size: 14px;
-  }
-
-  &__icon {
-    color: $highlight-text-color;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   &__lead {
