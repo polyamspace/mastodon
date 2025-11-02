@@ -81,6 +81,8 @@ class ComposeForm extends ImmutablePureComponent {
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
     maxChars: PropTypes.number,
+    redirectOnSuccess: PropTypes.bool,
+    // Polyam
     highlighted: PropTypes.bool,
     onRemoveHighlight: PropTypes.func,
   };
