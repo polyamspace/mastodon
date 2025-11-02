@@ -93,7 +93,7 @@ def find_used_backend_icons(material: false, convert: true)
 
   Rails.root.glob(['app/views/**/*.html.haml', 'config/navigation.rb']).map do |path|
     File.open(path, 'r') do |file|
-      pattern = /(?:material_symbol|table_link_to)[\(\s]'(?<icon>[^']*)'(?:[\s,]+variant:\s'(?<variant>[^']*)')?/
+      pattern = /(?:material_symbol|table_link_to)[(\s]'(?<icon>[^']*)'(?:[\s,]+variant:\s'(?<variant>[^']*)')?/
       file.each_line do |line|
         match = pattern.match(line)
         next if match.blank?
