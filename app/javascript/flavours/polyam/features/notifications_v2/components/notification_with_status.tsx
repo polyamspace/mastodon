@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 
 import classNames from 'classnames';
 
+import { LinkedDisplayName } from '@/flavours/polyam/components/display_name';
 import { replyComposeById } from 'flavours/polyam/actions/compose';
 import {
   toggleReblog,
@@ -18,7 +19,6 @@ import { StatusQuoteManager } from 'flavours/polyam/components/status_quoted';
 import { getStatusHidden } from 'flavours/polyam/selectors/filters';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
-import { DisplayedName } from './displayed_name';
 import type { LabelRenderer } from './notification_group_with_status';
 
 export const NotificationWithStatus: React.FC<{
@@ -42,9 +42,17 @@ export const NotificationWithStatus: React.FC<{
 }) => {
   const dispatch = useAppDispatch();
 
+  const account = useAppSelector((state) =>
+    state.accounts.get(accountIds.at(0) ?? ''),
+  );
+
   const label = useMemo(
-    () => labelRenderer(<DisplayedName accountIds={accountIds} />, count),
-    [labelRenderer, accountIds, count],
+    () =>
+      labelRenderer(
+        <LinkedDisplayName displayProps={{ account, variant: 'simple' }} />,
+        count,
+      ),
+    [labelRenderer, account, count],
   );
 
   const isFiltered = useAppSelector(

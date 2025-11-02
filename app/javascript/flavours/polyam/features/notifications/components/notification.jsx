@@ -12,9 +12,9 @@ import FlagIcon from '@/awesome-icons/solid/flag.svg?react';
 import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import UserIcon from '@/awesome-icons/solid/user.svg?react';
 import { Account } from 'flavours/polyam/components/account';
+import { LinkedDisplayName } from '@/flavours/polyam/components/display_name';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { Hotkeys } from 'flavours/polyam/components/hotkeys';
-import { Permalink } from 'flavours/polyam/components/permalink';
 import { StatusQuoteManager } from 'flavours/polyam/components/status_quoted';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 
@@ -437,19 +437,10 @@ class Notification extends ImmutablePureComponent {
     }
 
     const targetAccount = report.get('target_account');
-    const targetDisplayNameHtml = { __html: targetAccount.get('display_name_html') };
-    const targetLink = (
-      <bdi>
-        <Permalink
-          className='notification__display-name'
-          href={targetAccount.get('url')}
-          title={targetAccount.get('acct')}
-          to={`/@${targetAccount.get('acct')}`}
-          dangerouslySetInnerHTML={targetDisplayNameHtml}
-          data-hover-card-account={targetAccount.get('id')}
-        />
-      </bdi>
-    );
+    const targetLink = <LinkedDisplayName
+      className='notification__display-name'
+      displayProps={{account:targetAccount, variant: 'simple'}}
+    />;
 
     return (
       <Hotkeys handlers={this.getHandlers()}>
@@ -497,19 +488,7 @@ class Notification extends ImmutablePureComponent {
   render () {
     const { notification } = this.props;
     const account          = notification.get('account');
-    const displayNameHtml  = { __html: account.get('display_name_html') };
-    const link             = (
-      <bdi>
-        <Permalink
-          className='notification__display-name'
-          href={`/@${account.get('acct')}`}
-          title={account.get('acct')}
-          to={`/@${account.get('acct')}`}
-          dangerouslySetInnerHTML={displayNameHtml}
-          data-hover-card-account={account.get('id')}
-        />
-      </bdi>
-    );
+    const link             = <LinkedDisplayName className='notification__display-name' displayProps={{account, variant: 'simple'}} />;
 
     switch(notification.get('type')) {
     case 'follow':

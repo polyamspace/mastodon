@@ -1,7 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 
+import { DisplayName } from '@/flavours/polyam/components/display_name';
 import { AvatarOverlay } from 'flavours/polyam/components/avatar_overlay';
-import { DisplayName } from 'flavours/polyam/components/display_name';
 import { Permalink } from 'flavours/polyam/components/permalink';
 import { useAppSelector } from 'flavours/polyam/store';
 
@@ -19,15 +19,7 @@ export const MovedNote: React.FC<{
           id='account.moved_to'
           defaultMessage='{name} has indicated that their new account is now:'
           values={{
-            name: (
-              <bdi>
-                <strong
-                  dangerouslySetInnerHTML={{
-                    __html: from?.display_name_html ?? '',
-                  }}
-                />
-              </bdi>
-            ),
+            name: <DisplayName account={from} variant='simple' />,
           }}
         />
       </div>

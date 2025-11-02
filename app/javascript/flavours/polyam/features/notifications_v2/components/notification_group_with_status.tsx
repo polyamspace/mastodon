@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import { LinkedDisplayName } from '@/flavours/polyam/components/display_name';
 import { replyComposeById } from 'flavours/polyam/actions/compose';
 import { navigateToStatus } from 'flavours/polyam/actions/statuses';
 import { Avatar } from 'flavours/polyam/components/avatar';
@@ -17,7 +18,6 @@ import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp
 import { NOTIFICATIONS_GROUP_MAX_AVATARS } from 'flavours/polyam/models/notification_group';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
-import { DisplayedName } from './displayed_name';
 import { EmbeddedStatus } from './embedded_status';
 
 const AVATAR_SIZE = 28;
@@ -64,6 +64,9 @@ export const NotificationGroupWithStatus: React.FC<{
   additionalContent,
 }) => {
   const dispatch = useAppDispatch();
+  const account = useAppSelector((state) =>
+    state.accounts.get(accountIds.at(0) ?? ''),
+  );
 
   // Polyam: collapsing
 
@@ -98,11 +101,11 @@ export const NotificationGroupWithStatus: React.FC<{
   const label = useMemo(
     () =>
       labelRenderer(
-        <DisplayedName accountIds={accountIds} />,
+        <LinkedDisplayName displayProps={{ account, variant: 'simple' }} />,
         count,
         labelSeeMoreHref,
       ),
-    [labelRenderer, accountIds, count, labelSeeMoreHref],
+    [labelRenderer, account, count, labelSeeMoreHref],
   );
 
   const isPrivateMention = useAppSelector(

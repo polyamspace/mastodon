@@ -2,8 +2,9 @@ import { FormattedMessage } from 'react-intl';
 
 import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
-import { DisplayedName } from 'flavours/polyam/features/notifications_v2/components/displayed_name';
 import { useAppSelector } from 'flavours/polyam/store';
+
+import { LinkedDisplayName } from './display_name';
 
 export const StatusThreadLabel: React.FC<{
   accountId: string;
@@ -27,7 +28,13 @@ export const StatusThreadLabel: React.FC<{
       <FormattedMessage
         id='status.replied_to'
         defaultMessage='Replied to {name}'
-        values={{ name: <DisplayedName accountIds={[inReplyToAccountId]} /> }}
+        values={{
+          name: (
+            <LinkedDisplayName
+              displayProps={{ account: inReplyToAccount, variant: 'simple' }}
+            />
+          ),
+        }}
       />
     );
   } else {

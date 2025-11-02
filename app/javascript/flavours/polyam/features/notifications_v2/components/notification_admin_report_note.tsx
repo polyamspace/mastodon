@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import FlagIcon from '@/awesome-icons/solid/flag.svg?react';
+import { DisplayName } from '@/flavours/polyam/components/display_name';
 import { Icon } from 'flavours/polyam/components/icon';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
 import type { NotificationGroupAdminReportNote } from 'flavours/polyam/models/notification_group';
@@ -39,13 +40,7 @@ export const NotificationAdminReportNote: React.FC<{
               id='notification.admin.report_note'
               defaultMessage='{name} added a report note'
               values={{
-                name: (
-                  <bdi
-                    dangerouslySetInnerHTML={{
-                      __html: account.get('display_name_html'),
-                    }}
-                  />
-                ),
+                name: <DisplayName account={account} variant='simple' />,
               }}
             />
             <RelativeTimestamp timestamp={reportNote.created_at} />

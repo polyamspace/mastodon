@@ -6,6 +6,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
+import { DisplayName } from '@/flavours/polyam/components/display_name';
 
 export default class FollowRequestNote extends ImmutablePureComponent {
 
@@ -19,7 +20,7 @@ export default class FollowRequestNote extends ImmutablePureComponent {
     return (
       <div className='follow-request-banner'>
         <div className='follow-request-banner__message'>
-          <FormattedMessage id='account.requested_follow' defaultMessage='{name} has requested to follow you' values={{ name: <bdi><strong dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} /></bdi> }} />
+          <FormattedMessage id='account.requested_follow' defaultMessage='{name} has requested to follow you' values={{ name: <DisplayName account={account} variant='simple' /> }} />
         </div>
 
         <div className='follow-request-banner__action'>
