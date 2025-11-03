@@ -28,7 +28,7 @@ export const StatusReactions = ({statusId, reactions, canReact = true}) => {
   });
 
   return (
-    <div className={classNames('reactions-bar', { 'reactions-bar--empty': shownReactions.length === 0 })}>
+    <div className={classNames('reactions-bar animate-parent', { 'reactions-bar--empty': shownReactions.length === 0 })}>
       {transitions(({ scale }, reaction) => (
         <Reaction
           key={reaction.get('name')}
