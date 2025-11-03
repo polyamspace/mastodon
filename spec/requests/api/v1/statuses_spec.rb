@@ -180,7 +180,7 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
-      context 'without a quote policy', feature: :outgoing_quotes do
+      context 'without a quote policy' do
         let(:user) do
           Fabricate(:user, settings: { default_quote_policy: 'followers' })
         end
@@ -202,7 +202,7 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
-      context 'without a quote policy and the user defaults to nobody', feature: :outgoing_quotes do
+      context 'without a quote policy and the user defaults to nobody' do
         let(:user) do
           Fabricate(:user, settings: { default_quote_policy: 'nobody' })
         end
@@ -224,7 +224,7 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
-      context 'with a quote policy', feature: :outgoing_quotes do
+      context 'with a quote policy' do
         let(:quoted_status) { Fabricate(:status, account: user.account) }
         let(:params) do
           {
@@ -249,7 +249,7 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
-      context 'with a self-quote post', feature: :outgoing_quotes do
+      context 'with a self-quote post' do
         let(:quoted_status) { Fabricate(:status, account: user.account) }
         let(:params) do
           {
@@ -270,7 +270,7 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
-      context 'with a self-quote post and a CW but no text', feature: :outgoing_quotes do
+      context 'with a self-quote post and a CW but no text' do
         let(:quoted_status) { Fabricate(:status, account: user.account) }
         let(:params) do
           {
@@ -442,7 +442,7 @@ RSpec.describe '/api/v1/statuses' do
       context 'when updating only the quote policy' do
         let(:params) { { status: status.text, quote_approval_policy: 'public' } }
 
-        it 'updates the status', :aggregate_failures, feature: :outgoing_quotes do
+        it 'updates the status', :aggregate_failures do
           expect { subject }
             .to change { status.reload.quote_approval_policy }.to(Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16)
 
