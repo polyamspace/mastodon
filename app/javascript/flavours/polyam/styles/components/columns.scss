@@ -16,8 +16,12 @@
   justify-content: flex-start;
   position: relative;
 
-  &.unscrollable {
-    overflow-x: hidden;
+  .layout-multiple-columns & {
+    overflow-x: auto;
+
+    &.unscrollable {
+      overflow-x: hidden;
+    }
   }
 
   &__panels {

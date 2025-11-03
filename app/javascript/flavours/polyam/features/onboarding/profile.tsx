@@ -66,9 +66,7 @@ export const Profile: React.FC<{
     ),
   ) as number;
   const [displayName, setDisplayName] = useState(account?.display_name ?? '');
-  const [note, setNote] = useState(
-    account ? (unescapeHTML(account.note) ?? '') : '',
-  );
+  const [note, setNote] = useState(account ? unescapeHTML(account.note) : '');
   const [avatar, setAvatar] = useState<File>();
   const [header, setHeader] = useState<File>();
   const [discoverable, setDiscoverable] = useState(
