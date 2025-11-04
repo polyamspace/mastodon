@@ -1910,7 +1910,7 @@ en:
     boosted_from_html: Boosted from %{acct_link}
     content_warning: 'Content warning: %{warning}'
     content_warnings:
-      hide: Hide post
+      hide: Hide toot
       show: Show more
     default_language: Same as interface language
     disallowed_hashtags:
