@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 import type { List as ImmutableList, RecordOf } from 'immutable';
 
+import { AnimateEmojiProvider } from '@/flavours/glitch/components/emoji/context';
 import BarChart4BarsIcon from '@/material-icons/400-24px/bar_chart_4_bars.svg?react';
 import PhotoLibraryIcon from '@/material-icons/400-24px/photo_library.svg?react';
 import { toggleStatusSpoilers } from 'flavours/glitch/actions/statuses';
@@ -97,8 +98,8 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   ).size;
 
   return (
-    <div
-      className='notification-group__embedded-status animate-parent'
+    <AnimateEmojiProvider
+      className='notification-group__embedded-status'
       role='button'
       tabIndex={-1}
       onMouseDown={handleMouseDown}
@@ -154,6 +155,6 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         statusId={status.get('id') as string}
         reactions={status.get('reactions')}
       />
-    </div>
+    </AnimateEmojiProvider>
   );
 };

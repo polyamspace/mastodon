@@ -33,7 +33,7 @@ import { VisibilityIcon } from 'flavours/glitch/components/visibility_icon';
 import { Audio } from 'flavours/glitch/features/audio';
 import scheduleIdleTask from 'flavours/glitch/features/ui/util/schedule_idle_task';
 import { Video } from 'flavours/glitch/features/video';
-import { me } from 'flavours/glitch/initial_state';
+import { useIdentity } from 'flavours/glitch/identity_context';
 import { useAppSelector } from 'flavours/glitch/store';
 
 import Card from './card';
@@ -95,6 +95,8 @@ export const DetailedStatus: React.FC<{
     (state) =>
       state.local_settings.getIn(['media', 'fullwidth'], false) as boolean,
   );
+
+  const { signedIn } = useIdentity();
 
   const handleOpenVideo = useCallback(
     (options: VideoModalOptions) => {
@@ -328,7 +330,7 @@ export const DetailedStatus: React.FC<{
 
   if (['private', 'direct'].includes(status.get('visibility') as string)) {
     quotesLink = '';
-  } else if (status.getIn(['account', 'id']) === me) {
+  } else if (signedIn) {
     quotesLink = (
       <Link
         to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/quotes`}
