@@ -9,8 +9,10 @@ import AlternateEmailIcon from '@/awesome-icons/solid/envelope.svg?react';
 import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import QuietTimeIcon from '@/awesome-icons/solid/lock-open.svg?react';
 import LockIcon from '@/awesome-icons/solid/lock.svg?react';
-import { changeComposeVisibility } from '@/flavours/polyam/actions/compose';
-import { setComposeQuotePolicy } from '@/flavours/polyam/actions/compose_typed';
+import {
+  changeComposeVisibility,
+  setComposeQuotePolicy,
+} from '@/flavours/polyam/actions/compose_typed';
 import { openModal } from '@/flavours/polyam/actions/modal';
 import type { ApiQuotePolicy } from '@/flavours/polyam/api_types/quotes';
 import type { StatusVisibility } from '@/flavours/polyam/api_types/statuses';

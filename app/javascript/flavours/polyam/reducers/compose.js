@@ -2,11 +2,12 @@ import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrde
 
 
 import {
+  changeComposeVisibility,
   changeUploadCompose,
   quoteCompose,
   quoteComposeCancel,
   setComposeQuotePolicy,
-} from 'flavours/polyam/actions/compose_typed';
+} from '@/flavours/polyam/actions/compose_typed';
 import { timelineDelete } from 'flavours/polyam/actions/timelines_typed';
 
 import {
@@ -40,7 +41,6 @@ import {
   COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
-  COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_LANGUAGE_CHANGE,
   COMPOSE_COMPOSING_CHANGE,
   COMPOSE_CONTENT_TYPE_CHANGE,
@@ -399,7 +399,11 @@ const calculateProgress = (loaded, total) => Math.min(Math.round((loaded / total
 
 /** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
 export const composeReducer = (state = initialState, action) => {
-  if (changeUploadCompose.fulfilled.match(action)) {
+  if (changeComposeVisibility.match(action)) {
+    return state
+      .set('privacy', action.payload)
+      .set('idempotencyKey', uuid());
+  } else if (changeUploadCompose.fulfilled.match(action)) {
     return state
       .set('is_changing_upload', false)
       .update('media_attachments', list => list.map(item => {
@@ -415,11 +419,27 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('is_changing_upload', false);
   } else if (quoteCompose.match(action)) {
     const status = action.payload;
+    const isDirect = state.get('privacy') === 'direct';
     return state
-      .set('quoted_status_id', status.get('id'))
+      .set('quoted_status_id', isDirect ? null : status.get('id'))
       .set('spoiler', status.get('sensitive'))
       .set('spoiler_text', status.get('spoiler_text'))
-      .update('privacy', (visibility) => ['public', 'unlisted'].includes(visibility) && status.get('visibility') === 'private' ? 'private' : visibility);
+      .update('privacy', (visibility) => {
+        if (['public', 'unlisted'].includes(visibility) && status.get('visibility') === 'private') {
+          return 'private';
+        }
+        return visibility;
+      })
+      .update('text', (text) => {
+        if (!isDirect) {
+          return text;
+        }
+        const url = status.get('url');
+        if (text.includes(url)) {
+          return text;
+        }
+        return text.trim() ? `${text}\n\n${url}` : url;
+      });
   } else if (quoteComposeCancel.match(action)) {
     return state.set('quoted_status_id', null);
   } else if (setComposeQuotePolicy.match(action)) {
@@ -471,10 +491,6 @@ export const composeReducer = (state = initialState, action) => {
   case COMPOSE_SPOILER_TEXT_CHANGE:
     return state
       .set('spoiler_text', action.text)
-      .set('idempotencyKey', uuid());
-  case COMPOSE_VISIBILITY_CHANGE:
-    return state
-      .set('privacy', action.value)
       .set('idempotencyKey', uuid());
   case COMPOSE_CONTENT_TYPE_CHANGE:
     return state
