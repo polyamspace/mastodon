@@ -47,6 +47,13 @@ interface InitialStateMeta {
   emoji_style?: string;
   system_emoji_font?: boolean;
   default_content_type: string;
+  max_reactions: number;
+  visible_reactions: number;
+  notification_sound: { src: string; type: string }[];
+  search_preview: boolean;
+  publish_button_text: string;
+  show_reblogs_in_public_timelines: boolean;
+  show_replies_in_public_timelines: boolean;
 }
 
 interface Role {
@@ -75,6 +82,7 @@ export interface InitialState {
   local_settings: any;
   max_feed_hashtags: number;
   poll_limits: PollLimits;
+  max_reactions: number;
 }
 
 const element = document.getElementById('initial-state');
@@ -170,6 +178,19 @@ export const favouriteModal = getMeta('favourite_modal');
 export const pollLimits = initialState?.poll_limits;
 export const defaultContentType = getMeta('default_content_type');
 export const useSystemEmojiFont = getMeta('system_emoji_font');
+
+// Polyam-glitch additions
+export const maxReactions = initialState?.max_reactions ?? 1;
+export const visibleReactions = getMeta('visible_reactions');
+export const notificationSound = getMeta('notification_sound');
+export const searchPreview = getMeta('search_preview');
+export const publishButtonText = getMeta('publish_button_text');
+export const showReblogsPublicTimelines = getMeta(
+  'show_reblogs_in_public_timelines',
+);
+export const showRepliesPublicTimelines = getMeta(
+  'show_replies_in_public_timelines',
+);
 
 export function getAccessToken(): string | undefined {
   return getMeta('access_token');
