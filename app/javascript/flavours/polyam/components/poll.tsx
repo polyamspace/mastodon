@@ -9,6 +9,7 @@ import { animated, useSpring } from '@react-spring/web';
 import escapeTextContentForBrowser from 'escape-html';
 
 import CheckIcon from '@/awesome-icons/solid/check.svg?react';
+import { EmojiHTML } from '@/flavours/polyam/components/emoji/html';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { fetchPoll, vote } from 'flavours/polyam/actions/polls';
 import { Icon } from 'flavours/polyam/components/icon';
@@ -305,10 +306,11 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
           </span>
         )}
 
-        <span
+        <EmojiHTML
           className='poll__option__text translate'
           lang={lang}
-          dangerouslySetInnerHTML={{ __html: titleHtml }}
+          htmlString={titleHtml}
+          extraEmojis={poll.emojis}
         />
 
         {!!voted && (

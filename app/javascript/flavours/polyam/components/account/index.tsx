@@ -13,6 +13,7 @@ import UnblockIcon from '@/awesome-icons/solid/lock-open.svg?react';
 import BlockIcon from '@/awesome-icons/solid/lock.svg?react';
 import UnmuteIcon from '@/awesome-icons/solid/volume-high.svg?react';
 import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
+import { EmojiHTML } from '@/flavours/polyam/components/emoji/html';
 import {
   blockAccount,
   unblockAccount,
@@ -302,9 +303,10 @@ export const Account: React.FC<AccountProps> = ({
     account &&
     withBio &&
     (account.note.length > 0 ? (
-      <div
+      <EmojiHTML
         className='account__note translate'
-        dangerouslySetInnerHTML={{ __html: account.note_emojified }}
+        htmlString={account.note_emojified}
+        extraEmojis={account.emojis}
       />
     ) : (
       <div className='account__note account__note--missing'>

@@ -8,10 +8,11 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 
-import { Avatar } from '../../../components/avatar';
-import { DisplayName } from '../../../components/display_name';
-import { IconButton } from '../../../components/icon_button';
-import { Permalink } from '../../../components/permalink';
+import { Avatar } from '@/flavours/polyam/components/avatar';
+import { DisplayName } from '@/flavours/polyam/components/display_name';
+import { IconButton } from '@/flavours/polyam/components/icon_button';
+import { EmojiHTML } from '@/flavours/polyam/components/emoji/html';
+import { Permalink } from '@/flavours/polyam/components/permalink';
 
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },
@@ -29,7 +30,6 @@ class AccountAuthorize extends ImmutablePureComponent {
 
   render () {
     const { intl, account, onAuthorize, onReject } = this.props;
-    const content = { __html: account.get('note_emojified') };
 
     return (
       <div className='account-authorize__wrapper'>
@@ -39,7 +39,11 @@ class AccountAuthorize extends ImmutablePureComponent {
             <DisplayName account={account} />
           </Permalink>
 
-          <div className='account__header__content translate' dangerouslySetInnerHTML={content} />
+          <EmojiHTML
+            className='account__header__content translate'
+            htmlString={account.get('note_emojified')}
+            extraEmojis={account.get('emojis')}
+          />
         </div>
 
         <div className='account--panel'>

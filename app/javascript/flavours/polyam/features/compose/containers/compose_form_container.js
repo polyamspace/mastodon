@@ -11,10 +11,13 @@ import {
   uploadCompose,
   removeHighlight,
 } from 'flavours/polyam/actions/compose';
+import { pasteLinkCompose } from 'flavours/polyam/actions/compose_typed';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { privacyPreference } from 'flavours/polyam/utils/privacy_preference';
 
 import ComposeForm from '../components/compose_form';
+
+const urlLikeRegex = /^https?:\/\/[^\s]+\/[^\s]+$/i;
 
 const sideArmPrivacy = state => {
   const inReplyTo = state.getIn(['compose', 'in_reply_to']);
@@ -95,8 +98,21 @@ const mapDispatchToProps = (dispatch, props) => ({
     dispatch(changeComposeSpoilerText(checked));
   },
 
-  onPaste (files) {
-    dispatch(uploadCompose(files));
+  onPaste (e) {
+    if (e.clipboardData && e.clipboardData.files.length === 1) {
+      dispatch(uploadCompose(e.clipboardData.files));
+      e.preventDefault();
+    } else if (e.clipboardData && e.clipboardData.files.length === 0) {
+      const data = e.clipboardData.getData('text/plain');
+      if (!data.match(urlLikeRegex)) return;
+
+      try {
+        const url = new URL(data);
+        dispatch(pasteLinkCompose({ url }));
+      } catch {
+        return;
+      }
+    }
   },
 
   onPickEmoji (position, data, needsSpace) {
