@@ -14,7 +14,7 @@ import { connectPublicStream, connectCommunityStream } from 'flavours/polyam/act
 import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/polyam/actions/timelines';
 import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
 import SettingText from 'flavours/polyam/components/setting_text';
-import { domain, showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/polyam/initial_state';
+import { localLiveFeedAccess, remoteLiveFeedAccess, me, domain, showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/polyam/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 import Column from '../../components/column';
@@ -196,19 +196,21 @@ const Firehose = ({ feedType, multiColumn }) => {
         <ColumnSettings />
       </ColumnHeader>
 
-      <div className='account__section-headline'>
-        <NavLink exact to='/public/local'>
-          <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
-        </NavLink>
+      {(signedIn || (localLiveFeedAccess === 'public' && remoteLiveFeedAccess === 'public')) && (
+        <div className='account__section-headline'>
+          <NavLink exact to='/public/local'>
+            <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
+          </NavLink>
 
-        <NavLink exact to='/public/remote'>
-          <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
-        </NavLink>
+          <NavLink exact to='/public/remote'>
+            <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
+          </NavLink>
 
-        <NavLink exact to='/public'>
-          <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
-        </NavLink>
-      </div>
+          <NavLink exact to='/public'>
+            <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
+          </NavLink>
+        </div>
+      )}
 
       <StatusListContainer
         prepend={prependBanner}

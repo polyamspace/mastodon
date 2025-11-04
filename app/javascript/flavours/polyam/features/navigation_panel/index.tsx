@@ -36,7 +36,8 @@ import { ColumnLink } from 'flavours/polyam/features/ui/components/column_link';
 import { useBreakpoint } from 'flavours/polyam/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'flavours/polyam/identity_context';
 import {
-  timelinePreview,
+  localLiveFeedAccess,
+  remoteLiveFeedAccess,
   trendsEnabled,
   me,
 } from 'flavours/polyam/initial_state';
@@ -282,10 +283,16 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
           />
         )}
 
-        {(signedIn || timelinePreview) && (
+        {(signedIn ||
+          localLiveFeedAccess === 'public' ||
+          remoteLiveFeedAccess === 'public') && (
           <ColumnLink
             transparent
-            to='/public/local'
+            to={
+              signedIn || localLiveFeedAccess === 'public'
+                ? '/public/local'
+                : '/public/remote'
+            }
             icon='globe'
             iconComponent={PublicIcon}
             isActive={isFirehoseActive}
