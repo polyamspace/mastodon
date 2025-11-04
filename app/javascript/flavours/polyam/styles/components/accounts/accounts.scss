@@ -237,6 +237,7 @@
   display: block;
   position: relative;
   border-radius: var(--avatar-border-radius);
+  flex-shrink: 0;
 
   img {
     width: 100%;
@@ -655,42 +656,6 @@ a.account__display-name {
     overflow: hidden;
     margin-inline-start: -2px; // aligns the pfp with content below
 
-    &__buttons {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-top: 55px;
-      overflow: hidden;
-
-      .button {
-        flex-shrink: 1;
-        white-space: nowrap;
-        min-width: 80px;
-      }
-
-      .icon-button {
-        border: 1px solid var(--background-border-color);
-        border-radius: 4px;
-        box-sizing: content-box;
-        padding: 5px;
-
-        .icon {
-          width: 24px;
-          height: 24px;
-        }
-
-        &.copied {
-          border-color: $valid-value-color;
-        }
-      }
-
-      @container account-header (max-width: 372px) {
-        .optional {
-          display: none;
-        }
-      }
-    }
-
     &__name {
       margin-top: 16px;
       margin-bottom: 16px;
@@ -736,6 +701,69 @@ a.account__display-name {
 
     .spacer {
       flex: 1 1 auto;
+    }
+  }
+
+  &__follow-button {
+    flex-grow: 1;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    $button-breakpoint: 420px;
+    $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
+
+    &--desktop {
+      margin-top: 55px;
+
+      @container (width < #{$button-breakpoint}) {
+        display: none;
+      }
+
+      @supports (not (container-type: inline-size)) {
+        @media (max-width: #{$button-fallback-breakpoint}) {
+          display: none;
+        }
+      }
+    }
+
+    &--mobile {
+      margin-block: 16px;
+
+      @container (width >= #{$button-breakpoint}) {
+        display: none;
+      }
+
+      @supports (not (container-type: inline-size)) {
+        @media (min-width: (#{$button-fallback-breakpoint} + 1px)) {
+          display: none;
+        }
+      }
+    }
+
+    .button {
+      flex-shrink: 1;
+      white-space: nowrap;
+      min-width: 80px;
+    }
+
+    .icon-button {
+      border: 1px solid var(--background-border-color);
+      border-radius: 4px;
+      box-sizing: content-box;
+      padding: 5px;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      &.copied {
+        border-color: $valid-value-color;
+      }
     }
   }
 

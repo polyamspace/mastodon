@@ -296,6 +296,7 @@ a.status-card {
     font-weight: 500;
     color: $primary-text-color;
     text-decoration: none;
+    min-width: 0;
 
     &:hover,
     &:focus,

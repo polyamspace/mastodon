@@ -5,7 +5,7 @@ import { fetchServer } from 'flavours/polyam/actions/server';
 import { hydrateStore } from 'flavours/polyam/actions/store';
 import { Router } from 'flavours/polyam/components/router';
 import Compose from 'flavours/polyam/features/standalone/compose';
-import initialState from 'flavours/polyam/initial_state';
+import { initialState } from 'flavours/polyam/initial_state';
 import { IntlProvider } from 'flavours/polyam/locales';
 import { store } from 'flavours/polyam/store';
 

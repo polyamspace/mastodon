@@ -2,25 +2,18 @@ import { useCallback, useMemo } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
 
 import OpenInNewIcon from '@/awesome-icons/solid/arrow-up-right-from-square.svg?react';
 import ReplyAllIcon from '@/awesome-icons/solid/reply-all.svg?react';
 import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
-import RepeatIcon from '@/svg-icons/boost.svg?react';
-import RepeatDisabledIcon from '@/svg-icons/boost_disabled.svg?react';
-import RepeatPrivateIcon from '@/svg-icons/boost_private.svg?react';
 import { replyCompose } from 'flavours/polyam/actions/compose';
-import {
-  toggleReblog,
-  toggleFavourite,
-} from 'flavours/polyam/actions/interactions';
+import { toggleFavourite } from 'flavours/polyam/actions/interactions';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+import { BoostButton } from 'flavours/polyam/components/status/boost_button';
 import { useIdentity } from 'flavours/polyam/identity_context';
-import { me } from 'flavours/polyam/initial_state';
 import type { Account } from 'flavours/polyam/models/account';
 import type { Status } from 'flavours/polyam/models/status';
 import { makeGetStatus } from 'flavours/polyam/selectors';
@@ -120,29 +113,6 @@ export const Footer: React.FC<{
     }
   }, [dispatch, status, signedIn]);
 
-  const handleReblogClick = useCallback(
-    (e: React.MouseEvent) => {
-      if (!status) {
-        return;
-      }
-
-      if (signedIn) {
-        dispatch(toggleReblog(status.get('id'), e.shiftKey));
-      } else {
-        dispatch(
-          openModal({
-            modalType: 'INTERACTION',
-            modalProps: {
-              accountId: status.getIn(['account', 'id']),
-              url: status.get('uri'),
-            },
-          }),
-        );
-      }
-    },
-    [dispatch, status, signedIn],
-  );
-
   const handleOpenClick = useCallback(
     (e: React.MouseEvent) => {
       if (e.button !== 0 || !status) {
@@ -160,13 +130,6 @@ export const Footer: React.FC<{
     return null;
   }
 
-  const publicStatus = ['public', 'unlisted'].includes(
-    status.get('visibility') as string,
-  );
-  const reblogPrivate =
-    status.getIn(['account', 'id']) === me &&
-    status.get('visibility') === 'private';
-
   let replyIcon, replyIconComponent, replyTitle;
 
   if (status.get('in_reply_to_id', null) === null) {
@@ -177,22 +140,6 @@ export const Footer: React.FC<{
     replyIcon = 'reply-all';
     replyIconComponent = ReplyAllIcon;
     replyTitle = intl.formatMessage(messages.replyAll);
-  }
-
-  let reblogTitle, reblogIconComponent;
-
-  if (status.get('reblogged')) {
-    reblogTitle = intl.formatMessage(messages.cancel_reblog_private);
-    reblogIconComponent = publicStatus ? RepeatIcon : RepeatPrivateIcon;
-  } else if (publicStatus) {
-    reblogTitle = intl.formatMessage(messages.reblog);
-    reblogIconComponent = RepeatIcon;
-  } else if (reblogPrivate) {
-    reblogTitle = intl.formatMessage(messages.reblog_private);
-    reblogIconComponent = RepeatPrivateIcon;
-  } else {
-    reblogTitle = intl.formatMessage(messages.cannot_reblog);
-    reblogIconComponent = RepeatDisabledIcon;
   }
 
   const favouriteTitle = intl.formatMessage(
@@ -220,19 +167,7 @@ export const Footer: React.FC<{
         counter={status.get('replies_count') as number}
       />
 
-      <IconButton
-        className={classNames('status__action-bar-button', { reblogPrivate })}
-        disabled={!publicStatus && !reblogPrivate}
-        active={status.get('reblogged') as boolean}
-        title={reblogTitle}
-        icon='retweet'
-        iconComponent={reblogIconComponent}
-        onClick={handleReblogClick}
-        counter={
-          (status.get('reblogs_count') as number) +
-          (status.get('quotes_count') as number)
-        }
-      />
+      <BoostButton counters status={status} />
 
       <IconButton
         className='status__action-bar-button star-icon'

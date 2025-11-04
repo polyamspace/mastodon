@@ -65,11 +65,25 @@ export const FollowIconButton: React.FC<{
 
     if (accountId === me) {
       return;
-    } else if (account && (relationship.following || relationship.requested)) {
+    } else if (account && relationship.following) {
       dispatch(
         openModal({
           modalType: 'CONFIRM_UNFOLLOW',
-          modalProps: { account, requested: relationship.requested },
+          modalProps: { account },
+        }),
+      );
+    } else if (account && relationship.requested) {
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_WITHDRAW_REQUEST',
+          modalProps: { account },
+        }),
+      );
+    } else if (relationship.blocking) {
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_UNBLOCK',
+          modalProps: { account },
         }),
       );
     } else {
