@@ -10,7 +10,8 @@ import { connect } from 'react-redux';
 import PeopleIcon from '@/awesome-icons/solid/users.svg?react';
 import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
-import { domain } from 'flavours/polyam/initial_state';
+import { domain, localLiveFeedAccess } from 'flavours/polyam/initial_state';
+import { canViewFeed } from 'flavours/polyam/permissions';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { connectCommunityStream } from '../../actions/streaming';
@@ -124,7 +125,20 @@ class CommunityTimeline extends PureComponent {
 
   render () {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
+    const { signedIn, permissions } = this.props.identity;
     const pinned = !!columnId;
+
+    const emptyMessage = canViewFeed(signedIn, permissions, localLiveFeedAccess) ? (
+      <FormattedMessage
+        id='empty_column.community'
+        defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!'
+      />
+    ) : (
+      <FormattedMessage
+        id='empty_column.disabled_feed'
+        defaultMessage='This feed has been disabled by your server administrators.'
+      />
+    );
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)} name='local'>
@@ -148,7 +162,7 @@ class CommunityTimeline extends PureComponent {
           scrollKey={`community_timeline-${columnId}`}
           timelineId={`community${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
+          emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           regex={this.props.regex}
           columnId={columnId}

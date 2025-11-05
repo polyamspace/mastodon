@@ -10,7 +10,8 @@ import { connect } from 'react-redux';
 import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
-import { domain } from 'flavours/polyam/initial_state';
+import { domain, localLiveFeedAccess, remoteLiveFeedAccess } from 'flavours/polyam/initial_state';
+import { canViewFeed } from 'flavours/polyam/permissions';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { connectPublicStream } from '../../actions/streaming';
@@ -129,7 +130,20 @@ class PublicTimeline extends PureComponent {
 
   render () {
     const { intl, columnId, hasUnread, multiColumn, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
+    const { signedIn, permissions } = this.props.identity;
     const pinned = !!columnId;
+
+    const emptyMessage = (canViewFeed(signedIn, permissions, localLiveFeedAccess) || canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) ? (
+      <FormattedMessage
+        id='empty_column.public'
+        defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up'
+      />
+    ) : (
+      <FormattedMessage
+        id='empty_column.disabled_feed'
+        defaultMessage='This feed has been disabled by your server administrators.'
+      />
+    );
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} name='federated' label={intl.formatMessage(messages.title)}>
@@ -153,7 +167,7 @@ class PublicTimeline extends PureComponent {
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}
           scrollKey={`public_timeline-${columnId}`}
-          emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up' />}
+          emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           regex={this.props.regex}
           columnId={columnId}

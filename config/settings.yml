@@ -26,7 +26,6 @@ defaults: &defaults
   system_dark: 'default'
   system_light: 'mastodon-light'
   trends: true
-  trends_as_landing_page: false
   trendable_by_default: false
   trending_status_cw: true
   trending_status_sensitive: true
@@ -48,6 +47,7 @@ defaults: &defaults
   publish_button_text: ''
   captcha_enabled: false
   allow_referrer_origin: false
+  landing_page: 'about'
 
 development:
   <<: *defaults

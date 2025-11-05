@@ -14,7 +14,8 @@ import { connectPublicStream, connectCommunityStream } from 'flavours/polyam/act
 import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/polyam/actions/timelines';
 import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
 import SettingText from 'flavours/polyam/components/setting_text';
-import { localLiveFeedAccess, remoteLiveFeedAccess, me, domain, showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/polyam/initial_state';
+import { localLiveFeedAccess, remoteLiveFeedAccess, domain, showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/polyam/initial_state';
+import { canViewFeed } from 'flavours/polyam/permissions';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 import Column from '../../components/column';
@@ -77,7 +78,7 @@ const ColumnSettings = () => {
 const Firehose = ({ feedType, multiColumn }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
-  const { signedIn } = useIdentity();
+  const { signedIn, permissions } = useIdentity();
   const columnRef = useRef(null);
 
   const allowLocalOnly = useAppSelector((state) => state.getIn(['settings', 'firehose', 'allowLocalOnly']));
@@ -182,6 +183,15 @@ const Firehose = ({ feedType, multiColumn }) => {
     />
   );
 
+  const canViewSelectedFeed = canViewFeed(signedIn, permissions, feedType === 'community' ? localLiveFeedAccess : remoteLiveFeedAccess);
+
+  const disabledTimelineMessage = (
+    <FormattedMessage
+      id='empty_column.disabled_feed'
+      defaultMessage='This feed has been disabled by your server administrators.'
+    />
+  );
+
   return (
     <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
@@ -196,7 +206,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         <ColumnSettings />
       </ColumnHeader>
 
-      {(signedIn || (localLiveFeedAccess === 'public' && remoteLiveFeedAccess === 'public')) && (
+      {(canViewFeed(signedIn, permissions, localLiveFeedAccess) && canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) && (
         <div className='account__section-headline'>
           <NavLink exact to='/public/local'>
             <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
@@ -218,7 +228,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         onLoadMore={handleLoadMore}
         trackScroll
         scrollKey='firehose'
-        emptyMessage={emptyMessage}
+        emptyMessage={canViewSelectedFeed ? emptyMessage : disabledTimelineMessage}
         bindToDocument={!multiColumn}
         regex={regex}
         firehose
