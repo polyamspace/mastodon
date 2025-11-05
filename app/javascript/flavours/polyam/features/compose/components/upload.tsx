@@ -9,6 +9,7 @@ import type { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
+import SoundIcon from '@/awesome-icons/solid/music.svg?react';
 import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
 import WarningIcon from '@/awesome-icons/solid/triangle-exclamation.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
@@ -17,7 +18,18 @@ import { openModal } from 'flavours/polyam/actions/modal';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon } from 'flavours/polyam/components/icon';
 import type { MediaAttachment } from 'flavours/polyam/models/media_attachment';
-import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from 'flavours/polyam/store';
+
+import { AudioVisualizer } from '../../audio/visualizer';
+
+const selectUserAvatar = createAppSelector(
+  [(state) => state.accounts, (state) => state.meta.get('me') as string],
+  (accounts, myId) => accounts.get(myId)?.avatar_static,
+);
 
 export const Upload: React.FC<{
   id: string;
@@ -38,6 +50,7 @@ export const Upload: React.FC<{
   const sensitive = useAppSelector(
     (state) => state.compose.get('sensitive') as boolean,
   );
+  const userAvatar = useAppSelector(selectUserAvatar);
 
   const handleUndoClick = useCallback(() => {
     dispatch(undoUploadCompose(id));
@@ -68,6 +81,9 @@ export const Upload: React.FC<{
     transition,
   };
 
+  const preview_url = media.get('preview_url') as string | null;
+  const blurhash = media.get('blurhash') as string | null;
+
   return (
     <div
       className={classNames('compose-form__upload media-gallery__item', {
@@ -85,17 +101,19 @@ export const Upload: React.FC<{
       <div
         className='compose-form__upload__thumbnail'
         style={{
-          backgroundImage: !sensitive
-            ? `url(${media.get('preview_url') as string})`
-            : undefined,
+          backgroundImage:
+            !sensitive && preview_url ? `url(${preview_url})` : undefined,
           backgroundPosition: `${x}% ${y}%`,
         }}
       >
-        {sensitive && (
-          <Blurhash
-            hash={media.get('blurhash') as string}
-            className='compose-form__upload__preview'
-          />
+        {sensitive && blurhash && (
+          <Blurhash hash={blurhash} className='compose-form__upload__preview' />
+        )}
+        {!sensitive && !preview_url && (
+          <div className='compose-form__upload__visualizer'>
+            <AudioVisualizer poster={userAvatar} />
+            <Icon id='sound' icon={SoundIcon} />
+          </div>
         )}
 
         <div className='compose-form__upload__actions'>
