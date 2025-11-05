@@ -115,6 +115,7 @@ module ApplicationHelper
   def material_symbol(icon, attributes = {})
     return awesome_icon(fa_icon(icon), attributes) if current_flavour == 'polyam'
 
+    whitespace = attributes.delete(:whitespace) { true }
     safe_join(
       [
         inline_svg_tag(
@@ -123,13 +124,14 @@ module ApplicationHelper
           role: :img,
           data: attributes[:data]
         ),
-        ' ',
+        whitespace ? ' ' : '',
       ]
     )
   end
 
   def awesome_icon(icon, attributes = {})
     variant = "#{attributes[:variant] || fa_variant(icon)}/"
+    whitespace = attributes.delete(:whitespace) { true }
 
     safe_join(
       [
@@ -139,7 +141,7 @@ module ApplicationHelper
           role: :img,
           data: attributes[:data]
         ),
-        ' ',
+        whitespace ? ' ' : '',
       ]
     )
   end
