@@ -23,7 +23,7 @@ import PushPinIcon from '@/awesome-icons/solid/thumbtack.svg?react';
 import { expandAccountFeaturedTimeline } from '@/flavours/polyam/actions/timelines';
 import { Icon } from '@/flavours/polyam/components/icon';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
-import StatusContainer from '@/flavours/polyam/containers/status_container';
+import { StatusQuoteManager } from '@/flavours/polyam/components/status_quoted';
 import { usePrevious } from '@/flavours/polyam/hooks/usePrevious';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
@@ -218,12 +218,7 @@ const FeaturedCarouselItem: React.FC<
       ref={handleRef}
       {...props}
     >
-      <StatusContainer
-        // @ts-expect-error inferred props are wrong
-        id={statusId}
-        contextType='account'
-        withCounters
-      />
+      <StatusQuoteManager id={statusId} contextType='account' withCounters />
     </animated.div>
   );
 };
