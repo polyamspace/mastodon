@@ -59,7 +59,7 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
     id,
   });
 
-  if (!wasDismissed) {
+  if (wasDismissed) {
     return null;
   }
 
