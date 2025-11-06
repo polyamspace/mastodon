@@ -49,7 +49,6 @@ interface InitialStateMeta {
   status_page_url: string;
   terms_of_service_enabled: boolean;
   emoji_style?: string;
-  system_emoji_font?: boolean;
   default_content_type: string;
   max_reactions: number;
   visible_reactions: number;
@@ -185,7 +184,6 @@ export const maxFeedHashtags = initialState?.max_feed_hashtags ?? 4;
 export const favouriteModal = getMeta('favourite_modal');
 export const pollLimits = initialState?.poll_limits;
 export const defaultContentType = getMeta('default_content_type');
-export const useSystemEmojiFont = getMeta('system_emoji_font');
 
 // Polyam-glitch additions
 export const maxReactions = initialState?.max_reactions ?? 1;
