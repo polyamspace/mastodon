@@ -761,8 +761,6 @@ class Status extends ImmutablePureComponent {
                   collapsible
                   media={media}
                   onCollapsedToggle={this.handleCollapsedToggle}
-                  tagLinks={settings.get('tag_misleading_links')}
-                  rewriteMentions={settings.get('rewrite_mentions')}
                   {...statusContentProps}
                 />
 

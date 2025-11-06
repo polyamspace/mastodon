@@ -11,10 +11,8 @@ import ChevronLeftIcon from '@/awesome-icons/solid/chevron-left.svg?react';
 import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import { CustomEmojiProvider } from '@/flavours/polyam/components/emoji/context';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
-import LegacyAnnouncements from '@/flavours/polyam/features/getting_started/containers/announcements_container';
 import { mascot, reduceMotion } from '@/flavours/polyam/initial_state';
 import { createAppSelector, useAppSelector } from '@/flavours/polyam/store';
-import { isModernEmojiEnabled } from '@/flavours/polyam/utils/environment';
 import elephantUIPlane from '@/images/elephant_ui_plane.svg';
 
 import type { IAnnouncement } from './announcement';
@@ -32,7 +30,7 @@ const announcementSelector = createAppSelector(
     (announcements.get('items')?.toJS() as IAnnouncement[] | undefined) ?? [],
 );
 
-export const ModernAnnouncements: FC = () => {
+export const Announcements: FC = () => {
   const intl = useIntl();
 
   const announcements = useAppSelector(announcementSelector);
@@ -112,7 +110,3 @@ export const ModernAnnouncements: FC = () => {
     </div>
   );
 };
-
-export const Announcements = isModernEmojiEnabled()
-  ? ModernAnnouncements
-  : LegacyAnnouncements;

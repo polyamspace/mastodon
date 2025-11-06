@@ -45,7 +45,6 @@ class UserSettings
     setting :expand_content_warnings, default: false
     setting :display_media, default: 'default', in: %w(default show_all hide_all)
     setting :auto_play, default: false
-    setting :use_system_emoji_font, default: false
     setting :emoji_style, default: 'auto', in: %w(auto native twemoji)
     setting :visible_reactions, default: 6
     setting :notification_sound, default: nil

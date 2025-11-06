@@ -84,13 +84,6 @@ export const DetailedStatus: React.FC<{
 
   const { signedIn } = useIdentity();
 
-  const rewriteMentions = useAppSelector(
-    (state) => state.local_settings.get('rewrite_mentions', false) as boolean,
-  );
-  const tagMisleadingLinks = useAppSelector(
-    (state) =>
-      state.local_settings.get('tag_misleading_links', false) as boolean,
-  );
   const letterboxMedia = useAppSelector(
     (state) =>
       state.local_settings.getIn(['media', 'letterbox'], false) as boolean,
@@ -464,8 +457,6 @@ export const DetailedStatus: React.FC<{
             <StatusContent
               status={status}
               onTranslate={handleTranslate}
-              tagLinks={tagMisleadingLinks}
-              rewriteMentions={rewriteMentions}
               collapsed={false}
               {...(statusContentProps as any)}
             />
