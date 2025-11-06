@@ -9314,11 +9314,11 @@ noscript {
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
+  }
 
-    // Polyam: Show empty bar in announcements
-    .reactions-bar--empty {
-      display: flex;
-    }
+  // Polyam: Show empty bar in announcements
+  .reactions-bar--empty {
+    display: flex;
   }
 
   &__pagination {
