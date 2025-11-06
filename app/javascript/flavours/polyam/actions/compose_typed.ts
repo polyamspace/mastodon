@@ -193,7 +193,8 @@ export const pasteLinkCompose = createDataLoadingThunk(
       composeState.get('is_submitting') ||
       composeState.get('poll') ||
       composeState.get('is_uploading') ||
-      composeState.get('id')
+      composeState.get('id') ||
+      composeState.get('privacy') === 'direct'
     )
       return;
 
