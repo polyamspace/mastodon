@@ -52,6 +52,7 @@ const BackButton: React.FC<{
         compact: onlyIcon,
       })}
       aria-label={intl.formatMessage(messages.back)}
+      type='button'
     >
       <Icon
         id='chevron-left'
@@ -171,6 +172,7 @@ export const ColumnHeader: React.FC<Props> = ({
       <button
         className='text-btn column-header__setting-btn'
         onClick={handlePin}
+        type='button'
       >
         <Icon id='times' icon={CloseIcon} />{' '}
         <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' />
@@ -184,6 +186,7 @@ export const ColumnHeader: React.FC<Props> = ({
           aria-label={intl.formatMessage(messages.moveLeft)}
           className='icon-button column-header__setting-btn'
           onClick={handleMoveLeft}
+          type='button'
         >
           <Icon id='chevron-left' icon={ChevronLeftIcon} />
         </button>
@@ -192,6 +195,7 @@ export const ColumnHeader: React.FC<Props> = ({
           aria-label={intl.formatMessage(messages.moveRight)}
           className='icon-button column-header__setting-btn'
           onClick={handleMoveRight}
+          type='button'
         >
           <Icon id='chevron-right' icon={ChevronRightIcon} />
         </button>
@@ -202,6 +206,7 @@ export const ColumnHeader: React.FC<Props> = ({
       <button
         className='text-btn column-header__setting-btn'
         onClick={handlePin}
+        type='button'
       >
         <Icon id='plus' icon={AddIcon} />{' '}
         <FormattedMessage id='column_header.pin' defaultMessage='Pin' />
@@ -236,6 +241,7 @@ export const ColumnHeader: React.FC<Props> = ({
           collapsed ? messages.show : messages.hide,
         )}
         onClick={handleToggleClick}
+        type='button'
       >
         <i className='icon-with-badge'>
           <Icon id='sliders' icon={SettingsIcon} />
@@ -255,7 +261,11 @@ export const ColumnHeader: React.FC<Props> = ({
           <>
             {backButton}
 
-            <button onClick={handleTitleClick} className='column-header__title'>
+            <button
+              onClick={handleTitleClick}
+              className='column-header__title'
+              type='button'
+            >
               {!backButton && (
                 <Icon
                   id={icon}
