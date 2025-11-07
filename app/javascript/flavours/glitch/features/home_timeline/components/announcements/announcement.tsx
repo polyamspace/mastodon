@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
 import type { FC } from 'react';
+import { useEffect, useState } from 'react';
 
 import { FormattedDate, FormattedMessage } from 'react-intl';
 
+import { dismissAnnouncement } from '@/flavours/glitch/actions/announcements';
 import type { ApiAnnouncementJSON } from '@/flavours/glitch/api_types/announcements';
 import { AnimateEmojiProvider } from '@/flavours/glitch/components/emoji/context';
 import { EmojiHTML } from '@/flavours/glitch/components/emoji/html';
+import { useAppDispatch } from '@/flavours/glitch/store';
 
 import { ReactionsBar } from './reactions';
 
@@ -22,13 +24,23 @@ export const Announcement: FC<AnnouncementProps> = ({
   announcement,
   selected,
 }) => {
-  const [unread, setUnread] = useState(!announcement.read);
+  const { read, id } = announcement;
+
+  // Dismiss announcement when it becomes active.
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    // Only update `unread` marker once the announcement is out of view
-    if (!selected && unread !== !announcement.read) {
-      setUnread(!announcement.read);
+    if (selected && !read) {
+      dispatch(dismissAnnouncement(id));
     }
-  }, [announcement.read, selected, unread]);
+  }, [selected, id, dispatch, read]);
+
+  // But visually show the announcement as read only when it goes out of view.
+  const [unread, setUnread] = useState(!read);
+  useEffect(() => {
+    if (!selected && unread !== !read) {
+      setUnread(!read);
+    }
+  }, [selected, unread, read]);
 
   return (
     <AnimateEmojiProvider className='announcements__item'>

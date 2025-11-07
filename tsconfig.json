@@ -28,7 +28,8 @@
       "styles/*": ["app/javascript/styles/*"],
       "flavours/polyam": ["app/javascript/flavours/polyam"],
       "flavours/polyam/*": ["app/javascript/flavours/polyam/*"]
-    }
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": [
     "vite.config.mts",
