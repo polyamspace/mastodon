@@ -507,7 +507,6 @@ class Status extends ImmutablePureComponent {
     const connectToRoot = rootId && rootId === status.get('in_reply_to_id');
     const connectReply = nextInReplyToId && nextInReplyToId === status.get('id');
     const matchedFilters = status.get('matched_filters');
-    const hidden_by_moderators = status.get('hidden_by_moderators');
 
     if (hidden) {
       return (
@@ -521,18 +520,16 @@ class Status extends ImmutablePureComponent {
       );
     }
 
-    if (this.state.showDespiteFilter === undefined ? (hidden_by_moderators ? hidden_by_moderators : matchedFilters) : this.state.showDespiteFilter) {
+    if (this.state.showDespiteFilter === undefined ? matchedFilters : this.state.showDespiteFilter) {
       const minHandlers = this.props.muted ? {} : {
         moveUp: this.handleHotkeyMoveUp,
         moveDown: this.handleHotkeyMoveDown,
       };
 
-      const message = hidden_by_moderators ? <FormattedMessage id='status.hidden_by_moderators' defaultMessage='This toot has been hidden by the moderators of {domain}.' values={{ domain }} /> : <><FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.</>;
-
       return (
         <Hotkeys handlers={minHandlers} focusable={!unfocusable}>
           <div className='status__wrapper status__wrapper--filtered focusable' tabIndex={unfocusable ? null : 0} ref={this.handleRef}>
-            {message}
+            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.
             {' '}
             <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
               <FormattedMessage id='status.show_filter_reason' defaultMessage='Show anyway' />

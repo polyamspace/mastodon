@@ -18,7 +18,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state, { contextType }) => ({
-  filters: Array.from(state.get('filters').values()).filter(result => result.get('id') !== '-99').map((filter) => [
+  filters: Array.from(state.get('filters').values()).map((filter) => [
     filter.get('id'),
     filter.get('title'),
     filter.get('keywords')?.map((keyword) => keyword.get('keyword')).join('\n'),
