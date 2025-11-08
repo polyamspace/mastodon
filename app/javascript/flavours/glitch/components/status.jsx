@@ -546,7 +546,7 @@ class Status extends ImmutablePureComponent {
     attachments = status.get('media_attachments');
 
     if (pictureInPicture.get('inUse')) {
-      media.push(<PictureInPicturePlaceholder key='pip-placeholder' />);
+      media.push(<PictureInPicturePlaceholder />);
       mediaIcons.push('video-camera');
     } else if (attachments.size > 0) {
       const language = status.getIn(['translation', 'language']) || status.get('language');
@@ -556,7 +556,6 @@ class Status extends ImmutablePureComponent {
           <AttachmentList
             compact
             media={status.get('media_attachments')}
-            key='media-unknown'
           />,
         );
       } else if (['image', 'gifv', 'unknown'].includes(status.getIn(['media_attachments', 0, 'type'])) || status.get('media_attachments').size > 1) {
@@ -586,7 +585,7 @@ class Status extends ImmutablePureComponent {
         const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
 
         media.push(
-          <Bundle key='bundle-audio' fetchComponent={Audio} loading={this.renderLoadingAudioPlayer} >
+          <Bundle fetchComponent={Audio} loading={this.renderLoadingAudioPlayer} >
             {Component => (
               <Component
                 src={attachment.get('url')}
@@ -613,7 +612,7 @@ class Status extends ImmutablePureComponent {
         const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
 
         media.push(
-          <Bundle key='bundle-video' fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
+          <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
             {Component => (<Component
               preview={attachment.get('preview_url')}
               frameRate={attachment.getIn(['meta', 'original', 'frame_rate'])}
@@ -643,7 +642,6 @@ class Status extends ImmutablePureComponent {
           onOpenMedia={this.handleOpenMedia}
           card={status.get('card')}
           sensitive={status.get('sensitive')}
-          key='media-card'
         />,
       );
       mediaIcons.push('link');

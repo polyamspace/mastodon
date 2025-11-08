@@ -116,9 +116,6 @@ const initialState = ImmutableMap({
     adaptiveStroke: true,
     smoothing: false,
   }),
-  // Polyam
-  last_status_in_thread: null,
-  highlighted: false,
 
   // Quotes
   quoted_status_id: null,
@@ -185,7 +182,6 @@ function clearAll(state) {
     map.set('progress', 0);
     map.set('poll', null);
     map.set('idempotencyKey', uuid());
-    map.set('last_status_in_thread', null);
     map.set('quoted_status_id', null);
     map.set('quote_policy', state.get('default_quote_policy'));
   });
@@ -204,7 +200,7 @@ function continueThread (state, status) {
       map.set('spoiler_text', '');
     }
     map.set('is_submitting', false);
-    map.set('in_reply_to', state.get('last_status_in_thread') == null ? status.id : state.get('last_status_in_thread'));
+    map.set('in_reply_to', status.id);
     map.update(
       'advanced_options',
       map => map.merge(new ImmutableMap({ do_not_federate: status.local_only })),
@@ -217,8 +213,6 @@ function continueThread (state, status) {
     map.set('focusDate', new Date());
     map.set('caretPosition', null);
     map.set('preselectDate', new Date());
-    map.set('id', null);
-    map.set('last_status_in_thread', status.id);
   });
 }
 
@@ -443,8 +437,6 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('fetching_link', null);
   }
 
-  let do_not_federate, text;
-
   switch(action.type) {
   case STORE_HYDRATE:
     return hydrate(state, action.state.get('compose'));
@@ -553,7 +545,6 @@ export const composeReducer = (state = initialState, action) => {
         map => map.mergeWith(overwrite, state.get('default_advanced_options')),
       );
       map.set('idempotencyKey', uuid());
-      map.set('last_status_in_thread', null);
     });
   case COMPOSE_SUBMIT_REQUEST:
     return state.set('is_submitting', true);
@@ -633,8 +624,8 @@ export const composeReducer = (state = initialState, action) => {
   case COMPOSE_DOODLE_SET:
     return state.mergeIn(['doodle'], action.options);
   case REDRAFT: {
-    do_not_federate = !!action.status.get('local_only');
-    text = action.raw_text || unescapeHTML(expandMentions(action.status));
+    const do_not_federate = !!action.status.get('local_only');
+    let text = action.raw_text || unescapeHTML(expandMentions(action.status));
     if (do_not_federate) text = text.replace(/ ?👁\ufe0f?\u200b?$/, '');
     return state.withMutations(map => {
       map.set('text', text);
@@ -683,12 +674,9 @@ export const composeReducer = (state = initialState, action) => {
     });
   }
   case COMPOSE_SET_STATUS:
-    do_not_federate = !!action.status.get('local_only');
-    text = action.text || unescapeHTML(expandMentions(action.status));
-    if (do_not_federate) text = text.replace(/ ?👁\ufe0f?\u200b?$/, '');
     return state.withMutations(map => {
       map.set('id', action.status.get('id'));
-      map.set('text', text);
+      map.set('text', action.text);
       map.set('content_type', action.content_type || 'text/plain');
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('privacy', action.status.get('visibility'));
