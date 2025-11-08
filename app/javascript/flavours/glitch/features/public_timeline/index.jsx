@@ -169,7 +169,6 @@ class PublicTimeline extends PureComponent {
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           regex={this.props.regex}
-          columnId={columnId}
         />
 
         <Helmet>
