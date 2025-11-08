@@ -10,7 +10,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
 
-import { missingAltTextModal, publishButtonText as customPublishButtonText } from 'flavours/glitch/initial_state';
+import { missingAltTextModal } from 'flavours/glitch/initial_state';
 
 import AutosuggestInput from 'flavours/glitch/components/autosuggest_input';
 import AutosuggestTextarea from 'flavours/glitch/components/autosuggest_textarea';
@@ -272,17 +272,6 @@ class ComposeForm extends ImmutablePureComponent {
     const { intl, onPaste, autoFocus, withoutNavigation, maxChars, isSubmitting } = this.props;
     const { highlighted } = this.state;
 
-    // Polyam: Custom publish button text
-    let publishText = '';
-
-    if (this.props.isEditing) {
-      publishText = intl.formatMessage(messages.saveChanges);
-    } else if (this.props.isInReply) {
-      publishText = intl.formatMessage(messages.reply);
-    } else {
-      publishText = customPublishButtonText || intl.formatMessage(messages.publish);
-    }
-
     return (
       <form className='compose-form' onSubmit={this.handleSubmit}>
         <ReplyIndicator />
@@ -371,7 +360,11 @@ class ComposeForm extends ImmutablePureComponent {
                   disabled={!this.canSubmit()}
                   loading={isSubmitting}
                 >
-                  {publishText}
+                  {intl.formatMessage(
+                    this.props.isEditing ?
+                      messages.saveChanges :
+                      (this.props.isInReply ? messages.reply : messages.publish)
+                  )}
                 </Button>
               </div>
             </div>
