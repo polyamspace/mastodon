@@ -53,7 +53,6 @@ interface InitialStateMeta {
   max_reactions: number;
   visible_reactions: number;
   notification_sound: { src: string; type: string }[];
-  search_preview: boolean;
 }
 
 interface Role {
@@ -186,7 +185,6 @@ export const defaultContentType = getMeta('default_content_type');
 export const maxReactions = initialState?.max_reactions ?? 1;
 export const visibleReactions = getMeta('visible_reactions');
 export const notificationSound = getMeta('notification_sound');
-export const searchPreview = getMeta('search_preview');
 export function getAccessToken(): string | undefined {
   return getMeta('access_token');
 }
