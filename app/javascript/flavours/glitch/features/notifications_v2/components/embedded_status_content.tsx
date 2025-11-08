@@ -5,7 +5,6 @@ import type { List } from 'immutable';
 import { EmojiHTML } from '@/flavours/glitch/components/emoji/html';
 import { useElementHandledLink } from '@/flavours/glitch/components/status/handled_link';
 import type { Status } from '@/flavours/glitch/models/status';
-import { highlightCode } from 'flavours/glitch/utils/html';
 
 import type { Mention } from './embedded_status';
 
@@ -33,7 +32,7 @@ export const EmbeddedStatusContent: React.FC<{
       {...htmlHandlers}
       className={className}
       lang={status.get('language') as string}
-      htmlString={highlightCode(status.get('contentHtml') as string)}
+      htmlString={status.get('contentHtml') as string}
     />
   );
 };
