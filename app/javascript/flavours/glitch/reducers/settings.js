@@ -23,7 +23,6 @@ const initialState = ImmutableMap({
       quote: true,
       reblog: true,
       reply: true,
-      thread: true,
       direct: true,
     }),
 
