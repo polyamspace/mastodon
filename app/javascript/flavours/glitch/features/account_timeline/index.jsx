@@ -167,7 +167,7 @@ class AccountTimeline extends ImmutablePureComponent {
     }
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef}>
+      <Column ref={this.setRef}>
         <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
 
         <StatusList

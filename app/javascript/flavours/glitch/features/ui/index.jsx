@@ -6,7 +6,6 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import classNames from 'classnames';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import Favico from 'favico.js';
@@ -263,7 +262,7 @@ class UI extends PureComponent {
     unreadNotifications: PropTypes.number,
     showFaviconBadge: PropTypes.bool,
     hicolorPrivacyIcons: PropTypes.bool,
-    moved: ImmutablePropTypes.map,
+    moved: PropTypes.map,
     layout: PropTypes.string.isRequired,
     firstLaunch: PropTypes.bool,
     newAccount: PropTypes.bool,

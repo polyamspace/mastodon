@@ -164,7 +164,7 @@ class Followers extends ImmutablePureComponent {
     const remoteMessage = remote ? <RemoteHint accountId={accountId} url={remoteUrl} /> : null;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef}>
+      <Column ref={this.setRef}>
         <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
 
         <ScrollableList
