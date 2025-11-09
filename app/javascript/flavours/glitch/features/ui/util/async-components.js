@@ -86,10 +86,6 @@ export function Favourites () {
   return import('../../favourites');
 }
 
-export function Reactions () {
-  return import('../../reactions');
-}
-
 export function Quotes () {
   return import('../../quotes');
 }

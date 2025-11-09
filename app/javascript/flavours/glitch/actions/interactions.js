@@ -47,24 +47,6 @@ export const UNBOOKMARK_REQUEST = 'UNBOOKMARKED_REQUEST';
 export const UNBOOKMARK_SUCCESS = 'UNBOOKMARKED_SUCCESS';
 export const UNBOOKMARK_FAIL    = 'UNBOOKMARKED_FAIL';
 
-export const REACTION_UPDATE = 'REACTION_UPDATE';
-
-export const REACTION_ADD_REQUEST = 'REACTION_ADD_REQUEST';
-export const REACTION_ADD_SUCCESS = 'REACTION_ADD_SUCCESS';
-export const REACTION_ADD_FAIL    = 'REACTION_ADD_FAIL';
-
-export const REACTION_REMOVE_REQUEST = 'REACTION_REMOVE_REQUEST';
-export const REACTION_REMOVE_SUCCESS = 'REACTION_REMOVE_SUCCESS';
-export const REACTION_REMOVE_FAIL    = 'REACTION_REMOVE_FAIL';
-
-export const REACTIONS_FETCH_REQUEST = 'REACTIONS_FETCH_REQUEST';
-export const REACTIONS_FETCH_SUCCESS = 'REACTIONS_FETCH_SUCCESS';
-export const REACTIONS_FETCH_FAIL    = 'REACTIONS_FETCH_FAIL';
-
-export const REACTIONS_EXPAND_REQUEST = 'REACTIONS_EXPAND_REQUEST';
-export const REACTIONS_EXPAND_SUCCESS = 'REACTIONS_EXPAND_SUCCESS';
-export const REACTIONS_EXPAND_FAIL   = 'REACTIONS_EXPAND_FAIL';
-
 export * from "./interactions_typed";
 
 export function favourite(status) {
@@ -379,86 +361,6 @@ export function expandFavouritesFail(id, error) {
   };
 }
 
-export function fetchReactions(id) {
-  return (dispatch) => {
-    dispatch(fetchReactionsRequest(id));
-
-    api().get(`/api/v1/statuses/${id}/reacted_by`).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(importFetchedAccounts(response.data));
-      dispatch(fetchReactionsSuccess(id, response.data, next ? next.uri : null));
-      dispatch(fetchRelationships(response.data.map(item => item.id)));
-    }).catch(error => {
-      dispatch(fetchReactionsFail(id, error));
-    });
-  };
-}
-
-export function fetchReactionsRequest(id) {
-  return {
-    type: REACTIONS_FETCH_REQUEST,
-    id,
-  };
-}
-
-export function fetchReactionsSuccess(id, accounts, next) {
-  return {
-    type: REACTIONS_FETCH_SUCCESS,
-    id,
-    accounts,
-    next,
-  };
-}
-
-export function fetchReactionsFail(id, error) {
-  return {
-    type: REACTIONS_FETCH_FAIL,
-    id,
-    error,
-  };
-}
-
-export function expandReactions(id) {
-  return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'reacted_by', id, 'next']);
-    if (url === null) return;
-
-    dispatch(expandReactionsRequest(id));
-
-    api().get(url).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
-
-      dispatch(importFetchedAccounts(response.data));
-      dispatch(expandReactionsSuccess(id, response.data, next ? next.uri : null));
-      dispatch(fetchRelationships(response.data.map(item => item.id)));
-    }).catch(error => dispatch(expandReactionsFail(id, error)));
-  };
-}
-
-export function expandReactionsRequest(id) {
-  return {
-    type: REACTIONS_EXPAND_REQUEST,
-    id,
-  };
-}
-
-export function expandReactionsSuccess(id, accounts, next) {
-  return {
-    type: REACTIONS_EXPAND_SUCCESS,
-    id,
-    accounts,
-    next,
-  };
-}
-
-export function expandReactionsFail(id, error) {
-  return {
-    type: REACTIONS_EXPAND_FAIL,
-    id,
-    error,
-  };
-}
-
 export function pin(status) {
   return (dispatch) => {
     dispatch(pinRequest(status));
@@ -534,79 +436,6 @@ export function unpinFail(status, error) {
     skipLoading: true,
   };
 }
-
-export const addReaction = (statusId, name, url) => (dispatch, getState) => {
-  const status = getState().get('statuses').get(statusId);
-  let alreadyAdded = false;
-  if (status) {
-    const reaction = status.get('reactions').find(x => x.get('name') === name);
-    if (reaction && reaction.get('me')) {
-      alreadyAdded = true;
-    }
-  }
-  if (!alreadyAdded) {
-    dispatch(addReactionRequest(statusId, name, url));
-  }
-
-  // encodeURIComponent is required for the Keycap Number Sign emoji, see:
-  // <https://github.com/glitch-soc/mastodon/pull/1980#issuecomment-1345538932>
-  api().post(`/api/v1/statuses/${statusId}/react/${encodeURIComponent(name)}`).then(() => {
-    dispatch(addReactionSuccess(statusId, name));
-  }).catch(err => {
-    if (!alreadyAdded) {
-      dispatch(addReactionFail(statusId, name, err));
-    }
-  });
-};
-
-export const addReactionRequest = (statusId, name, url) => ({
-  type: REACTION_ADD_REQUEST,
-  id: statusId,
-  name,
-  url,
-});
-
-export const addReactionSuccess = (statusId, name) => ({
-  type: REACTION_ADD_SUCCESS,
-  id: statusId,
-  name,
-});
-
-export const addReactionFail = (statusId, name, error) => ({
-  type: REACTION_ADD_FAIL,
-  id: statusId,
-  name,
-  error,
-});
-
-export const removeReaction = (statusId, name) => (dispatch) => {
-  dispatch(removeReactionRequest(statusId, name));
-
-  api().post(`/api/v1/statuses/${statusId}/unreact/${encodeURIComponent(name)}`).then(() => {
-    dispatch(removeReactionSuccess(statusId, name));
-  }).catch(err => {
-    dispatch(removeReactionFail(statusId, name, err));
-  });
-};
-
-export const removeReactionRequest = (statusId, name) => ({
-  type: REACTION_REMOVE_REQUEST,
-  id: statusId,
-  name,
-});
-
-export const removeReactionSuccess = (statusId, name) => ({
-  type: REACTION_REMOVE_SUCCESS,
-  id: statusId,
-  name,
-});
-
-export const removeReactionFail = (statusId, name, error) => ({
-  type: REACTION_REMOVE_FAIL,
-  id: statusId,
-  name,
-  error,
-});
 
 function toggleReblogWithoutConfirmation(status, visibility) {
   return (dispatch) => {

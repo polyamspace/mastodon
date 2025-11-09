@@ -1611,7 +1611,6 @@
 
     border-bottom: 0;
 
-    // Reactions: .reactions-bar
     & > .status__content,
     & > .status__action-bar,
     & > .media-gallery,
@@ -1624,8 +1623,7 @@
     & > .hashtag-bar,
     & > .content-warning,
     & > .filter-warning,
-    & > .status__quote,
-    & > .reactions-bar {
+    & > .status__quote {
       margin-inline-start: var(--thread-margin);
       width: calc(100% - var(--thread-margin));
     }
@@ -1869,12 +1867,6 @@
 
   &-spacer {
     flex-grow: 1;
-  }
-
-  // Reactions
-  & > .emoji-picker-dropdown {
-    width: 24px;
-    height: 24px;
   }
 }
 
@@ -9385,11 +9377,6 @@ noscript {
     height: 0.625rem;
   }
 
-  // Polyam: Show empty bar in announcements
-  .reactions-bar--empty {
-    display: flex;
-  }
-
   &__pagination {
     padding: 15px;
     color: $darker-text-color;
@@ -9514,8 +9501,6 @@ noscript {
   }
 
   &--empty {
-    display: none; // Polyam: hide by default
-
     .emoji-button {
       padding: 0;
     }
@@ -11661,8 +11646,7 @@ noscript {
   .status-card,
   .hashtag-bar,
   .content-warning,
-  .filter-warning,
-  .reactions-bar {
+  .filter-warning {
     margin-inline-start: var(--status-gutter-width);
     width: calc(100% - var(--status-gutter-width));
   }

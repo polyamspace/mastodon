@@ -15,7 +15,6 @@ import { Avatar } from 'flavours/glitch/components/avatar';
 import { ContentWarning } from 'flavours/glitch/components/content_warning';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { Icon } from 'flavours/glitch/components/icon';
-import { StatusReactions } from 'flavours/glitch/components/status_reactions';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 
 import { EmbeddedStatusContent } from './embedded_status_content';
@@ -144,11 +143,6 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
           )}
         </div>
       )}
-
-      <StatusReactions
-        statusId={status.get('id') as string}
-        reactions={status.get('reactions')}
-      />
     </AnimateEmojiProvider>
   );
 };

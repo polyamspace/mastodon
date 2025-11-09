@@ -22,8 +22,7 @@ import { accountAdminLink, statusAdminLink } from 'flavours/glitch/utils/backend
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import { Dropdown } from 'flavours/glitch/components/dropdown_menu';
-import EmojiPickerDropdown from '../../features/compose/containers/emoji_picker_dropdown_container';
-import { me, quickBoosting, maxReactions } from '../../initial_state';
+import { me, quickBoosting } from '../../initial_state';
 
 import { IconButton } from '../icon_button';
 import { RelativeTimestamp } from '../relative_timestamp';
@@ -45,7 +44,6 @@ const messages = defineMessages({
   replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
   removeFavourite: { id: 'status.remove_favourite', defaultMessage: 'Remove from favorites' },
-  react: { id: 'status.react', defaultMessage: 'React' },
   bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
   removeBookmark: { id: 'status.remove_bookmark', defaultMessage: 'Remove bookmark' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
@@ -84,7 +82,6 @@ class StatusActionBar extends ImmutablePureComponent {
     contextType: PropTypes.string,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
-    onReactionAdd: PropTypes.func,
     onDelete: PropTypes.func,
     onRevokeQuote: PropTypes.func,
     onQuotePolicyChange: PropTypes.func,
@@ -148,10 +145,6 @@ class StatusActionBar extends ImmutablePureComponent {
     } else {
       this.props.onInteractionModal(this.props.status);
     }
-  };
-
-  handleEmojiPick = data => {
-    this.props.onReactionAdd(this.props.status.get('id'), data.native.replace(/:/g, ''), data.imageUrl);
   };
 
   handleBookmarkClick = (e) => {
@@ -226,8 +219,6 @@ class StatusActionBar extends ImmutablePureComponent {
   handleHideClick = () => {
     this.props.onFilter();
   };
-
-  handleNoOp = () => {}; // hack for reaction add button
 
   render () {
     const { status, statusQuoteState, quotedAccountId, contextType, intl, withDismiss, withCounters, showReplyCount, scrollKey } = this.props;
@@ -348,7 +339,6 @@ class StatusActionBar extends ImmutablePureComponent {
       </div>
     );
 
-    const canReact = signedIn && status.get('reactions').filter(r => r.get('count') > 0 && r.get('me')).size < maxReactions;
     const bookmarkTitle = intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark);
     const favouriteTitle = intl.formatMessage(status.get('favourited') ? messages.removeFavourite : messages.favourite);
 
@@ -372,9 +362,6 @@ class StatusActionBar extends ImmutablePureComponent {
         </div>
         <div className='status__action-bar__button-wrapper'>
           <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={favouriteTitle} icon='star' iconComponent={status.get('favourited') ? StarIcon : StarBorderIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
-        </div>
-        <div className='status__action-bar__button-wrapper'>
-          <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} disabled={!canReact} inverted={false} />
         </div>
         <div className='status__action-bar__button-wrapper'>
           <IconButton className='status__action-bar-button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={bookmarkTitle} icon='bookmark' iconComponent={status.get('bookmarked') ? BookmarkIcon : BookmarkBorderIcon} onClick={this.handleBookmarkClick} />

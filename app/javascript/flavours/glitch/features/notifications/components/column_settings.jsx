@@ -125,17 +125,6 @@ class ColumnSettings extends PureComponent {
           </div>
         </section>
 
-        <section role='group' aria-labelledby='notifications-reaction'>
-          <h3 id='notifications-reaction'><FormattedMessage id='notifications.column_settings.reaction' defaultMessage='Reactions:' /></h3>
-
-          <div className='column-settings__pillbar'>
-            <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'reaction']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'reaction']} onChange={this.onPushChange} label={pushStr} />}
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'reaction']} onChange={onChange} label={showStr} />
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'reaction']} onChange={onChange} label={soundStr} />
-          </div>
-        </section>
-
         <section role='group' aria-labelledby='notifications-mention'>
           <h3 id='notifications-mention'><FormattedMessage id='notifications.column_settings.mention' defaultMessage='Mentions:' /></h3>
 
