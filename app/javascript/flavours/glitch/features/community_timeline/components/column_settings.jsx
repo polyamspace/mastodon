@@ -7,7 +7,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import SettingText from 'flavours/glitch/components/setting_text';
 import SettingToggle from 'flavours/glitch/features/notifications/components/setting_toggle';
-import { showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
@@ -30,8 +29,6 @@ class ColumnSettings extends PureComponent {
       <div className='column-settings'>
         <section>
           <div className='column-settings__row'>
-            {showReblogsPublicTimelines && <SettingToggle prefix='community_timeline' settings={settings} settingPath={['shows', 'reblog']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_reblogs' defaultMessage='Show boosts' />} />}
-            {showRepliesPublicTimelines && <SettingToggle prefix='community_timeline' settings={settings} settingPath={['shows', 'reply']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_replies' defaultMessage='Show replies' />} />}
             <SettingToggle settings={settings} settingPath={['other', 'onlyMedia']} onChange={onChange} label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />} />
           </div>
         </section>

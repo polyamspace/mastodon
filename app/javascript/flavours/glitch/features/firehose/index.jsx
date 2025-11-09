@@ -14,7 +14,7 @@ import { connectPublicStream, connectCommunityStream } from 'flavours/glitch/act
 import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/glitch/actions/timelines';
 import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
 import SettingText from 'flavours/glitch/components/setting_text';
-import { localLiveFeedAccess, remoteLiveFeedAccess, domain, showReblogsPublicTimelines, showRepliesPublicTimelines } from 'flavours/glitch/initial_state';
+import { localLiveFeedAccess, remoteLiveFeedAccess, domain } from 'flavours/glitch/initial_state';
 import { canViewFeed } from 'flavours/glitch/permissions';
 import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
 
@@ -49,8 +49,6 @@ const ColumnSettings = () => {
     <div className='column-settings'>
       <section>
         <div className='column-settings__row'>
-          {showReblogsPublicTimelines && <SettingToggle settings={settings} settingPath={['shows', 'reblog']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_reblogs' defaultMessage='Show boosts' />} />}
-          {showRepliesPublicTimelines && <SettingToggle settings={settings} settingPath={['shows', 'reply']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_replies' defaultMessage='Show replies' />} />}
           <SettingToggle
             settings={settings}
             settingPath={['onlyMedia']}
@@ -92,9 +90,6 @@ const Firehose = ({ feedType, multiColumn }) => {
   const allowLocalOnly = useAppSelector((state) => state.getIn(['settings', 'firehose', 'allowLocalOnly']));
   const regex = useAppSelector((state) => state.getIn(['settings', 'firehose', 'regex', 'body']));
 
-  const showReblogs = useAppSelector((state) => state.getIn(['settings', 'firehose', 'shows', 'reblog'], true));
-  const showReplies = useAppSelector((state) => state.getIn(['settings', 'firehose', 'shows', 'reply'], true));
-
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
   const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
 
@@ -102,17 +97,17 @@ const Firehose = ({ feedType, multiColumn }) => {
     () => {
       switch(feedType) {
       case 'community':
-        dispatch(addColumn('COMMUNITY', { other: { onlyMedia }, regex: { body: regex }, shows: { reblog: showReblogs, reply: showReplies} }));
+        dispatch(addColumn('COMMUNITY', { other: { onlyMedia }, regex: { body: regex } }));
         break;
       case 'public':
-        dispatch(addColumn('PUBLIC', { other: { onlyMedia, allowLocalOnly }, regex: { body: regex }, shows: { reblog: showReblogs, reply: showReplies}  }));
+        dispatch(addColumn('PUBLIC', { other: { onlyMedia, allowLocalOnly }, regex: { body: regex }  }));
         break;
       case 'public:remote':
-        dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true }, regex: { body: regex }, shows: { reblog: showReblogs, reply: showReplies}  }));
+        dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true }, regex: { body: regex }  }));
         break;
       }
     },
-    [dispatch, onlyMedia, feedType, allowLocalOnly, regex, showReblogs, showReplies],
+    [dispatch, onlyMedia, feedType, allowLocalOnly, regex],
   );
 
   const handleLoadMore = useCallback(
@@ -249,7 +244,6 @@ const Firehose = ({ feedType, multiColumn }) => {
         emptyMessage={canViewSelectedFeed ? emptyMessage : disabledTimelineMessage}
         bindToDocument={!multiColumn}
         regex={regex}
-        firehose
       />
 
       <Helmet>

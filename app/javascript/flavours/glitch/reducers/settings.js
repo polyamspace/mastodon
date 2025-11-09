@@ -96,33 +96,18 @@ const initialState = ImmutableMap({
     onlyMedia: false,
     allowLocalOnly: true,
 
-    shows: ImmutableMap({
-      reblog: true,
-      reply: true,
-    }),
-
     regex: ImmutableMap({
       body: '',
     }),
   }),
 
   community: ImmutableMap({
-    shows: ImmutableMap({
-      reblog: true,
-      reply: true,
-    }),
-
     regex: ImmutableMap({
       body: '',
     }),
   }),
 
   public: ImmutableMap({
-    shows: ImmutableMap({
-      reblog: true,
-      reply: true,
-    }),
-
     regex: ImmutableMap({
       body: '',
     }),

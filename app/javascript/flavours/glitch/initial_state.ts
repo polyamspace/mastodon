@@ -54,8 +54,6 @@ interface InitialStateMeta {
   visible_reactions: number;
   notification_sound: { src: string; type: string }[];
   search_preview: boolean;
-  show_reblogs_in_public_timelines: boolean;
-  show_replies_in_public_timelines: boolean;
 }
 
 interface Role {
@@ -189,13 +187,6 @@ export const maxReactions = initialState?.max_reactions ?? 1;
 export const visibleReactions = getMeta('visible_reactions');
 export const notificationSound = getMeta('notification_sound');
 export const searchPreview = getMeta('search_preview');
-export const showReblogsPublicTimelines = getMeta(
-  'show_reblogs_in_public_timelines',
-);
-export const showRepliesPublicTimelines = getMeta(
-  'show_replies_in_public_timelines',
-);
-
 export function getAccessToken(): string | undefined {
   return getMeta('access_token');
 }
