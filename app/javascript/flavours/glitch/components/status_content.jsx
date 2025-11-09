@@ -14,7 +14,6 @@ import { Icon } from 'flavours/glitch/components/icon';
 import { Poll } from 'flavours/glitch/components/poll';
 import { identityContextPropShape, withIdentity } from 'flavours/glitch/identity_context';
 import { languages as preloadedLanguages } from 'flavours/glitch/initial_state';
-import { highlightCode } from 'flavours/glitch/utils/html';
 
 import { EmojiHTML } from './emoji/html';
 import { HandledLink } from './status/handled_link';
@@ -192,7 +191,7 @@ class StatusContent extends PureComponent {
     const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
     const renderTranslate = this.props.onTranslate && this.props.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
 
-    const content = highlightCode(statusContent ?? getStatusContent(status));
+    const content = statusContent ?? getStatusContent(status);
     const language = status.getIn(['translation', 'language']) || status.get('language');
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.props.history,
