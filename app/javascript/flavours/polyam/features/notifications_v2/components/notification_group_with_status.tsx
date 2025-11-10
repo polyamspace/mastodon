@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback, useEffect } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import type { JSX } from 'react';
 
 import classNames from 'classnames';
@@ -88,11 +88,9 @@ export const NotificationGroupWithStatus: React.FC<{
     );
   });
 
-  const [collapsed, setCollapsed] = useState(false);
-
-  useEffect(() => {
-    setCollapsed(collapseEnabled && autoCollapse && !unread);
-  }, [autoCollapse, collapseEnabled, unread]);
+  const [collapsed, setCollapsed] = useState(
+    collapseEnabled && autoCollapse && !unread,
+  );
 
   const handleCollapseClick = useCallback(() => {
     setCollapsed(!collapsed);
