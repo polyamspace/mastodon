@@ -50,8 +50,6 @@ interface InitialStateMeta {
   terms_of_service_enabled: boolean;
   emoji_style?: string;
   default_content_type: string;
-  max_reactions: number;
-  visible_reactions: number;
   notification_sound: { src: string; type: string }[];
 }
 
@@ -81,7 +79,6 @@ export interface InitialState {
   local_settings: any;
   max_feed_hashtags: number;
   poll_limits: PollLimits;
-  max_reactions: number;
 }
 
 const element = document.getElementById('initial-state');
@@ -182,8 +179,6 @@ export const pollLimits = initialState?.poll_limits;
 export const defaultContentType = getMeta('default_content_type');
 
 // Polyam-glitch additions
-export const maxReactions = initialState?.max_reactions ?? 1;
-export const visibleReactions = getMeta('visible_reactions');
 export const notificationSound = getMeta('notification_sound');
 export function getAccessToken(): string | undefined {
   return getMeta('access_token');

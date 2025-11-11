@@ -12,7 +12,6 @@ export const allNotificationTypes: NotificationType[] = [
   'follow_request',
   'favourite',
   'reblog',
-  'reaction',
   'mention',
   'quote',
   'poll',
@@ -28,7 +27,6 @@ export const allNotificationTypes: NotificationType[] = [
 export type NotificationWithStatusType =
   | 'favourite'
   | 'reblog'
-  | 'reaction'
   | 'status'
   | 'mention'
   | 'quote'

@@ -76,7 +76,6 @@ import {
   Search,
   About,
   PrivacyPolicy,
-  Reactions,
   TermsOfService,
   AccountFeatured,
   Quotes,
@@ -221,7 +220,6 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/@:acct/:statusId/reblogs' component={Reblogs} content={children} />
             <WrappedRoute path='/@:acct/:statusId/favourites' component={Favourites} content={children} />
             <WrappedRoute path='/@:acct/:statusId/quotes' component={Quotes} content={children} />
-            <WrappedRoute path='/@:acct/:statusId/reactions' component={Reactions} content={children} />
 
             {/* Legacy routes, cannot be easily factored with other routes because they share a param name */}
             <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
@@ -229,7 +227,6 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
             <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
             <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
-            <WrappedRoute path='/statuses/:statusId/reactions' component={Reactions} content={children} />
 
             <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
             <WrappedRoute path='/blocks' component={Blocks} content={children} />
