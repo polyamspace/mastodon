@@ -47,16 +47,20 @@ export function GlitchThemes(): Plugin {
         .split(/\s*,\s*/)
         .filter((s) => !['default', 'mastodon-light'].includes(s));
 
+      const enabledFlavours = (process.env.ENABLED_FLAVOURS ?? 'polyam').split(
+        /\s*,\s*/,
+      );
+
       for (const flavourFile of glitchFlavourFiles) {
         const flavourName = path.basename(path.dirname(flavourFile));
 
-        // Polyam: Skip vanilla unless enabled
+        // Polyam: Skip not explicitly enabled flavours to save compile time
+        // TODO: Remove second condition on next version.
         if (
-          flavourName === 'vanilla' &&
-          process.env.ENABLE_VANILLA !== 'true'
-        ) {
+          !enabledFlavours.includes(flavourName) &&
+          !(process.env.ENABLE_VANILLA === 'true' && flavourName === 'vanilla')
+        )
           continue;
-        }
 
         const flavourString = await fs.readFile(flavourFile, 'utf8');
         const flavourDef = yaml.load(flavourString, {
