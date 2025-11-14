@@ -47,7 +47,6 @@ const processPasteOrDrop = (transfer, e, dispatch) => {
     try {
       const url = new URL(data);
       dispatch(pasteLinkCompose({ url }));
-      e.preventDefault();
     } catch {
       return;
     }
