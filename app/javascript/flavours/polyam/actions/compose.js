@@ -666,6 +666,7 @@ export function fetchComposeSuggestions(token) {
     case ':':
       fetchComposeSuggestionsEmojis(dispatch, getState, token);
       break;
+    case '#':
     case '＃':
       fetchComposeSuggestionsTags(dispatch, getState, token);
       break;
