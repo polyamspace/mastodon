@@ -7,6 +7,7 @@ class Themes
   include Singleton
 
   DISABLED_THEMES = ENV.fetch('DISABLED_SKINS', '').split(/\s*,\s*/).delete_if { |s| %w(system default mastodon-light).include?(s) }
+  ENABLED_FLAVOURS = ENV.fetch('ENABLED_FLAVOURS', 'polyam').split(/\s*,\s*/)
 
   THEME_COLORS = {
     dark: '#181820',
@@ -25,8 +26,9 @@ class Themes
       locales = []
       screenshots = []
 
-      # Skip vanilla flavour
-      next if name == 'vanilla' && ENV['ENABLE_VANILLA'] != 'true'
+      # Polyam: Enabled flavours var
+      # TODO: Remove second condition in next version
+      next unless ENABLED_FLAVOURS.include?(name) || (name == 'vanilla' && ENV['ENABLE_VANILLA'] == 'true')
 
       if data['locales']
         Dir.glob(File.join(dir, data['locales'], '*.{js,json}')) do |locale|
