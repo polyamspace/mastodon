@@ -105,7 +105,7 @@ export function normalizeStatus(status, normalOldStatus, { settings, bogusQuoteP
   }
 
   if (normalOldStatus) {
-    normalStatus.quote_approval ||= normalOldStatus.quote_approval;
+    normalStatus.quote_approval ||= normalOldStatus.get('quote_approval');
 
     const list = normalOldStatus.get('media_attachments');
     if (normalStatus.media_attachments && list) {
