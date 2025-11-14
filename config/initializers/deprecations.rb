@@ -29,3 +29,11 @@ if ENV.key?('WHITELIST_MODE')
     LIMITED_FEDERATION_MODE. Please update your configuration.
   MESSAGE
 end
+
+# Polyam: Deprecated env
+if ENV.key?('ENABLE_VANILLA')
+  warn(<<~MESSAGE.squish)
+    WARNING: The environment variable ENABLE_VANILLA has been replaced with
+    ENABLED_FLAVOURS. Please update your configuration.
+  MESSAGE
+end

@@ -30,6 +30,7 @@ jobs:
       RAILS_ENV: ${{ matrix.mode }}
       BUNDLE_WITH: ${{ matrix.mode }}
       SECRET_KEY_BASE_DUMMY: 1
+      ENABLED_FLAVOURS: 'glitch, polyam'
 
     steps:
       - uses: actions/checkout@v4
@@ -119,6 +120,7 @@ jobs:
       CAS_ENABLED: true
       BUNDLE_WITH: 'pam_authentication test'
       GITHUB_RSPEC: ${{ matrix.ruby-version == '.ruby-version' && github.event.pull_request && 'true' }}
+      ENABLED_FLAVOURS: 'glitch, polyam'
 
     strategy:
       fail-fast: false
