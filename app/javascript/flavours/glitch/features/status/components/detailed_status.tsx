@@ -462,6 +462,7 @@ export const DetailedStatus: React.FC<{
               <QuotedStatus
                 quote={status.get('quote')}
                 parentQuotePostId={status.get('id')}
+                contextType='thread'
               />
             )}
           </>
