@@ -9,7 +9,6 @@ import { me, reduceMotion } from 'flavours/polyam/initial_state';
 import ready from 'flavours/polyam/ready';
 import { store } from 'flavours/polyam/store';
 
-import { initializeEmoji } from './features/emoji';
 import { isProduction, isDevelopment } from './utils/environment';
 
 function main() {
@@ -30,6 +29,7 @@ function main() {
       });
     }
 
+    const { initializeEmoji } = await import('./features/emoji/index');
     initializeEmoji();
 
     const root = createRoot(mountNode);
