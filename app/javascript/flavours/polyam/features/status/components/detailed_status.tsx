@@ -396,13 +396,17 @@ export const DetailedStatus: React.FC<{
       to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reactions`}
       className='detailed-status__link'
     >
-      <span className='detailed-status__reactions'>
-        <AnimatedNumber value={status.get('reactions_count')} />
-      </span>
       <FormattedMessage
-        id='status.reactions'
-        defaultMessage='{count, plural, one {reaction} other {reactions}}'
-        values={{ count: status.get('reactions_count') }}
+        id='status.reactions_count'
+        defaultMessage='{count, plural, one {{counter} reaction} other {{counter} reactions}}'
+        values={{
+          count: status.get('reactions_count'),
+          counter: (
+            <span className='detailed-status__reactions'>
+              <AnimatedNumber value={status.get('reactions_count')} />
+            </span>
+          ),
+        }}
       />
     </Link>
   );
