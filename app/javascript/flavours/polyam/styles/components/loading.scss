@@ -15,13 +15,19 @@
   box-sizing: border-box;
   text-decoration: none;
 
-  &:hover {
-    background: var(--on-surface-color);
+  &--large {
+    padding-block: 32px;
   }
 
-  &:focus-visible {
-    outline: 2px solid $ui-button-focus-outline-color;
-    outline-offset: -2px;
+  &:is(button) {
+    &:hover {
+      background: var(--on-surface-color);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $ui-button-focus-outline-color;
+      outline-offset: -2px;
+    }
   }
 
   .icon {
