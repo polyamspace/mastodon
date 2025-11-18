@@ -8,13 +8,14 @@ import classNames from 'classnames';
 import { quoteComposeById } from '@/flavours/polyam/actions/compose_typed';
 import { toggleReblog } from '@/flavours/polyam/actions/interactions';
 import { openModal } from '@/flavours/polyam/actions/modal';
+import { fetchStatus } from '@/flavours/polyam/actions/statuses';
 import { quickBoosting } from '@/flavours/polyam/initial_state';
 import type { ActionMenuItem } from '@/flavours/polyam/models/dropdown_menu';
 import type { Status } from '@/flavours/polyam/models/status';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 import type { SomeRequired } from '@/flavours/polyam/utils/types';
 
-import type { RenderItemFn, RenderItemFnHandlers } from '../dropdown_menu';
+import type { RenderItemFn } from '../dropdown_menu';
 import { Dropdown, DropdownMenuItemContent } from '../dropdown_menu';
 import { IconButton } from '../icon_button';
 
@@ -25,18 +26,12 @@ import {
   selectStatusState,
 } from './boost_button_utils';
 
-const renderMenuItem: RenderItemFn<ActionMenuItem> = (
-  item,
-  index,
-  handlers,
-  focusRefCallback,
-) => (
+const renderMenuItem: RenderItemFn<ActionMenuItem> = (item, index, onClick) => (
   <ReblogMenuItem
     index={index}
     item={item}
-    handlers={handlers}
+    onClick={onClick}
     key={`${item.text}-${index}`}
-    focusRefCallback={focusRefCallback}
   />
 );
 
@@ -117,6 +112,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
 
   const statusId = status.get('id') as string;
   const wasBoosted = !!status.get('reblogged');
+  const quoteApproval = status.get('quote_approval');
 
   const showLoginPrompt = useCallback(() => {
     dispatch(
@@ -173,9 +169,16 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
         dispatch(toggleReblog(status.get('id'), true));
         return false;
       }
+
+      if (quoteApproval === null) {
+        dispatch(
+          fetchStatus(statusId, { forceFetch: true, alsoFetchContext: false }),
+        );
+      }
+
       return true;
     },
-    [dispatch, isLoggedIn, showLoginPrompt, status],
+    [dispatch, isLoggedIn, showLoginPrompt, status, quoteApproval, statusId],
   );
 
   return (
@@ -208,16 +211,10 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
 interface ReblogMenuItemProps {
   item: ActionMenuItem;
   index: number;
-  handlers: RenderItemFnHandlers;
-  focusRefCallback?: (c: HTMLAnchorElement | HTMLButtonElement | null) => void;
+  onClick: React.MouseEventHandler;
 }
 
-const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
-  index,
-  item,
-  handlers,
-  focusRefCallback,
-}) => {
+const ReblogMenuItem: FC<ReblogMenuItemProps> = ({ index, item, onClick }) => {
   const { text, highlighted, disabled } = item;
 
   return (
@@ -227,12 +224,7 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
       })}
       key={`${text}-${index}`}
     >
-      <button
-        {...handlers}
-        ref={focusRefCallback}
-        aria-disabled={disabled}
-        data-index={index}
-      >
+      <button onClick={onClick} aria-disabled={disabled} data-index={index}>
         <DropdownMenuItemContent item={item} />
       </button>
     </li>
