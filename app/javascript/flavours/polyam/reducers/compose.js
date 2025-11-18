@@ -219,6 +219,7 @@ function continueThread (state, status) {
     map.set('focusDate', new Date());
     map.set('caretPosition', null);
     map.set('preselectDate', new Date());
+    map.set('quoted_status_id', null);
     map.set('id', null);
     map.set('last_status_in_thread', status.id);
   });
