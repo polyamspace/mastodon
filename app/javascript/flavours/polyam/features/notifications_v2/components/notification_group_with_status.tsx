@@ -78,7 +78,7 @@ export const NotificationGroupWithStatus: React.FC<{
       ]) as boolean,
   );
 
-  const autoCollapse = useAppSelector((state) => {
+  const autoCollapseEnabled = useAppSelector((state) => {
     const autoCollapseSettings = (
       state.local_settings as ImmutableMap<string, unknown>
     ).getIn(['collapsed', 'auto']) as ImmutableMap<string, unknown>;
@@ -88,15 +88,16 @@ export const NotificationGroupWithStatus: React.FC<{
     );
   });
 
-  const isCollapsed = collapseEnabled && autoCollapse && !unread;
+  const autoCollapsed = collapseEnabled && autoCollapseEnabled && !unread;
 
-  const [prevIsCollapsed, setPrevIsCollapsed] = useState(isCollapsed);
+  const [collapsed, setCollapsed] = useState(autoCollapsed);
 
-  const [collapsed, setCollapsed] = useState(isCollapsed);
-
-  if (isCollapsed !== prevIsCollapsed) {
-    setPrevIsCollapsed(isCollapsed);
-    setCollapsed(isCollapsed);
+  // Polyam: Cause a rerender when collapse settings change
+  //         or notifications are marked as read.
+  const [prevAutoCollapsed, setPrevAutoCollapsed] = useState(autoCollapsed);
+  if (autoCollapsed !== prevAutoCollapsed) {
+    setPrevAutoCollapsed(autoCollapsed);
+    setCollapsed(autoCollapsed);
   }
 
   const handleCollapseClick = useCallback(() => {
