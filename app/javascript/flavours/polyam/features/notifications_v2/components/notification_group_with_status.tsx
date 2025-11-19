@@ -88,9 +88,16 @@ export const NotificationGroupWithStatus: React.FC<{
     );
   });
 
-  const [collapsed, setCollapsed] = useState(
-    collapseEnabled && autoCollapse && !unread,
-  );
+  const isCollapsed = collapseEnabled && autoCollapse && !unread;
+
+  const [prevUnread, setPrevUnread] = useState(unread);
+
+  const [collapsed, setCollapsed] = useState(isCollapsed);
+
+  if (unread !== prevUnread) {
+    setPrevUnread(unread);
+    setCollapsed(isCollapsed);
+  }
 
   const handleCollapseClick = useCallback(() => {
     setCollapsed(!collapsed);
