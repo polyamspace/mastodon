@@ -42,7 +42,7 @@ export async function importCustomEmojiData() {
 }
 
 const modules = import.meta.glob<string>(
-  '../../../../../node_modules/emojibase-data/**/compact.json',
+  '../../../../../../node_modules/emojibase-data/**/compact.json',
   {
     query: '?url',
     import: 'default',
@@ -50,7 +50,7 @@ const modules = import.meta.glob<string>(
 );
 
 export function localeToPath(locale: Locale) {
-  const key = `../../../../../node_modules/emojibase-data/${locale}/compact.json`;
+  const key = `../../../../../../node_modules/emojibase-data/${locale}/compact.json`;
   if (!modules[key] || typeof modules[key] !== 'function') {
     throw new Error(`Unsupported locale: ${locale}`);
   }
