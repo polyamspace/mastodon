@@ -189,6 +189,7 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
         // If onElement is provided, use it to create the element.
         if (onElement) {
           const component = onElement(node, props, children, extraArgs);
+
           // Check for undefined to allow returning null.
           if (component !== undefined) {
             element = component;

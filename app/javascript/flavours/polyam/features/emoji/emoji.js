@@ -41,7 +41,7 @@ const emojifyTextNode = (node, customEmojis) => {
 
     // Skip to the next potential emoji to replace (either custom emoji or custom emoji :shortcode:)
     if (customEmojis === null) {
-      while (i < str.length && (!(unicode_emoji = trie.search(str.slice(i))))) {
+      while (i < str.length && !(unicode_emoji = trie.search(str.slice(i)))) {
         i += str.codePointAt(i) < 65536 ? 1 : 2;
       }
     } else {

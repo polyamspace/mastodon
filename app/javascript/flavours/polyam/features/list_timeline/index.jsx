@@ -110,7 +110,7 @@ class ListTimeline extends PureComponent {
     const { dispatch, columnId } = this.props;
     const { id } = this.props.params;
 
-    dispatch(openModal({ modalType: 'CONFIRM_DELETE_LIST', modalProps: { listId: id, columnId }}));
+    dispatch(openModal({ modalType: 'CONFIRM_DELETE_LIST', modalProps: { listId: id, columnId } }));
   };
 
   render () {

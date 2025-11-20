@@ -410,6 +410,7 @@ function ensureLeadingGap(
   }
 }
 
+// Ensure the groups list ends with a gap suitable for loading more, mutating it to append one if needed
 function ensureTrailingGap(
   groups: NotificationGroupsState['groups'],
 ): NotificationGap {
@@ -427,7 +428,6 @@ function ensureTrailingGap(
     };
 
     groups.push(gap);
-
     return gap;
   }
 }
@@ -479,6 +479,7 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
       .addCase(processNewNotificationForGroups.fulfilled, (state, action) => {
         if (action.payload) {
           const { notification, groupedTypes } = action.payload;
+
           processNewNotification(
             usePendingItems ? state.pendingGroups : state.groups,
             notification,

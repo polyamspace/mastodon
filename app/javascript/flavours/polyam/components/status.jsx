@@ -478,6 +478,7 @@ class Status extends ImmutablePureComponent {
       this.props.onClick();
       return;
     }
+
     const { history } = this.props;
     const status = this.props.status;
 

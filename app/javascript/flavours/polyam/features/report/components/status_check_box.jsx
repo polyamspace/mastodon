@@ -12,7 +12,7 @@ import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 
 import Option from './option';
 
-export default class StatusCheckBox extends PureComponent {
+class StatusCheckBox extends PureComponent {
 
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -65,3 +65,5 @@ export default class StatusCheckBox extends PureComponent {
   }
 
 }
+
+export default StatusCheckBox;

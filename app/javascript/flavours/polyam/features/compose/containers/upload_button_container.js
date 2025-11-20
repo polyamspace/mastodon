@@ -22,17 +22,16 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
 
-  onSelectFile (files) {
+  onSelectFile(files) {
     dispatch(uploadCompose(files));
   },
 
-  onDoodleOpen () {
+  onDoodleOpen() {
     dispatch(openModal({
       modalType: 'DOODLE',
       modalProps: { noEsc: true, noClose: true },
     }));
   },
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadButton);

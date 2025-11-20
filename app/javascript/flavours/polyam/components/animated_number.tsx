@@ -55,7 +55,7 @@ export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
   return (
     <span className='animated-number'>
       <animated.span style={styles}>
-        <ShortNumber value={value} />
+        {obfuscate ? obfuscatedCount(value) : <ShortNumber value={value} />}
       </animated.span>
       {value !== previousValue && (
         <animated.span
@@ -67,6 +67,11 @@ export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
           role='presentation'
         >
           <ShortNumber value={previousValue} />
+          {obfuscate ? (
+            obfuscatedCount(previousValue)
+          ) : (
+            <ShortNumber value={previousValue} />
+          )}
         </animated.span>
       )}
     </span>

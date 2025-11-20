@@ -64,6 +64,10 @@ export const Footer: React.FC<{
   const askReplyConfirmation = useAppSelector(
     (state) => (state.compose.get('text') as string).trim().length !== 0,
   );
+  const showReplyCount = useAppSelector(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    (state) => state.local_settings.get('show_reply_count', false) as boolean,
+  );
 
   const handleReplyClick = useCallback(() => {
     if (!status) {
@@ -93,25 +97,28 @@ export const Footer: React.FC<{
     }
   }, [dispatch, status, signedIn, askReplyConfirmation, onClose]);
 
-  const handleFavouriteClick = useCallback(() => {
-    if (!status) {
-      return;
-    }
+  const handleFavouriteClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (!status) {
+        return;
+      }
 
-    if (signedIn) {
-      dispatch(toggleFavourite(status.get('id')));
-    } else {
-      dispatch(
-        openModal({
-          modalType: 'INTERACTION',
-          modalProps: {
-            accountId: status.getIn(['account', 'id']),
-            url: status.get('uri'),
-          },
-        }),
-      );
-    }
-  }, [dispatch, status, signedIn]);
+      if (signedIn) {
+        dispatch(toggleFavourite(status.get('id'), e.shiftKey));
+      } else {
+        dispatch(
+          openModal({
+            modalType: 'INTERACTION',
+            modalProps: {
+              accountId: status.getIn(['account', 'id']),
+              url: status.get('uri'),
+            },
+          }),
+        );
+      }
+    },
+    [dispatch, status, signedIn],
+  );
 
   const handleOpenClick = useCallback(
     (e: React.MouseEvent) => {
@@ -164,7 +171,10 @@ export const Footer: React.FC<{
             : replyIconComponent
         }
         onClick={handleReplyClick}
-        counter={status.get('replies_count') as number}
+        counter={
+          showReplyCount ? (status.get('replies_count') as number) : undefined
+        }
+        obfuscateCount={!showReplyCount}
       />
 
       <BoostButton counters status={status} />

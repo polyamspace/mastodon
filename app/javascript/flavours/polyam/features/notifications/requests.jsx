@@ -130,6 +130,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
         items={menu}
         icon='ellipsis-h'
         iconComponent={MoreHorizIcon}
+        direction='right'
         title={intl.formatMessage(messages.more)}
       >
         <button className='dropdown-button column-header__select-row__select-menu' disabled={selectedItems.length === 0}>

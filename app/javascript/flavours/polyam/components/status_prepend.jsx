@@ -103,6 +103,14 @@ export default class StatusPrepend extends PureComponent {
           />
         );
       }
+    case 'update':
+      return (
+        <FormattedMessage
+          id='notification.update'
+          defaultMessage='{name} edited a post'
+          values={{ name: link }}
+        />
+      );
     case 'quoted_update':
       return (
         <FormattedMessage
@@ -111,11 +119,11 @@ export default class StatusPrepend extends PureComponent {
           values={{ name: link }}
         />
       );
-    case 'update':
+    case 'quote':
       return (
         <FormattedMessage
-          id='notification.update'
-          defaultMessage='{name} edited a post'
+          id='notification.label.quote'
+          defaultMessage='{name} quoted your post'
           values={{ name: link }}
         />
       );

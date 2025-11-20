@@ -32,7 +32,6 @@ export const RelationshipsSeveranceEvent = ({ type, target, followingCount, foll
       </div>
     </div>
   );
-
 };
 
 RelationshipsSeveranceEvent.propTypes = {
