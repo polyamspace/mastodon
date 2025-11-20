@@ -14,6 +14,7 @@ import {
 import { pasteLinkCompose } from 'flavours/polyam/actions/compose_typed';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { PRIVATE_QUOTE_MODAL_ID } from 'flavours/polyam/features/ui/components/confirmation_modals/private_quote_notify';
+import { me } from 'flavours/polyam/initial_state';
 import { privacyPreference } from 'flavours/polyam/utils/privacy_preference';
 
 import ComposeForm from '../components/compose_form';
@@ -74,6 +75,7 @@ const mapStateToProps = state => ({
   quoteToPrivate:
     !!state.getIn(['compose', 'quoted_status_id'])
     && state.getIn(['compose', 'privacy']) === 'private'
+    && state.getIn(['statuses', state.getIn(['compose', 'quoted_status_id']), 'account']) !== me
     && !state.getIn(['settings', 'dismissed_banners', PRIVATE_QUOTE_MODAL_ID]),
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
   lang: state.getIn(['compose', 'language']),
