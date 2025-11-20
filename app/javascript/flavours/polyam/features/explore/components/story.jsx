@@ -87,4 +87,3 @@ Story.propTypes = {
   blurhash: PropTypes.string,
   expanded: PropTypes.bool,
 };
-

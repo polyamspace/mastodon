@@ -26,15 +26,6 @@ import {
   selectStatusState,
 } from './boost_button_utils';
 
-const renderMenuItem: RenderItemFn<ActionMenuItem> = (item, index, onClick) => (
-  <ReblogMenuItem
-    index={index}
-    item={item}
-    onClick={onClick}
-    key={`${item.text}-${index}`}
-  />
-);
-
 const StandaloneBoostButton: FC<ReblogButtonProps> = ({ status, counters }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
@@ -83,6 +74,15 @@ const StandaloneBoostButton: FC<ReblogButtonProps> = ({ status, counters }) => {
     />
   );
 };
+
+const renderMenuItem: RenderItemFn<ActionMenuItem> = (item, index, onClick) => (
+  <ReblogMenuItem
+    index={index}
+    item={item}
+    onClick={onClick}
+    key={`${item.text}-${index}`}
+  />
+);
 
 interface ReblogButtonProps {
   status: Status;

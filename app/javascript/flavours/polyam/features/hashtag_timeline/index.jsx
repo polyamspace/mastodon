@@ -33,7 +33,6 @@ const mapStateToProps = (state, props) => {
 };
 
 class HashtagTimeline extends PureComponent {
-
   disconnects = [];
 
   static propTypes = {

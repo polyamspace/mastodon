@@ -12,6 +12,7 @@ import type { CustomEmojiData } from './types';
 
 export async function importEmojiData(localeString: string, path?: string) {
   const locale = toSupportedLocale(localeString);
+
   // Validate the provided path.
   if (path && !/^[/a-z]*\/packs\/assets\/compact-\w+\.json$/.test(path)) {
     throw new Error('Invalid path for emoji data');

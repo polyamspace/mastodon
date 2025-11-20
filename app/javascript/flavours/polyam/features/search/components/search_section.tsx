@@ -17,6 +17,7 @@ export const SearchSection: React.FC<{
         </button>
       )}
     </div>
+
     {children}
   </div>
 );

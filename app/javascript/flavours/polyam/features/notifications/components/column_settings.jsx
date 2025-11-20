@@ -15,7 +15,6 @@ import { PolicyControls } from './policy_controls';
 import SettingToggle from './setting_toggle';
 
 class ColumnSettings extends PureComponent {
-
   static propTypes = {
     identity: identityContextPropShape,
     settings: ImmutablePropTypes.map.isRequired,

@@ -10,7 +10,6 @@ import { Button } from './button';
 export const Domain: React.FC<{
   domain: string;
 }> = ({ domain }) => {
-  //const intl = useIntl();
   const dispatch = useAppDispatch();
 
   const handleDomainUnblock = useCallback(() => {

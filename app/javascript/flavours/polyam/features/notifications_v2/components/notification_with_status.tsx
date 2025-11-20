@@ -55,6 +55,10 @@ export const NotificationWithStatus: React.FC<{
     [labelRenderer, account, count],
   );
 
+  const isPrivateMention = useAppSelector(
+    (state) => state.statuses.getIn([statusId, 'visibility']) === 'direct',
+  );
+
   const isFiltered = useAppSelector(
     (state) =>
       statusId &&
@@ -85,10 +89,6 @@ export const NotificationWithStatus: React.FC<{
       },
     }),
     [dispatch, statusId],
-  );
-
-  const isPrivateMention = useAppSelector(
-    (state) => state.statuses.getIn([statusId, 'visibility']) === 'direct',
   );
 
   if (!statusId || isFiltered) return null;

@@ -146,7 +146,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
  * @param {Dispatch} dispatch
  */
 async function refreshHomeTimelineAndNotification (dispatch) {
-  await dispatch(expandHomeTimeline({ maxId: undefined}));
+  await dispatch(expandHomeTimeline({ maxId: undefined }));
 
   // TODO: polling for merged notifications
   try {
@@ -167,6 +167,7 @@ export const connectUserStream = () =>
     // @ts-expect-error
     fillGaps: fillHomeTimelineGaps
   });
+
 /**
  * @param {Object} options
  * @param {boolean} [options.onlyMedia]

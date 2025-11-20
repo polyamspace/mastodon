@@ -72,7 +72,6 @@ export const FilterBar: React.FC = () => {
   const advancedMode = useAppSelector(
     selectSettingsNotificationsQuickFilterAdvanced,
   );
-
   const useFilterBar = useAppSelector(
     selectSettingsNotificationsQuickFilterShow,
   );

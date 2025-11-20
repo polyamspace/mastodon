@@ -46,7 +46,6 @@ const mapStateToProps = (state, { columnId }) => {
 };
 
 class PublicTimeline extends PureComponent {
-
   static defaultProps = {
     onlyMedia: false,
   };

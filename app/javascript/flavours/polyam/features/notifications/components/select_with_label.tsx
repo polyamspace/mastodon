@@ -39,8 +39,9 @@ const Dropdown: React.FC<DropdownProps> = ({
   const buttonLabelId = `${uniqueId}-button`;
 
   const handleClose = useCallback(() => {
-    if (isOpen && buttonRef.current)
+    if (isOpen && buttonRef.current) {
       buttonRef.current.focus({ preventScroll: true });
+    }
     setOpen(false);
   }, [isOpen]);
 
@@ -128,6 +129,7 @@ export const SelectWithLabel: React.FC<PropsWithChildren<Props>> = ({
   const uniqueId = useId();
   const labelId = `${uniqueId}-label`;
   const descId = `${uniqueId}-desc`;
+
   return (
     // This label is only used for its click-forwarding behaviour,
     // accessible names are assigned manually

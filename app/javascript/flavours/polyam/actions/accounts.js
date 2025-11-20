@@ -646,7 +646,6 @@ export function pinAccount(id) {
 
 export function unpinAccount(id) {
   return (dispatch) => {
-
     dispatch(unpinAccountRequest(id));
 
     api().post(`/api/v1/accounts/${id}/unpin`).then(response => {
@@ -710,4 +709,3 @@ export const navigateToProfile = (accountId) => {
     }
   };
 };
-

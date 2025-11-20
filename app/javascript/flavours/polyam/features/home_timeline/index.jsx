@@ -44,7 +44,6 @@ const mapStateToProps = state => ({
 });
 
 class HomeTimeline extends PureComponent {
-
   static propTypes = {
     identity: identityContextPropShape,
     dispatch: PropTypes.func.isRequired,

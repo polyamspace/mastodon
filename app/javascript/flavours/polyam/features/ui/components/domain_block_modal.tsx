@@ -115,6 +115,7 @@ export const DomainBlockModal: React.FC<{
                 </div>
               </div>
             )}
+
           {preview === 'error' && (
             <div>
               <div className='safety-action-modal__bullet-points__icon'>

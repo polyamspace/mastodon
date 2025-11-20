@@ -62,7 +62,7 @@ export const showAlertForError = (error: unknown, skipNotFound = false) => {
     });
   }
 
-  // An aborted request, e.g. due to reloading the browser window, it not really error
+  // An aborted request, e.g. due to reloading the browser window, is not really an error
   if (error instanceof AxiosError && error.code === AxiosError.ECONNABORTED) {
     return ignoreAlert();
   }

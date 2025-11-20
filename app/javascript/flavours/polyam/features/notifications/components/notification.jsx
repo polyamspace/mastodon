@@ -44,7 +44,6 @@ const notificationForScreenReader = (intl, message, timestamp) => {
 };
 
 class Notification extends ImmutablePureComponent {
-
   static propTypes = {
     notification: ImmutablePropTypes.map.isRequired,
     hidden: PropTypes.bool,
@@ -407,7 +406,6 @@ class Notification extends ImmutablePureComponent {
       </Hotkeys>
     );
   }
-
 
   renderAdminSignUp (notification, account, link) {
     const { intl, unread } = this.props;

@@ -1,6 +1,5 @@
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 
-
 import {
   changeComposeVisibility,
   changeUploadCompose,
