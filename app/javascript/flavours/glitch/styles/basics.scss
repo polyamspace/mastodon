@@ -271,13 +271,6 @@ button {
       transition: none;
     }
   }
-
-  textarea.web_app_crash-stacktrace {
-    width: 100%;
-    resize: none;
-    white-space: pre;
-    font-family: $font-monospace, monospace;
-  }
 }
 
 .logo-resources {
