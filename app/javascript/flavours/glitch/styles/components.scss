@@ -7567,16 +7567,6 @@ img.modal-warning {
   }
 }
 
-.media-gallery__alt__label {
-  border: 0;
-  pointer-events: auto;
-
-  &:hover,
-  &:focus {
-    background-color: rgba($black, 0.9);
-  }
-}
-
 .attachment-list {
   display: flex;
   font-size: 14px;
@@ -10116,58 +10106,6 @@ noscript {
   }
 }
 
-// Polyam: Alt-text modal
-.alttext-modal {
-  flex-direction: column;
-  max-width: 600px;
-  overflow-y: auto;
-
-  &__top,
-  &__bottom {
-    display: flex;
-    gap: 8px;
-    padding: 24px;
-    flex-direction: column;
-    background: var(--modal-background-color);
-    backdrop-filter: var(--background-filter);
-    border: 1px solid var(--modal-border-color);
-  }
-
-  &__top {
-    border-radius: 16px 16px 0 0;
-    border-bottom: 0;
-    gap: 16px;
-  }
-
-  &__bottom {
-    border-radius: 0 0 16px 16px;
-    border-top: 0;
-    padding-top: 0;
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      border-radius: 0;
-      border-bottom: 0;
-      padding-bottom: 32px;
-    }
-  }
-
-  &__actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: flex-end;
-  }
-
-  &__description {
-    font-size: 16px;
-    line-height: 22px;
-
-    pre {
-      white-space: pre-wrap;
-    }
-  }
-}
-
 .copypaste {
   display: flex;
   align-items: center;
@@ -10799,16 +10737,16 @@ noscript {
         margin-bottom: 4px;
       }
 
-      // Polyam: Removed nowrap to keep long domains readable
       h6 {
         color: $secondary-text-color;
         font-size: inherit;
+        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
 
-      // Polyam: Removed nowrap to keep long block reason readable
       p {
+        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
