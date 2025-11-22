@@ -1,0 +1,10 @@
+@use 'mastodon-light/css_variables';
+@use 'mastodon/variables' with (
+  $emojis-requiring-inversion: 'chains'
+);
+@use 'common';
+@use 'highlight.js/scss/github';
+
+html {
+  color-scheme: light;
+}
