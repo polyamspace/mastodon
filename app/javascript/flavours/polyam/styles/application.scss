@@ -13,7 +13,7 @@
 @use 'widgets';
 @use 'forms';
 @use 'accounts';
-@use 'components/index';
+@use 'components';
 @use 'polls';
 @use 'modal';
 @use 'emoji_picker';
@@ -27,4 +27,6 @@
 @use 'rich_text';
 @use 'glitch_local_settings';
 @use 'glitch_doodle';
+@use 'polyam_alt_text_modal';
+@use 'polyam_collapsing';
 @use 'highlight.js/scss/github-dark';
