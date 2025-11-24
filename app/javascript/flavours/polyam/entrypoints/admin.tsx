@@ -323,6 +323,39 @@ on('change', '#form_admin_settings_flavour_and_skin', ({ target }) => {
   if (target instanceof HTMLSelectElement) onChangeFlavourAndSkin(target);
 });
 
+// Polyam: User role preview
+
+const updateRoleBadgePreviewColor = (element: HTMLInputElement) => {
+  const preview = document.getElementById('user_role_preview');
+
+  if (preview) {
+    for (const item of preview.querySelectorAll<HTMLDivElement>(
+      '.account-role',
+    )) {
+      item.style.cssText = `--user-role-background: ${element.value}39; --user-role-border: ${element.value};`;
+    }
+  }
+};
+
+on('change', '#user_role_color', ({ target }) => {
+  if (target instanceof HTMLInputElement) {
+    updateRoleBadgePreviewColor(target);
+  }
+});
+
+on('change', '#user_role_name', ({ target }) => {
+  if (target instanceof HTMLInputElement) {
+    for (let i = 1; i <= 3; i++) {
+      const preview = document.getElementById(`user-role-preview-${i}`);
+
+      if (preview) {
+        const e = preview.getElementsByTagName('span')[0];
+        if (e) e.innerText = target.value;
+      }
+    }
+  }
+});
+
 ready(() => {
   const domainBlockSeveritySelect = document.querySelector<HTMLSelectElement>(
     'select#domain_block_severity',
@@ -447,6 +480,13 @@ ready(() => {
   );
   if (flavourAndSkin) {
     onChangeFlavourAndSkin(flavourAndSkin);
+  }
+
+  const roleColorSelect = document.querySelector<HTMLInputElement>(
+    'input#user_role_color',
+  );
+  if (roleColorSelect) {
+    updateRoleBadgePreviewColor(roleColorSelect);
   }
 }).catch((reason: unknown) => {
   throw reason;
