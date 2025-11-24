@@ -414,24 +414,27 @@ on('submit', '#registration_new_user,#new_user', () => {
   });
 });
 
-// User role preview
+// Polyam: User role preview
+
+const updateRoleBadgePreviewColor = (element: HTMLInputElement) => {
+  const preview = document.getElementById('user_role_preview');
+
+    if (preview) {
+      for (const item of preview.querySelectorAll<HTMLDivElement>('.account-role')) {
+        item.style.cssText = `--user-role-background: ${element.value}39; --user-role-border: ${element.value};`
+      }
+    }
+}
+
 document
   .querySelectorAll<HTMLInputElement>('input#user_role_color')
   .forEach((content) => {
-    const preview = document.getElementById('user_role_preview');
-
-    if (preview) {
-      preview.style.cssText = `--user-role-background: ${content.value}39; --user-role-border: ${content.value};`;
-    }
+    updateRoleBadgePreviewColor(content);
   });
 
 on('change', '#user_role_color', ({ target }) => {
   if (target instanceof HTMLInputElement) {
-    const preview = document.getElementById('user_role_preview');
-
-    if (preview) {
-      preview.style.cssText = `--user-role-background: ${target.value}39; --user-role-border: ${target.value};`;
-    }
+    updateRoleBadgePreviewColor(target);
   }
 });
 
@@ -447,6 +450,8 @@ on('change', '#user_role_name', ({ target }) => {
     }
   }
 });
+
+// Role preview end
 
 on('click', '.rules-list button', ({ target }) => {
   if (!(target instanceof HTMLElement)) {
