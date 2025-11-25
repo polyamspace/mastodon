@@ -325,34 +325,32 @@ on('change', '#form_admin_settings_flavour_and_skin', ({ target }) => {
 
 // Polyam: User role preview
 
-const updateRoleBadgePreviewColor = (element: HTMLInputElement) => {
+const updateRoleBadgePreview = (element: HTMLInputElement, text = false) => {
   const preview = document.getElementById('user_role_preview');
 
   if (preview) {
     for (const item of preview.querySelectorAll<HTMLDivElement>(
       '.account-role',
     )) {
-      item.style.cssText = `--user-role-background: ${element.value}39; --user-role-border: ${element.value};`;
+      if (text) {
+        const e = item.querySelector('span');
+        if (e) e.innerText = element.value;
+      } else {
+        item.style.cssText = `--user-role-background: ${element.value}39; --user-role-border: ${element.value};`;
+      }
     }
   }
 };
 
 on('change', '#user_role_color', ({ target }) => {
   if (target instanceof HTMLInputElement) {
-    updateRoleBadgePreviewColor(target);
+    updateRoleBadgePreview(target);
   }
 });
 
 on('change', '#user_role_name', ({ target }) => {
   if (target instanceof HTMLInputElement) {
-    for (let i = 1; i <= 3; i++) {
-      const preview = document.getElementById(`user-role-preview-${i}`);
-
-      if (preview) {
-        const e = preview.getElementsByTagName('span')[0];
-        if (e) e.innerText = target.value;
-      }
-    }
+    updateRoleBadgePreview(target, true);
   }
 });
 
@@ -486,7 +484,7 @@ ready(() => {
     'input#user_role_color',
   );
   if (roleColorSelect) {
-    updateRoleBadgePreviewColor(roleColorSelect);
+    updateRoleBadgePreview(roleColorSelect);
   }
 }).catch((reason: unknown) => {
   throw reason;
