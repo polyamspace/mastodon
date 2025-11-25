@@ -414,40 +414,6 @@ on('submit', '#registration_new_user,#new_user', () => {
   });
 });
 
-// User role preview
-document
-  .querySelectorAll<HTMLInputElement>('input#user_role_color')
-  .forEach((content) => {
-    const preview = document.getElementById('user_role_preview');
-
-    if (preview) {
-      preview.style.cssText = `--user-role-background: ${content.value}39; --user-role-border: ${content.value};`;
-    }
-  });
-
-on('change', '#user_role_color', ({ target }) => {
-  if (target instanceof HTMLInputElement) {
-    const preview = document.getElementById('user_role_preview');
-
-    if (preview) {
-      preview.style.cssText = `--user-role-background: ${target.value}39; --user-role-border: ${target.value};`;
-    }
-  }
-});
-
-on('change', '#user_role_name', ({ target }) => {
-  if (target instanceof HTMLInputElement) {
-    for (let i = 1; i <= 3; i++) {
-      const preview = document.getElementById(`user-role-preview-${i}`);
-
-      if (preview) {
-        const e = preview.getElementsByTagName('span')[0];
-        if (e) e.innerText = target.value;
-      }
-    }
-  }
-});
-
 on('click', '.rules-list button', ({ target }) => {
   if (!(target instanceof HTMLElement)) {
     return;
