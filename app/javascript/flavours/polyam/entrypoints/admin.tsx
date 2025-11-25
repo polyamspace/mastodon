@@ -348,7 +348,7 @@ on('change', '#user_role_color', ({ target }) => {
   }
 });
 
-on('change', '#user_role_name', ({ target }) => {
+on('input', '#user_role_name', ({ target }) => {
   if (target instanceof HTMLInputElement) {
     updateRoleBadgePreview(target, true);
   }
