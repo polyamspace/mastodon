@@ -1,5 +1,7 @@
 // Polyam: Collapsing CSS kept from upstream
 
+@use 'variables' as *;
+
 @keyframes spring-flip-in {
   0% {
     transform: rotate(0deg);
@@ -80,8 +82,18 @@
   }
 }
 
-.status__collapse-button.active > .icon {
-  transform: rotate(-180deg);
+.status__collapse-button {
+  color: $highlight-text-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $highlight-text-color;
+  }
+
+  &.active > .icon {
+    transform: rotate(-180deg);
+  }
 }
 
 .no-reduce-motion .status__collapse-button {
