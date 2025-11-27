@@ -22,12 +22,11 @@ import {
   AnnualReportModal,
 } from 'flavours/polyam/features/ui/util/async-components';
 
-import BundleContainer from '../containers/bundle_container';
-
 import { ActionsModal } from './actions_modal';
 import { AltTextDisplayModal } from './alttext_modal';
 import AudioModal from './audio_modal';
 import { BoostModal } from './boost_modal';
+import Bundle from './bundle';
 import {
   ConfirmationModal,
   ConfirmDeleteStatusModal,
@@ -149,11 +148,11 @@ export default class ModalRoot extends PureComponent {
       <Base backgroundColor={backgroundColor} onClose={props && props.noClose ? this.noop : this.handleClose} noEsc={props ? props.noEsc : false} ignoreFocus={ignoreFocus}>
         {visible && (
           <>
-            <BundleContainer key={type} fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading} error={this.renderError} renderDelay={200}>
+            <Bundle key={type} fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading} error={this.renderError} renderDelay={200}>
               {(SpecificComponent) => {
                 return <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={this.setModalRef} />;
               }}
-            </BundleContainer>
+            </Bundle>
 
             <Helmet>
               <meta name='robots' content='noindex' />
