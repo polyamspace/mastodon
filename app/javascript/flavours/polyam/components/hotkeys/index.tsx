@@ -122,6 +122,7 @@ const hotkeyMatcherMap = {
   openProfile: just('p'),
   moveDown: just('j'),
   moveUp: just('k'),
+  moveToTop: just('0'),
   toggleHidden: just('x'),
   toggleSensitive: just('h'),
   toggleComposeSpoilers: optionPlus('x'),
