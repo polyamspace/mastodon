@@ -43,6 +43,7 @@
   --color-purple-5: #89779c; // text-second
   --color-purple-6: #9686a7; // text-tertiary
   --color-purple-7: #0f0816; // bg darker
+  --color-purple-8: #685879;
   --color-red-1: #c9343b;
 
   /* HOMOGAY EXTRA */
@@ -69,7 +70,7 @@
   --color-text-on-warning-base: var(--color-white);
   --color-text-success: var(--color-green-1);
   --color-text-on-success-base: var(--color-white);
-  --color-text-disabled: var(--color-grey-600);
+  --color-text-disabled: var(--color-purple-8);
   --color-text-on-disabled: var(--color-purple-5);
   --color-text-bookmark-highlight: var(--color-yellow-2);
   --color-text-favourite-highlight: var(--color-text-warning);
