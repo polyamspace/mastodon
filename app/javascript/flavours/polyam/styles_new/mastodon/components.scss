@@ -590,6 +590,10 @@ body > [data-popper-placement] {
       background: var(--color-bg-brand-softer);
       width: 5px;
       flex: 0 0 auto;
+
+      // Polyam: Border for removed stripes. Keep same as border in .autosuggest-input below
+      border: 1px solid var(--color-border-primary);
+      border-width: 1px 0;
     }
 
     .autosuggest-input {
