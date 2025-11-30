@@ -76,6 +76,7 @@
   }
 }
 
+/* Polyam: Disabled due to animation playing on load
 .no-reduce-motion .icon-button {
   & > .icon-bookmark {
     transform: translateY(0);
@@ -86,6 +87,7 @@
     animation: bookmark-save 0.6s cubic-bezier(0.2, 0, 0.4, 1);
   }
 }
+*/
 
 // collapse button at the top right of all posts
 
