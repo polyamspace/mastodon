@@ -43,7 +43,7 @@ class Reactions extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  componentWillMount () {
+  componentDidMount () {
     if (!this.props.accountIds) {
       this.props.dispatch(fetchReactions(this.props.params.statusId));
     }
