@@ -1,4 +1,7 @@
-@use 'fairy-floss/variables';
 @use 'fairy-floss/css_variables';
-@use 'application';
+@use 'common';
 @use 'fairy-floss/diff';
+
+html {
+  color-scheme: dark;
+}

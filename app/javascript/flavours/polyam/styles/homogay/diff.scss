@@ -1,150 +1,5 @@
-@use 'sass:color';
-@use '../functions' as *;
-@use 'variables' as *;
-@use '../variables' as *;
+/* BORDERS */
 
-// Polyam: Fix scrollbar in chromium browsers
-// Keep in sync with values in reset.scss
-// uses background-border-color value from main variables.scss
-.custom-scrollbars {
-  ::-webkit-scrollbar-thumb {
-    border-color: lighten($ui-base-color, 4%);
-    box-shadow: inset 0 0 0 2px lighten($ui-base-color, 4%);
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: lighten($ui-base-color, 4%);
-  }
-}
-
-.button {
-  text-shadow: 0 0 6px $faint-shadow-color;
-}
-
-.icon-with-badge__badge {
-  text-shadow: 0 0 2px $base-shadow-color;
-}
-
-// Polyam: Fix badge background to be more visible
-.column-link__badge {
-  background-color: $ui-base-darker-color;
-}
-
-.column-link--transparent.active {
-  border-left: 4px solid $highlight-text-color;
-  padding-left: 11px;
-}
-
-.switch-to-advanced,
-.filtered-notifications-banner {
-  background-color: lighten($ui-base-color, 4%);
-}
-
-// compose panel
-.compose-panel .autosuggest-textarea__textarea,
-.compose-form .autosuggest-textarea__textarea,
-.compose-form__highlightable,
-.compose-form__warning {
-  background: $ui-base-semi-lighter-color;
-}
-
-.poll__option input[type='text'] {
-  border-color: $ui-base-extra-light-color;
-}
-
-// Polyam: Fix border color of poll checkbox in compose
-.compose-form__poll {
-  .poll__input {
-    border-color: $ui-base-extra-light-color;
-  }
-
-  .poll__option.editable .poll__input {
-    // Polyam: Fix color change on hover
-    &:hover,
-    &:focus {
-      border-color: $ui-base-extra-light-color;
-    }
-  }
-}
-
-.search__input {
-  background: $ui-base-semi-lighter-color;
-}
-
-.emoji-picker-dropdown__menu {
-  width: 286px;
-}
-
-// Polyam: Restore background of category label
-.emoji-mart-category-label span {
-  background: var(--dropdown-background-color);
-}
-
-.emoji-mart-anchor {
-  padding: 12px 0;
-}
-
-.drawer__inner__mastodon {
-  background: $ui-base-color
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color(lighten($ui-base-color, 4%))}"/></svg>')
-    no-repeat bottom / 100% auto;
-}
-
-// hashtags in primary color
-.status__content a {
-  color: $highlight-text-color;
-}
-
-// Polyam: Hashtag bar
-.hashtag-bar {
-  a {
-    background-color: lighten($ui-base-color, 4%);
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: lighten($ui-base-color, 8%);
-    }
-  }
-}
-
-// Polyam: Keep collapse button in higthlight color
-.status__collapse-button {
-  color: $highlight-text-color;
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: $highlight-text-color;
-  }
-}
-
-// Fix background of disabled vote button
-.poll__footer {
-  button {
-    &:disabled {
-      background-color: transparent;
-    }
-  }
-}
-
-.reactions-bar__item {
-  background: $ui-base-extra-light-color;
-
-  &.active {
-    background: color.adjust($ui-button-background-color, $alpha: -0.5);
-
-    .reactions-bar__item__count {
-      color: $ui-button-color;
-    }
-  }
-}
-
-.media-gallery__item.letterbox {
-  background: none; // remove the black background from letterbox images
-}
-
-// border radius
 .button,
 .dropdown-menu,
 .drawer__header,
@@ -162,7 +17,7 @@
 .report-modal,
 .actions-modal,
 .compare-history-modal {
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 }
 
 // Polyam: increased radius looks off in compose, so set to default
@@ -171,18 +26,18 @@
 }
 
 .dropdown-menu {
-  padding-top: $border-radius;
-  padding-bottom: $border-radius;
+  padding-top: var(--border-radius);
+  padding-bottom: var(--border-radius);
 }
 
 .emoji-mart-scroll {
-  margin-bottom: $border-radius;
+  margin-bottom: var(--border-radius);
   padding-bottom: 0;
 }
 
 .column-header {
-  border-top-left-radius: $border-radius;
-  border-top-right-radius: $border-radius;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
 
   //  border-left: 1px solid $ui-base-lighter-color;
   //  border-top: 1px solid $ui-base-lighter-color;
@@ -190,56 +45,59 @@
 }
 
 .column > .scrollable {
-  border-bottom-left-radius: $border-radius;
-  border-bottom-right-radius: $border-radius;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
 }
 
-// app settings modal
-.glitch.local-settings {
-  background: $ui-base-color;
+/* GENRAL UI */
+
+.button {
+  text-shadow: 0 0 6px var(--faint-shadow);
 }
 
-.glitch.local-settings__navigation,
-.glitch.local-settings__navigation__item {
-  background: $ui-base-semi-lighter-color;
+.icon-with-badge__badge {
+  text-shadow: 0 0 2px rgb(from var(--color-shadow-primary) r g b / 100%);
 }
 
-.glitch.local-settings__navigation__item {
-  border-bottom-color: $ui-base-extra-light-color;
+.poll__option input[type='text'] {
+  border-color: var(--color-border-primary);
+}
 
-  &.active,
-  &.active:hover {
-    background: $ui-highlight-color;
+// Polyam: Fix border color of poll checkbox in compose
+.compose-form__poll {
+  .poll__input {
+    border-color: var(--color-border-primary);
   }
 
-  &:hover {
-    background: $ui-base-extra-light-color;
+  .poll__option.editable .poll__input {
+    // Polyam: Fix color change on hover
+    &:hover,
+    &:focus {
+      border-color: var(--color-border-primary);
+    }
   }
 }
 
-// general modals
-
-.doodle-modal__action-bar {
-  background: $ui-base-semi-lighter-color;
+.media-gallery__item.letterbox {
+  background: none; // remove the black background from letterbox images
 }
 
-// Polyam: Fix color of checkmark
-.report-dialog-modal .dialog-option .poll__input {
-  color: $ui-base-color;
-}
-
-// settings
-
-// Polyam: Keep background in admin UI a bit darker
-body.admin {
-  --background-color: #{darken($ui-base-color, 4%)};
-}
+/* SETTINGS */
 
 .admin-wrapper {
   // Polyam: Keep in different color to make it look less boring
   .sidebar-wrapper {
     &__inner {
-      background-color: $ui-base-color;
+      background-color: var(--color-bg-secondary);
+    }
+  }
+
+  // Polyam: Restore background for selected option in menu
+  .sidebar {
+    ul {
+      ul {
+        background: var(--color-bg-primary);
+      }
     }
   }
 }
@@ -254,6 +112,6 @@ body.admin {
   input[type='url'],
   textarea,
   select {
-    background-color: $black;
+    background-color: var(--color-black);
   }
 }

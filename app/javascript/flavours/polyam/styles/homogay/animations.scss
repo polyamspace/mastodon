@@ -1,21 +1,7 @@
 // turn the timed line into a highly addictive dopamine slot machine
 
 // fav button
-.no-reduce-motion .icon-button.star-icon {
-  &.deactivate {
-    & > .icon,
-    & > .fa-star {
-      animation: none;
-    }
-  }
 
-  &.activate {
-    & > .icon,
-    & > .fa-star {
-      animation: spring-rotate-in 1s cubic-bezier(0.2, 0, 0.4, 1);
-    }
-  }
-}
 @keyframes spring-rotate-in {
   0% {
     transform: rotate(0deg);
@@ -37,6 +23,7 @@
     transform: rotate(-360deg);
   }
 }
+
 @keyframes spring-rotate-out {
   0% {
     transform: rotate(-360deg);
@@ -55,17 +42,22 @@
   }
 }
 
-// bookmark button
-.no-reduce-motion .icon-button {
-  & > .fa-bookmark {
-    transform: translateY(0);
-    animation: none;
+.no-reduce-motion .icon-button.star-icon {
+  &.deactivate {
+    & > .icon {
+      animation: none;
+    }
   }
 
-  &.active > .fa-bookmark {
-    animation: bookmark-save 0.6s cubic-bezier(0.2, 0, 0.4, 1);
+  &.activate {
+    & > .icon {
+      animation: spring-rotate-in 1s cubic-bezier(0.2, 0, 0.4, 1);
+    }
   }
 }
+
+// bookmark button
+
 @keyframes bookmark-save {
   0% {
     transform: translateY(0);
@@ -84,16 +76,21 @@
   }
 }
 
-// collapse button at the top right of all posts
-.no-reduce-motion .status__collapse-button {
-  &.activate > .fa-angle-double-up {
-    animation: spring-flip-in 0.5s cubic-bezier(0.2, 0, 0.4, 1);
+/* Polyam: Disabled due to animation playing on load
+.no-reduce-motion .icon-button {
+  & > .icon-bookmark {
+    transform: translateY(0);
+    animation: none;
   }
 
-  &.deactivate > .fa-angle-double-up {
-    animation: spring-flip-out 0.5s cubic-bezier(0.2, 0, 0.4, 1);
+  &.active > .icon-bookmark {
+    animation: bookmark-save 0.6s cubic-bezier(0.2, 0, 0.4, 1);
   }
 }
+*/
+
+// collapse button at the top right of all posts
+
 @keyframes spring-flip-in {
   0% {
     transform: rotate(0deg);
@@ -111,6 +108,7 @@
     transform: rotate(-180deg);
   }
 }
+
 @keyframes spring-flip-out {
   0% {
     transform: rotate(-180deg);
@@ -126,5 +124,15 @@
 
   100% {
     transform: rotate(0deg);
+  }
+}
+
+.no-reduce-motion .status__collapse-button {
+  &.activate > .icon {
+    animation: spring-flip-in 0.5s cubic-bezier(0.2, 0, 0.4, 1);
+  }
+
+  &.deactivate > .icon {
+    animation: spring-flip-out 0.5s cubic-bezier(0.2, 0, 0.4, 1);
   }
 }
