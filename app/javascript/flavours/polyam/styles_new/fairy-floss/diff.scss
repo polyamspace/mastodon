@@ -1,0 +1,50 @@
+/* GENERAL UI */
+
+// Boost Icon
+
+button.icon-button.active {
+  .icon-retweet {
+    color: var(--color-mint);
+
+    &:hover {
+      color: var(--color-mint);
+    }
+  }
+
+  &:not(.star-icon, .bookmark-icon)::after {
+    background-color: var(--color-mint);
+  }
+}
+
+.status__prepend {
+  .icon-retweet {
+    color: var(--color-mint);
+  }
+}
+
+.notification-group--reblog .notification-group__icon {
+  color: var(--color-mint);
+}
+
+// Legacy
+.notification__message {
+  .icon-retweet {
+    color: var(--color-mint);
+  }
+}
+
+/* SETTINGS */
+
+// Polyam: Make inputs darker than background
+.simple_form {
+  input[type='datetime-local'],
+  input[type='email'],
+  input[type='number'],
+  input[type='password'],
+  input[type='text'],
+  input[type='url'],
+  textarea,
+  select {
+    background-color: var(--color-purple-1);
+  }
+}
