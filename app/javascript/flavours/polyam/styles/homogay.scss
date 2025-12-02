@@ -1,5 +1,8 @@
-@use 'homogay/variables';
 @use 'homogay/css_variables';
-@use 'application';
-@use 'homogay/diff';
+@use 'common';
 @use 'homogay/animations';
+@use 'homogay/diff';
+
+html {
+  color-scheme: dark;
+}
