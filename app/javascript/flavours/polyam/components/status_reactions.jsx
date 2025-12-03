@@ -4,7 +4,6 @@ import { useState, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { useDispatch } from 'react-redux';
 
 import { animated, useTransition } from '@react-spring/web';
 
@@ -12,6 +11,7 @@ import { addReaction, removeReaction } from '../actions/interactions';
 import { unicodeMapping } from '../features/emoji/emoji_unicode_mapping_light';
 import { useIdentity } from '../identity_context';
 import { autoPlayGif, visibleReactions } from '../initial_state';
+import { useAppDispatch } from '../store';
 import { assetHost } from '../utils/config';
 
 import { AnimatedNumber } from './animated_number';
@@ -49,7 +49,7 @@ StatusReactions.propTypes = {
 };
 
 const Reaction = ({statusId, reaction, canReact, style}) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
 
   const [hovered, setHovered] = useState(false);
