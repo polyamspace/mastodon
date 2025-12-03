@@ -34,6 +34,7 @@ import { Audio } from 'flavours/polyam/features/audio';
 import scheduleIdleTask from 'flavours/polyam/features/ui/util/schedule_idle_task';
 import { Video } from 'flavours/polyam/features/video';
 import { useIdentity } from 'flavours/polyam/identity_context';
+import type { StatusReactions as StatusReactionsType } from 'flavours/polyam/models/status';
 import { useAppSelector } from 'flavours/polyam/store';
 
 import Card from './card';
@@ -526,8 +527,8 @@ export const DetailedStatus: React.FC<{
         {!expanded && <MentionsPlaceholder status={status} />}
 
         <StatusReactions
-          statusId={status.get('id')}
-          reactions={status.get('reactions')}
+          statusId={status.get('id') as string}
+          reactions={status.get('reactions') as StatusReactionsType}
         />
 
         <div className='detailed-status__meta'>
