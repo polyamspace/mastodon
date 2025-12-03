@@ -10,6 +10,7 @@ import PhotoLibraryIcon from '@/awesome-icons/regular/image.svg?react';
 import BarChart4BarsIcon from '@/awesome-icons/solid/bars-progress.svg?react';
 import type { ApiMentionJSON } from '@/flavours/polyam/api_types/statuses';
 import { AnimateEmojiProvider } from '@/flavours/polyam/components/emoji/context';
+import type { StatusReactions as StatusReactionsType } from '@/flavours/polyam/models/status';
 import { toggleStatusSpoilers } from 'flavours/polyam/actions/statuses';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { ContentWarning } from 'flavours/polyam/components/content_warning';
@@ -147,7 +148,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
 
       <StatusReactions
         statusId={status.get('id') as string}
-        reactions={status.get('reactions')}
+        reactions={status.get('reactions') as StatusReactionsType}
       />
     </AnimateEmojiProvider>
   );
