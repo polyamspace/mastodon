@@ -112,8 +112,8 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     }
   },
 
-  onReactionAdd (statusId, name) {
-    dispatch(react({ statusId, name }));
+  onReactionAdd (statusId, name, url) {
+    dispatch(react({ statusId, name, url }));
   },
 
   onReactionRemove (statusId, name) {

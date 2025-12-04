@@ -7,6 +7,7 @@ import { animated, useTransition } from '@react-spring/web';
 import type { AnimatedProps } from '@react-spring/web';
 
 import { react, unreact } from '@/flavours/polyam/actions/interactions';
+import type { ApiCustomEmojiJSON } from '@/flavours/polyam/api_types/custom_emoji';
 import { isUnicodeEmoji } from '@/flavours/polyam/features/emoji/utils';
 import { useIdentity } from '@/flavours/polyam/identity_context';
 import { visibleReactions } from '@/flavours/polyam/initial_state';
@@ -17,8 +18,8 @@ import type {
 import { useAppDispatch } from '@/flavours/polyam/store';
 
 import { AnimatedNumber } from './animated_number';
-import { Emoji } from './emoji';
 import { AnimateEmojiProvider } from './emoji/context';
+import { EmojiHTML } from './emoji/html';
 
 export const StatusReactions: FC<{
   statusId: string;
@@ -86,6 +87,15 @@ const Reaction: FC<{
     ? reactionName
     : `:${reactionName}:`;
 
+  const extraEmoji: ApiCustomEmojiJSON[] = [
+    {
+      shortcode: reactionName,
+      url: reaction.get('url'),
+      static_url: reaction.get('static_url'),
+      visible_in_picker: true,
+    },
+  ];
+
   return (
     <animated.button
       className={classNames('reactions-bar__item', { active: reactionMe })}
@@ -93,9 +103,12 @@ const Reaction: FC<{
       disabled={!(signedIn && canReact)}
       style={style}
     >
-      <span className='reactions-bar__item__emoji'>
-        <Emoji code={code} />
-      </span>
+      <EmojiHTML
+        className='reactions-bar__item__emoji'
+        as='span'
+        extraEmojis={extraEmoji}
+        htmlString={code}
+      />
       <span className='reactions-bar__item__count'>
         <AnimatedNumber value={reaction.get('count')} />
       </span>

@@ -203,7 +203,7 @@ export default function statuses(state = initialState, action) {
     else if(unreblog.rejected.match(action))
       return state.get(action.meta.arg.statusId) === undefined ? state : state.setIn([action.meta.arg.statusId, 'reblogged'], true);
     else if(react.pending.match(action) || unreact.rejected.match(action))
-      return addReaction(state, action.meta.arg.statusId, action.meta.arg.name, undefined);
+      return addReaction(state, action.meta.arg.statusId, action.meta.arg.name, action.meta.arg.url);
     else if(react.rejected.match(action) || unreact.pending.match(action))
       return removeReaction(state, action.meta.arg.statusId, action.meta.arg.name);
     else
