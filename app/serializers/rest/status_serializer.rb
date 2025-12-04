@@ -177,7 +177,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def reactions
-    object.reactions(current_user&.account&.id)
+    relationships&.attributes_map&.dig(object.id, :reactions) || object.reactions(current_user&.account&.id)
   end
 
   def hidden_by_moderators

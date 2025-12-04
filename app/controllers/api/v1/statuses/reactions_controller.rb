@@ -18,14 +18,22 @@ class Api::V1::Statuses::ReactionsController < Api::V1::Statuses::BaseController
     if react
       @status = react.status
       count = [@status.reactions_count - 1, 0].max
+      reactions = @status.reactions(current_account.id).filter_map do |reaction|
+        if reaction.name == params[:id]
+          reaction.count -= 1
+          reaction.me = false
+        end
+        reaction if reaction.count.positive? # rubocop:disable Style/CollectionQuerying
+      end
       UnreactWorker.perform_async(current_account.id, @status.id, params[:id])
     else
       @status = Status.find(params[:status_id])
       count = @status.reactions_count
+      reactions = @status.reactions(current_account.id)
       authorize @status, :show?
     end
 
-    relationships = StatusRelationshipsPresenter.new([@status], current_account.id, attributes_map: { @status.id => { reactions_count: count } })
+    relationships = StatusRelationshipsPresenter.new([@status], current_account.id, attributes_map: { @status.id => { reactions_count: count, reactions: reactions } })
     render json: @status, serializer: REST::StatusSerializer, relationships: relationships
   rescue Mastodon::NotPermittedError
     not_found
