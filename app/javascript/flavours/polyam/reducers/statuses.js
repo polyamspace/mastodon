@@ -13,7 +13,6 @@ import {
   BOOKMARK_FAIL,
   UNBOOKMARK_REQUEST,
   UNBOOKMARK_FAIL,
-  REACTION_UPDATE,
   REACTION_ADD_FAIL,
   REACTION_REMOVE_FAIL,
   REACTION_ADD_REQUEST,
@@ -63,8 +62,6 @@ const updateReaction = (state, id, name, updater) => state.update(
     },
   ),
 );
-
-const updateReactionCount = (state, reaction) => updateReaction(state, reaction.status_id, reaction.name, x => x.set('count', reaction.count));
 
 // The url parameter is only used when adding a new custom emoji reaction
 // (one that wasn't in the reactions list before) because we don't have its
@@ -160,8 +157,6 @@ export default function statuses(state = initialState, action) {
     return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'bookmarked'], false);
   case UNBOOKMARK_FAIL:
     return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'bookmarked'], true);
-  case REACTION_UPDATE:
-    return updateReactionCount(state, action.reaction);
   case REACTION_ADD_REQUEST:
   case REACTION_REMOVE_FAIL:
     return addReaction(state, action.id, action.name, action.url);
