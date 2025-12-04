@@ -3,6 +3,8 @@ import {
   apiUnreblog,
   apiRevokeQuote,
   apiGetQuotes,
+  apiReact,
+  apiUnreact,
 } from 'flavours/polyam/api/interactions';
 import type { StatusVisibility } from 'flavours/polyam/models/status';
 import { createDataLoadingThunk } from 'flavours/polyam/store/typed_functions';
@@ -68,5 +70,29 @@ export const fetchQuotes = createDataLoadingThunk(
   },
   (payload, { dispatch }) => {
     dispatch(importFetchedStatuses(payload.statuses));
+  },
+);
+
+// Polyam: Reactions
+
+export const react = createDataLoadingThunk(
+  'status/react',
+  ({ statusId, name }: { statusId: string; name: string }) =>
+    apiReact(statusId, name),
+  (data, { dispatch, discardLoadData }) => {
+    dispatch(importFetchedStatus(data));
+
+    return discardLoadData;
+  },
+);
+
+export const unreact = createDataLoadingThunk(
+  'status/unreact',
+  ({ statusId, name }: { statusId: string; name: string }) =>
+    apiUnreact(statusId, name),
+  (data, { dispatch, discardLoadData }) => {
+    dispatch(importFetchedStatus(data));
+
+    return discardLoadData;
   },
 );

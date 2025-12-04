@@ -36,8 +36,8 @@ import {
   toggleReblog,
   pin,
   unpin,
-  addReaction,
-  removeReaction,
+  react,
+  unreact,
 } from '../../actions/interactions';
 import { openModal } from '../../actions/modal';
 import { initMuteModal } from '../../actions/mutes';
@@ -229,17 +229,17 @@ class Status extends ImmutablePureComponent {
     }
   };
 
-  handleReactionAdd = (statusId, name, url) => {
+  handleReactionAdd = (statusId, name) => {
     const { dispatch } = this.props;
     const { signedIn } = this.props.identity;
 
     if (signedIn) {
-      dispatch(addReaction(statusId, name, url));
+      dispatch(react({ statusId, name }));
     }
   };
 
   handleReactionRemove = (statusId, name) => {
-    this.props.dispatch(removeReaction(statusId, name));
+    this.props.dispatch(unreact({ statusId, name }));
   };
 
   handlePin = (status) => {

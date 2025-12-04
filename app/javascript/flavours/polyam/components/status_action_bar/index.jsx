@@ -149,7 +149,7 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleEmojiPick = data => {
-    this.props.onReactionAdd(this.props.status.get('id'), data.native.replace(/:/g, ''), data.imageUrl);
+    this.props.onReactionAdd(this.props.status.get('id'), data.native.replace(/:/g, ''));
   };
 
   handleBookmarkClick = (e) => {

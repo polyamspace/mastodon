@@ -26,3 +26,15 @@ export const apiGetQuotes = async (statusId: string, url?: string) => {
     links: getLinks(response),
   };
 };
+
+// Polyam: Reactions
+
+export const apiReact = (statusId: string, name: string) =>
+  apiRequestPost<ApiStatusJSON>(
+    `v1/statuses/${statusId}/react/${encodeURIComponent(name)}`,
+  );
+
+export const apiUnreact = (statusId: string, name: string) =>
+  apiRequestPost<ApiStatusJSON>(
+    `v1/statuses/${statusId}/unreact/${encodeURIComponent(name)}`,
+  );
