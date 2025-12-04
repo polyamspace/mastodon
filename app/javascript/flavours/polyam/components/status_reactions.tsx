@@ -6,10 +6,7 @@ import classNames from 'classnames';
 import { animated, useTransition } from '@react-spring/web';
 import type { AnimatedProps } from '@react-spring/web';
 
-import {
-  addReaction,
-  removeReaction,
-} from '@/flavours/polyam/actions/interactions';
+import { react, unreact } from '@/flavours/polyam/actions/interactions';
 import { isUnicodeEmoji } from '@/flavours/polyam/features/emoji/utils';
 import { useIdentity } from '@/flavours/polyam/identity_context';
 import { visibleReactions } from '@/flavours/polyam/initial_state';
@@ -79,9 +76,9 @@ const Reaction: FC<{
 
   const handleClick = useCallback(() => {
     if (reactionMe) {
-      dispatch(removeReaction(statusId, reactionName));
+      void dispatch(unreact({ statusId, name: reactionName }));
     } else {
-      dispatch(addReaction(statusId, reactionName));
+      void dispatch(react({ statusId, name: reactionName }));
     }
   }, [dispatch, statusId, reactionMe, reactionName]);
 

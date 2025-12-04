@@ -21,6 +21,8 @@ import {
 import {
   reblog,
   unreblog,
+  react,
+  unreact,
 } from '../actions/interactions_typed';
 import {
   STATUS_MUTE_SUCCESS,
@@ -200,6 +202,10 @@ export default function statuses(state = initialState, action) {
       return state.setIn([action.meta.arg.statusId, 'reblogged'], false);
     else if(unreblog.rejected.match(action))
       return state.get(action.meta.arg.statusId) === undefined ? state : state.setIn([action.meta.arg.statusId, 'reblogged'], true);
+    else if(react.pending.match(action) || unreact.rejected.match(action))
+      return addReaction(state, action.meta.arg.statusId, action.meta.arg.name, undefined);
+    else if(react.rejected.match(action) || unreact.pending.match(action))
+      return removeReaction(state, action.meta.arg.statusId, action.meta.arg.name);
     else
       return state;
   }

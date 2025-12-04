@@ -17,8 +17,8 @@ import {
   unbookmark,
   pin,
   unpin,
-  addReaction,
-  removeReaction,
+  react,
+  unreact,
 } from 'flavours/polyam/actions/interactions';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { initMuteModal } from 'flavours/polyam/actions/mutes';
@@ -112,12 +112,12 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     }
   },
 
-  onReactionAdd (statusId, name, url) {
-    dispatch(addReaction(statusId, name, url));
+  onReactionAdd (statusId, name) {
+    dispatch(react({ statusId, name }));
   },
 
   onReactionRemove (statusId, name) {
-    dispatch(removeReaction(statusId, name));
+    dispatch(unreact({ statusId, name }));
   },
 
   onEmbed (status) {
