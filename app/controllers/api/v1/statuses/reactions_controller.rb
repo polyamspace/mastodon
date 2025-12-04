@@ -19,11 +19,13 @@ class Api::V1::Statuses::ReactionsController < Api::V1::Statuses::BaseController
       @status = react.status
       count = [@status.reactions_count - 1, 0].max
       reactions = @status.reactions(current_account.id).filter_map do |reaction|
-        if reaction.name == params[:id]
-          reaction.count -= 1
-          reaction.me = false
+        if reaction['name'] == params[:id]
+          next if reaction['count'] == 1
+
+          reaction['count'] -= 1
+          reaction['me'] = false
         end
-        reaction if reaction.count.positive? # rubocop:disable Style/CollectionQuerying
+        reaction
       end
       UnreactWorker.perform_async(current_account.id, @status.id, params[:id])
     else
