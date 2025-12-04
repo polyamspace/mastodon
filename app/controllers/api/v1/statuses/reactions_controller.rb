@@ -19,7 +19,7 @@ class Api::V1::Statuses::ReactionsController < Api::V1::Statuses::BaseController
       @status = react.status
       count = [@status.reactions_count - 1, 0].max
       reactions = @status.reactions(current_account.id).filter_map do |reaction|
-        if reaction['name'] == params[:id]
+        if reaction['name'] == name && reaction['custom_emoji_id'] == custom_emoji&.id
           next if reaction['count'] == 1
 
           reaction['count'] -= 1
