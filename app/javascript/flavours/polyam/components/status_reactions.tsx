@@ -73,6 +73,7 @@ const Reaction: FC<{
   const { signedIn } = useIdentity();
 
   const reactionName = reaction.get('name');
+  const reactionBaseName = reactionName.split('@')[0] ?? reactionName;
   const reactionMe = reaction.get('me');
 
   const handleClick = useCallback(() => {
@@ -85,11 +86,11 @@ const Reaction: FC<{
 
   const code = isUnicodeEmoji(reactionName)
     ? reactionName
-    : `:${reactionName}:`;
+    : `:${reactionBaseName}:`;
 
   const extraEmoji: ApiCustomEmojiJSON[] = [
     {
-      shortcode: reactionName,
+      shortcode: reactionBaseName,
       url: reaction.get('url'),
       static_url: reaction.get('static_url'),
       visible_in_picker: true,
