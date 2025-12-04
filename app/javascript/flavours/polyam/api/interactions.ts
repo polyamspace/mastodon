@@ -1,4 +1,5 @@
 import api, { apiRequestPost, getLinks } from 'flavours/polyam/api';
+import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
 import type { ApiStatusJSON } from 'flavours/polyam/api_types/statuses';
 import type { StatusVisibility } from 'flavours/polyam/models/status';
 
@@ -38,3 +39,15 @@ export const apiUnreact = (statusId: string, name: string) =>
   apiRequestPost<ApiStatusJSON>(
     `v1/statuses/${statusId}/unreact/${encodeURIComponent(name)}`,
   );
+
+export const apiGetReactions = async (statusId: string, url?: string) => {
+  const response = await api().request<ApiAccountJSON[]>({
+    method: 'GET',
+    url: url ?? `/api/v1/statuses/${statusId}/reacted_by`,
+  });
+
+  return {
+    accounts: response.data,
+    links: getLinks(response),
+  };
+};

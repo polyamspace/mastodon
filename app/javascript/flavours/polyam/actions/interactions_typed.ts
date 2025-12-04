@@ -5,11 +5,17 @@ import {
   apiGetQuotes,
   apiReact,
   apiUnreact,
+  apiGetReactions,
 } from 'flavours/polyam/api/interactions';
 import type { StatusVisibility } from 'flavours/polyam/models/status';
 import { createDataLoadingThunk } from 'flavours/polyam/store/typed_functions';
 
-import { importFetchedStatus, importFetchedStatuses } from './importer';
+import { fetchRelationships } from './accounts';
+import {
+  importFetchedAccounts,
+  importFetchedStatus,
+  importFetchedStatuses,
+} from './importer';
 
 export const reblog = createDataLoadingThunk(
   'status/reblog',
@@ -94,5 +100,22 @@ export const unreact = createDataLoadingThunk(
     dispatch(importFetchedStatus(data));
 
     return discardLoadData;
+  },
+);
+
+export const fetchReactions = createDataLoadingThunk(
+  'status/fetch_reactions',
+  async ({ statusId, next }: { statusId: string; next?: string }) => {
+    const { links, accounts } = await apiGetReactions(statusId, next);
+
+    return {
+      links,
+      accounts,
+      replace: !next,
+    };
+  },
+  (payload, { dispatch }) => {
+    dispatch(importFetchedAccounts(payload.accounts));
+    dispatch(fetchRelationships(payload.accounts.map((item) => item.id)));
   },
 );
