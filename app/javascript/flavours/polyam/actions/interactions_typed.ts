@@ -83,8 +83,8 @@ export const fetchQuotes = createDataLoadingThunk(
 
 export const react = createDataLoadingThunk(
   'status/react',
-  ({ statusId, name }: { statusId: string; name: string }) =>
-    apiReact(statusId, name),
+  ({ statusId, name, url }: { statusId: string; name: string; url?: string }) =>
+    apiReact(statusId, name, url),
   (data, { dispatch, discardLoadData }) => {
     dispatch(importFetchedStatus(data));
 

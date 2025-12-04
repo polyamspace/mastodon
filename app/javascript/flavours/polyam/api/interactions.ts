@@ -30,7 +30,8 @@ export const apiGetQuotes = async (statusId: string, url?: string) => {
 
 // Polyam: Reactions
 
-export const apiReact = (statusId: string, name: string) =>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const apiReact = (statusId: string, name: string, url?: string) =>
   apiRequestPost<ApiStatusJSON>(
     `v1/statuses/${statusId}/react/${encodeURIComponent(name)}`,
   );
