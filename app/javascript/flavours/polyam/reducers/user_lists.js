@@ -52,13 +52,8 @@ import {
   FAVOURITES_EXPAND_REQUEST,
   FAVOURITES_EXPAND_SUCCESS,
   FAVOURITES_EXPAND_FAIL,
-  REACTIONS_FETCH_REQUEST,
-  REACTIONS_FETCH_SUCCESS,
-  REACTIONS_FETCH_FAIL,
-  REACTIONS_EXPAND_REQUEST,
-  REACTIONS_EXPAND_SUCCESS,
-  REACTIONS_EXPAND_FAIL,
 } from '../actions/interactions';
+import { fetchReactions } from '../actions/interactions_typed';
 import {
   MUTES_FETCH_REQUEST,
   MUTES_FETCH_SUCCESS,
@@ -84,6 +79,7 @@ const initialState = ImmutableMap({
   blocks: initialListState,
   mutes: initialListState,
   featured_tags: initialListState,
+  reacted_by: initialListState,
 });
 
 const normalizeList = (state, path, accounts, next) => {
@@ -161,16 +157,6 @@ export default function userLists(state = initialState, action) {
   case FAVOURITES_FETCH_FAIL:
   case FAVOURITES_EXPAND_FAIL:
     return state.setIn(['favourited_by', action.id, 'isLoading'], false);
-  case REACTIONS_FETCH_SUCCESS:
-    return normalizeList(state, ['reacted_by', action.id], action.accounts, action.next);
-  case REACTIONS_EXPAND_SUCCESS:
-    return appendToList(state, ['reacted_by', action.id], action.accounts, action.next);
-  case REACTIONS_FETCH_REQUEST:
-  case REACTIONS_EXPAND_REQUEST:
-    return state.setIn(['reacted_by', action.id, 'isLoading'], true);
-  case REACTIONS_FETCH_FAIL:
-  case REACTIONS_EXPAND_FAIL:
-    return state.setIn(['reacted_by', action.id, 'isLoading'], false);
   case notificationsUpdate.type:
     return action.payload.notification.type === 'follow_request' ? normalizeFollowRequest(state, action.payload.notification) : state;
   case FOLLOW_REQUESTS_FETCH_SUCCESS:
@@ -229,6 +215,12 @@ export default function userLists(state = initialState, action) {
     else if (fetchDirectory.rejected.match(action) ||
      expandDirectory.rejected.match(action))
       return state.setIn(['directory', 'isLoading'], false);
+    else if (fetchReactions.fulfilled.match(action))
+      return normalizeList(state, ['reacted_by', action.meta.arg.statusId], action.payload.accounts, action.payload.next);
+    else if (fetchReactions.pending.match(action))
+      return state.setIn(['reacted_by', action.meta.arg.statusId, 'isLoading'], true);
+    else if (fetchReactions.rejected.match(action))
+      return state.setIn(['reacted_by', action.meta.arg.statusId, 'isLoading'], false);
     else
       return state;
   }
