@@ -1,5 +1,10 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
+import {
+  importFetchedAccounts,
+  importFetchedStatuses,
+} from '@/flavours/polyam/actions/importer';
 import { insertIntoTimeline } from '@/flavours/polyam/actions/timelines';
 import type { ApiAnnualReportState } from '@/flavours/polyam/api/annual_report';
 import {
@@ -25,7 +30,12 @@ interface AnnualReportState {
 const annualReportSlice = createSlice({
   name: 'annualReport',
   initialState: {} as AnnualReportState,
-  reducers: {},
+  reducers: {
+    setReport(state, action: PayloadAction<AnnualReport>) {
+      state.report = action.payload;
+      state.state = 'available';
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchReportState.fulfilled, (state, action) => {
@@ -43,6 +53,7 @@ const annualReportSlice = createSlice({
 });
 
 export const annualReport = annualReportSlice.reducer;
+export const { setReport } = annualReportSlice.actions;
 
 export const selectWrapstodonYear = createAppSelector(
   [(state) => state.server.getIn(['server', 'wrapstodon'])],
@@ -114,5 +125,9 @@ export const getReport = createDataLoadingThunk(
     }
     return apiGetAnnualReport(year);
   },
-  (data) => data.annual_reports[0],
+  (data, { dispatch }) => {
+    dispatch(importFetchedStatuses(data.statuses));
+    dispatch(importFetchedAccounts(data.accounts));
+    return data.annual_reports[0];
+  },
 );
