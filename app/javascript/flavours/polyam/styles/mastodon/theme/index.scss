@@ -9,18 +9,24 @@ html {
     color-scheme: dark light;
 
     @media (prefers-color-scheme: dark) {
-      @include dark.tokens;
+      // Polyam: Wrapped in data-system-dark to not override user-set dark skin
+      &[data-system-dark='default'] {
+        @include dark.tokens;
 
-      @media (prefers-contrast: more) {
-        @include dark.contrast-overrides;
+        @media (prefers-contrast: more) {
+          @include dark.contrast-overrides;
+        }
       }
     }
 
     @media (prefers-color-scheme: light) {
-      @include light.tokens;
+      // Polyam: Wrapped in data-system-light to not override user-set light skin
+      &[data-system-light='mastodon-light'] {
+        @include light.tokens;
 
-      @media (prefers-contrast: more) {
-        @include light.contrast-overrides;
+        @media (prefers-contrast: more) {
+          @include light.contrast-overrides;
+        }
       }
     }
   }
