@@ -1715,7 +1715,7 @@ en:
       subject: "%{name} quoted your toot"
       title: New quote
     quoted_update:
-      subject: "%{name} edited a post you have quoted"
+      subject: "%{name} edited a toot you have quoted"
     reblog:
       body: 'Your toot was boosted by %{name}:'
       subject: "%{name} boosted your toot"
