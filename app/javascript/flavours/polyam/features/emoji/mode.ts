@@ -3,6 +3,7 @@
 
 import { createAppSelector, useAppSelector } from '@/flavours/polyam/store';
 import { isDevelopment } from '@/flavours/polyam/utils/environment';
+import { isDarkMode } from '@/flavours/polyam/utils/theme';
 
 import {
   EMOJI_MODE_NATIVE,
@@ -27,7 +28,7 @@ export function useEmojiAppState(): EmojiAppState {
     currentLocale: locale,
     locales: [locale],
     mode,
-    darkTheme: document.body.classList.contains('theme-default'),
+    darkTheme: isDarkMode(),
   };
 }
 
