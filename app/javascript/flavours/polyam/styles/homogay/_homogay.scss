@@ -163,7 +163,7 @@
       var(--color-purple-4),
       var(--border-strength-primary)
     )};
-  --color-border-media: rgb(252 248 255 / 15%);
+  --color-border-media: #{utils.css-alpha(var(--color-purple-5), 15%)};
   --color-border-on-bg-secondary: #{utils.css-alpha(
       var(--color-purple-4),
       calc(var(--border-strength-primary) / 1.5)
