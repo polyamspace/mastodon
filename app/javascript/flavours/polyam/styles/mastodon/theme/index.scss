@@ -1,6 +1,7 @@
 @use 'base';
 @use 'dark';
 @use 'light';
+@use 'utils';
 
 html {
   @include base.palette;
@@ -9,6 +10,8 @@ html {
     color-scheme: dark light;
 
     @media (prefers-color-scheme: dark) {
+      @include utils.invert-on-dark;
+
       // Polyam: Wrapped in data-system-dark to not override user-set dark skin
       &[data-system-dark='default'] {
         @include dark.tokens;
@@ -20,6 +23,8 @@ html {
     }
 
     @media (prefers-color-scheme: light) {
+      @include utils.invert-on-light;
+
       // Polyam: Wrapped in data-system-light to not override user-set light skin
       &[data-system-light='mastodon-light'] {
         @include light.tokens;
@@ -39,6 +44,7 @@ html:where(
   color-scheme: dark;
 
   @include dark.tokens;
+  @include utils.invert-on-dark;
 }
 
 html[data-user-theme='contrast'],
@@ -51,4 +57,5 @@ html:where([data-user-theme='mastodon-light']) {
   color-scheme: light;
 
   @include light.tokens;
+  @include utils.invert-on-light;
 }

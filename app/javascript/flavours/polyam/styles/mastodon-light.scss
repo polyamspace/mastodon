@@ -1,5 +1,2 @@
-@use 'mastodon/variables' with (
-  $emojis-requiring-inversion: 'chains'
-);
 @use 'common';
 @use 'highlight.js/scss/github';

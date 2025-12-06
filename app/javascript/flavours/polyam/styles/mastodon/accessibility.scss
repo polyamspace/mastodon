@@ -1,17 +1,3 @@
-@use 'variables' as *;
-
-%emoji-color-inversion {
-  filter: invert(1);
-}
-
-.emojione {
-  @each $emoji in $emojis-requiring-inversion {
-    &[title=':#{$emoji}:'] {
-      @extend %emoji-color-inversion;
-    }
-  }
-}
-
 // Polyam: Kept from upstream -- Upstream uses different icons
 // Displays a checkmark on active UI elements otherwise differing only by color
 // Changed to use SVG
