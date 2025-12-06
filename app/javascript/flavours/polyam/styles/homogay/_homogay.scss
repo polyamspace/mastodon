@@ -40,6 +40,7 @@
     var(--color-text-brand)
   );
   --color-text-on-brand-base: var(--color-white);
+  --color-text-brand-on-inverted: var(--color-text-brand);
   --color-text-error: var(--color-red-1);
   --color-text-on-error-base: var(--color-white);
   --color-text-warning: var(--color-yellow-1);
@@ -76,7 +77,7 @@
 
   // Utility
   --color-bg-ambient: var(--color-bg-primary);
-  --color-bg-elevated: var(--color-purple-3);
+  --color-bg-elevated: var(--color-bg-primary);
   --color-bg-inverted: var(--color-black);
   --color-bg-media-base: var(--color-black);
   --color-bg-media-strength: 65%;
@@ -84,7 +85,7 @@
       var(--color-bg-media-base),
       var(--color-bg-media-strength)
     )};
-  --color-bg-overlay: var(--color-bg-primary);
+  --color-bg-overlay: var(--color-black);
   --color-bg-disabled: var(--color-grey-700);
 
   // Brand
@@ -208,9 +209,4 @@
   --rich-text-container-color: rgb(87 24 60 / 100%);
   --rich-text-text-color: rgb(255 175 212 / 100%);
   --rich-text-decorations-color: rgb(128 58 95 / 100%);
-
-  /* MISCELLANEOUS */
-
-  --outline-focus-default: 2px solid var(--color-text-brand);
-  --avatar-border-radius: 8px;
 }
