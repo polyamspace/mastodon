@@ -195,9 +195,7 @@
 .information-badge,
 .simple_form .overridden,
 .simple_form .recommended,
-.simple_form .not_recommended,
-.simple_form .glitch_only,
-.simple_form .polyam_only {
+.simple_form .not_recommended {
   display: inline-block;
   padding: 4px 6px;
   cursor: default;
@@ -259,18 +257,6 @@
   color: var(--color-text-error);
   background-color: var(--color-bg-error-softer);
   border-color: var(--color-border-on-bg-error-softer);
-}
-
-.simple_form .glitch_only {
-  color: lighten($warning-red, 12%);
-  background-color: rgba(lighten($warning-red, 12%), 0.1);
-  border-color: rgba(lighten($warning-red, 12%), 0.5);
-}
-
-.simple_form .polyam_only {
-  color: lighten($warning-red, 18%);
-  background-color: rgba(lighten($warning-red, 18%), 0.1);
-  border-color: rgba(lighten($warning-red, 18%), 0.5);
 }
 
 .account__header__fields {

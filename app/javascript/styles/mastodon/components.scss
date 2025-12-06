@@ -1699,16 +1699,6 @@ body > [data-popper-placement] {
   align-items: center;
   gap: 18px;
   margin-top: 16px;
-
-  & > .emoji-picker-dropdown > .emoji-button {
-    padding: 0;
-  }
-}
-
-.status__action-bar-button {
-  .fa-plus {
-    padding-top: 1px;
-  }
 }
 
 .detailed-status__action-bar-dropdown {
