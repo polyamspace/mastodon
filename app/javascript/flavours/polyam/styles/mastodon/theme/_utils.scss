@@ -1,4 +1,3 @@
-/* Polyam: Temporary copy of _utils.scss until custom themes are ported */
 @function css-alpha($base-color, $amount) {
   @return #{rgb(from $base-color r g b / $amount)};
 }
