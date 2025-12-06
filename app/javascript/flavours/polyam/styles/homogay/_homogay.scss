@@ -1,33 +1,7 @@
-@use '../mastodon/theme_utils' as utils;
+@use '../mastodon/theme/utils' as utils;
 
-:root {
-  --color-black: #000;
-  --color-grey-950: #181821;
-  --color-grey-800: #292938;
-  --color-grey-700: #444664;
-  --color-grey-600: #545778;
-  --color-grey-500: #696d91;
-  --color-grey-400: #8b8dac;
-  --color-grey-300: #b4b6cb;
-  --color-grey-200: #d8d9e3;
-  --color-grey-100: #f0f0f5;
-  --color-grey-50: #f0f1ff;
-  --color-white: #fff;
-  --color-indigo-600: #6147e6;
-  --color-indigo-400: #8886ff;
-  --color-indigo-300: #a5abfd;
-  --color-indigo-200: #c8cdfe;
-  --color-indigo-100: #e0e3ff;
-  --color-indigo-50: #f0f1ff;
-  --color-red-500: #ff637e;
-  --color-red-600: #ec003f;
-  --color-yellow-400: #ffb900;
-  --color-yellow-600: #e17100;
-  --color-green-400: #05df72;
-  --color-green-600: #00a63e;
-
-  /* HOMOGAY COLORS */
-
+/* HOMOGAY COLORS */
+@mixin palette {
   --color-pink-1: #a71494;
   --color-pink-2: #d61ebe;
   --color-pink-3: #ef6ede;
@@ -45,7 +19,9 @@
   --color-purple-7: #0f0816; // bg darker
   --color-purple-8: #685879;
   --color-red-1: #c9343b;
+}
 
+@mixin tokens {
   /* HOMOGAY EXTRA */
 
   --border-radius: 8px;
@@ -237,13 +213,4 @@
 
   --outline-focus-default: 2px solid var(--color-text-brand);
   --avatar-border-radius: 8px;
-}
-
-body {
-  // Variable for easily inverting directional UI elements,
-  --text-x-direction: 1;
-
-  &.rtl {
-    --text-x-direction: -1;
-  }
 }
