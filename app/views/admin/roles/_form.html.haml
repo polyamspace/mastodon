@@ -37,7 +37,7 @@
               - unless current_user.setting_flavour == 'polyam'
                 %span.account-role__domain= Rails.configuration.x.local_domain
           - if current_user.setting_skin != 'default' && current_user.setting_skin != 'mastodon-light'
-            .item.account__header.account_header_badges
+            .item
               .account-role{ id: 'user-role-preview-3' }
                 = material_symbol 'person'
                 %span= form.object.name
