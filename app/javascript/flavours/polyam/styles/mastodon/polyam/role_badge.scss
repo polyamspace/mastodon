@@ -1,3 +1,6 @@
+@use '../theme/dark';
+@use '../theme/light';
+
 .account-role {
   // Default values for automated badge since old style is kept
   --user-role-border: rgb(from var(--color-text-primary) r g b / 50%);
@@ -12,31 +15,19 @@
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
-    background: var(--color-bg-primary);
 
     .item {
       padding: 12px 15px;
       border: none;
+      background: var(--color-bg-primary);
     }
 
     .dark {
-      background-color: var(--color-grey-950);
-
-      .account-role {
-        --user-role-background: rgb(from var(--color-grey-50) r g b / 10%);
-        --user-role-border: rgb(from var(--color-grey-50) r g b / 50%);
-        --user-role-text: var(--color-grey-50);
-      }
+      @include dark.tokens;
     }
 
     .light {
-      background-color: var(--color-white);
-
-      .account-role {
-        --user-role-background: rgb(from var(--color-grey-950) r g b / 10%);
-        --user-role-border: rgb(from var(--color-grey-950) r g b / 50%);
-        --user-role-text: var(--color-grey-950);
-      }
+      @include light.tokens;
     }
   }
 }
