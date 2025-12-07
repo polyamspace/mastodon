@@ -20,14 +20,14 @@
       padding: 12px 15px;
       border: none;
       background: var(--color-bg-primary);
-    }
 
-    .dark {
-      @include dark.tokens;
-    }
+      &.dark {
+        @include dark.tokens;
+      }
 
-    .light {
-      @include light.tokens;
+      &.light {
+        @include light.tokens;
+      }
     }
   }
 }
