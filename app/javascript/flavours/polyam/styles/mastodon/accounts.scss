@@ -228,16 +228,11 @@
 }
 
 .account-role {
-  // Polyam: Default values for automated badge since old style is kept
-  --user-role-border: rgb(from var(--color-text-primary) r g b / 50%);
-  --user-role-background: rgb(from var(--color-text-primary) r g b / 10%);
-
   display: inline-flex;
   padding: 4px;
   padding-inline-end: 8px;
-  border: 1px solid var(--user-role-border); // Polyam: User role colors
-  background-color: var(--user-role-background); // Polyam: User role colors
-  color: var(--color-text-primary); // Polyam: User role colors
+  border: 1px solid var(--color-text-brand);
+  color: var(--color-text-brand);
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.5px;

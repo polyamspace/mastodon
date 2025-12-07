@@ -1,0 +1,9 @@
+.account-role {
+  // Default values for automated badge since old style is kept
+  --user-role-border: rgb(from var(--color-text-primary) r g b / 50%);
+  --user-role-background: rgb(from var(--color-text-primary) r g b / 10%);
+
+  border-color: var(--user-role-border);
+  background-color: var(--user-role-background);
+  color: var(--color-text-primary);
+}
