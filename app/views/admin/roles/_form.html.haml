@@ -25,24 +25,24 @@
       .fields-row__column.fields-row__column-6
         .user-role__preview{ id: 'user_role_preview' }
           .item.dark
-            .account-role{ class: "user-role-#{form.object.id}", id: 'user-role-preview-1' }
+            .account-role{ id: 'user-role-preview-1' }
               = material_symbol 'person'
               %span= form.object.name
               - unless current_user.setting_flavour == 'polyam'
-                %span.account-role__domain= current_user.account.local_username_and_domain.split('@')[1]
+                %span.account-role__domain= Rails.configuration.x.local_domain
           .item.light
-            .account-role{ class: "user-role-#{form.object.id}", id: 'user-role-preview-2' }
+            .account-role{ id: 'user-role-preview-2' }
               = material_symbol 'person'
               %span= form.object.name
               - unless current_user.setting_flavour == 'polyam'
-                %span.account-role__domain= current_user.account.local_username_and_domain.split('@')[1]
+                %span.account-role__domain= Rails.configuration.x.local_domain
           - if current_user.setting_skin != 'default' && current_user.setting_skin != 'mastodon-light'
             .item.account__header.account_header_badges
-              .account-role{ class: "user-role-#{form.object.id}", id: 'user-role-preview-3' }
+              .account-role{ id: 'user-role-preview-3' }
                 = material_symbol 'person'
                 %span= form.object.name
                 - unless current_user.setting_flavour == 'polyam'
-                  %span.account-role__domain= current_user.account.local_username_and_domain.split('@')[1]
+                  %span.account-role__domain= Rails.configuration.x.local_domain
   %hr.spacer/
 
   .fields-group
