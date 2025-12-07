@@ -1,33 +1,7 @@
-@use '../mastodon/theme_utils' as utils;
+@use '../mastodon/theme/utils' as utils;
 
-:root {
-  --color-black: #000;
-  --color-grey-950: #181821;
-  --color-grey-800: #292938;
-  --color-grey-700: #444664;
-  --color-grey-600: #545778;
-  --color-grey-500: #696d91;
-  --color-grey-400: #8b8dac;
-  --color-grey-300: #b4b6cb;
-  --color-grey-200: #d8d9e3;
-  --color-grey-100: #f0f0f5;
-  --color-grey-50: #f0f1ff;
-  --color-white: #fff;
-  --color-indigo-600: #6147e6;
-  --color-indigo-400: #8886ff;
-  --color-indigo-300: #a5abfd;
-  --color-indigo-200: #c8cdfe;
-  --color-indigo-100: #e0e3ff;
-  --color-indigo-50: #f0f1ff;
-  --color-red-500: #ff637e;
-  --color-red-600: #ec003f;
-  --color-yellow-400: #ffb900;
-  --color-yellow-600: #e17100;
-  --color-green-400: #05df72;
-  --color-green-600: #00a63e;
-
-  /* HOMOGAY COLORS */
-
+/* HOMOGAY COLORS */
+@mixin palette {
   --color-pink-1: #a71494;
   --color-pink-2: #d61ebe;
   --color-pink-3: #ef6ede;
@@ -45,7 +19,9 @@
   --color-purple-7: #0f0816; // bg darker
   --color-purple-8: #685879;
   --color-red-1: #c9343b;
+}
 
+@mixin tokens {
   /* HOMOGAY EXTRA */
 
   --border-radius: 8px;
@@ -64,6 +40,7 @@
     var(--color-text-brand)
   );
   --color-text-on-brand-base: var(--color-white);
+  --color-text-brand-on-inverted: var(--color-text-brand);
   --color-text-error: var(--color-red-1);
   --color-text-on-error-base: var(--color-white);
   --color-text-warning: var(--color-yellow-1);
@@ -100,7 +77,7 @@
 
   // Utility
   --color-bg-ambient: var(--color-bg-primary);
-  --color-bg-elevated: var(--color-purple-3);
+  --color-bg-elevated: var(--color-bg-primary);
   --color-bg-inverted: var(--color-black);
   --color-bg-media-base: var(--color-black);
   --color-bg-media-strength: 65%;
@@ -108,7 +85,7 @@
       var(--color-bg-media-base),
       var(--color-bg-media-strength)
     )};
-  --color-bg-overlay: var(--color-bg-primary);
+  --color-bg-overlay: var(--color-black);
   --color-bg-disabled: var(--color-grey-700);
 
   // Brand
@@ -186,7 +163,7 @@
       var(--color-purple-4),
       var(--border-strength-primary)
     )};
-  --color-border-media: rgb(252 248 255 / 15%);
+  --color-border-media: #{utils.css-alpha(var(--color-purple-5), 15%)};
   --color-border-on-bg-secondary: #{utils.css-alpha(
       var(--color-purple-4),
       calc(var(--border-strength-primary) / 1.5)
@@ -232,18 +209,4 @@
   --rich-text-container-color: rgb(87 24 60 / 100%);
   --rich-text-text-color: rgb(255 175 212 / 100%);
   --rich-text-decorations-color: rgb(128 58 95 / 100%);
-
-  /* MISCELLANEOUS */
-
-  --outline-focus-default: 2px solid var(--color-text-brand);
-  --avatar-border-radius: 8px;
-}
-
-body {
-  // Variable for easily inverting directional UI elements,
-  --text-x-direction: 1;
-
-  &.rtl {
-    --text-x-direction: -1;
-  }
 }
