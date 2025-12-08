@@ -25,20 +25,20 @@
       .fields-row__column.fields-row__column-6
         .account-role__preview{ id: 'user_role_preview' }
           .item.dark
-            .account-role{ id: 'user-role-preview-1' }
+            .account-role
               = material_symbol 'person'
               %span= form.object.name
               - unless current_user.setting_flavour == 'polyam'
                 %span.account-role__domain= Rails.configuration.x.local_domain
           .item.light
-            .account-role{ id: 'user-role-preview-2' }
+            .account-role
               = material_symbol 'person'
               %span= form.object.name
               - unless current_user.setting_flavour == 'polyam'
                 %span.account-role__domain= Rails.configuration.x.local_domain
           - if current_user.setting_skin != 'default' && current_user.setting_skin != 'mastodon-light'
             .item
-              .account-role{ id: 'user-role-preview-3' }
+              .account-role
                 = material_symbol 'person'
                 %span= form.object.name
                 - unless current_user.setting_flavour == 'polyam'
