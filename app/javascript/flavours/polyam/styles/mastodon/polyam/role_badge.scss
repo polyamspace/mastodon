@@ -31,3 +31,29 @@
     }
   }
 }
+
+// Hide current preview based on selected system skins
+// as it does not make sense to show it when using default or mastodon-light skin
+html {
+  &[data-user-theme='system'] {
+    &[data-system-dark='default'] {
+      @media (prefers-color-scheme: dark) {
+        .account-role__preview {
+          .item.current {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &[data-system-light='mastodon-light'] {
+      @media (prefers-color-scheme: light) {
+        .account-role__preview {
+          .item.current {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
