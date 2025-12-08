@@ -36,7 +36,7 @@
               %span= form.object.name
               - unless current_user.setting_flavour == 'polyam'
                 %span.account-role__domain= Rails.configuration.x.local_domain
-          - if current_user.setting_skin != 'default' && current_user.setting_skin != 'mastodon-light'
+          - unless ['default', 'mastodon-light'].include? current_user.setting_skin
             .item
               .account-role
                 = material_symbol 'person'
