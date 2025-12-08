@@ -1,0 +1,59 @@
+@use '../theme/dark';
+@use '../theme/light';
+
+.account-role {
+  // Default values for automated badge since old style is kept
+  --user-role-border: rgb(from var(--color-text-primary) r g b / 50%);
+  --user-role-background: rgb(from var(--color-text-primary) r g b / 10%);
+  --user-role-text: var(--color-text-primary);
+
+  border-color: var(--user-role-border);
+  background-color: var(--user-role-background);
+  color: var(--user-role-text);
+
+  &__preview {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+
+    .item {
+      padding: 12px 15px;
+      border: none;
+      background: var(--color-bg-primary);
+
+      &.dark {
+        @include dark.tokens;
+      }
+
+      &.light {
+        @include light.tokens;
+      }
+    }
+  }
+}
+
+// Hide current preview based on selected system skins
+// as it does not make sense to show it when using default or mastodon-light skin
+html {
+  &[data-user-theme='system'] {
+    &[data-system-dark='default'] {
+      @media (prefers-color-scheme: dark) {
+        .account-role__preview {
+          .item.current {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &[data-system-light='mastodon-light'] {
+      @media (prefers-color-scheme: light) {
+        .account-role__preview {
+          .item.current {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
