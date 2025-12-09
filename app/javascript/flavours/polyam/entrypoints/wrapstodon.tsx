@@ -2,10 +2,8 @@ import { createRoot } from 'react-dom/client';
 
 import { Provider as ReduxProvider } from 'react-redux';
 
-import {
-  importFetchedAccounts,
-  importFetchedStatuses,
-} from '@/flavours/polyam/actions/importer';
+import { importFetchedStatuses } from '@/flavours/polyam/actions/importer';
+import { hydrateStore } from '@/flavours/polyam/actions/store';
 import type { ApiAnnualReportResponse } from '@/flavours/polyam/api/annual_report';
 import { Router } from '@/flavours/polyam/components/router';
 import { WrapstodonShare } from '@/flavours/polyam/features/annual_report/share';
@@ -33,7 +31,14 @@ function loaded() {
   if (!report) {
     throw new Error('Initial state report not found');
   }
-  store.dispatch(importFetchedAccounts(initialState.accounts));
+
+  // Set up store
+  store.dispatch(
+    hydrateStore({
+      meta: { locale: document.documentElement.lang },
+      accounts: initialState.accounts,
+    }),
+  );
   store.dispatch(importFetchedStatuses(initialState.statuses));
 
   store.dispatch(setReport(report));
