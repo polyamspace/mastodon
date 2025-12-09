@@ -6,7 +6,7 @@ import { importFetchedStatuses } from '@/flavours/polyam/actions/importer';
 import { hydrateStore } from '@/flavours/polyam/actions/store';
 import type { ApiAnnualReportResponse } from '@/flavours/polyam/api/annual_report';
 import { Router } from '@/flavours/polyam/components/router';
-import { WrapstodonShare } from '@/flavours/polyam/features/annual_report/share';
+import { WrapstodonSharedPage } from '@/flavours/polyam/features/annual_report/shared_page';
 import { IntlProvider, loadLocale } from '@/flavours/polyam/locales';
 import { loadPolyfills } from '@/flavours/polyam/polyfills';
 import ready from '@/flavours/polyam/ready';
@@ -48,7 +48,7 @@ function loaded() {
     <IntlProvider>
       <ReduxProvider store={store}>
         <Router>
-          <WrapstodonShare />
+          <WrapstodonSharedPage />
         </Router>
       </ReduxProvider>
     </IntlProvider>,
