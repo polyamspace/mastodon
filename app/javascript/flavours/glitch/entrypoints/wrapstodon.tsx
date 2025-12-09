@@ -6,7 +6,7 @@ import { importFetchedStatuses } from '@/flavours/glitch/actions/importer';
 import { hydrateStore } from '@/flavours/glitch/actions/store';
 import type { ApiAnnualReportResponse } from '@/flavours/glitch/api/annual_report';
 import { Router } from '@/flavours/glitch/components/router';
-import { WrapstodonShare } from '@/flavours/glitch/features/annual_report/share';
+import { WrapstodonSharedPage } from '@/flavours/glitch/features/annual_report/shared_page';
 import { IntlProvider, loadLocale } from '@/flavours/glitch/locales';
 import { loadPolyfills } from '@/flavours/glitch/polyfills';
 import ready from '@/flavours/glitch/ready';
@@ -48,7 +48,7 @@ function loaded() {
     <IntlProvider>
       <ReduxProvider store={store}>
         <Router>
-          <WrapstodonShare />
+          <WrapstodonSharedPage />
         </Router>
       </ReduxProvider>
     </IntlProvider>,
