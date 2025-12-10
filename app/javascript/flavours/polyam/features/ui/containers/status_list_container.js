@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { scrollTopTimeline, loadPending, TIMELINE_SUGGESTIONS, TIMELINE_GAP } from '@/flavours/polyam/actions/timelines';
+import { scrollTopTimeline, loadPending } from '@/flavours/polyam/actions/timelines';
+import { isNonStatusId } from '@/flavours/polyam/actions/timelines_typed';
 import StatusList from '@/flavours/polyam/components/status_list';
 import { me } from '@/flavours/polyam/initial_state';
-import { TIMELINE_WRAPSTODON } from '@/flavours/polyam/reducers/slices/annual_report';
 
 const normalizeTimelineId = timelineId => {
   if (timelineId.startsWith('public:')) {
@@ -58,7 +58,7 @@ const makeGetStatusIds = (pending = false) => createSelector([
   getRegex,
 ], (columnSettings, statusIds, statuses, regex) => {
   return statusIds.filter(id => {
-    if (id === TIMELINE_GAP || id === TIMELINE_SUGGESTIONS || id === TIMELINE_WRAPSTODON) return true;
+    if (isNonStatusId(id)) return true;
 
     const statusForId = statuses.get(id);
 
