@@ -6,7 +6,6 @@ import classNames from 'classnames';
 
 import { Avatar } from '@/flavours/polyam/components/avatar';
 import { Button } from '@/flavours/polyam/components/button';
-import { me } from '@/flavours/polyam/initial_state';
 import type { Account } from '@/flavours/polyam/models/account';
 import type {
   AnnualReport,
@@ -112,11 +111,11 @@ const illustrations = {
 export const Archetype: React.FC<{
   report: AnnualReport;
   account?: Account;
-  canShare: boolean;
-}> = ({ report, account, canShare }) => {
+  context: 'modal' | 'standalone';
+}> = ({ report, account, context }) => {
   const intl = useIntl();
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const isSelfView = account?.id === me;
+  const isSelfView = context === 'modal';
 
   const [isRevealed, setIsRevealed] = useState(!isSelfView);
   const reveal = useCallback(() => {
@@ -209,7 +208,7 @@ export const Archetype: React.FC<{
           />
         </Button>
       )}
-      {isRevealed && canShare && <ShareButton report={report} />}
+      {isRevealed && isSelfView && <ShareButton report={report} />}
     </div>
   );
 };
