@@ -118,6 +118,7 @@ class Status extends ImmutablePureComponent {
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
     unread: PropTypes.bool,
+    showActions: PropTypes.bool,
     prepend: PropTypes.string,
     withDismiss: PropTypes.bool,
     isQuotedPost: PropTypes.bool,
@@ -570,7 +571,8 @@ class Status extends ImmutablePureComponent {
       notification,
       onOpenAltText,
       history,
-      isQuotedPost,
+      showActions = true,
+      isQuotedPost = false,
       ...other
     } = this.props;
 
@@ -898,7 +900,7 @@ class Status extends ImmutablePureComponent {
               reactions={status.get('reactions')}
             />
 
-            {!isQuotedPost && (!isCollapsed || !(muted || !showActionBar)) && (
+            {(showActions && !isQuotedPost) && (!isCollapsed || !(muted || !showActionBar)) && (
               <StatusActionBar
                 status={status}
                 account={status.get('account')}
