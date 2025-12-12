@@ -1,6 +1,5 @@
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
-import { reinsertAnnualReport, TIMELINE_WRAPSTODON } from '@/flavours/polyam/reducers/slices/annual_report';
 import api, { getLinks } from 'flavours/polyam/api';
 import { compareId } from 'flavours/polyam/compare_id';
 import { usePendingItems as preferPendingItems } from 'flavours/polyam/initial_state';
@@ -33,7 +32,6 @@ export const TIMELINE_GAP = null;
 export const TIMELINE_NON_STATUS_MARKERS = [
   TIMELINE_GAP,
   TIMELINE_SUGGESTIONS,
-  TIMELINE_WRAPSTODON,
 ];
 
 export const loadPending = timeline => ({
@@ -144,7 +142,6 @@ export function expandTimeline(timelineId, path, params = {}) {
 
       if (timelineId === 'home') {
         dispatch(submitMarkers());
-        dispatch(reinsertAnnualReport());
       }
     } catch(error) {
       dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
