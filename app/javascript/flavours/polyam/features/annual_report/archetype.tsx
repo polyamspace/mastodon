@@ -6,11 +6,13 @@ import classNames from 'classnames';
 
 import { Avatar } from '@/flavours/polyam/components/avatar';
 import { Button } from '@/flavours/polyam/components/button';
+import { me } from '@/flavours/polyam/initial_state';
 import type { Account } from '@/flavours/polyam/models/account';
 import type {
   AnnualReport,
   Archetype as ArchetypeData,
 } from '@/flavours/polyam/models/annual_report';
+import { wrapstodonSettings } from '@/flavours/polyam/settings';
 import booster from '@/images/archetypes/booster.png';
 import lurker from '@/images/archetypes/lurker.png';
 import oracle from '@/images/archetypes/oracle.png';
@@ -117,9 +119,16 @@ export const Archetype: React.FC<{
   const wrapperRef = useRef<HTMLDivElement>(null);
   const isSelfView = context === 'modal';
 
-  const [isRevealed, setIsRevealed] = useState(!isSelfView);
+  const [isRevealed, setIsRevealed] = useState(
+    () =>
+      !isSelfView ||
+      (me ? (wrapstodonSettings.get(me)?.archetypeRevealed ?? false) : true),
+  );
   const reveal = useCallback(() => {
     setIsRevealed(true);
+    if (me) {
+      wrapstodonSettings.set(me, { archetypeRevealed: true });
+    }
     wrapperRef.current?.focus();
   }, []);
 
