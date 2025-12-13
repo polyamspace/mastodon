@@ -6,11 +6,13 @@ import classNames from 'classnames';
 
 import { Avatar } from '@/flavours/polyam/components/avatar';
 import { Button } from '@/flavours/polyam/components/button';
+import { me } from '@/flavours/polyam/initial_state';
 import type { Account } from '@/flavours/polyam/models/account';
 import type {
   AnnualReport,
   Archetype as ArchetypeData,
 } from '@/flavours/polyam/models/annual_report';
+import { wrapstodonSettings } from '@/flavours/polyam/settings';
 import booster from '@/images/archetypes/booster.png';
 import lurker from '@/images/archetypes/lurker.png';
 import oracle from '@/images/archetypes/oracle.png';
@@ -117,9 +119,16 @@ export const Archetype: React.FC<{
   const wrapperRef = useRef<HTMLDivElement>(null);
   const isSelfView = context === 'modal';
 
-  const [isRevealed, setIsRevealed] = useState(!isSelfView);
+  const [isRevealed, setIsRevealed] = useState(
+    () =>
+      !isSelfView ||
+      (me ? (wrapstodonSettings.get(me)?.archetypeRevealed ?? false) : true),
+  );
   const reveal = useCallback(() => {
     setIsRevealed(true);
+    if (me) {
+      wrapstodonSettings.set(me, { archetypeRevealed: true });
+    }
     wrapperRef.current?.focus();
   }, []);
 
@@ -128,7 +137,8 @@ export const Archetype: React.FC<{
     ? archetypeSelfDescriptions
     : archetypePublicDescriptions;
 
-  const name = account?.display_name;
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we specifically want to fallback if `display_name` is empty
+  const name = account?.display_name || account?.username;
 
   return (
     <div

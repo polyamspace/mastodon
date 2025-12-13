@@ -12,7 +12,11 @@ import { closeModal } from '@/flavours/polyam/actions/modal';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
 import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
 import { me } from '@/flavours/polyam/initial_state';
-import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '@/flavours/polyam/store';
 
 import { Archetype } from './archetype';
 import { Followers } from './followers';
@@ -23,21 +27,26 @@ import { NewPosts } from './new_posts';
 
 const moduleClassNames = classNames.bind(styles);
 
+const accountSelector = createAppSelector(
+  [(state) => state.accounts, (state) => state.annualReport.report],
+  (accounts, report) => {
+    if (me) {
+      return accounts.get(me);
+    }
+    if (report?.schema_version === 2) {
+      return accounts.get(report.account_id);
+    }
+    return undefined;
+  },
+);
+
 export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
   context = 'standalone',
 }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const report = useAppSelector((state) => state.annualReport.report);
-  const account = useAppSelector((state) => {
-    if (me) {
-      return state.accounts.get(me);
-    }
-    if (report?.schema_version === 2) {
-      return state.accounts.get(report.account_id);
-    }
-    return undefined;
-  });
+  const account = useAppSelector(accountSelector);
 
   const close = useCallback(() => {
     dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
