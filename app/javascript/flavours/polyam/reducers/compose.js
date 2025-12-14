@@ -55,7 +55,6 @@ import {
   COMPOSE_CHANGE_MEDIA_ORDER,
   COMPOSE_SET_STATUS,
   COMPOSE_FOCUS,
-  removeHighlight,
 } from '../actions/compose';
 import { REDRAFT } from '../actions/statuses';
 import { STORE_HYDRATE } from '../actions/store';
@@ -119,7 +118,6 @@ const initialState = ImmutableMap({
   }),
   // Polyam
   last_status_in_thread: null,
-  highlighted: false,
 
   // Quotes
   quoted_status_id: null,
@@ -741,9 +739,7 @@ export const composeReducer = (state = initialState, action) => {
   case COMPOSE_LANGUAGE_CHANGE:
     return state.set('language', action.language);
   case COMPOSE_FOCUS:
-    return state.set('focusDate', new Date()).update('text', text => text.length > 0 ? text : action.defaultText).set('highlighted', true);
-  case removeHighlight.type:
-    return state.set('highlighted', false);
+    return state.set('focusDate', new Date()).update('text', text => text.length > 0 ? text : action.defaultText);
   case COMPOSE_CHANGE_MEDIA_ORDER:
     return state.update('media_attachments', list => {
       const indexA = list.findIndex(x => x.get('id') === action.a);

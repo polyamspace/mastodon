@@ -145,8 +145,6 @@ export const changeUploadCompose = createDataLoadingThunk(
   },
 );
 
-export const removeHighlight = createAction('compose/remove_highlight');
-
 export const quoteCompose = createAppThunk(
   'compose/quoteComposeStatus',
   (status: Status, { dispatch }) => {

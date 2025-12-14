@@ -9,7 +9,6 @@ import {
   changeComposeSpoilerText,
   insertEmojiCompose,
   uploadCompose,
-  removeHighlight,
 } from 'flavours/polyam/actions/compose';
 import { pasteLinkCompose } from 'flavours/polyam/actions/compose_typed';
 import { openModal } from 'flavours/polyam/actions/modal';
@@ -82,7 +81,6 @@ const mapStateToProps = state => ({
   sideArm: sideArmPrivacy(state),
   media: state.getIn(['compose', 'media_attachments']),
   maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 500),
-  highlighted: state.getIn(['compose', 'highlighted']),
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -138,11 +136,6 @@ const mapDispatchToProps = (dispatch, props) => ({
   onPickEmoji (position, data, needsSpace) {
     dispatch(insertEmojiCompose(position, data, needsSpace));
   },
-
-  onRemoveHighlight() {
-    dispatch(removeHighlight());
-  },
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ComposeForm);
