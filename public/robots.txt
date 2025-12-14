@@ -43,6 +43,8 @@ User-agent: Timpibot
 Disallow: /
 
 User-agent: *
-Disallow: /media_proxy/
-Disallow: /interact/
-Disallow: /api/v1/instance/domain_blocks
+Disallow: /
+Allow: /nodeinfo/
+Allow: /.well-known/
+Allow: /api/v1/instance
+Allow: /api/v2/instance
