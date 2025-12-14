@@ -83,13 +83,14 @@ class ComposeForm extends ImmutablePureComponent {
     lang: PropTypes.string,
     maxChars: PropTypes.number,
     redirectOnSuccess: PropTypes.bool,
-    // Polyam
-    highlighted: PropTypes.bool,
-    onRemoveHighlight: PropTypes.func,
   };
 
   static defaultProps = {
     autoFocus: false,
+  };
+
+  state = {
+    highlighted: false,
   };
 
   constructor(props) {
@@ -240,7 +241,8 @@ class ComposeForm extends ImmutablePureComponent {
       Promise.resolve().then(() => {
         this.textareaRef.current.setSelectionRange(selectionStart, selectionEnd);
         this.textareaRef.current.focus();
-        if (this.props.highlighted) this.timeout = setTimeout(() => this.props.onRemoveHighlight(), 700);
+        this.setState({highlighted: true});
+        this.timeout = setTimeout(() => this.setState({highlighted: false}), 700);
       }).catch(console.error);
     } else if(prevProps.isSubmitting && !this.props.isSubmitting) {
       this.textareaRef.current.focus();
@@ -278,8 +280,8 @@ class ComposeForm extends ImmutablePureComponent {
       withoutNavigation,
       maxChars,
       isSubmitting,
-      highlighted
     } = this.props;
+    const { highlighted } = this.state;
 
     // Polyam: Custom publish button text
     let publishText = '';
