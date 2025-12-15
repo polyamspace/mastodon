@@ -3,12 +3,14 @@ import type { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { IconLogo } from '@/flavours/polyam/components/logo';
-import { me } from '@/flavours/polyam/initial_state';
+import { useAppSelector } from '@/flavours/polyam/store';
 
 import { AnnualReport } from './index';
 import classes from './shared_page.module.scss';
 
 export const WrapstodonSharedPage: FC = () => {
+  const isLoggedIn = useAppSelector((state) => !!state.meta.get('me'));
+
   return (
     <main className={classes.wrapper}>
       <AnnualReport />
@@ -23,7 +25,7 @@ export const WrapstodonSharedPage: FC = () => {
           <a href='https://joinmastodon.org'>
             <FormattedMessage id='footer.about' defaultMessage='About' />
           </a>
-          {!me && (
+          {!isLoggedIn && (
             <a href='https://joinmastodon.org/servers'>
               <FormattedMessage
                 id='annual_report.shared_page.sign_up'

@@ -11,7 +11,6 @@ import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { closeModal } from '@/flavours/polyam/actions/modal';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
 import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
-import { me } from '@/flavours/polyam/initial_state';
 import {
   createAppSelector,
   useAppDispatch,
@@ -30,9 +29,6 @@ const moduleClassNames = classNames.bind(styles);
 const accountSelector = createAppSelector(
   [(state) => state.accounts, (state) => state.annualReport.report],
   (accounts, report) => {
-    if (me) {
-      return accounts.get(me);
-    }
     if (report?.schema_version === 2) {
       return accounts.get(report.account_id);
     }
@@ -109,7 +105,7 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
           {topHashtag && (
             <MostUsedHashtag
               hashtag={topHashtag}
-              name={account?.display_name}
+              account={account}
               context={context}
             />
           )}
