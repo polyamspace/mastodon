@@ -256,9 +256,8 @@ async function mountReactComponent(element: Element) {
 
   const componentProps = JSON.parse(stringProps) as object;
 
-  const { default: AdminComponent } = await import(
-    '@/flavours/polyam/containers/admin_component'
-  );
+  const { default: AdminComponent } =
+    await import('@/flavours/polyam/containers/admin_component');
 
   const { default: Component } = (await import(
     `@/flavours/polyam/components/admin/${componentName}.jsx`
