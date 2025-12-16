@@ -55,9 +55,8 @@ function main() {
         'Notification' in window &&
         Notification.permission === 'granted'
       ) {
-        const registerPushNotifications = await import(
-          'flavours/polyam/actions/push_notifications'
-        );
+        const registerPushNotifications =
+          await import('flavours/polyam/actions/push_notifications');
 
         store.dispatch(registerPushNotifications.register());
       }
