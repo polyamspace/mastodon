@@ -7,7 +7,6 @@ import classNames from 'classnames';
 
 import { openModal } from '@/flavours/polyam/actions/modal';
 import { Icon } from '@/flavours/polyam/components/icon';
-import { selectWrapstodonYear } from '@/flavours/polyam/reducers/slices/annual_report';
 import {
   createAppSelector,
   useAppDispatch,
@@ -23,8 +22,7 @@ const selectReportModalOpen = createAppSelector(
 );
 
 export const AnnualReportNavItem: FC = () => {
-  const { state } = useAppSelector((state) => state.annualReport);
-  const year = useAppSelector(selectWrapstodonYear);
+  const { state, year } = useAppSelector((state) => state.annualReport);
   const active = useAppSelector(selectReportModalOpen);
 
   const dispatch = useAppDispatch();

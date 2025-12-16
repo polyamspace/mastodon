@@ -11,6 +11,7 @@ import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { closeModal } from '@/flavours/polyam/actions/modal';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
 import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
+import { getReport } from '@/flavours/polyam/reducers/slices/annual_report';
 import {
   createAppSelector,
   useAppDispatch,
@@ -43,6 +44,13 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
   const dispatch = useAppDispatch();
   const report = useAppSelector((state) => state.annualReport.report);
   const account = useAppSelector(accountSelector);
+  const needsReport = !report; // Make into boolean to avoid object comparison in deps.
+
+  useEffect(() => {
+    if (needsReport) {
+      void dispatch(getReport());
+    }
+  }, [dispatch, needsReport]);
 
   const close = useCallback(() => {
     dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
@@ -57,7 +65,7 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
     }
   }, [pathname, initialPathname, close]);
 
-  if (!report) {
+  if (needsReport) {
     return <LoadingIndicator />;
   }
 
