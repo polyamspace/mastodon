@@ -2,6 +2,11 @@ import type { ApiAccountJSON } from './api_types/accounts';
 
 type InitialStateLanguage = [code: string, name: string, localName: string];
 
+interface InitialWrapstodonState {
+  year: number;
+  state: 'available' | 'generating' | 'eligible' | 'ineligible';
+}
+
 interface InitialStateMeta {
   access_token: string;
   advanced_layout?: boolean;
@@ -49,6 +54,7 @@ interface InitialStateMeta {
   status_page_url: string;
   terms_of_service_enabled: boolean;
   emoji_style?: string;
+  wrapstodon?: InitialWrapstodonState | null;
   default_content_type: string;
   max_reactions: number;
   visible_reactions: number;
@@ -163,6 +169,7 @@ export const criticalUpdatesPending = initialState?.critical_updates_pending;
 export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
 export const termsOfServiceEnabled = getMeta('terms_of_service_enabled');
+export const wrapstodon = getMeta('wrapstodon');
 
 const displayNames =
   // Intl.DisplayNames can be undefined in old browsers
