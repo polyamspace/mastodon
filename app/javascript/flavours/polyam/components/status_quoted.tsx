@@ -4,19 +4,18 @@ import { FormattedMessage } from 'react-intl';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import { fetchRelationships } from 'flavours/polyam/actions/accounts';
+import { revealAccount } from 'flavours/polyam/actions/accounts_typed';
+import { fetchStatus } from 'flavours/polyam/actions/statuses';
 import { LearnMoreLink } from 'flavours/polyam/components/learn_more_link';
 import StatusContainer from 'flavours/polyam/containers/status_container';
 import { domain } from 'flavours/polyam/initial_state';
 import type { Account } from 'flavours/polyam/models/account';
 import type { Status } from 'flavours/polyam/models/status';
+import { makeGetStatusWithExtraInfo } from 'flavours/polyam/selectors';
+import { getAccountHidden } from 'flavours/polyam/selectors/accounts';
 import type { RootState } from 'flavours/polyam/store';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
-
-import { fetchRelationships } from '../actions/accounts';
-import { revealAccount } from '../actions/accounts_typed';
-import { fetchStatus } from '../actions/statuses';
-import { makeGetStatusWithExtraInfo } from '../selectors';
-import { getAccountHidden } from '../selectors/accounts';
 
 import { Button } from './button';
 
@@ -333,7 +332,7 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   );
 };
 
-interface StatusQuoteManagerProps {
+export interface StatusQuoteManagerProps {
   id: string;
   contextType?: string;
   [key: string]: unknown;
