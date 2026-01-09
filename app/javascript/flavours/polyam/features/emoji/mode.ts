@@ -2,6 +2,7 @@
 // See: https://github.com/nolanlawson/emoji-picker-element/blob/master/src/picker/utils/testColorEmojiSupported.js
 
 import { createAppSelector, useAppSelector } from '@/flavours/polyam/store';
+import { assetHost } from '@/flavours/polyam/utils/config';
 import { isDevelopment } from '@/flavours/polyam/utils/environment';
 import { isDarkMode } from '@/flavours/polyam/utils/theme';
 
@@ -29,6 +30,7 @@ export function useEmojiAppState(): EmojiAppState {
     locales: [locale],
     mode,
     darkTheme: isDarkMode(),
+    assetHost,
   };
 }
 
