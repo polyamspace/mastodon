@@ -19,14 +19,11 @@ module ThemeHelper
 
   def theme_style_tags(flavour_and_skin)
     flavour, theme = flavour_and_skin
-    if theme == 'system'
-      ''.html_safe.tap do |tags|
-        tags << vite_stylesheet_tag("skins/#{flavour}/mastodon-light", type: :virtual, media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
-        tags << vite_stylesheet_tag("skins/#{flavour}/default", type: :virtual, media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
-      end
-    else
-      vite_stylesheet_tag "skins/#{flavour}/#{theme}", type: :virtual, media: 'all', crossorigin: 'anonymous'
-    end
+
+    # TODO: get rid of that when we retire the themes and perform the settings migration
+    theme = 'default' if %w(mastodon-light contrast system).include?(theme)
+
+    vite_stylesheet_tag "skins/#{flavour}/#{theme}", type: :virtual, media: 'all', crossorigin: 'anonymous'
   end
 
   def theme_color_tags(color_scheme)
