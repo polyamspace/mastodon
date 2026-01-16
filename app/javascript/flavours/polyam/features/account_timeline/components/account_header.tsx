@@ -7,7 +7,6 @@ import { Helmet } from 'react-helmet';
 
 import LockIcon from '@/awesome-icons/solid/lock.svg?react';
 import { AccountBio } from '@/flavours/polyam/components/account_bio';
-import { AccountFields } from '@/flavours/polyam/components/account_fields';
 import { DisplayName } from '@/flavours/polyam/components/display_name';
 import { AnimateEmojiProvider } from '@/flavours/polyam/components/emoji/context';
 import { openModal } from 'flavours/polyam/actions/modal';
@@ -32,6 +31,7 @@ import { AnniversaryNote } from './anniversary-note';
 import { AccountBadges } from './badges';
 import { AccountButtons } from './buttons';
 import { FamiliarFollowers } from './familiar_followers';
+import { AccountHeaderFields } from './fields';
 import { AccountInfo } from './info';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
@@ -198,12 +198,7 @@ export const AccountHeader: React.FC<{
 
                 {/* Polyam: Hide fields when empty and show joined date on bottom */}
                 {account.fields.size > 0 && (
-                  <div className='account__header__fields'>
-                    <AccountFields
-                      fields={account.fields}
-                      emojis={account.emojis}
-                    />
-                  </div>
+                  <AccountHeaderFields accountId={accountId} />
                 )}
 
                 {/* Polyam: Show bio after fields as they are visually distracting */}
