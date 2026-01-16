@@ -12,7 +12,7 @@ RSpec.describe ThemeHelper do
       it 'returns the default theme' do
         expect(html_links.first.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/default/))
+            href: have_attributes(value: match(/contrast/))
           )
       end
     end
@@ -23,7 +23,7 @@ RSpec.describe ThemeHelper do
       it 'returns the default stylesheet' do
         expect(html_links.last.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/default/))
+            href: have_attributes(value: match(/contrast/))
           )
       end
     end
@@ -34,7 +34,7 @@ RSpec.describe ThemeHelper do
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_links.first.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/default/))
+            href: have_attributes(value: match(/contrast/))
           )
       end
     end
