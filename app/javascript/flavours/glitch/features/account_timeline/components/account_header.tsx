@@ -1,19 +1,13 @@
 import { useCallback } from 'react';
 
-import { useIntl } from 'react-intl';
-
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
 import { AccountBio } from '@/flavours/glitch/components/account_bio';
-import { DisplayName } from '@/flavours/glitch/components/display_name';
 import { AnimateEmojiProvider } from '@/flavours/glitch/components/emoji/context';
-import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { Avatar } from 'flavours/glitch/components/avatar';
-import { Icon } from 'flavours/glitch/components/icon';
 import { AccountNote } from 'flavours/glitch/features/account/components/account_note';
-import { DomainPill } from 'flavours/glitch/features/account/components/domain_pill';
 import FollowRequestNoteContainer from 'flavours/glitch/features/account/containers/follow_request_note_container';
 import {
   autoPlayGif,
@@ -25,7 +19,9 @@ import { getAccountHidden } from 'flavours/glitch/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 
 import { ActionBar } from '../../account/components/action_bar';
+import { isRedesignEnabled } from '../common';
 
+import { AccountName } from './account_name';
 import { AccountBadges } from './badges';
 import { AccountButtons } from './buttons';
 import { FamiliarFollowers } from './familiar_followers';
@@ -33,6 +29,7 @@ import { AccountHeaderFields } from './fields';
 import { AccountInfo } from './info';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
+import redesignClasses from './redesign.module.scss';
 import { AccountTabs } from './tabs';
 
 const titleFromAccount = (account: Account) => {
@@ -52,7 +49,6 @@ export const AccountHeader: React.FC<{
   hideTabs?: boolean;
 }> = ({ accountId, hideTabs }) => {
   const dispatch = useAppDispatch();
-  const intl = useIntl();
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const relationship = useAppSelector((state) =>
     state.relationships.get(accountId),
@@ -90,8 +86,6 @@ export const AccountHeader: React.FC<{
 
   const suspendedOrHidden = hidden || account.suspended;
   const isLocal = !account.acct.includes('@');
-  const username = account.acct.split('@')[0];
-  const domain = isLocal ? localDomain : account.acct.split('@')[1];
 
   return (
     <div className='account-timeline__header'>
@@ -138,38 +132,27 @@ export const AccountHeader: React.FC<{
               />
             </a>
 
-            <AccountButtons
-              accountId={accountId}
-              className='account__header__buttons--desktop'
-            />
+            {!isRedesignEnabled() && (
+              <AccountButtons
+                accountId={accountId}
+                className='account__header__buttons--desktop'
+              />
+            )}
           </div>
 
-          <div className='account__header__tabs__name'>
-            <h1>
-              <DisplayName account={account} variant='simple' />
-              <small>
-                <span>
-                  @{username}
-                  <span className='invisible'>@{domain}</span>
-                </span>
-                <DomainPill
-                  username={username ?? ''}
-                  domain={domain ?? ''}
-                  isSelf={me === account.id}
-                />
-                {account.locked && (
-                  <Icon
-                    id='lock'
-                    icon={LockIcon}
-                    aria-label={intl.formatMessage({
-                      id: 'account.locked_info',
-                      defaultMessage:
-                        'This account privacy status is set to locked. The owner manually reviews who can follow them.',
-                    })}
-                  />
-                )}
-              </small>
-            </h1>
+          <div
+            className={classNames(
+              'account__header__tabs__name',
+              isRedesignEnabled() && redesignClasses.nameWrapper,
+            )}
+          >
+            <AccountName
+              accountId={accountId}
+              className={classNames(
+                isRedesignEnabled() && redesignClasses.name,
+              )}
+            />
+            {isRedesignEnabled() && <AccountButtons accountId={accountId} />}
           </div>
 
           <AccountBadges accountId={accountId} />
