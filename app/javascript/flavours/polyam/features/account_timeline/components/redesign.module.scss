@@ -39,6 +39,32 @@ h1.name > small {
   }
 }
 
+.badge {
+  // Polyam: Keep old design
+  --user-role-background: rgb(from var(--color-text-primary) r g b / 10%);
+  --user-role-border: rgb(from var(--color-text-primary) r g b / 50%);
+  --user-role-text: var(--color-text-primary);
+
+  background-color: var(--user-role-background);
+  border-color: var(--user-role-border);
+  color: var(--user-role-text);
+  font-weight: 600;
+
+  > span {
+    font-weight: unset;
+    opacity: 1;
+  }
+}
+
+svg.badgeIcon {
+  opacity: 1;
+  fill: revert-layer;
+
+  path {
+    fill: revert-layer;
+  }
+}
+
 .fieldList {
   margin-top: 16px;
 }
