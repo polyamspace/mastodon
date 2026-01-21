@@ -55,6 +55,7 @@ class Form::AdminSettings
     local_topic_feed_access
     remote_topic_feed_access
     landing_page
+    wrapstodon
     system_dark
     system_light
   ).freeze
@@ -87,6 +88,7 @@ class Form::AdminSettings
     captcha_enabled
     search_preview
     authorized_fetch
+    wrapstodon
   ).freeze
 
   UPLOAD_KEYS = %i(
@@ -185,6 +187,10 @@ class Form::AdminSettings
 
   def flavour_and_skin=(value)
     @flavour, @skin = value.split('/', 2)
+  end
+
+  def persisted?
+    true
   end
 
   private
