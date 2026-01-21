@@ -6,10 +6,12 @@ import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { DisplayName } from '@/flavours/polyam/components/display_name';
 import { AnimateEmojiProvider } from '@/flavours/polyam/components/emoji/context';
 import { EmojiHTML } from '@/flavours/polyam/components/emoji/html';
+import { Icon } from '@/flavours/polyam/components/icon';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
 import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
 import { useElementHandledLink } from '@/flavours/polyam/components/status/handled_link';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
+import IconVerified from '@/images/icons/icon_verified.svg?react';
 
 import classes from './redesign.module.scss';
 
@@ -56,7 +58,10 @@ export const AccountFieldsModal: FC<{
         <AnimateEmojiProvider>
           <dl className={classes.modalFieldsList}>
             {account.fields.map((field, index) => (
-              <div key={index} className={classes.modalFieldItem}>
+              <div
+                key={index}
+                className={`${classes.modalFieldItem} ${classes.fieldCard}`}
+              >
                 <EmojiHTML
                   as='dt'
                   htmlString={field.name_emojified}
@@ -64,12 +69,21 @@ export const AccountFieldsModal: FC<{
                   className='translate'
                   {...htmlHandlers}
                 />
-                <EmojiHTML
-                  as='dd'
-                  htmlString={field.value_emojified}
-                  extraEmojis={account.emojis}
-                  {...htmlHandlers}
-                />
+                <dd>
+                  <EmojiHTML
+                    as='span'
+                    htmlString={field.value_emojified}
+                    extraEmojis={account.emojis}
+                    {...htmlHandlers}
+                  />
+                  {!!field.verified_at && (
+                    <Icon
+                      id='verified'
+                      icon={IconVerified}
+                      className={classes.fieldIconVerified}
+                    />
+                  )}
+                </dd>
               </div>
             ))}
           </dl>
