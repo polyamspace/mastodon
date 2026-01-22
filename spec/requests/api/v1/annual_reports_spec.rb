@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe 'API V1 Annual Reports' do
+  # Polyam: Disabled by default
+  before do
+    Setting.wrapstodon = true
+  end
+
   include_context 'with API authentication'
 
   describe 'GET /api/v1/annual_reports' do
