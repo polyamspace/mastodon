@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe 'API V1 Annual Reports' do
+  # Polyam: Disabled by default
+  before do
+    Setting.wrapstodon = true
+  end
+
   include_context 'with API authentication'
 
   describe 'GET /api/v1/annual_reports' do
@@ -85,6 +90,10 @@ RSpec.describe 'API V1 Annual Reports' do
       end
 
       context 'when the feature is not enabled' do
+        before do
+          Setting.wrapstodon = false
+        end
+
         it 'returns http success and ineligible status' do
           get '/api/v1/annual_reports/2025/state', headers: headers
 
@@ -99,7 +108,7 @@ RSpec.describe 'API V1 Annual Reports' do
         end
       end
 
-      context 'when the feature is enabled and time is within window', feature: :wrapstodon do
+      context 'when the feature is enabled and time is within window' do
         before do
           travel_to Time.utc(2025, 12, 20)
 
@@ -121,7 +130,7 @@ RSpec.describe 'API V1 Annual Reports' do
         end
       end
 
-      context 'when the feature is enabled but we are out of the time window', feature: :wrapstodon do
+      context 'when the feature is enabled but we are out of the time window' do
         before do
           travel_to Time.utc(2025, 6, 20)
 
@@ -168,7 +177,7 @@ RSpec.describe 'API V1 Annual Reports' do
     context 'with correct scope' do
       let(:scopes) { 'write:accounts' }
 
-      context 'when the feature is enabled and time is within window', feature: :wrapstodon do
+      context 'when the feature is enabled and time is within window' do
         before do
           travel_to Time.utc(2025, 12, 20)
 
