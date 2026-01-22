@@ -16,6 +16,10 @@ import { closeOnboarding } from 'flavours/polyam/actions/onboarding';
 import { Button } from 'flavours/polyam/components/button';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
+import {
+  TextAreaField,
+  TextInputField,
+} from 'flavours/polyam/components/form_fields';
 import { Icon } from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { me } from 'flavours/polyam/initial_state';
@@ -224,62 +228,47 @@ export const Profile: React.FC<{
           </div>
 
           <div className='fields-group'>
-            <div
-              className={classNames('input with_block_label', {
-                field_with_errors: !!errors?.display_name,
-              })}
-            >
-              <label htmlFor='display_name'>
+            <TextInputField
+              maxLength={maxDisplayNameChars}
+              label={
                 <FormattedMessage
                   id='onboarding.profile.display_name'
                   defaultMessage='Display name'
                 />
-              </label>
-              <span className='hint'>
+              }
+              hint={
                 <FormattedMessage
                   id='onboarding.profile.display_name_hint'
                   defaultMessage='Your full name or your fun name…'
                 />
-              </span>
-              <div className='label_input'>
-                <input
-                  id='display_name'
-                  type='text'
-                  value={displayName}
-                  onChange={handleDisplayNameChange}
-                  maxLength={maxDisplayNameChars}
-                />
-              </div>
-            </div>
+              }
+              value={displayName}
+              onChange={handleDisplayNameChange}
+              hasError={!!errors?.display_name}
+              id='display_name'
+            />
           </div>
 
           <div className='fields-group'>
-            <div
-              className={classNames('input with_block_label', {
-                field_with_errors: !!errors?.note,
-              })}
-            >
-              <label htmlFor='note'>
+            <TextAreaField
+              maxLength={maxBioChars}
+              label={
                 <FormattedMessage
                   id='onboarding.profile.note'
                   defaultMessage='Bio'
                 />
-              </label>
-              <span className='hint'>
+              }
+              hint={
                 <FormattedMessage
                   id='onboarding.profile.note_hint'
                   defaultMessage='You can @mention other people or #hashtags…'
                 />
-              </span>
-              <div className='label_input'>
-                <textarea
-                  id='note'
-                  value={note}
-                  onChange={handleNoteChange}
-                  maxLength={maxBioChars}
-                />
-              </div>
-            </div>
+              }
+              value={note}
+              onChange={handleNoteChange}
+              hasError={!!errors?.note}
+              id='note'
+            />
           </div>
 
           <label className='app-form__toggle'>
