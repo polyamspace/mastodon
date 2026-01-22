@@ -6,7 +6,6 @@ import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import type { Account } from 'flavours/polyam/models/account';
 
-import { CustomEmojiProvider } from './emoji/context';
 import { EmojiHTML } from './emoji/html';
 import { useElementHandledLink } from './status/handled_link';
 
@@ -22,12 +21,13 @@ export const AccountFields: React.FC<Pick<Account, 'fields' | 'emojis'>> = ({
   }
 
   return (
-    <CustomEmojiProvider emojis={emojis}>
+    <>
       {fields.map((pair, i) => (
         <dl key={i} className={classNames({ verified: pair.verified_at })}>
           <EmojiHTML
             as='dt'
             htmlString={pair.name_emojified}
+            extraEmojis={emojis}
             className='translate'
             {...htmlHandlers}
           />
@@ -52,12 +52,13 @@ export const AccountFields: React.FC<Pick<Account, 'fields' | 'emojis'>> = ({
             <EmojiHTML
               as='span'
               htmlString={pair.value_emojified}
+              extraEmojis={emojis}
               {...htmlHandlers}
             />
           </dd>
         </dl>
       ))}
-    </CustomEmojiProvider>
+    </>
   );
 };
 
