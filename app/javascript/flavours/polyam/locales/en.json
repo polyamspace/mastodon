@@ -12,7 +12,6 @@
   "about.limits.max_video_size": "Video size limit:",
   "account.anniversary": "It's {acct}'s {years, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} fediversary!",
   "account.joined": "Joined {date}",
-  "account.request_follow": "Request follow",
   "column.reacted_by": "Reacted by",
   "footer.documentation": "Documentation",
   "home.column_settings.show_threads": "Show threads",
