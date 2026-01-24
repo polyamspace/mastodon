@@ -24,7 +24,14 @@ Feel free to open or comment on Issues.
 ## Development
 
 The main focus of polyam-glitch is the polyam flavour.
-Modifications of other flavours should be kept minimal and only done if necessary. [glitch-soc's frontend documentation](https://glitch-soc.github.io/docs/contributing/frontend/) also applies to polyam-glitch.
+Modifications of other flavours should be kept minimal and only done if necessary. [glitch-soc's frontend documentation](https://glitch-soc.github.io/docs/contributing/frontend/) also applies to polyam-glitch. \
+In short: Adhere to existing code style, keep code readable and document.
+
+Changes should be tested in a local dev environment before submitting.
+
+PRs with UI changes should include screenshots in their description.
+
+PRs marked ready for review shouldn't be force pushed, unless for rebasing.
 
 ---
 
