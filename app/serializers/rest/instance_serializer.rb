@@ -74,6 +74,8 @@ class REST::InstanceSerializer < ActiveModel::Serializer
         max_bio_chars: Account::NOTE_LENGTH_LIMIT,
         max_display_name_chars: Account::DISPLAY_NAME_LENGTH_LIMIT,
         max_profile_fields: Account::DEFAULT_FIELDS_SIZE,
+        profile_field_name_limit: Account::Field::MAX_CHARACTERS_LOCAL,
+        profile_field_value_limit: Account::Field::MAX_CHARACTERS_LOCAL,
       },
 
       statuses: {
