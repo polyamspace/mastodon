@@ -1,20 +1,16 @@
 import { useCallback } from 'react';
 
-import { useIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
-import LockIcon from '@/awesome-icons/solid/lock.svg?react';
 import { AccountBio } from '@/flavours/polyam/components/account_bio';
-import { DisplayName } from '@/flavours/polyam/components/display_name';
 import { AnimateEmojiProvider } from '@/flavours/polyam/components/emoji/context';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
-import { Icon } from 'flavours/polyam/components/icon';
 import { AccountNote } from 'flavours/polyam/features/account/components/account_note';
-import { DomainPill } from 'flavours/polyam/features/account/components/domain_pill';
 import FollowRequestNoteContainer from 'flavours/polyam/features/account/containers/follow_request_note_container';
 import {
   autoPlayGif,
@@ -26,7 +22,9 @@ import { getAccountHidden } from 'flavours/polyam/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 import { ActionBar } from '../../account/components/action_bar';
+import { isRedesignEnabled } from '../common';
 
+import { AccountName } from './account_name';
 import { AnniversaryNote } from './anniversary-note';
 import { AccountBadges } from './badges';
 import { AccountButtons } from './buttons';
@@ -35,6 +33,7 @@ import { AccountHeaderFields } from './fields';
 import { AccountInfo } from './info';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
+import redesignClasses from './redesign.module.scss';
 import { AccountTabs } from './tabs';
 
 const titleFromAccount = (account: Account) => {
@@ -54,7 +53,6 @@ export const AccountHeader: React.FC<{
   hideTabs?: boolean;
 }> = ({ accountId, hideTabs }) => {
   const dispatch = useAppDispatch();
-  const intl = useIntl();
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const relationship = useAppSelector((state) =>
     state.relationships.get(accountId),
@@ -92,8 +90,6 @@ export const AccountHeader: React.FC<{
 
   const suspendedOrHidden = hidden || account.suspended;
   const isLocal = !account.acct.includes('@');
-  const username = account.acct.split('@')[0];
-  const domain = isLocal ? localDomain : account.acct.split('@')[1];
 
   return (
     <div className='account-timeline__header'>
@@ -143,38 +139,27 @@ export const AccountHeader: React.FC<{
               />
             </a>
 
-            <AccountButtons
-              accountId={accountId}
-              className='account__header__buttons--desktop'
-            />
+            {!isRedesignEnabled() && (
+              <AccountButtons
+                accountId={accountId}
+                className='account__header__buttons--desktop'
+              />
+            )}
           </div>
 
-          <div className='account__header__tabs__name'>
-            <h1>
-              <DisplayName account={account} variant='simple' />
-              <small>
-                <span>
-                  @{username}
-                  <span className='invisible'>@{domain}</span>
-                </span>
-                <DomainPill
-                  username={username ?? ''}
-                  domain={domain ?? ''}
-                  isSelf={me === account.id}
-                />
-                {account.locked && (
-                  <Icon
-                    id='lock'
-                    icon={LockIcon}
-                    aria-label={intl.formatMessage({
-                      id: 'account.locked_info',
-                      defaultMessage:
-                        'This account privacy status is set to locked. The owner manually reviews who can follow them.',
-                    })}
-                  />
-                )}
-              </small>
-            </h1>
+          <div
+            className={classNames(
+              'account__header__tabs__name',
+              isRedesignEnabled() && redesignClasses.nameWrapper,
+            )}
+          >
+            <AccountName
+              accountId={accountId}
+              className={classNames(
+                isRedesignEnabled() && redesignClasses.name,
+              )}
+            />
+            {isRedesignEnabled() && <AccountButtons accountId={accountId} />}
           </div>
 
           <AccountBadges accountId={accountId} />
