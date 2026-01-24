@@ -7,8 +7,6 @@ html {
   @include base.palette;
 }
 
-// Polyam: Wrapped as otherwise light style is unconditionally set
-// when prefers-color-scheme is light
 [data-color-scheme='dark'],
 html:not([data-color-scheme]) {
   color-scheme: dark;
@@ -16,14 +14,12 @@ html:not([data-color-scheme]) {
   @include utils.invert-on-dark;
 
   // Polyam Wrapped in data-system-dark to not override user-set dark skin
-  &[data-system-theme='true'] {
-    &[data-system-dark='default'] {
-      @include dark.tokens;
+  &[data-system-dark='default'] {
+    @include dark.tokens;
 
-      &[data-contrast='high'],
-      [data-contrast='high'] & {
-        @include dark.contrast-overrides;
-      }
+    &[data-contrast='high'],
+    [data-contrast='high'] & {
+      @include dark.contrast-overrides;
     }
   }
 }
@@ -34,14 +30,12 @@ html:not([data-color-scheme]) {
   @include utils.invert-on-light;
 
   // Polyam: Wrapped in data-system-light to not override user-set light skin
-  &[data-system-theme='true'] {
-    &[data-system-light='mastodon-light'] {
-      @include light.tokens;
+  &[data-system-light='mastodon-light'] {
+    @include light.tokens;
 
-      &[data-contrast='high'],
-      [data-contrast='high'] & {
-        @include light.contrast-overrides;
-      }
+    &[data-contrast='high'],
+    [data-contrast='high'] & {
+      @include light.contrast-overrides;
     }
   }
 }
