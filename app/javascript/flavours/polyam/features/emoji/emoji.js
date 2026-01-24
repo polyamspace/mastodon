@@ -1,6 +1,6 @@
 import Trie from 'substring-trie';
 
-import { getIsSystemTheme, isDarkMode } from '@/flavours/polyam/utils/theme';
+import { getUserTheme, isDarkMode } from '@/flavours/polyam/utils/theme';
 import { assetHost } from 'flavours/polyam/utils/config';
 
 import { autoPlayGif } from '../../initial_state';
@@ -98,7 +98,7 @@ const emojifyTextNode = (node, customEmojis) => {
       const { filename, shortCode } = unicodeMapping[unicode_emoji];
       const title = shortCode ? `:${shortCode}:` : '';
 
-      const isSystemTheme = getIsSystemTheme();
+      const isSystemTheme = getUserTheme() === 'system'
 
       const theme = (isSystemTheme || !isDarkMode()) ? 'light' : 'dark';
 

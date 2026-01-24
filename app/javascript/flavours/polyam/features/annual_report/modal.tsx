@@ -60,8 +60,11 @@ const AnnualReportModal: React.FC<{
     // default modal backdrop, preventing clicks to pass through.
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
-      className={classNames('modal-root__modal', styles.modalWrapper)}
-      data-color-scheme='dark'
+      className={classNames(
+        'modal-root__modal',
+        styles.modalWrapper,
+        'theme-dark',
+      )}
       onClick={handleCloseModal}
     >
       {!showAnnouncement ? (

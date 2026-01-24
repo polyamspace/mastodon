@@ -1,9 +1,11 @@
-export function getIsSystemTheme() {
-  const { systemTheme } = document.documentElement.dataset;
-  return systemTheme === 'true';
+export function getUserTheme() {
+  const { userTheme } = document.documentElement.dataset;
+  return userTheme;
 }
 
 export function isDarkMode() {
-  const { colorScheme } = document.documentElement.dataset;
-  return colorScheme === 'dark';
+  const { userTheme } = document.documentElement.dataset;
+  return userTheme === 'system'
+    ? window.matchMedia('(prefers-color-scheme: dark)').matches
+    : userTheme !== 'mastodon-light';
 }
