@@ -5,43 +5,57 @@
 
 html {
   @include base.palette;
+
+  &:where([data-user-theme='system']) {
+    color-scheme: dark light;
+
+    @media (prefers-color-scheme: dark) {
+      @include utils.invert-on-dark;
+
+      // Polyam: Wrapped in data-system-dark to not override user-set dark skin
+      &[data-system-dark='default'] {
+        @include dark.tokens;
+
+        @media (prefers-contrast: more) {
+          @include dark.contrast-overrides;
+        }
+      }
+    }
+
+    @media (prefers-color-scheme: light) {
+      @include utils.invert-on-light;
+
+      // Polyam: Wrapped in data-system-light to not override user-set light skin
+      &[data-system-light='mastodon-light'] {
+        @include light.tokens;
+
+        @media (prefers-contrast: more) {
+          @include light.contrast-overrides;
+        }
+      }
+    }
+  }
 }
 
-// Polyam: Wrapped as otherwise light style is unconditionally set
-// when prefers-color-scheme is light
-[data-color-scheme='dark'],
-html:not([data-color-scheme]) {
+.theme-dark,
+html:where(
+  :not([data-user-theme='mastodon-light'], [data-user-theme='system'])
+) {
   color-scheme: dark;
 
+  @include dark.tokens;
   @include utils.invert-on-dark;
-
-  // Polyam Wrapped in data-system-dark to not override user-set dark skin
-  &[data-system-theme='true'] {
-    &[data-system-dark='default'] {
-      @include dark.tokens;
-
-      &[data-contrast='high'],
-      [data-contrast='high'] & {
-        @include dark.contrast-overrides;
-      }
-    }
-  }
 }
 
-[data-color-scheme='light'] {
+html[data-user-theme='contrast'],
+html[data-user-theme='contrast'] .theme-dark {
+  @include dark.contrast-overrides;
+}
+
+.theme-light,
+html:where([data-user-theme='mastodon-light']) {
   color-scheme: light;
 
+  @include light.tokens;
   @include utils.invert-on-light;
-
-  // Polyam: Wrapped in data-system-light to not override user-set light skin
-  &[data-system-theme='true'] {
-    &[data-system-light='mastodon-light'] {
-      @include light.tokens;
-
-      &[data-contrast='high'],
-      [data-contrast='high'] & {
-        @include light.contrast-overrides;
-      }
-    }
-  }
 }
