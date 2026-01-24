@@ -189,7 +189,7 @@ module ApplicationHelper
       'data-system-light': system_skins[1],
     }
 
-    base[:'data-system-theme'] = 'true' if page_color_scheme == 'auto'
+    base[:'data-system-theme'] = 'true' if page_color_scheme == 'auto' && current_skin == 'system'
 
     base
   end
