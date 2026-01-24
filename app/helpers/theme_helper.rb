@@ -20,6 +20,10 @@ module ThemeHelper
   def theme_style_tags(flavour_and_skin)
     flavour, theme, dark, light = flavour_and_skin
 
+    # TODO: get rid of that when we retire the themes and perform the settings migration
+    theme = 'default' if %w(mastodon-light contrast).include?(theme)
+
+    # Polyam: Kept from upstream as otherwise custom dark/light skins aren't loaded
     if theme == 'system'
       ''.html_safe.tap do |tags|
         tags << vite_stylesheet_tag("skins/#{flavour}/#{light}", type: :virtual, media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')

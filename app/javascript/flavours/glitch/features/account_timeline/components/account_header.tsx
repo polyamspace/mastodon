@@ -1,18 +1,16 @@
 import { useCallback } from 'react';
 
-import { useIntl, FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
 import { AccountBio } from '@/flavours/glitch/components/account_bio';
-import { AccountFields } from '@/flavours/glitch/components/account_fields';
 import { DisplayName } from '@/flavours/glitch/components/display_name';
 import { AnimateEmojiProvider } from '@/flavours/glitch/components/emoji/context';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { Avatar } from 'flavours/glitch/components/avatar';
-import { FormattedDateWrapper } from 'flavours/glitch/components/formatted_date';
 import { Icon } from 'flavours/glitch/components/icon';
 import { AccountNote } from 'flavours/glitch/features/account/components/account_note';
 import { DomainPill } from 'flavours/glitch/features/account/components/domain_pill';
@@ -31,6 +29,7 @@ import { ActionBar } from '../../account/components/action_bar';
 import { AccountBadges } from './badges';
 import { AccountButtons } from './buttons';
 import { FamiliarFollowers } from './familiar_followers';
+import { AccountHeaderFields } from './fields';
 import { AccountInfo } from './info';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
@@ -197,29 +196,7 @@ export const AccountHeader: React.FC<{
                   className='account__header__content'
                 />
 
-                <div className='account__header__fields'>
-                  <dl>
-                    <dt>
-                      <FormattedMessage
-                        id='account.joined_short'
-                        defaultMessage='Joined'
-                      />
-                    </dt>
-                    <dd>
-                      <FormattedDateWrapper
-                        value={account.created_at}
-                        year='numeric'
-                        month='short'
-                        day='2-digit'
-                      />
-                    </dd>
-                  </dl>
-
-                  <AccountFields
-                    fields={account.fields}
-                    emojis={account.emojis}
-                  />
-                </div>
+                <AccountHeaderFields accountId={accountId} />
               </div>
             </div>
           )}
