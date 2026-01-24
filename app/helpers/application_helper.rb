@@ -185,6 +185,7 @@ module ApplicationHelper
       'data-contrast': contrast.parameterize,
       'data-color-scheme': page_color_scheme.parameterize,
       'data-user-flavour': current_flavour.parameterize,
+      'data-user-theme': current_skin.parameterize,
       'data-system-dark': system_skins[0],
       'data-system-light': system_skins[1],
     }
