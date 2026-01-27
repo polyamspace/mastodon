@@ -275,7 +275,7 @@
   height: 18px; // Polyam: Reduced icon size
   aspect-ratio: 1;
 
-  path {
+  &:not(.icon--no-fill) path {
     fill: currentColor;
   }
 }
