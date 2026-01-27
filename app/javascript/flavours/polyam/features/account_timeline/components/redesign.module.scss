@@ -66,6 +66,19 @@ svg.badgeIcon {
   opacity: 1;
 }
 
+.note {
+  margin-bottom: 16px;
+}
+
+.noteEditButton {
+  color: inherit;
+
+  svg {
+    width: 16px; // Polyam: reduced icon size
+    height: 16px; // Polyam: reduced icon size
+  }
+}
+
 .fieldList {
   margin-top: 16px;
 }
