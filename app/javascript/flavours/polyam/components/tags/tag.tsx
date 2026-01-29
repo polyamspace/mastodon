@@ -6,6 +6,7 @@ import { useIntl } from 'react-intl';
 import classNames from 'classnames';
 
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
+import type { OmitUnion } from '@/flavours/polyam/utils/types';
 
 import type { IconProp } from '../icon';
 import { Icon } from '../icon';
@@ -23,7 +24,7 @@ export interface TagProps {
 
 export const Tag = forwardRef<
   HTMLButtonElement,
-  TagProps & ComponentPropsWithoutRef<'button'>
+  OmitUnion<ComponentPropsWithoutRef<'button'>, TagProps>
 >(({ name, active, icon, className, children, ...props }, ref) => {
   if (!name) {
     return null;
@@ -34,6 +35,7 @@ export const Tag = forwardRef<
       type='button'
       ref={ref}
       className={classNames(className, classes.tag, active && classes.active)}
+      aria-pressed={active}
     >
       {icon && <Icon icon={icon} id='tag-icon' className={classes.icon} />}
       {typeof name === 'string' ? `#${name}` : name}
@@ -45,10 +47,13 @@ Tag.displayName = 'Tag';
 
 export const EditableTag = forwardRef<
   HTMLSpanElement,
-  TagProps & {
-    onRemove: () => void;
-    removeIcon?: IconProp;
-  } & ComponentPropsWithoutRef<'span'>
+  OmitUnion<
+    ComponentPropsWithoutRef<'span'>,
+    TagProps & {
+      onRemove: () => void;
+      removeIcon?: IconProp;
+    }
+  >
 >(
   (
     {
