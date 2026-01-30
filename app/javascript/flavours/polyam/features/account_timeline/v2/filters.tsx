@@ -8,7 +8,7 @@ import { useParams } from 'react-router';
 import Overlay from 'react-overlays/esm/Overlay';
 
 import KeyboardArrowDownIcon from '@/awesome-icons/solid/angle-down.svg?react';
-import { PlainToggleField } from '@/flavours/polyam/components/form_fields/toggle_field';
+import { Toggle } from '@/flavours/polyam/components/form_fields/toggle_field';
 import { Icon } from '@/flavours/polyam/components/icon';
 
 import { AccountTabs } from '../components/tabs';
@@ -119,7 +119,7 @@ const FilterDropdown: FC = () => {
                 defaultMessage='Show replies'
               />
             </label>
-            <PlainToggleField
+            <Toggle
               name='replies'
               checked={replies}
               onChange={handleChange}
@@ -132,7 +132,7 @@ const FilterDropdown: FC = () => {
                 defaultMessage='Show boosts'
               />
             </label>
-            <PlainToggleField
+            <Toggle
               name='boosts'
               checked={boosts}
               onChange={handleChange}

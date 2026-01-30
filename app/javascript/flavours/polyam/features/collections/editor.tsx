@@ -17,8 +17,8 @@ import { Button } from 'flavours/polyam/components/button';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import {
+  CheckboxField,
   TextAreaField,
-  ToggleField,
 } from 'flavours/polyam/components/form_fields';
 import { TextInputField } from 'flavours/polyam/components/form_fields/text_input_field';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
@@ -197,7 +197,7 @@ const CollectionSettings: React.FC<{
       </div>
 
       <div className='fields-group'>
-        <ToggleField
+        <CheckboxField
           label={
             <FormattedMessage
               id='collections.mark_as_sensitive'
