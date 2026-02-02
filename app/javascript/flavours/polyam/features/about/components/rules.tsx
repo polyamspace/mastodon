@@ -8,6 +8,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import type { List as ImmutableList } from 'immutable';
 
 import type { SelectItem } from '@/flavours/polyam/components/dropdown_selector';
+import { Select } from '@/flavours/polyam/components/form_fields';
 import type { RootState } from '@/flavours/polyam/store';
 import { useAppSelector } from '@/flavours/polyam/store';
 
@@ -104,19 +105,17 @@ export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
               defaultMessage='Language'
             />
           </label>
-          <div className='select-wrapper'>
-            <select onChange={handleLocaleChange} id='language-select'>
-              {localeOptions.map((option) => (
-                <option
-                  key={option.value}
-                  value={option.value}
-                  selected={option.value === selectedLocale}
-                >
-                  {option.text}
-                </option>
-              ))}
-            </select>
-          </div>
+          <Select onChange={handleLocaleChange} id='language-select'>
+            {localeOptions.map((option) => (
+              <option
+                key={option.value}
+                value={option.value}
+                selected={option.value === selectedLocale}
+              >
+                {option.text}
+              </option>
+            ))}
+          </Select>
         </div>
       )}
     </Section>
