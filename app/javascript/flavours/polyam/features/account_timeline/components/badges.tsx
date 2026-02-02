@@ -1,14 +1,22 @@
-import type { FC, ReactNode } from 'react';
+import { useEffect } from 'react';
+import type { FC } from 'react';
 
+import { FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
+import { fetchRelationships } from '@/flavours/polyam/actions/accounts';
 import {
+  AdminBadge,
   AutomatedBadge,
   Badge,
+  BlockedBadge,
   GroupBadge,
+  MutedBadge,
 } from '@/flavours/polyam/components/badge';
-import { Icon } from '@/flavours/polyam/components/icon';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import type { AccountRole } from '@/flavours/polyam/models/account';
-import IconAdmin from '@/images/icons/icon_admin.svg?react';
+import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
 import { isRedesignEnabled } from '../common';
 
@@ -16,6 +24,17 @@ import classes from './redesign.module.scss';
 
 export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
   const account = useAccount(accountId);
+  const relationship = useAppSelector((state) =>
+    state.relationships.get(accountId),
+  );
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (!relationship) {
+      dispatch(fetchRelationships([accountId]));
+    }
+  }, [accountId, dispatch, relationship]);
+
   const badges = [];
 
   if (!account) {
@@ -24,36 +43,108 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
 
   const className = isRedesignEnabled() ? classes.badge : '';
 
-  if (account.bot) {
-    badges.push(<AutomatedBadge key='bot-badge' className={className} />);
-  } else if (account.group) {
-    badges.push(<GroupBadge key='group-badge' className={className} />);
-  }
-
   // Polyam: removed domain
   account.roles.forEach((role) => {
-    let icon: ReactNode = undefined;
     if (isAdminBadge(role)) {
-      icon = (
-        <Icon
-          icon={IconAdmin}
-          id='badge-admin'
-          className={classes.badgeIcon}
-          noFill
-        />
+      badges.push(
+        <AdminBadge
+          key={role.id}
+          label={role.name}
+          className={className}
+          roleId={role.id}
+        />,
+      );
+    } else {
+      badges.push(
+        <Badge
+          key={role.id}
+          label={role.name}
+          className={className}
+          roleId={role.id}
+          roleColor={role.color}
+        />,
       );
     }
-    badges.push(
-      <Badge
-        key={role.id}
-        label={role.name}
-        className={className}
-        roleId={role.id}
-        icon={icon}
-        roleColor={role.color}
-      />,
-    );
   });
+
+  if (account.bot) {
+    badges.push(<AutomatedBadge key='bot-badge' className={className} />);
+  }
+  if (account.group) {
+    badges.push(<GroupBadge key='group-badge' className={className} />);
+  }
+  if (isRedesignEnabled() && relationship) {
+    if (relationship.blocking) {
+      badges.push(
+        <BlockedBadge
+          key='blocking'
+          className={classNames(className, classes.badgeBlocked)}
+        />,
+      );
+    } else if (relationship.domain_blocking) {
+      badges.push(
+        <BlockedBadge
+          key='domain-blocking'
+          className={classNames(className, classes.badgeBlocked)}
+          label={
+            <FormattedMessage
+              id='account.badges.domain_blocked'
+              defaultMessage='Blocked domain'
+            />
+          }
+        />,
+      );
+    } else if (relationship.muting) {
+      badges.push(
+        <MutedBadge
+          key='muted-badge'
+          className={classNames(className, classes.badgeMuted)}
+        />,
+      );
+    } else if (
+      relationship.followed_by &&
+      (relationship.following || relationship.requested)
+    ) {
+      badges.push(
+        <Badge
+          key='mutuals-badge'
+          label={
+            <FormattedMessage
+              id='account.badges.mutuals'
+              defaultMessage='You follow each other'
+            />
+          }
+          className={className}
+        />,
+      );
+    } else if (relationship.followed_by) {
+      badges.push(
+        <Badge
+          key='follows-you-badge'
+          label={
+            <FormattedMessage
+              id='account.badges.follows_you'
+              defaultMessage='Follows you'
+            />
+          }
+          className={className}
+        />,
+      );
+    } else if (relationship.requested_by) {
+      badges.push(
+        <Badge
+          key='requested-to-follow-badge'
+          label={
+            <FormattedMessage
+              id='account.badges.requested_to_follow'
+              defaultMessage='Requested to follow you'
+            />
+          }
+          className={className}
+        />,
+      );
+    }
+  }
 
   if (!badges.length) {
     return null;
