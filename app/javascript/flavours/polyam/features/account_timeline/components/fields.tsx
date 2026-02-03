@@ -1,20 +1,22 @@
-import { useCallback, useMemo } from 'react';
 import type { FC } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { openModal } from '@/flavours/polyam/actions/modal';
+import IconLeftArrow from '@/awesome-icons/solid/chevron-left.svg?react';
+import IconRightArrow from '@/awesome-icons/solid/chevron-right.svg?react';
+import IconLink from '@/awesome-icons/solid/link.svg?react';
 import { AccountFields } from '@/flavours/polyam/components/account_fields';
 import { EmojiHTML } from '@/flavours/polyam/components/emoji/html';
 import { FormattedDateWrapper } from '@/flavours/polyam/components/formatted_date';
-import { Icon } from '@/flavours/polyam/components/icon';
-import { MiniCardList } from '@/flavours/polyam/components/mini_card/list';
+import { IconButton } from '@/flavours/polyam/components/icon_button';
+import { MiniCard } from '@/flavours/polyam/components/mini_card';
 import { useElementHandledLink } from '@/flavours/polyam/components/status/handled_link';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
+import { useOverflowScroll } from '@/flavours/polyam/hooks/useOverflow';
 import type { Account } from '@/flavours/polyam/models/account';
-import { useAppDispatch } from '@/flavours/polyam/store';
+import { isValidUrl } from '@/flavours/polyam/utils/checks';
 import IconVerified from '@/images/icons/icon_verified.svg?react';
 
 import { isRedesignEnabled } from '../common';
@@ -66,61 +68,94 @@ export const AccountHeaderFields: FC<{ accountId: string }> = ({
 
 const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
   const htmlHandlers = useElementHandledLink();
-  const cards = useMemo(
-    () =>
-      account.fields
-        .toArray()
-        .map(({ value_emojified, name_emojified, verified_at }) => ({
-          label: (
-            <>
-              <EmojiHTML
-                htmlString={name_emojified}
-                extraEmojis={account.emojis}
-                className='translate'
-                as='span'
-                {...htmlHandlers}
-              />
-              {!!verified_at && (
-                <Icon
-                  id='verified'
-                  icon={IconVerified}
-                  className={classes.fieldIconVerified}
-                  noFill
-                />
-              )}
-            </>
-          ),
-          value: (
-            <EmojiHTML
-              as='span'
-              htmlString={value_emojified}
-              extraEmojis={account.emojis}
-              {...htmlHandlers}
-            />
-          ),
-          className: classNames(
-            classes.fieldCard,
-            !!verified_at && classes.fieldCardVerified,
-          ),
-        })),
-    [account.emojis, account.fields, htmlHandlers],
-  );
+  const intl = useIntl();
 
-  const dispatch = useAppDispatch();
-  const handleOverflowClick = useCallback(() => {
-    dispatch(
-      openModal({
-        modalType: 'ACCOUNT_FIELDS',
-        modalProps: { accountId: account.id },
-      }),
-    );
-  }, [account.id, dispatch]);
+  const {
+    bodyRef,
+    canScrollLeft,
+    canScrollRight,
+    handleLeftNav,
+    handleRightNav,
+    handleScroll,
+  } = useOverflowScroll();
 
   return (
-    <MiniCardList
-      cards={cards}
-      className={classes.fieldList}
-      onOverflowClick={handleOverflowClick}
-    />
+    <div
+      className={classNames(
+        classes.fieldWrapper,
+        canScrollLeft && classes.fieldWrapperLeft,
+        canScrollRight && classes.fieldWrapperRight,
+      )}
+    >
+      {canScrollLeft && (
+        <IconButton
+          icon='more'
+          iconComponent={IconLeftArrow}
+          title={intl.formatMessage({
+            id: 'account.fields.scroll_prev',
+            defaultMessage: 'Show previous',
+          })}
+          className={classes.fieldArrowButton}
+          onClick={handleLeftNav}
+        />
+      )}
+      <dl ref={bodyRef} className={classes.fieldList} onScroll={handleScroll}>
+        {account.fields.map(
+          (
+            { name, name_emojified, value_emojified, value_plain, verified_at },
+            key,
+          ) => (
+            <MiniCard
+              key={key}
+              label={
+                <EmojiHTML
+                  htmlString={name_emojified}
+                  extraEmojis={account.emojis}
+                  className='translate'
+                  as='span'
+                  title={name}
+                  {...htmlHandlers}
+                />
+              }
+              value={
+                <EmojiHTML
+                  as='span'
+                  htmlString={value_emojified}
+                  extraEmojis={account.emojis}
+                  title={value_plain ?? undefined}
+                  {...htmlHandlers}
+                />
+              }
+              icon={fieldIcon(verified_at, value_plain)}
+              className={classNames(
+                classes.fieldCard,
+                verified_at && classes.fieldCardVerified,
+              )}
+            />
+          ),
+        )}
+      </dl>
+      {canScrollRight && (
+        <IconButton
+          icon='more'
+          iconComponent={IconRightArrow}
+          title={intl.formatMessage({
+            id: 'account.fields.scroll_next',
+            defaultMessage: 'Show next',
+          })}
+          className={classes.fieldArrowButton}
+          onClick={handleRightNav}
+        />
+      )}
+    </div>
   );
 };
+
+function fieldIcon(verified_at: string | null, value_plain: string | null) {
+  if (verified_at) {
+    return IconVerified;
+  } else if (value_plain && isValidUrl(value_plain)) {
+    return IconLink;
+  }
+  return undefined;
+}

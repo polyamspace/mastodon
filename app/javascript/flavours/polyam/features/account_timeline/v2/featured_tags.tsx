@@ -9,7 +9,7 @@ import { useParams } from 'react-router';
 import { fetchFeaturedTags } from '@/flavours/polyam/actions/featured_tags';
 import { useAppHistory } from '@/flavours/polyam/components/router';
 import { Tag } from '@/flavours/polyam/components/tags/tag';
-import { useOverflow } from '@/flavours/polyam/hooks/useOverflow';
+import { useOverflowButton } from '@/flavours/polyam/hooks/useOverflow';
 import { selectAccountFeaturedTags } from '@/flavours/polyam/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
@@ -30,7 +30,7 @@ export const FeaturedTags: FC<{ accountId: string }> = ({ accountId }) => {
   // Get list of tags with overflow handling.
   const [showOverflow, setShowOverflow] = useState(false);
   const { hiddenCount, wrapperRef, listRef, hiddenIndex, maxWidth } =
-    useOverflow();
+    useOverflowButton();
 
   // Handle whether to show all tags.
   const handleOverflowClick: MouseEventHandler = useCallback(() => {
