@@ -12,6 +12,8 @@ import type { DisplayNameProps } from '../display_name';
 import { LinkedDisplayName } from '../display_name';
 import { VisibilityIcon } from '../visibility_icon';
 
+import type { StatusProps } from './types';
+
 export interface StatusHeaderProps {
   status: Status;
   account?: Account;
@@ -22,7 +24,10 @@ export interface StatusHeaderProps {
   onHeaderClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-export type StatusHeaderRenderFn = (args: StatusHeaderProps) => ReactNode;
+export type StatusHeaderRenderFn = (
+  args: StatusHeaderProps,
+  statusProps?: StatusProps,
+) => ReactNode;
 
 export const StatusHeader: FC<StatusHeaderProps> = ({
   status,
