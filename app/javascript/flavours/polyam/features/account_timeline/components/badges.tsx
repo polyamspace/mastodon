@@ -99,6 +99,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
         <MutedBadge
           key='muted-badge'
           className={classNames(className, classes.badgeMuted)}
+          expiresAt={relationship.muting_expires_at}
         />,
       );
     }
