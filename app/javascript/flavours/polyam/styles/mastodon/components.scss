@@ -2949,6 +2949,7 @@ a.account__display-name {
   }
 
   &-subtitle {
+    color: var(--color-text-tertiary);
     font-weight: 400;
   }
 
@@ -2990,6 +2991,10 @@ a.account__display-name {
       background: var(--color-bg-disabled);
       outline: 0;
     }
+  }
+
+  button:is(:disabled, [aria-disabled='true']) &-subtitle {
+    color: inherit;
   }
 }
 

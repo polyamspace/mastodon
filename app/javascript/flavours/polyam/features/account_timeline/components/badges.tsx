@@ -43,7 +43,8 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
     return null;
   }
 
-  const className = isRedesignEnabled() ? classes.badge : '';
+  const isRedesign = isRedesignEnabled();
+  const className = isRedesign ? classes.badge : '';
 
   // Polyam: removed domain
   account.roles.forEach((role) => {
@@ -75,7 +76,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
   if (account.group) {
     badges.push(<GroupBadge key='group-badge' className={className} />);
   }
-  if (isRedesignEnabled() && relationship) {
+  if (isRedesign && relationship) {
     if (relationship.blocking) {
       badges.push(
         <BlockedBadge
@@ -83,7 +84,8 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
           className={classNames(className, classes.badgeBlocked)}
         />,
       );
-    } else if (relationship.domain_blocking) {
+    }
+    if (relationship.domain_blocking) {
       badges.push(
         <BlockedBadge
           key='domain-blocking'
@@ -96,7 +98,8 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
           }
         />,
       );
-    } else if (relationship.muting) {
+    }
+    if (relationship.muting) {
       badges.push(
         <MutedBadge
           key='muted-badge'

@@ -1,26 +1,27 @@
-import type { RefCallback } from 'react';
-import { useCallback, useEffect, useState, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
+import { openModal } from '@/flavours/polyam/actions/modal';
 import { AccountBio } from '@/flavours/polyam/components/account_bio';
+import { Avatar } from '@/flavours/polyam/components/avatar';
 import { AnimateEmojiProvider } from '@/flavours/polyam/components/emoji/context';
-import { openModal } from 'flavours/polyam/actions/modal';
-import { Avatar } from 'flavours/polyam/components/avatar';
-import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
-import { AccountNote } from 'flavours/polyam/features/account/components/account_note';
-import FollowRequestNoteContainer from 'flavours/polyam/features/account/containers/follow_request_note_container';
+import { AccountNote } from '@/flavours/polyam/features/account/components/account_note';
+import FollowRequestNoteContainer from '@/flavours/polyam/features/account/containers/follow_request_note_container';
+import { useLayout } from '@/flavours/polyam/hooks/useLayout';
+import { useVisibility } from '@/flavours/polyam/hooks/useVisibility';
 import {
   autoPlayGif,
   me,
   domain as localDomain,
-} from 'flavours/polyam/initial_state';
-import type { Account } from 'flavours/polyam/models/account';
-import { getAccountHidden } from 'flavours/polyam/selectors/accounts';
-import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
+} from '@/flavours/polyam/initial_state';
+import type { Account } from '@/flavours/polyam/models/account';
+import { getAccountHidden } from '@/flavours/polyam/selectors/accounts';
+import { useAppSelector, useAppDispatch } from '@/flavours/polyam/store';
+import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 
 import { ActionBar } from '../../account/components/action_bar';
 import { isRedesignEnabled } from '../common';
@@ -54,6 +55,8 @@ export const AccountHeader: React.FC<{
   accountId: string;
   hideTabs?: boolean;
 }> = ({ accountId, hideTabs }) => {
+  const isRedesign = isRedesignEnabled();
+
   const dispatch = useAppDispatch();
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const relationship = useAppSelector((state) =>
@@ -102,39 +105,12 @@ export const AccountHeader: React.FC<{
     [dispatch, account],
   );
 
-  const [isFooterIntersecting, setIsIntersecting] = useState(false);
-  const handleIntersect: IntersectionObserverCallback = useCallback(
-    (entries) => {
-      const entry = entries.at(0);
-      if (!entry) {
-        return;
-      }
-
-      setIsIntersecting(entry.isIntersecting);
+  const { layout } = useLayout();
+  const { observedRef, isIntersecting } = useVisibility({
+    observerOptions: {
+      rootMargin: layout === 'mobile' ? '0px 0px -55px 0px' : '', // Height of bottom nav bar.
     },
-    [],
-  );
-  const [observer] = useState(
-    () =>
-      new IntersectionObserver(handleIntersect, {
-        rootMargin: '0px 0px -55px 0px', // Height of bottom nav bar.
-      }),
-  );
-
-  const handleObserverRef: RefCallback<HTMLDivElement> = useCallback(
-    (node) => {
-      if (node) {
-        observer.observe(node);
-      }
-    },
-    [observer],
-  );
-
-  useEffect(() => {
-    return () => {
-      observer.disconnect();
-    };
-  }, [observer]);
+  });
 
   if (!account) {
     return null;
@@ -142,6 +118,7 @@ export const AccountHeader: React.FC<{
 
   const suspendedOrHidden = hidden || account.suspended;
   const isLocal = !account.acct.includes('@');
+  const isMe = me && account.id === me;
 
   return (
     <div className='account-timeline__header'>
@@ -162,8 +139,13 @@ export const AccountHeader: React.FC<{
           <FollowRequestNoteContainer account={account} />
         )}
 
-        <div className='account__header__image'>
-          {me !== account.id && relationship && !isRedesignEnabled() && (
+        <div
+          className={classNames(
+            'account__header__image',
+            isRedesign && redesignClasses.header,
+          )}
+        >
+          {me !== account.id && relationship && !isRedesign && (
             <AccountInfo relationship={relationship} />
           )}
 
@@ -179,10 +161,15 @@ export const AccountHeader: React.FC<{
         <div
           className={classNames(
             'account__header__bar',
-            isRedesignEnabled() && redesignClasses.barWrapper,
+            isRedesign && redesignClasses.barWrapper,
           )}
         >
-          <div className='account__header__tabs'>
+          <div
+            className={classNames(
+              'account__header__tabs',
+              isRedesign && redesignClasses.avatarWrapper,
+            )}
+          >
             <a
               className='avatar'
               href={account.avatar}
@@ -192,11 +179,11 @@ export const AccountHeader: React.FC<{
             >
               <Avatar
                 account={suspendedOrHidden ? undefined : account}
-                size={92}
+                size={isRedesign ? 80 : 92}
               />
             </a>
 
-            {!isRedesignEnabled() && (
+            {!isRedesign && (
               <AccountButtons
                 accountId={accountId}
                 className='account__header__buttons--desktop'
@@ -207,26 +194,27 @@ export const AccountHeader: React.FC<{
           <div
             className={classNames(
               'account__header__tabs__name',
-              isRedesignEnabled() && redesignClasses.nameWrapper,
+              isRedesign && redesignClasses.nameWrapper,
             )}
           >
             <AccountName accountId={accountId} />
-            {isRedesignEnabled() && (
+            {isRedesign && (
               <AccountButtons
                 accountId={accountId}
                 className={redesignClasses.buttonsDesktop}
-                noShare
+                noShare={!isMe || 'share' in navigator}
+                forceMenu={'share' in navigator}
               />
             )}
           </div>
 
           <AccountBadges accountId={accountId} />
 
-          {me && account.id !== me && !suspendedOrHidden && (
+          {!isMe && !suspendedOrHidden && (
             <FamiliarFollowers accountId={accountId} />
           )}
 
-          {!isRedesignEnabled() && (
+          {!isRedesign && (
             <AccountButtons
               className='account__header__buttons--mobile'
               accountId={accountId}
@@ -239,7 +227,7 @@ export const AccountHeader: React.FC<{
               <div className='account__header__bio'>
                 {me &&
                   account.id !== me &&
-                  (isRedesignEnabled() ? (
+                  (isRedesign ? (
                     <AccountNoteRedesign accountId={accountId} />
                   ) : (
                     <AccountNote accountId={accountId} />
@@ -277,11 +265,11 @@ export const AccountHeader: React.FC<{
             </div>
           )}
 
-          {isRedesignEnabled() && (
+          {isRedesign && (
             <AccountButtons
               className={classNames(
                 redesignClasses.buttonsMobile,
-                !isFooterIntersecting && redesignClasses.buttonsMobileIsStuck,
+                !isIntersecting && redesignClasses.buttonsMobileIsStuck,
               )}
               accountId={accountId}
               noShare
@@ -293,7 +281,7 @@ export const AccountHeader: React.FC<{
       <ActionBar account={account} />
 
       {!hideTabs && !hidden && <AccountTabs acct={account.acct} />}
-      <div ref={handleObserverRef} />
+      <div ref={observedRef} />
 
       <Helmet>
         <title>{titleFromAccount(account)}</title>
