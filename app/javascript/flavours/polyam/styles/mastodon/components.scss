@@ -413,7 +413,7 @@ body > [data-popper-placement] {
 
   &__suggestions {
     box-shadow: var(--dropdown-shadow);
-    background: var(--color-bg-elevated);
+    background: var(--color-bg-primary);
     border: 1px solid var(--color-border-primary);
     border-radius: 0 0 4px 4px;
     color: var(--color-text-primary);
@@ -2153,7 +2153,7 @@ body > [data-popper-placement] {
     }
 
     &__popout {
-      background: var(--color-bg-elevated);
+      background: var(--color-bg-primary);
       backdrop-filter: $backdrop-blur-filter;
       border: 1px solid var(--color-border-primary);
       box-shadow: var(--dropdown-shadow);
@@ -2850,7 +2850,7 @@ a.account__display-name {
 }
 
 .dropdown-menu {
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
   border: 1px solid var(--color-border-primary);
   padding: 2px; // glitch: reduced padding
@@ -4923,7 +4923,7 @@ a.status-card {
   margin: 0;
   font-size: inherit;
   flex: auto;
-  background-color: var(--color-bg-elevated);
+  background-color: var(--color-bg-primary);
   transition: all 0.2s ease;
   transition-property: background-color, box-shadow;
 
@@ -5332,7 +5332,7 @@ a.status-card {
       @include search-popout;
 
       padding: 0;
-      background: var(--color-bg-elevated);
+      background: var(--color-bg-primary);
     }
 
     &__menu-list {
@@ -5502,7 +5502,7 @@ a.status-card {
   position: relative;
   margin-top: 5px;
   z-index: 2;
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
   border: 1px solid var(--color-border-primary);
   box-shadow: var(--dropdown-shadow);
@@ -5529,7 +5529,7 @@ a.status-card {
   z-index: 4;
   top: -5px;
   inset-inline-start: -9px;
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   border: 1px solid var(--color-border-primary);
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
@@ -5596,7 +5596,7 @@ a.status-card {
   inset-inline-start: 0;
   z-index: -1;
   border-radius: 4px;
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   box-shadow: 0 0 5px var(--color-shadow-primary);
 }
 
@@ -5701,7 +5701,7 @@ a.status-card {
 .language-dropdown__dropdown,
 .visibility-dropdown__dropdown {
   box-shadow: var(--dropdown-shadow);
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   border: 1px solid var(--color-border-primary);
   padding: 4px;
   border-radius: 4px;
@@ -5921,7 +5921,7 @@ a.status-card {
 
     .emoji-mart-search {
       padding: 10px;
-      background: var(--color-bg-elevated);
+      background: var(--color-bg-primary);
 
       input {
         padding: 8px 12px;
@@ -5954,7 +5954,7 @@ a.status-card {
 
     .emoji-mart-scroll {
       padding: 0 10px 10px;
-      background: var(--color-bg-elevated);
+      background: var(--color-bg-primary);
     }
 
     &__results {
@@ -6080,7 +6080,7 @@ a.status-card {
     inset-inline-start: 0;
     margin-top: -2px;
     width: 100%;
-    background: var(--color-bg-elevated);
+    background: var(--color-bg-primary);
     border: 1px solid var(--color-border-primary);
     border-radius: 0 0 4px 4px;
     box-shadow: var(--dropdown-shadow);
@@ -6837,7 +6837,7 @@ a.status-card {
   width: 588px;
   max-height: 80vh;
   flex-direction: column;
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
   border: 1px solid var(--color-border-primary);
   border-radius: 16px;
@@ -6921,7 +6921,7 @@ a.status-card {
   }
 
   &__popout {
-    background: var(--color-bg-elevated);
+    background: var(--color-bg-primary);
     backdrop-filter: $backdrop-blur-filter;
     border: 1px solid var(--color-border-primary);
     box-shadow: var(--dropdown-shadow);
@@ -6971,7 +6971,7 @@ a.status-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   padding: 10px; // purposefully reduce padding in glitch-soc
 
   & > div {
@@ -7227,7 +7227,7 @@ a.status-card {
 
 .actions-modal {
   border-radius: 8px 8px 0 0;
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
   border-color: var(--color-border-primary);
   box-shadow: var(--dropdown-shadow);
@@ -7445,7 +7445,7 @@ img.modal-warning {
 
   &--solid {
     color: var(--color-text-primary);
-    background: var(--color-bg-elevated);
+    background: var(--color-bg-primary);
     border: 1px solid var(--color-border-primary);
   }
 
