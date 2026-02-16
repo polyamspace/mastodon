@@ -26,6 +26,7 @@ import { layoutFromWindow } from 'flavours/polyam/is_mobile';
 import { selectUnreadNotificationGroupsCount } from 'flavours/polyam/selectors/notifications';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 import { checkAnnualReport } from '@/flavours/polyam/reducers/slices/annual_report';
+import { isServerFeatureEnabled } from '@/flavours/polyam/utils/environment';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
@@ -94,7 +95,6 @@ import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
 import { areCollectionsEnabled } from '../collections/utils';
-import { isClientFeatureEnabled } from '@/flavours/polyam/utils/environment';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -172,7 +172,7 @@ class SwitchingColumnsArea extends PureComponent {
       redirect = <Redirect from='/' to='/about' exact />;
     }
 
-    const profileRedesignEnabled = isClientFeatureEnabled('profile_redesign');
+    const profileRedesignEnabled = isServerFeatureEnabled('profile_redesign');
     const profileRedesignRoutes = [];
     if (profileRedesignEnabled) {
       profileRedesignRoutes.push(
