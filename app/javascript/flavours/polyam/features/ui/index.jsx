@@ -26,7 +26,7 @@ import { layoutFromWindow } from 'flavours/polyam/is_mobile';
 import { selectUnreadNotificationGroupsCount } from 'flavours/polyam/selectors/notifications';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 import { checkAnnualReport } from '@/flavours/polyam/reducers/slices/annual_report';
-import { isServerFeatureEnabled } from '@/flavours/polyam/utils/environment';
+import { isClientFeatureEnabled, isServerFeatureEnabled } from '@/flavours/polyam/utils/environment';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
@@ -84,6 +84,7 @@ import {
   TermsOfService,
   AccountFeatured,
   AccountAbout,
+  AccountEdit,
   Quotes,
   Reactions,
 } from './util/async-components';
@@ -241,6 +242,8 @@ class SwitchingColumnsArea extends PureComponent {
 
             <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
             <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
+
+            {isClientFeatureEnabled('profile_editing') && <WrappedRoute key="edit" path='/profile/edit' component={AccountEdit} content={children} />}
 
             <WrappedRoute path={['/start', '/start/profile']} exact component={OnboardingProfile} content={children} />
             <WrappedRoute path='/start/follows' component={OnboardingFollows} content={children} />
