@@ -6,12 +6,14 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import CancelIcon from '@/awesome-icons/solid/circle-xmark.svg?react';
+import WarningIcon from '@/awesome-icons/solid/triangle-exclamation.svg?react';
 import { showAlertForError } from '@/flavours/polyam/actions/alerts';
 import { openModal } from '@/flavours/polyam/actions/modal';
 import { apiFollowAccount } from '@/flavours/polyam/api/accounts';
 import type { ApiCollectionJSON } from 'flavours/polyam/api_types/collections';
 import { Account } from 'flavours/polyam/components/account';
 import { Avatar } from 'flavours/polyam/components/avatar';
+import { Badge } from 'flavours/polyam/components/badge';
 import { Button } from 'flavours/polyam/components/button';
 import { Callout } from 'flavours/polyam/components/callout';
 import { DisplayName } from 'flavours/polyam/components/display_name';
@@ -40,19 +42,51 @@ import { WizardStepHeader } from './wizard_step_header';
 const MIN_ACCOUNT_COUNT = 1;
 const MAX_ACCOUNT_COUNT = 25;
 
+function isOlderThanAWeek(date?: string): boolean {
+  if (!date) return false;
+
+  const targetDate = new Date(date);
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  return targetDate < sevenDaysAgo;
+}
+
 const AddedAccountItem: React.FC<{
   accountId: string;
   isRemovable: boolean;
   onRemove: (id: string) => void;
 }> = ({ accountId, isRemovable, onRemove }) => {
   const intl = useIntl();
+  const account = useAccount(accountId);
 
   const handleRemoveAccount = useCallback(() => {
     onRemove(accountId);
   }, [accountId, onRemove]);
 
+  const lastPostHint = useMemo(
+    () =>
+      isOlderThanAWeek(account?.last_status_at) && (
+        <Badge
+          label={
+            <FormattedMessage
+              id='collections.old_last_post_note'
+              defaultMessage='Last posted over a week ago'
+            />
+          }
+          icon={<WarningIcon />}
+          className={classes.accountBadge}
+        />
+      ),
+    [account?.last_status_at],
+  );
+
   return (
-    <Account minimal key={accountId} id={accountId}>
+    <Account
+      minimal
+      key={accountId}
+      id={accountId}
+      extraAccountInfo={lastPostHint}
+    >
       {isRemovable && (
         <IconButton
           title={intl.formatMessage({

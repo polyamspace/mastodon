@@ -82,6 +82,7 @@ interface AccountProps {
   defaultAction?: 'block' | 'mute';
   withBio?: boolean;
   withMenu?: boolean;
+  extraAccountInfo?: React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -93,6 +94,7 @@ export const Account: React.FC<AccountProps> = ({
   defaultAction,
   withBio,
   withMenu = true,
+  extraAccountInfo,
   children,
 }) => {
   const intl = useIntl();
@@ -375,6 +377,8 @@ export const Account: React.FC<AccountProps> = ({
           </Permalink>
 
           {minimal && accountNote}
+
+          {extraAccountInfo}
         </div>
 
         {!minimal && (
