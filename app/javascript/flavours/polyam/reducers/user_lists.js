@@ -78,7 +78,8 @@ const initialState = ImmutableMap({
   follow_requests: initialListState,
   blocks: initialListState,
   mutes: initialListState,
-  featured_tags: initialListState,
+  /** @type {ImmutableMap<string, typeof initialListState>} */
+  featured_tags: ImmutableMap(),
   reacted_by: initialListState,
 });
 
