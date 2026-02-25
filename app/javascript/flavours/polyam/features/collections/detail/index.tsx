@@ -7,6 +7,7 @@ import { useParams } from 'react-router';
 
 import ListAltIcon from '@/awesome-icons/solid/list-ul.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
+import { useRelationship } from '@/flavours/polyam/hooks/useRelationship';
 import { showAlert } from 'flavours/polyam/actions/alerts';
 import type { ApiCollectionJSON } from 'flavours/polyam/api_types/collections';
 import { Account } from 'flavours/polyam/components/account';
@@ -123,6 +124,28 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   );
 };
 
+const CollectionAccountItem: React.FC<{
+  accountId: string | undefined;
+  collectionOwnerId: string;
+}> = ({ accountId, collectionOwnerId }) => {
+  const relationship = useRelationship(accountId);
+
+  if (!accountId) {
+    return null;
+  }
+
+  // When viewing your own collection, only show the Follow button
+  // for accounts you're not following (anymore).
+  // Otherwise, always show the follow button in its various states.
+  const withoutButton =
+    accountId === me ||
+    !relationship ||
+    (collectionOwnerId === me &&
+      (relationship.following || relationship.requested));
+
+  return <Account minimal={withoutButton} withMenu={false} id={accountId} />;
+};
+
 export const CollectionDetailPage: React.FC<{
   multiColumn?: boolean;
 }> = ({ multiColumn }) => {
@@ -163,11 +186,13 @@ export const CollectionDetailPage: React.FC<{
           collection ? <CollectionHeader collection={collection} /> : null
         }
       >
-        {collection?.items.map(({ account_id }) =>
-          account_id ? (
-            <Account key={account_id} minimal id={account_id} />
-          ) : null,
-        )}
+        {collection?.items.map(({ account_id }) => (
+          <CollectionAccountItem
+            key={account_id}
+            accountId={account_id}
+            collectionOwnerId={collection.account_id}
+          />
+        ))}
       </ScrollableList>
 
       <Helmet>
