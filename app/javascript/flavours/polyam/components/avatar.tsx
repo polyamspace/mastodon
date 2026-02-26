@@ -6,6 +6,8 @@ import { useHovering } from 'flavours/polyam/hooks/useHovering';
 import { autoPlayGif } from 'flavours/polyam/initial_state';
 import type { Account } from 'flavours/polyam/models/account';
 
+import { useAccount } from '../hooks/useAccount';
+
 import { Permalink } from './permalink';
 
 interface Props {
@@ -95,4 +97,11 @@ export const Avatar: React.FC<Props> = ({
   }
 
   return avatar;
+};
+
+export const AvatarById: React.FC<
+  { accountId: string } & Omit<Props, 'account'>
+> = ({ accountId, ...otherProps }) => {
+  const account = useAccount(accountId);
+  return <Avatar account={account} {...otherProps} />;
 };
