@@ -15,6 +15,9 @@ import { Icon } from 'flavours/polyam/components/icon';
 import { ButtonInTabsBar } from 'flavours/polyam/features/ui/util/columns_context';
 import { useIdentity } from 'flavours/polyam/identity_context';
 
+import { useColumnIndexContext } from '../features/ui/components/columns_area';
+import { getColumnSkipLinkId } from '../features/ui/components/skip_links';
+
 import { useAppHistory } from './router';
 
 export const messages = defineMessages({
@@ -32,10 +35,11 @@ export const messages = defineMessages({
 });
 
 const BackButton: React.FC<{
-  onlyIcon: boolean;
-}> = ({ onlyIcon }) => {
+  hasTitle: boolean;
+}> = ({ hasTitle }) => {
   const history = useAppHistory();
   const intl = useIntl();
+  const columnIndex = useColumnIndexContext();
 
   const handleBackClick = useCallback(() => {
     if (history.location.state?.fromMastodon) {
@@ -49,8 +53,9 @@ const BackButton: React.FC<{
     <button
       onClick={handleBackClick}
       className={classNames('column-header__back-button', {
-        compact: onlyIcon,
+        compact: hasTitle,
       })}
+      id={!hasTitle ? getColumnSkipLinkId(columnIndex) : undefined}
       aria-label={intl.formatMessage(messages.back)}
       type='button'
     >
@@ -59,7 +64,7 @@ const BackButton: React.FC<{
         icon={ArrowBackIcon}
         className='column-back-button__icon'
       />
-      {!onlyIcon && (
+      {!hasTitle && (
         <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
       )}
     </button>
@@ -220,7 +225,7 @@ export const ColumnHeader: React.FC<Props> = ({
     !pinned &&
     ((multiColumn && history.location.state?.fromMastodon) || showBackButton)
   ) {
-    backButton = <BackButton onlyIcon={!!title} />;
+    backButton = <BackButton hasTitle={!!title} />;
   }
 
   const collapsedContent = [extraContent];
@@ -256,6 +261,7 @@ export const ColumnHeader: React.FC<Props> = ({
   const hasIcon = icon && iconComponent;
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const hasTitle = (hasIcon || backButton) && title;
+  const columnIndex = useColumnIndexContext();
 
   const component = (
     <div className={wrapperClassName}>
@@ -268,6 +274,7 @@ export const ColumnHeader: React.FC<Props> = ({
               onClick={handleTitleClick}
               className='column-header__title'
               type='button'
+              id={getColumnSkipLinkId(columnIndex)}
             >
               {!backButton && hasIcon && (
                 <Icon

@@ -4,7 +4,10 @@ import { FormattedMessage } from 'react-intl';
 
 import ArrowBackIcon from '@/awesome-icons/solid/arrow-left.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
+import { getColumnSkipLinkId } from 'flavours/polyam/features/ui/components/skip_links';
 import { ButtonInTabsBar } from 'flavours/polyam/features/ui/util/columns_context';
+
+import { useColumnIndexContext } from '../features/ui/components/columns_area';
 
 import { useAppHistory } from './router';
 
@@ -28,9 +31,15 @@ export const ColumnBackButton: React.FC<{ onClick?: OnClickCallback }> = ({
   onClick,
 }) => {
   const handleClick = useHandleClick(onClick);
+  const columnIndex = useColumnIndexContext();
 
   const component = (
-    <button onClick={handleClick} className='column-back-button' type='button'>
+    <button
+      onClick={handleClick}
+      id={getColumnSkipLinkId(columnIndex)}
+      className='column-back-button'
+      type='button'
+    >
       <Icon
         id='chevron-left'
         icon={ArrowBackIcon}

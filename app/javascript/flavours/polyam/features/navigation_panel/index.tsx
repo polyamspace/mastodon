@@ -33,6 +33,7 @@ import { Account } from 'flavours/polyam/components/account';
 import { IconWithBadge } from 'flavours/polyam/components/icon_with_badge';
 import { Search } from 'flavours/polyam/features/compose/components/search';
 import { ColumnLink } from 'flavours/polyam/features/ui/components/column_link';
+import { getNavigationSkipLinkId } from 'flavours/polyam/features/ui/components/skip_links';
 import { useBreakpoint } from 'flavours/polyam/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'flavours/polyam/identity_context';
 import {
@@ -218,6 +219,8 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
 
   let banner: React.ReactNode;
 
+  let linknum = 0;
+
   if (transientSingleColumn) {
     banner = (
       <div className='switch-to-advanced'>
@@ -266,6 +269,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
                 activeIconComponent={AddIcon}
                 text={intl.formatMessage(messages.compose)}
                 className='button navigation-panel__compose-button'
+                id={linknum++ === 0 ? getNavigationSkipLinkId() : undefined}
               />
             )}
             {(!multiColumn || !isPinned('HOME')) && (
@@ -275,6 +279,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
                 icon='home'
                 iconComponent={HomeIcon}
                 text={intl.formatMessage(messages.home)}
+                id={linknum++ === 0 ? getNavigationSkipLinkId() : undefined}
               />
             )}
           </>
@@ -287,6 +292,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
             icon='explore'
             iconComponent={TrendingUpIcon}
             text={intl.formatMessage(messages.explore)}
+            id={linknum++ === 0 ? getNavigationSkipLinkId() : undefined}
           />
         )}
 
@@ -308,6 +314,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
                 ? messages.firehose
                 : messages.firehose_singular,
             )}
+            id={linknum++ === 0 ? getNavigationSkipLinkId() : undefined}
           />
         )}
 
@@ -383,6 +390,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
             icon='ellipsis-h'
             iconComponent={InfoIcon}
             text={intl.formatMessage(messages.about)}
+            id={linknum++ === 0 ? getNavigationSkipLinkId() : undefined}
           />
         </div>
 
