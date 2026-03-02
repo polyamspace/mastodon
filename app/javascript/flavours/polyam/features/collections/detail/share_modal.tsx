@@ -13,7 +13,11 @@ import { AvatarGroup } from 'flavours/polyam/components/avatar_group';
 import { Button } from 'flavours/polyam/components/button';
 import { CopyLinkField } from 'flavours/polyam/components/form_fields';
 import { IconButton } from 'flavours/polyam/components/icon_button';
-import { ModalShell } from 'flavours/polyam/components/modal_shell';
+import {
+  ModalShell,
+  ModalShellActions,
+  ModalShellBody,
+} from 'flavours/polyam/components/modal_shell';
 import { useAppDispatch } from 'flavours/polyam/store';
 
 import { AuthorNote } from '.';
@@ -64,7 +68,7 @@ export const CollectionShareModal: React.FC<{
 
   return (
     <ModalShell>
-      <ModalShell.Body>
+      <ModalShellBody>
         <h1 className={classes.heading}>
           {isNew ? (
             <FormattedMessage
@@ -112,9 +116,9 @@ export const CollectionShareModal: React.FC<{
           })}
           value={collectionLink}
         />
-      </ModalShell.Body>
+      </ModalShellBody>
 
-      <ModalShell.Actions className={classes.actions}>
+      <ModalShellActions className={classes.actions}>
         <div className={classes.shareButtonWrapper}>
           <Button secondary onClick={handleShareViaPost}>
             <FormattedMessage
@@ -135,7 +139,7 @@ export const CollectionShareModal: React.FC<{
         <Button plain onClick={onClose} className={classes.closeButtonMobile}>
           <FormattedMessage id='lightbox.close' defaultMessage='Close' />
         </Button>
-      </ModalShell.Actions>
+      </ModalShellActions>
     </ModalShell>
   );
 };
