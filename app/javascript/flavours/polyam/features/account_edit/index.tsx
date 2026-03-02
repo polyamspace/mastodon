@@ -15,10 +15,7 @@ import { useElementHandledLink } from '@/flavours/polyam/components/status/handl
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useCurrentAccountId } from '@/flavours/polyam/hooks/useAccountId';
 import { autoPlayGif } from '@/flavours/polyam/initial_state';
-import {
-  fetchFeaturedTags,
-  fetchProfile,
-} from '@/flavours/polyam/reducers/slices/profile_edit';
+import { fetchProfile } from '@/flavours/polyam/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
@@ -87,9 +84,8 @@ export const AccountEdit: FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const { profile, tags = [] } = useAppSelector((state) => state.profileEdit);
+  const { profile } = useAppSelector((state) => state.profileEdit);
   useEffect(() => {
-    void dispatch(fetchFeaturedTags());
     void dispatch(fetchProfile());
   }, [dispatch]);
 
@@ -127,7 +123,7 @@ export const AccountEdit: FC = () => {
   const headerSrc = autoPlayGif ? profile.header : profile.headerStatic;
   const hasName = !!profile.displayName;
   const hasBio = !!profile.bio;
-  const hasTags = tags.length > 0;
+  const hasTags = profile.featuredTags.length > 0;
 
   return (
     <AccountEditColumn
@@ -190,7 +186,7 @@ export const AccountEdit: FC = () => {
             />
           }
         >
-          {tags.map((tag) => `#${tag.name}`).join(', ')}
+          {profile.featuredTags.map((tag) => `#${tag.name}`).join(', ')}
         </AccountEditSection>
 
         <AccountEditSection
