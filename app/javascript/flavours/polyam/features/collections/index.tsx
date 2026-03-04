@@ -11,7 +11,10 @@ import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { Icon } from 'flavours/polyam/components/icon';
-import ScrollableList from 'flavours/polyam/components/scrollable_list';
+import {
+  ItemList,
+  Scrollable,
+} from 'flavours/polyam/components/scrollable_list/components';
 import {
   fetchAccountCollections,
   selectAccountCollections,
@@ -85,16 +88,18 @@ export const Collections: React.FC<{
         }
       />
 
-      <ScrollableList
-        scrollKey='collections'
-        emptyMessage={emptyMessage}
-        isLoading={status === 'loading'}
-        bindToDocument={!multiColumn}
-      >
-        {collections.map((item) => (
-          <CollectionListItem key={item.id} collection={item} />
-        ))}
-      </ScrollableList>
+      <Scrollable>
+        <ItemList emptyMessage={emptyMessage} isLoading={status === 'loading'}>
+          {collections.map((item, index) => (
+            <CollectionListItem
+              key={item.id}
+              collection={item}
+              positionInList={index + 1}
+              listSize={collections.length}
+            />
+          ))}
+        </ItemList>
+      </Scrollable>
 
       <Helmet>
         <title>{intl.formatMessage(messages.heading)}</title>
