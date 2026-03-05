@@ -21,6 +21,7 @@ import AdministrationIcon from '@/awesome-icons/solid/gears.svg?react';
 import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import HomeIcon from '@/awesome-icons/solid/house.svg?react';
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
+import CollectionsIcon from '@/awesome-icons/solid/shapes.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import PersonAddIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import { fetchFollowRequests } from 'flavours/polyam/actions/accounts';
@@ -48,6 +49,7 @@ import { selectUnreadNotificationGroupsCount } from 'flavours/polyam/selectors/n
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 import { AnnualReportNavItem } from '../annual_report/nav_item';
+import { areCollectionsEnabled } from '../collections/utils';
 
 import { DisabledAccountBanner } from './components/disabled_account_banner';
 import { FollowedTagsPanel } from './components/followed_tags_panel';
@@ -71,6 +73,10 @@ const messages = defineMessages({
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
+  collections: {
+    id: 'navigation_bar.collections',
+    defaultMessage: 'Collections',
+  },
   preferences: {
     id: 'navigation_bar.preferences',
     defaultMessage: 'Preferences',
@@ -350,6 +356,15 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
                 icon='bookmarks'
                 iconComponent={BookmarksIcon}
                 text={intl.formatMessage(messages.bookmarks)}
+              />
+            )}
+            {areCollectionsEnabled() && (
+              <ColumnLink
+                transparent
+                to='/collections'
+                icon='collections'
+                iconComponent={CollectionsIcon}
+                text={intl.formatMessage(messages.collections)}
               />
             )}
             {(!multiColumn || !isPinned('DIRECT')) && (
