@@ -24,7 +24,7 @@ import { me } from 'flavours/polyam/initial_state';
 import { fetchCollection } from 'flavours/polyam/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
-import { CollectionAccountsList } from './collection_list';
+import { CollectionAccountsList } from './accounts_list';
 import { CollectionMetaData } from './collection_list_item';
 import { CollectionMenu } from './collection_menu';
 import classes from './styles.module.scss';
