@@ -2,9 +2,8 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import ExpandArrowIcon from '@/awesome-icons/solid/chevron-down.svg?react';
+import { Details } from '@/flavours/polyam/components/details';
 import { CopyLinkField } from '@/flavours/polyam/components/form_fields/copy_link_field';
-import { Icon } from '@/flavours/polyam/components/icon';
 import { createAppSelector, useAppSelector } from '@/flavours/polyam/store';
 
 import type { DialogModalProps } from '../../ui/components/dialog_modal';
@@ -53,20 +52,20 @@ export const VerifiedModal: FC<DialogModalProps> = ({ onClose }) => {
             }
             value={`<a rel="me" href="${accountUrl}">Mastodon</a>`}
           />
-          <details className={classes.details}>
-            <summary>
+          <Details
+            summary={
               <FormattedMessage
                 id='account_edit.verified_modal.invisible_link.summary'
                 defaultMessage='How do I make the link invisible?'
               />
-              <Icon icon={ExpandArrowIcon} id='arrow' />
-            </summary>
+            }
+          >
             <FormattedMessage
               id='account_edit.verified_modal.invisible_link.details'
               defaultMessage='Add the link to your header. The important part is rel="me" which prevents impersonation on websites with user-generated content. You can even use a link tag in the header of the page instead of {tag}, but the HTML must be accessible without executing JavaScript.'
               values={{ tag: <code>&lt;a&gt;</code> }}
             />
-          </details>
+          </Details>
         </li>
         <li>
           <FormattedMessage
