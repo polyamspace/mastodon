@@ -8,6 +8,7 @@ import {
   setComposeQuotePolicy,
   pasteLinkCompose,
   cancelPasteLinkCompose,
+  setDragUploadEnabled,
 } from '@/flavours/polyam/actions/compose_typed';
 import { timelineDelete } from 'flavours/polyam/actions/timelines_typed';
 
@@ -86,6 +87,7 @@ const initialState = ImmutableMap({
   is_submitting: false,
   is_changing_upload: false,
   is_uploading: false,
+  isDragDisabled: false,
   should_redirect_to_compose_page: false,
   progress: 0,
   isUploadingThumbnail: false,
@@ -187,6 +189,7 @@ function clearAll(state) {
     map.set('last_status_in_thread', null);
     map.set('quoted_status_id', null);
     map.set('quote_policy', state.get('default_quote_policy'));
+    map.set('isDragDisabled', false);
   });
 }
 
@@ -443,6 +446,8 @@ export const composeReducer = (state = initialState, action) => {
     return action.meta.requestId === state.get('fetching_link') ? state.set('fetching_link', null) : state;
   } else if (cancelPasteLinkCompose.match(action)) {
     return state.set('fetching_link', null);
+  } else if (setDragUploadEnabled.match(action)) {
+    return state.set('isDragDisabled', !action.payload);
   }
 
   let do_not_federate, text;
