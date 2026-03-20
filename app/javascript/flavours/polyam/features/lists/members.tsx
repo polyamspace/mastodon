@@ -31,10 +31,9 @@ import { Permalink } from 'flavours/polyam/components/permalink';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
 import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
+import { useSearchAccounts } from 'flavours/polyam/hooks/useSearchAccounts';
 import { me } from 'flavours/polyam/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
-
-import { useSearchAccounts } from './use_search_accounts';
 
 export const messages = defineMessages({
   manageMembers: {
