@@ -7,7 +7,7 @@ import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
 import { Combobox } from '@/flavours/polyam/components/form_fields';
 import { useSearchTags } from '@/flavours/polyam/hooks/useSearchTags';
 import type { TagSearchResult } from '@/flavours/polyam/hooks/useSearchTags';
-import { addFeaturedTag } from '@/flavours/polyam/reducers/slices/profile_edit';
+import { addFeaturedTags } from '@/flavours/polyam/reducers/slices/profile_edit';
 import { useAppDispatch } from '@/flavours/polyam/store';
 
 import classes from '../styles.module.scss';
@@ -46,7 +46,7 @@ export const AccountEditTagSearch: FC = () => {
     (item: TagSearchResult) => {
       resetSearch();
       setQuery('');
-      void dispatch(addFeaturedTag({ name: item.name }));
+      void dispatch(addFeaturedTags({ names: [item.name] }));
     },
     [dispatch, resetSearch],
   );

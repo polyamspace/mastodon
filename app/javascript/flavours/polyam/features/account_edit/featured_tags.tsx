@@ -9,7 +9,7 @@ import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useCurrentAccountId } from '@/flavours/polyam/hooks/useAccountId';
 import type { TagData } from '@/flavours/polyam/reducers/slices/profile_edit';
 import {
-  addFeaturedTag,
+  addFeaturedTags,
   deleteFeaturedTag,
   fetchProfile,
   fetchSuggestedTags,
@@ -128,7 +128,7 @@ const SuggestedTag: FC<{ name: string; disabled?: boolean }> = ({
 }) => {
   const dispatch = useAppDispatch();
   const handleAddTag = useCallback(() => {
-    void dispatch(addFeaturedTag({ name }));
+    void dispatch(addFeaturedTags({ names: [name] }));
   }, [dispatch, name]);
   return <Tag name={name} onClick={handleAddTag} disabled={disabled} />;
 };
