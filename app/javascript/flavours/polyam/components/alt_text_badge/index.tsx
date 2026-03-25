@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useId, Fragment } from 'react';
+import { useState, useCallback, useRef, useId } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -86,7 +86,6 @@ export const AltTextBadge: React.FC<{
                 <FormattedMessage
                   id='alt_text_badge.title'
                   defaultMessage='Alt text'
-                  tagName={Fragment}
                 />
               </h4>
 
