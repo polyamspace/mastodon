@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
@@ -9,6 +9,7 @@ import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { fetchFilters, createFilter, createFilterStatus } from 'flavours/polyam/actions/filters';
 import { fetchStatus } from 'flavours/polyam/actions/statuses';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import AddedToFilter from 'flavours/polyam/features/filters/added_to_filter';
 import SelectFilter from 'flavours/polyam/features/filters/select_filter';
 

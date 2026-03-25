@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { createSelector } from '@reduxjs/toolkit';
 import { is, List as ImmutableList, Set as ImmutableSet } from 'immutable';
@@ -12,6 +12,7 @@ import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { followAccount } from 'flavours/polyam/actions/accounts';
 import { Button } from 'flavours/polyam/components/button';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import Option from 'flavours/polyam/features/report/components/option';
 import { languages as preloadedLanguages } from 'flavours/polyam/initial_state';
 

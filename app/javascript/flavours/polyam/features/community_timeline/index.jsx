@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
 import PeopleIcon from '@/awesome-icons/solid/users.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { DismissableBanner } from 'flavours/polyam/components/dismissable_banner';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { domain, localLiveFeedAccess } from 'flavours/polyam/initial_state';

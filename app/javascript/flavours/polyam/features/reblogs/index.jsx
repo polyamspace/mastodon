@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
@@ -12,6 +12,7 @@ import { debounce } from 'lodash';
 
 import RefreshIcon from '@/awesome-icons/solid/arrows-rotate.svg?react';
 import BoostIcon from '@/svg-icons/boost.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Account } from 'flavours/polyam/components/account';
 import { Icon }  from 'flavours/polyam/components/icon';
 

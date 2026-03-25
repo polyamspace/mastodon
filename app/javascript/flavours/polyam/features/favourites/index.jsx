@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
@@ -16,6 +16,7 @@ import { fetchFavourites, expandFavourites } from 'flavours/polyam/actions/inter
 import { Account } from 'flavours/polyam/components/account';
 import ColumnHeader from 'flavours/polyam/components/column_header';
 import { Icon }  from 'flavours/polyam/components/icon';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import Column from 'flavours/polyam/features/ui/components/column';

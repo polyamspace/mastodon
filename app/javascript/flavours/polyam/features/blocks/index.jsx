@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import BanIcon from '@/awesome-icons/solid/ban.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Account } from 'flavours/polyam/components/account';
 
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';

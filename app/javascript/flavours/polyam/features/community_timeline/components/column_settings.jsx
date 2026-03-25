@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
+
+import { injectIntl } from '@/flavours/polyam/components/intl';
 
 import SettingText from 'flavours/polyam/components/setting_text';
 import SettingToggle from 'flavours/polyam/features/notifications/components/setting_toggle';

@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import SettingsIcon from '@/awesome-icons/solid/gear.svg?react';
 import AppSettingsIcon from '@/awesome-icons/solid/gears.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Button } from 'flavours/polyam/components/button';
 import { Icon } from 'flavours/polyam/components/icon';
 import illustration from 'flavours/polyam/images/logo_warn_glitch.svg';

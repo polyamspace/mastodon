@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import QuestionIcon from '@/awesome-icons/solid/question.svg?react';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 
 const messages = defineMessages({
   heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -23,6 +23,7 @@ import { identityContextPropShape, withIdentity } from '../identity_context';
 import { displayMedia, domain } from '../initial_state';
 
 import AttachmentList from './attachment_list';
+import { injectIntl } from './intl';
 import { StatusHeader } from './status/header';
 import { getHashtagBarForStatus } from './hashtag_bar';
 import { MentionsPlaceholder } from './mentions_placeholder';

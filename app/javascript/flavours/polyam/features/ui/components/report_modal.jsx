@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { OrderedSet } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -13,6 +13,7 @@ import { submitReport } from 'flavours/polyam/actions/reports';
 import { fetchServer } from 'flavours/polyam/actions/server';
 import { expandAccountTimeline } from 'flavours/polyam/actions/timelines';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import Category from 'flavours/polyam/features/report/category';
 import Comment from 'flavours/polyam/features/report/comment';
 import Rules from 'flavours/polyam/features/report/rules';

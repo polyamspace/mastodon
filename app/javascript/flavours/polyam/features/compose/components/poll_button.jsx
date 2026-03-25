@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import PollIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 
 import { IconButton } from '../../../components/icon_button';
 

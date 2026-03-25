@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Redirect, Route, withRouter } from 'react-router-dom';
@@ -18,6 +18,7 @@ import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavour
 import { fetchNotifications } from 'flavours/polyam/actions/notification_groups';
 import { INTRODUCTION_VERSION } from 'flavours/polyam/actions/onboarding';
 import { AlertsController } from 'flavours/polyam/components/alerts_controller';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import { HoverCardController } from 'flavours/polyam/components/hover_card_controller';
 import { Permalink } from 'flavours/polyam/components/permalink';

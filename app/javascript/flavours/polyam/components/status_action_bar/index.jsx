@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import { withRouter } from 'react-router-dom';
 
@@ -24,6 +24,7 @@ import EmojiPickerDropdown from '../../features/compose/containers/emoji_picker_
 import { me, quickBoosting, maxReactions } from '../../initial_state';
 
 import { IconButton } from '../icon_button';
+import { injectIntl } from '../intl';
 import { RelativeTimestamp } from '../relative_timestamp';
 import { BoostButton } from '../status/boost_button';
 import { RemoveQuoteHint } from './remove_quote_hint';

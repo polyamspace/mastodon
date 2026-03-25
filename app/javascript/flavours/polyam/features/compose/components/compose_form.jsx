@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { createRef } from 'react';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -15,6 +15,7 @@ import { missingAltTextModal, publishButtonText as customPublishButtonText } fro
 import AutosuggestInput from 'flavours/polyam/components/autosuggest_input';
 import AutosuggestTextarea from 'flavours/polyam/components/autosuggest_textarea';
 import { Button } from 'flavours/polyam/components/button';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';

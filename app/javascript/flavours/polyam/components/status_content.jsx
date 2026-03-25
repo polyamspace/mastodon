@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
@@ -17,6 +17,7 @@ import { languages as preloadedLanguages } from 'flavours/polyam/initial_state';
 import { highlightCode } from 'flavours/polyam/utils/html';
 
 import { EmojiHTML } from './emoji/html';
+import { injectIntl } from './intl';
 import { HandledLink } from './status/handled_link';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)

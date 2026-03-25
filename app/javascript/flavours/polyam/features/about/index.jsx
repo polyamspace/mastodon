@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
@@ -9,6 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import CircleInfo from '@/awesome-icons/solid/circle-info.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'flavours/polyam/actions/server';
 import { Account } from 'flavours/polyam/components/account';
 import Column from 'flavours/polyam/components/column';
