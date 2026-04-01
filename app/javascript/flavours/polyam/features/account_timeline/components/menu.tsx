@@ -215,13 +215,14 @@ function currentMenuItems({
   }
 
   if (isRemote) {
-    items.push(
-      {
-        text: intl.formatMessage(messages.openOriginalPage),
-        href: account.url,
-      },
-      null,
-    );
+    items.push({
+      text: intl.formatMessage(messages.openOriginalPage),
+      href: account.url,
+    });
+
+    if (signedIn) {
+      items.push(null);
+    }
   }
 
   if (!signedIn) {
