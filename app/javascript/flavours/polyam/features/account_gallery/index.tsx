@@ -5,7 +5,6 @@ import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 import { List as ImmutableList, isList } from 'immutable';
 
 import PersonIcon from '@/awesome-icons/solid/user.svg?react';
-import { isServerFeatureEnabled } from '@/flavours/polyam/utils/environment';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { expandAccountMediaTimeline } from 'flavours/polyam/actions/timelines';
 import { RemoteHint } from 'flavours/polyam/components/remote_hint';
@@ -30,8 +29,6 @@ const messages = defineMessages({
 });
 
 const emptyList = ImmutableList<MediaAttachment>();
-
-const redesignEnabled = isServerFeatureEnabled('profile_redesign');
 
 const selectGalleryTimeline = createAppSelector(
   [
@@ -62,7 +59,7 @@ const selectGalleryTimeline = createAppSelector(
 
     const { show_media, show_media_replies } = account;
     // If the account disabled showing media, don't display anything.
-    if (!show_media && redesignEnabled) {
+    if (!show_media) {
       return {
         items,
         hasMore: false,
@@ -71,7 +68,7 @@ const selectGalleryTimeline = createAppSelector(
       };
     }
 
-    const withReplies = show_media_replies && redesignEnabled;
+    const withReplies = show_media_replies;
     const timeline = timelines.get(
       `account:${accountId}:media${withReplies ? ':with_replies' : ''}`,
     );

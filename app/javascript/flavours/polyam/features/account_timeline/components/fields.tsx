@@ -1,76 +1,29 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import type { FC } from 'react';
 
-import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
+import { defineMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
 import MoreIcon from '@/awesome-icons/solid/ellipsis.svg?react';
 import { openModal } from '@/flavours/polyam/actions/modal';
-import { AccountFields } from '@/flavours/polyam/components/account_fields';
 import { CustomEmojiProvider } from '@/flavours/polyam/components/emoji/context';
 import type { EmojiHTMLProps } from '@/flavours/polyam/components/emoji/html';
 import { EmojiHTML } from '@/flavours/polyam/components/emoji/html';
-import { FormattedDateWrapper } from '@/flavours/polyam/components/formatted_date';
 import { Icon } from '@/flavours/polyam/components/icon';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
 import { MiniCard } from '@/flavours/polyam/components/mini_card';
 import { useElementHandledLink } from '@/flavours/polyam/components/status/handled_link';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useResizeObserver } from '@/flavours/polyam/hooks/useObserver';
-import type { Account } from '@/flavours/polyam/models/account';
 import { useAppDispatch } from '@/flavours/polyam/store';
 import IconVerified from '@/images/icons/icon_verified.svg?react';
 
 import { cleanExtraEmojis } from '../../emoji/normalize';
 import type { AccountField } from '../common';
-import { isRedesignEnabled } from '../common';
 import { useFieldHtml } from '../hooks/useFieldHtml';
 
 import classes from './redesign.module.scss';
-
-export const AccountHeaderFields: FC<{ accountId: string }> = ({
-  accountId,
-}) => {
-  const account = useAccount(accountId);
-
-  if (!account) {
-    return null;
-  }
-
-  if (isRedesignEnabled()) {
-    return <RedesignAccountHeaderFields account={account} />;
-  }
-
-  return (
-    <div className='account__header__fields'>
-      {
-        // @ts-expect-error -- Polyam: Join date is shown at bottom of account bio instead
-        // eslint-disable-next-line no-constant-binary-expression, @typescript-eslint/no-unnecessary-condition
-        null && (
-          <dl>
-            <dt>
-              <FormattedMessage
-                id='account.joined_short'
-                defaultMessage='Joined'
-              />
-            </dt>
-            <dd>
-              <FormattedDateWrapper
-                value={account.created_at}
-                year='numeric'
-                month='short'
-                day='2-digit'
-              />
-            </dd>
-          </dl>
-        )
-      }
-
-      <AccountFields fields={account.fields} emojis={account.emojis} />
-    </div>
-  );
-};
 
 const verifyMessage = defineMessage({
   id: 'account.link_verified_on',
@@ -84,13 +37,22 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
   minute: '2-digit',
 };
 
-const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
+export const AccountHeaderFields: FC<{ accountId: string }> = ({
+  accountId,
+}) => {
+  const account = useAccount(accountId);
+
   const emojis = useMemo(
-    () => cleanExtraEmojis(account.emojis),
-    [account.emojis],
+    () => cleanExtraEmojis(account?.emojis),
+    [account?.emojis],
   );
+  const accountFields = account?.fields;
   const fields: AccountField[] = useMemo(() => {
-    const fields = account.fields.toJS();
+    const fields = accountFields?.toJS();
+    if (!fields) {
+      return [];
+    }
+
     if (!emojis) {
       return fields.map((field) => ({
         ...field,
@@ -111,10 +73,10 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
         field.value_plain?.includes(`:${code}:`),
       ),
     }));
-  }, [account.fields, emojis]);
+  }, [accountFields, emojis]);
 
   const htmlHandlers = useElementHandledLink({
-    hashtagAccountId: account.id,
+    hashtagAccountId: account?.id,
   });
 
   const { wrapperRef } = useColumnWrap();

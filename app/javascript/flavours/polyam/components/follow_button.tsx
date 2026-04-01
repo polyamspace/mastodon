@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { useIdentity } from '@/flavours/polyam/identity_context';
-import { isServerFeatureEnabled } from '@/flavours/polyam/utils/environment';
 import {
   fetchRelationships,
   followAccount,
@@ -174,23 +173,10 @@ export const FollowButton: React.FC<{
       'button--compact': compact,
     });
 
-    if (isServerFeatureEnabled('profile_redesign')) {
-      return (
-        <Link to='/profile/edit' className={buttonClasses}>
-          {label}
-        </Link>
-      );
-    }
-
     return (
-      <a
-        href='/settings/profile'
-        target='_blank'
-        rel='noopener'
-        className={buttonClasses}
-      >
+      <Link to='/profile/edit' className={buttonClasses}>
         {label}
-      </a>
+      </Link>
     );
   }
 

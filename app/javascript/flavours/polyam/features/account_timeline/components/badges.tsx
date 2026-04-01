@@ -20,8 +20,6 @@ import type { AccountRole } from '@/flavours/polyam/models/account';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 import IconPinned from '@/images/icons/icon_pinned.svg?react';
 
-import { isRedesignEnabled } from '../common';
-
 import classes from './redesign.module.scss';
 
 export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
@@ -43,9 +41,6 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
     return null;
   }
 
-  const isRedesign = isRedesignEnabled();
-  const className = isRedesign ? classes.badge : '';
-
   // Polyam: removed domain
   account.roles.forEach((role) => {
     if (isAdminBadge(role)) {
@@ -53,7 +48,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
         <AdminBadge
           key={role.id}
           label={role.name}
-          className={className}
+          className={classes.badge}
           roleId={role.id}
           roleColor={role.color}
         />,
@@ -63,7 +58,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
         <Badge
           key={role.id}
           label={role.name}
-          className={className}
+          className={classes.badge}
           roleId={role.id}
           roleColor={role.color}
         />,
@@ -72,17 +67,17 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
   });
 
   if (account.bot) {
-    badges.push(<AutomatedBadge key='bot-badge' className={className} />);
+    badges.push(<AutomatedBadge key='bot-badge' className={classes.badge} />);
   }
   if (account.group) {
-    badges.push(<GroupBadge key='group-badge' className={className} />);
+    badges.push(<GroupBadge key='group-badge' className={classes.badge} />);
   }
-  if (isRedesign && relationship) {
+  if (relationship) {
     if (relationship.blocking) {
       badges.push(
         <BlockedBadge
           key='blocking'
-          className={classNames(className, classes.badgeBlocked)}
+          className={classNames(classes.badge, classes.badgeBlocked)}
         />,
       );
     }
@@ -90,7 +85,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
       badges.push(
         <BlockedBadge
           key='domain-blocking'
-          className={classNames(className, classes.badgeBlocked)}
+          className={classNames(classes.badge, classes.badgeBlocked)}
           label={
             <FormattedMessage
               id='account.badges.domain_blocked'
@@ -104,7 +99,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
       badges.push(
         <MutedBadge
           key='muted-badge'
-          className={classNames(className, classes.badgeMuted)}
+          className={classNames(classes.badge, classes.badgeMuted)}
           expiresAt={relationship.muting_expires_at}
         />,
       );
@@ -130,5 +125,5 @@ export const PinnedBadge: FC = () => (
 
 function isAdminBadge(role: AccountRole) {
   const name = role.name.toLowerCase();
-  return isRedesignEnabled() && (name === 'admin' || name === 'owner');
+  return name === 'admin' || name === 'owner';
 }

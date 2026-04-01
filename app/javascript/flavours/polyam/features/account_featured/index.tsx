@@ -7,7 +7,6 @@ import { useHistory } from 'react-router';
 import { List as ImmutableList } from 'immutable';
 
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
-import { isServerFeatureEnabled } from '@/flavours/polyam/utils/environment';
 import { fetchEndorsedAccounts } from 'flavours/polyam/actions/accounts_typed';
 import { fetchFeaturedTags } from 'flavours/polyam/actions/featured_tags';
 import { Account } from 'flavours/polyam/components/account';
@@ -49,11 +48,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
 
   const history = useHistory();
   useEffect(() => {
-    if (
-      account &&
-      !account.show_featured &&
-      isServerFeatureEnabled('profile_redesign')
-    ) {
+    if (account && !account.show_featured) {
       history.push(`/@${account.acct}`);
     }
   }, [account, history]);
@@ -111,8 +106,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     );
   }
 
-  const noTags =
-    featuredTags.isEmpty() || isServerFeatureEnabled('profile_redesign');
+  const noTags = featuredTags.isEmpty();
 
   if (
     noTags &&
