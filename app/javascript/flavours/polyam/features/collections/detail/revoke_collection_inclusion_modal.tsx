@@ -3,8 +3,11 @@ import { useCallback } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import { showAlert } from 'flavours/polyam/actions/alerts';
+import { openModal } from 'flavours/polyam/actions/modal';
+import type { ApiCollectionJSON } from 'flavours/polyam/api_types/collections';
 import type { BaseConfirmationModalProps } from 'flavours/polyam/features/ui/components/confirmation_modals/confirmation_modal';
 import { ConfirmationModal } from 'flavours/polyam/features/ui/components/confirmation_modals/confirmation_modal';
+import { me } from 'flavours/polyam/initial_state';
 import { revokeCollectionInclusion } from 'flavours/polyam/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
@@ -23,6 +26,24 @@ const messages = defineMessages({
     defaultMessage: 'Remove me',
   },
 });
+
+export function useConfirmRevoke(collection?: ApiCollectionJSON) {
+  const dispatch = useAppDispatch();
+  const { id, items = [] } = collection ?? {};
+  const ownCollectionItemId = items.find((item) => item.account_id === me)?.id;
+
+  return useCallback(() => {
+    void dispatch(
+      openModal({
+        modalType: 'REVOKE_COLLECTION_INCLUSION',
+        modalProps: {
+          collectionId: id,
+          collectionItemId: ownCollectionItemId,
+        },
+      }),
+    );
+  }, [dispatch, id, ownCollectionItemId]);
+}
 
 export const RevokeCollectionInclusionModal: React.FC<
   {

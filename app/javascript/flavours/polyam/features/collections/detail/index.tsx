@@ -11,17 +11,20 @@ import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
 import { openModal } from '@/flavours/polyam/actions/modal';
 import { useAccountHandle } from '@/flavours/polyam/components/display_name/default';
 import type { ApiCollectionJSON } from 'flavours/polyam/api_types/collections';
+import { Callout } from 'flavours/polyam/components/callout';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
+import { DisplayName } from 'flavours/polyam/components/display_name';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { Scrollable } from 'flavours/polyam/components/scrollable_list/components';
 import { useAccount } from 'flavours/polyam/hooks/useAccount';
-import { domain } from 'flavours/polyam/initial_state';
+import { domain, me } from 'flavours/polyam/initial_state';
 import { fetchCollection } from 'flavours/polyam/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 import { CollectionAccountsList } from './accounts_list';
 import { CollectionMenu } from './collection_menu';
+import { useConfirmRevoke } from './revoke_collection_inclusion_modal';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
@@ -62,13 +65,53 @@ export const AuthorNote: React.FC<{ id: string }> = ({ id }) => {
   );
 };
 
+export const RevokeControls: React.FC<{
+  collection: ApiCollectionJSON;
+}> = ({ collection }) => {
+  const authorAccount = useAccount(collection.account_id);
+  const confirmRevoke = useConfirmRevoke(collection);
+
+  return (
+    <Callout
+      title={
+        <FormattedMessage
+          id='collections.detail.you_are_in_this_collection'
+          defaultMessage="You're featured in this collection"
+        />
+      }
+      primaryLabel={
+        <FormattedMessage
+          id='collections.detail.revoke_inclusion'
+          defaultMessage='Remove me'
+        />
+      }
+      onPrimary={confirmRevoke}
+    >
+      <FormattedMessage
+        id='collections.detail.author_added_you_on_date'
+        defaultMessage='{author} added you on {date}'
+        values={{
+          author: <DisplayName account={authorAccount} variant='simple' />,
+          date: '{date}', // TODO: Data not yet provided by API
+        }}
+      />
+    </Callout>
+  );
+};
+
 const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   collection,
 }) => {
   const intl = useIntl();
-  const { name, description, tag, account_id } = collection;
+  const { name, description, tag, account_id, items } = collection;
   const dispatch = useAppDispatch();
   const history = useHistory();
+
+  const isOwnCollection = account_id === me;
+  const currentUserIndex = items.findIndex(
+    (account) => account.account_id === me,
+  );
+  const isCurrentUserInCollection = !isOwnCollection && currentUserIndex > -1;
 
   const handleShare = useCallback(() => {
     dispatch(
@@ -115,6 +158,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
         </div>
       </div>
       {description && <p className={classes.description}>{description}</p>}
+      {isCurrentUserInCollection && <RevokeControls collection={collection} />}
     </header>
   );
 };
