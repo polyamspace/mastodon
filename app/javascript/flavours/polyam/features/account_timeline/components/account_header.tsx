@@ -34,6 +34,7 @@ import { AccountHeaderFields } from './fields';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 import { AccountNote as AccountNoteRedesign } from './note';
+import { AccountNumberFields } from './number_fields';
 import redesignClasses from './redesign.module.scss';
 import { AccountTabs } from './tabs';
 
@@ -192,6 +193,8 @@ export const AccountHeader: React.FC<{
           </div>
 
           <AccountBadges accountId={accountId} />
+
+          <AccountNumberFields accountId={accountId} />
 
           {!isMe && !suspendedOrHidden && (
             <FamiliarFollowers accountId={accountId} />
