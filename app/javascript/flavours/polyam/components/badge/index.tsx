@@ -11,6 +11,8 @@ import PersonIcon from '@/awesome-icons/solid/user.svg?react';
 import VolumeOffIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import AdminIcon from '@/images/icons/icon_admin.svg?react';
 
+import classes from './styles.module.scss';
+
 interface BadgeProps {
   label: ReactNode;
   icon?: ReactNode;
@@ -18,10 +20,18 @@ interface BadgeProps {
   domain?: ReactNode;
   roleId?: string;
   roleColor?: string;
+  variant?:
+    | 'default'
+    | 'subtle'
+    | 'inverted'
+    | 'success'
+    | 'warning'
+    | 'danger';
 }
 
 export const Badge: FC<BadgeProps> = ({
   icon = <PersonIcon />,
+  variant = 'default',
   label,
   className,
   domain,
@@ -29,7 +39,7 @@ export const Badge: FC<BadgeProps> = ({
   roleColor,
 }) => (
   <div
-    className={classNames('account-role', className)}
+    className={classNames(classes.badge, classes[variant], className)}
     data-account-role-id={roleId}
     style={
       roleColor
@@ -42,7 +52,7 @@ export const Badge: FC<BadgeProps> = ({
   >
     {icon}
     <span>{label}</span>
-    {domain && <span className='account-role__domain'>{domain}</span>}
+    {domain && <span className={classes.domain}>{domain}</span>}
   </div>
 );
 
@@ -99,6 +109,7 @@ export const MutedBadge: FC<
   return (
     <Badge
       icon={<VolumeOffIcon />}
+      variant='inverted'
       label={
         label ??
         (formattedDate ? (
@@ -121,6 +132,7 @@ export const MutedBadge: FC<
 export const BlockedBadge: FC<Partial<BadgeProps>> = ({ label, ...props }) => (
   <Badge
     icon={<BlockIcon />}
+    variant='danger'
     label={
       label ?? (
         <FormattedMessage
