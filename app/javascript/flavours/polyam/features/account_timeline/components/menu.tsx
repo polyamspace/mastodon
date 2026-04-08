@@ -43,7 +43,7 @@ import {
 import type { AppDispatch } from '@/flavours/polyam/store';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
   const intl = useIntl();
@@ -64,7 +64,7 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
       return [];
     }
 
-    return redesignMenuItems({
+    return getMenuItems({
       account,
       signedIn: !isMe && signedIn,
       permissions,
@@ -226,7 +226,7 @@ const redesignMessages = defineMessages({
   },
 });
 
-function redesignMenuItems({
+function getMenuItems({
   account,
   signedIn,
   permissions,

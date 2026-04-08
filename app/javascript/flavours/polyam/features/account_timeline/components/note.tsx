@@ -10,7 +10,7 @@ import { Callout } from '@/flavours/polyam/components/callout';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   title: {

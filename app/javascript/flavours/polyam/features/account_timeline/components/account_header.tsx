@@ -31,9 +31,9 @@ import { FamiliarFollowers } from './familiar_followers';
 import { AccountHeaderFields } from './fields';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
-import { AccountNote as AccountNoteRedesign } from './note';
+import { AccountNote } from './note';
 import { AccountNumberFields } from './number_fields';
-import redesignClasses from './redesign.module.scss';
+import classes from './styles.module.scss';
 import { AccountTabs } from './tabs';
 
 const titleFromAccount = (account: Account) => {
@@ -134,12 +134,7 @@ export const AccountHeader: React.FC<{
           <FollowRequestNoteContainer account={account} />
         )}
 
-        <div
-          className={classNames(
-            'account__header__image',
-            redesignClasses.header,
-          )}
-        >
+        <div className={classNames('account__header__image', classes.header)}>
           {!suspendedOrHidden && (
             <img
               src={autoPlayGif ? account.header : account.header_static}
@@ -149,16 +144,11 @@ export const AccountHeader: React.FC<{
           )}
         </div>
 
-        <div
-          className={classNames(
-            'account__header__bar',
-            redesignClasses.barWrapper,
-          )}
-        >
+        <div className={classNames('account__header__bar', classes.barWrapper)}>
           <div
             className={classNames(
               'account__header__tabs',
-              redesignClasses.avatarWrapper,
+              classes.avatarWrapper,
             )}
           >
             <a
@@ -179,13 +169,13 @@ export const AccountHeader: React.FC<{
           <div
             className={classNames(
               'account__header__tabs__name',
-              redesignClasses.displayNameWrapper,
+              classes.displayNameWrapper,
             )}
           >
             <AccountName accountId={accountId} />
             <AccountButtons
               accountId={accountId}
-              className={redesignClasses.buttonsDesktop}
+              className={classes.buttonsDesktop}
               noShare={!isMe || 'share' in navigator}
               forceMenu={'share' in navigator}
             />
@@ -203,7 +193,7 @@ export const AccountHeader: React.FC<{
             <div className='account__header__extra'>
               <div className='account__header__bio'>
                 {me && account.id !== me && (
-                  <AccountNoteRedesign accountId={accountId} />
+                  <AccountNote accountId={accountId} />
                 )}
 
                 {/* Polyam: Hide fields when empty and show joined date on bottom */}
@@ -217,7 +207,7 @@ export const AccountHeader: React.FC<{
                   accountId={accountId}
                   className={classNames(
                     'account__header__content',
-                    redesignClasses.bio,
+                    classes.bio,
                   )}
                 />
 
@@ -248,8 +238,8 @@ export const AccountHeader: React.FC<{
 
           <AccountButtons
             className={classNames(
-              redesignClasses.buttonsMobile,
-              !isIntersecting && redesignClasses.buttonsMobileIsStuck,
+              classes.buttonsMobile,
+              !isIntersecting && classes.buttonsMobileIsStuck,
             )}
             accountId={accountId}
             noShare

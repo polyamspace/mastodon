@@ -18,7 +18,7 @@ import type { FieldStatus } from 'flavours/polyam/components/form_fields';
 import { TextInputField } from 'flavours/polyam/components/form_fields/text_input_field';
 import { useAppSelector } from 'flavours/polyam/store';
 
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   emailInvalid: {
