@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { useFetchFamiliarFollowers } from '@/flavours/polyam/components/familiar_followers/use_fetch_familiar_followers';
 import { fetchAccount } from 'flavours/polyam/actions/accounts';
 import { AccountBio } from 'flavours/polyam/components/account_bio';
 import { AccountFields } from 'flavours/polyam/components/account_fields';
@@ -18,7 +19,6 @@ import { FollowButton } from 'flavours/polyam/components/follow_button';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { Permalink } from 'flavours/polyam/components/permalink';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
-import { useFetchFamiliarFollowers } from 'flavours/polyam/features/account_timeline/hooks/familiar_followers';
 import { domain } from 'flavours/polyam/initial_state';
 import { getAccountHidden } from 'flavours/polyam/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';

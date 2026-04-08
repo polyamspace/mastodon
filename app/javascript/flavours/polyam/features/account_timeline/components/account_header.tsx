@@ -22,11 +22,12 @@ import { getAccountHidden } from '@/flavours/polyam/selectors/accounts';
 import { useAppSelector, useAppDispatch } from '@/flavours/polyam/store';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 
+import { FamiliarFollowers } from '../../../components/familiar_followers';
+
 import { AccountName } from './account_name';
 import { AccountSubscriptionForm } from './account_subscription_form';
 import { AnniversaryNote } from './anniversary-note';
 import { AccountButtons } from './buttons';
-import { FamiliarFollowers } from './familiar_followers';
 import { AccountHeaderFields } from './fields';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
@@ -183,7 +184,10 @@ export const AccountHeader: React.FC<{
           <AccountNumberFields accountId={accountId} />
 
           {!isMe && !suspendedOrHidden && (
-            <FamiliarFollowers accountId={accountId} />
+            <FamiliarFollowers
+              accountId={accountId}
+              className={classes.familiarFollowers}
+            />
           )}
 
           {!suspendedOrHidden && (

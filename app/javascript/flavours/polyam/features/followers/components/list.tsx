@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useRef } from 'react';
 import type { FC, ReactNode } from 'react';
 
-import { Account } from '@/flavours/polyam/components/account';
+import { AccountListItem } from '@/flavours/polyam/components/account_list_item';
 import type { ColumnRef } from '@/flavours/polyam/components/column';
 import { Column } from '@/flavours/polyam/components/column';
 import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
@@ -55,12 +55,12 @@ export const AccountList: FC<AccountListProps> = ({
     }
     const children =
       list?.items.map((followerId) => (
-        <Account key={followerId} id={followerId} />
+        <AccountListItem key={followerId} accountId={followerId} />
       )) ?? [];
 
     if (prependAccountId) {
       children.unshift(
-        <Account key={prependAccountId} id={prependAccountId} minimal />,
+        <AccountListItem key={prependAccountId} accountId={prependAccountId} />,
       );
     }
     return children;

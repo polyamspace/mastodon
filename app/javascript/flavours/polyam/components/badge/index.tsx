@@ -9,14 +9,18 @@ import SmartToyIcon from '@/awesome-icons/solid/robot.svg?react';
 import GroupsIcon from '@/awesome-icons/solid/user-group.svg?react';
 import PersonIcon from '@/awesome-icons/solid/user.svg?react';
 import VolumeOffIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
+import type { OnAttributeHandler } from '@/flavours/polyam/utils/html';
 import AdminIcon from '@/images/icons/icon_admin.svg?react';
+import IconVerified from '@/images/icons/icon_verified.svg?react';
+
+import { EmojiHTML } from '../emoji/html';
+import { Icon } from '../icon';
 
 import classes from './styles.module.scss';
 
-interface BadgeProps {
+interface BadgeProps extends React.ComponentPropsWithoutRef<'div'> {
   label: ReactNode;
   icon?: ReactNode;
-  className?: string;
   domain?: ReactNode;
   roleId?: string;
   roleColor?: string;
@@ -37,9 +41,16 @@ export const Badge: FC<BadgeProps> = ({
   domain,
   roleId,
   roleColor,
+  ...otherProps
 }) => (
   <div
-    className={classNames(classes.badge, classes[variant], className)}
+    {...otherProps}
+    className={classNames(
+      classes.badge,
+      !icon && classes.badgeWithoutIcon,
+      classes[variant],
+      className,
+    )}
     data-account-role-id={roleId}
     style={
       roleColor
@@ -142,5 +153,33 @@ export const BlockedBadge: FC<Partial<BadgeProps>> = ({ label, ...props }) => (
       )
     }
     {...props}
+  />
+);
+
+const onAttribute: OnAttributeHandler = (name, value, tagName) => {
+  if (name === 'rel' && tagName === 'a') {
+    if (value === 'me') {
+      return null;
+    }
+    return [
+      name,
+      value
+        .split(' ')
+        .filter((x) => x !== 'me')
+        .join(' '),
+    ];
+  }
+  return undefined;
+};
+
+export const VerifiedBadge: React.FC<{ link: string; className?: string }> = ({
+  link,
+  className,
+}) => (
+  <Badge
+    variant='success'
+    icon={<Icon id='verified' icon={IconVerified} noFill />}
+    label={<EmojiHTML as='span' htmlString={link} onAttribute={onAttribute} />}
+    className={className}
   />
 );

@@ -11,6 +11,7 @@ import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
 import { openModal } from '@/flavours/polyam/actions/modal';
 import { useAccountHandle } from '@/flavours/polyam/components/display_name/default';
 import type { ApiCollectionJSON } from 'flavours/polyam/api_types/collections';
+import { Badge } from 'flavours/polyam/components/badge';
 import { Callout } from 'flavours/polyam/components/callout';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
@@ -138,7 +139,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
     <header className={classes.header}>
       <div className={classes.titleWithMenu}>
         <div className={classes.titleWrapper}>
-          {tag && <span className={classes.tag}>#{tag.name}</span>}
+          {tag && <Badge label={`#${tag.name}`} icon={null} />}
           <h2 className={classes.name}>{name}</h2>
           <AuthorNote id={account_id} />
         </div>
