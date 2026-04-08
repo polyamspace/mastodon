@@ -3,6 +3,7 @@
 import type { AccountWarningAction } from 'flavours/polyam/models/notification_group';
 
 import type { ApiAccountJSON } from './accounts';
+import type { ApiCollectionJSON } from './collections';
 import type { ApiReportNoteJSON } from './report_notes';
 import type { ApiReportJSON } from './reports';
 import type { ApiStatusJSON } from './statuses';
@@ -24,6 +25,8 @@ export const allNotificationTypes: NotificationType[] = [
   'moderation_warning',
   'severed_relationships',
   'annual_report',
+  'added_to_collection',
+  'collection_update',
   'admin.report_note',
 ];
 
@@ -47,6 +50,8 @@ export type NotificationType =
   | 'admin.sign_up'
   | 'admin.report'
   | 'annual_report'
+  | 'added_to_collection'
+  | 'collection_update'
   | 'admin.report_note';
 
 export interface BaseNotificationJSON {
@@ -96,6 +101,26 @@ interface ReportNoteNotificationGroupJSON extends BaseNotificationGroupJSON {
 interface ReportNoteNotificationJSON extends BaseNotificationJSON {
   type: 'admin.report_note';
   report_note: ApiReportNoteJSON;
+}
+
+interface AddedToCollectionNotificationGroupJSON extends BaseNotificationGroupJSON {
+  type: 'added_to_collection';
+  collection: ApiCollectionJSON;
+}
+
+interface AddedToCollectionNotificationJSON extends BaseNotificationJSON {
+  type: 'added_to_collection';
+  collection: ApiCollectionJSON;
+}
+
+interface CollectionUpdateNotificationGroupJSON extends BaseNotificationGroupJSON {
+  type: 'collection_update';
+  collection: ApiCollectionJSON;
+}
+
+interface CollectionUpdateNotificationJSON extends BaseNotificationJSON {
+  type: 'collection_update';
+  collection: ApiCollectionJSON;
 }
 
 type SimpleNotificationTypes = 'follow' | 'follow_request' | 'admin.sign_up';
@@ -162,6 +187,8 @@ export type ApiNotificationJSON =
   | AccountRelationshipSeveranceNotificationJSON
   | NotificationWithStatusJSON
   | ModerationWarningNotificationJSON
+  | AddedToCollectionNotificationJSON
+  | CollectionUpdateNotificationJSON
   | ReportNoteNotificationJSON;
 
 export type ApiNotificationGroupJSON =
@@ -171,6 +198,8 @@ export type ApiNotificationGroupJSON =
   | NotificationGroupWithStatusJSON
   | ModerationWarningNotificationGroupJSON
   | AnnualReportNotificationGroupJSON
+  | AddedToCollectionNotificationGroupJSON
+  | CollectionUpdateNotificationGroupJSON
   | ReportNoteNotificationGroupJSON;
 
 export interface ApiNotificationGroupsResultJSON {
