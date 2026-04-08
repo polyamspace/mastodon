@@ -10,7 +10,6 @@ import LinkIcon from '@/awesome-icons/solid/link.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
 import PersonRemoveIcon from '@/awesome-icons/solid/user-minus.svg?react';
 import {
-  blockAccount,
   followAccount,
   pinAccount,
   unblockAccount,
@@ -19,6 +18,7 @@ import {
 } from '@/flavours/polyam/actions/accounts';
 import { removeAccountFromFollowers } from '@/flavours/polyam/actions/accounts_typed';
 import { showAlert } from '@/flavours/polyam/actions/alerts';
+import { initBlockModal } from '@/flavours/polyam/actions/blocks';
 import {
   directCompose,
   mentionCompose,
@@ -438,7 +438,7 @@ function redesignMenuItems({
       if (relationship?.blocking) {
         dispatch(unblockAccount(account.id));
       } else {
-        dispatch(blockAccount(account.id));
+        dispatch(initBlockModal(account));
       }
     },
     dangerous: true,
