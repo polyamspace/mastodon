@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import WarningIcon from '@/awesome-icons/solid/triangle-exclamation.svg?react';
+import { CollectionMenu } from '@/flavours/polyam/features/collections/components/collection_menu';
 import type { ApiCollectionJSON } from 'flavours/polyam/api_types/collections';
 import { AvatarById } from 'flavours/polyam/components/avatar';
 import { useAccountHandle } from 'flavours/polyam/components/display_name/default';
@@ -15,7 +16,6 @@ import { useAccount } from 'flavours/polyam/hooks/useAccount';
 import { domain } from 'flavours/polyam/initial_state';
 
 import classes from './collection_list_item.module.scss';
-import { CollectionMenu } from './collection_menu';
 
 export const AvatarGrid: React.FC<{
   accountIds: (string | undefined)[];
