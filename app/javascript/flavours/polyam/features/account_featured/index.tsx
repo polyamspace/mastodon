@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -7,9 +7,8 @@ import { useHistory } from 'react-router';
 import { List as ImmutableList } from 'immutable';
 
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
-import { AccountListItem } from '@/flavours/polyam/components/account_list_item';
-import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { fetchEndorsedAccounts } from 'flavours/polyam/actions/accounts_typed';
+import { AccountListItem } from 'flavours/polyam/components/account_list_item';
 import { ColumnBackButton } from 'flavours/polyam/components/column_back_button';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { RemoteHint } from 'flavours/polyam/components/remote_hint';
@@ -18,9 +17,12 @@ import {
   ItemList,
   Scrollable,
 } from 'flavours/polyam/components/scrollable_list/components';
+import type { TruncatedListItemInfo } from 'flavours/polyam/components/truncated_list';
+import { TruncatedListItems } from 'flavours/polyam/components/truncated_list';
 import { AccountHeader } from 'flavours/polyam/features/account_timeline/components/account_header';
 import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
 import Column from 'flavours/polyam/features/ui/components/column';
+import { useAccount } from 'flavours/polyam/hooks/useAccount';
 import { useAccountId } from 'flavours/polyam/hooks/useAccountId';
 import { useAccountVisibility } from 'flavours/polyam/hooks/useAccountVisibility';
 import {
@@ -74,11 +76,32 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
   const { collections, status: collectionsLoadStatus } = useAppSelector(
     (state) => selectAccountCollections(state, accountId ?? null),
   );
-  const listedCollections = collections.filter(
-    // Hide unlisted and empty collections to avoid confusion
-    // (Unlisted collections will only be part of the payload
-    // when viewing your own profile.)
-    (item) => item.discoverable && !!item.item_count,
+
+  const { listedCollections = [], unlistedCollections = [] } = Object.groupBy(
+    collections,
+    (item) =>
+      item.discoverable && !!item.item_count
+        ? 'listedCollections'
+        : 'unlistedCollections',
+  );
+
+  const renderListItem = useCallback(
+    ({
+      item,
+      index,
+      totalListLength,
+      isLastElement,
+    }: TruncatedListItemInfo<(typeof listedCollections)[number]>) => (
+      <CollectionListItem
+        key={item.id}
+        collection={item}
+        withoutBorder={isLastElement}
+        withAuthorHandle={false}
+        positionInList={index}
+        listSize={totalListLength}
+      />
+    ),
+    [],
   );
 
   const hasCollections =
@@ -167,16 +190,26 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
             </Subheading>
             {hasCollections ? (
               <ItemList>
-                {listedCollections.map((item, index) => (
-                  <CollectionListItem
-                    key={item.id}
-                    collection={item}
-                    withoutBorder={index === listedCollections.length - 1}
-                    withAuthorHandle={false}
-                    positionInList={index + 1}
-                    listSize={listedCollections.length}
-                  />
-                ))}
+                <TruncatedListItems
+                  visibleItems={listedCollections}
+                  truncatedItems={unlistedCollections}
+                  toggleButton={{
+                    title: (
+                      <FormattedMessage
+                        id='collections.unlisted_collections_with_count'
+                        defaultMessage='Unlisted collections ({count})'
+                        values={{ count: unlistedCollections.length }}
+                      />
+                    ),
+                    subtitle: (
+                      <FormattedMessage
+                        id='collections.unlisted_collections_description'
+                        defaultMessage='These don’t appear on your profile to others. Anyone with the link can discover them.'
+                      />
+                    ),
+                  }}
+                  renderListItem={renderListItem}
+                />
               </ItemList>
             ) : (
               <EmptyMessage
