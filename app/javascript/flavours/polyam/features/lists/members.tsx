@@ -176,7 +176,7 @@ const ListMembers: React.FC<{
   const [mode, setMode] = useState<Mode>('remove');
 
   const {
-    accountIds: searchAccountIds,
+    accounts: accountsFromSearch,
     isLoading: loadingSearchResults,
     searchAccounts: handleSearch,
   } = useSearchAccounts({
@@ -189,6 +189,7 @@ const ListMembers: React.FC<{
       }
     },
   });
+  const accountIdsFromSearch = accountsFromSearch.map((item) => item.id);
 
   useEffect(() => {
     if (id) {
@@ -232,7 +233,7 @@ const ListMembers: React.FC<{
   let displayedAccountIds: string[];
 
   if (mode === 'add' && searching) {
-    displayedAccountIds = searchAccountIds;
+    displayedAccountIds = accountIdsFromSearch;
   } else {
     displayedAccountIds = accountIds;
   }
