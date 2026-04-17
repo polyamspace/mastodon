@@ -7,17 +7,30 @@ import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 
 import { Icon } from '../icon';
 
-import { ListItemWrapper, ListItemButton, ListItemLink } from './index';
+import {
+  ListItemWrapper,
+  ListItemContent,
+  ListItemButton,
+  ListItemLink,
+} from './index';
 
 const meta = {
   title: 'Components/ListItem',
   component: ListItemWrapper,
-  subcomponents: { ListItemButton, ListItemLink },
+  subcomponents: { ListItemContent, ListItemButton, ListItemLink },
 } satisfies Meta<typeof ListItemWrapper>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
+
+export const NonInteractive: Story = {
+  render: () => (
+    <ListItemWrapper icon={<Icon icon={VisibilityIcon} id='visibility' />}>
+      <ListItemContent>View more</ListItemContent>
+    </ListItemWrapper>
+  ),
+};
 
 export const WithButton: Story = {
   render: () => (
