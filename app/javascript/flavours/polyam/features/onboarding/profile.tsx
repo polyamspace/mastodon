@@ -6,8 +6,6 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { useHistory } from 'react-router-dom';
 
-import Toggle from 'react-toggle';
-
 import AddPhotoAlternateIcon from '@/awesome-icons/solid/camera.svg?react';
 import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
 import PersonIcon from '@/awesome-icons/solid/user.svg?react';
@@ -19,6 +17,7 @@ import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import {
   TextAreaField,
   TextInputField,
+  Toggle,
 } from 'flavours/polyam/components/form_fields';
 import { Icon } from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';

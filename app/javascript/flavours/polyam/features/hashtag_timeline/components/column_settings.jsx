@@ -7,8 +7,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { NonceProvider } from 'react-select';
 import AsyncSelect from 'react-select/async';
-import Toggle from 'react-toggle';
 
+import { Toggle } from '@/flavours/polyam/components/form_fields';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 
 import { maxFeedHashtags } from 'flavours/polyam/initial_state';
