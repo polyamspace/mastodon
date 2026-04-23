@@ -13,6 +13,8 @@ import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp
 import { useAccount } from 'flavours/polyam/hooks/useAccount';
 import { domain } from 'flavours/polyam/initial_state';
 
+import { getCollectionPath } from '../utils';
+
 import classes from './collection_lockup.module.scss';
 
 export const AvatarGrid: React.FC<{
@@ -67,7 +69,7 @@ export const CollectionLockup: React.FC<CollectionLockupProps> = ({
       />
       <div>
         <h2 id={linkId}>
-          <Link to={`/collections/${id}`} className={classes.link}>
+          <Link to={getCollectionPath(id)} className={classes.link}>
             {name}
           </Link>
         </h2>

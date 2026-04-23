@@ -38,6 +38,8 @@ import {
 } from 'flavours/polyam/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
+import { getCollectionPath } from '../utils';
+
 import classes from './styles.module.scss';
 import { WizardStepTitle } from './wizard_step_title';
 
@@ -134,7 +136,7 @@ export const CollectionDetails: React.FC = () => {
         ).then((result) => {
           if (isFulfilled(result)) {
             history.replace(`/@${currentUserName}/collections`);
-            history.push(`/collections/${result.payload.collection.id}`, {
+            history.push(getCollectionPath(result.payload.collection.id), {
               newCollection: true,
             });
           }
