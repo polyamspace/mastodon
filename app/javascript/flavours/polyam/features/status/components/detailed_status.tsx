@@ -35,9 +35,12 @@ import { CollectionPreviewCard } from 'flavours/polyam/features/collections/comp
 import scheduleIdleTask from 'flavours/polyam/features/ui/util/schedule_idle_task';
 import { Video } from 'flavours/polyam/features/video';
 import { useIdentity } from 'flavours/polyam/identity_context';
-import type { StatusReactions as StatusReactionsType, CollectionAttachment } from 'flavours/polyam/models/status';
-import { compareUrls } from 'flavours/polyam/utils/compare_urls';
+import type {
+  StatusReactions as StatusReactionsType,
+  CollectionAttachment,
+} from 'flavours/polyam/models/status';
 import { useAppSelector } from 'flavours/polyam/store';
+import { compareUrls } from 'flavours/polyam/utils/compare_urls';
 
 import Card from './card';
 
@@ -322,6 +325,13 @@ export const DetailedStatus: React.FC<{
     }
 
     mediaIcons.push('link');
+  } else if (status.get('tagged_collections').size) {
+    const firstLinkedCollection = status.get('tagged_collections').first();
+    if (firstLinkedCollection) {
+      media = (
+        <CollectionPreviewCard collection={firstLinkedCollection.toJS()} />
+      );
+    }
   }
 
   if (status.get('poll')) {
