@@ -93,6 +93,7 @@ export const MODAL_COMPONENTS = {
   'IGNORE_NOTIFICATIONS': IgnoreNotificationsModal,
   'ANNUAL_REPORT': AnnualReportModal,
   'COMPOSE_PRIVACY': () => Promise.resolve({ default: VisibilityModal }),
+  'ACCOUNT_NOTE': () => import('@/flavours/glitch/features/account_timeline/modals/note_modal').then(module => ({ default: module.AccountNoteModal })),
   'ACCOUNT_FIELDS': () => import('flavours/glitch/features/account_timeline/components/fields_modal.tsx').then(module => ({ default: module.AccountFieldsModal })),
 };
 

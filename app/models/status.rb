@@ -544,7 +544,13 @@ class Status < ApplicationRecord
   def set_local_only
     return unless account.domain.nil? && !attribute_changed?(:local_only)
 
-    self.local_only = marked_local_only?
+    self.local_only = true if thread&.local_only? && local_only.nil?
+
+    if reblog?
+      self.local_only = reblog.local_only
+    elsif local_only.nil?
+      self.local_only = marked_local_only?
+    end
   end
 
   def set_conversation
@@ -587,7 +593,7 @@ class Status < ApplicationRecord
   def increment_counter_caches
     return if direct_visibility?
 
-    account&.increment_count!(:statuses_count)
+    account&.increment_count!(:statuses_count, status_created_at: created_at)
     reblog&.increment_count!(:reblogs_count) if reblog?
     thread&.increment_count!(:replies_count) if in_reply_to_id.present? && distributable?
   end
