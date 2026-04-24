@@ -12,8 +12,9 @@ const Fedimation: React.FC = () => (
   </div>
 );
 
-export const AnniversaryNote: React.FC<{ account: Account }> = ({
+export const AnniversaryNote: React.FC<{ account: Account; years: number }> = ({
   account,
+  years,
 }) => {
   return (
     <div className='account-anniversary-banner'>
@@ -26,9 +27,7 @@ export const AnniversaryNote: React.FC<{ account: Account }> = ({
           defaultMessage="It's {acct}'s {years, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} fediversary!"
           values={{
             acct: account.acct,
-            years:
-              new Date().getFullYear() -
-              new Date(account.created_at).getFullYear(),
+            years: years,
           }}
         />
       </div>

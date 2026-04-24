@@ -1,5 +1,5 @@
 import type { RefCallback } from 'react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -60,6 +60,22 @@ export const AccountHeader: React.FC<{
     state.relationships.get(accountId),
   );
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
+
+  const createdAtStr = account?.created_at;
+  const anniversary = useMemo(() => {
+    if (!createdAtStr) {
+      return null;
+    }
+    const now = new Date();
+    const createdAt = new Date(createdAtStr);
+    if (
+      now.getMonth() === createdAt.getMonth() &&
+      now.getDate() === createdAt.getDate()
+    ) {
+      return now.getFullYear() - createdAt.getFullYear();
+    }
+    return null;
+  }, [createdAtStr]);
 
   const handleOpenAvatar = useCallback(
     (e: React.MouseEvent) => {
@@ -133,8 +149,8 @@ export const AccountHeader: React.FC<{
       {!hidden && account.moved && (
         <MovedNote accountId={account.id} targetAccountId={account.moved} />
       )}
-      {!hidden && !account.memorial && account.anniversary && (
-        <AnniversaryNote account={account} />
+      {!hidden && !account.memorial && anniversary && (
+        <AnniversaryNote account={account} years={anniversary} />
       )}
 
       <AnimateEmojiProvider
