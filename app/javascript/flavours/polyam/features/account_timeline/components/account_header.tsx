@@ -1,4 +1,5 @@
-import { useCallback } from 'react';
+import type { RefCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -85,6 +86,40 @@ export const AccountHeader: React.FC<{
     [dispatch, account],
   );
 
+  const [isFooterIntersecting, setIsIntersecting] = useState(false);
+  const handleIntersect: IntersectionObserverCallback = useCallback(
+    (entries) => {
+      const entry = entries.at(0);
+      if (!entry) {
+        return;
+      }
+
+      setIsIntersecting(entry.isIntersecting);
+    },
+    [],
+  );
+  const [observer] = useState(
+    () =>
+      new IntersectionObserver(handleIntersect, {
+        rootMargin: '0px 0px -55px 0px', // Height of bottom nav bar.
+      }),
+  );
+
+  const handleObserverRef: RefCallback<HTMLDivElement> = useCallback(
+    (node) => {
+      if (node) {
+        observer.observe(node);
+      }
+    },
+    [observer],
+  );
+
+  useEffect(() => {
+    return () => {
+      observer.disconnect();
+    };
+  }, [observer]);
+
   if (!account) {
     return null;
   }
@@ -112,7 +147,7 @@ export const AccountHeader: React.FC<{
         )}
 
         <div className='account__header__image'>
-          {me !== account.id && relationship && (
+          {me !== account.id && relationship && !isRedesignEnabled() && (
             <AccountInfo relationship={relationship} />
           )}
 
@@ -125,7 +160,12 @@ export const AccountHeader: React.FC<{
           )}
         </div>
 
-        <div className='account__header__bar'>
+        <div
+          className={classNames(
+            'account__header__bar',
+            isRedesignEnabled() && redesignClasses.barWrapper,
+          )}
+        >
           <div className='account__header__tabs'>
             <a
               className='avatar'
@@ -155,7 +195,13 @@ export const AccountHeader: React.FC<{
             )}
           >
             <AccountName accountId={accountId} />
-            {isRedesignEnabled() && <AccountButtons accountId={accountId} />}
+            {isRedesignEnabled() && (
+              <AccountButtons
+                accountId={accountId}
+                className={redesignClasses.buttonsDesktop}
+                noShare
+              />
+            )}
           </div>
 
           <AccountBadges accountId={accountId} />
@@ -164,11 +210,13 @@ export const AccountHeader: React.FC<{
             <FamiliarFollowers accountId={accountId} />
           )}
 
-          <AccountButtons
-            className='account__header__buttons--mobile'
-            accountId={accountId}
-            noShare
-          />
+          {!isRedesignEnabled() && (
+            <AccountButtons
+              className='account__header__buttons--mobile'
+              accountId={accountId}
+              noShare
+            />
+          )}
 
           {!suspendedOrHidden && (
             <div className='account__header__extra'>
@@ -212,12 +260,24 @@ export const AccountHeader: React.FC<{
               </div>
             </div>
           )}
+
+          {isRedesignEnabled() && (
+            <AccountButtons
+              className={classNames(
+                redesignClasses.buttonsMobile,
+                !isFooterIntersecting && redesignClasses.buttonsMobileIsStuck,
+              )}
+              accountId={accountId}
+              noShare
+            />
+          )}
         </div>
       </AnimateEmojiProvider>
 
       <ActionBar account={account} />
 
       {!hideTabs && !hidden && <AccountTabs acct={account.acct} />}
+      <div ref={handleObserverRef} />
 
       <Helmet>
         <title>{titleFromAccount(account)}</title>

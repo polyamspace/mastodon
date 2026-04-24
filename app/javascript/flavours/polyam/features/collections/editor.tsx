@@ -18,6 +18,7 @@ import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import {
   CheckboxField,
+  FormStack,
   TextAreaField,
 } from 'flavours/polyam/components/form_fields';
 import { TextInputField } from 'flavours/polyam/components/form_fields/text_input_field';
@@ -132,88 +133,80 @@ const CollectionSettings: React.FC<{
   );
 
   return (
-    <form className='simple_form app-form' onSubmit={handleSubmit}>
-      <div className='fields-group'>
-        <TextInputField
-          required
-          label={
-            <FormattedMessage
-              id='collections.collection_name'
-              defaultMessage='Name'
-            />
-          }
-          hint={
-            <FormattedMessage
-              id='collections.name_length_hint'
-              defaultMessage='40 characters limit'
-            />
-          }
-          value={name}
-          onChange={handleNameChange}
-          maxLength={40}
-        />
-      </div>
+    <FormStack as='form' onSubmit={handleSubmit}>
+      <TextInputField
+        required
+        label={
+          <FormattedMessage
+            id='collections.collection_name'
+            defaultMessage='Name'
+          />
+        }
+        hint={
+          <FormattedMessage
+            id='collections.name_length_hint'
+            defaultMessage='40 characters limit'
+          />
+        }
+        value={name}
+        onChange={handleNameChange}
+        maxLength={40}
+      />
 
-      <div className='fields-group'>
-        <TextAreaField
-          required
-          label={
-            <FormattedMessage
-              id='collections.collection_description'
-              defaultMessage='Description'
-            />
-          }
-          hint={
-            <FormattedMessage
-              id='collections.description_length_hint'
-              defaultMessage='100 characters limit'
-            />
-          }
-          value={description}
-          onChange={handleDescriptionChange}
-          maxLength={100}
-        />
-      </div>
+      <TextAreaField
+        required
+        label={
+          <FormattedMessage
+            id='collections.collection_description'
+            defaultMessage='Description'
+          />
+        }
+        hint={
+          <FormattedMessage
+            id='collections.description_length_hint'
+            defaultMessage='100 characters limit'
+          />
+        }
+        value={description}
+        onChange={handleDescriptionChange}
+        maxLength={100}
+      />
 
-      <div className='fields-group'>
-        <TextInputField
-          required={false}
-          label={
-            <FormattedMessage
-              id='collections.collection_topic'
-              defaultMessage='Topic'
-            />
-          }
-          hint={
-            <FormattedMessage
-              id='collections.topic_hint'
-              defaultMessage='Add a hashtag that helps others understand the main topic of this collection.'
-            />
-          }
-          value={topic}
-          onChange={handleTopicChange}
-          maxLength={40}
-        />
-      </div>
+      <TextInputField
+        required={false}
+        label={
+          <FormattedMessage
+            id='collections.collection_topic'
+            defaultMessage='Topic'
+          />
+        }
+        hint={
+          <FormattedMessage
+            id='collections.topic_hint'
+            defaultMessage='Add a hashtag that helps others understand the main topic of this collection.'
+          />
+        }
+        value={topic}
+        onChange={handleTopicChange}
+        maxLength={40}
+      />
 
-      <div className='fields-group'>
-        <CheckboxField
-          label={
-            <FormattedMessage
-              id='collections.mark_as_sensitive'
-              defaultMessage='Mark as sensitive'
-            />
-          }
-          hint={
-            <FormattedMessage
-              id='collections.mark_as_sensitive_hint'
-              defaultMessage="Hides the collection's description and accounts behind a content warning. The collection name will still be visible."
-            />
-          }
-          checked={sensitive}
-          onChange={handleSensitiveChange}
-        />
-      </div>
+      <CheckboxField
+        label={
+          <FormattedMessage
+            id='collections.mark_as_sensitive'
+            defaultMessage='Mark as sensitive'
+          />
+        }
+        hint={
+          <FormattedMessage
+            id='collections.mark_as_sensitive_hint'
+            defaultMessage="Hides the collection's description and accounts behind a content warning. The collection name will still be visible."
+          />
+        }
+        checked={sensitive}
+        onChange={handleSensitiveChange}
+      />
 
       <div className='actions'>
         <Button type='submit'>
@@ -224,7 +217,7 @@ const CollectionSettings: React.FC<{
           )}
         </Button>
       </div>
-    </form>
+    </FormStack>
   );
 };
 
