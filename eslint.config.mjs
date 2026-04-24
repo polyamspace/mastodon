@@ -448,6 +448,7 @@ export default tseslint.config([
           allowNumber: true,
         },
       ],
+      '@typescript-eslint/non-nullable-type-assertion-style': 'off',
     },
   },
   {
