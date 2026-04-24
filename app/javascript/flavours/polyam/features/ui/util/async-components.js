@@ -1,3 +1,5 @@
+import { isClientFeatureEnabled } from '@/flavours/polyam/utils/environment';
+
 export function EmojiPicker () {
   return import('../../emoji/emoji_picker');
 }
@@ -44,6 +46,12 @@ export function Collections () {
   );
 }
 
+export function CollectionsEditor () {
+  return import('../../collections/editor').then(
+    module => ({default: module.CollectionEditorPage})
+  );
+}
+
 export function DirectTimeline() {
   return import('../../direct_timeline');
 }
@@ -65,6 +73,9 @@ export function PinnedStatuses () {
 }
 
 export function AccountTimeline () {
+  if (isClientFeatureEnabled('profile_redesign')) {
+    return import('../../account_timeline/v2');
+  }
   return import('../../account_timeline');
 }
 
