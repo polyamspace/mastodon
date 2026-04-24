@@ -2,6 +2,8 @@ import { useState, useCallback, useRef, useId } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import type {
   OffsetValue,
   UsePopperOptions,
@@ -21,8 +23,9 @@ const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
 export const AltTextBadge: React.FC<{
   description: string;
+  className?: string;
   placement?: Placement;
-}> = ({ description, placement = 'top-end' }) => {
+}> = ({ description, className, placement = 'top-end' }) => {
   const intl = useIntl();
   const uniqueId = useId();
   const popoverId = `${uniqueId}-popover`;
@@ -50,7 +53,7 @@ export const AltTextBadge: React.FC<{
       <button
         type='button'
         ref={buttonRef}
-        className='media-gallery__alt__label'
+        className={classNames('media-gallery__alt__label', className)}
         onClick={handleClick}
         aria-expanded={open}
         aria-controls={popoverId}
