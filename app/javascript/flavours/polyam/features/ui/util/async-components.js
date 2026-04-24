@@ -38,6 +38,12 @@ export function Lists () {
   return import('../../lists');
 }
 
+export function Collections () {
+  return import('../../collections').then(
+    module => ({default: module.Collections})
+  );
+}
+
 export function DirectTimeline() {
   return import('../../direct_timeline');
 }
