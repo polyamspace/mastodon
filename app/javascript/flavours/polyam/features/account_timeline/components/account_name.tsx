@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 import { useIntl } from 'react-intl';
 
-import InfoIcon from '@/awesome-icons/solid/circle-info.svg?react';
+import HelpIcon from '@/awesome-icons/solid/circle-question.svg?react';
 import LockIcon from '@/awesome-icons/solid/lock.svg?react';
 import { DisplayName } from '@/flavours/polyam/components/display_name';
 import { Icon } from '@/flavours/polyam/components/icon';
@@ -14,10 +14,7 @@ import { isRedesignEnabled } from '../common';
 
 import classes from './redesign.module.scss';
 
-export const AccountName: FC<{ accountId: string; className?: string }> = ({
-  accountId,
-  className,
-}) => {
+export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
   const intl = useIntl();
   const account = useAccount(accountId);
   const me = useAppSelector((state) => state.meta.get('me') as string);
@@ -31,38 +28,52 @@ export const AccountName: FC<{ accountId: string; className?: string }> = ({
 
   const [username = '', domain = localDomain] = account.acct.split('@');
 
-  return (
-    <h1 className={className}>
-      <DisplayName account={account} variant='simple' />
-      <small>
-        <span>
-          @{username}
-          {isRedesignEnabled() && '@'}
-          <span className='invisible'>
-            {!isRedesignEnabled() && '@'}
-            {domain}
+  if (!isRedesignEnabled()) {
+    return (
+      <h1>
+        <DisplayName account={account} variant='simple' />
+        <small>
+          <span>
+            @{username}
+            <span className='invisible'>@{domain}</span>
           </span>
-        </span>
+          <DomainPill
+            username={username}
+            domain={domain}
+            isSelf={me === account.id}
+          />
+          {account.locked && (
+            <Icon
+              id='lock'
+              icon={LockIcon}
+              aria-label={intl.formatMessage({
+                id: 'account.locked_info',
+                defaultMessage:
+                  'This account privacy status is set to locked. The owner manually reviews who can follow them.',
+              })}
+            />
+          )}
+        </small>
+      </h1>
+    );
+  }
+
+  return (
+    <div className={classes.name}>
+      <h1>
+        <DisplayName account={account} variant='simple' />
+      </h1>
+      <p className={classes.username}>
+        @{username}@{domain}
         <DomainPill
           username={username}
           domain={domain}
           isSelf={me === account.id}
-          className={(isRedesignEnabled() && classes.domainPill) || ''}
+          className={classes.domainPill}
         >
-          {isRedesignEnabled() && <Icon id='info' icon={InfoIcon} />}
+          <Icon id='help' icon={HelpIcon} />
         </DomainPill>
-        {!isRedesignEnabled() && account.locked && (
-          <Icon
-            id='lock'
-            icon={LockIcon}
-            aria-label={intl.formatMessage({
-              id: 'account.locked_info',
-              defaultMessage:
-                'This account privacy status is set to locked. The owner manually reviews who can follow them.',
-            })}
-          />
-        )}
-      </small>
-    </h1>
+      </p>
+    </div>
   );
 };

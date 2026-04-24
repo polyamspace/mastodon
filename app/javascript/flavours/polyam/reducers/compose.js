@@ -640,7 +640,6 @@ export const composeReducer = (state = initialState, action) => {
   case REDRAFT: {
     do_not_federate = !!action.status.get('local_only');
     text = action.raw_text || unescapeHTML(expandMentions(action.status));
-    if (do_not_federate) text = text.replace(/ ?👁\ufe0f?\u200b?$/, '');
     return state.withMutations(map => {
       map.set('text', text);
       map.set('content_type', action.content_type || 'text/plain');
