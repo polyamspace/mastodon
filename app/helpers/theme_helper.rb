@@ -19,6 +19,8 @@ module ThemeHelper
 
   def theme_style_tags(flavour_and_skin)
     flavour, theme, dark, light = flavour_and_skin
+    dark ||= 'default'
+    light ||= 'default'
 
     # Polyam: Kept from upstream as otherwise custom dark/light skins aren't loaded
     if theme == 'default' && !(dark == 'default' && light == 'default')
