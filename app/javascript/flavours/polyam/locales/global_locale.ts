@@ -1,4 +1,4 @@
-import { isDevelopment } from "flavours/polyam/utils/environment";
+import { isDevelopment } from 'flavours/polyam/utils/environment';
 
 export interface LocaleData {
   locale: string;

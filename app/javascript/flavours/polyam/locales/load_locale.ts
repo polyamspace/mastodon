@@ -5,12 +5,12 @@ import { isLocaleLoaded, setLocale } from './global_locale';
 
 const localeLoadingSemaphore = new Semaphore(1);
 
-const upstreamLocaleFiles = import.meta.glob<{ default: LocaleData['messages'] }>([
-  '@/mastodon/locales/*.json',
-]);
-const glitchLocaleFiles = import.meta.glob<{ default: LocaleData['messages'] }>([
-  '@/flavours/glitch/locales/*.json',
-]);
+const upstreamLocaleFiles = import.meta.glob<{
+  default: LocaleData['messages'];
+}>(['@/mastodon/locales/*.json']);
+const glitchLocaleFiles = import.meta.glob<{ default: LocaleData['messages'] }>(
+  ['@/flavours/glitch/locales/*.json'],
+);
 const localeFiles = import.meta.glob<{ default: LocaleData['messages'] }>([
   './*.json',
 ]);
@@ -28,20 +28,28 @@ export async function loadLocale() {
     if (isLocaleLoaded()) return;
 
     // If there is no locale file, then fallback to english
-    const upstreamLocaleFile = Object.hasOwn(upstreamLocaleFiles, `/mastodon/locales/${locale}.json`)
+    const upstreamLocaleFile = Object.hasOwn(
+      upstreamLocaleFiles,
+      `/mastodon/locales/${locale}.json`,
+    )
       ? upstreamLocaleFiles[`/mastodon/locales/${locale}.json`]
       : upstreamLocaleFiles['/mastodon/locales/en.json'];
 
-    if (!upstreamLocaleFile) throw new Error('Could not load the upstream locale JSON file');
+    if (!upstreamLocaleFile)
+      throw new Error('Could not load the upstream locale JSON file');
 
     const { default: upstreamLocaleData } = await upstreamLocaleFile();
 
     // If there is no locale file, then fallback to english
-    const glitchLocaleFile = Object.hasOwn(glitchLocaleFiles, `/flavours/glitch/locales/${locale}.json`)
+    const glitchLocaleFile = Object.hasOwn(
+      glitchLocaleFiles,
+      `/flavours/glitch/locales/${locale}.json`,
+    )
       ? glitchLocaleFiles[`/flavours/glitch/locales/${locale}.json`]
       : glitchLocaleFiles['/flavours/glitch/locales/en.json'];
 
-    if (!glitchLocaleFile) throw new Error('Could not load the glitch locale JSON file');
+    if (!glitchLocaleFile)
+      throw new Error('Could not load the glitch locale JSON file');
 
     const { default: glitchLocaleData } = await glitchLocaleFile();
 
@@ -54,6 +62,9 @@ export async function loadLocale() {
 
     const { default: localeData } = await localeFile();
 
-    setLocale({ messages: { ...upstreamLocaleData, ...glitchLocaleData, ...localeData }, locale });
+    setLocale({
+      messages: { ...upstreamLocaleData, ...glitchLocaleData, ...localeData },
+      locale,
+    });
   });
 }
