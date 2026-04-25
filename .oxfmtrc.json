@@ -99,7 +99,12 @@
       },
       {
         "groupName": "mastodon-internals",
-        "elementNamePattern": ["mastodon/**", "flavours/glitch/**", "flavours/polyam/**", "@/**"]
+        "elementNamePattern": [
+          "mastodon/**",
+          "flavours/glitch/**",
+          "flavours/polyam/**",
+          "@/**"
+        ]
       }
     ]
   }
