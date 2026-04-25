@@ -119,9 +119,11 @@ namespace :api, format: false do
     resources :endorsements, only: [:index]
     resources :markers, only: [:index, :create]
 
-    namespace :profile do
-      resource :avatar, only: :destroy
-      resource :header, only: :destroy
+    resource :profile, only: [:show, :update] do
+      scope module: :profile do
+        resource :avatar, only: :destroy
+        resource :header, only: :destroy
+      end
     end
 
     namespace :apps do
