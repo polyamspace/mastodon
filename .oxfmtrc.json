@@ -22,7 +22,7 @@
     // Vendored CSS
     "app/javascript/styles/mastodon/reset.scss",
     "app/javascript/flavours/glitch/styles/reset.scss",
-    "app/javascript/flavours/polyam/styles/reset.scss",
+    "app/javascript/flavours/polyam/styles/mastodon/reset.scss",
 
     // Automatically generated
     "/app/javascript/mastodon/features/emoji/emoji_map.json",
