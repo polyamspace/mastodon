@@ -5,57 +5,40 @@
 
 html {
   @include base.palette;
+}
 
-  &:where([data-user-theme='system']) {
-    color-scheme: dark light;
+// Polyam: wrapped to not override custom skins
+[data-user-theme='default'] {
+  &[data-color-scheme='dark'],
+  html:not([data-color-scheme]) {
+    color-scheme: dark;
 
-    @media (prefers-color-scheme: dark) {
-      @include utils.invert-on-dark;
-
-      // Polyam: Wrapped in data-system-dark to not override user-set dark skin
-      &[data-system-dark='default'] {
-        @include dark.tokens;
-
-        @media (prefers-contrast: more) {
-          @include dark.contrast-overrides;
-        }
-      }
+    // Polyam: Wrapped to not override set system skin
+    &[data-system-dark='default'],
+    [data-system-dark='default'] & {
+      @include dark.tokens;
     }
+    @include utils.invert-on-dark;
 
-    @media (prefers-color-scheme: light) {
-      @include utils.invert-on-light;
-
-      // Polyam: Wrapped in data-system-light to not override user-set light skin
-      &[data-system-light='mastodon-light'] {
-        @include light.tokens;
-
-        @media (prefers-contrast: more) {
-          @include light.contrast-overrides;
-        }
-      }
+    &[data-contrast='high'],
+    [data-contrast='high'] & {
+      @include dark.contrast-overrides;
     }
   }
-}
 
-.theme-dark,
-html:where(
-  :not([data-user-theme='mastodon-light'], [data-user-theme='system'])
-) {
-  color-scheme: dark;
+  &[data-color-scheme='light'] {
+    color-scheme: light;
 
-  @include dark.tokens;
-  @include utils.invert-on-dark;
-}
+    // Polyam: Wrapped to not override set system skin
+    &[data-system-light='default'],
+    [data-system-light='default'] & {
+      @include light.tokens;
+    }
+    @include utils.invert-on-light;
 
-html[data-user-theme='contrast'],
-html[data-user-theme='contrast'] .theme-dark {
-  @include dark.contrast-overrides;
-}
-
-.theme-light,
-html:where([data-user-theme='mastodon-light']) {
-  color-scheme: light;
-
-  @include light.tokens;
-  @include utils.invert-on-light;
+    &[data-contrast='high'],
+    [data-contrast='high'] & {
+      @include light.contrast-overrides;
+    }
+  }
 }
