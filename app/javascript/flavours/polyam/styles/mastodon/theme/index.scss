@@ -7,27 +7,30 @@ html {
   @include base.palette;
 }
 
-[data-color-scheme='dark'],
-html:not([data-color-scheme]) {
-  color-scheme: dark;
+// Polyam: wrapped to not override custom skins
+[data-user-theme='default'] {
+  &[data-color-scheme='dark'],
+  html:not([data-color-scheme]) {
+    color-scheme: dark;
 
-  @include dark.tokens;
-  @include utils.invert-on-dark;
+    @include dark.tokens;
+    @include utils.invert-on-dark;
 
-  &[data-contrast='high'],
-  [data-contrast='high'] & {
-    @include dark.contrast-overrides;
+    &[data-contrast='high'],
+    [data-contrast='high'] & {
+      @include dark.contrast-overrides;
+    }
   }
-}
 
-[data-color-scheme='light'] {
-  color-scheme: light;
+  &[data-color-scheme='light'] {
+    color-scheme: light;
 
-  @include light.tokens;
-  @include utils.invert-on-light;
+    @include light.tokens;
+    @include utils.invert-on-light;
 
-  &[data-contrast='high'],
-  [data-contrast='high'] & {
-    @include light.contrast-overrides;
+    &[data-contrast='high'],
+    [data-contrast='high'] & {
+      @include light.contrast-overrides;
+    }
   }
 }
