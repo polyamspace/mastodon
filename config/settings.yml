@@ -22,9 +22,9 @@ defaults: &defaults
   noindex: false
   norss: false
   flavour: 'polyam'
-  skin: 'system'
+  skin: 'default'
   system_dark: 'default'
-  system_light: 'mastodon-light'
+  system_light: 'default'
   trends: true
   trendable_by_default: false
   trending_status_cw: true
