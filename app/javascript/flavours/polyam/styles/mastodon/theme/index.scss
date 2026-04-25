@@ -13,7 +13,11 @@ html {
   html:not([data-color-scheme]) {
     color-scheme: dark;
 
-    @include dark.tokens;
+    // Polyam: Wrapped to not override set system skin
+    &[data-system-dark='default'],
+    [data-system-dark='default'] & {
+      @include dark.tokens;
+    }
     @include utils.invert-on-dark;
 
     &[data-contrast='high'],
@@ -25,7 +29,11 @@ html {
   &[data-color-scheme='light'] {
     color-scheme: light;
 
-    @include light.tokens;
+    // Polyam: Wrapped to not override set system skin
+    &[data-system-light='default'],
+    [data-system-light='default'] & {
+      @include light.tokens;
+    }
     @include utils.invert-on-light;
 
     &[data-contrast='high'],
