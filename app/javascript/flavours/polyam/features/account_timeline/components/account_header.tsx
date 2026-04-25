@@ -233,16 +233,20 @@ export const AccountHeader: React.FC<{
                     <AccountNote accountId={accountId} />
                   ))}
 
-                {/* Polyam: Hide fields when empty and show joined date on bottom */}
-                {account.fields.size > 0 && (
-                  <AccountHeaderFields accountId={accountId} />
-                )}
+                {(!isRedesign || layout === 'single-column') && (
+                  <>
+                    {/* Polyam: Hide fields when empty and show joined date on bottom */}
+                    {account.fields.size > 0 && (
+                      <AccountHeaderFields accountId={accountId} />
+                    )}
 
-                {/* Polyam: Show bio after fields as they are visually distracting */}
-                <AccountBio
-                  accountId={accountId}
-                  className='account__header__content'
-                />
+                    {/* Polyam: Show bio after fields as they are visually distracting */}
+                    <AccountBio
+                      accountId={accountId}
+                      className='account__header__content'
+                    />
+                  </>
+                )}
 
                 {/* Polyam: Joined date at bottom */}
                 <div className='account__header__joined'>

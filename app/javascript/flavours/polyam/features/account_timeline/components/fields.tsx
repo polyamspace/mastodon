@@ -1,24 +1,25 @@
-import type { FC } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import type { FC, Key } from 'react';
 
-import { FormattedMessage, useIntl } from 'react-intl';
+import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import IconLeftArrow from '@/awesome-icons/solid/chevron-left.svg?react';
-import IconRightArrow from '@/awesome-icons/solid/chevron-right.svg?react';
-import IconLink from '@/awesome-icons/solid/link.svg?react';
+import htmlConfig from '@/config/html-tags.json';
 import { AccountFields } from '@/flavours/polyam/components/account_fields';
+import { CustomEmojiProvider } from '@/flavours/polyam/components/emoji/context';
+import type { EmojiHTMLProps } from '@/flavours/polyam/components/emoji/html';
 import { EmojiHTML } from '@/flavours/polyam/components/emoji/html';
 import { FormattedDateWrapper } from '@/flavours/polyam/components/formatted_date';
-import { IconButton } from '@/flavours/polyam/components/icon_button';
-import { MiniCard } from '@/flavours/polyam/components/mini_card';
+import { Icon } from '@/flavours/polyam/components/icon';
 import { useElementHandledLink } from '@/flavours/polyam/components/status/handled_link';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
-import { useOverflowScroll } from '@/flavours/polyam/hooks/useOverflow';
 import type { Account } from '@/flavours/polyam/models/account';
 import { isValidUrl } from '@/flavours/polyam/utils/checks';
+import type { OnElementHandler } from '@/flavours/polyam/utils/html';
 import IconVerified from '@/images/icons/icon_verified.svg?react';
 
+import { cleanExtraEmojis } from '../../emoji/normalize';
 import { isRedesignEnabled } from '../common';
 
 import classes from './redesign.module.scss';
@@ -66,96 +67,164 @@ export const AccountHeaderFields: FC<{ accountId: string }> = ({
   );
 };
 
+const verifyMessage = defineMessage({
+  id: 'account.link_verified_on',
+  defaultMessage: 'Ownership of this link was checked on {date}',
+});
+const dateFormatOptions: Intl.DateTimeFormatOptions = {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+};
+
 const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
-  const htmlHandlers = useElementHandledLink();
+  const emojis = useMemo(
+    () => cleanExtraEmojis(account.emojis),
+    [account.emojis],
+  );
+  const textHasCustomEmoji = useCallback(
+    (text: string) => {
+      if (!emojis) {
+        return false;
+      }
+      for (const emoji of Object.keys(emojis)) {
+        if (text.includes(`:${emoji}:`)) {
+          return true;
+        }
+      }
+      return false;
+    },
+    [emojis],
+  );
+  const htmlHandlers = useElementHandledLink({
+    hashtagAccountId: account.id,
+  });
   const intl = useIntl();
 
-  const {
-    bodyRef,
-    canScrollLeft,
-    canScrollRight,
-    handleLeftNav,
-    handleRightNav,
-    handleScroll,
-  } = useOverflowScroll();
-
   return (
-    <div
-      className={classNames(
-        classes.fieldWrapper,
-        canScrollLeft && classes.fieldWrapperLeft,
-        canScrollRight && classes.fieldWrapperRight,
-      )}
-    >
-      {canScrollLeft && (
-        <IconButton
-          icon='more'
-          iconComponent={IconLeftArrow}
-          title={intl.formatMessage({
-            id: 'account.fields.scroll_prev',
-            defaultMessage: 'Show previous',
-          })}
-          className={classes.fieldArrowButton}
-          onClick={handleLeftNav}
-        />
-      )}
-      <dl ref={bodyRef} className={classes.fieldList} onScroll={handleScroll}>
+    <CustomEmojiProvider emojis={emojis}>
+      <dl className={classes.fieldList}>
         {account.fields.map(
           (
             { name, name_emojified, value_emojified, value_plain, verified_at },
             key,
           ) => (
-            <MiniCard
+            <div
               key={key}
-              label={
-                <EmojiHTML
-                  htmlString={name_emojified}
-                  extraEmojis={account.emojis}
-                  className='translate'
-                  as='span'
-                  title={name}
-                  {...htmlHandlers}
-                />
-              }
-              value={
-                <EmojiHTML
-                  as='span'
-                  htmlString={value_emojified}
-                  extraEmojis={account.emojis}
-                  title={value_plain ?? undefined}
-                  {...htmlHandlers}
-                />
-              }
-              icon={fieldIcon(verified_at, value_plain)}
               className={classNames(
-                classes.fieldCard,
-                verified_at && classes.fieldCardVerified,
+                classes.fieldRow,
+                verified_at && classes.fieldVerified,
               )}
-            />
+            >
+              <FieldHTML
+                as='dt'
+                text={name}
+                textEmojified={name_emojified}
+                textHasCustomEmoji={textHasCustomEmoji(name)}
+                titleLength={50}
+                className='translate'
+                {...htmlHandlers}
+              />
+              <FieldHTML
+                as='dd'
+                text={value_plain ?? ''}
+                textEmojified={value_emojified}
+                textHasCustomEmoji={textHasCustomEmoji(value_plain ?? '')}
+                titleLength={120}
+                {...htmlHandlers}
+              />
+              {verified_at && (
+                <Icon
+                  id='verified'
+                  icon={IconVerified}
+                  className={classes.fieldVerifiedIcon}
+                  aria-label={intl.formatMessage(verifyMessage, {
+                    date: intl.formatDate(verified_at, dateFormatOptions),
+                  })}
+                  noFill
+                />
+              )}
+            </div>
           ),
         )}
       </dl>
-      {canScrollRight && (
-        <IconButton
-          icon='more'
-          iconComponent={IconRightArrow}
-          title={intl.formatMessage({
-            id: 'account.fields.scroll_next',
-            defaultMessage: 'Show next',
-          })}
-          className={classes.fieldArrowButton}
-          onClick={handleRightNav}
-        />
-      )}
-    </div>
+    </CustomEmojiProvider>
   );
 };
 
-function fieldIcon(verified_at: string | null, value_plain: string | null) {
-  if (verified_at) {
-    return IconVerified;
-  } else if (value_plain && isValidUrl(value_plain)) {
-    return IconLink;
+const FieldHTML: FC<
+  {
+    as: 'dd' | 'dt';
+    text: string;
+    textEmojified: string;
+    textHasCustomEmoji: boolean;
+    titleLength: number;
+  } & Omit<EmojiHTMLProps, 'htmlString'>
+> = ({
+  as,
+  className,
+  extraEmojis,
+  text,
+  textEmojified,
+  textHasCustomEmoji,
+  titleLength,
+  onElement,
+  ...props
+}) => {
+  const [showAll, setShowAll] = useState(false);
+  const handleClick = useCallback(() => {
+    setShowAll((prev) => !prev);
+  }, []);
+
+  const handleElement: OnElementHandler = useCallback(
+    (element, props, children, extra) => {
+      if (element instanceof HTMLAnchorElement) {
+        // Don't allow custom emoji and links in the same field to prevent verification spoofing.
+        if (textHasCustomEmoji) {
+          return (
+            <span {...filterAttributesForSpan(props)} key={props.key as Key}>
+              {children}
+            </span>
+          );
+        }
+        return onElement?.(element, props, children, extra);
+      }
+      return undefined;
+    },
+    [onElement, textHasCustomEmoji],
+  );
+  return (
+    <EmojiHTML
+      as={as}
+      htmlString={textEmojified}
+      title={showTitleOnLength(text, titleLength)}
+      className={classNames(
+        className,
+        text && isValidUrl(text) && classes.fieldLink,
+        showAll && classes.fieldShowAll,
+      )}
+      onClick={handleClick}
+      onElement={handleElement}
+      {...props}
+    />
+  );
+};
+
+function filterAttributesForSpan(props: Record<string, unknown>) {
+  const validAttributes: Record<string, unknown> = {};
+  for (const key of Object.keys(props)) {
+    if (key in htmlConfig.tags.span.attributes) {
+      validAttributes[key] = props[key];
+    }
+  }
+  return validAttributes;
+}
+
+function showTitleOnLength(value: string | null, maxLength: number) {
+  if (value && value.length > maxLength) {
+    return value;
   }
   return undefined;
 }
