@@ -7,7 +7,7 @@ RSpec.describe ThemeHelper do
     let(:result) { helper.theme_style_tags(theme) }
 
     context 'when using "default" theme' do
-      let(:theme) { %w(polyam default default default) }
+      let(:theme) { ['glitch', 'default'] }
 
       it 'returns the default stylesheet' do
         expect(html_links.last.attributes.symbolize_keys)
@@ -103,9 +103,11 @@ RSpec.describe ThemeHelper do
   describe '#current_theme' do
     subject { helper.current_theme }
 
+    before { Setting.flavour = 'glitch' }
+
     context 'when user is not signed in' do
       context 'when theme was not changed in settings' do
-        it { is_expected.to eq(%w(polyam default default default)) }
+        it { is_expected.to eq(%w(glitch default default default)) }
       end
     end
 
@@ -115,14 +117,14 @@ RSpec.describe ThemeHelper do
       let(:current_user) { Fabricate :user }
 
       context 'when user did not set theme' do
-        it { is_expected.to eq(%w(polyam default default default)) }
+        it { is_expected.to eq(%w(glitch default default default)) }
       end
 
       context 'when user set theme' do
         before { current_user.settings.update(skin: 'alternate', noindex: false) }
 
         context 'when theme is not valid' do
-          it { is_expected.to eq(%w(polyam default default default)) }
+          it { is_expected.to eq(%w(glitch default default default)) }
         end
       end
     end
