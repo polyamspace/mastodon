@@ -5,9 +5,10 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { debounce } from 'lodash';
 
-import { TIMELINE_GAP, TIMELINE_SUGGESTIONS } from 'flavours/polyam/actions/timelines';
+import { TIMELINE_GAP, TIMELINE_PINNED_VIEW_ALL, TIMELINE_SUGGESTIONS } from 'flavours/polyam/actions/timelines';
 import { RegenerationIndicator } from 'flavours/polyam/components/regeneration_indicator';
 import { InlineFollowSuggestions } from 'flavours/polyam/features/home_timeline/components/inline_follow_suggestions';
+import { PinnedShowAllButton } from '@/flavours/polyam/features/account_timeline/v2/pinned_statuses';
 
 import { StatusQuoteManager } from '../components/status_quoted';
 
@@ -34,6 +35,7 @@ export default class StatusList extends ImmutablePureComponent {
     timelineId: PropTypes.string.isRequired,
     lastId: PropTypes.string,
     bindToDocument: PropTypes.bool,
+    statusProps: PropTypes.object,
     regex: PropTypes.string,
   };
 
@@ -51,7 +53,7 @@ export default class StatusList extends ImmutablePureComponent {
   };
 
   render () {
-    const { statusIds, featuredStatusIds, onLoadMore, timelineId, ...other }  = this.props;
+    const { statusIds, featuredStatusIds, onLoadMore, timelineId, statusProps, ...other }  = this.props;
     const { isLoading, isPartial } = other;
 
     if (isPartial) {
@@ -82,6 +84,7 @@ export default class StatusList extends ImmutablePureComponent {
               contextType={timelineId}
               scrollKey={this.props.scrollKey}
               withCounters={this.props.withCounters}
+              {...statusProps}
             />
           );
         }
@@ -89,16 +92,21 @@ export default class StatusList extends ImmutablePureComponent {
     ) : null;
 
     if (scrollableContent && featuredStatusIds) {
-      scrollableContent = featuredStatusIds.map(statusId => (
-        <StatusQuoteManager
-          key={`f-${statusId}`}
-          id={statusId}
-          featured
-          contextType={timelineId}
-          scrollKey={this.props.scrollKey}
-          withCounters={this.props.withCounters}
-        />
-      )).concat(scrollableContent);
+      scrollableContent = featuredStatusIds.map(statusId => {
+        if (statusId === TIMELINE_PINNED_VIEW_ALL) {
+          return <PinnedShowAllButton key={TIMELINE_PINNED_VIEW_ALL} />
+        }
+        return (
+          <StatusQuoteManager
+            key={`f-${statusId}`}
+            id={statusId}
+            featured
+            contextType={timelineId}
+            scrollKey={this.props.scrollKey}
+            withCounters={this.props.withCounters}
+            {...statusProps} />
+        );
+      }).concat(scrollableContent);
     }
 
     return (

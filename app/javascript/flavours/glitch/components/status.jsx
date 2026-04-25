@@ -110,6 +110,7 @@ class Status extends ImmutablePureComponent {
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
     unread: PropTypes.bool,
+    featured: PropTypes.bool,
     showActions: PropTypes.bool,
     prepend: PropTypes.string,
     withDismiss: PropTypes.bool,
@@ -686,7 +687,7 @@ class Status extends ImmutablePureComponent {
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
 
     const header = this.props.headerRenderFn
-      ? this.props.headerRenderFn({ status, account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, statusProps: this.props })
+      ? this.props.headerRenderFn({ status, account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured })
       : (
         <StatusHeader
           status={status}
