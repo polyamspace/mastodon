@@ -25,7 +25,7 @@
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :system_dark,
-                collection: Themes.instance.flavours_and_skins.each { |(_, fsa)| fsa.delete_if { |fs| fs[1] == 'system' } },
+                collection: Themes.instance.flavours_and_skins,
                 group_label_method: ->(flavour_and_skin) { I18n.t("flavours.#{flavour_and_skin[0]}.name", default: flavour_and_skin) },
                 wrapper: :with_block_label,
                 label: t('admin.settings.system_dark.title'),
@@ -39,7 +39,7 @@
 
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :system_light,
-                collection: Themes.instance.flavours_and_skins.each { |(_, fsa)| fsa.delete_if { |fs| fs[1] == 'system' } },
+                collection: Themes.instance.flavours_and_skins,
                 group_label_method: ->(flavour_and_skin) { I18n.t("flavours.#{flavour_and_skin[0]}.name", default: flavour_and_skin) },
                 wrapper: :with_block_label,
                 label: t('admin.settings.system_light.title'),

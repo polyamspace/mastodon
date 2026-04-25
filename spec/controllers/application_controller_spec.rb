@@ -127,20 +127,20 @@ RSpec.describe ApplicationController do
   end
 
   describe 'helper_method :system_skins' do
-    it 'returns ["default", "mastodon-light"] when themes weren\'t changed in admin settings' do
+    it 'returns ["default", "default"] when themes weren\'t changed in admin settings' do
       allow(Setting).to receive(:default_settings).and_return({ 'system_dark' => 'default' })
-      allow(Setting).to receive(:default_settings).and_return({ 'system_light' => 'mastodon-light' })
+      allow(Setting).to receive(:default_settings).and_return({ 'system_light' => 'default' })
 
-      expect(controller.view_context.system_skins).to eq ['default', 'mastodon-light']
+      expect(controller.view_context.system_skins).to eq ['default', 'default']
     end
 
     it 'returns instances\'s default system skins when user is not signed in' do
       allow(Setting).to receive(:[]).with('skin').and_return 'default'
       allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
       allow(Setting).to receive(:[]).with('system_dark').and_return 'default'
-      allow(Setting).to receive(:[]).with('system_light').and_return 'mastodon-light'
+      allow(Setting).to receive(:[]).with('system_light').and_return 'default'
 
-      expect(controller.view_context.system_skins).to eq ['default', 'mastodon-light']
+      expect(controller.view_context.system_skins).to eq ['default', 'default']
     end
 
     it 'returns instances\'s default system skins when user didn\'t set them' do
@@ -150,26 +150,12 @@ RSpec.describe ApplicationController do
       allow(Setting).to receive(:[]).with('skin').and_return 'default'
       allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
       allow(Setting).to receive(:[]).with('system_dark').and_return 'default'
-      allow(Setting).to receive(:[]).with('system_light').and_return 'mastodon-light'
+      allow(Setting).to receive(:[]).with('system_light').and_return 'default'
       allow(Setting).to receive(:[]).with('noindex').and_return false
       allow(Setting).to receive(:[]).with('show_application').and_return false
       allow(Setting).to receive(:[]).with('norss').and_return false
 
-      expect(controller.view_context.system_skins).to eq ['default', 'mastodon-light']
-    end
-
-    it 'returns user\'s system skins when set' do
-      current_user = Fabricate(:user)
-      current_user.settings.update(system_dark: 'contrast')
-      current_user.save
-      sign_in current_user
-
-      allow(Setting).to receive(:[]).with('skin').and_return 'default'
-      allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
-      allow(Setting).to receive(:[]).with('system_dark').and_return 'default'
-      allow(Setting).to receive(:[]).with('system_light').and_return 'mastodon-light'
-
-      expect(controller.view_context.system_skins).to eq ['contrast', 'mastodon-light']
+      expect(controller.view_context.system_skins).to eq ['default', 'default']
     end
   end
 

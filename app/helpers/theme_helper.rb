@@ -19,12 +19,11 @@ module ThemeHelper
 
   def theme_style_tags(flavour_and_skin)
     flavour, theme, dark, light = flavour_and_skin
-
-    # TODO: get rid of that when we retire the themes and perform the settings migration
-    theme = 'default' if %w(mastodon-light contrast).include?(theme)
+    dark ||= 'default'
+    light ||= 'default'
 
     # Polyam: Kept from upstream as otherwise custom dark/light skins aren't loaded
-    if theme == 'system'
+    if theme == 'default' && !(dark == 'default' && light == 'default')
       ''.html_safe.tap do |tags|
         tags << vite_stylesheet_tag("skins/#{flavour}/#{light}", type: :virtual, media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
         tags << vite_stylesheet_tag("skins/#{flavour}/#{dark}", type: :virtual, media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
@@ -57,6 +56,42 @@ module ThemeHelper
       media: :all,
       skip_pipeline: true
     )
+  end
+
+  def current_flavour
+    [current_user&.setting_flavour, Setting.flavour, 'glitch', 'vanilla', 'polyam'].find { |flavour| Themes.instance.flavours.include?(flavour) }
+  end
+
+  def current_skin
+    skins = Themes.instance.skins_for(current_flavour)
+    [current_user&.setting_skin, Setting.skin, 'default'].find { |skin| skins.include?(skin) }
+  end
+
+  def system_skins
+    @system_skins ||= begin
+      skins = Themes.instance.skins_for(current_flavour)
+      system_dark = [current_user&.setting_system_dark, Setting.system_dark, 'default'].find { |skin| skins.include?(skin) }
+      system_light = [current_user&.setting_system_light, Setting.system_light, 'default'].find { |skin| skins.include?(skin) }
+      [system_dark, system_light]
+    end
+  end
+
+  def current_theme
+    # NOTE: this is slightly different from upstream, as it's a derived value used
+    # for the sole purpose of pointing to the appropriate stylesheet pack
+    [current_flavour, current_skin] + system_skins
+  end
+
+  def color_scheme
+    current_user&.setting_color_scheme || 'auto'
+  end
+
+  def contrast
+    current_user&.setting_contrast || 'auto'
+  end
+
+  def page_color_scheme
+    content_for(:force_color_scheme).presence || color_scheme
   end
 
   private
