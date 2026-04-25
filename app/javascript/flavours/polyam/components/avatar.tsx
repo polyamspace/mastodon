@@ -56,7 +56,7 @@ export const Avatar: React.FC<Props> = ({
   }, [setError]);
 
   const avatar = (
-    <div
+    <span
       className={classNames(className, 'account__avatar', {
         'account__avatar--inline': inline,
         'account__avatar--loading': loading,
@@ -71,14 +71,14 @@ export const Avatar: React.FC<Props> = ({
       )}
 
       {counter && (
-        <div
+        <span
           className='account__avatar__counter'
           style={{ borderColor: counterBorderColor }}
         >
           {counter}
-        </div>
+        </span>
       )}
-    </div>
+    </span>
   );
 
   if (withLink) {

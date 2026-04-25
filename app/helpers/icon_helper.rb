@@ -47,6 +47,7 @@ module IconHelper
     globe: 'globe',
     group: 'users',
     groups: 'users',
+    'groups-fill': 'users',
     hide_source: 'ban',
     history: 'clock-rotate-left',
     hourglass: 'hourglass-half',

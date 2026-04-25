@@ -1,5 +1,5 @@
-import { isClientFeatureEnabled } from '@/flavours/polyam/utils/environment';
+import { isServerFeatureEnabled } from '@/flavours/polyam/utils/environment';
 
 export function isRedesignEnabled() {
-  return isClientFeatureEnabled('profile_redesign');
+  return isServerFeatureEnabled('profile_redesign');
 }

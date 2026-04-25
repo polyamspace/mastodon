@@ -72,6 +72,7 @@ export interface Props {
   iconComponent?: IconProp;
   active?: boolean;
   children?: React.ReactNode;
+  className?: string;
   pinned?: boolean;
   multiColumn?: boolean;
   extraButton?: React.ReactNode;
@@ -90,6 +91,7 @@ export const ColumnHeader: React.FC<Props> = ({
   iconComponent,
   active,
   children,
+  className,
   pinned,
   multiColumn,
   extraButton,
@@ -140,7 +142,7 @@ export const ColumnHeader: React.FC<Props> = ({
     onPin?.();
   }, [history, pinned, onPin]);
 
-  const wrapperClassName = classNames('column-header__wrapper', {
+  const wrapperClassName = classNames('column-header__wrapper', className, {
     active,
   });
 
@@ -252,7 +254,8 @@ export const ColumnHeader: React.FC<Props> = ({
   }
 
   const hasIcon = icon && iconComponent;
-  const hasTitle = hasIcon && title;
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  const hasTitle = (hasIcon || backButton) && title;
 
   const component = (
     <div className={wrapperClassName}>
@@ -266,7 +269,7 @@ export const ColumnHeader: React.FC<Props> = ({
               className='column-header__title'
               type='button'
             >
-              {!backButton && (
+              {!backButton && hasIcon && (
                 <Icon
                   id={icon}
                   icon={iconComponent}

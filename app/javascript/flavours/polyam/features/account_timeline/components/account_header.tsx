@@ -243,7 +243,10 @@ export const AccountHeader: React.FC<{
                     {/* Polyam: Show bio after fields as they are visually distracting */}
                     <AccountBio
                       accountId={accountId}
-                      className='account__header__content'
+                      className={classNames(
+                        'account__header__content',
+                        isRedesign && redesignClasses.bio,
+                      )}
                     />
                   </>
                 )}
