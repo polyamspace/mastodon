@@ -725,7 +725,7 @@ en:
       resolved_msg: Report successfully resolved!
       skip_to_actions: Skip to actions
       status: Status
-      statuses: Posts
+      statuses: Toots
       statuses_description_html: Offending content will be cited in communication with the reported account
       summary:
         action_preambles:
