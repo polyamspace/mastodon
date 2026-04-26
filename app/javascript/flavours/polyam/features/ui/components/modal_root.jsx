@@ -86,6 +86,7 @@ export const MODAL_COMPONENTS = {
   'DOMAIN_BLOCK': DomainBlockModal,
   'REPORT': ReportModal,
   'REPORT_COLLECTION': ReportCollectionModal,
+  'SHARE_COLLECTION': () => import('@/flavours/polyam/features/collections/detail/share_modal').then(module => ({ default: module.CollectionShareModal })),
   'SETTINGS': SettingsModal,
   'DEPRECATED_SETTINGS': () => Promise.resolve({ default: DeprecatedSettingsModal }),
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
@@ -105,6 +106,7 @@ export const MODAL_COMPONENTS = {
   'ACCOUNT_FIELD_OVERFLOW': () => import('@/flavours/polyam/features/account_timeline/modals/field_modal').then(module => ({ default: module.AccountFieldModal })),
   'ACCOUNT_EDIT_NAME': () => import('@/flavours/polyam/features/account_edit/components/name_modal').then(module => ({ default: module.NameModal })),
   'ACCOUNT_EDIT_BIO': () => import('@/flavours/polyam/features/account_edit/components/bio_modal').then(module => ({ default: module.BioModal })),
+  'ACCOUNT_EDIT_PROFILE_DISPLAY': () => import('@/flavours/polyam/features/account_edit/components/profile_display_modal').then(module => ({ default: module.ProfileDisplayModal })),
 };
 
 export default class ModalRoot extends PureComponent {

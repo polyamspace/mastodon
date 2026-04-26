@@ -1,23 +1,21 @@
 import { useCallback, useEffect } from 'react';
 import type { FC } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router-dom';
 
 import type { ModalType } from '@/flavours/polyam/actions/modal';
 import { openModal } from '@/flavours/polyam/actions/modal';
 import { Avatar } from '@/flavours/polyam/components/avatar';
+import { Button } from '@/flavours/polyam/components/button';
 import { CustomEmojiProvider } from '@/flavours/polyam/components/emoji/context';
 import { EmojiHTML } from '@/flavours/polyam/components/emoji/html';
 import { useElementHandledLink } from '@/flavours/polyam/components/status/handled_link';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useCurrentAccountId } from '@/flavours/polyam/hooks/useAccountId';
 import { autoPlayGif } from '@/flavours/polyam/initial_state';
-import {
-  fetchFeaturedTags,
-  fetchProfile,
-} from '@/flavours/polyam/reducers/slices/profile_edit';
+import { fetchProfile } from '@/flavours/polyam/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
@@ -25,7 +23,7 @@ import { EditButton } from './components/edit_button';
 import { AccountEditSection } from './components/section';
 import classes from './styles.module.scss';
 
-const messages = defineMessages({
+export const messages = defineMessages({
   columnTitle: {
     id: 'account_edit.column_title',
     defaultMessage: 'Edit Profile',
@@ -86,9 +84,8 @@ export const AccountEdit: FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const { profile, tags = [] } = useAppSelector((state) => state.profileEdit);
+  const { profile } = useAppSelector((state) => state.profileEdit);
   useEffect(() => {
-    void dispatch(fetchFeaturedTags());
     void dispatch(fetchProfile());
   }, [dispatch]);
 
@@ -103,6 +100,9 @@ export const AccountEdit: FC = () => {
   }, [handleOpenModal]);
   const handleBioEdit = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_BIO');
+  }, [handleOpenModal]);
+  const handleProfileDisplayEdit = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_PROFILE_DISPLAY');
   }, [handleOpenModal]);
 
   const history = useHistory();
@@ -123,7 +123,7 @@ export const AccountEdit: FC = () => {
   const headerSrc = autoPlayGif ? profile.header : profile.headerStatic;
   const hasName = !!profile.displayName;
   const hasBio = !!profile.bio;
-  const hasTags = tags.length > 0;
+  const hasTags = profile.featuredTags.length > 0;
 
   return (
     <AccountEditColumn
@@ -186,13 +186,24 @@ export const AccountEdit: FC = () => {
             />
           }
         >
-          {tags.map((tag) => `#${tag.name}`).join(', ')}
+          {profile.featuredTags.map((tag) => `#${tag.name}`).join(', ')}
         </AccountEditSection>
 
         <AccountEditSection
           title={messages.profileTabTitle}
           description={messages.profileTabSubtitle}
           showDescription
+          buttons={
+            <Button
+              className={classes.editButton}
+              onClick={handleProfileDisplayEdit}
+            >
+              <FormattedMessage
+                id='account_edit.profile_tab.button_label'
+                defaultMessage='Customize'
+              />
+            </Button>
+          }
         />
       </CustomEmojiProvider>
     </AccountEditColumn>
