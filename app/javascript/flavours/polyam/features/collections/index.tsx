@@ -14,7 +14,7 @@ import { Icon } from 'flavours/polyam/components/icon';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import {
   fetchAccountCollections,
-  selectMyCollections,
+  selectAccountCollections,
 } from 'flavours/polyam/reducers/slices/collections';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
@@ -31,7 +31,9 @@ export const Collections: React.FC<{
   const dispatch = useAppDispatch();
   const intl = useIntl();
   const me = useAppSelector((state) => state.meta.get('me') as string);
-  const { collections, status } = useAppSelector(selectMyCollections);
+  const { collections, status } = useAppSelector((state) =>
+    selectAccountCollections(state, me),
+  );
 
   useEffect(() => {
     void dispatch(fetchAccountCollections({ accountId: me }));

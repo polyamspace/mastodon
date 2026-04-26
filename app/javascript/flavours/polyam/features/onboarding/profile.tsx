@@ -59,13 +59,13 @@ export const Profile: React.FC<{
   );
   const maxBioChars = useAppSelector((state) =>
     state.server.getIn(
-      ['server', 'configuration', 'accounts', 'max_bio_chars'],
+      ['server', 'configuration', 'accounts', 'max_note_length'],
       500,
     ),
   ) as number;
   const maxDisplayNameChars = useAppSelector((state) =>
     state.server.getIn(
-      ['server', 'configuration', 'accounts', 'max_display_name_chars'],
+      ['server', 'configuration', 'accounts', 'max_display_name_length'],
       30,
     ),
   ) as number;

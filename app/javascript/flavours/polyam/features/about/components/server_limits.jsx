@@ -8,8 +8,8 @@ export const ServerLimits = () => {
   const maxPollOptions = useAppSelector(state => state.getIn(['server', 'server', 'configuration', 'polls', 'max_options'], 5));
   const maxPollOptionLength = useAppSelector(state => state.getIn(['server', 'server', 'configuration', 'polls', 'max_characters_per_option'], 100));
   const maxPinnedToots = useAppSelector(state => state.getIn(['server', 'server', 'configuration', 'accounts', 'max_pinned_statuses'], 5));
-  const maxBioChars = useAppSelector(state => state.getIn(['server', 'server', 'configuration', 'accounts', 'max_bio_chars'], 500));
-  const maxDisplayNameChars= useAppSelector(state => state.getIn(['server', 'server', 'configuration', 'accounts', 'max_display_name_chars'], 30));
+  const maxBioChars = useAppSelector(state => state.getIn(['server', 'server', 'configuration', 'accounts', 'max_note_length'], 500));
+  const maxDisplayNameChars= useAppSelector(state => state.getIn(['server', 'server', 'configuration', 'accounts', 'max_display_name_length'], 30));
   const maxProfileFields = useAppSelector(state => state.getIn(['server', 'server', 'configuration', 'accounts', 'max_profile_fields'], 4));
   const maxImageSize = useAppSelector(state => state.getIn(['server', 'server', 'configuration', 'media_attachments', 'image_size_limit'], 16 * 1048576));
   const maxVideoSize = useAppSelector(state => state.getIn(['server', 'server', 'configuration', 'media_attachments', 'video_size_limit'], 99 * 1048576));
