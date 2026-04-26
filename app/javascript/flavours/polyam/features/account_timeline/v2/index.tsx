@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -12,11 +12,12 @@ import {
   expandTimelineByKey,
   timelineKey,
 } from '@/flavours/polyam/actions/timelines_typed';
+import type { ColumnRef } from '@/flavours/polyam/components/column';
 import { Column } from '@/flavours/polyam/components/column';
-import { ColumnBackButton } from '@/flavours/polyam/components/column_back_button';
 import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
 import { RemoteHint } from '@/flavours/polyam/components/remote_hint';
 import StatusList from '@/flavours/polyam/components/status_list';
+import { ProfileColumnHeader } from '@/flavours/polyam/features/account/components/profile_column_header';
 import BundleColumnError from '@/flavours/polyam/features/ui/components/bundle_column_error';
 import { useAccountId } from '@/flavours/polyam/hooks/useAccountId';
 import { useAccountVisibility } from '@/flavours/polyam/hooks/useAccountVisibility';
@@ -78,6 +79,7 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
     boosts,
     replies,
   });
+  const columnRef = useRef<ColumnRef>(null);
 
   const timeline = useAppSelector((state) => selectTimelineByKey(state, key));
   const { blockedBy, hidden, suspended } = useAccountVisibility(accountId);
@@ -99,14 +101,21 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
     [accountId, dispatch, key],
   );
 
+  const handleHeaderClick = useCallback(() => {
+    columnRef.current?.scrollTop();
+  }, [columnRef]);
+
   const { isLoading: isPinnedLoading, statusIds: pinnedStatusIds } =
     usePinnedStatusIds({ accountId, tagged, forceEmptyState });
 
   const isLoading = !!timeline?.isLoading || isPinnedLoading;
 
   return (
-    <Column bindToDocument={!multiColumn}>
-      <ColumnBackButton />
+    <Column ref={columnRef} bindToDocument={!multiColumn}>
+      <ProfileColumnHeader
+        onClick={handleHeaderClick}
+        multiColumn={multiColumn}
+      />
 
       <StatusList
         alwaysPrepend
