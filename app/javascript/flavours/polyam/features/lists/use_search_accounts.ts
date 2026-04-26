@@ -2,19 +2,22 @@ import { useRef, useState } from 'react';
 
 import { useDebouncedCallback } from 'use-debounce';
 
+import { fetchRelationships } from 'flavours/polyam/actions/accounts';
 import { importFetchedAccounts } from 'flavours/polyam/actions/importer';
 import { apiRequest } from 'flavours/polyam/api';
 import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
 import { useAppDispatch } from 'flavours/polyam/store';
 
 export function useSearchAccounts({
-  resetOnInputClear = true,
   onSettled,
   filterResults,
+  resetOnInputClear = true,
+  withRelationships = false,
 }: {
   onSettled?: (value: string) => void;
   filterResults?: (account: ApiAccountJSON) => boolean;
   resetOnInputClear?: boolean;
+  withRelationships?: boolean;
 } = {}) {
   const dispatch = useAppDispatch();
 
@@ -52,8 +55,12 @@ export function useSearchAccounts({
       })
         .then((data) => {
           const accounts = filterResults ? data.filter(filterResults) : data;
+          const accountIds = accounts.map((a) => a.id);
           dispatch(importFetchedAccounts(accounts));
-          setAccountIds(accounts.map((a) => a.id));
+          if (withRelationships) {
+            dispatch(fetchRelationships(accountIds));
+          }
+          setAccountIds(accountIds);
           setLoadingState('idle');
           onSettled?.(value);
         })
