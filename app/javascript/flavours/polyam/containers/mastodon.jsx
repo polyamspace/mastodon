@@ -5,7 +5,6 @@ import { Route } from 'react-router-dom';
 
 import { Provider as ReduxProvider } from 'react-redux';
 
-import { fetchCustomEmojis } from 'flavours/polyam/actions/custom_emojis';
 import { checkDeprecatedLocalSettings } from 'flavours/polyam/actions/local_settings';
 import { hydrateStore } from 'flavours/polyam/actions/store';
 import { connectUserStream } from 'flavours/polyam/actions/streaming';
@@ -29,10 +28,6 @@ store.dispatch(hydrateAction);
 
 // check for deprecated local settings
 store.dispatch(checkDeprecatedLocalSettings());
-
-if (initialState.meta.me) {
-  store.dispatch(fetchCustomEmojis());
-}
 
 export default class Mastodon extends PureComponent {
   identity = createIdentityContext(initialState);
