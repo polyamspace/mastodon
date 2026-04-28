@@ -12,14 +12,13 @@ import HelpIcon from '@/awesome-icons/solid/circle-question.svg?react';
 import ContentCopyIcon from '@/awesome-icons/solid/copy.svg?react';
 import DomainIcon from '@/awesome-icons/solid/globe.svg?react';
 import { showAlert } from '@/flavours/polyam/actions/alerts';
-import { Badge } from '@/flavours/polyam/components/badge';
+import { FollowsYouBadge } from '@/flavours/polyam/components/badge';
 import { Button } from '@/flavours/polyam/components/button';
 import { DisplayName } from '@/flavours/polyam/components/display_name';
 import { Icon } from '@/flavours/polyam/components/icon';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useRelationship } from '@/flavours/polyam/hooks/useRelationship';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
-import FollowerIcon from '@/images/icons/icon_follower.svg?react';
 
 import { AccountBadges } from './badges';
 import classes from './styles.module.scss';
@@ -60,17 +59,7 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
         <h1>
           <DisplayName account={account} variant='simple' />
         </h1>
-        {relationship?.followed_by && (
-          <Badge
-            icon={<FollowerIcon className={classes.followerBadgeIcon} />}
-            label={
-              <FormattedMessage
-                id='account.follows_you'
-                defaultMessage='Follows you'
-              />
-            }
-          />
-        )}
+        {relationship?.followed_by && <FollowsYouBadge />}
       </div>
 
       <AccountNameHelp

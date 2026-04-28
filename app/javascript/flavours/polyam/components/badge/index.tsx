@@ -11,6 +11,8 @@ import PersonIcon from '@/awesome-icons/solid/user.svg?react';
 import VolumeOffIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import type { OnAttributeHandler } from '@/flavours/polyam/utils/html';
 import AdminIcon from '@/images/icons/icon_admin.svg?react';
+import ClockIcon from '@/images/icons/icon_clock.svg?react';
+import FollowerIcon from '@/images/icons/icon_follower.svg?react';
 import IconVerified from '@/images/icons/icon_verified.svg?react';
 
 import { EmojiHTML } from '../emoji/html';
@@ -32,6 +34,11 @@ interface BadgeProps extends React.ComponentPropsWithoutRef<'div'> {
     | 'warning'
     | 'danger';
 }
+
+type PresetBadgeProps = Omit<
+  BadgeProps,
+  'label' | 'icon' | 'domain' | 'roleId'
+>;
 
 export const Badge: FC<BadgeProps> = ({
   icon = <PersonIcon />,
@@ -93,13 +100,32 @@ export const GroupBadge: FC<Partial<BadgeProps>> = ({ label, ...props }) => (
   />
 );
 
-export const AutomatedBadge: FC<{ className?: string }> = ({ className }) => (
+export const AutomatedBadge: FC<PresetBadgeProps> = (props) => (
   <Badge
     icon={<SmartToyIcon />}
     label={
       <FormattedMessage id='account.badges.bot' defaultMessage='Automated' />
     }
-    className={className}
+    {...props}
+  />
+);
+
+export const FollowsYouBadge: FC<PresetBadgeProps> = (props) => (
+  <Badge
+    icon={<FollowerIcon />}
+    label={
+      <FormattedMessage id='account.follows_you' defaultMessage='Follows you' />
+    }
+    {...props}
+  />
+);
+
+export const PendingBadge: FC<PresetBadgeProps> = (props) => (
+  <Badge
+    variant='warning'
+    icon={<ClockIcon />}
+    label={<FormattedMessage id='account.pending' defaultMessage='Pending' />}
+    {...props}
   />
 );
 
