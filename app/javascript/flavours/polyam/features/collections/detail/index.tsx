@@ -23,6 +23,7 @@ import { DisplayName } from 'flavours/polyam/components/display_name';
 import { useAccountHandle } from 'flavours/polyam/components/display_name/default';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { Scrollable } from 'flavours/polyam/components/scrollable_list/components';
 import { useAccount } from 'flavours/polyam/hooks/useAccount';
 import { domain, me } from 'flavours/polyam/initial_state';
@@ -218,7 +219,6 @@ export const CollectionDetailPage: React.FC<{
   const collection = useAppSelector((state) =>
     id ? state.collections.collections[id] : undefined,
   );
-  const isLoading = !!id && !collection;
 
   useEffect(() => {
     if (id) {
@@ -239,8 +239,14 @@ export const CollectionDetailPage: React.FC<{
       />
 
       <Scrollable>
-        {collection && <CollectionHeader collection={collection} />}
-        <CollectionAccountsList collection={collection} isLoading={isLoading} />
+        {collection ? (
+          <>
+            <CollectionHeader collection={collection} />
+            <CollectionAccountsList collection={collection} />
+          </>
+        ) : (
+          <LoadingIndicator />
+        )}
       </Scrollable>
 
       <Helmet>

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
 import { EmptyState } from '@/flavours/polyam/components/empty_state';
+import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
 import { TabLink, TabList } from '@/flavours/polyam/components/tab_list';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
@@ -131,9 +132,10 @@ export const Collections: React.FC<{
             </TabLink>
           </TabList>
         </header>
-        {collections.length > 0 ? (
-          <>
-            {status === 'idle' && (
+        {status === 'loading' && <LoadingIndicator />}
+        {status === 'idle' &&
+          (collections.length > 0 ? (
+            <>
               <div className={classes.listHeader}>
                 <h2 className={classes.subHeading}>
                   <FormattedMessage
@@ -146,46 +148,42 @@ export const Collections: React.FC<{
                 </h2>
                 {showCreateButton && <CreateButton />}
               </div>
-            )}
-            <ItemList
-              emptyMessage={errorMessage}
-              isLoading={status === 'loading'}
+              <ItemList emptyMessage={errorMessage}>
+                {!canCreateMoreCollections && (
+                  <MaxCollectionsCallout
+                    className={classes.maxCollectionsError}
+                  />
+                )}
+                {collections.map((item, index) => (
+                  <CollectionListItem
+                    withTimestamp
+                    withAuthorHandle={false}
+                    key={item.id}
+                    collection={item}
+                    positionInList={index + 1}
+                    listSize={collections.length}
+                  />
+                ))}
+              </ItemList>
+            </>
+          ) : (
+            <EmptyState
+              title={
+                <FormattedMessage
+                  id='empty_column.account_featured_self.showcase_accounts'
+                  defaultMessage='Showcase your favorite accounts'
+                />
+              }
+              message={
+                <FormattedMessage
+                  id='empty_column.account_featured_self.showcase_accounts_desc'
+                  defaultMessage='Collections are curated lists of accounts to help others discover more of the Fediverse.'
+                />
+              }
             >
-              {!canCreateMoreCollections && (
-                <MaxCollectionsCallout
-                  className={classes.maxCollectionsError}
-                />
-              )}
-              {collections.map((item, index) => (
-                <CollectionListItem
-                  withTimestamp
-                  withAuthorHandle={false}
-                  key={item.id}
-                  collection={item}
-                  positionInList={index + 1}
-                  listSize={collections.length}
-                />
-              ))}
-            </ItemList>
-          </>
-        ) : (
-          <EmptyState
-            title={
-              <FormattedMessage
-                id='empty_column.account_featured_self.showcase_accounts'
-                defaultMessage='Showcase your favorite accounts'
-              />
-            }
-            message={
-              <FormattedMessage
-                id='empty_column.account_featured_self.showcase_accounts_desc'
-                defaultMessage='Collections are curated lists of accounts to help others discover more of the Fediverse.'
-              />
-            }
-          >
-            <CreateButton />
-          </EmptyState>
-        )}
+              <CreateButton />
+            </EmptyState>
+          ))}
       </Scrollable>
 
       <Helmet>
