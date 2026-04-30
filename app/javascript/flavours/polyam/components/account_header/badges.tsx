@@ -4,6 +4,10 @@ import type { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { fetchRelationships } from '@/flavours/polyam/actions/accounts';
+import { useAccount } from '@/flavours/polyam/hooks/useAccount';
+import type { AccountRole } from '@/flavours/polyam/models/account';
+import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
+
 import {
   AdminBadge,
   AutomatedBadge,
@@ -11,10 +15,7 @@ import {
   BlockedBadge,
   GroupBadge,
   MutedBadge,
-} from '@/flavours/polyam/components/badge';
-import { useAccount } from '@/flavours/polyam/hooks/useAccount';
-import type { AccountRole } from '@/flavours/polyam/models/account';
-import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
+} from '../badge';
 
 import classes from './styles.module.scss';
 

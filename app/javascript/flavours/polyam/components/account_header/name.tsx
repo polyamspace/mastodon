@@ -12,13 +12,14 @@ import HelpIcon from '@/awesome-icons/solid/circle-question.svg?react';
 import ContentCopyIcon from '@/awesome-icons/solid/copy.svg?react';
 import DomainIcon from '@/awesome-icons/solid/globe.svg?react';
 import { showAlert } from '@/flavours/polyam/actions/alerts';
-import { FollowsYouBadge } from '@/flavours/polyam/components/badge';
-import { Button } from '@/flavours/polyam/components/button';
-import { DisplayName } from '@/flavours/polyam/components/display_name';
-import { Icon } from '@/flavours/polyam/components/icon';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useRelationship } from '@/flavours/polyam/hooks/useRelationship';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
+
+import { FollowsYouBadge } from '../badge';
+import { Button } from '../button';
+import { DisplayName } from '../display_name';
+import { Icon } from '../icon';
 
 import { AccountBadges } from './badges';
 import classes from './styles.module.scss';

@@ -2,7 +2,7 @@ import type { FC, ReactNode } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { LimitedAccountHint } from '@/flavours/polyam/features/account_timeline/components/limited_account_hint';
+import { LimitedAccountHint } from '@/flavours/polyam/components/limited_account_hint';
 import { useAccountVisibility } from '@/flavours/polyam/hooks/useAccountVisibility';
 import type { Account } from '@/flavours/polyam/models/account';
 

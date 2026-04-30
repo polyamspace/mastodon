@@ -7,21 +7,21 @@ import classNames from 'classnames';
 
 import MoreIcon from '@/awesome-icons/solid/ellipsis.svg?react';
 import { openModal } from '@/flavours/polyam/actions/modal';
-import { CustomEmojiProvider } from '@/flavours/polyam/components/emoji/context';
-import type { EmojiHTMLProps } from '@/flavours/polyam/components/emoji/html';
-import { EmojiHTML } from '@/flavours/polyam/components/emoji/html';
-import { Icon } from '@/flavours/polyam/components/icon';
-import { IconButton } from '@/flavours/polyam/components/icon_button';
-import { MiniCard } from '@/flavours/polyam/components/mini_card';
-import { useElementHandledLink } from '@/flavours/polyam/components/status/handled_link';
+import { useFieldHtml } from '@/flavours/polyam/features/account_timeline/hooks/useFieldHtml';
+import { cleanExtraEmojis } from '@/flavours/polyam/features/emoji/normalize';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useResizeObserver } from '@/flavours/polyam/hooks/useObserver';
+import type { AccountFieldShape } from '@/flavours/polyam/models/account';
 import { useAppDispatch } from '@/flavours/polyam/store';
 import IconVerified from '@/images/icons/icon_verified.svg?react';
 
-import { cleanExtraEmojis } from '../../emoji/normalize';
-import type { AccountField } from '../common';
-import { useFieldHtml } from '../hooks/useFieldHtml';
+import { CustomEmojiProvider } from '../emoji/context';
+import type { EmojiHTMLProps } from '../emoji/html';
+import { EmojiHTML } from '../emoji/html';
+import { Icon } from '../icon';
+import { IconButton } from '../icon_button';
+import { MiniCard } from '../mini_card';
+import { useElementHandledLink } from '../status/handled_link';
 
 import classes from './styles.module.scss';
 
@@ -36,6 +36,12 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
   hour: '2-digit',
   minute: '2-digit',
 };
+
+export interface AccountField extends AccountFieldShape {
+  nameHasEmojis: boolean;
+  value_plain: string;
+  valueHasEmojis: boolean;
+}
 
 export const AccountHeaderFields: FC<{ accountId: string }> = ({
   accountId,

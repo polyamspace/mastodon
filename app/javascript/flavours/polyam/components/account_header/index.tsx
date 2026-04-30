@@ -6,9 +6,6 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
 import { openModal } from '@/flavours/polyam/actions/modal';
-import { AccountBio } from '@/flavours/polyam/components/account_bio';
-import { Avatar } from '@/flavours/polyam/components/avatar';
-import { AnimateEmojiProvider } from '@/flavours/polyam/components/emoji/context';
 import FollowRequestNoteContainer from '@/flavours/polyam/features/account/containers/follow_request_note_container';
 import { useLayout } from '@/flavours/polyam/hooks/useLayout';
 import { useVisibility } from '@/flavours/polyam/hooks/useVisibility';
@@ -22,18 +19,21 @@ import { getAccountHidden } from '@/flavours/polyam/selectors/accounts';
 import { useAppSelector, useAppDispatch } from '@/flavours/polyam/store';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 
-import { FamiliarFollowers } from '../../../components/familiar_followers';
+import { AccountBio } from '../account_bio';
+import { Avatar } from '../avatar';
+import { AnimateEmojiProvider } from '../emoji/context';
+import { FamiliarFollowers } from '../familiar_followers';
 
-import { AccountName } from './account_name';
-import { AccountSubscriptionForm } from './account_subscription_form';
 import { AnniversaryNote } from './anniversary-note';
 import { AccountButtons } from './buttons';
 import { AccountHeaderFields } from './fields';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
+import { AccountName } from './name';
 import { AccountNote } from './note';
 import { AccountNumberFields } from './number_fields';
 import classes from './styles.module.scss';
+import { AccountSubscriptionForm } from './subscription_form';
 import { AccountTabs } from './tabs';
 
 const titleFromAccount = (account: Account) => {

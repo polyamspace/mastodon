@@ -8,16 +8,17 @@ import { Link } from 'react-router-dom';
 
 import { AxiosError } from 'axios';
 
-import { apiSubscribeByEmail } from 'flavours/polyam/api/accounts';
+import { apiSubscribeByEmail } from '@/flavours/polyam/api/accounts';
 import type {
   ValidationErrorResponse,
   ValidationError,
-} from 'flavours/polyam/api_types/errors';
-import { Button } from 'flavours/polyam/components/button';
-import { DisplayName } from 'flavours/polyam/components/display_name';
-import type { FieldStatus } from 'flavours/polyam/components/form_fields';
-import { TextInputField } from 'flavours/polyam/components/form_fields/text_input_field';
-import { useAppSelector } from 'flavours/polyam/store';
+} from '@/flavours/polyam/api_types/errors';
+import { useAppSelector } from '@/flavours/polyam/store';
+
+import { Button } from '../button';
+import { DisplayName } from '../display_name';
+import type { FieldStatus } from '../form_fields';
+import { TextInputField } from '../form_fields/text_input_field';
 
 import classes from './styles.module.scss';
 

@@ -4,14 +4,12 @@ import type { FC } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { openModal } from '@/flavours/polyam/actions/modal';
-import { FormattedDateWrapper } from '@/flavours/polyam/components/formatted_date';
-import {
-  NumberFields,
-  NumberFieldsItem,
-} from '@/flavours/polyam/components/number_fields';
-import { ShortNumber } from '@/flavours/polyam/components/short_number';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useAppDispatch } from '@/flavours/polyam/store';
+
+import { FormattedDateWrapper } from '../formatted_date';
+import { NumberFields, NumberFieldsItem } from '../number_fields';
+import { ShortNumber } from '../short_number';
 
 export const AccountNumberFields: FC<{ accountId: string }> = ({
   accountId,

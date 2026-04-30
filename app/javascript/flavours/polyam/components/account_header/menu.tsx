@@ -30,7 +30,6 @@ import {
 import { openModal } from '@/flavours/polyam/actions/modal';
 import { initMuteModal } from '@/flavours/polyam/actions/mutes';
 import { initReport } from '@/flavours/polyam/actions/reports';
-import { Dropdown } from '@/flavours/polyam/components/dropdown_menu';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useIdentity } from '@/flavours/polyam/identity_context';
 import type { Account } from '@/flavours/polyam/models/account';
@@ -42,6 +41,8 @@ import {
 } from '@/flavours/polyam/permissions';
 import type { AppDispatch } from '@/flavours/polyam/store';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
+
+import { Dropdown } from '../dropdown_menu';
 
 import classes from './styles.module.scss';
 

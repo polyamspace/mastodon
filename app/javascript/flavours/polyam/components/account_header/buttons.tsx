@@ -9,12 +9,13 @@ import NotificationsIcon from '@/awesome-icons/regular/bell.svg?react';
 import NotificationsActiveIcon from '@/awesome-icons/solid/bell.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
 import { followAccount } from '@/flavours/polyam/actions/accounts';
-import { CopyIconButton } from '@/flavours/polyam/components/copy_icon_button';
-import { FollowButton } from '@/flavours/polyam/components/follow_button';
-import { IconButton } from '@/flavours/polyam/components/icon_button';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { getAccountHidden } from '@/flavours/polyam/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
+
+import { CopyIconButton } from '../copy_icon_button';
+import { FollowButton } from '../follow_button';
+import { IconButton } from '../icon_button';
 
 import { AccountMenu } from './menu';
 

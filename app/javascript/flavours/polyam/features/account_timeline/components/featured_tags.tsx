@@ -13,8 +13,8 @@ import { useOverflowButton } from '@/flavours/polyam/hooks/useOverflow';
 import { selectAccountFeaturedTags } from '@/flavours/polyam/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
-import { useAccountContext } from './context';
-import classes from './styles.module.scss';
+import { useAccountContext } from '../hooks/useAccountContext';
+import classes from '../styles.module.scss';
 
 export const FeaturedTags: FC<{ accountId: string }> = ({ accountId }) => {
   // Fetch tags.

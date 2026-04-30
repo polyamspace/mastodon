@@ -6,9 +6,10 @@ import { defineMessages, useIntl } from 'react-intl';
 import EditIcon from '@/awesome-icons/solid/pen-to-square.svg?react';
 import { fetchRelationships } from '@/flavours/polyam/actions/accounts';
 import { openModal } from '@/flavours/polyam/actions/modal';
-import { Callout } from '@/flavours/polyam/components/callout';
-import { IconButton } from '@/flavours/polyam/components/icon_button';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
+
+import { Callout } from '../callout';
+import { IconButton } from '../icon_button';
 
 import classes from './styles.module.scss';
 

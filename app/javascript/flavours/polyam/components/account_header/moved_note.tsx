@@ -1,9 +1,10 @@
 import { FormattedMessage } from 'react-intl';
 
-import { DisplayName } from '@/flavours/polyam/components/display_name';
-import { AvatarOverlay } from 'flavours/polyam/components/avatar_overlay';
-import { Permalink } from 'flavours/polyam/components/permalink';
-import { useAppSelector } from 'flavours/polyam/store';
+import { useAppSelector } from '@/flavours/polyam/store';
+
+import { AvatarOverlay } from '../avatar_overlay';
+import { DisplayName } from '../display_name';
+import { Permalink } from '../permalink';
 
 export const MovedNote: React.FC<{
   accountId: string;

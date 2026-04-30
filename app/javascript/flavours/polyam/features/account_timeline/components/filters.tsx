@@ -8,13 +8,12 @@ import { useParams } from 'react-router';
 import Overlay from 'react-overlays/esm/Overlay';
 
 import KeyboardArrowDownIcon from '@/awesome-icons/solid/angle-down.svg?react';
+import { AccountTabs } from '@/flavours/polyam/components/account_header/tabs';
 import { Toggle } from '@/flavours/polyam/components/form_fields/toggle_field';
 import { Icon } from '@/flavours/polyam/components/icon';
 
-import { AccountTabs } from '../components/tabs';
-
-import { useAccountContext } from './context';
-import classes from './styles.module.scss';
+import { useAccountContext } from '../hooks/useAccountContext';
+import classes from '../styles.module.scss';
 
 export const AccountFilters: FC = () => {
   const { acct } = useParams<{ acct: string }>();
