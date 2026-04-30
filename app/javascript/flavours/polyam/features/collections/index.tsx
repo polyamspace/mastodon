@@ -1,41 +1,22 @@
-import { useEffect } from 'react';
-
-import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
-import AddIcon from '@/awesome-icons/solid/plus.svg?react';
-import { EmptyState } from '@/flavours/polyam/components/empty_state';
-import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
 import { TabLink, TabList } from '@/flavours/polyam/components/tab_list';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { DisplayNameSimple } from 'flavours/polyam/components/display_name/simple';
-import { Icon } from 'flavours/polyam/components/icon';
-import {
-  ItemList,
-  Scrollable,
-} from 'flavours/polyam/components/scrollable_list/components';
+import { Scrollable } from 'flavours/polyam/components/scrollable_list/components';
 import { useAccount } from 'flavours/polyam/hooks/useAccount';
 import {
   useAccountId,
   useCurrentAccountId,
 } from 'flavours/polyam/hooks/useAccountId';
-import {
-  fetchAccountCollections,
-  selectAccountCollections,
-} from 'flavours/polyam/reducers/slices/collections';
-import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
-import { CollectionListItem } from './components/collection_list_item';
-import {
-  messages as editorMessages,
-  MaxCollectionsCallout,
-  userCollectionLimit,
-} from './editor';
+import { CollectionsCreatedByYou } from './overview/created_by_you';
+import { CollectionsFeaturingYou } from './overview/featuring_you';
 import classes from './styles.module.scss';
-import { areCollectionsEnabled } from './utils';
 
 const messages = defineMessages({
   headingMe: {
@@ -60,25 +41,6 @@ const messages = defineMessages({
   },
 });
 
-const CreateButton: React.FC = () => (
-  <Link to='/collections/new' className='button button--compact'>
-    <Icon id='plus' icon={AddIcon} />
-    <FormattedMessage {...editorMessages.newCollection} />
-  </Link>
-);
-
-export function useAccountCollections(accountId: string | null | undefined) {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (accountId && areCollectionsEnabled()) {
-      void dispatch(fetchAccountCollections({ accountId }));
-    }
-  }, [dispatch, accountId]);
-
-  return useAppSelector((state) => selectAccountCollections(state, accountId));
-}
-
 export const Collections: React.FC<{
   multiColumn?: boolean;
 }> = ({ multiColumn }) => {
@@ -86,15 +48,11 @@ export const Collections: React.FC<{
   const me = useCurrentAccountId();
   const accountId = useAccountId();
   const account = useAccount(accountId);
+  const { path } = useRouteMatch();
 
-  const { collections, status } = useAccountCollections(accountId);
+  const isOwnCollectionsPage = accountId === me;
 
-  const canCreateMoreCollections = collections.length < userCollectionLimit;
-  const isOwnCollection = accountId === me;
-  const showCreateButton =
-    isOwnCollection && status === 'idle' && canCreateMoreCollections;
-
-  const titleMessage = isOwnCollection
+  const titleMessage = isOwnCollectionsPage
     ? messages.headingMe
     : messages.headingOther;
 
@@ -105,17 +63,9 @@ export const Collections: React.FC<{
     name: <DisplayNameSimple account={account} />,
   });
 
-  const tabMessage = isOwnCollection
+  const createdByTabMessage = isOwnCollectionsPage
     ? messages.createdByYou
     : messages.createdByAuthor;
-
-  const errorMessage = (status === 'error' || !accountId) && (
-    <FormattedMessage
-      id='collections.error_loading_collections'
-      defaultMessage='There was an error when trying to load your collections.'
-      tagName='span'
-    />
-  );
 
   return (
     <Column bindToDocument={!multiColumn} label={pageTitle}>
@@ -126,64 +76,28 @@ export const Collections: React.FC<{
           <h1 className={classes.heading}>{pageTitleHtml}</h1>
           <TabList plain>
             <TabLink exact to={`/@${account?.acct}/collections`}>
-              {intl.formatMessage(tabMessage, {
+              {intl.formatMessage(createdByTabMessage, {
                 name: <DisplayNameSimple account={account} />,
               })}
             </TabLink>
+            {isOwnCollectionsPage && (
+              <TabLink
+                exact
+                to={`/@${account?.acct}/collections/featuring-you`}
+              >
+                {intl.formatMessage(messages.featuringYou)}
+              </TabLink>
+            )}
           </TabList>
         </header>
-        {status === 'loading' && <LoadingIndicator />}
-        {status === 'idle' &&
-          (collections.length > 0 ? (
-            <>
-              <div className={classes.listHeader}>
-                <h2 className={classes.subHeading}>
-                  <FormattedMessage
-                    id='collections.list.collections_with_count'
-                    defaultMessage='{count, plural, one {# Collection} other {# Collections}}'
-                    values={{
-                      count: collections.length,
-                    }}
-                  />
-                </h2>
-                {showCreateButton && <CreateButton />}
-              </div>
-              <ItemList emptyMessage={errorMessage}>
-                {!canCreateMoreCollections && (
-                  <MaxCollectionsCallout
-                    className={classes.maxCollectionsError}
-                  />
-                )}
-                {collections.map((item, index) => (
-                  <CollectionListItem
-                    withTimestamp
-                    withAuthorHandle={false}
-                    key={item.id}
-                    collection={item}
-                    positionInList={index + 1}
-                    listSize={collections.length}
-                  />
-                ))}
-              </ItemList>
-            </>
-          ) : (
-            <EmptyState
-              title={
-                <FormattedMessage
-                  id='empty_column.account_featured_self.showcase_accounts'
-                  defaultMessage='Showcase your favorite accounts'
-                />
-              }
-              message={
-                <FormattedMessage
-                  id='empty_column.account_featured_self.showcase_accounts_desc'
-                  defaultMessage='Collections are curated lists of accounts to help others discover more of the Fediverse.'
-                />
-              }
-            >
-              <CreateButton />
-            </EmptyState>
-          ))}
+        <Switch>
+          <Route exact path={path} component={CollectionsCreatedByYou} />
+          <Route
+            exact
+            path={`${path}/featuring-you`}
+            component={CollectionsFeaturingYou}
+          />
+        </Switch>
       </Scrollable>
 
       <Helmet>
