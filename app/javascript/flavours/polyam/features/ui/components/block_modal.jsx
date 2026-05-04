@@ -11,11 +11,13 @@ import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
 import AtIcon from '@/awesome-icons/solid/at.svg?react';
 import BanIcon from '@/awesome-icons/solid/ban.svg?react';
 import AnnouncementIcon from '@/awesome-icons/solid/bullhorn.svg?react';
+import CollectionsIcon from '@/awesome-icons/solid/shapes.svg?react';
 import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
 import { blockAccount } from 'flavours/polyam/actions/accounts';
 import { closeModal } from 'flavours/polyam/actions/modal';
 import { Button } from 'flavours/polyam/components/button';
 import { Icon } from 'flavours/polyam/components/icon';
+import { areCollectionsEnabled } from '../../collections/utils';
 
 export const BlockModal = ({ accountId, acct }) => {
   const dispatch = useDispatch();
@@ -46,31 +48,38 @@ export const BlockModal = ({ accountId, acct }) => {
 
           <div>
             <h1><FormattedMessage id='block_modal.title' defaultMessage='Block user?' /></h1>
-            <div>@{acct}</div>
+            <p>@{acct}</p>
           </div>
         </div>
 
-        <div className='safety-action-modal__bullet-points'>
-          <div>
+        <ul className='safety-action-modal__bullet-points'>
+          <li>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={AnnouncementIcon} /></div>
             <div><FormattedMessage id='block_modal.they_will_know' defaultMessage="They can see that they're blocked." /></div>
-          </div>
+          </li>
 
-          <div>
+          <li>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={VisibilityOffIcon} /></div>
-            <div><FormattedMessage id='block_modal.they_cant_see_posts' defaultMessage="They can't see your posts and you won't see theirs." /></div>
-          </div>
+            <div><FormattedMessage id='block_modal.they_cant_see_posts' defaultMessage="They can't see your content and you won't see theirs." /></div>
+          </li>
 
-          <div>
+          <li>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={AtIcon} /></div>
-            <div><FormattedMessage id='block_modal.you_wont_see_mentions' defaultMessage="You won't see posts that mentions them." /></div>
-          </div>
+            <div><FormattedMessage id='block_modal.you_wont_see_mentions' defaultMessage="You won't see posts from others that mention them." /></div>
+          </li>
 
-          <div>
+          <li>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={ReplyIcon} /></div>
-            <div><FormattedMessage id='block_modal.they_cant_mention' defaultMessage="They can't mention or follow you." /></div>
-          </div>
-        </div>
+            <div><FormattedMessage id='block_modal.they_cant_mention' defaultMessage="You can't mention, follow, or quote each other." /></div>
+          </li>
+
+          {areCollectionsEnabled() &&
+            <li>
+              <div className='safety-action-modal__bullet-points__icon'><Icon icon={CollectionsIcon} /></div>
+              <div><FormattedMessage id='block_modal.no_collections' defaultMessage="Neither of you can add each other to collections. You'll be automatically removed from each others' existing collections, if applicable." /></div>
+            </li>
+          }
+        </ul>
       </div>
 
       <div className={classNames('safety-action-modal__bottom', { active: expanded })}>
