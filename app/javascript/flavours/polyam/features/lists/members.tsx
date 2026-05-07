@@ -2,8 +2,9 @@ import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { useParams, Link } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
 import ListAltIcon from '@/awesome-icons/solid/rectangle-list.svg?react';

@@ -2,10 +2,11 @@ import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import ListAltIcon from '@/awesome-icons/solid/rectangle-list.svg?react';

@@ -3,7 +3,8 @@ import { useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import { openModal } from '@/flavours/polyam/actions/modal';
 import FollowRequestNoteContainer from '@/flavours/polyam/features/account/containers/follow_request_note_container';

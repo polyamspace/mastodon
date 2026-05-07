@@ -2,8 +2,9 @@ import { useEffect, useMemo, useCallback } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import MoreHorizIcon from '@/awesome-icons/solid/ellipsis.svg?react';
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
