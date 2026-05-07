@@ -1,7 +1,5 @@
 import { useCallback, useMemo } from 'react';
 
-import { FormattedMessage } from 'react-intl';
-
 import classNames from 'classnames';
 
 import { Helmet } from '@unhead/react/helmet';
@@ -18,7 +16,6 @@ import {
 import type { Account } from '@/flavours/polyam/models/account';
 import { getAccountHidden } from '@/flavours/polyam/selectors/accounts';
 import { useAppSelector, useAppDispatch } from '@/flavours/polyam/store';
-import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 
 import { AccountBio } from '../account_bio';
 import { Avatar } from '../avatar';
@@ -117,7 +114,7 @@ export const AccountHeader: React.FC<{
   const isMe = me && account.id === me;
 
   return (
-    <div className='account-timeline__header'>
+    <div>
       {!hidden && account.memorial && <MemorialNote />}
       {!hidden && account.moved && (
         <MovedNote accountId={account.id} targetAccountId={account.moved} />
@@ -127,15 +124,13 @@ export const AccountHeader: React.FC<{
       )}
 
       <AnimateEmojiProvider
-        className={classNames('account__header', {
-          inactive: !!account.moved,
-        })}
+        className={classNames(!!account.moved && classes.moved)}
       >
         {!suspendedOrHidden && !account.moved && relationship?.requested_by && (
           <FollowRequestNoteContainer account={account} />
         )}
 
-        <div className={classNames('account__header__image', classes.header)}>
+        <div className={classes.header}>
           {!suspendedOrHidden && (
             <img
               src={autoPlayGif ? account.header : account.header_static}
@@ -145,21 +140,16 @@ export const AccountHeader: React.FC<{
           )}
         </div>
 
-        <div className={classNames('account__header__bar', classes.barWrapper)}>
-          <div
-            className={classNames(
-              'account__header__tabs',
-              classes.avatarWrapper,
-            )}
-          >
+        <div className={classes.barWrapper}>
+          <div className={classes.avatarWrapper}>
             <a
-              className='avatar'
               href={account.avatar}
               rel='noopener'
               target='_blank'
               onClick={handleOpenAvatar}
             >
               <Avatar
+                className={classes.avatar}
                 account={suspendedOrHidden ? undefined : account}
                 alt={account.avatar_description}
                 size={80}
@@ -167,12 +157,7 @@ export const AccountHeader: React.FC<{
             </a>
           </div>
 
-          <div
-            className={classNames(
-              'account__header__tabs__name',
-              classes.displayNameWrapper,
-            )}
-          >
+          <div className={classes.displayNameWrapper}>
             <AccountName accountId={accountId} />
             <AccountButtons
               accountId={accountId}
@@ -192,45 +177,17 @@ export const AccountHeader: React.FC<{
           )}
 
           {!suspendedOrHidden && (
-            <div className='account__header__extra'>
-              <div className='account__header__bio'>
-                {me && account.id !== me && (
-                  <AccountNote accountId={accountId} />
-                )}
+            <div className={classes.bioButtonsWrapper}>
+              {me && account.id !== me && <AccountNote accountId={accountId} />}
 
-                {/* Polyam: Hide fields when empty and show joined date on bottom */}
-                {account.fields.size > 0 && (
-                  <AccountHeaderFields accountId={accountId} />
-                )}
+              {/* Polyam: Show fields before bio as they are visually distracting */}
+              <AccountHeaderFields accountId={accountId} />
 
-                {/* Polyam: Show bio after fields as they are visually distracting */}
-                <AccountBio
-                  showDropdown
-                  accountId={accountId}
-                  className={classNames(
-                    'account__header__content',
-                    classes.bio,
-                  )}
-                />
-
-                {/* Polyam: Joined date at bottom */}
-                <div className='account__header__joined'>
-                  <FormattedMessage
-                    id='account.joined'
-                    defaultMessage='Joined {date}'
-                    values={{
-                      date: (
-                        <FormattedDateWrapper
-                          value={account.created_at}
-                          year='numeric'
-                          month='short'
-                          day='2-digit'
-                        />
-                      ),
-                    }}
-                  />
-                </div>
-              </div>
+              <AccountBio
+                showDropdown
+                accountId={accountId}
+                className={classes.bio}
+              />
 
               {!me && account.email_subscriptions && (
                 <AccountSubscriptionForm accountId={accountId} />
