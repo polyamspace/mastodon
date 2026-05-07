@@ -12,6 +12,7 @@ import {
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useAccountId } from '@/flavours/polyam/hooks/useAccountId';
 import { useRelationship } from '@/flavours/polyam/hooks/useRelationship';
+import { me } from '@/flavours/polyam/initial_state';
 import { selectUserListWithoutMe } from '@/flavours/polyam/selectors/user_lists';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
@@ -88,6 +89,7 @@ const Followers: FC = () => {
       list={followerList}
       loadMore={loadMore}
       prependAccountId={followerId}
+      withoutFollowsYouBadge={accountId === me}
       scrollKey='followers'
     />
   );
