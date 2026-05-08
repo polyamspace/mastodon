@@ -33,6 +33,7 @@ import StatusIcons from './status_icons';
 import StatusPrepend from './status_prepend';
 import { StatusReactions } from './status_reactions';
 import { CollectionPreviewCard } from '../features/collections/components/collection_preview_card';
+import { compareUrls } from '../utils/compare_urls';
 
 const domParser = new DOMParser();
 
