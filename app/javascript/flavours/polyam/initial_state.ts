@@ -50,7 +50,7 @@ interface InitialStateMeta {
   status_page_url: string;
   terms_of_service_enabled: boolean;
   emoji_style?: string;
-  wrapstodon?: InitialWrapstodonState | null;
+  wrapstodon?: InitialStateWrapstodon | null;
   default_content_type: string;
   max_reactions: number;
   visible_reactions: number;
@@ -61,7 +61,7 @@ interface InitialStateMeta {
   show_replies_in_public_timelines: boolean;
 }
 
-interface Role {
+interface InitialStateRole {
   id: string;
   name: string;
   permissions: string;
@@ -77,17 +77,27 @@ interface PollLimits {
   max_expiration: number;
 }
 
-interface InitialWrapstodonState {
+interface InitialStateWrapstodon {
   year: number;
   state: ApiAnnualReportState;
+}
+
+interface InitialStateCompose {
+  text: string;
+  default_privacy?: string;
+  default_sensitive?: boolean;
+  default_language?: string;
+  default_quote_policy?: string;
+  me?: string;
 }
 
 export interface InitialState {
   accounts: Record<string, ApiAccountJSON>;
   languages: InitialStateLanguage[];
+  compose: InitialStateCompose;
   critical_updates_pending?: boolean;
   meta: InitialStateMeta;
-  role?: Role;
+  role?: InitialStateRole;
   features: string[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   local_settings: any;
