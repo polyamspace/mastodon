@@ -6,7 +6,6 @@ import { throttle } from 'lodash';
 import api from 'flavours/polyam/api';
 import { browserHistory } from 'flavours/polyam/components/router';
 import { countableText } from 'flavours/polyam/features/compose/util/counter';
-import { search as emojiSearch } from 'flavours/polyam/features/emoji/emoji_mart_search_light';
 import { tagHistory } from 'flavours/polyam/settings';
 import { fetchCustomEmojiData } from '@/flavours/polyam/features/emoji/picker';
 import { recoverHashtags } from 'flavours/polyam/utils/hashtag';
@@ -626,7 +625,8 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, token) => {
 
 const fetchComposeSuggestionsEmojis = async (dispatch, token) => {
   const custom = await fetchCustomEmojiData();
-  const results = emojiSearch(token.replace(':', ''), { maxResults: 5, custom });
+  const { search } = await import('@/flavours/polyam/features/emoji/emoji_mart_search_light');
+  const results = search(token.replace(':', ''), { maxResults: 5, custom });
   dispatch(readyComposeSuggestionsEmojis(token, results));
 };
 
