@@ -106,7 +106,7 @@ class Item extends PureComponent {
 
     const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
     // Polyam: Whether to show badge on left side instead of right
-    const invertedBadge = (size === 4 && index % 2 === 0)
+    const invertedBadge = (size === 3 && index === 0) || (size % 2 === 0 && index % 2 === 0)
 
     if (description?.length > 0) {
       badges.push(<AltTextBadge key='alt' description={description} placement={invertedBadge ? 'top-start' : undefined} />);
