@@ -7422,6 +7422,12 @@ img.modal-warning {
   display: flex;
   gap: 2px;
   pointer-events: none;
+
+  // Polyam: Different badge position per layout
+  &--inverted {
+    inset-inline-end: unset;
+    inset-inline-start: 8px;
+  }
 }
 
 .media-gallery__alt__label,

@@ -5,6 +5,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import type {
   OffsetValue,
   UsePopperOptions,
+  Placement,
 } from 'react-overlays/esm/usePopper';
 import Overlay from 'react-overlays/Overlay';
 
@@ -18,8 +19,9 @@ import classes from './styles.module.scss';
 const offset = [0, 4] as OffsetValue;
 const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
-export const AltTextBadge: React.FC<{ description: string }> = ({
+export const AltTextBadge: React.FC<{ description: string; placement?: Placement }> = ({
   description,
+  placement = 'top-end',
 }) => {
   const intl = useIntl();
   const uniqueId = useId();
@@ -62,7 +64,7 @@ export const AltTextBadge: React.FC<{ description: string }> = ({
         onHide={handleClose}
         show={open}
         target={buttonRef}
-        placement='top-end'
+        placement={placement}
         flip
         offset={offset}
         popperConfig={popperConfig}

@@ -105,9 +105,11 @@ class Item extends PureComponent {
     }
 
     const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
+    // Polyam: Whether to show badge on left side instead of right
+    const invertedBadge = (size === 4 && index % 2 === 0)
 
     if (description?.length > 0) {
-      badges.push(<AltTextBadge key='alt' description={description} />);
+      badges.push(<AltTextBadge key='alt' description={description} placement={invertedBadge ? 'top-start' : undefined} />);
     }
 
     if (attachment.get('type') === 'unknown') {
@@ -204,7 +206,7 @@ class Item extends PureComponent {
         {visible && thumbnail}
 
         {badges && (
-          <div className='media-gallery__item__badges'>
+          <div className={classNames('media-gallery__item__badges', { 'media-gallery__item__badges--inverted': invertedBadge })}>
             {badges}
           </div>
         )}
