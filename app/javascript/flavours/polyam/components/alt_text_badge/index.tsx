@@ -19,10 +19,10 @@ import classes from './styles.module.scss';
 const offset = [0, 4] as OffsetValue;
 const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
-export const AltTextBadge: React.FC<{ description: string; placement?: Placement }> = ({
-  description,
-  placement = 'top-end',
-}) => {
+export const AltTextBadge: React.FC<{
+  description: string;
+  placement?: Placement;
+}> = ({ description, placement = 'top-end' }) => {
   const intl = useIntl();
   const uniqueId = useId();
   const popoverId = `${uniqueId}-popover`;
