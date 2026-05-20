@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useId } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
@@ -6,6 +6,7 @@ import { isFulfilled } from '@reduxjs/toolkit';
 
 import ListAltIcon from '@/awesome-icons/solid/rectangle-list.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
+import { Toggle } from '@/flavours/polyam/components/form_fields';
 import { fetchLists } from 'flavours/polyam/actions/lists';
 import { createList } from 'flavours/polyam/actions/lists_typed';
 import {
@@ -15,7 +16,6 @@ import {
 } from 'flavours/polyam/api/lists';
 import type { ApiListJSON } from 'flavours/polyam/api_types/lists';
 import { Button } from 'flavours/polyam/components/button';
-import { CheckBox } from 'flavours/polyam/components/check_box';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { getOrderedLists } from 'flavours/polyam/selectors/lists';
@@ -42,6 +42,8 @@ const ListItem: React.FC<{
   checked: boolean;
   onChange: (id: string, checked: boolean) => void;
 }> = ({ id, title, checked, onChange }) => {
+  const uniqueId = useId();
+
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange(id, e.target.checked);
@@ -50,14 +52,13 @@ const ListItem: React.FC<{
   );
 
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
-    <label className='lists__item'>
+    <label className='lists__item' htmlFor={uniqueId}>
       <div className='lists__item__title'>
         <Icon id='list-ul' icon={ListAltIcon} />
         <span>{title}</span>
       </div>
 
-      <CheckBox value={id} checked={checked} onChange={handleChange} />
+      <Toggle id={uniqueId} checked={checked} onChange={handleChange} />
     </label>
   );
 };

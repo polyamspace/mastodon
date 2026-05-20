@@ -30,6 +30,10 @@ import {
 import { openModal } from '@/flavours/polyam/actions/modal';
 import { initMuteModal } from '@/flavours/polyam/actions/mutes';
 import { initReport } from '@/flavours/polyam/actions/reports';
+import {
+  canAccountBeAdded,
+  canAccountBeAddedByFollowers,
+} from '@/flavours/polyam/features/collections/utils';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useIdentity } from '@/flavours/polyam/identity_context';
 import type { Account } from '@/flavours/polyam/models/account';
@@ -217,6 +221,10 @@ const redesignMessages = defineMessages({
     id: 'account.menu.add_to_list',
     defaultMessage: 'Add to list…',
   },
+  addToCollection: {
+    id: 'account.menu.add_to_collection',
+    defaultMessage: 'Add to collection…',
+  },
   openOriginalPage: {
     id: 'account.menu.open_original_page',
     defaultMessage: 'View on {domain}',
@@ -297,35 +305,57 @@ function getMenuItems({
     return items;
   }
 
-  // List and featuring options
+  // Add to list
   if (relationship?.following) {
-    items.push(
-      {
-        text: intl.formatMessage(redesignMessages.addToList),
-        action: () => {
-          dispatch(
-            openModal({
-              modalType: 'LIST_ADDER',
-              modalProps: {
-                accountId: account.id,
-              },
-            }),
-          );
-        },
+    items.push({
+      text: intl.formatMessage(redesignMessages.addToList),
+      action: () => {
+        dispatch(
+          openModal({
+            modalType: 'LIST_ADDER',
+            modalProps: {
+              accountId: account.id,
+            },
+          }),
+        );
       },
-      {
-        text: intl.formatMessage(
-          relationship.endorsed ? messages.unendorse : messages.endorse,
-        ),
-        action: () => {
-          if (relationship.endorsed) {
-            dispatch(unpinAccount(account.id));
-          } else {
-            dispatch(pinAccount(account.id));
-          }
-        },
+    });
+  }
+
+  // Add to collection
+  if (
+    canAccountBeAdded(account) ||
+    (canAccountBeAddedByFollowers(account) && relationship?.following)
+  ) {
+    items.push({
+      text: intl.formatMessage(redesignMessages.addToCollection),
+      action: () => {
+        dispatch(
+          openModal({
+            modalType: 'COLLECTION_ADDER',
+            modalProps: {
+              accountId: account.id,
+            },
+          }),
+        );
       },
-    );
+    });
+  }
+
+  // Feature on profile
+  if (relationship?.following) {
+    items.push({
+      text: intl.formatMessage(
+        relationship.endorsed ? messages.unendorse : messages.endorse,
+      ),
+      action: () => {
+        if (relationship.endorsed) {
+          dispatch(unpinAccount(account.id));
+        } else {
+          dispatch(pinAccount(account.id));
+        }
+      },
+    });
   }
 
   items.push(
