@@ -21,6 +21,7 @@ import { LinkFooter } from 'flavours/polyam/features/ui/components/link_footer';
 import { ServerLimits } from './components/server_limits';
 import { Section } from './components/section';
 import { RulesSection } from './components/rules';
+import { getColumnSkipLinkId } from '../ui/components/skip_links';
 
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },
@@ -100,7 +101,7 @@ class About extends PureComponent {
           multiColumn={multiColumn}
         />
 
-        <div className='scrollable about'>
+        <div className='scrollable about' id={getColumnSkipLinkId(1)}>
           <div className='about__header'>
             <ServerHeroImage
               withAltBadge
