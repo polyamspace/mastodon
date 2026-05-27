@@ -22,6 +22,7 @@ import { isFulfilled } from '@reduxjs/toolkit';
 import CancelIcon from '@/awesome-icons/solid/circle-xmark.svg?react';
 import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
+import { getCollectionPath } from '@/flavours/polyam/features/collections/utils';
 import {
   clickSearchResult,
   forgetSearchResult,
@@ -344,6 +345,10 @@ export const Search: React.FC<{
                 } else if (result.payload.statuses[0]) {
                   history.push(
                     `/@${result.payload.statuses[0].account.acct}/${result.payload.statuses[0].id}`,
+                  );
+                } else if (result.payload.collections[0]) {
+                  history.push(
+                    getCollectionPath(result.payload.collections[0].id),
                   );
                 }
               }
