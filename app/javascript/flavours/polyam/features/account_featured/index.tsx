@@ -20,7 +20,7 @@ import {
 } from '@/flavours/polyam/components/scrollable_list/components';
 import type { TruncatedListItemInfo } from '@/flavours/polyam/components/truncated_list';
 import { TruncatedListItems } from '@/flavours/polyam/components/truncated_list';
-import BundleColumnError from '@/flavours/polyam/features/ui/components/bundle_column_error';
+import { BundleColumnError } from '@/flavours/polyam/features/ui/components/bundle_column_error';
 import Column from '@/flavours/polyam/features/ui/components/column';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useAccountId } from '@/flavours/polyam/hooks/useAccountId';

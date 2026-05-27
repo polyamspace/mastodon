@@ -19,7 +19,7 @@ import { LimitedAccountHint } from '@/flavours/polyam/components/limited_account
 import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
 import { RemoteHint } from '@/flavours/polyam/components/remote_hint';
 import StatusList from '@/flavours/polyam/components/status_list';
-import BundleColumnError from '@/flavours/polyam/features/ui/components/bundle_column_error';
+import { BundleColumnError } from '@/flavours/polyam/features/ui/components/bundle_column_error';
 import {
   useAccountId,
   useCurrentAccountId,

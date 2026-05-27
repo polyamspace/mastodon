@@ -14,7 +14,7 @@ import { Helmet } from '@unhead/react/helmet';
 import { apiGetTermsOfService } from 'flavours/polyam/api/instance';
 import type { ApiTermsOfServiceJSON } from 'flavours/polyam/api_types/instance';
 import { Column } from 'flavours/polyam/components/column';
-import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
+import { BundleColumnError } from 'flavours/polyam/features/ui/components/bundle_column_error';
 
 const messages = defineMessages({
   title: { id: 'terms_of_service.title', defaultMessage: 'Terms of Service' },

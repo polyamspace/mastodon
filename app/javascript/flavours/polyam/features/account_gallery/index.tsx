@@ -11,7 +11,7 @@ import { AccountHeader } from '@/flavours/polyam/components/account_header';
 import { LimitedAccountHint } from '@/flavours/polyam/components/limited_account_hint';
 import { RemoteHint } from '@/flavours/polyam/components/remote_hint';
 import ScrollableList from '@/flavours/polyam/components/scrollable_list';
-import BundleColumnError from '@/flavours/polyam/features/ui/components/bundle_column_error';
+import { BundleColumnError } from '@/flavours/polyam/features/ui/components/bundle_column_error';
 import Column from '@/flavours/polyam/features/ui/components/column';
 import { useAccountId } from '@/flavours/polyam/hooks/useAccountId';
 import { useAccountVisibility } from '@/flavours/polyam/hooks/useAccountVisibility';
