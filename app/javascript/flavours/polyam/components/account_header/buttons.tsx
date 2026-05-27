@@ -11,7 +11,7 @@ import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { getAccountHidden } from '@/flavours/polyam/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
-import { CopyIconButton } from '../copy_icon_button';
+import { CopyIconButton } from '../copy_button';
 import { FollowButton } from '../follow_button';
 import { IconButton } from '../icon_button';
 
