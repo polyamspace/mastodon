@@ -7,6 +7,7 @@ import InsertChartIcon from '@/awesome-icons/solid/bars-progress.svg?react';
 import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
 import HomeIcon from '@/awesome-icons/solid/house.svg?react';
 import ReplyAllIcon from '@/awesome-icons/solid/reply-all.svg?react';
+import CollectionsIcon from '@/awesome-icons/solid/shapes.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import PersonAddIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import RepeatIcon from '@/svg-icons/boost.svg?react';
@@ -28,6 +29,10 @@ const tooltips = defineMessages({
   boosts: { id: 'notifications.filter.boosts', defaultMessage: 'Boosts' },
   polls: { id: 'notifications.filter.polls', defaultMessage: 'Poll results' },
   follows: { id: 'notifications.filter.follows', defaultMessage: 'Follows' },
+  collections: {
+    id: 'notifications.filter.collections',
+    defaultMessage: 'Collections',
+  },
   statuses: {
     id: 'notifications.filter.statuses',
     defaultMessage: 'Updates from people you follow',
@@ -142,6 +147,14 @@ export const FilterBar: React.FC = () => {
           title={intl.formatMessage(tooltips.follows)}
         >
           <Icon id='user-plus' icon={PersonAddIcon} />
+        </BarButton>
+        <BarButton
+          selectedFilter={selectedFilter}
+          type='collection'
+          key='collection'
+          title={intl.formatMessage(tooltips.collections)}
+        >
+          <Icon id='collections' icon={CollectionsIcon} />
         </BarButton>
       </div>
     );
