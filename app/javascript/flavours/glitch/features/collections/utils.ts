@@ -1,4 +1,4 @@
-import type { ApiMutedAccountJSON } from '@/flavours/glitch/api_types/accounts';
+import type { ApiAccountJSON } from '@/flavours/glitch/api_types/accounts';
 import type { Account } from '@/flavours/glitch/models/account';
 import { isServerFeatureEnabled } from '@/flavours/glitch/utils/environment';
 
@@ -8,11 +8,11 @@ export function areCollectionsEnabled() {
 
 export const getCollectionPath = (id: string) => `/collections/${id}`;
 
-export const canAccountBeAdded = (account: ApiMutedAccountJSON | Account) =>
+export const canAccountBeAdded = (account: ApiAccountJSON | Account) =>
   ['automatic', 'manual'].includes(account.feature_approval.current_user);
 
 export const canAccountBeAddedByFollowers = (
-  account: ApiMutedAccountJSON | Account,
+  account: ApiAccountJSON | Account,
 ) =>
   account.feature_approval.automatic.includes('followers') ||
   account.feature_approval.manual.includes('followers');
