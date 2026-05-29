@@ -1,10 +1,5 @@
 import type { ApiAccountJSON } from '@/flavours/glitch/api_types/accounts';
 import type { Account } from '@/flavours/glitch/models/account';
-import { isServerFeatureEnabled } from '@/flavours/glitch/utils/environment';
-
-export function areCollectionsEnabled() {
-  return isServerFeatureEnabled('collections');
-}
 
 export const getCollectionPath = (id: string) => `/collections/${id}`;
 
