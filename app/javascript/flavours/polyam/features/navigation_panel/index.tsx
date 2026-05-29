@@ -50,7 +50,6 @@ import { selectUnreadNotificationGroupsCount } from 'flavours/polyam/selectors/n
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
 import { AnnualReportNavItem } from '../annual_report/nav_item';
-import { areCollectionsEnabled } from '../collections/utils';
 
 import { DisabledAccountBanner } from './components/disabled_account_banner';
 import { FollowedTagsPanel } from './components/followed_tags_panel';
@@ -387,17 +386,15 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
                 />
               </li>
             )}
-            {areCollectionsEnabled() && (
-              <li>
-                <ColumnLink
-                  transparent
-                  to={`/@${account?.acct}/collections`}
-                  icon='collections'
-                  iconComponent={CollectionsIcon}
-                  text={intl.formatMessage(messages.collections)}
-                />
-              </li>
-            )}
+            <li>
+              <ColumnLink
+                transparent
+                to={`/@${account?.acct}/collections`}
+                icon='collections'
+                iconComponent={CollectionsIcon}
+                text={intl.formatMessage(messages.collections)}
+              />
+            </li>
             {(!multiColumn || !isPinned('DIRECT')) && (
               <li>
                 <ColumnLink
