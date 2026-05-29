@@ -17,7 +17,7 @@ import { fetchList } from 'flavours/polyam/actions/lists';
 import { openModal } from 'flavours/polyam/actions/modal';
 import { apiFollowAccount } from 'flavours/polyam/api/accounts';
 import {
-  apiGetAccounts,
+  apiGetListAccounts,
   apiAddAccountToList,
   apiRemoveAccountFromList,
 } from 'flavours/polyam/api/lists';
@@ -196,7 +196,7 @@ const ListMembers: React.FC<{
     if (id) {
       dispatch(fetchList(id));
 
-      void apiGetAccounts(id)
+      void apiGetListAccounts(id)
         .then((data) => {
           dispatch(importFetchedAccounts(data));
           setAccountIds(data.map((a) => a.id));
