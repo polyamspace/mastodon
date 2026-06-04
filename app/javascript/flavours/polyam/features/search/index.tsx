@@ -7,6 +7,7 @@ import { Helmet } from '@unhead/react/helmet';
 import TagIcon from '@/awesome-icons/solid/hashtag.svg?react';
 import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
 import FindInPageIcon from '@/awesome-icons/solid/quote-right.svg?react';
+import CollectionsIcon from '@/awesome-icons/solid/shapes.svg?react';
 import PeopleIcon from '@/awesome-icons/solid/users.svg?react';
 import { submitSearch, expandSearch } from 'flavours/polyam/actions/search';
 import type { ApiSearchType } from 'flavours/polyam/api_types/search';
@@ -22,6 +23,8 @@ import { Search } from 'flavours/polyam/features/compose/components/search';
 import { useSearchParam } from 'flavours/polyam/hooks/useSearchParam';
 import type { Hashtag as HashtagType } from 'flavours/polyam/models/tags';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
+
+import { CollectionListItem } from '../collections/components/collection_list_item';
 
 import { SearchSection } from './components/search_section';
 
@@ -131,7 +134,8 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
         filteredResults =
           results.accounts.length +
             results.hashtags.length +
-            results.statuses.length >
+            results.statuses.length +
+            results.collections.length >
           0 ? (
             <>
               {results.accounts.length > 0 && (
@@ -151,6 +155,32 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                   {results.accounts.slice(0, INITIAL_DISPLAY).map((id) => (
                     <Account key={id} id={id} />
                   ))}
+                </SearchSection>
+              )}
+
+              {results.collections.length > 0 && (
+                <SearchSection
+                  key='collections'
+                  title={
+                    <>
+                      <Icon id='collections' icon={CollectionsIcon} />
+                      <FormattedMessage
+                        id='search_results.collections'
+                        defaultMessage='Collections'
+                      />
+                    </>
+                  }
+                >
+                  {results.collections
+                    .slice(0, INITIAL_DISPLAY)
+                    .map((collection, index, array) => (
+                      <CollectionListItem
+                        key={collection.id}
+                        collection={collection}
+                        listSize={array.length}
+                        positionInList={index + 1}
+                      />
+                    ))}
                 </SearchSection>
               )}
 
