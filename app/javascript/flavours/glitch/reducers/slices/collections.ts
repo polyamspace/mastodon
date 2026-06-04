@@ -27,6 +27,7 @@ import {
   createAppSelector,
   createDataLoadingThunk,
 } from '@/flavours/glitch/store/typed_functions';
+import { batchArray } from '@/flavours/glitch/utils/batch_array';
 import { inputToHashtag } from '@/flavours/glitch/utils/hashtags';
 
 type QueryStatus = 'idle' | 'loading' | 'error';
@@ -337,10 +338,14 @@ async function importAccountsForPreviewCard(
     )
     .filter((id): id is string => !!id);
 
-  await dispatch(
-    fetchAccounts({
-      accountIds: previewAccountIds,
-    }),
+  // fetchAccounts can only process up to 40 item ids, so we'll
+  // batch the list of ids
+  const batchedAccountIdLists = batchArray(previewAccountIds, 40);
+
+  await Promise.allSettled(
+    batchedAccountIdLists.map((accountIds) =>
+      dispatch(fetchAccounts({ accountIds })),
+    ),
   );
 }
 
