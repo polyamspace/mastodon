@@ -14,19 +14,20 @@ import {
 import { Helmet } from '@unhead/react/helmet';
 
 import ListAltIcon from '@/awesome-icons/solid/list-ul.svg?react';
-import { Callout } from '@/flavours/polyam/components/callout';
-import { useCurrentAccountId } from '@/flavours/polyam/hooks/useAccountId';
-import { initialState } from '@/flavours/polyam/initial_state';
+import { Callout } from 'flavours/polyam/components/callout';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import { NotSignedInIndicator } from 'flavours/polyam/components/not_signed_in_indicator';
+import { useIdentity } from 'flavours/polyam/identity_context';
+import { initialState } from 'flavours/polyam/initial_state';
 import {
   collectionEditorActions,
   fetchCollection,
 } from 'flavours/polyam/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
-import { useCollectionsCreatedBy } from '../overview/created_by_you';
+import { useCollectionsCreatedBy } from '../overview/created_by_account';
 
 import { CollectionAccounts } from './accounts';
 import { CollectionDetails } from './details';
@@ -75,7 +76,7 @@ export const CollectionEditorPage: React.FC<{
 }> = ({ multiColumn }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const accountId = useCurrentAccountId();
+  const { accountId, signedIn } = useIdentity();
   const { id = null } = useParams<{ id?: string }>();
   const { path } = useRouteMatch();
   const collection = useAppSelector((state) =>
@@ -94,13 +95,13 @@ export const CollectionEditorPage: React.FC<{
     (!isEditMode && collectionListStatus === 'loading');
 
   const canCreateMoreCollections =
-    isEditMode || collectionList.length < userCollectionLimit;
+    signedIn && (isEditMode || collectionList.length < userCollectionLimit);
 
   useEffect(() => {
-    if (id) {
+    if (id && signedIn) {
       void dispatch(fetchCollection({ collectionId: id }));
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, signedIn]);
 
   useEffect(() => {
     if (id !== editorStateId) {
@@ -129,6 +130,8 @@ export const CollectionEditorPage: React.FC<{
       <div className='scrollable'>
         {isLoading ? (
           <LoadingIndicator />
+        ) : !signedIn ? (
+          <NotSignedInIndicator />
         ) : canCreateMoreCollections ? (
           <Switch>
             <Route

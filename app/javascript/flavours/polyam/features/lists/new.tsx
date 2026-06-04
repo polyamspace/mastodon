@@ -10,6 +10,8 @@ import { Helmet } from '@unhead/react/helmet';
 
 import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import ListAltIcon from '@/awesome-icons/solid/rectangle-list.svg?react';
+import { NotSignedInIndicator } from '@/flavours/polyam/components/not_signed_in_indicator';
+import { useIdentity } from '@/flavours/polyam/identity_context';
 import { fetchList } from 'flavours/polyam/actions/lists';
 import { createList, updateList } from 'flavours/polyam/actions/lists_typed';
 import { apiGetListAccounts } from 'flavours/polyam/api/lists';
@@ -250,16 +252,17 @@ const NewListWrapper: React.FC<{
 }> = ({ multiColumn }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
+  const { signedIn } = useIdentity();
   const { id } = useParams<{ id?: string }>();
   const list = useAppSelector((state) =>
     id ? state.lists.get(id) : undefined,
   );
 
   useEffect(() => {
-    if (id) {
+    if (signedIn && id) {
       dispatch(fetchList(id));
     }
-  }, [dispatch, id]);
+  }, [dispatch, signedIn, id]);
 
   const isLoading = id && !list;
 
@@ -277,7 +280,13 @@ const NewListWrapper: React.FC<{
       />
 
       <div className='scrollable'>
-        {isLoading ? <LoadingIndicator /> : <NewList list={list} />}
+        {!signedIn ? (
+          <NotSignedInIndicator />
+        ) : isLoading ? (
+          <LoadingIndicator />
+        ) : (
+          <NewList list={list} />
+        )}
       </div>
 
       <Helmet>
