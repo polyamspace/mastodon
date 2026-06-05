@@ -91,7 +91,7 @@ import {
   Reactions,
 } from './util/async-components';
 import { ColumnsContextProvider } from './util/columns_context';
-import { focusColumn, getFocusedItemIndex, focusItemSibling, focusFirstItem } from './util/focusUtils';
+import { focusColumn, getFocusedItemIndex, focusItemSibling, focusFirstItem, getFocusedColumnIndex } from './util/focusUtils';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import { CustomHomepage } from 'flavours/polyam/features/custom_homepage';
 
@@ -556,20 +556,18 @@ class UI extends PureComponent {
   handleMoveUp = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      focusColumn(1);
+      return focusColumn(getFocusedColumnIndex());
     } else {
-      const wasHandled = focusItemSibling(currentItemIndex, -1);
-      return wasHandled;
+      return focusItemSibling(currentItemIndex, -1);
     }
   };
 
   handleMoveDown = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      focusColumn(1);
+      return focusColumn(getFocusedColumnIndex());
     } else {
-      const wasHandled = focusItemSibling(currentItemIndex, 1);
-      return wasHandled;
+      return focusItemSibling(currentItemIndex, 1);
     }
   };
 
