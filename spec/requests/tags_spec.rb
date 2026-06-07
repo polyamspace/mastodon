@@ -8,7 +8,12 @@ RSpec.describe 'Tags' do
       let(:tag) { Fabricate :tag }
       let(:status) { Fabricate :status }
 
-      before { status.tags << tag }
+      before do
+        Setting.local_topic_feed_access = 'public'
+        Setting.remote_topic_feed_access = 'public'
+
+        status.tags << tag
+      end
 
       context 'with HTML format' do
         before { get tag_path(tag) }
