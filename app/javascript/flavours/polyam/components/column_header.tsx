@@ -151,7 +151,7 @@ export const ColumnHeader: React.FC<Props> = ({
     active,
   });
 
-  const buttonClassName = classNames('column-header', {
+  const headingClassName = classNames('column-header', {
     active,
   });
 
@@ -272,16 +272,14 @@ export const ColumnHeader: React.FC<Props> = ({
     </>
   );
 
-  const HeadingElement = hasTitle ? 'h1' : 'div';
-
   const component = (
     <div className={wrapperClassName}>
-      <HeadingElement className={buttonClassName}>
+      <div className={headingClassName}>
         {hasTitle && (
-          <>
+          <h1 className='column-header__title-wrapper'>
             {backButton}
 
-            {onClick && (
+            {onClick ? (
               <button
                 onClick={handleTitleClick}
                 className='column-header__title'
@@ -290,8 +288,7 @@ export const ColumnHeader: React.FC<Props> = ({
               >
                 {titleContents}
               </button>
-            )}
-            {!onClick && (
+            ) : (
               <span
                 className='column-header__title'
                 tabIndex={-1}
@@ -300,7 +297,7 @@ export const ColumnHeader: React.FC<Props> = ({
                 {titleContents}
               </span>
             )}
-          </>
+          </h1>
         )}
 
         {!hasTitle && backButton}
@@ -309,7 +306,7 @@ export const ColumnHeader: React.FC<Props> = ({
           {extraButton}
           {collapseButton}
         </div>
-      </HeadingElement>
+      </div>
 
       <div
         className={collapsibleClassName}
