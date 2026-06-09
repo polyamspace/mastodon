@@ -478,7 +478,7 @@ RSpec.describe '/api/v1/statuses' do
           expect(response).to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
-          expect(response.parsed_body[:content]).to match(/Hello world/)
+          expect(response.parsed_body[:content]).to include('Hello world')
           expect(response.parsed_body[:local_only]).to be true
         end
       end
@@ -492,7 +492,7 @@ RSpec.describe '/api/v1/statuses' do
           expect(response).to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
-          expect(response.parsed_body[:content]).to match(/Hello world/)
+          expect(response.parsed_body[:content]).to include('Hello world')
           expect(response.parsed_body[:local_only]).to be false
         end
       end
@@ -506,7 +506,7 @@ RSpec.describe '/api/v1/statuses' do
           expect(response).to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
-          expect(response.parsed_body[:content]).to match(/Hello world/)
+          expect(response.parsed_body[:content]).to include('Hello world')
           expect(response.parsed_body[:local_only]).to be false
         end
       end
@@ -521,7 +521,7 @@ RSpec.describe '/api/v1/statuses' do
           expect(response).to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
-          expect(response.parsed_body[:content]).to match(/Hello world/)
+          expect(response.parsed_body[:content]).to include('Hello world')
           expect(response.parsed_body[:local_only]).to be true
         end
       end
