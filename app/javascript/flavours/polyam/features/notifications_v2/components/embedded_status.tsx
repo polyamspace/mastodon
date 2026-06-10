@@ -10,6 +10,7 @@ import PhotoLibraryIcon from '@/awesome-icons/regular/image.svg?react';
 import BarChart4BarsIcon from '@/awesome-icons/solid/bars-progress.svg?react';
 import type { ApiMentionJSON } from '@/flavours/polyam/api_types/statuses';
 import { AnimateEmojiProvider } from '@/flavours/polyam/components/emoji/context';
+import { FOCUS_TARGET } from '@/flavours/polyam/components/navigation_focus_target';
 import type { StatusReactions as StatusReactionsType } from '@/flavours/polyam/models/status';
 import { toggleStatusSpoilers } from 'flavours/polyam/actions/statuses';
 import { Avatar } from 'flavours/polyam/components/avatar';
@@ -69,7 +70,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         const path = `/@${account.acct}/${statusId}`;
 
         if (button === 0 && !(ctrlKey || metaKey)) {
-          history.push(path);
+          history.push(path, { focusTarget: FOCUS_TARGET.POST });
         } else if (button === 1 || (button === 0 && (ctrlKey || metaKey))) {
           window.open(path, '_blank', 'noopener');
         }

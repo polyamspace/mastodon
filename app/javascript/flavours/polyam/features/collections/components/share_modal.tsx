@@ -5,6 +5,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router';
 
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
+import { NavigationFocusTarget } from '@/flavours/polyam/components/navigation_focus_target';
 import { me } from '@/flavours/polyam/initial_state';
 import { changeCompose, focusCompose } from 'flavours/polyam/actions/compose';
 import type { ApiCollectionJSON } from 'flavours/polyam/api_types/collections';
@@ -66,7 +67,7 @@ export const CollectionShareModal: React.FC<{
   return (
     <ModalShell>
       <ModalShellBody>
-        <h1 className={classes.heading}>
+        <NavigationFocusTarget as='h1' className={classes.heading}>
           {isNew ? (
             <FormattedMessage
               id='collection.share_modal.title_new'
@@ -78,7 +79,7 @@ export const CollectionShareModal: React.FC<{
               defaultMessage='Share collection'
             />
           )}
-        </h1>
+        </NavigationFocusTarget>
 
         <IconButton
           title={intl.formatMessage({

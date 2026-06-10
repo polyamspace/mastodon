@@ -8,6 +8,7 @@ import { escapeRegExp } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { DisplayName } from '@/flavours/polyam/components/display_name';
+import { NavigationFocusTarget } from '@/flavours/polyam/components/navigation_focus_target';
 import { openModal, closeModal } from 'flavours/polyam/actions/modal';
 import { apiRequest } from 'flavours/polyam/api';
 import { Button } from 'flavours/polyam/components/button';
@@ -474,12 +475,12 @@ const InteractionModal: React.FC<{
   return (
     <div className='modal-root__modal interaction-modal'>
       <div className='interaction-modal__lead'>
-        <h3>
+        <NavigationFocusTarget as='h1'>
           <FormattedMessage
             id='interaction_modal.title'
             defaultMessage='Sign in to continue'
           />
-        </h3>
+        </NavigationFocusTarget>
         <p>
           {intent === 'follow' ? (
             <FormattedMessage
