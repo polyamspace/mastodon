@@ -11,6 +11,7 @@ import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { closeModal } from '@/flavours/polyam/actions/modal';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
 import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
+import { NavigationFocusTarget } from '@/flavours/polyam/components/navigation_focus_target';
 import { getReport } from '@/flavours/polyam/reducers/slices/annual_report';
 import {
   createAppSelector,
@@ -83,7 +84,9 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
   return (
     <div className={styles.wrapper} data-color-scheme='dark'>
       <div className={styles.header}>
-        <h1>Wrapstodon {report.year}</h1>
+        <NavigationFocusTarget as='h1'>
+          Wrapstodon {report.year}
+        </NavigationFocusTarget>
         {account && <p>@{account.acct}</p>}
         {context === 'modal' && (
           <IconButton

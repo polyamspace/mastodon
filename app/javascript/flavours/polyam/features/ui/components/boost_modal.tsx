@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import RepeatIcon from '@/svg-icons/boost.svg?react';
 import { Button } from 'flavours/polyam/components/button';
 import { Icon } from 'flavours/polyam/components/icon';
+import { NavigationFocusTarget } from 'flavours/polyam/components/navigation_focus_target';
 import PrivacyDropdown from 'flavours/polyam/features/compose/components/privacy_dropdown';
 import { EmbeddedStatus } from 'flavours/polyam/features/notifications_v2/components/embedded_status';
 import type { Status, StatusVisibility } from 'flavours/polyam/models/status';
@@ -69,7 +70,7 @@ export const BoostModal: React.FC<{
           </div>
 
           <div>
-            <h1>
+            <NavigationFocusTarget as='h1'>
               {status.get('reblogged') ? (
                 <FormattedMessage
                   id='boost_modal.undo_reblog'
@@ -81,7 +82,7 @@ export const BoostModal: React.FC<{
                   defaultMessage='Boost post?'
                 />
               )}
-            </h1>
+            </NavigationFocusTarget>
             <div>
               {missingMediaDescription ? (
                 <FormattedMessage

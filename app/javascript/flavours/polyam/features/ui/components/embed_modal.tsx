@@ -6,6 +6,7 @@ import { showAlertForError } from 'flavours/polyam/actions/alerts';
 import api from 'flavours/polyam/api';
 import { Button } from 'flavours/polyam/components/button';
 import { CopyPasteText } from 'flavours/polyam/components/copy_paste_text';
+import { NavigationFocusTarget } from 'flavours/polyam/components/navigation_focus_target';
 import { useAppDispatch } from 'flavours/polyam/store';
 
 interface OEmbedResponse {
@@ -76,9 +77,9 @@ const EmbedModal: React.FC<{
         <Button onClick={onClose}>
           <FormattedMessage id='report.close' defaultMessage='Done' />
         </Button>
-        <span className='dialog-modal__header__title'>
+        <NavigationFocusTarget as='h1' className='dialog-modal__header__title'>
           <FormattedMessage id='status.embed' defaultMessage='Get embed code' />
-        </span>
+        </NavigationFocusTarget>
         <Button secondary onClick={onClose}>
           <FormattedMessage
             id='confirmation_modal.cancel'

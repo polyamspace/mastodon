@@ -9,6 +9,7 @@ import { fetchServer } from 'flavours/polyam/actions/server';
 import type { ApiCollectionJSON } from 'flavours/polyam/api_types/collections';
 import { Button } from 'flavours/polyam/components/button';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+import { NavigationFocusTarget } from 'flavours/polyam/components/navigation_focus_target';
 import { useAccount } from 'flavours/polyam/hooks/useAccount';
 import { useAppDispatch } from 'flavours/polyam/store';
 
@@ -23,12 +24,12 @@ const CollectionThanks: React.FC<{
 }> = ({ onClose }) => {
   return (
     <>
-      <h3 className='report-dialog-modal__title'>
+      <NavigationFocusTarget as='h1' className='report-dialog-modal__title'>
         <FormattedMessage
           id='report.thanks.title_actionable'
           defaultMessage="Thanks for reporting, we'll look into this."
         />
-      </h3>
+      </NavigationFocusTarget>
 
       <div className='flex-spacer' />
 

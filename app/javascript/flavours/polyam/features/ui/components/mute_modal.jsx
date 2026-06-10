@@ -17,6 +17,7 @@ import { closeModal } from 'flavours/polyam/actions/modal';
 import { Button } from 'flavours/polyam/components/button';
 import { CheckBox } from 'flavours/polyam/components/check_box';
 import { Icon } from 'flavours/polyam/components/icon';
+import { NavigationFocusTarget } from 'flavours/polyam/components/navigation_focus_target';
 import { RadioButton } from 'flavours/polyam/components/radio_button';
 
 const messages = defineMessages({
@@ -83,7 +84,9 @@ export const MuteModal = ({ accountId, acct }) => {
           </div>
 
           <div>
-            <h1><FormattedMessage id='mute_modal.title' defaultMessage='Mute user?' /></h1>
+            <NavigationFocusTarget as='h1'>
+              <FormattedMessage id='mute_modal.title' defaultMessage='Mute user?' />
+            </NavigationFocusTarget>
             <p>@{acct}</p>
           </div>
         </div>

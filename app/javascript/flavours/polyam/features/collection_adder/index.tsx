@@ -5,6 +5,7 @@ import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import type { ApiCollectionJSON } from '@/flavours/polyam/api_types/collections';
 import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
+import { NavigationFocusTarget } from '@/flavours/polyam/components/navigation_focus_target';
 import { useCurrentAccountId } from '@/flavours/polyam/hooks/useAccountId';
 import type { Account } from '@/flavours/polyam/models/account';
 import {
@@ -114,13 +115,17 @@ export const CollectionAdder: React.FC<{
           onClick={onClose}
         />
 
-        <span className='dialog-modal__header__title' id={titleId}>
+        <NavigationFocusTarget
+          as='h1'
+          id={titleId}
+          className='dialog-modal__header__title'
+        >
           <FormattedMessage
             id='collections.add_to_collection'
             defaultMessage='Add {name} to collections'
             values={{ name: <strong>@{account?.acct}</strong> }}
           />
-        </span>
+        </NavigationFocusTarget>
       </div>
 
       <div className='dialog-modal__content'>
