@@ -376,11 +376,6 @@ export function uploadCompose(files) {
       return;
     }
 
-    if (getState().getIn(['compose', 'poll'])) {
-      dispatch(showAlert({ message: messages.uploadErrorPoll }));
-      return;
-    }
-
     dispatch(uploadComposeRequest());
 
     for (const [i, file] of Array.from(files).entries()) {
