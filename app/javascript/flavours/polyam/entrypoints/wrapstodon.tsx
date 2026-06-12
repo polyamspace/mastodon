@@ -5,6 +5,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { importFetchedStatuses } from '@/flavours/polyam/actions/importer';
 import { hydrateStore } from '@/flavours/polyam/actions/store';
 import type { ApiAnnualReportResponse } from '@/flavours/polyam/api/annual_report';
+import { FocusTargetProvider } from '@/flavours/polyam/components/navigation_focus_target';
 import { Router } from '@/flavours/polyam/components/router';
 import { WrapstodonSharedPage } from '@/flavours/polyam/features/annual_report/shared_page';
 import { IntlProvider, loadLocale } from '@/flavours/polyam/locales';
@@ -52,7 +53,9 @@ function loaded() {
     <IntlProvider>
       <ReduxProvider store={store}>
         <Router>
-          <WrapstodonSharedPage />
+          <FocusTargetProvider>
+            <WrapstodonSharedPage />
+          </FocusTargetProvider>
         </Router>
       </ReduxProvider>
     </IntlProvider>,
