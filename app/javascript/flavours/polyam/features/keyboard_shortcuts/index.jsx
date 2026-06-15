@@ -104,11 +104,11 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 </tr>
               )}
               <tr>
-                <td><kbd>k</kbd>, <FormattedMessage id='keyboard_shortcuts.keys.page_up' defaultMessage='Page Up' tagName='kbd' /></td>
+                <td><kbd>k</kbd>, <FormattedMessage id='keyboard_shortcuts.keys.alt' defaultMessage='Alt' tagName='kbd' />+<FormattedMessage id='keyboard_shortcuts.keys.page_up' defaultMessage='Page Up' tagName='kbd' /></td>
                 <td><FormattedMessage id='keyboard_shortcuts.up' defaultMessage='to move up in the list' /></td>
               </tr>
               <tr>
-                <td><kbd>j</kbd>, <FormattedMessage id='keyboard_shortcuts.keys.page_down' defaultMessage='Page Down' tagName='kbd' /></td>
+                <td><kbd>j</kbd>, <FormattedMessage id='keyboard_shortcuts.keys.alt' defaultMessage='Alt' tagName='kbd' />+<FormattedMessage id='keyboard_shortcuts.keys.page_down' defaultMessage='Page Down' tagName='kbd' /></td>
                 <td><FormattedMessage id='keyboard_shortcuts.down' defaultMessage='to move down in the list' /></td>
               </tr>
               <tr>
