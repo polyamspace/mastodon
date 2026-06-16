@@ -126,7 +126,7 @@ export const AccountHeader: React.FC<{
       {!hidden && account.moved && (
         <MovedNote accountId={account.id} targetAccountId={account.moved} />
       )}
-      {!hidden && !account.memorial && anniversary && (
+      {!hidden && !account.memorial && !!anniversary && (
         <AnniversaryNote account={account} years={anniversary} />
       )}
 
