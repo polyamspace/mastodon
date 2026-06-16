@@ -66,7 +66,7 @@ class Category extends PureComponent {
   render () {
     const { category, startedFrom, rules, intl } = this.props;
 
-    const options = rules.length > 0 ? [
+    let options = rules.length > 0 ? [
       'spam',
       'violation',
       'other',
@@ -75,10 +75,21 @@ class Category extends PureComponent {
       'other',
     ];
 
+    if (startedFrom === 'collection') {
+      options = options.filter(item => item !== 'dislike');
+    }
+
     return (
       <>
         <NavigationFocusTarget as='h1' className='report-dialog-modal__title'>
-          <FormattedMessage id='report.category.title' defaultMessage="Tell us what's going on with this {type}" values={{ type: intl.formatMessage(messages[startedFrom]) }} />
+          {startedFrom === 'collection' ? (
+            <FormattedMessage
+              id='report.collection_comment'
+              defaultMessage='Why do you want to report this collection?'
+            />
+          ) : (
+            <FormattedMessage id='report.category.title' defaultMessage="Tell us what's going on with this {type}" values={{ type: intl.formatMessage(messages[startedFrom]) }} />
+          )}
         </NavigationFocusTarget>
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.category.subtitle' defaultMessage='Choose the best match' /></p>
 
