@@ -61,11 +61,6 @@ export const Profile: React.FC<{
     (state) =>
       state.server.server.item?.configuration.accounts.max_note_length ?? 500,
   );
-  const maxDisplayNameChars = useAppSelector(
-    (state) =>
-      state.server.server.item?.configuration.accounts
-        .max_display_name_length ?? 30,
-  );
   const [displayName, setDisplayName] = useState(account?.display_name ?? '');
   const [note, setNote] = useState(account ? unescapeHTML(account.note) : '');
   const [avatar, setAvatar] = useState<File>();
@@ -80,6 +75,11 @@ export const Profile: React.FC<{
   const dispatch = useAppDispatch();
   const intl = useIntl();
   const history = useHistory();
+
+  const maxDisplayNameLength = useAppSelector(
+    (state) =>
+      state.server.server.item?.configuration.accounts.max_display_name_length,
+  );
 
   const handleDisplayNameChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -227,7 +227,7 @@ export const Profile: React.FC<{
 
           <div className='fields-group'>
             <TextInputField
-              maxLength={maxDisplayNameChars}
+              maxLength={maxDisplayNameLength ?? 40}
               label={
                 <FormattedMessage
                   id='onboarding.profile.display_name'
