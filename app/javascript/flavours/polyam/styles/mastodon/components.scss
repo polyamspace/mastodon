@@ -2097,7 +2097,9 @@ body > [data-popper-placement] {
 .account {
   padding: 10px; // glitch: reduced padding
 
-  &:not(&--without-border) {
+  // Using :where keeps specificity low, allowing for existing
+  // .account overrides to still apply
+  &:where(:not(&--without-border)) {
     border-bottom: 1px solid var(--color-border-primary);
   }
 
@@ -8833,7 +8835,7 @@ noscript {
     gap: 8px;
 
     $button-breakpoint: 420px;
-    $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
+    $button-fallback-breakpoint: $button-breakpoint + 55px;
 
     &--desktop {
       margin-top: 55px;
@@ -8857,7 +8859,7 @@ noscript {
       }
 
       @supports (not (container-type: inline-size)) {
-        @media (min-width: (#{$button-fallback-breakpoint} + 1px)) {
+        @media (min-width: ($button-fallback-breakpoint + 1px)) {
           display: none;
         }
       }
@@ -11941,6 +11943,9 @@ noscript {
 
 .column-footer {
   padding: 16px;
+  position: sticky;
+  bottom: 0;
+  background: var(--color-bg-primary);
 }
 
 .lists-scrollable {
