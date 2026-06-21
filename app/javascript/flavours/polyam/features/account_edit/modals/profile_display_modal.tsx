@@ -3,16 +3,17 @@ import { useCallback } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { Callout } from '@/flavours/glitch/components/callout';
-import { ToggleField } from '@/flavours/glitch/components/form_fields';
-import { LoadingIndicator } from '@/flavours/glitch/components/loading_indicator';
-import { patchProfile } from '@/flavours/glitch/reducers/slices/profile_edit';
-import { useAppDispatch, useAppSelector } from '@/flavours/glitch/store';
+import { Callout } from '@/flavours/polyam/components/callout';
+import { ToggleField } from '@/flavours/polyam/components/form_fields';
+import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
+import { patchProfile } from '@/flavours/polyam/reducers/slices/profile_edit';
+import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
 import type { DialogModalProps } from '../../ui/components/dialog_modal';
 import { DialogModal } from '../../ui/components/dialog_modal';
 import { messages } from '../index';
-import classes from '../styles.module.scss';
+
+import classes from './styles.module.scss';
 
 export const ProfileDisplayModal: FC<DialogModalProps> = ({ onClose }) => {
   const intl = useIntl();

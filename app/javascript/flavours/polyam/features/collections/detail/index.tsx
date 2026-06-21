@@ -8,9 +8,7 @@ import { useLocation, useParams } from 'react-router';
 import ListAltIcon from '@/awesome-icons/solid/list-ul.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
 import { openModal } from '@/flavours/polyam/actions/modal';
-import { useRelationship } from '@/flavours/polyam/hooks/useRelationship';
 import type { ApiCollectionJSON } from 'flavours/polyam/api_types/collections';
-import { Account } from 'flavours/polyam/components/account';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
@@ -19,26 +17,19 @@ import {
   LinkedDisplayName,
 } from 'flavours/polyam/components/display_name';
 import { IconButton } from 'flavours/polyam/components/icon_button';
-import {
-  Article,
-  ItemList,
-  Scrollable,
-} from 'flavours/polyam/components/scrollable_list/components';
+import { Scrollable } from 'flavours/polyam/components/scrollable_list/components';
 import { Tag } from 'flavours/polyam/components/tags/tag';
 import { useAccount } from 'flavours/polyam/hooks/useAccount';
 import { me } from 'flavours/polyam/initial_state';
 import { fetchCollection } from 'flavours/polyam/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
+import { CollectionAccountsList } from './accounts_list';
 import { CollectionMetaData } from './collection_list_item';
 import { CollectionMenu } from './collection_menu';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
-  empty: {
-    id: 'collections.accounts.empty_title',
-    defaultMessage: 'This collection is empty',
-  },
   loading: {
     id: 'collections.detail.loading',
     defaultMessage: 'Loading collection…',
@@ -46,10 +37,6 @@ const messages = defineMessages({
   share: {
     id: 'collections.detail.share',
     defaultMessage: 'Share this collection',
-  },
-  accounts: {
-    id: 'collections.detail.accounts_heading',
-    defaultMessage: 'Accounts',
   },
 });
 
@@ -149,31 +136,8 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
         collection={collection}
         className={classes.metaData}
       />
-      <h2 className='sr-only'>{intl.formatMessage(messages.accounts)}</h2>
     </div>
   );
-};
-
-const CollectionAccountItem: React.FC<{
-  accountId: string | undefined;
-  collectionOwnerId: string;
-}> = ({ accountId, collectionOwnerId }) => {
-  const relationship = useRelationship(accountId);
-
-  if (!accountId) {
-    return null;
-  }
-
-  // When viewing your own collection, only show the Follow button
-  // for accounts you're not following (anymore).
-  // Otherwise, always show the follow button in its various states.
-  const withoutButton =
-    accountId === me ||
-    !relationship ||
-    (collectionOwnerId === me &&
-      (relationship.following || relationship.requested));
-
-  return <Account minimal={withoutButton} withMenu={false} id={accountId} />;
 };
 
 export const CollectionDetailPage: React.FC<{
@@ -185,7 +149,6 @@ export const CollectionDetailPage: React.FC<{
   const collection = useAppSelector((state) =>
     id ? state.collections.collections[id] : undefined,
   );
-
   const isLoading = !!id && !collection;
 
   useEffect(() => {
@@ -208,24 +171,7 @@ export const CollectionDetailPage: React.FC<{
 
       <Scrollable>
         {collection && <CollectionHeader collection={collection} />}
-        <ItemList
-          isLoading={isLoading}
-          emptyMessage={intl.formatMessage(messages.empty)}
-        >
-          {collection?.items.map(({ account_id }, index, items) => (
-            <Article
-              key={account_id}
-              data-id={account_id}
-              aria-posinset={index + 1}
-              aria-setsize={items.length}
-            >
-              <CollectionAccountItem
-                accountId={account_id}
-                collectionOwnerId={collection.account_id}
-              />
-            </Article>
-          ))}
-        </ItemList>
+        <CollectionAccountsList collection={collection} isLoading={isLoading} />
       </Scrollable>
 
       <Helmet>

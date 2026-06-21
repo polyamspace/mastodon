@@ -5,8 +5,8 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
-import ListAltIcon from '@/awesome-icons/solid/list-ul.svg?react';
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
+import CollectionsFilledIcon from '@/awesome-icons/solid/shapes.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
@@ -73,8 +73,8 @@ export const Collections: React.FC<{
     >
       <ColumnHeader
         title={intl.formatMessage(messages.heading)}
-        icon='list-ul'
-        iconComponent={ListAltIcon}
+        icon='collections'
+        iconComponent={CollectionsFilledIcon}
         multiColumn={multiColumn}
         extraButton={
           <Link
