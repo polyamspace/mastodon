@@ -109,21 +109,13 @@ RSpec.describe NotificationMailer do
     it 'renders the email' do
       expect { mail.deliver }
         .to send_email(
-          subject: 'bob favorited your post'
+          subject: 'bob favorited your toot'
         )
       expect(mail.text_part.body)
-        .to match('Your post was favorited by bob')
+        .to match('Your toot was favorited by bob')
         .and match('The body of the own status')
       expect(mail)
-<<<<<<< HEAD
-        .to be_present
-        .and(have_subject('bob favorited your toot'))
-        .and(have_body_text('Your toot was favorited by bob'))
-        .and(have_body_text('The body of the own status'))
-        .and have_thread_headers
-=======
         .to have_thread_headers
->>>>>>> bbd88f0b9b853d374439d703168203795bbe700f
         .and have_standard_headers('favourite').for(receiver)
     end
 
@@ -141,21 +133,13 @@ RSpec.describe NotificationMailer do
     it 'renders the email' do
       expect { mail.deliver }
         .to send_email(
-          subject: 'bob boosted your post'
+          subject: 'bob boosted your toot'
         )
       expect(mail.text_part.body)
-        .to match('Your post was boosted by bob')
+        .to match('Your toot was boosted by bob')
         .and match('The body of the own status')
       expect(mail)
-<<<<<<< HEAD
-        .to be_present
-        .and(have_subject('bob boosted your toot'))
-        .and(have_body_text('Your toot was boosted by bob'))
-        .and(have_body_text('The body of the own status'))
-        .and have_thread_headers
-=======
         .to have_thread_headers
->>>>>>> bbd88f0b9b853d374439d703168203795bbe700f
         .and have_standard_headers('reblog').for(receiver)
     end
 
