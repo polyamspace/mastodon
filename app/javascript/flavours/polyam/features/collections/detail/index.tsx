@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
-import { useLocation, useParams } from 'react-router';
+import { useHistory, useLocation, useParams } from 'react-router';
 
 import ListAltIcon from '@/awesome-icons/solid/list-ul.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
@@ -84,6 +84,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   const intl = useIntl();
   const { name, description, tag, account_id } = collection;
   const dispatch = useAppDispatch();
+  const history = useHistory();
 
   const handleShare = useCallback(() => {
     dispatch(
@@ -97,12 +98,14 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   }, [collection, dispatch]);
 
   const location = useLocation<{ newCollection?: boolean } | undefined>();
-  const wasJustCreated = location.state?.newCollection;
+  const isNewCollection = location.state?.newCollection;
   useEffect(() => {
-    if (wasJustCreated) {
+    if (isNewCollection) {
+      // Replace with current pathname to clear `newCollection` state
+      history.replace(location.pathname);
       handleShare();
     }
-  }, [handleShare, wasJustCreated]);
+  }, [history, handleShare, isNewCollection, location.pathname]);
 
   return (
     <div className={classes.header}>
