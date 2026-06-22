@@ -54,6 +54,7 @@ module IconHelper
     inbox: 'inbox',
     info: 'circle-info',
     key: 'key',
+    keyboard_arrow_up: 'angle-up',
     keyboard_double_arrow_down: 'angles-down',
     link: 'link',
     link_off: 'link-slash',
