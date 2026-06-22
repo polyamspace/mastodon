@@ -15,7 +15,7 @@
                  recommended: true,
                  wrapper: :with_label
 
-  %h4= t 'preferences.notifications'
+  %h2= t 'preferences.notifications'
 
   = f.simple_fields_for :settings, current_user.settings do |ff|
     .fields-group
@@ -27,7 +27,7 @@
                  include_blank: false,
                  polyam_only: true
 
-  %h4= t 'preferences.public_timelines'
+  %h2= t 'preferences.public_timelines'
 
   .fields-group
     = f.input :chosen_languages,

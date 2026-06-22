@@ -17,11 +17,9 @@ import { openModal } from '@/flavours/polyam/actions/modal';
 import { Dropdown } from '@/flavours/polyam/components/dropdown_menu';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
 import type { MenuItem } from '@/flavours/polyam/models/dropdown_menu';
-import {
-  createAppSelector,
-  useAppDispatch,
-  useAppSelector,
-} from '@/flavours/polyam/store';
+import type { ImageLocation } from '@/flavours/polyam/reducers/slices/profile_edit';
+import { selectImageInfo } from '@/flavours/polyam/reducers/slices/profile_edit';
+import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
 import classes from '../styles.module.scss';
 
@@ -50,36 +48,15 @@ const messages = defineMessages({
   },
 });
 
-export type ImageLocation = 'avatar' | 'header';
-
-const selectImageInfo = createAppSelector(
-  [
-    (state) => state.profileEdit.profile,
-    (_, location: ImageLocation) => location,
-  ],
-  (profile, location) => {
-    if (!profile) {
-      return {
-        hasImage: false,
-        hasAlt: false,
-      };
-    }
-
-    return {
-      hasImage: !!profile[`${location}Static`],
-      hasAlt: !!profile[`${location}Description`],
-    };
-  },
-);
-
 export const AccountImageEdit: FC<{
   className?: string;
   location: ImageLocation;
 }> = ({ className, location }) => {
   const intl = useIntl();
-  const { hasAlt, hasImage } = useAppSelector((state) =>
+  const { alt, src } = useAppSelector((state) =>
     selectImageInfo(state, location),
   );
+  const hasAlt = !!alt;
   const dispatch = useAppDispatch();
 
   const handleModal = useCallback(
@@ -125,7 +102,7 @@ export const AccountImageEdit: FC<{
 
   const iconClassName = classNames(classes.imageButton, className);
 
-  if (!hasImage) {
+  if (!src) {
     return (
       <IconButton
         title={intl.formatMessage(messages.add)}

@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 import type { ModalType } from '@/flavours/polyam/actions/modal';
 import { openModal } from '@/flavours/polyam/actions/modal';
+import { AccountBio } from '@/flavours/polyam/components/account_bio';
 import { Avatar } from '@/flavours/polyam/components/avatar';
 import { Button } from '@/flavours/polyam/components/button';
 import { DismissibleCallout } from '@/flavours/polyam/components/callout/dismissible';
@@ -201,7 +202,11 @@ export const AccountEdit: FC = () => {
             />
           }
         >
-          <EmojiHTML htmlString={profile.bio} {...htmlHandlers} />
+          <AccountBio
+            showDropdown
+            accountId={profile.id}
+            className={classes.bio}
+          />
         </AccountEditSection>
 
         <AccountEditSection
