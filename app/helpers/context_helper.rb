@@ -27,6 +27,12 @@ module ContextHelper
     voters_count: { 'toot' => 'http://joinmastodon.org/ns#', 'votersCount' => 'toot:votersCount' },
     suspended: { 'toot' => 'http://joinmastodon.org/ns#', 'suspended' => 'toot:suspended' },
     attribution_domains: { 'toot' => 'http://joinmastodon.org/ns#', 'attributionDomains' => { '@id' => 'toot:attributionDomains', '@container' => '@set' } },
+    profile_settings: {
+      'toot' => 'http://joinmastodon.org/ns#',
+      'showFeatured' => 'toot:showFeatured',
+      'showMedia' => 'toot:showMedia',
+      'showRepliesInMedia' => 'toot:showRepliesInMedia',
+    },
     quote_requests: { 'QuoteRequest' => 'https://w3id.org/fep/044f#QuoteRequest' },
     quotes: {
       'quote' => 'https://w3id.org/fep/044f#quote',

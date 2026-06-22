@@ -38,6 +38,7 @@ class UserRole < ApplicationRecord
     manage_user_access: (1 << 18),
     delete_user_data: (1 << 19),
     view_feeds: (1 << 20),
+    invite_bypass_approval: (1 << 21),
     bypass_invite_limits: (1 << 50),
   }.freeze
 
@@ -52,10 +53,12 @@ class UserRole < ApplicationRecord
     ALL  = FLAGS.values.reduce(&:|)
 
     DEFAULT = FLAGS[:invite_users]
+    SAFE = FLAGS[:invite_users] | FLAGS[:invite_bypass_approval] | FLAGS[:bypass_invite_limits]
 
     CATEGORIES = {
       invites: %i(
         invite_users
+        invite_bypass_approval
         bypass_invite_limits
       ).freeze,
 
@@ -211,6 +214,6 @@ class UserRole < ApplicationRecord
   end
 
   def validate_dangerous_permissions
-    errors.add(:permissions_as_keys, :dangerous) if everyone? && (Flags::DEFAULT | FLAGS[:bypass_invite_limits]) & permissions != permissions
+    errors.add(:permissions_as_keys, :dangerous) if everyone? && Flags::SAFE & permissions != permissions
   end
 end
