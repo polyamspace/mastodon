@@ -778,6 +778,8 @@ de:
         administrator_description: Beschränkung aller Berechtigungen umgehen
         delete_user_data: Kontodaten löschen
         delete_user_data_description: Daten anderer Profile ohne Verzögerung löschen
+        invite_bypass_approval: Einladungen ohne Überprüfungen
+        invite_bypass_approval_description: Neue Benutzer*innen zur Registrierung auf diesem Server einladen, ohne manuell genehmigt werden zu müssen
         invite_users: Einladungen
         invite_users_description: Neue Benutzer*innen zur Registrierung auf diesem Server einladen
         manage_announcements: Ankündigungen
@@ -1295,6 +1297,7 @@ de:
       invited_by: 'Du kannst %{domain} beitreten – dank der Einladung von:'
       preamble: Diese werden von den Moderator*innen von %{domain} festgelegt und durchgesetzt.
       preamble_invited: Bevor du fortfährst, beachte bitte die Grundregeln der Moderator*innen von %{domain}.
+      read_more: Weiterlesen
       title: Einige Grundregeln.
       title_invited: Du wurdest eingeladen.
     security: Sicherheit

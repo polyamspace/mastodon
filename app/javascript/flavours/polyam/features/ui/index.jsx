@@ -27,7 +27,7 @@ import { layoutFromWindow } from 'flavours/polyam/is_mobile';
 import { selectUnreadNotificationGroupsCount } from 'flavours/polyam/selectors/notifications';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 import { checkAnnualReport } from '@/flavours/polyam/reducers/slices/annual_report';
-import { isClientFeatureEnabled } from '@/flavours/polyam/utils/environment';
+import { isServerFeatureEnabled } from '@/flavours/polyam/utils/environment';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
@@ -192,7 +192,7 @@ class SwitchingColumnsArea extends PureComponent {
     }
 
     const profileRedesignRoutes = [];
-    if (isClientFeatureEnabled('profile_editing')) {
+    if (isServerFeatureEnabled('profile_redesign')) {
       profileRedesignRoutes.push(
         <WrappedRoute key="edit" path='/profile/edit' component={AccountEdit} content={children} />,
         <WrappedRoute key="featured_tags" path='/profile/featured_tags' component={AccountEditFeaturedTags} content={children} />

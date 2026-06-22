@@ -155,8 +155,12 @@ export async function apiRequest<
 export async function apiRequestGet<ApiResponse = unknown, ApiData = unknown>(
   url: ApiUrl,
   params?: RequestParamsOrData<ApiData>,
+  args: {
+    signal?: AbortSignal;
+    timeout?: number;
+  } = {},
 ) {
-  return apiRequest<ApiResponse>('GET', url, { params });
+  return apiRequest<ApiResponse>('GET', url, { params, ...args });
 }
 
 export async function apiRequestPost<ApiResponse = unknown>(

@@ -25,8 +25,8 @@ import {
   ItemList,
   Scrollable,
 } from 'flavours/polyam/components/scrollable_list/components';
-import { useSearchAccounts } from 'flavours/polyam/features/lists/use_search_accounts';
 import { useAccount } from 'flavours/polyam/hooks/useAccount';
+import { useSearchAccounts } from 'flavours/polyam/hooks/useSearchAccounts';
 import { me } from 'flavours/polyam/initial_state';
 import {
   addCollectionItem,
@@ -374,6 +374,7 @@ export const CollectionAccounts: React.FC<{
           onSelectItem={
             isEditMode ? instantToggleAccountItem : toggleAccountItem
           }
+          closeOnSelect={false}
         />
         {hasMaxAccounts && (
           <FormattedMessage

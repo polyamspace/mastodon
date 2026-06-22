@@ -778,6 +778,7 @@ fi:
         administrator_description: Käyttäjät, joilla on tämä käyttöoikeus, ohittavat jokaisen käyttöoikeuden
         delete_user_data: Poistaa käyttäjän tiedot
         delete_user_data_description: Sallii käyttäjien poistaa muiden käyttäjien tiedot viipymättä
+        invite_bypass_approval: Kutsu käyttäjiä arvioimatta
         invite_users: Kutsua käyttäjiä
         invite_users_description: Sallii käyttäjien kutsua uusia käyttäjiä palvelimelle
         manage_announcements: Hallita tiedotteita
@@ -1295,6 +1296,7 @@ fi:
       invited_by: 'Voit liittyä palvelimelle %{domain} kutsulla, jonka sait seuraavalta käyttäjältä:'
       preamble: Palvelimen %{domain} moderaattorit määrittävät ja valvovat sääntöjä.
       preamble_invited: Ennen kuin jatkat ota huomioon palvelimen %{domain} moderaattorien asettamat perussäännöt.
+      read_more: Lue lisää
       title: Joitakin perussääntöjä.
       title_invited: Sinut on kutsuttu.
     security: Turvallisuus
