@@ -854,7 +854,7 @@ class Status extends ImmutablePureComponent {
     return (
       <Hotkeys handlers={handlers} focusable={!unfocusable}>
         <div
-          className={classNames('status__wrapper', 'focusable', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), unread, collapsed: isCollapsed })}
+          className={classNames('status__wrapper', 'focusable', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), 'status__wrapper--in-thread': !!rootId, unread, collapsed: isCollapsed })}
           {...selectorAttribs}
           tabIndex={unfocusable ? null : 0}
           data-featured={featured ? 'true' : null}
