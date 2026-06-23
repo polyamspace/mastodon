@@ -1806,7 +1806,7 @@ body > [data-popper-placement] {
   font-weight: 500;
   color: var(--color-text-secondary);
 
-  .status__wrapper-reply & {
+  .status__wrapper-reply.status__wrapper--in-thread & {
     --thread-margin: calc(46px + 8px);
 
     margin-inline-start: var(--thread-margin);
@@ -3962,6 +3962,7 @@ a.account__display-name {
 }
 
 .scrollable {
+  container: column / inline-size;
   overflow-y: scroll;
   overflow-x: hidden;
   flex: 1 1 auto;
@@ -4666,6 +4667,7 @@ a.status-card {
 }
 
 .column-header__wrapper {
+  container: column / inline-size;
   position: relative;
   flex: 0 0 auto;
   z-index: 1;
