@@ -84,6 +84,7 @@ interface AccountProps {
   withMenu?: boolean;
   withBorder?: boolean;
   extraAccountInfo?: React.ReactNode;
+  className?: string;
   children?: React.ReactNode;
 }
 
@@ -97,6 +98,7 @@ export const Account: React.FC<AccountProps> = ({
   withMenu = true,
   withBorder = true,
   extraAccountInfo,
+  className,
   children,
 }) => {
   const intl = useIntl();
@@ -326,7 +328,7 @@ export const Account: React.FC<AccountProps> = ({
   return (
     // Polyam: Use withBio for minimal class
     <div
-      className={classNames('account', {
+      className={classNames('account', className, {
         'account--minimal': !withBio,
         'account--without-border': !withBorder,
       })}
