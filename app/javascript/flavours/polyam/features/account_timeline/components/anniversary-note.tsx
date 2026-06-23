@@ -21,9 +21,9 @@ export const AnniversaryNote: React.FC<{ account: Account; years: number }> = ({
       <Fedimation />
 
       <div className='account-anniversary-banner__message'>
-        {/*eslint-disable-next-line formatjs/blocklist-elements */}
         <FormattedMessage
           id='account.anniversary'
+          //eslint-disable-next-line formatjs/blocklist-elements
           defaultMessage="It's {acct}'s {years, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} fediversary!"
           values={{
             acct: account.acct,
