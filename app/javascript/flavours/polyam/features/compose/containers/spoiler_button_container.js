@@ -1,8 +1,9 @@
-import { injectIntl, defineMessages } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import { connect } from 'react-redux';
 
 import WarningIcon from '@/awesome-icons/solid/triangle-exclamation.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 
 import { changeComposeSpoilerness } from '../../../actions/compose';

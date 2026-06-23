@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
 import VisibilityIcon from '@/awesome-icons/regular/eye.svg?react';
 import CommentIcon from '@/awesome-icons/solid/comment.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';

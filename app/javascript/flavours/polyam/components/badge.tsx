@@ -41,7 +41,7 @@ export const Badge: FC<BadgeProps> = ({
     }
   >
     {icon}
-    {label}
+    <span>{label}</span>
     {domain && <span className='account-role__domain'>{domain}</span>}
   </div>
 );

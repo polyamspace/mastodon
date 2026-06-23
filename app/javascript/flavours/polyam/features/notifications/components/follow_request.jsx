@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { IconButton } from 'flavours/polyam/components/icon_button';

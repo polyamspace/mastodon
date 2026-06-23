@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 import { Button } from 'flavours/polyam/components/button';
 import Column from 'flavours/polyam/components/column';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { GIF } from 'flavours/polyam/components/gif';
 
 class CopyButton extends PureComponent {

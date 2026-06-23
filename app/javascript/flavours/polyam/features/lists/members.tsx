@@ -297,6 +297,7 @@ const ListMembers: React.FC<{
             <FormattedMessage
               id='lists.no_results_found'
               defaultMessage='No results found.'
+              tagName='span'
             />
           )
         }

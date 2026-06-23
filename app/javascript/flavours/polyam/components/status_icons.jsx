@@ -2,13 +2,14 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import CommentingIcon from '@/awesome-icons/solid/comment-dots.svg?react';
 import CommentIcon from '@/awesome-icons/solid/comment.svg?react';
 import HomeIcon from '@/awesome-icons/solid/house.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Icon } from 'flavours/polyam/components/icon';
 import { MediaIcon } from 'flavours/polyam/components/media_icon';
 import { languages } from 'flavours/polyam/initial_state';

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
 

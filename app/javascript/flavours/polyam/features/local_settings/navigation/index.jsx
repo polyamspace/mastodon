@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { injectIntl, defineMessages } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import ImageIcon from '@/awesome-icons/regular/image.svg?react';
 import CollapseIcon from '@/awesome-icons/solid/angles-up.svg?react';
@@ -10,6 +10,7 @@ import AppSettingsIcon from '@/awesome-icons/solid/gears.svg?react';
 import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
 import WarningIcon from '@/awesome-icons/solid/triangle-exclamation.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { preferencesLink } from 'flavours/polyam/utils/backend_links';
 
 import LocalSettingsNavigationItem from './item';

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
 import ScrollableList from '../../components/scrollable_list';

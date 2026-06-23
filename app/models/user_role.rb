@@ -39,6 +39,7 @@ class UserRole < ApplicationRecord
     delete_user_data: (1 << 19),
     view_feeds: (1 << 20),
     invite_bypass_approval: (1 << 21),
+    manage_email_subscriptions: (1 << 22),
     bypass_invite_limits: (1 << 50),
   }.freeze
 
@@ -60,6 +61,10 @@ class UserRole < ApplicationRecord
         invite_users
         invite_bypass_approval
         bypass_invite_limits
+      ).freeze,
+
+      email: %i(
+        manage_email_subscriptions
       ).freeze,
 
       moderation: %i(

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -11,6 +11,7 @@ import MoreHorizIcon from '@/awesome-icons/solid/ellipsis.svg?react';
 import ReplyAllIcon from '@/awesome-icons/solid/reply-all.svg?react';
 import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { identityContextPropShape, withIdentity } from 'flavours/polyam/identity_context';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/polyam/permissions';
 import { accountAdminLink, instanceAdminLink, statusAdminLink } from 'flavours/polyam/utils/backend_links';

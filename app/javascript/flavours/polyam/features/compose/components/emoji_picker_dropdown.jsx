@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -12,6 +12,8 @@ import Overlay from 'react-overlays/Overlay';
 
 import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
 import { IconButton } from 'flavours/polyam/components/icon_button';
+
+import { injectIntl } from '@/flavours/polyam/components/intl';
 
 import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
 import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';

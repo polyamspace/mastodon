@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import FileArrowUpIcon from '@/awesome-icons/solid/file-arrow-up.svg?react';
 import PaintBrushIcon from '@/awesome-icons/solid/paintbrush.svg?react';
 import PaperClipIcon from '@/awesome-icons/solid/paperclip.svg?react';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 
 import { DropdownIconButton } from './dropdown_icon_button';
 

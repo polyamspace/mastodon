@@ -1,9 +1,10 @@
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import { connect } from 'react-redux';
 
 import { openModal } from 'flavours/polyam/actions/modal';
 import { fetchNotifications, setNotificationsFilter } from 'flavours/polyam/actions/notification_groups';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 
 import { showAlert } from '../../../actions/alerts';
 import { requestBrowserPermission } from '../../../actions/notifications';

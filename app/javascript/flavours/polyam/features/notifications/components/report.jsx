@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { AvatarOverlay } from 'flavours/polyam/components/avatar_overlay';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { RelativeTimestamp } from 'flavours/polyam/components/relative_timestamp';
 
 // This needs to be kept in sync with app/models/report.rb

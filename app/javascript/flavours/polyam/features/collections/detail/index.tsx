@@ -8,6 +8,7 @@ import { useHistory, useLocation, useParams } from 'react-router';
 import ListAltIcon from '@/awesome-icons/solid/list-ul.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
 import { openModal } from '@/flavours/polyam/actions/modal';
+import { RelativeTimestamp } from '@/flavours/polyam/components/relative_timestamp';
 import type { ApiCollectionJSON } from 'flavours/polyam/api_types/collections';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { Column } from 'flavours/polyam/components/column';
@@ -25,7 +26,6 @@ import { fetchCollection } from 'flavours/polyam/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
 import { CollectionAccountsList } from './accounts_list';
-import { CollectionMetaData } from './collection_list_item';
 import { CollectionMenu } from './collection_menu';
 import classes from './styles.module.scss';
 
@@ -39,6 +39,54 @@ const messages = defineMessages({
     defaultMessage: 'Share this collection',
   },
 });
+
+const CollectionMetaData: React.FC<{
+  collection: ApiCollectionJSON;
+  extended?: boolean;
+}> = ({ collection, extended }) => {
+  return (
+    <ul className={classes.metaList}>
+      <FormattedMessage
+        id='collections.account_count'
+        defaultMessage='{count, plural, one {# account} other {# accounts}}'
+        values={{ count: collection.item_count }}
+        tagName='li'
+      />
+      {extended && (
+        <>
+          {collection.discoverable ? (
+            <FormattedMessage
+              id='collections.visibility_public'
+              defaultMessage='Public'
+              tagName='li'
+            />
+          ) : (
+            <FormattedMessage
+              id='collections.visibility_unlisted'
+              defaultMessage='Unlisted'
+              tagName='li'
+            />
+          )}
+          {collection.sensitive && (
+            <FormattedMessage
+              id='collections.sensitive'
+              defaultMessage='Sensitive'
+              tagName='li'
+            />
+          )}
+        </>
+      )}
+      <FormattedMessage
+        id='collections.last_updated_at'
+        defaultMessage='Last updated: {date}'
+        values={{
+          date: <RelativeTimestamp timestamp={collection.updated_at} long />,
+        }}
+        tagName='li'
+      />
+    </ul>
+  );
+};
 
 export const AuthorNote: React.FC<{ id: string; previewMode?: boolean }> = ({
   id,
@@ -137,7 +185,6 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
       <CollectionMetaData
         extended={account_id === me}
         collection={collection}
-        className={classes.metaData}
       />
     </div>
   );

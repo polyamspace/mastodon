@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
@@ -9,6 +9,7 @@ import fuzzysort from 'fuzzysort';
 
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { toServerSideType } from 'flavours/polyam/utils/filters';
 import { loupeIcon, deleteIcon } from 'flavours/polyam/utils/icons';
 

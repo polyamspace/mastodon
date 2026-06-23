@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
+import { FormattedMessage, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
@@ -14,6 +14,7 @@ import UserIcon from '@/awesome-icons/solid/user.svg?react';
 import { Account } from 'flavours/polyam/components/account';
 import { LinkedDisplayName } from '@/flavours/polyam/components/display_name';
 import { Icon }  from 'flavours/polyam/components/icon';
+import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import { StatusQuoteManager } from 'flavours/polyam/components/status_quoted';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
