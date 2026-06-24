@@ -3,13 +3,6 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
-import KeyboardArrowDownIcon from '@/awesome-icons/solid/chevron-down.svg?react';
-import KeyboardArrowUpIcon from '@/awesome-icons/solid/chevron-up.svg?react';
-import {
-  ListItemButton,
-  ListItemWrapper,
-} from '@/flavours/polyam/components/list_item';
-import { createAppSelector, useAppSelector } from '@/flavours/polyam/store';
 import type { ApiCollectionJSON } from 'flavours/polyam/api_types/collections';
 import type { RenderButtonOptions } from 'flavours/polyam/components/account_list_item';
 import {
@@ -18,13 +11,15 @@ import {
 } from 'flavours/polyam/components/account_list_item';
 import { Button } from 'flavours/polyam/components/button';
 import { Callout } from 'flavours/polyam/components/callout';
-import { Icon } from 'flavours/polyam/components/icon';
 import {
   Article,
   ItemList,
 } from 'flavours/polyam/components/scrollable_list/components';
+import type { TruncatedListItemInfo } from 'flavours/polyam/components/truncated_list';
+import { TruncatedListItems } from 'flavours/polyam/components/truncated_list';
 import { me } from 'flavours/polyam/initial_state';
 import type { Account } from 'flavours/polyam/models/account';
+import { createAppSelector, useAppSelector } from 'flavours/polyam/store';
 
 import { useConfirmRevoke } from './revoke_collection_inclusion_modal';
 import classes from './styles.module.scss';
@@ -99,13 +94,9 @@ export const CollectionAccountsList: React.FC<{
   const intl = useIntl();
   const confirmRevoke = useConfirmRevoke(collection);
   const listHeadingRef = useRef<HTMLHeadingElement>(null);
-  const [canShowHiddenAccounts, setCanShowHiddenAccounts] = useState(false);
-  const toggleHiddenAccounts = useCallback(() => {
-    setCanShowHiddenAccounts((prev) => !prev);
-  }, []);
 
   const isOwnCollection = collection?.account_id === me;
-  const { items = [], account_id: collectionOwnerId, id } = collection ?? {};
+  const { account_id: collectionOwnerId, id } = collection ?? {};
 
   const relationships = useAppSelector((state) => state.relationships);
   const collectionAccounts = useAppSelector((state) =>
@@ -135,9 +126,6 @@ export const CollectionAccountsList: React.FC<{
     return { visibleAccounts, hiddenAccounts };
   }, [collectionAccounts, relationships]);
 
-  const hasHiddenAccounts = hiddenAccounts.length > 0;
-  const initialListSize = visibleAccounts.length + (hasHiddenAccounts ? 1 : 0);
-
   const renderAccountItemButton = useCallback(
     ({ relationship, accountId }: RenderButtonOptions) => {
       // When viewing your own collection, only show the Follow button
@@ -163,6 +151,28 @@ export const CollectionAccountsList: React.FC<{
       return <AccountListItemFollowButton accountId={accountId} />;
     },
     [collectionOwnerId, confirmRevoke],
+  );
+
+  const renderListItem = useCallback(
+    ({
+      item,
+      index,
+      totalListLength,
+      isLastElement,
+    }: TruncatedListItemInfo<Account>) => (
+      <Article
+        key={item.id}
+        aria-posinset={index + 1}
+        aria-setsize={totalListLength}
+      >
+        <AccountListItem
+          accountId={item.id}
+          withBorder={!isLastElement}
+          renderButton={renderAccountItemButton}
+        />
+      </Article>
+    ),
+    [renderAccountItemButton],
   );
 
   return (
@@ -194,71 +204,28 @@ export const CollectionAccountsList: React.FC<{
             isLoading={isLoading}
             emptyMessage={intl.formatMessage(messages.empty)}
           >
-            {visibleAccounts.map(({ id }, index) => (
-              <Article
-                key={id}
-                aria-posinset={index + 1}
-                aria-setsize={initialListSize}
-              >
-                <AccountListItem
-                  accountId={id}
-                  withBorder={index !== items.length - 1 || hasHiddenAccounts}
-                  renderButton={renderAccountItemButton}
-                />
-              </Article>
-            ))}
-            {hasHiddenAccounts && (
-              <Article
-                aria-posinset={initialListSize}
-                aria-setsize={initialListSize}
-              >
-                <ListItemWrapper
-                  icon={<Icon id='visibility-off' icon={VisibilityOffIcon} />}
-                  iconEnd={
-                    <Icon
-                      id='open-status'
-                      icon={
-                        canShowHiddenAccounts
-                          ? KeyboardArrowUpIcon
-                          : KeyboardArrowDownIcon
-                      }
-                    />
-                  }
-                >
-                  <ListItemButton
-                    aria-expanded={canShowHiddenAccounts}
-                    onClick={toggleHiddenAccounts}
-                    subtitle={
-                      <FormattedMessage
-                        id='collections.hidden_accounts_description'
-                        defaultMessage='You’ve blocked or muted {count, plural, one {this user} other {these users}}'
-                        values={{ count: hiddenAccounts.length }}
-                      />
-                    }
-                  >
-                    <FormattedMessage
-                      id='collections.hidden_accounts_link'
-                      defaultMessage='{count, plural, one {# hidden account} other {# hidden accounts}}'
-                      values={{ count: hiddenAccounts.length }}
-                    />
-                  </ListItemButton>
-                </ListItemWrapper>
-              </Article>
-            )}
-            {canShowHiddenAccounts &&
-              hiddenAccounts.map(({ id }, index) => (
-                <Article
-                  key={id}
-                  aria-posinset={initialListSize + index + 1}
-                  aria-setsize={initialListSize + hiddenAccounts.length}
-                >
-                  <AccountListItem
-                    accountId={id}
-                    withBorder={index !== hiddenAccounts.length - 1}
-                    renderButton={renderAccountItemButton}
+            <TruncatedListItems
+              visibleItems={visibleAccounts}
+              truncatedItems={hiddenAccounts}
+              toggleButton={{
+                icon: VisibilityOffIcon,
+                title: (
+                  <FormattedMessage
+                    id='collections.hidden_accounts_link'
+                    defaultMessage='{count, plural, one {# hidden account} other {# hidden accounts}}'
+                    values={{ count: hiddenAccounts.length }}
                   />
-                </Article>
-              ))}
+                ),
+                subtitle: (
+                  <FormattedMessage
+                    id='collections.hidden_accounts_description'
+                    defaultMessage='You’ve blocked or muted {count, plural, one {this user} other {these users}}'
+                    values={{ count: hiddenAccounts.length }}
+                  />
+                ),
+              }}
+              renderListItem={renderListItem}
+            />
           </ItemList>
         </SensitiveScreen>
       )}

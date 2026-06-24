@@ -10998,14 +10998,7 @@ noscript {
           }
 
           &__source {
-            overflow: hidden;
-            white-space: nowrap;
             cursor: help;
-
-            > span {
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
           }
         }
 
