@@ -8,8 +8,7 @@ module.exports = {
     'coverage/**/*',
     'node_modules/**/*',
     'public/assets/**/*',
-    'public/packs/**/*',
-    'public/packs-test/**/*',
+    'public/packs*/**/*',
     'vendor/**/*',
     'public/packs/**/*',
     'public/packs-test/**/*',
@@ -57,6 +56,13 @@ module.exports = {
         'selector-pseudo-class-no-unknown': [
           true,
           { ignorePseudoClasses: ['global'] },
+        ],
+
+        'property-no-unknown': [
+          true,
+          {
+            ignoreProperties: ['composes'],
+          },
         ],
       },
     },

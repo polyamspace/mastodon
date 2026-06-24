@@ -1440,11 +1440,11 @@ en:
         one: Interact with this toot and discover more like it.
         other: Interact with these toots and discover more.
       subject:
-        one: 'New toot: "%{excerpt}"'
-        other: New toots from %{name}
+        plural: New toots from %{name}
+        singular: 'New toot: "%{excerpt}"'
       title:
-        one: 'New toot: "%{excerpt}"'
-        other: New toots from %{name}
+        plural: New toots from %{name}
+        singular: 'New toot: "%{excerpt}"'
   email_subscriptions:
     active: Active
     confirmations:

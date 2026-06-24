@@ -16,8 +16,6 @@ import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { getAccountHidden } from '@/flavours/polyam/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
-import { isRedesignEnabled } from '../common';
-
 import { AccountMenu } from './menu';
 
 const messages = defineMessages({
@@ -97,7 +95,6 @@ const AccountButtonsOther: FC<
           accountId={accountId}
           className='account__header__follow-button'
           labelLength='long'
-          withUnmute={!isRedesignEnabled()}
         />
       )}
       {isFollowing && (

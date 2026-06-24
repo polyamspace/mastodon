@@ -28,7 +28,6 @@ import { layoutFromWindow } from 'flavours/polyam/is_mobile';
 import { selectUnreadNotificationGroupsCount } from 'flavours/polyam/selectors/notifications';
 import { WithRouterPropTypes } from 'flavours/polyam/utils/react_router';
 import { checkAnnualReport } from '@/flavours/polyam/reducers/slices/annual_report';
-import { isServerFeatureEnabled } from '@/flavours/polyam/utils/environment';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
@@ -192,20 +191,6 @@ class SwitchingColumnsArea extends PureComponent {
       rootRedirect = '/about';
     }
 
-    const profileRedesignRoutes = [];
-    if (isServerFeatureEnabled('profile_redesign')) {
-      profileRedesignRoutes.push(
-        <WrappedRoute key="edit" path='/profile/edit' component={AccountEdit} content={children} />,
-        <WrappedRoute key="featured_tags" path='/profile/featured_tags' component={AccountEditFeaturedTags} content={children} />
-      )
-    } else {
-      // If profile editing is not enabled, redirect to the home timeline as the current editing pages are outside React Router.
-      profileRedesignRoutes.push(
-        <Redirect key="edit-redirect" from='/profile/edit' to='/' exact />,
-        <Redirect key="featured-tags-redirect" from='/profile/featured_tags' to='/' exact />,
-      );
-    }
-
     return (
       <ColumnsContextProvider multiColumn={!singleColumn}>
         <ColumnsArea ref={this.setRef} singleColumn={singleColumn}>
@@ -252,7 +237,8 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/search' component={Search} content={children} />
             <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
 
-            {...profileRedesignRoutes}
+            <WrappedRoute path='/profile/edit' component={AccountEdit} content={children} />
+            <WrappedRoute path='/profile/featured_tags' component={AccountEditFeaturedTags} content={children} />
 
             <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/featured', '/accounts/:id/featured']} component={AccountFeatured} content={children} />
