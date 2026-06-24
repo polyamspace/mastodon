@@ -73,7 +73,7 @@ export const AccountHeader: React.FC<{
           modalType: 'IMAGE',
           modalProps: {
             src: account.avatar,
-            alt: '',
+            alt: account.avatar_description,
           },
         }),
       );
@@ -125,7 +125,7 @@ export const AccountHeader: React.FC<{
           {!suspendedOrHidden && (
             <img
               src={autoPlayGif ? account.header : account.header_static}
-              alt=''
+              alt={account.header_description}
               className='parallax'
             />
           )}
@@ -152,6 +152,7 @@ export const AccountHeader: React.FC<{
             >
               <Avatar
                 account={suspendedOrHidden ? undefined : account}
+                alt={account.avatar_description}
                 size={80}
               />
             </a>
@@ -160,7 +161,7 @@ export const AccountHeader: React.FC<{
           <div
             className={classNames(
               'account__header__tabs__name',
-              redesignClasses.nameWrapper,
+              redesignClasses.displayNameWrapper,
             )}
           >
             <AccountName accountId={accountId} />
@@ -173,6 +174,8 @@ export const AccountHeader: React.FC<{
           </div>
 
           <AccountBadges accountId={accountId} />
+
+          <AccountNumberFields accountId={accountId} />
 
           {!isMe && !suspendedOrHidden && (
             <FamiliarFollowers accountId={accountId} />
@@ -200,8 +203,6 @@ export const AccountHeader: React.FC<{
               {!me && account.email_subscriptions && (
                 <AccountSubscriptionForm accountId={accountId} />
               )}
-
-              <AccountNumberFields accountId={accountId} />
             </div>
           )}
 
