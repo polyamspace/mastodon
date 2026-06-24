@@ -22,8 +22,6 @@ import { getAccountHidden } from '@/flavours/polyam/selectors/accounts';
 import { useAppSelector, useAppDispatch } from '@/flavours/polyam/store';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 
-import { ActionBar } from '../../account/components/action_bar';
-
 import { AccountName } from './account_name';
 import { AccountSubscriptionForm } from './account_subscription_form';
 import { AnniversaryNote } from './anniversary-note';
@@ -258,8 +256,6 @@ export const AccountHeader: React.FC<{
           />
         </div>
       </AnimateEmojiProvider>
-
-      <ActionBar account={account} />
 
       {!hideTabs && !hidden && <AccountTabs />}
       <div ref={observedRef} />
