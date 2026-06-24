@@ -4,6 +4,8 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router';
 
+import { useAccount } from '@/flavours/polyam/hooks/useAccount';
+import { me } from '@/flavours/polyam/initial_state';
 import { deleteCollection } from 'flavours/polyam/reducers/slices/collections';
 import { useAppDispatch } from 'flavours/polyam/store';
 
@@ -34,11 +36,12 @@ export const ConfirmDeleteCollectionModal: React.FC<
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const history = useHistory();
+  const { acct: currentUserName } = useAccount(me) ?? {};
 
   const onConfirm = useCallback(() => {
     void dispatch(deleteCollection({ collectionId: id }));
-    history.push('/collections');
-  }, [dispatch, history, id]);
+    history.push(`/@${currentUserName}/collections`);
+  }, [dispatch, history, id, currentUserName]);
 
   return (
     <ConfirmationModal

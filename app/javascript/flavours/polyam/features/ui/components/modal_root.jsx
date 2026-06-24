@@ -86,7 +86,7 @@ export const MODAL_COMPONENTS = {
   'DOMAIN_BLOCK': DomainBlockModal,
   'REPORT': ReportModal,
   'REPORT_COLLECTION': ReportCollectionModal,
-  'SHARE_COLLECTION': () => import('@/flavours/polyam/features/collections/detail/share_modal').then(module => ({ default: module.CollectionShareModal })),
+  'SHARE_COLLECTION': () => import('@/flavours/polyam/features/collections/components/share_modal').then(module => ({ default: module.CollectionShareModal })),
   'REVOKE_COLLECTION_INCLUSION': () => import('@/flavours/polyam/features/collections/detail/revoke_collection_inclusion_modal').then(module => ({ default: module.RevokeCollectionInclusionModal })),
   'SETTINGS': SettingsModal,
   'DEPRECATED_SETTINGS': () => Promise.resolve({ default: DeprecatedSettingsModal }),
@@ -115,6 +115,7 @@ export const MODAL_COMPONENTS = {
   'ACCOUNT_EDIT_IMAGE_ALT': accountEditModal('ImageAltModal'),
   'ACCOUNT_EDIT_IMAGE_DELETE': accountEditModal('ImageDeleteModal'),
   'ACCOUNT_EDIT_IMAGE_UPLOAD': accountEditModal('ImageUploadModal'),
+  'ACCOUNT_HIDE_FEATURED_TAB': () => import('@/flavours/polyam/features/ui/components/confirmation_modals/hide_featured_tab').then(module => ({ default: module.ConfirmHideFeaturedTabModal })),
 };
 
 /** @arg {keyof import('@/flavours/polyam/features/account_edit/modals')} type */

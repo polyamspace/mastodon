@@ -24,6 +24,7 @@ import AddIcon from '@/awesome-icons/solid/plus.svg?react';
 import CollectionsIcon from '@/awesome-icons/solid/shapes.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
 import PersonAddIcon from '@/awesome-icons/solid/user-plus.svg?react';
+import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { fetchFollowRequests } from 'flavours/polyam/actions/accounts';
 import { openModal } from 'flavours/polyam/actions/modal';
 import {
@@ -207,6 +208,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
   const { signedIn, permissions, disabledAccountId } = useIdentity();
   const location = useLocation();
   const showSearch = useBreakpoint('full') && !multiColumn;
+  const account = useAccount(me);
   const dispatch = useAppDispatch();
 
   // Polyam: Hide redundant menu entries
@@ -361,7 +363,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
             {areCollectionsEnabled() && (
               <ColumnLink
                 transparent
-                to='/collections'
+                to={`/@${account?.acct}/collections`}
                 icon='collections'
                 iconComponent={CollectionsIcon}
                 text={intl.formatMessage(messages.collections)}

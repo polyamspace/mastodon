@@ -10,6 +10,7 @@ import { NotificationAdminReport } from './notification_admin_report';
 import { NotificationAdminReportNote } from './notification_admin_report_note';
 import { NotificationAdminSignUp } from './notification_admin_sign_up';
 import { NotificationAnnualReport } from './notification_annual_report';
+import { NotificationCollection } from './notification_collection';
 import { NotificationFavourite } from './notification_favourite';
 import { NotificationFollow } from './notification_follow';
 import { NotificationFollowRequest } from './notification_follow_request';
@@ -169,6 +170,15 @@ export const NotificationGroup: React.FC<{
     case 'admin.report_note':
       content = (
         <NotificationAdminReportNote
+          unread={unread}
+          notification={notificationGroup}
+        />
+      );
+      break;
+    case 'added_to_collection':
+    case 'collection_update':
+      content = (
+        <NotificationCollection
           unread={unread}
           notification={notificationGroup}
         />
