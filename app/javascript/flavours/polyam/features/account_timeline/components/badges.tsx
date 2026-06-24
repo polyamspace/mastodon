@@ -16,6 +16,8 @@ import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import type { AccountRole } from '@/flavours/polyam/models/account';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
+import classes from './styles.module.scss';
+
 export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
   const account = useAccount(accountId);
   const relationship = useAppSelector((state) =>
@@ -95,7 +97,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
     return null;
   }
 
-  return <div className={'account__header__badges'}>{badges}</div>;
+  return <div className={classes.badges}>{badges}</div>;
 };
 
 function isAdminBadge(role: AccountRole) {

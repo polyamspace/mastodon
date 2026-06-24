@@ -21,7 +21,8 @@ import { useRelationship } from '@/flavours/polyam/hooks/useRelationship';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 import FollowerIcon from '@/images/icons/icon_follower.svg?react';
 
-import classes from './redesign.module.scss';
+import { AccountBadges } from './badges';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   lockedInfo: {
@@ -77,6 +78,8 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
         domain={domain}
         isSelf={account.id === me}
       />
+
+      <AccountBadges accountId={accountId} />
     </div>
   );
 };

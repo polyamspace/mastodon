@@ -10,7 +10,6 @@ import LinkIcon from '@/awesome-icons/solid/link.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
 import PersonRemoveIcon from '@/awesome-icons/solid/user-minus.svg?react';
 import {
-  blockAccount,
   followAccount,
   pinAccount,
   unblockAccount,
@@ -19,6 +18,7 @@ import {
 } from '@/flavours/polyam/actions/accounts';
 import { removeAccountFromFollowers } from '@/flavours/polyam/actions/accounts_typed';
 import { showAlert } from '@/flavours/polyam/actions/alerts';
+import { initBlockModal } from '@/flavours/polyam/actions/blocks';
 import {
   directCompose,
   mentionCompose,
@@ -43,7 +43,7 @@ import {
 import type { AppDispatch } from '@/flavours/polyam/store';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
   const intl = useIntl();
@@ -64,7 +64,7 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
       return [];
     }
 
-    return redesignMenuItems({
+    return getMenuItems({
       account,
       signedIn: !isMe && signedIn,
       permissions,
@@ -226,7 +226,7 @@ const redesignMessages = defineMessages({
   },
 });
 
-function redesignMenuItems({
+function getMenuItems({
   account,
   signedIn,
   permissions,
@@ -438,7 +438,7 @@ function redesignMenuItems({
       if (relationship?.blocking) {
         dispatch(unblockAccount(account.id));
       } else {
-        dispatch(blockAccount(account.id));
+        dispatch(initBlockModal(account));
       }
     },
     dangerous: true,

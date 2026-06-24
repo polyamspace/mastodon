@@ -21,6 +21,7 @@ import {
   apiRemoveAccountFromList,
 } from 'flavours/polyam/api/lists';
 import { Avatar } from 'flavours/polyam/components/avatar';
+import { VerifiedBadge } from 'flavours/polyam/components/badge';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { ColumnSearchHeader } from 'flavours/polyam/components/column_search_header';
@@ -30,7 +31,6 @@ import { IconButton } from 'flavours/polyam/components/icon_button';
 import { Permalink } from 'flavours/polyam/components/permalink';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import { ShortNumber } from 'flavours/polyam/components/short_number';
-import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
 import { useSearchAccounts } from 'flavours/polyam/hooks/useSearchAccounts';
 import { me } from 'flavours/polyam/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';

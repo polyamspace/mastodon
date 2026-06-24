@@ -11,6 +11,8 @@ import type {
 import type { ApiReportNoteJSON } from 'flavours/polyam/api_types/report_notes';
 import type { ApiReportJSON } from 'flavours/polyam/api_types/reports';
 
+import type { ApiCollectionJSON } from '../api_types/collections';
+
 // Maximum number of avatars displayed in a notification group
 // This corresponds to the max length of `group.sampleAccountIds`
 export const NOTIFICATIONS_GROUP_MAX_AVATARS = 8;
@@ -93,6 +95,15 @@ export interface NotificationGroupAdminReportNote extends BaseNotification<'admi
   reportNote: ApiReportNoteJSON;
 }
 
+type Collection = ApiCollectionJSON;
+export interface NotificationGroupAddedToCollection extends BaseNotification<'added_to_collection'> {
+  collection: Collection;
+}
+
+export interface NotificationGroupCollectionUpdate extends BaseNotification<'collection_update'> {
+  collection: Collection;
+}
+
 export type NotificationGroup =
   | NotificationGroupFavourite
   | NotificationGroupReblog
@@ -110,6 +121,8 @@ export type NotificationGroup =
   | NotificationGroupAdminSignUp
   | NotificationGroupAdminReport
   | NotificationGroupAnnualReport
+  | NotificationGroupAddedToCollection
+  | NotificationGroupCollectionUpdate
   | NotificationGroupAdminReportNote;
 
 function createReportFromJSON(reportJSON: ApiReportJSON): Report {
@@ -267,6 +280,13 @@ export function createNotificationGroupFromNotificationJSON(
         moderationWarning: createAccountWarningFromJSON(
           notification.moderation_warning,
         ),
+      };
+    case 'added_to_collection':
+    case 'collection_update':
+      return {
+        ...group,
+        type: notification.type,
+        collection: notification.collection,
       };
     case 'admin.report_note':
       return {

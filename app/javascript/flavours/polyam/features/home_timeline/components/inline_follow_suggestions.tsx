@@ -16,12 +16,12 @@ import {
 } from 'flavours/polyam/actions/suggestions';
 import type { ApiSuggestionSourceJSON } from 'flavours/polyam/api_types/suggestions';
 import { Avatar } from 'flavours/polyam/components/avatar';
+import { Badge, VerifiedBadge } from 'flavours/polyam/components/badge';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { FollowButton } from 'flavours/polyam/components/follow_button';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
-import { VerifiedBadge } from 'flavours/polyam/components/verified_badge';
 import { domain } from 'flavours/polyam/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
@@ -110,13 +110,12 @@ const Source: React.FC<{ id: ApiSuggestionSourceJSON }> = ({ id }) => {
   }
 
   return (
-    <div
+    <Badge
       className='inline-follow-suggestions__body__scrollable__card__text-stack__source'
       title={hint}
-    >
-      <Icon id='' icon={InfoIcon} />
-      <span>{label}</span>
-    </div>
+      label={label}
+      icon={<InfoIcon />}
+    />
   );
 };
 

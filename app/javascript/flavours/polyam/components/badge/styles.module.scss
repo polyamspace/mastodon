@@ -8,17 +8,28 @@
   color: var(--user-role-text);
   font-size: 13px;
   display: inline-flex;
+  max-width: 100%;
   padding: 4px;
-  padding-inline-end: 8px;
   gap: 4px;
-  border-radius: 6px;
+  border-radius: 8px;
   align-items: center;
+  overflow-wrap: anywhere;
 
   > svg {
     width: auto;
-    height: 15px;
+    height: 12px; // Polyam: Reduced icon size
     fill: currentColor;
     opacity: 0.85;
+    padding: 2px; // Polyam: Add padding to match previous design
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:not(.badgeWithoutIcon) {
+    padding-inline-end: 8px;
   }
 }
 
@@ -47,7 +58,6 @@
 
 .success {
   background-color: var(--color-bg-success-softest);
-  color: var(--color-text-success);
 }
 
 .warning {
