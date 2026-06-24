@@ -17,9 +17,10 @@
 
   > svg {
     width: auto;
-    height: 14px; // Polyam: Reduced icon size
+    height: 12px; // Polyam: Reduced icon size
     fill: currentColor;
     opacity: 0.85;
+    padding: 2px; // Polyam: Add padding to match previous design
   }
 
   a {
