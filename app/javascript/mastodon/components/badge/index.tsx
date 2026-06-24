@@ -4,12 +4,14 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import BlockIcon from '@/awesome-icons/solid/ban.svg?react';
-import SmartToyIcon from '@/awesome-icons/solid/robot.svg?react';
-import GroupsIcon from '@/awesome-icons/solid/user-group.svg?react';
-import PersonIcon from '@/awesome-icons/solid/user.svg?react';
-import VolumeOffIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import AdminIcon from '@/images/icons/icon_admin.svg?react';
+import BlockIcon from '@/material-icons/400-24px/block.svg?react';
+import GroupsIcon from '@/material-icons/400-24px/group.svg?react';
+import PersonIcon from '@/material-icons/400-24px/person.svg?react';
+import SmartToyIcon from '@/material-icons/400-24px/smart_toy.svg?react';
+import VolumeOffIcon from '@/material-icons/400-24px/volume_off.svg?react';
+
+import classes from './styles.module.scss';
 
 interface BadgeProps {
   label: ReactNode;
@@ -17,32 +19,30 @@ interface BadgeProps {
   className?: string;
   domain?: ReactNode;
   roleId?: string;
-  roleColor?: string;
+  variant?:
+    | 'default'
+    | 'subtle'
+    | 'inverted'
+    | 'success'
+    | 'warning'
+    | 'danger';
 }
 
 export const Badge: FC<BadgeProps> = ({
   icon = <PersonIcon />,
+  variant = 'default',
   label,
   className,
   domain,
   roleId,
-  roleColor,
 }) => (
   <div
-    className={classNames('account-role', className)}
+    className={classNames(classes.badge, classes[variant], className)}
     data-account-role-id={roleId}
-    style={
-      roleColor
-        ? ({
-            '--user-role-background': `${roleColor}39`,
-            '--user-role-border': roleColor,
-          } as React.CSSProperties)
-        : undefined
-    }
   >
     {icon}
     <span>{label}</span>
-    {domain && <span className='account-role__domain'>{domain}</span>}
+    {domain && <span className={classes.domain}>{domain}</span>}
   </div>
 );
 
@@ -99,6 +99,7 @@ export const MutedBadge: FC<
   return (
     <Badge
       icon={<VolumeOffIcon />}
+      variant='inverted'
       label={
         label ??
         (formattedDate ? (
@@ -121,6 +122,7 @@ export const MutedBadge: FC<
 export const BlockedBadge: FC<Partial<BadgeProps>> = ({ label, ...props }) => (
   <Badge
     icon={<BlockIcon />}
+    variant='danger'
     label={
       label ?? (
         <FormattedMessage

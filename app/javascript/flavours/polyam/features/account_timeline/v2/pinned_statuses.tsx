@@ -10,6 +10,7 @@ import {
   expandTimelineByKey,
   timelineKey,
 } from '@/flavours/polyam/actions/timelines_typed';
+import { Badge } from '@/flavours/polyam/components/badge';
 import { Button } from '@/flavours/polyam/components/button';
 import { Icon } from '@/flavours/polyam/components/icon';
 import { StatusHeader } from '@/flavours/polyam/components/status/header';
@@ -17,8 +18,6 @@ import type { StatusHeaderRenderFn } from '@/flavours/polyam/components/status/h
 import { selectTimelineByKey } from '@/flavours/polyam/selectors/timelines';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 import IconPinned from '@/images/icons/icon_pinned.svg?react';
-
-import { PinnedBadge } from '../components/badges';
 
 import { useAccountContext } from './context';
 import classes from './styles.module.scss';
@@ -79,7 +78,16 @@ export const renderPinnedStatusHeader: StatusHeaderRenderFn = ({
   }
   return (
     <StatusHeader {...args} className={classes.pinnedStatusHeader}>
-      <PinnedBadge />
+      <Badge
+        className={classes.pinnedBadge}
+        icon={<Icon id='pinned' icon={IconPinned} />}
+        label={
+          <FormattedMessage
+            id='account.timeline.pinned'
+            defaultMessage='Pinned'
+          />
+        }
+      />
     </StatusHeader>
   );
 };

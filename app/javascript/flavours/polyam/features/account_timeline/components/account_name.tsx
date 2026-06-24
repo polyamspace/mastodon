@@ -10,10 +10,13 @@ import Overlay from 'react-overlays/esm/Overlay';
 import AtIcon from '@/awesome-icons/solid/at.svg?react';
 import HelpIcon from '@/awesome-icons/solid/circle-question.svg?react';
 import DomainIcon from '@/awesome-icons/solid/globe.svg?react';
+import { Badge } from '@/flavours/polyam/components/badge';
 import { DisplayName } from '@/flavours/polyam/components/display_name';
 import { Icon } from '@/flavours/polyam/components/icon';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
+import { useRelationship } from '@/flavours/polyam/hooks/useRelationship';
 import { useAppSelector } from '@/flavours/polyam/store';
+import FollowerIcon from '@/images/icons/icon_follower.svg?react';
 
 import classes from './redesign.module.scss';
 
@@ -35,6 +38,7 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
   const localDomain = useAppSelector(
     (state) => state.meta.get('domain') as string,
   );
+  const relationship = useRelationship(accountId);
 
   if (!account) {
     return null;
@@ -43,10 +47,23 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
   const [username = '', domain = localDomain] = account.acct.split('@');
 
   return (
-    <div className={classes.name}>
-      <h1>
-        <DisplayName account={account} variant='simple' />
-      </h1>
+    <div className={classes.nameWrapper}>
+      <div className={classes.name}>
+        <h1>
+          <DisplayName account={account} variant='simple' />
+        </h1>
+        {relationship?.followed_by && (
+          <Badge
+            icon={<FollowerIcon className={classes.followerBadgeIcon} />}
+            label={
+              <FormattedMessage
+                id='account.follows_you'
+                defaultMessage='Follows you'
+              />
+            }
+          />
+        )}
+      </div>
       <p className={classes.username}>
         @{username}@{domain}
         <AccountNameHelp

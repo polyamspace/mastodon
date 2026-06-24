@@ -1,11 +1,5 @@
-import {
-  isClientFeatureEnabled,
-  isServerFeatureEnabled,
-} from '@/flavours/polyam/utils/environment';
+import { isServerFeatureEnabled } from '@/flavours/polyam/utils/environment';
 
 export function areCollectionsEnabled() {
-  return (
-    isClientFeatureEnabled('collections') &&
-    isServerFeatureEnabled('collections')
-  );
+  return isServerFeatureEnabled('collections');
 }

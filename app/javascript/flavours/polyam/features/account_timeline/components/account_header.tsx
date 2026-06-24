@@ -22,8 +22,6 @@ import { getAccountHidden } from '@/flavours/polyam/selectors/accounts';
 import { useAppSelector, useAppDispatch } from '@/flavours/polyam/store';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 
-import { ActionBar } from '../../account/components/action_bar';
-
 import { AccountName } from './account_name';
 import { AccountSubscriptionForm } from './account_subscription_form';
 import { AnniversaryNote } from './anniversary-note';
@@ -34,6 +32,7 @@ import { AccountHeaderFields } from './fields';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 import { AccountNote as AccountNoteRedesign } from './note';
+import { AccountNumberFields } from './number_fields';
 import redesignClasses from './redesign.module.scss';
 import { AccountTabs } from './tabs';
 
@@ -93,7 +92,7 @@ export const AccountHeader: React.FC<{
           modalType: 'IMAGE',
           modalProps: {
             src: account.avatar,
-            alt: '',
+            alt: account.avatar_description,
           },
         }),
       );
@@ -144,7 +143,7 @@ export const AccountHeader: React.FC<{
           {!suspendedOrHidden && (
             <img
               src={autoPlayGif ? account.header : account.header_static}
-              alt=''
+              alt={account.header_description}
               className='parallax'
             />
           )}
@@ -171,6 +170,7 @@ export const AccountHeader: React.FC<{
             >
               <Avatar
                 account={suspendedOrHidden ? undefined : account}
+                alt={account.avatar_description}
                 size={80}
               />
             </a>
@@ -179,7 +179,7 @@ export const AccountHeader: React.FC<{
           <div
             className={classNames(
               'account__header__tabs__name',
-              redesignClasses.nameWrapper,
+              redesignClasses.displayNameWrapper,
             )}
           >
             <AccountName accountId={accountId} />
@@ -192,6 +192,8 @@ export const AccountHeader: React.FC<{
           </div>
 
           <AccountBadges accountId={accountId} />
+
+          <AccountNumberFields accountId={accountId} />
 
           {!isMe && !suspendedOrHidden && (
             <FamiliarFollowers accountId={accountId} />
@@ -254,8 +256,6 @@ export const AccountHeader: React.FC<{
           />
         </div>
       </AnimateEmojiProvider>
-
-      <ActionBar account={account} />
 
       {!hideTabs && !hidden && <AccountTabs />}
       <div ref={observedRef} />
