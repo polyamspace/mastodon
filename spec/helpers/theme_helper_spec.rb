@@ -116,13 +116,13 @@ RSpec.describe ThemeHelper do
           Setting.skin = 'contrast'
         end
 
-        it { is_expected.to eq(['glitch', 'contrast']) }
+        it { is_expected.to eq(%w(glitch contrast default default)) }
       end
 
       context 'when theme is changed to invalid value' do
         before { Setting.skin = 'fakethemename' }
 
-        it { is_expected.to eq(['glitch', 'default']) }
+        it { is_expected.to eq(%w(glitch default default default)) }
       end
     end
 
