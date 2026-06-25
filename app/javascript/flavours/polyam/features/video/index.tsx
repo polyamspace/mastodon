@@ -18,6 +18,7 @@ import RectangleIcon from '@/awesome-icons/solid/up-right-and-down-left-from-cen
 import VolumeUpIcon from '@/awesome-icons/solid/volume-high.svg?react';
 import VolumeDownIcon from '@/awesome-icons/solid/volume-low.svg?react';
 import VolumeOffIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
+import type { DeployPictureInPictureCallback } from '@/flavours/polyam/actions/picture_in_picture';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon } from 'flavours/polyam/components/icon';
 import { SpoilerButton } from 'flavours/polyam/components/spoiler_button';
@@ -177,15 +178,7 @@ export const Video: React.FC<{
   alwaysVisible?: boolean;
   visible?: boolean;
   onToggleVisibility?: () => void;
-  deployPictureInPicture?: (
-    type: string,
-    mediaProps: {
-      src: string;
-      muted: boolean;
-      volume: number;
-      currentTime: number;
-    },
-  ) => void;
+  deployPictureInPicture?: DeployPictureInPictureCallback;
   blurhash?: string;
   startPlaying?: boolean;
   startTime?: number;
@@ -255,7 +248,7 @@ export const Video: React.FC<{
     (c: HTMLVideoElement | null) => {
       if (videoRef.current && !videoRef.current.paused && c === null) {
         deployPictureInPicture?.('video', {
-          src: src,
+          src,
           currentTime: videoRef.current.currentTime,
           muted: videoRef.current.muted,
           volume: videoRef.current.volume,
