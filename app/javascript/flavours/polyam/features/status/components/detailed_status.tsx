@@ -31,11 +31,16 @@ import { QuotedStatus } from 'flavours/polyam/components/status_quoted';
 import { StatusReactions } from 'flavours/polyam/components/status_reactions';
 import { VisibilityIcon } from 'flavours/polyam/components/visibility_icon';
 import { Audio } from 'flavours/polyam/features/audio';
+import { CollectionPreviewCard } from 'flavours/polyam/features/collections/components/collection_preview_card';
 import scheduleIdleTask from 'flavours/polyam/features/ui/util/schedule_idle_task';
 import { Video } from 'flavours/polyam/features/video';
 import { useIdentity } from 'flavours/polyam/identity_context';
-import type { StatusReactions as StatusReactionsType } from 'flavours/polyam/models/status';
+import type {
+  StatusReactions as StatusReactionsType,
+  CollectionAttachment,
+} from 'flavours/polyam/models/status';
 import { useAppSelector } from 'flavours/polyam/store';
+import { compareUrls } from 'flavours/polyam/utils/compare_urls';
 
 import Card from './card';
 
@@ -299,14 +304,34 @@ export const DetailedStatus: React.FC<{
       mediaIcons.push('video-camera');
     }
   } else if (status.get('card') && !status.get('quote')) {
-    media = (
-      <Card
-        key={`${status.get('id')}-${status.get('edited_at')}`}
-        sensitive={status.get('sensitive')}
-        card={status.get('card')}
-      />
-    );
+    const cardUrl: string = status.getIn(['card', 'url']);
+
+    const taggedCollection = status
+      .get('tagged_collections')
+      .find((item: CollectionAttachment) =>
+        compareUrls(item.get('url'), cardUrl),
+      );
+
+    if (taggedCollection) {
+      media = <CollectionPreviewCard collection={taggedCollection} />;
+    } else {
+      media = (
+        <Card
+          key={`${status.get('id')}-${status.get('edited_at')}`}
+          sensitive={status.get('sensitive')}
+          card={status.get('card')}
+        />
+      );
+    }
+
     mediaIcons.push('link');
+  } else if (status.get('tagged_collections').size) {
+    const firstLinkedCollection = status.get('tagged_collections').first();
+    if (firstLinkedCollection) {
+      media = (
+        <CollectionPreviewCard collection={firstLinkedCollection.toJS()} />
+      );
+    }
   }
 
   if (status.get('poll')) {

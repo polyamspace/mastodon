@@ -6,6 +6,7 @@ import type { Map, List } from 'immutable';
 import { Carousel } from '@/flavours/polyam/components/carousel';
 import type { RenderSlideFn } from '@/flavours/polyam/components/carousel';
 import { CustomEmojiProvider } from '@/flavours/polyam/components/emoji/context';
+import { useCustomEmojis } from '@/flavours/polyam/hooks/useCustomEmojis';
 import { mascot } from '@/flavours/polyam/initial_state';
 import { createAppSelector, useAppSelector } from '@/flavours/polyam/store';
 import elephantUIPlane from '@/images/elephant_ui_plane.svg';
@@ -23,7 +24,7 @@ const announcementSelector = createAppSelector(
 
 export const Announcements: FC = () => {
   const announcements = useAppSelector(announcementSelector);
-  const emojis = useAppSelector((state) => state.custom_emojis);
+  const emojis = useCustomEmojis();
 
   const renderSlide: RenderSlideFn<{
     id: string;

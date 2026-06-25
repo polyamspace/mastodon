@@ -17,6 +17,7 @@ import { ToggleField } from '@/flavours/polyam/components/form_fields';
 import { useElementHandledLink } from '@/flavours/polyam/components/status/handled_link';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useCurrentAccountId } from '@/flavours/polyam/hooks/useAccountId';
+import { useCustomEmojis } from '@/flavours/polyam/hooks/useCustomEmojis';
 import { autoPlayGif } from '@/flavours/polyam/initial_state';
 import {
   fetchProfile,
@@ -175,7 +176,7 @@ export const AccountEdit: FC = () => {
   }, [dispatch, profile?.bot]);
 
   // Normally we would use the account emoji, but we want all custom emojis to be available to render after editing.
-  const emojis = useAppSelector((state) => state.custom_emojis);
+  const emojis = useCustomEmojis();
   const htmlHandlers = useElementHandledLink({
     hashtagAccountId: profile?.id,
   });

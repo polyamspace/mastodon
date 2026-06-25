@@ -36,6 +36,7 @@ import DragIndicatorIcon from '@/awesome-icons/solid/grip-vertical.svg?react';
 import { CustomEmojiProvider } from '@/flavours/polyam/components/emoji/context';
 import { normalizeKey } from '@/flavours/polyam/components/hotkeys/utils';
 import { Icon } from '@/flavours/polyam/components/icon';
+import { useCustomEmojis } from '@/flavours/polyam/hooks/useCustomEmojis';
 import type { FieldData } from '@/flavours/polyam/reducers/slices/profile_edit';
 import {
   patchProfile,
@@ -217,7 +218,7 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
     void dispatch(patchProfile({ fields_attributes: newFields })).then(onClose);
   }, [dispatch, fieldKeys, fields, onClose]);
 
-  const emojis = useAppSelector((state) => state.custom_emojis);
+  const emojis = useCustomEmojis();
 
   return (
     // Add a wrapper here in the capture phase, so that it can be intercepted before the window listener in ModalRoot.
