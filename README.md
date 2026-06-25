@@ -1,5 +1,11 @@
 # Glitch Polyam Edition
 
+> [!WARNING]
+> 4.6 will be the last version to follow upstream \
+> From that point only security and bug fixes and maybe stuff of interest will be merged \
+> Compatibility with upstream will no longer be guaranteed \
+> Existing installations wanting to continue following upstream are advised to switch to upstream
+
 > Mastodon, but better!
 
 This project started as a fork of [glitch-soc](https://github.com/glitch-soc/mastodon), which itself is a fork of Mastodon, but strives to provide even more features and provide an overall better experience.
