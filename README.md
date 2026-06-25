@@ -2,7 +2,7 @@
 
 > [!WARNING]
 > 4.6 will be the last version to follow upstream \
-> From that point only security and bug fixes and maybe stuff of interest  will be merged \
+> From that point only security and bug fixes and maybe stuff of interest will be merged \
 > Compatibility with upstream will no longer be guaranteed \
 > Existing installations wanting to continue following upstream are advised to switch to upstream
 
