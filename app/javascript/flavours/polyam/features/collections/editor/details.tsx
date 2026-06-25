@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
+import { ComboboxMenuItem } from '@/flavours/polyam/components/form_fields/combobox_field';
 import { languages } from '@/flavours/polyam/initial_state';
 import {
   hasSpecialCharacters,
@@ -330,6 +331,10 @@ const TopicField: React.FC = () => {
     [topic],
   );
 
+  const isCurrentTopicOnlySuggestion =
+    tags.length === 1 && tags[0]?.id === 'new';
+  const hideTagSuggestions = !tags.length || isCurrentTopicOnlySuggestion;
+
   return (
     <ComboboxField
       required={false}
@@ -368,12 +373,14 @@ const TopicField: React.FC = () => {
             }
           : undefined
       }
-      suppressMenu={!tags.length}
+      suppressMenu={hideTagSuggestions}
     />
   );
 };
 
-const renderTagItem = (item: TagSearchResult) => item.label ?? `#${item.name}`;
+const renderTagItem = (item: TagSearchResult) => (
+  <ComboboxMenuItem>{item.label ?? `#${item.name}`}</ComboboxMenuItem>
+);
 
 const LanguageField: React.FC = () => {
   const dispatch = useAppDispatch();

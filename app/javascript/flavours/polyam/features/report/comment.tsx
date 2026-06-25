@@ -6,8 +6,7 @@ import type { Map } from 'immutable';
 import { OrderedSet } from 'immutable';
 import { shallowEqual } from 'react-redux';
 
-import Toggle from 'react-toggle';
-
+import { Toggle } from '@/flavours/polyam/components/form_fields/toggle_field';
 import { fetchAccount } from 'flavours/polyam/actions/accounts';
 import { Button } from 'flavours/polyam/components/button';
 import type { Status } from 'flavours/polyam/models/status';

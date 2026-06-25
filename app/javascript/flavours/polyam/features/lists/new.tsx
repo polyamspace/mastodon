@@ -7,8 +7,6 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
-import Toggle from 'react-toggle';
-
 import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import ListAltIcon from '@/awesome-icons/solid/rectangle-list.svg?react';
 import { fetchList } from 'flavours/polyam/actions/lists';
@@ -23,6 +21,7 @@ import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import {
   SelectField,
   TextInputField,
+  Toggle,
 } from 'flavours/polyam/components/form_fields';
 import { Icon } from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';

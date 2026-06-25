@@ -5,6 +5,7 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
 import { Combobox } from '@/flavours/polyam/components/form_fields';
+import { ComboboxMenuItem } from '@/flavours/polyam/components/form_fields/combobox_field';
 import { useSearchTags } from '@/flavours/polyam/hooks/useSearchTags';
 import type { TagSearchResult } from '@/flavours/polyam/hooks/useSearchTags';
 import { addFeaturedTags } from '@/flavours/polyam/reducers/slices/profile_edit';
@@ -76,4 +77,6 @@ export const AccountEditTagSearch: FC = () => {
   );
 };
 
-const renderItem = (item: TagSearchResult) => item.label ?? `#${item.name}`;
+const renderItem = (item: TagSearchResult) => (
+  <ComboboxMenuItem>{item.label ?? `#${item.name}`}</ComboboxMenuItem>
+);
