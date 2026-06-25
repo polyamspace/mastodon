@@ -25,6 +25,7 @@ defaults: &defaults
   skin: 'default'
   system_dark: 'default'
   system_light: 'default'
+  thumbnail_description: ''
   trends: true
   trendable_by_default: false
   trending_status_cw: true
