@@ -4,14 +4,12 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import type { OverlayProps } from 'react-overlays/Overlay';
-import Overlay from 'react-overlays/Overlay';
-
 import AlternateEmailIcon from '@/awesome-icons/solid/envelope.svg?react';
 import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import LockIcon from '@/awesome-icons/solid/lock.svg?react';
 import QuietTimeIcon from '@/awesome-icons/solid/unlock.svg?react';
 import type { StatusVisibility } from '@/flavours/polyam/api_types/statuses';
+import { Popover } from '@/flavours/polyam/components/popover';
 import { DropdownSelector } from 'flavours/polyam/components/dropdown_selector';
 import { Icon } from 'flavours/polyam/components/icon';
 
@@ -58,7 +56,6 @@ interface PrivacyDropdownProps {
   value: StatusVisibility;
   onChange: (value: StatusVisibility) => void;
   noDirect?: boolean;
-  container?: OverlayProps['container'];
   disabled?: boolean;
 }
 
@@ -66,11 +63,12 @@ const PrivacyDropdown: React.FC<PrivacyDropdownProps> = ({
   value,
   onChange,
   noDirect,
-  container,
   disabled,
 }) => {
   const intl = useIntl();
-  const overlayTargetRef = useRef<HTMLDivElement>(null);
+  const [popoverTarget, setPopoverTarget] = useState<HTMLDivElement | null>(
+    null,
+  );
   const previousFocusTargetRef = useRef<HTMLElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -142,7 +140,7 @@ const PrivacyDropdown: React.FC<PrivacyDropdownProps> = ({
     options.find((item) => item.value === value) ?? options.at(0);
 
   return (
-    <div ref={overlayTargetRef}>
+    <div ref={setPopoverTarget}>
       <button
         type='button'
         title={intl.formatMessage(messages.change_privacy)}
@@ -166,14 +164,11 @@ const PrivacyDropdown: React.FC<PrivacyDropdownProps> = ({
         )}
       </button>
 
-      <Overlay
-        show={isOpen}
-        offset={[5, 5]}
-        placement='bottom'
-        flip
-        target={overlayTargetRef as React.RefObject<HTMLDivElement>}
-        container={container}
-        popperConfig={{ strategy: 'fixed' }}
+      <Popover
+        isOpen={isOpen}
+        offset={5}
+        reference={popoverTarget}
+        onClose={handleClose}
       >
         {({ props, placement }) => (
           <div {...props}>
@@ -190,7 +185,7 @@ const PrivacyDropdown: React.FC<PrivacyDropdownProps> = ({
             </div>
           </div>
         )}
-      </Overlay>
+      </Popover>
     </div>
   );
 };

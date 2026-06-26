@@ -374,7 +374,7 @@
   }
 }
 
-body > [data-popper-placement] {
+body > [data-popover-placement] {
   z-index: 9999;
 }
 
@@ -6040,10 +6040,6 @@ a.status-card {
 }
 
 .visibility-dropdown {
-  &__overlay[data-popper-placement] {
-    z-index: 9999;
-  }
-
   &.disabled {
     opacity: 0.6;
     cursor: default;
@@ -11164,7 +11160,7 @@ noscript {
   }
 }
 
-.hover-card-controller[data-popper-reference-hidden='true'] {
+.hover-card-controller[data-popover-reference-hidden='true'] {
   opacity: 0;
   pointer-events: none;
 }
