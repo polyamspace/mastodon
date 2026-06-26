@@ -7,28 +7,28 @@ import { useHistory } from 'react-router';
 import { List as ImmutableList } from 'immutable';
 
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
-import { fetchEndorsedAccounts } from 'flavours/polyam/actions/accounts_typed';
-import { AccountListItem } from 'flavours/polyam/components/account_list_item';
-import { ColumnBackButton } from 'flavours/polyam/components/column_back_button';
-import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
-import { RemoteHint } from 'flavours/polyam/components/remote_hint';
+import { fetchEndorsedAccounts } from '@/flavours/polyam/actions/accounts_typed';
+import { AccountHeader } from '@/flavours/polyam/components/account_header';
+import { AccountListItem } from '@/flavours/polyam/components/account_list_item';
+import { ColumnBackButton } from '@/flavours/polyam/components/column_back_button';
+import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
+import { RemoteHint } from '@/flavours/polyam/components/remote_hint';
 import {
   Article,
   ItemList,
   Scrollable,
-} from 'flavours/polyam/components/scrollable_list/components';
-import type { TruncatedListItemInfo } from 'flavours/polyam/components/truncated_list';
-import { TruncatedListItems } from 'flavours/polyam/components/truncated_list';
-import { AccountHeader } from 'flavours/polyam/features/account_timeline/components/account_header';
-import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
-import Column from 'flavours/polyam/features/ui/components/column';
-import { useAccount } from 'flavours/polyam/hooks/useAccount';
-import { useAccountId } from 'flavours/polyam/hooks/useAccountId';
-import { useAccountVisibility } from 'flavours/polyam/hooks/useAccountVisibility';
-import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
+} from '@/flavours/polyam/components/scrollable_list/components';
+import type { TruncatedListItemInfo } from '@/flavours/polyam/components/truncated_list';
+import { TruncatedListItems } from '@/flavours/polyam/components/truncated_list';
+import BundleColumnError from '@/flavours/polyam/features/ui/components/bundle_column_error';
+import Column from '@/flavours/polyam/features/ui/components/column';
+import { useAccount } from '@/flavours/polyam/hooks/useAccount';
+import { useAccountId } from '@/flavours/polyam/hooks/useAccountId';
+import { useAccountVisibility } from '@/flavours/polyam/hooks/useAccountVisibility';
+import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
-import { useAccountCollections } from '../collections';
 import { CollectionListItem } from '../collections/components/collection_list_item';
+import { useCollectionsCreatedBy } from '../collections/overview/created_by_you';
 import { areCollectionsEnabled } from '../collections/utils';
 
 import { EmptyMessage } from './components/empty_message';
@@ -67,7 +67,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
       ) as ImmutableList<string>,
   );
   const { collections, status: collectionsLoadStatus } =
-    useAccountCollections(accountId);
+    useCollectionsCreatedBy(accountId);
 
   const { listedCollections = [], unlistedCollections = [] } = Object.groupBy(
     collections,

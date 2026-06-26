@@ -5,22 +5,22 @@ import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 import { List as ImmutableList, isList } from 'immutable';
 
 import PersonIcon from '@/awesome-icons/solid/user.svg?react';
-import { openModal } from 'flavours/polyam/actions/modal';
-import { expandAccountMediaTimeline } from 'flavours/polyam/actions/timelines';
-import { RemoteHint } from 'flavours/polyam/components/remote_hint';
-import ScrollableList from 'flavours/polyam/components/scrollable_list';
-import { AccountHeader } from 'flavours/polyam/features/account_timeline/components/account_header';
-import { LimitedAccountHint } from 'flavours/polyam/features/account_timeline/components/limited_account_hint';
-import BundleColumnError from 'flavours/polyam/features/ui/components/bundle_column_error';
-import Column from 'flavours/polyam/features/ui/components/column';
-import { useAccountId } from 'flavours/polyam/hooks/useAccountId';
-import { useAccountVisibility } from 'flavours/polyam/hooks/useAccountVisibility';
-import type { MediaAttachment } from 'flavours/polyam/models/media_attachment';
+import { openModal } from '@/flavours/polyam/actions/modal';
+import { expandAccountMediaTimeline } from '@/flavours/polyam/actions/timelines';
+import { AccountHeader } from '@/flavours/polyam/components/account_header';
+import { LimitedAccountHint } from '@/flavours/polyam/components/limited_account_hint';
+import { RemoteHint } from '@/flavours/polyam/components/remote_hint';
+import ScrollableList from '@/flavours/polyam/components/scrollable_list';
+import BundleColumnError from '@/flavours/polyam/features/ui/components/bundle_column_error';
+import Column from '@/flavours/polyam/features/ui/components/column';
+import { useAccountId } from '@/flavours/polyam/hooks/useAccountId';
+import { useAccountVisibility } from '@/flavours/polyam/hooks/useAccountVisibility';
+import type { MediaAttachment } from '@/flavours/polyam/models/media_attachment';
 import {
   useAppSelector,
   useAppDispatch,
   createAppSelector,
-} from 'flavours/polyam/store';
+} from '@/flavours/polyam/store';
 
 import { MediaItem } from './components/media_item';
 

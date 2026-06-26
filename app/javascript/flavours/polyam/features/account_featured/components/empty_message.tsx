@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { openModal } from '@/flavours/polyam/actions/modal';
 import { Button } from '@/flavours/polyam/components/button';
 import { EmptyState } from '@/flavours/polyam/components/empty_state';
-import { LimitedAccountHint } from '@/flavours/polyam/features/account_timeline/components/limited_account_hint';
+import { LimitedAccountHint } from '@/flavours/polyam/components/limited_account_hint';
 import { areCollectionsEnabled } from '@/flavours/polyam/features/collections/utils';
 import { useCurrentAccountId } from '@/flavours/polyam/hooks/useAccountId';
 import { useAppDispatch } from '@/flavours/polyam/store';

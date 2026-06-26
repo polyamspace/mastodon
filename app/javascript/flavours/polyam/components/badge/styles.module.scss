@@ -7,6 +7,7 @@
   border: 1px solid var(--user-role-border);
   color: var(--user-role-text);
   font-size: 13px;
+  font-weight: 400;
   display: inline-flex;
   max-width: 100%;
   padding: 4px;
@@ -68,7 +69,6 @@
 
 .warning {
   background-color: var(--color-bg-warning-softest);
-  color: var(--color-text-warning);
 }
 
 .danger {

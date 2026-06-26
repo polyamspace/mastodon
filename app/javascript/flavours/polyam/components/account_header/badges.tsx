@@ -1,0 +1,107 @@
+import { useEffect } from 'react';
+import type { FC } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import { fetchRelationships } from '@/flavours/polyam/actions/accounts';
+import { useAccount } from '@/flavours/polyam/hooks/useAccount';
+import type { AccountRole } from '@/flavours/polyam/models/account';
+import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
+
+import {
+  AdminBadge,
+  AutomatedBadge,
+  Badge,
+  BlockedBadge,
+  GroupBadge,
+  MutedBadge,
+} from '../badge';
+
+import classes from './styles.module.scss';
+
+export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
+  const account = useAccount(accountId);
+  const relationship = useAppSelector((state) =>
+    state.relationships.get(accountId),
+  );
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (!relationship) {
+      dispatch(fetchRelationships([accountId]));
+    }
+  }, [accountId, dispatch, relationship]);
+
+  const badges = [];
+
+  if (!account) {
+    return null;
+  }
+
+  // Polyam: removed domain
+  account.roles.forEach((role) => {
+    if (isAdminBadge(role)) {
+      badges.push(
+        <AdminBadge
+          key={role.id}
+          label={role.name}
+          roleId={role.id}
+          roleColor={role.color}
+        />,
+      );
+    } else {
+      badges.push(
+        <Badge
+          key={role.id}
+          label={role.name}
+          roleId={role.id}
+          roleColor={role.color}
+        />,
+      );
+    }
+  });
+
+  if (account.bot) {
+    badges.push(<AutomatedBadge key='bot-badge' />);
+  }
+  if (account.group) {
+    badges.push(<GroupBadge key='group-badge' />);
+  }
+  if (relationship) {
+    if (relationship.blocking) {
+      badges.push(<BlockedBadge key='blocking' />);
+    }
+    if (relationship.domain_blocking) {
+      badges.push(
+        <BlockedBadge
+          key='domain-blocking'
+          label={
+            <FormattedMessage
+              id='account.badges.domain_blocked'
+              defaultMessage='Blocked domain'
+            />
+          }
+        />,
+      );
+    }
+    if (relationship.muting) {
+      badges.push(
+        <MutedBadge
+          key='muted-badge'
+          expiresAt={relationship.muting_expires_at}
+        />,
+      );
+    }
+  }
+
+  if (!badges.length) {
+    return null;
+  }
+
+  return <div className={classes.badges}>{badges}</div>;
+};
+
+function isAdminBadge(role: AccountRole) {
+  const name = role.name.toLowerCase();
+  return name === 'admin' || name === 'owner';
+}

@@ -272,9 +272,11 @@ export const ColumnHeader: React.FC<Props> = ({
     </>
   );
 
+  const HeadingElement = hasTitle ? 'h1' : 'div';
+
   const component = (
     <div className={wrapperClassName}>
-      <h1 className={buttonClassName}>
+      <HeadingElement className={buttonClassName}>
         {hasTitle && (
           <>
             {backButton}
@@ -307,7 +309,7 @@ export const ColumnHeader: React.FC<Props> = ({
           {extraButton}
           {collapseButton}
         </div>
-      </h1>
+      </HeadingElement>
 
       <div
         className={collapsibleClassName}
