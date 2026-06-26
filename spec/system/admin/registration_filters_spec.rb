@@ -15,8 +15,8 @@ RSpec.describe 'Admin::RegistrationFilters' do
       visit admin_registration_filters_path
 
       expect(page)
-        .to have_content(filter.phrase)
-        .and have_content(I18n.t('admin.registration_filters.types.text'))
+        .to have_text(filter.phrase)
+        .and have_text(I18n.t('admin.registration_filters.types.text'))
     end
   end
 
@@ -26,7 +26,7 @@ RSpec.describe 'Admin::RegistrationFilters' do
       click_on I18n.t('admin.registration_filters.add_new')
 
       expect(page)
-        .to have_content(I18n.t('admin.registration_filters.new.title'))
+        .to have_text(I18n.t('admin.registration_filters.new.title'))
 
       fill_in I18n.t('admin.registration_filters.phrase'), with: 'bitcoin'
 
@@ -34,8 +34,8 @@ RSpec.describe 'Admin::RegistrationFilters' do
         .to change(RegistrationFilter.where(phrase: 'bitcoin'), :count).by(1)
 
       expect(page)
-        .to have_content(I18n.t('admin.registration_filters.title'))
-        .and have_content(I18n.t('admin.registration_filters.created_msg'))
+        .to have_text(I18n.t('admin.registration_filters.title'))
+        .and have_text(I18n.t('admin.registration_filters.created_msg'))
     end
 
     def submit_create
@@ -51,7 +51,7 @@ RSpec.describe 'Admin::RegistrationFilters' do
       click_on I18n.t('filters.edit.title')
 
       expect(page)
-        .to have_content(I18n.t('admin.registration_filters.edit.title'))
+        .to have_text(I18n.t('admin.registration_filters.edit.title'))
 
       fill_in I18n.t('admin.registration_filters.phrase'), with: 'changed'
 
@@ -59,8 +59,8 @@ RSpec.describe 'Admin::RegistrationFilters' do
         .to(change { filter.reload.phrase })
 
       expect(page)
-        .to have_content(I18n.t('admin.registration_filters.title'))
-        .and have_content(I18n.t('admin.registration_filters.updated_msg'))
+        .to have_text(I18n.t('admin.registration_filters.title'))
+        .and have_text(I18n.t('admin.registration_filters.updated_msg'))
     end
 
     it 'deletes registration filter' do
@@ -71,7 +71,7 @@ RSpec.describe 'Admin::RegistrationFilters' do
         .to change(RegistrationFilter, :count).by(-1)
 
       expect(page)
-        .to have_content(I18n.t('admin.registration_filters.destroyed_msg'))
+        .to have_text(I18n.t('admin.registration_filters.destroyed_msg'))
     end
 
     def delete_filter
