@@ -57,6 +57,7 @@ class Form::AdminSettings
     remote_topic_feed_access
     landing_page
     wrapstodon
+    email_footer_text
     system_dark
     system_light
   ).freeze
