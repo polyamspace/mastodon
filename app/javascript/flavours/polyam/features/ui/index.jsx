@@ -690,7 +690,7 @@ class UI extends PureComponent {
       // Polyam: Removed "cheat"
     };
 
-    const minimalShell = !this.props.identity.signedIn && landingPage === 'overview';
+    const minimalShell = !this.props.identity.signedIn && landingPage === 'overview' && location.pathname.startsWith('/overview');
 
     return (
       <Hotkeys global handlers={handlers}>
