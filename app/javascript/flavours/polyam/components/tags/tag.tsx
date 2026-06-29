@@ -5,8 +5,9 @@ import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import type { Merge } from 'type-fest';
+
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
-import type { OmitUnion } from '@/flavours/polyam/utils/types';
 
 import type { IconProp } from '../icon';
 import { Icon } from '../icon';
@@ -24,7 +25,7 @@ export interface TagProps {
 
 export const Tag = forwardRef<
   HTMLButtonElement,
-  OmitUnion<ComponentPropsWithoutRef<'button'>, TagProps>
+  Merge<ComponentPropsWithoutRef<'button'>, TagProps>
 >(({ name, active, icon, className, children, ...props }, ref) => {
   if (!name) {
     return null;
@@ -47,7 +48,7 @@ Tag.displayName = 'Tag';
 
 export const EditableTag = forwardRef<
   HTMLSpanElement,
-  OmitUnion<
+  Merge<
     ComponentPropsWithoutRef<'span'>,
     TagProps & {
       onRemove: () => void;

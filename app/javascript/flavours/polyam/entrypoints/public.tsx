@@ -15,6 +15,7 @@ import { throttle } from 'lodash';
 
 import { determineEmojiMode } from '@/flavours/polyam/features/emoji/mode';
 import { updateHtmlWithEmoji } from '@/flavours/polyam/features/emoji/render';
+import type { InitialState } from '@/flavours/polyam/initial_state';
 import loadKeyboardExtensions from '@/flavours/polyam/load_keyboard_extensions';
 import { loadLocale, getLocale } from '@/flavours/polyam/locales';
 import { loadPolyfills } from '@/flavours/polyam/polyfills';
@@ -83,7 +84,7 @@ async function loaded() {
     document.getElementById('initial-state')?.textContent;
   if (initialStateText) {
     const stateEmojiStyle = getNestedProperty(
-      JSON.parse(initialStateText) as unknown,
+      JSON.parse(initialStateText) as InitialState,
       'meta',
       'emoji_style',
     );

@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import type { CamelCase } from 'type-fest';
+
 import { fetchAccount } from '@/flavours/polyam/actions/accounts';
 import {
   apiDeleteFeaturedTag,
@@ -26,13 +28,12 @@ import {
   createDataLoadingThunk,
 } from '@/flavours/polyam/store/typed_functions';
 import { hashObjectArray } from '@/flavours/polyam/utils/hash';
-import type { SnakeToCamelCase } from '@/flavours/polyam/utils/types';
 
 type ProfileData = {
   [Key in keyof Omit<
     ApiProfileJSON,
     'note' | 'fields' | 'featured_tags'
-  > as SnakeToCamelCase<Key>]: ApiProfileJSON[Key];
+  > as CamelCase<Key>]: ApiProfileJSON[Key];
 } & {
   bio: ApiProfileJSON['note'];
   fields: FieldData[];
@@ -45,7 +46,7 @@ export type TagData = {
   [Key in keyof Omit<
     ApiFeaturedTagJSON,
     'statuses_count'
-  > as SnakeToCamelCase<Key>]: ApiFeaturedTagJSON[Key];
+  > as CamelCase<Key>]: ApiFeaturedTagJSON[Key];
 } & {
   statusesCount: number;
 };
