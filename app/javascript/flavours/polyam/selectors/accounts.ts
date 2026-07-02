@@ -1,16 +1,16 @@
 import type { Map as ImmutableMap } from 'immutable';
 import { Record as ImmutableRecord, List as ImmutableList } from 'immutable';
 
-import { me } from 'flavours/polyam/initial_state';
-import { accountDefaultValues } from 'flavours/polyam/models/account';
+import { me } from '@/flavours/polyam/initial_state';
+import { accountDefaultValues } from '@/flavours/polyam/models/account';
 import type {
   Account,
   AccountShape,
   AccountShapeFull,
-} from 'flavours/polyam/models/account';
-import type { Relationship } from 'flavours/polyam/models/relationship';
-import { createAppSelector } from 'flavours/polyam/store';
-import type { RootState } from 'flavours/polyam/store';
+} from '@/flavours/polyam/models/account';
+import type { Relationship } from '@/flavours/polyam/models/relationship';
+import type { RootState } from '@/flavours/polyam/store';
+import { createAppSelector } from '@/flavours/polyam/store/typed_functions';
 
 import type { ApiHashtagJSON } from '../api_types/tags';
 

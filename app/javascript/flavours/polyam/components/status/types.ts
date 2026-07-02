@@ -1,5 +1,6 @@
 import type { ComponentType, MouseEventHandler, ReactNode } from 'react';
 
+import StatusContainer from '@/flavours/polyam/containers/status_container';
 import type { IdentityContextType } from '@/flavours/polyam/identity_context';
 import type { Account as TAccount } from '@/flavours/polyam/models/account';
 import type { Status as TStatus } from '@/flavours/polyam/models/status';
@@ -8,15 +9,57 @@ import Status from '../status';
 
 import type { StatusHeaderRenderFn } from './header';
 
-// Taken from the Status component.
-export interface StatusProps {
-  status: TStatus;
+export type StatusContextType =
+  | 'account'
+  | 'bookmarks'
+  | 'composer'
+  | 'detailed'
+  | 'favourites'
+  | 'home'
+  | `list:${string}`
+  | 'notifications'
+  | 'public'
+  | 'search'
+  | 'thread';
+
+export interface StatusContainerProps {
+  id?: string | null;
   account?: TAccount;
   children?: ReactNode;
   previousId?: string;
-  nextInReplyToId?: string;
   rootId?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
+  muted?: boolean;
+  hidden?: boolean;
+  unread?: boolean;
+  featured?: boolean;
+  showThread?: boolean;
+  showActions?: boolean;
+  isQuotedPost?: boolean;
+  shouldHighlightOnMount?: boolean;
+  contextType?: StatusContextType;
+  withCounters?: boolean;
+  unfocusable?: boolean;
+  headerRenderFn?: StatusHeaderRenderFn;
+  getScrollPosition?: () => null | { height: number; top: number };
+  updateScrollBottom?: (snapshot: number) => void;
+  cacheMediaWidth?: (width: number) => void;
+  cachedMediaWidth?: number;
+  scrollKey?: string;
+  skipPrepend?: boolean;
+  avatarSize?: number;
+  withDismiss?: boolean;
+  // Polyam
+  ref?: unknown; // temporary until component is TS
+}
+
+export const TypedStatusContainer =
+  StatusContainer as ComponentType<StatusContainerProps>;
+
+// Taken from the Status component.
+export interface StatusProps extends StatusContainerProps {
+  status: TStatus;
+  nextInReplyToId?: string;
   onReply: (status: TStatus) => void;
   onFavourite: (status: TStatus) => void;
   onReblog: (status: TStatus, event?: unknown) => void;
@@ -45,31 +88,12 @@ export interface StatusProps {
   onToggleCollapsed: (status: TStatus, isCollapsed: boolean) => void;
   onTranslate: (status: TStatus) => void;
   onInteractionModal?: (type: string, status: TStatus) => void;
-  muted?: boolean;
-  hidden?: boolean;
-  unread?: boolean;
-  featured?: boolean;
-  showThread?: boolean;
-  showActions?: boolean;
-  isQuotedPost?: boolean;
-  shouldHighlightOnMount?: boolean;
-  getScrollPosition?: () => null | { height: number; top: number };
-  updateScrollBottom?: (snapshot: number) => void;
-  cacheMediaWidth?: (width: number) => void;
-  cachedMediaWidth?: number;
-  scrollKey?: string;
-  skipPrepend?: boolean;
-  avatarSize?: number;
   deployPictureInPicture: (
     status: TStatus,
     type: string,
     mediaProps: unknown,
   ) => void;
-  unfocusable?: boolean;
-  headerRenderFn?: StatusHeaderRenderFn;
   pictureInPicture: Immutable.Map<'inUse' | 'available', boolean>;
-  contextType?: string;
-  withCounters?: boolean;
   // Polyam
   identity: IdentityContextType;
   onOpenAltText?: (media?: unknown) => void;
