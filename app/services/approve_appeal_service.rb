@@ -53,10 +53,9 @@ class ApproveAppealService < BaseService
     # Cannot be undone
   end
 
+  # Polyam TODO: Remove eventually
   def undo_hide_statuses!
-    @strike.statuses.each do |status|
-      CustomFilter.instance_filter.statuses.delete(CustomFilter.instance_filter.statuses.where(status_id: status.id))
-    end
+    # Polyam: No longer supported
   end
 
   def undo_mark_statuses_as_sensitive!

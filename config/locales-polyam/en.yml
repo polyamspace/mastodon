@@ -77,9 +77,6 @@ en:
     strikes:
       title_actions:
         hide_statuses: Toot hiding
-  filters:
-    instance_filter:
-      title: Hidden by moderators
   invites:
     errors:
       daily_limit_reached: Daily limit of created invites reached

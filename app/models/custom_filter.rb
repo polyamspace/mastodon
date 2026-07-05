@@ -28,7 +28,6 @@ class CustomFilter < ApplicationRecord
     account
   ).freeze
 
-  INSTANCE_FILTER_ID = -99
   EXPIRATION_DURATIONS = [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].freeze
 
   TITLE_LENGTH_LIMIT = 256
@@ -68,12 +67,6 @@ class CustomFilter < ApplicationRecord
     hide_action?
   end
 
-  def self.instance_filter
-    CustomFilter.find(INSTANCE_FILTER_ID)
-  rescue ActiveRecord::RecordNotFound
-    CustomFilter.create!(id: INSTANCE_FILTER_ID, account_id: Account::INSTANCE_ACTOR_ID, context: VALID_CONTEXTS, phrase: 'Hidden by moderators')
-  end
-
   def self.cached_filters_for(account_id)
     active_filters = Rails.cache.fetch("filters:v3:#{account_id}") do
       filters_hash = {}
@@ -86,8 +79,7 @@ class CustomFilter < ApplicationRecord
         filters_hash[filter.id] = { keywords: Regexp.union(keywords), filter: filter }
       end.to_h
 
-      with_instance_filter = [account_id, Account::INSTANCE_ACTOR_ID]
-      scope = CustomFilterStatus.left_outer_joins(:custom_filter).merge(unexpired.where(account_id: with_instance_filter))
+      scope = CustomFilterStatus.left_outer_joins(:custom_filter).merge(unexpired.where(account_id: account_id))
 
       scope.to_a.group_by(&:custom_filter).each do |filter, statuses|
         filters_hash[filter.id] ||= { filter: filter }
