@@ -283,10 +283,6 @@ class Status < ApplicationRecord
     @reported ||= account.targeted_reports.unresolved.exists?(['? = ANY(status_ids)', id]) || account.strikes.exists?(['? = ANY(status_ids)', id.to_s])
   end
 
-  def hidden_by_moderators?
-    CustomFilter.instance_filter.statuses.exists?(status_id: id)
-  end
-
   def emojis
     return @emojis if defined?(@emojis)
 

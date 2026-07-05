@@ -138,7 +138,6 @@ export interface ApiStatusJSON {
 
   // polyam-glitch additions
   reactions_count: number;
-  hidden_by_moderators: boolean;
   reactions: ApiReactionJSON[];
 }
 

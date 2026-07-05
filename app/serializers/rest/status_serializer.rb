@@ -9,7 +9,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
              :sensitive, :spoiler_text, :visibility, :language,
              :uri, :url, :replies_count, :reblogs_count,
              :favourites_count, :quotes_count, :edited_at,
-             :reactions_count, :hidden_by_moderators
+             :reactions_count
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
@@ -179,10 +179,6 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   def reactions
     relationships&.attributes_map&.dig(object.id, :reactions) || object.reactions(current_user&.account&.id)
-  end
-
-  def hidden_by_moderators
-    object.hidden_by_moderators?
   end
 
   def tagged_collections
