@@ -35,7 +35,7 @@ class Api::V2::FiltersController < Api::BaseController
   private
 
   def set_filters
-    @filters = CustomFilter.includes(:keywords, :statuses).where(account_id: [current_account.id, Account::INSTANCE_ACTOR_ID])
+    @filters = current_account.custom_filters.includes(:keywords, :statuses)
   end
 
   def set_filter
