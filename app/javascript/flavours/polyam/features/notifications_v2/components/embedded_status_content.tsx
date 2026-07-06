@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 
-import type { List } from 'immutable';
+import type { List, Map } from 'immutable';
 
 import { EmojiHTML } from '@/flavours/polyam/components/emoji/html';
 import { useElementHandledLink } from '@/flavours/polyam/components/status/handled_link';
@@ -24,8 +24,19 @@ export const EmbeddedStatusContent: React.FC<{
     },
     [mentions],
   );
+  const hrefToCollection = useCallback(
+    (href: string) => {
+      const collections = status.get('tagged_collections') as List<
+        Map<'url' | 'id', string>
+      >;
+      const collection = collections.find((item) => item.get('url') === href);
+      return collection?.get('id');
+    },
+    [status],
+  );
   const htmlHandlers = useElementHandledLink({
     hashtagAccountId: status.get('account') as string | undefined,
+    hrefToCollectionId: hrefToCollection,
     hrefToMention,
   });
 

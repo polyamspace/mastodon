@@ -57,18 +57,15 @@ export const Profile: React.FC<{
   const account = useAppSelector((state) =>
     me ? state.accounts.get(me) : undefined,
   );
-  const maxBioChars = useAppSelector((state) =>
-    state.server.getIn(
-      ['server', 'configuration', 'accounts', 'max_note_length'],
-      500,
-    ),
-  ) as number;
-  const maxDisplayNameChars = useAppSelector((state) =>
-    state.server.getIn(
-      ['server', 'configuration', 'accounts', 'max_display_name_length'],
-      30,
-    ),
-  ) as number;
+  const maxBioChars = useAppSelector(
+    (state) =>
+      state.server.server.item?.configuration.accounts.max_note_length ?? 500,
+  );
+  const maxDisplayNameChars = useAppSelector(
+    (state) =>
+      state.server.server.item?.configuration.accounts
+        .max_display_name_length ?? 30,
+  );
   const [displayName, setDisplayName] = useState(account?.display_name ?? '');
   const [note, setNote] = useState(account ? unescapeHTML(account.note) : '');
   const [avatar, setAvatar] = useState<File>();
