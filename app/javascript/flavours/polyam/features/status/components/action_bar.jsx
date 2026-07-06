@@ -21,7 +21,8 @@ import { Dropdown } from 'flavours/polyam/components/dropdown_menu';
 import { me, quickBoosting, maxReactions } from '../../../initial_state';
 import EmojiPickerDropdown from "../../compose/containers/emoji_picker_dropdown_container";
 import { BoostButton } from '@/flavours/polyam/components/status/boost_button';
-import { quoteItemState, selectStatusState } from '@/flavours/polyam/components/status/boost_button_utils';
+import { quoteItemState } from '@/flavours/polyam/components/status/boost_button_utils';
+import { selectStatusConditions } from '@/flavours/polyam/selectors/statuses';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -58,7 +59,7 @@ const mapStateToProps = (state, { status }) => {
   const quotedStatusId = status.getIn(['quote', 'quoted_status']);
   return ({
     quotedAccountId: quotedStatusId ? state.getIn(['statuses', quotedStatusId, 'account']) : null,
-    statusQuoteState: selectStatusState(state, status),
+    statusQuoteState: selectStatusConditions(state, status.get('id')),
   });
 };
 
@@ -274,7 +275,7 @@ class ActionBar extends PureComponent {
       <div className='detailed-status__action-bar'>
         <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} iconComponent={status.get('in_reply_to_id', null) === null ? ReplyIcon : ReplyAllIcon} onClick={this.handleReplyClick} /></div>
         <div className='detailed-status__button'>
-          <BoostButton status={status} />
+          <BoostButton statusId={status.get('id')} />
         </div>
         <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={favouriteTitle} icon='star' iconComponent={StarIcon} onClick={this.handleFavouriteClick} /></div>
         <div className='detailed-status__button'>

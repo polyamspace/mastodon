@@ -2,8 +2,7 @@ import { defineMessages } from 'react-intl';
 import type { MessageDescriptor } from 'react-intl';
 
 import FormatQuote from '@/awesome-icons/solid/quote-right.svg?react';
-import type { Status, StatusVisibility } from '@/flavours/polyam/models/status';
-import { createAppSelector } from '@/flavours/polyam/store';
+import type { StatusConditions } from '@/flavours/polyam/selectors/statuses';
 import RepeatIcon from '@/svg-icons/boost.svg?react';
 import RepeatDisabledIcon from '@/svg-icons/boost_disabled.svg?react';
 import RepeatPrivateIcon from '@/svg-icons/boost_private.svg?react';
@@ -60,42 +59,6 @@ export const messages = defineMessages({
   },
 });
 
-export const selectStatusState = createAppSelector(
-  [
-    (state) => state.meta.get('me') as string | undefined,
-    (_, status: Status) => status,
-  ],
-  (userId, status) => {
-    const isPublic = ['public', 'unlisted'].includes(
-      status.get('visibility') as StatusVisibility,
-    );
-    const isMineAndPrivate =
-      userId === status.getIn(['account', 'id']) &&
-      status.get('visibility') === 'private';
-    return {
-      isLoggedIn: !!userId,
-      isPublic,
-      isMine: userId === status.getIn(['account', 'id']),
-      isPrivateReblog:
-        userId === status.getIn(['account', 'id']) &&
-        status.get('visibility') === 'private',
-      isReblogged: !!status.get('reblogged'),
-      isReblogAllowed: isPublic || isMineAndPrivate,
-      isQuoteAutomaticallyAccepted:
-        status.getIn(['quote_approval', 'current_user']) === 'automatic' &&
-        (isPublic || isMineAndPrivate),
-      isQuoteManuallyAccepted:
-        status.getIn(['quote_approval', 'current_user']) === 'manual' &&
-        (isPublic || isMineAndPrivate),
-      isQuoteFollowersOnly:
-        status.getIn(['quote_approval', 'automatic', 0]) === 'followers' ||
-        status.getIn(['quote_approval', 'manual', 0]) === 'followers',
-    };
-  },
-);
-
-export type StatusState = ReturnType<typeof selectStatusState>;
-
 export interface MenuItemState {
   title: MessageDescriptor;
   meta?: MessageDescriptor;
@@ -106,9 +69,9 @@ export interface MenuItemState {
 export function boostItemState({
   isPublic,
   isPrivateReblog,
-  isReblogged,
-}: StatusState): MenuItemState {
-  if (isReblogged) {
+  isBoosted,
+}: StatusConditions): MenuItemState {
+  if (isBoosted) {
     // Polyam: No active variants used as checkmarks are added via CSS
     return {
       title: messages.reblog_cancel,
@@ -138,7 +101,7 @@ export function quoteItemState({
   isQuoteManuallyAccepted,
   isQuoteFollowersOnly,
   isPublic,
-}: StatusState): MenuItemState {
+}: StatusConditions): MenuItemState {
   const iconText: MenuItemState = {
     title: messages.quote,
     iconComponent: FormatQuote,

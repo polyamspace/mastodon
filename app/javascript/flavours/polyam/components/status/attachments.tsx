@@ -5,6 +5,7 @@ import type { DeployPictureInPictureCallback } from '@/flavours/polyam/actions/p
 import { deployPictureInPicture } from '@/flavours/polyam/actions/picture_in_picture';
 import { CollectionPreviewCard } from '@/flavours/polyam/features/collections/components/collection_preview_card';
 import Card from '@/flavours/polyam/features/status/components/card';
+import { useExpandedStatus } from '@/flavours/polyam/hooks/useStatus';
 import { displayMedia } from '@/flavours/polyam/initial_state';
 import type {
   MediaAttachment,
@@ -12,7 +13,6 @@ import type {
 } from '@/flavours/polyam/models/status';
 import { isMediaAttachmentOfType } from '@/flavours/polyam/models/status';
 import {
-  selectExpandedStatus,
   selectMediaMatchFilters,
   selectPictureInPicture,
 } from '@/flavours/polyam/selectors/statuses';
@@ -25,10 +25,7 @@ export const StatusAttachments: React.FC<{
   statusId: string;
   contextType?: string;
 }> = ({ statusId, contextType }) => {
-  // Selectors
-  const status = useAppSelector((state) =>
-    selectExpandedStatus(state, statusId),
-  );
+  const status = useExpandedStatus(statusId);
 
   if (!status) {
     return null;
