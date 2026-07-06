@@ -15,6 +15,7 @@ module IconHelper
     brush: 'broom',
     campaign: 'bullhorn',
     captive_portal: 'arrow-right-arrow-left',
+    category: 'shapes',
     chat: 'comment',
     chat_bubble: 'comments',
     check: 'check',
