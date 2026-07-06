@@ -7,8 +7,9 @@ import {
   defineMessages,
 } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { Link, useParams } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import { apiGetTermsOfService } from 'flavours/polyam/api/instance';
 import type { ApiTermsOfServiceJSON } from 'flavours/polyam/api_types/instance';

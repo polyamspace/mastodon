@@ -8,11 +8,11 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import CheckIcon from '@/awesome-icons/solid/check.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 
+import { AccountBio } from '@/flavours/polyam/components/account_bio';
 import { Avatar } from '@/flavours/polyam/components/avatar';
 import { DisplayName } from '@/flavours/polyam/components/display_name';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
 import { injectIntl } from '@/flavours/polyam/components/intl';
-import { EmojiHTML } from '@/flavours/polyam/components/emoji/html';
 import { Permalink } from '@/flavours/polyam/components/permalink';
 
 const messages = defineMessages({
@@ -40,11 +40,7 @@ class AccountAuthorize extends ImmutablePureComponent {
             <DisplayName account={account} />
           </Permalink>
 
-          <EmojiHTML
-            className='account__header__content translate'
-            htmlString={account.get('note_emojified')}
-            extraEmojis={account.get('emojis')}
-          />
+          <AccountBio accountId={account.id} />
         </div>
 
         <div className='account--panel'>

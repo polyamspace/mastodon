@@ -25,6 +25,7 @@ import Column from '@/flavours/polyam/features/ui/components/column';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useAccountId } from '@/flavours/polyam/hooks/useAccountId';
 import { useAccountVisibility } from '@/flavours/polyam/hooks/useAccountVisibility';
+import { me } from '@/flavours/polyam/initial_state';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
 import { CollectionListItem } from '../collections/components/collection_list_item';
@@ -173,12 +174,14 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
                   defaultMessage='Collections'
                 />
               </h2>
-              <SubheadingLink to='/collections/new' icon={AddIcon}>
-                <FormattedMessage
-                  id='account.featured.new_collection'
-                  defaultMessage='New collection'
-                />
-              </SubheadingLink>
+              {accountId === me && (
+                <SubheadingLink to='/collections/new' icon={AddIcon}>
+                  <FormattedMessage
+                    id='account.featured.new_collection'
+                    defaultMessage='New collection'
+                  />
+                </SubheadingLink>
+              )}
             </Subheading>
             {hasCollections ? (
               <ItemList>

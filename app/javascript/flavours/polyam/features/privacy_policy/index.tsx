@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import UserSecretIcon from '@/awesome-icons/solid/user-secret.svg?react';
 import { apiGetPrivacyPolicy } from 'flavours/polyam/api/instance';

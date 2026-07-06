@@ -2,9 +2,9 @@ import { useCallback, useEffect } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
-
 import type { List as ImmutableList } from 'immutable';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
 import RefreshIcon from '@/awesome-icons/solid/rotate-left.svg?react';

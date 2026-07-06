@@ -2,8 +2,9 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/flavours/polyam/components/column';
 import { ColumnHeader } from '@/flavours/polyam/components/column_header';

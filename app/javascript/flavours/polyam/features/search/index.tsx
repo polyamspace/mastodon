@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import TagIcon from '@/awesome-icons/solid/hashtag.svg?react';
 import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';

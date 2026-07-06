@@ -2,7 +2,7 @@ import { useEffect, useRef, useCallback, useState } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import BlockIcon from '@/awesome-icons/solid/circle-minus.svg?react';
 import { apiGetDomainBlocks } from 'flavours/polyam/api/domain_blocks';

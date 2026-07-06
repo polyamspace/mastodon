@@ -2,10 +2,11 @@ import { useEffect, useCallback, useState } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import type { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import MenuIcon from '@/awesome-icons/solid/asterisk.svg?react';
 import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';

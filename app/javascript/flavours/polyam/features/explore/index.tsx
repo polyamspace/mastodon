@@ -2,8 +2,9 @@ import { useCallback, useRef } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { NavLink, Switch, Route } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import TrendingUpIcon from '@/awesome-icons/solid/arrow-trend-up.svg?react';
 import { Column } from 'flavours/polyam/components/column';
