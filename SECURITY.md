@@ -26,4 +26,5 @@ A "vulnerability in Mastodon" is a vulnerability in the code distributed through
 | 4.5.x   | Yes       |
 | 4.4.x   | Yes       |
 | < 4.4   | No        |
+
 </blockquote>
