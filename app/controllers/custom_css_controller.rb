@@ -5,7 +5,7 @@ class CustomCssController < ActionController::Base # rubocop:disable Rails/Appli
 
   def show
     expires_in 1.month, public: true
-    render content_type: 'text/css'
+    render content_type: :css
   end
 
   private
