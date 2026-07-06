@@ -51,6 +51,7 @@ export interface StatusShape {
   collapsed: boolean | null;
   uri: string;
   url: string | null;
+  isLoading?: boolean;
 
   // Content
   content: string;

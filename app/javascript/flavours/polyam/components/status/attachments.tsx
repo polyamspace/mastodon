@@ -13,10 +13,8 @@ import type {
   MediaAttachmentShape,
 } from '@/flavours/polyam/models/status';
 import { isMediaAttachmentOfType } from '@/flavours/polyam/models/status';
-import {
-  selectMediaMatchFilters,
-  selectPictureInPicture,
-} from '@/flavours/polyam/selectors/statuses';
+import { selectMediaFilters } from '@/flavours/polyam/selectors/filters';
+import { selectPictureInPicture } from '@/flavours/polyam/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 import { compareUrls } from '@/flavours/polyam/utils/compare_urls';
 
@@ -131,7 +129,7 @@ const MediaAttachments: React.FC<{
     ]) as Immutable.List<MediaAttachment>;
   });
   const mediaFilters = useAppSelector((state) =>
-    selectMediaMatchFilters(state, { statusId, contextType }),
+    selectMediaFilters(state, { statusId, contextType }),
   );
   const pictureInPicture = useAppSelector((state) =>
     selectPictureInPicture(state, statusId),
