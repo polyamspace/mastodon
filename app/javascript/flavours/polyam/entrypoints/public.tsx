@@ -13,12 +13,16 @@ import axios from 'axios';
 import { on } from 'delegated-events';
 import { throttle } from 'lodash';
 
+import { determineEmojiMode } from '@/flavours/polyam/features/emoji/mode';
+import { updateHtmlWithEmoji } from '@/flavours/polyam/features/emoji/render';
+import loadKeyboardExtensions from '@/flavours/polyam/load_keyboard_extensions';
+import { loadLocale, getLocale } from '@/flavours/polyam/locales';
+import { loadPolyfills } from '@/flavours/polyam/polyfills';
+import ready from '@/flavours/polyam/ready';
+import { assetHost } from '@/flavours/polyam/utils/config';
+import { getNestedProperty } from '@/flavours/polyam/utils/objects';
+import { isDarkMode } from '@/flavours/polyam/utils/theme';
 import { formatTime } from '@/flavours/polyam/utils/time';
-import emojify from 'flavours/polyam/features/emoji/emoji';
-import loadKeyboardExtensions from 'flavours/polyam/load_keyboard_extensions';
-import { loadLocale, getLocale } from 'flavours/polyam/locales';
-import { loadPolyfills } from 'flavours/polyam/polyfills';
-import ready from 'flavours/polyam/ready';
 
 import 'cocoon-js-vanilla';
 
@@ -37,7 +41,7 @@ const messages = defineMessages({
   },
 });
 
-function loaded() {
+async function loaded() {
   const { messages: localeData } = getLocale();
 
   const locale = document.documentElement.lang;
@@ -74,9 +78,30 @@ function loaded() {
     return messageFormat.format(values) as string;
   };
 
-  document.querySelectorAll('.emojify').forEach((content) => {
-    content.innerHTML = emojify(content.innerHTML);
-  });
+  let emojiStyle = 'auto';
+  const initialStateText =
+    document.getElementById('initial-state')?.textContent;
+  if (initialStateText) {
+    const stateEmojiStyle = getNestedProperty(
+      JSON.parse(initialStateText) as unknown,
+      'meta',
+      'emoji_style',
+    );
+    if (typeof stateEmojiStyle === 'string') {
+      emojiStyle = stateEmojiStyle;
+    }
+  }
+  const emojiMode = determineEmojiMode(emojiStyle);
+  const darkTheme = isDarkMode();
+  for (const element of document.querySelectorAll('.emojify')) {
+    await updateHtmlWithEmoji({
+      assetHost,
+      element,
+      locale,
+      mode: emojiMode,
+      darkTheme,
+    });
+  }
 
   document
     .querySelectorAll<HTMLTimeElement>('time.formatted')
