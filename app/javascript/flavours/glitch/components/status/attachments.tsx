@@ -5,6 +5,7 @@ import type { DeployPictureInPictureCallback } from '@/flavours/glitch/actions/p
 import { deployPictureInPicture } from '@/flavours/glitch/actions/picture_in_picture';
 import { CollectionPreviewCard } from '@/flavours/glitch/features/collections/components/collection_preview_card';
 import Card from '@/flavours/glitch/features/status/components/card';
+import { useExpandedStatus } from '@/flavours/glitch/hooks/useStatus';
 import { displayMedia } from '@/flavours/glitch/initial_state';
 import type {
   MediaAttachment,
@@ -12,7 +13,6 @@ import type {
 } from '@/flavours/glitch/models/status';
 import { isMediaAttachmentOfType } from '@/flavours/glitch/models/status';
 import {
-  selectExpandedStatus,
   selectMediaMatchFilters,
   selectPictureInPicture,
 } from '@/flavours/glitch/selectors/statuses';
@@ -25,10 +25,7 @@ export const StatusAttachments: React.FC<{
   statusId: string;
   contextType?: string;
 }> = ({ statusId, contextType }) => {
-  // Selectors
-  const status = useAppSelector((state) =>
-    selectExpandedStatus(state, statusId),
-  );
+  const status = useExpandedStatus(statusId);
 
   if (!status) {
     return null;

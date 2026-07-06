@@ -6,10 +6,10 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import classnames from 'classnames';
 
 import { toggleStatusCollapse } from '@/flavours/glitch/actions/statuses';
+import { useStatus } from '@/flavours/glitch/hooks/useStatus';
 import { useIdentity } from '@/flavours/glitch/identity_context';
 import { languages as preloadedLanguages } from '@/flavours/glitch/initial_state';
 import type { StatusTranslation } from '@/flavours/glitch/models/status';
-import { selectPlainStatus } from '@/flavours/glitch/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/flavours/glitch/store';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 
@@ -27,7 +27,7 @@ export const StatusContent: React.FC<{
   onTranslate?: React.MouseEventHandler<HTMLButtonElement>;
   collapsible?: boolean;
 }> = ({ statusId, onClick, onTranslate, collapsible }) => {
-  const status = useAppSelector((state) => selectPlainStatus(state, statusId));
+  const status = useStatus(statusId);
   const { signedIn } = useIdentity();
   const targetLanguages = useAppSelector(
     (state) =>
