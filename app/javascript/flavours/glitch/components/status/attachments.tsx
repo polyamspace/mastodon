@@ -13,10 +13,8 @@ import type {
   MediaAttachmentShape,
 } from '@/flavours/glitch/models/status';
 import { isMediaAttachmentOfType } from '@/flavours/glitch/models/status';
-import {
-  selectMediaMatchFilters,
-  selectPictureInPicture,
-} from '@/flavours/glitch/selectors/statuses';
+import { selectMediaFilters } from '@/flavours/glitch/selectors/filters';
+import { selectPictureInPicture } from '@/flavours/glitch/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/flavours/glitch/store';
 import { compareUrls } from '@/flavours/glitch/utils/compare_urls';
 
@@ -126,7 +124,7 @@ const MediaAttachments: React.FC<{
     ]) as Immutable.List<MediaAttachment>;
   });
   const mediaFilters = useAppSelector((state) =>
-    selectMediaMatchFilters(state, { statusId, contextType }),
+    selectMediaFilters(state, { statusId, contextType }),
   );
   const pictureInPicture = useAppSelector((state) =>
     selectPictureInPicture(state, statusId),
