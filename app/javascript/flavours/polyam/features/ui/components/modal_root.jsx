@@ -84,6 +84,7 @@ export const MODAL_COMPONENTS = {
   'DOMAIN_BLOCK': DomainBlockModal,
   'REPORT': ReportModal,
   'REPORT_COLLECTION': ReportCollectionModal,
+  'COLLECTION_ADDER': () => import('@/flavours/polyam/features/collection_adder').then(module => ({ default: module.CollectionAdder })),
   'SHARE_COLLECTION': () => import('@/flavours/polyam/features/collections/components/share_modal').then(module => ({ default: module.CollectionShareModal })),
   'REVOKE_COLLECTION_INCLUSION': () => import('@/flavours/polyam/features/collections/detail/revoke_collection_inclusion_modal').then(module => ({ default: module.RevokeCollectionInclusionModal })),
   'SETTINGS': SettingsModal,
