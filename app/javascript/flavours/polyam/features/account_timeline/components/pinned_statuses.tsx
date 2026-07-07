@@ -16,10 +16,11 @@ import classes from '../styles.module.scss';
 
 export const renderPinnedStatusHeader: StatusHeaderRenderFn = ({
   featured,
+  contentBeforeDate,
   ...args
 }) => {
   if (!featured) {
-    return <StatusHeader {...args} />;
+    return <StatusHeader {...args} contentBeforeDate={contentBeforeDate} />;
   }
   return (
     <StatusHeader
