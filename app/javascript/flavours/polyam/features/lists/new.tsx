@@ -12,7 +12,7 @@ import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import ListAltIcon from '@/awesome-icons/solid/rectangle-list.svg?react';
 import { fetchList } from 'flavours/polyam/actions/lists';
 import { createList, updateList } from 'flavours/polyam/actions/lists_typed';
-import { apiGetAccounts } from 'flavours/polyam/api/lists';
+import { apiGetListAccounts } from 'flavours/polyam/api/lists';
 import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
 import type { RepliesPolicyType } from 'flavours/polyam/api_types/lists';
 import { Avatar } from 'flavours/polyam/components/avatar';
@@ -44,7 +44,7 @@ const MembersLink: React.FC<{
   const [avatarAccounts, setAvatarAccounts] = useState<ApiAccountJSON[]>([]);
 
   useEffect(() => {
-    void apiGetAccounts(id)
+    void apiGetListAccounts(id)
       .then((data) => {
         setAvatarCount(data.length);
         setAvatarAccounts(data.slice(0, 3));
