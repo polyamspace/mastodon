@@ -13,9 +13,9 @@ RSpec.describe CustomEmojiFilter do
 
     context 'when params have values' do
       context 'when local' do
-        let(:params) { { local: true } }
+        let(:params) { { local: true, by_domain: 'a' } }
 
-        it 'returns ActiveRecord::Relation' do
+        it 'ignores domain and returns ActiveRecord::Relation' do
           expect(subject).to be_a(ActiveRecord::Relation)
           expect(subject).to contain_exactly(custom_emoji_domain_nil, custom_emoji_domain_nil_disabled)
         end
