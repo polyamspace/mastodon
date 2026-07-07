@@ -61,7 +61,7 @@ class StatusCacheHydrator
     payload[:filtered]   = mapped_applied_custom_filter(account, status)
     payload[:quote_approval][:current_user] = status.quote_policy_for_account(account) if payload[:quote_approval]
     payload[:quote] = hydrate_quote_payload(payload[:quote], status.quote, account, nested:) if payload[:quote]
-    payload[:reactions] = serialized_reactions(account_id, status)
+    payload[:reactions] = serialized_reactions(account.id, status)
 
     if payload[:poll]
       if fresh
