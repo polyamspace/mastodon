@@ -9,7 +9,7 @@ import { Helmet } from '@unhead/react/helmet';
 import { Column } from '@/flavours/polyam/components/column';
 import { ColumnHeader } from '@/flavours/polyam/components/column_header';
 import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
-import BundleColumnError from '@/flavours/polyam/features/ui/components/bundle_column_error';
+import { BundleColumnError } from '@/flavours/polyam/features/ui/components/bundle_column_error';
 
 import { useColumnsContext } from '../../ui/util/columns_context';
 import classes from '../styles.module.scss';

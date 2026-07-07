@@ -6,7 +6,7 @@ import type { ColumnRef } from '@/flavours/polyam/components/column';
 import { Column } from '@/flavours/polyam/components/column';
 import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
 import ScrollableList from '@/flavours/polyam/components/scrollable_list';
-import BundleColumnError from '@/flavours/polyam/features/ui/components/bundle_column_error';
+import { BundleColumnError } from '@/flavours/polyam/features/ui/components/bundle_column_error';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useAccountVisibility } from '@/flavours/polyam/hooks/useAccountVisibility';
 import { useLayout } from '@/flavours/polyam/hooks/useLayout';
