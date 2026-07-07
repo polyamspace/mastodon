@@ -837,16 +837,17 @@ class Status extends ImmutablePureComponent {
           account={account}
           avatarSize={avatarSize}
           onHeaderClick={this.handleHeaderClick}
-        >
-          <StatusIcons
-            status={status}
-            mediaIcons={mediaIcons}
-            settings={settings.get('status_icons')}
-            collapsible={!muted && collapseEnabled}
-            collapsed={isCollapsed}
-            setCollapsed={setCollapsed}
-          />
-        </StatusHeader>
+          contentBeforeDate={
+            <StatusIcons
+              status={status}
+              mediaIcons={mediaIcons}
+              settings={settings.get('status_icons')}
+              collapsible={!muted && collapseEnabled}
+              collapsed={isCollapsed}
+              setCollapsed={setCollapsed}
+            />
+          }
+        />
       );
 
     return (
