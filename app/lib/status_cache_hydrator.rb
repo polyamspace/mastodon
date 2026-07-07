@@ -61,7 +61,7 @@ class StatusCacheHydrator
     payload[:filtered]   = mapped_applied_custom_filter(account, status)
     payload[:quote_approval][:current_user] = status.quote_policy_for_account(account) if payload[:quote_approval]
     payload[:quote] = hydrate_quote_payload(payload[:quote], status.quote, account, nested:) if payload[:quote]
-    payload[:reactions] = serialized_reactions(account.id, status)
+    payload[:reactions] = serialized_reactions(account.id, status.reactions(account.id))
 
     if payload[:poll]
       if fresh
@@ -144,8 +144,7 @@ class StatusCacheHydrator
     ).as_json
   end
 
-  def serialized_reactions(account_id, status)
-    reactions = status.reactions(account_id)
+  def serialized_reactions(account_id, reactions)
     ActiveModelSerializers::SerializableResource.new(
       reactions,
       each_serializer: REST::ReactionSerializer,
