@@ -842,7 +842,7 @@ class Status extends ImmutablePureComponent {
     );
 
     const header = this.props.headerRenderFn
-      ? this.props.headerRenderFn({ status, account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured, contentBeforeDate: statusIcons })
+      ? this.props.headerRenderFn({ status, account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured, contentBeforeDate: !isQuotedPost ? statusIcons : null })
       : (
         <StatusHeader
           status={status}
