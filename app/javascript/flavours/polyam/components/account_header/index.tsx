@@ -151,11 +151,7 @@ export const AccountHeader: React.FC<{
               {/* Polyam: Show fields before bio as they are visually distracting */}
               <AccountHeaderFields accountId={accountId} />
 
-              <AccountBio
-                showDropdown
-                accountId={accountId}
-                className={classes.bio}
-              />
+              <AccountBio showDropdown accountId={accountId} />
 
               {!me && account.email_subscriptions && (
                 <AccountSubscriptionForm accountId={accountId} />
