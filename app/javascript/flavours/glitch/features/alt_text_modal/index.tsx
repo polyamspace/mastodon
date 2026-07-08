@@ -22,6 +22,7 @@ import { changeUploadCompose } from 'flavours/glitch/actions/compose_typed';
 import { Button } from 'flavours/glitch/components/button';
 import { GIFV } from 'flavours/glitch/components/gifv';
 import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
+import { NavigationFocusTarget } from 'flavours/glitch/components/navigation_focus_target';
 import { Skeleton } from 'flavours/glitch/components/skeleton';
 import { Audio } from 'flavours/glitch/features/audio';
 import { CharacterCounter } from 'flavours/glitch/features/compose/components/character_counter';
@@ -412,12 +413,15 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
             )}
           </Button>
 
-          <span className='dialog-modal__header__title'>
+          <NavigationFocusTarget
+            as='h1'
+            className='dialog-modal__header__title'
+          >
             <FormattedMessage
               id='alt_text_modal.add_alt_text'
               defaultMessage='Add alt text'
             />
-          </span>
+          </NavigationFocusTarget>
 
           <Button secondary onClick={onClose}>
             <FormattedMessage

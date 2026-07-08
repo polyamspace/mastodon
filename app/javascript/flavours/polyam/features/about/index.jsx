@@ -8,12 +8,15 @@ import { Helmet } from '@unhead/react/helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { domain } from 'flavours/polyam/initial_state';
+
 import CircleInfo from '@/awesome-icons/solid/circle-info.svg?react';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'flavours/polyam/actions/server';
 import { Account } from 'flavours/polyam/components/account';
 import Column from 'flavours/polyam/components/column';
 import ColumnHeader from 'flavours/polyam/components/column_header';
+import { NavigationFocusTarget } from 'flavours/polyam/components/navigation_focus_target';
 import { ServerHeroImage } from 'flavours/polyam/components/server_hero_image';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
 import { LinkFooter } from 'flavours/polyam/features/ui/components/link_footer';
@@ -111,7 +114,9 @@ class About extends PureComponent {
               srcSet={Object.keys(server.item?.thumbnail.versions ?? {}).map((key) => `${server.item?.thumbnail.versions && server.item.thumbnail.versions[key]} ${key.replace('@', '')}`).join(', ')}
               className='about__header__hero'
             />
-            <h1>{isLoading ? <Skeleton width='10ch' /> : server.domain}</h1>
+            <NavigationFocusTarget as='h1'>
+              {isLoading ? <Skeleton width='10ch' /> : domain}
+            </NavigationFocusTarget>
             <p>{server.description ? server.description : (<FormattedMessage id='about.powered_by' defaultMessage='Decentralized social media powered by {mastodon}' values={{ mastodon: <a href='https://joinmastodon.org' className='about__mail' target='_blank' rel='noopener'>Mastodon</a> }} />)}</p>
           </div>
 

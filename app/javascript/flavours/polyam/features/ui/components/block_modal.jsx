@@ -15,6 +15,7 @@ import CollectionsIcon from '@/awesome-icons/solid/shapes.svg?react';
 import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
 import { blockAccount } from 'flavours/polyam/actions/accounts';
 import { closeModal } from 'flavours/polyam/actions/modal';
+import { NavigationFocusTarget } from 'flavours/polyam/components/navigation_focus_target';
 import { Button } from 'flavours/polyam/components/button';
 import { Icon } from 'flavours/polyam/components/icon';
 
@@ -46,7 +47,9 @@ export const BlockModal = ({ accountId, acct }) => {
           </div>
 
           <div>
-            <h1><FormattedMessage id='block_modal.title' defaultMessage='Block user?' /></h1>
+            <NavigationFocusTarget as='h1'>
+              <FormattedMessage id='block_modal.title' defaultMessage='Block user?' />
+            </NavigationFocusTarget>
             <p>@{acct}</p>
           </div>
         </div>

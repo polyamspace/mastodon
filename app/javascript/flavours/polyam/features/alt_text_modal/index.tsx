@@ -22,6 +22,7 @@ import { changeUploadCompose } from 'flavours/polyam/actions/compose_typed';
 import { Button } from 'flavours/polyam/components/button';
 import { GIFV } from 'flavours/polyam/components/gifv';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
+import { NavigationFocusTarget } from 'flavours/polyam/components/navigation_focus_target';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
 import { Audio } from 'flavours/polyam/features/audio';
 import { CharacterCounter } from 'flavours/polyam/features/compose/components/character_counter';
@@ -413,12 +414,15 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
             )}
           </Button>
 
-          <span className='dialog-modal__header__title'>
+          <NavigationFocusTarget
+            as='h1'
+            className='dialog-modal__header__title'
+          >
             <FormattedMessage
               id='alt_text_modal.add_alt_text'
               defaultMessage='Add alt text'
             />
-          </span>
+          </NavigationFocusTarget>
 
           <Button secondary onClick={onClose}>
             <FormattedMessage

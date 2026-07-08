@@ -9,6 +9,7 @@ import { checkDeprecatedLocalSettings } from 'flavours/polyam/actions/local_sett
 import { hydrateStore } from 'flavours/polyam/actions/store';
 import { connectUserStream } from 'flavours/polyam/actions/streaming';
 import ErrorBoundary from 'flavours/polyam/components/error_boundary';
+import { FocusTargetProvider } from '@/flavours/polyam/components/navigation_focus_target';
 import { Router } from 'flavours/polyam/components/router';
 import UI from 'flavours/polyam/features/ui';
 import { IdentityContext, createIdentityContext} from 'flavours/polyam/identity_context';
@@ -53,7 +54,9 @@ export default class Mastodon extends PureComponent {
             <ErrorBoundary>
               <Router>
                 <ScrollContext>
-                  <Route path='/' component={UI} />
+                  <FocusTargetProvider>
+                    <Route path='/' component={UI} />
+                  </FocusTargetProvider>
                 </ScrollContext>
                 <BodyScrollLock />
               </Router>

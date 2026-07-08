@@ -7,6 +7,8 @@ import { List, Map } from 'immutable';
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
 
+import { FocusTargetProvider } from '@/flavours/polyam/components/navigation_focus_target';
+import { Router } from '@/flavours/polyam/components/router';
 import type { RootState } from 'flavours/polyam/store';
 import { useAppSelector } from 'flavours/polyam/store';
 
@@ -27,9 +29,13 @@ describe('<AltTextModal />', () => {
 
   const renderComponent = () => {
     return render(
-      <IntlProvider locale='en' messages={{}}>
-        <AltTextModal mediaId={mediaId} onClose={handleClose} />
-      </IntlProvider>,
+      <Router>
+        <FocusTargetProvider>
+          <IntlProvider locale='en' messages={{}}>
+            <AltTextModal mediaId={mediaId} onClose={handleClose} />
+          </IntlProvider>
+        </FocusTargetProvider>
+      </Router>,
     );
   };
 

@@ -5,6 +5,7 @@ import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 import { Helmet } from '@unhead/react/helmet';
 
 import UserSecretIcon from '@/awesome-icons/solid/user-secret.svg?react';
+import { NavigationFocusTarget } from '@/flavours/polyam/components/navigation_focus_target';
 import { apiGetPrivacyPolicy } from 'flavours/polyam/api/instance';
 import type { ApiPrivacyPolicyJSON } from 'flavours/polyam/api_types/instance';
 import { Column } from 'flavours/polyam/components/column';
@@ -12,6 +13,8 @@ import type { ColumnRef } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
+
+import { getColumnSkipLinkId } from '../ui/components/skip_links';
 
 const messages = defineMessages({
   title: { id: 'privacy_policy.title', defaultMessage: 'Privacy Policy' },
@@ -58,12 +61,12 @@ const PrivacyPolicy: React.FC<{
 
       <div className='scrollable privacy-policy'>
         <div className='column-title'>
-          <h3>
+          <NavigationFocusTarget as='h1' id={getColumnSkipLinkId(1)}>
             <FormattedMessage
               id='privacy_policy.title'
               defaultMessage='Privacy Policy'
             />
-          </h3>
+          </NavigationFocusTarget>
           <p>
             <FormattedMessage
               id='privacy_policy.last_updated'

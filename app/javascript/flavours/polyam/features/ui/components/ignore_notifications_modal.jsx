@@ -13,6 +13,7 @@ import { closeModal } from 'flavours/polyam/actions/modal';
 import { updateNotificationsPolicy } from 'flavours/polyam/actions/notification_policies';
 import { Button } from 'flavours/polyam/components/button';
 import { Icon } from 'flavours/polyam/components/icon';
+import { NavigationFocusTarget } from 'flavours/polyam/components/navigation_focus_target';
 
 export const IgnoreNotificationsModal = ({ filterType }) => {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ export const IgnoreNotificationsModal = ({ filterType }) => {
     <div className='modal-root__modal safety-action-modal'>
       <div className='safety-action-modal__top'>
         <div className='safety-action-modal__header'>
-          <h1>{title}</h1>
+          <NavigationFocusTarget as='h1'>{title}</NavigationFocusTarget>
         </div>
 
         <ul className='safety-action-modal__bullet-points'>

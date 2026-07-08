@@ -18,6 +18,7 @@ import { Button } from '@/flavours/polyam/components/button';
 import { Dropdown } from '@/flavours/polyam/components/dropdown';
 import type { SelectItem } from '@/flavours/polyam/components/dropdown_selector';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
+import { NavigationFocusTarget } from '@/flavours/polyam/components/navigation_focus_target';
 import { messages as privacyMessages } from '@/flavours/polyam/features/compose/components/privacy_dropdown';
 import { createAppSelector, useAppSelector } from '@/flavours/polyam/store';
 
@@ -217,14 +218,15 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             iconComponent={CloseIcon}
             onClick={onClose}
           />
-          <FormattedMessage
-            id='visibility_modal.header'
-            defaultMessage='Visibility and interaction'
+          <NavigationFocusTarget
+            as='h1'
+            className='dialog-modal__header__title'
           >
-            {(chunks) => (
-              <span className='dialog-modal__header__title'>{chunks}</span>
-            )}
-          </FormattedMessage>
+            <FormattedMessage
+              id='visibility_modal.header'
+              defaultMessage='Visibility and interaction'
+            />
+          </NavigationFocusTarget>
         </div>
         <div className='dialog-modal__content'>
           <div className='dialog-modal__content__description'>

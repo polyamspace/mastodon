@@ -10,6 +10,7 @@ import fuzzysort from 'fuzzysort';
 import AddIcon from '@/awesome-icons/solid/plus.svg?react';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { injectIntl } from '@/flavours/polyam/components/intl';
+import { NavigationFocusTarget } from 'flavours/polyam/components/navigation_focus_target';
 import { toServerSideType } from 'flavours/polyam/utils/filters';
 import { loupeIcon, deleteIcon } from 'flavours/polyam/utils/icons';
 
@@ -176,7 +177,9 @@ class SelectFilter extends PureComponent {
 
     return (
       <>
-        <h3 className='report-dialog-modal__title'><FormattedMessage id='filter_modal.select_filter.title' defaultMessage='Filter this post' /></h3>
+        <NavigationFocusTarget as='h1' className='report-dialog-modal__title'>
+          <FormattedMessage id='filter_modal.select_filter.title' defaultMessage='Filter this post' />
+        </NavigationFocusTarget>
         <p className='report-dialog-modal__lead'><FormattedMessage id='filter_modal.select_filter.subtitle' defaultMessage='Use an existing category or create a new one' /></p>
 
         <div className='emoji-mart-search'>

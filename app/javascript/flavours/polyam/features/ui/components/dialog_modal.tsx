@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
 import { Button } from '@/flavours/polyam/components/button';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
+import { NavigationFocusTarget } from '@/flavours/polyam/components/navigation_focus_target';
 
 export type { BaseConfirmationModalProps as DialogModalProps } from './confirmation_modals/confirmation_modal';
 
@@ -47,7 +48,9 @@ export const DialogModal: FC<DialogModalProps> = ({
           onClick={onClose}
         />
 
-        <h1 className='dialog-modal__header__title'>{title}</h1>
+        <NavigationFocusTarget as='h1' className='dialog-modal__header__title'>
+          {title}
+        </NavigationFocusTarget>
       </div>
 
       <div className='dialog-modal__content'>
