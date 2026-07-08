@@ -1,16 +1,50 @@
-import type { ComponentClass, MouseEventHandler, ReactNode } from 'react';
+import type { ComponentType, MouseEventHandler, ReactNode } from 'react';
 
-import type { Account } from '@/flavours/polyam/models/account';
+import type { IdentityContextType } from '@/flavours/polyam/identity_context';
+import type { Account as TAccount } from '@/flavours/polyam/models/account';
+import type { Status as TStatus } from '@/flavours/polyam/models/status';
+
+import Status from '../status';
 
 import type { StatusHeaderRenderFn } from './header';
 
 // Taken from the Status component.
 export interface StatusProps {
-  account?: Account;
+  status: TStatus;
+  account?: TAccount;
   children?: ReactNode;
   previousId?: string;
+  nextInReplyToId?: string;
   rootId?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
+  onReply: (status: TStatus) => void;
+  onFavourite: (status: TStatus) => void;
+  onReblog: (status: TStatus, event?: unknown) => void;
+  onQuote: (status: TStatus) => void;
+  onDelete?: (status: TStatus) => void;
+  onDirect?: (status: TStatus) => void;
+  onMention: (account: TAccount) => void;
+  onPin?: (status: TStatus) => void;
+  onOpenMedia: (
+    statusId: string,
+    media: unknown,
+    index: number,
+    lang?: string,
+  ) => void;
+  onOpenVideo: (
+    statusId: string,
+    media: unknown,
+    lang?: string,
+    options?: unknown,
+  ) => void;
+  onBlock?: (status: TStatus) => void;
+  onAddFilter?: (status: TStatus) => void;
+  onEmbed?: (status: TStatus) => void;
+  onHeightChange?: () => void;
+  onToggleHidden: (status: TStatus) => void;
+  onToggleCollapsed: (status: TStatus, isCollapsed: boolean) => void;
+  onTranslate: (status: TStatus) => void;
+  onInteractionModal?: (type: string, status: TStatus) => void;
   muted?: boolean;
   hidden?: boolean;
   unread?: boolean;
@@ -26,12 +60,20 @@ export interface StatusProps {
   scrollKey?: string;
   skipPrepend?: boolean;
   avatarSize?: number;
+  deployPictureInPicture: (
+    status: TStatus,
+    type: string,
+    mediaProps: unknown,
+  ) => void;
   unfocusable?: boolean;
   headerRenderFn?: StatusHeaderRenderFn;
+  pictureInPicture: Immutable.Map<'inUse' | 'available', boolean>;
   contextType?: string;
+  withCounters?: boolean;
+  // Polyam
+  identity: IdentityContextType;
+  onOpenAltText?: (media?: unknown) => void;
+  ref?: unknown; // temporary until component is TS
 }
 
-export type StatusComponent = ComponentClass<
-  StatusProps,
-  { showMedia?: boolean; showDespiteFilter?: boolean }
->;
+export const TypedStatus = Status as ComponentType<StatusProps>;
