@@ -4745,10 +4745,16 @@ a.status-card {
   z-index: 2;
   outline: 0;
 
+  &__title-wrapper {
+    display: flex;
+    flex-grow: 1;
+  }
+
   &__title {
     display: flex;
     align-items: center;
     gap: 5px;
+    flex-grow: 1;
     margin: 0;
     border: 0;
     padding: 13px;
@@ -4760,7 +4766,10 @@ a.status-card {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    flex: 1;
+
+    &--with-back-button {
+      padding-inline-start: 0;
+    }
 
     &:focus-visible {
       outline: var(--outline-focus-default);
@@ -4769,10 +4778,6 @@ a.status-card {
     .logo {
       height: 24px;
     }
-  }
-
-  .column-header__back-button + &__title {
-    padding-inline-start: 0;
   }
 
   .column-header__back-button {
@@ -10264,6 +10269,10 @@ noscript {
   display: flex;
   flex-direction: column;
   gap: 4px;
+
+  &:empty {
+    display: none;
+  }
 }
 
 .notification-bar {
