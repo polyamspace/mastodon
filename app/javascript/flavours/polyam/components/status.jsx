@@ -830,24 +830,26 @@ class Status extends ImmutablePureComponent {
 
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
 
+    const statusIcons = (
+      <StatusIcons
+        status={status}
+        mediaIcons={mediaIcons}
+        settings={settings.get('status_icons')}
+        collapsible={!muted && collapseEnabled}
+        collapsed={isCollapsed}
+        setCollapsed={setCollapsed}
+      />
+    );
+
     const header = this.props.headerRenderFn
-      ? this.props.headerRenderFn({ status, account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured })
+      ? this.props.headerRenderFn({ status, account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured, contentBeforeDate: !isQuotedPost ? statusIcons : null })
       : (
         <StatusHeader
           status={status}
           account={account}
           avatarSize={avatarSize}
           onHeaderClick={this.handleHeaderClick}
-          contentBeforeDate={
-            <StatusIcons
-              status={status}
-              mediaIcons={mediaIcons}
-              settings={settings.get('status_icons')}
-              collapsible={!muted && collapseEnabled}
-              collapsed={isCollapsed}
-              setCollapsed={setCollapsed}
-            />
-          }
+          contentBeforeDate={statusIcons}
         />
       );
 
