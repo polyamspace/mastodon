@@ -818,6 +818,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_05_085916) do
   create_table "notification_policies", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
+    t.integer "for_bots", default: 0, null: false
     t.integer "for_limited_accounts", default: 1, null: false
     t.integer "for_new_accounts", default: 0, null: false
     t.integer "for_not_followers", default: 0, null: false
