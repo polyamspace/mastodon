@@ -45,6 +45,14 @@
     .fields-group
       = ff.input :enable_rss, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_enable_rss'), hint: I18n.t('simple_form.hints.defaults.setting_enable_rss'), polyam_only: true
 
+  %aside.callout
+    = material_symbol 'info'
+    .content
+      .body
+        %p.title= t('edit_profile.redesign_title')
+        %p= t('edit_profile.privacy_redesign_body')
+      = link_to t('edit_profile.redesign_button'), '/profile/edit'
+
   - if Rails.application.config.x.email_subscriptions && Setting.email_subscriptions && current_user.can?(:manage_email_subscriptions)
     %h2= t('privacy.email_subscriptions')
 
