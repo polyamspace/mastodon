@@ -11,6 +11,7 @@ import {
   toggleStatusSpoilers,
 } from 'flavours/polyam/actions/statuses';
 import { hydrateStore } from 'flavours/polyam/actions/store';
+import { FocusTargetProvider } from 'flavours/polyam/components/navigation_focus_target';
 import { Router } from 'flavours/polyam/components/router';
 import { DetailedStatus } from 'flavours/polyam/features/status/components/detailed_status';
 import { useRenderSignal } from 'flavours/polyam/hooks/useRenderSignal';
@@ -86,7 +87,9 @@ export const Status: React.FC<{ id: string }> = ({ id }) => {
     <IntlProvider>
       <Provider store={store}>
         <Router>
-          <Embed id={id} />
+          <FocusTargetProvider>
+            <Embed id={id} />
+          </FocusTargetProvider>
         </Router>
       </Provider>
     </IntlProvider>
