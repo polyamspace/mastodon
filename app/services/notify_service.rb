@@ -169,7 +169,7 @@ class NotifyService < BaseService
     end
 
     def blocked_by_bots_policy?
-      @policy.drop_bots? && from_bot?
+      @policy.drop_bots? && from_bot? && not_following?
     end
   end
 
@@ -210,7 +210,7 @@ class NotifyService < BaseService
     end
 
     def filtered_by_bots_policy?
-      @policy.filter_bots? && from_bot?
+      @policy.filter_bots? && from_bot? && not_following?
     end
   end
 
