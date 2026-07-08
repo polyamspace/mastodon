@@ -508,7 +508,7 @@ en:
         show:
           confirm_disable_feature: Disable email newsletters for %{name}? Email updates will no longer be sent for this account. The user will still be able to re-enable the feature in their account settings. To permanently remove access to this feature, edit the account’s permission in Roles.
           confirm_remove_subscriber: "%{email} will no longer receive emails from %{name}. This action cannot be undone."
-          consent: Subscribers have only consented to receiving posts via email. Do not use this list for other purposes.
+          consent: Subscribers have only consented to receiving toots via email. Do not use this list for other purposes.
           date: Date of sign-up
           disable_feature: Disable feature
           disabled: The feature was disabled and emails are no longer being sent to this list.
