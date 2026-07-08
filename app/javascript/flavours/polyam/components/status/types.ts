@@ -1,5 +1,6 @@
 import type { ComponentType, MouseEventHandler, ReactNode } from 'react';
 
+import type { IdentityContextType } from '@/flavours/polyam/identity_context';
 import type { Account as TAccount } from '@/flavours/polyam/models/account';
 import type { Status as TStatus } from '@/flavours/polyam/models/status';
 
@@ -69,6 +70,10 @@ export interface StatusProps {
   pictureInPicture: Immutable.Map<'inUse' | 'available', boolean>;
   contextType?: string;
   withCounters?: boolean;
+  // Polyam
+  identity: IdentityContextType;
+  onOpenAltText?: (media?: unknown) => void;
+  ref?: unknown; // temporary until component is TS
 }
 
 export const TypedStatus = Status as ComponentType<StatusProps>;
