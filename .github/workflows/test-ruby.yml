@@ -19,6 +19,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     strategy:
       fail-fast: true
@@ -76,6 +77,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     needs:
       - build
@@ -178,6 +180,7 @@ jobs:
   test-e2e:
     name: End to End testing
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     needs:
       - build
@@ -281,6 +284,7 @@ jobs:
   test-search:
     name: Elastic Search integration testing
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     needs:
       - build

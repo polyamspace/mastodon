@@ -4,18 +4,18 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
-import { TabLink, TabList } from '@/flavours/polyam/components/tab_list';
 import { Column } from 'flavours/polyam/components/column';
 import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { DisplayNameSimple } from 'flavours/polyam/components/display_name/simple';
 import { Scrollable } from 'flavours/polyam/components/scrollable_list/components';
+import { TabLink, TabList } from 'flavours/polyam/components/tab_list';
 import { useAccount } from 'flavours/polyam/hooks/useAccount';
 import {
   useAccountId,
   useCurrentAccountId,
 } from 'flavours/polyam/hooks/useAccountId';
 
-import { CollectionsCreatedByYou } from './overview/created_by_you';
+import { CollectionsCreatedByAccount } from './overview/created_by_account';
 import { CollectionsFeaturingYou } from './overview/featuring_you';
 import classes from './styles.module.scss';
 
@@ -92,7 +92,7 @@ export const Collections: React.FC<{
           </TabList>
         </header>
         <Switch>
-          <Route exact path={path} component={CollectionsCreatedByYou} />
+          <Route exact path={path} component={CollectionsCreatedByAccount} />
           <Route
             exact
             path={`${path}/featuring-you`}
