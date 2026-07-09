@@ -74,4 +74,4 @@ Especially forks running upstream's status reactions PR as polyam-glitch's versi
 It is technically possible to switch to other forks. \
 This comes with a few caveats (some are mentioned in the upstream docs) and not every scenario can be accounted for. \
 Do this at your own risk. \
-Keep in mind that downgrades (switching to older code) are not supported.
+eep in mind that downgrades (switching to older code) are not supported.

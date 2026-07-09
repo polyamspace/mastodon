@@ -5,6 +5,8 @@ import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import type { SetRequired } from 'type-fest';
+
 import { quoteComposeById } from '@/flavours/polyam/actions/compose_typed';
 import { toggleReblog } from '@/flavours/polyam/actions/interactions';
 import { openModal } from '@/flavours/polyam/actions/modal';
@@ -13,7 +15,6 @@ import { quickBoosting } from '@/flavours/polyam/initial_state';
 import type { ActionMenuItem } from '@/flavours/polyam/models/dropdown_menu';
 import type { Status } from '@/flavours/polyam/models/status';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
-import type { SomeRequired } from '@/flavours/polyam/utils/types';
 
 import type { RenderItemFn } from '../dropdown_menu';
 import { Dropdown, DropdownMenuItemContent } from '../dropdown_menu';
@@ -91,7 +92,7 @@ interface ReblogButtonProps {
   counters?: boolean;
 }
 
-type ActionMenuItemWithIcon = SomeRequired<ActionMenuItem, 'icon'>;
+type ActionMenuItemWithIcon = SetRequired<ActionMenuItem, 'icon'>;
 
 const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
   const intl = useIntl();

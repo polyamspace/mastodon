@@ -15,6 +15,7 @@ import { throttle } from 'lodash';
 
 import { determineEmojiMode } from '@/flavours/glitch/features/emoji/mode';
 import { updateHtmlWithEmoji } from '@/flavours/glitch/features/emoji/render';
+import type { InitialState } from '@/flavours/glitch/initial_state';
 import loadKeyboardExtensions from '@/flavours/glitch/load_keyboard_extensions';
 import { loadLocale, getLocale } from '@/flavours/glitch/locales';
 import { loadPolyfills } from '@/flavours/glitch/polyfills';
@@ -83,7 +84,7 @@ async function loaded() {
     document.getElementById('initial-state')?.textContent;
   if (initialStateText) {
     const stateEmojiStyle = getNestedProperty(
-      JSON.parse(initialStateText) as unknown,
+      JSON.parse(initialStateText) as InitialState,
       'meta',
       'emoji_style',
     );
