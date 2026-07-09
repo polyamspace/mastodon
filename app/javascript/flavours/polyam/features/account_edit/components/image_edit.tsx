@@ -5,8 +5,6 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import type { OffsetValue } from 'react-overlays/esm/usePopper';
-
 import CameraIcon from '@/awesome-icons/solid/camera.svg?react';
 import ReplaceImageIcon from '@/awesome-icons/solid/images.svg?react';
 import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
@@ -118,7 +116,7 @@ export const AccountImageEdit: FC<{
     <Dropdown
       items={items}
       placement={location === 'header' ? 'bottom-end' : 'bottom-start'}
-      offset={popperOffset}
+      offset={6}
       className={classes.imageMenu}
       icon='camera'
       title={intl.formatMessage(messages.replace)}
@@ -127,5 +125,3 @@ export const AccountImageEdit: FC<{
     />
   );
 };
-
-const popperOffset = [0, 6] as OffsetValue;

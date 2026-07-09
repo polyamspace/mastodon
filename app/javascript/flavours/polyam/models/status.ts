@@ -48,7 +48,7 @@ export interface StatusShape {
   pinned: boolean;
   filtered: FilterResult[];
   sensitive: boolean;
-  collapsed: boolean;
+  collapsed: boolean | null;
   uri: string;
   url: string | null;
 
