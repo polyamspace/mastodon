@@ -3,7 +3,11 @@ import { Record as ImmutableRecord, List as ImmutableList } from 'immutable';
 
 import { me } from 'flavours/polyam/initial_state';
 import { accountDefaultValues } from 'flavours/polyam/models/account';
-import type { Account, AccountShape } from 'flavours/polyam/models/account';
+import type {
+  Account,
+  AccountShape,
+  AccountShapeFull,
+} from 'flavours/polyam/models/account';
 import type { Relationship } from 'flavours/polyam/models/relationship';
 import { createAppSelector } from 'flavours/polyam/store';
 import type { RootState } from 'flavours/polyam/store';
@@ -49,6 +53,11 @@ export function makeGetAccount() {
     },
   );
 }
+
+export const selectPlainAccount = createAppSelector(
+  [(state, accountId: string) => state.accounts.get(accountId)],
+  (account) => (account ? (account.toJS() as AccountShapeFull) : null),
+);
 
 export const getAccountHidden = createAppSelector(
   [

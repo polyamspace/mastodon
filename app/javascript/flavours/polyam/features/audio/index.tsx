@@ -13,6 +13,7 @@ import PauseIcon from '@/awesome-icons/solid/pause.svg?react';
 import PlayArrowIcon from '@/awesome-icons/solid/play.svg?react';
 import VolumeUpIcon from '@/awesome-icons/solid/volume-high.svg?react';
 import VolumeOffIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
+import type { DeployPictureInPictureCallback } from '@/flavours/polyam/actions/picture_in_picture';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon } from 'flavours/polyam/components/icon';
 import { SpoilerButton } from 'flavours/polyam/components/spoiler_button';
@@ -69,19 +70,7 @@ export const Audio: React.FC<{
   startPlaying?: boolean;
   startVolume?: number;
   startMuted?: boolean;
-  deployPictureInPicture?: (
-    type: string,
-    mediaProps: {
-      src: string;
-      muted: boolean;
-      volume: number;
-      currentTime: number;
-      poster?: string;
-      backgroundColor: string;
-      foregroundColor: string;
-      accentColor: string;
-    },
-  ) => void;
+  deployPictureInPicture?: DeployPictureInPictureCallback;
   matchedFilters?: string[];
   // Polyam
   onOpenAltText?: (media?: unknown) => void;
@@ -118,10 +107,10 @@ export const Audio: React.FC<{
   const [revealed, setRevealed] = useState(false);
 
   const playerRef = useRef<HTMLDivElement>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const seekRef = useRef<HTMLDivElement>(null);
   const volumeRef = useRef<HTMLDivElement>(null);
-  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>();
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   const { audioContextRef, sourceRef, gainNodeRef, playAudio, pauseAudio } =
     useAudioContext({ audioElementRef: audioRef });
