@@ -4,18 +4,19 @@ import classNames from 'classnames';
 
 import { useHovering } from 'flavours/polyam/hooks/useHovering';
 import { autoPlayGif } from 'flavours/polyam/initial_state';
-import type { Account } from 'flavours/polyam/models/account';
+import type { Account, AccountShapeFull } from 'flavours/polyam/models/account';
 
 import { useAccount } from '../hooks/useAccount';
 
 import { Permalink } from './permalink';
 
 interface Props {
-  account:
-    | (Pick<Account, 'id' | 'acct' | 'avatar' | 'avatar_static'> & {
-        url?: string;
-      })
-    | undefined; // FIXME: remove `undefined` once we know for sure its always there
+  account?: Pick<
+    Account | AccountShapeFull,
+    'id' | 'acct' | 'avatar' | 'avatar_static'
+  > & {
+    url?: string;
+  };
   alt?: string;
   size?: number;
   style?: React.CSSProperties;

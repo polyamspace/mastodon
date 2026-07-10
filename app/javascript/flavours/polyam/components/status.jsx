@@ -842,10 +842,10 @@ class Status extends ImmutablePureComponent {
     );
 
     const header = this.props.headerRenderFn
-      ? this.props.headerRenderFn({ status, account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured, contentBeforeDate: !isQuotedPost ? statusIcons : null })
+      ? this.props.headerRenderFn({ statusId: status.get('id'), account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured, contentBeforeDate: !isQuotedPost ? statusIcons : null })
       : (
         <StatusHeader
-          status={status}
+          statusId={status.get('id')}
           account={account}
           avatarSize={avatarSize}
           onHeaderClick={this.handleHeaderClick}
@@ -885,7 +885,7 @@ class Status extends ImmutablePureComponent {
 
             {(!muted || !isCollapsed) && header}
 
-            <ContentWarning status={status} expanded={expanded} onClick={this.handleExpandedToggle} icons={mediaIcons} />
+            <ContentWarning statusId={status.get('id')} expanded={expanded} onClick={this.handleExpandedToggle} icons={mediaIcons} />
 
             {/* Polyam: div with className to allow collapsing */}
             {expanded && (

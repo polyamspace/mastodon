@@ -111,7 +111,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
       </div>
 
       <ContentWarning
-        status={status}
+        statusId={status.get('id') as string}
         onClick={handleContentWarningClick}
         expanded={expanded}
       />

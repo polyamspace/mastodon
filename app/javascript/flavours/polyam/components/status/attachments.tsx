@@ -1,21 +1,20 @@
-import { lazy, Suspense, useCallback, useState } from 'react';
+import { lazy, Suspense, useCallback } from 'react';
 
 import { openModal } from '@/flavours/polyam/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/flavours/polyam/actions/picture_in_picture';
 import { deployPictureInPicture } from '@/flavours/polyam/actions/picture_in_picture';
 import { CollectionPreviewCard } from '@/flavours/polyam/features/collections/components/collection_preview_card';
 import Card from '@/flavours/polyam/features/status/components/card';
+import { useExpandedStatus } from '@/flavours/polyam/hooks/useStatus';
+import { useToggle } from '@/flavours/polyam/hooks/useToggle';
 import { displayMedia } from '@/flavours/polyam/initial_state';
 import type {
   MediaAttachment,
   MediaAttachmentShape,
 } from '@/flavours/polyam/models/status';
 import { isMediaAttachmentOfType } from '@/flavours/polyam/models/status';
-import {
-  selectExpandedStatus,
-  selectMediaMatchFilters,
-  selectPictureInPicture,
-} from '@/flavours/polyam/selectors/statuses';
+import { selectMediaFilters } from '@/flavours/polyam/selectors/filters';
+import { selectPictureInPicture } from '@/flavours/polyam/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 import { compareUrls } from '@/flavours/polyam/utils/compare_urls';
 
@@ -25,10 +24,7 @@ export const StatusAttachments: React.FC<{
   statusId: string;
   contextType?: string;
 }> = ({ statusId, contextType }) => {
-  // Selectors
-  const status = useAppSelector((state) =>
-    selectExpandedStatus(state, statusId),
-  );
+  const status = useExpandedStatus(statusId);
 
   if (!status) {
     return null;
@@ -133,13 +129,13 @@ const MediaAttachments: React.FC<{
     ]) as Immutable.List<MediaAttachment>;
   });
   const mediaFilters = useAppSelector((state) =>
-    selectMediaMatchFilters(state, { statusId, contextType }),
+    selectMediaFilters(state, { statusId, contextType }),
   );
   const pictureInPicture = useAppSelector((state) =>
     selectPictureInPicture(state, statusId),
   );
 
-  const [showMedia, setShowMedia] = useState(
+  const [showMedia, { onToggle: handleToggleMediaVisibility }] = useToggle(
     () =>
       mediaFilters.length === 0 &&
       ((displayMedia !== 'hide_all' && !sensitive) ||
@@ -147,9 +143,6 @@ const MediaAttachments: React.FC<{
   );
 
   const dispatch = useAppDispatch();
-  const handleToggleMediaVisibility = useCallback(() => {
-    setShowMedia((prev) => !prev);
-  }, []);
   const handleOpenMedia = useCallback(
     (index: number) => {
       dispatch(
