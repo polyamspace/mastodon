@@ -1,8 +1,8 @@
 # Glitch Polyam Edition
 
 > [!Caution]
-> The main branch no longer follows upstream
-> Compatibility is no longer guaranteed
+> The main branch no longer follows upstream \
+> Compatibility is no longer guaranteed \
 > Run this at your own risk
 
 > Mastodon, but better!
@@ -73,9 +73,15 @@ Especially forks running upstream's status reactions PR as polyam-glitch's versi
 
 ### Switching from Polyam-glitch
 
+> [!IMPORTANT]
+> Not every scenario can be accounted for. \
+> Do this at your own risk. \
+> Keep in mind that downgrades are unsupported.
+
 Existing installations running stable branches can switch back or to other forks. \
-This comes with a few caveats (some are mentioned in the upstream docs) and not every scenario can be accounted for. \
-Do this at your own risk. \
-keep in mind that downgrades are not supported.
+This comes with a few caveats:
+- Toots written in HTML or Markdown will display the raw source instead.
+- Local-only toots will federate, meaning remote users can see and interact with them.
+- Additional migrations may require manual intervention/database edits, especially when switching to a fork supporting reactions.
 
 Switching while running the main branch is unsupported.
