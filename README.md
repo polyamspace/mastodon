@@ -1,10 +1,9 @@
 # Glitch Polyam Edition
 
-> [!WARNING]
-> 4.6 will be the last version to follow upstream \
-> From that point only security and bug fixes and maybe stuff of interest will be merged \
-> Compatibility with upstream will no longer be guaranteed \
-> Existing installations wanting to continue following upstream are advised to switch to upstream
+> [!Caution]
+> The main branch no longer follows upstream
+> Compatibility is no longer guaranteed
+> Run this at your own risk
 
 > Mastodon, but better!
 
