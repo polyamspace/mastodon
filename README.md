@@ -80,6 +80,7 @@ Especially forks running upstream's status reactions PR as polyam-glitch's versi
 
 Existing installations running stable branches can switch back or to other forks. \
 This comes with a few caveats:
+
 - Toots written in HTML or Markdown will display the raw source instead.
 - Local-only toots will federate, meaning remote users can see and interact with them.
 - Additional migrations may require manual intervention/database edits, especially when switching to a fork supporting reactions.
