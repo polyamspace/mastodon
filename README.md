@@ -5,9 +5,9 @@
 > Compatibility is no longer guaranteed \
 > Run this at your own risk
 
-> Mastodon, but better!
-
-This project started as a fork of [glitch-soc](https://github.com/glitch-soc/mastodon), which itself is a fork of Mastodon, but strives to provide even more features and provide an overall better experience.
+This project started as a fork of [glitch-soc](https://github.com/glitch-soc/mastodon), which itself is a fork of Mastodon, but strived to provide even more features and an overall better experience. \
+Ultimately, the burden of keeping up with upstream while supporting existing and developing new features ended up being too high. \
+Together with disagreements with upstream about the direction of the software, this lead to the decision of dropping upstream except for bug and security fixes.
 
 ## Features
 
