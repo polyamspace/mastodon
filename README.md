@@ -1,14 +1,13 @@
 # Glitch Polyam Edition
 
-> [!WARNING]
-> 4.6 will be the last version to follow upstream \
-> From that point only security and bug fixes and maybe stuff of interest will be merged \
-> Compatibility with upstream will no longer be guaranteed \
-> Existing installations wanting to continue following upstream are advised to switch to upstream
+> [!Caution]
+> The main branch no longer follows upstream \
+> Compatibility is no longer guaranteed \
+> Run this at your own risk
 
-> Mastodon, but better!
-
-This project started as a fork of [glitch-soc](https://github.com/glitch-soc/mastodon), which itself is a fork of Mastodon, but strives to provide even more features and provide an overall better experience.
+This project started as a fork of [glitch-soc](https://github.com/glitch-soc/mastodon), which itself is a fork of Mastodon, but strived to provide even more features and an overall better experience. \
+Ultimately, the burden of keeping up with upstream while supporting existing and developing new features ended up being too high. \
+Together with disagreements with upstream about the direction of the software, this lead to the decision of dropping upstream except for bug and security fixes.
 
 ## Features
 
@@ -61,7 +60,10 @@ Replace the repo URL with this one.
 
 ### Switching to Polyam-glitch
 
-It is possible to switch from vanilla and glitch-soc to polyam-glitch the same way as switching from vanilla to glitch-soc. \
+> [!WARNING]
+> Not recommended
+
+Existing installations running v4.6 or below can switch from vanilla or glitch-soc to polyam-glitch the same way as switching from vanilla to glitch-soc. \
 Please read the [glitch-soc docs](https://glitch-soc.github.io/docs/) for instructions. \
 Replace the glitch-soc repo with this one. \
 Alternatively, while primarily intended for updating existing polyam-glitch installations, the [update script](https://github.com/polyamspace/scripts/blob/main/update.sh) can be used.
@@ -71,7 +73,16 @@ Especially forks running upstream's status reactions PR as polyam-glitch's versi
 
 ### Switching from Polyam-glitch
 
-It is technically possible to switch to other forks. \
-This comes with a few caveats (some are mentioned in the upstream docs) and not every scenario can be accounted for. \
-Do this at your own risk. \
-eep in mind that downgrades (switching to older code) are not supported.
+> [!IMPORTANT]
+> Not every scenario can be accounted for. \
+> Do this at your own risk. \
+> Keep in mind that downgrades are unsupported.
+
+Existing installations running stable branches can switch back or to other forks. \
+This comes with a few caveats:
+
+- Toots written in HTML or Markdown will display the raw source instead.
+- Local-only toots will federate, meaning remote users can see and interact with them.
+- Additional migrations may require manual intervention/database edits, especially when switching to a fork supporting reactions.
+
+Switching while running the main branch is unsupported.
