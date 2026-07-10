@@ -60,7 +60,10 @@ Replace the repo URL with this one.
 
 ### Switching to Polyam-glitch
 
-It is possible to switch from vanilla and glitch-soc to polyam-glitch the same way as switching from vanilla to glitch-soc. \
+> [!WARNING]
+> Not recommended
+
+Existing installations running v4.6 or below can switch from vanilla or glitch-soc to polyam-glitch the same way as switching from vanilla to glitch-soc. \
 Please read the [glitch-soc docs](https://glitch-soc.github.io/docs/) for instructions. \
 Replace the glitch-soc repo with this one. \
 Alternatively, while primarily intended for updating existing polyam-glitch installations, the [update script](https://github.com/polyamspace/scripts/blob/main/update.sh) can be used.
@@ -70,7 +73,9 @@ Especially forks running upstream's status reactions PR as polyam-glitch's versi
 
 ### Switching from Polyam-glitch
 
-It is technically possible to switch to other forks. \
+Existing installations running stable branches can switch back or to other forks. \
 This comes with a few caveats (some are mentioned in the upstream docs) and not every scenario can be accounted for. \
 Do this at your own risk. \
-eep in mind that downgrades (switching to older code) are not supported.
+keep in mind that downgrades are not supported.
+
+Switching while running the main branch is unsupported.
