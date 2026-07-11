@@ -263,7 +263,7 @@ class Status extends ImmutablePureComponent {
     // Polyam: Do not autocollapse quoted toots.
     if (isQuotedPost) return;
 
-    let autoCollapseHeight = parseInt(autoCollapseSettings.get('height'));
+    let autoCollapseHeight = parseInt(autoCollapseSettings.get('height')) || 400;
     if (status.get('media_attachments').size && !muted) {
       autoCollapseHeight += 210;
     }
