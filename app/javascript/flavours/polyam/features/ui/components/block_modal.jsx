@@ -8,9 +8,9 @@ import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 
 import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
-import AtIcon from '@/awesome-icons/solid/at.svg?react';
-import BanIcon from '@/awesome-icons/solid/ban.svg?react';
-import AnnouncementIcon from '@/awesome-icons/solid/bullhorn.svg?react';
+import AlternateEmailIcon from '@/awesome-icons/solid/at.svg?react';
+import BlockIcon from '@/awesome-icons/solid/ban.svg?react';
+import CampaignIcon from '@/awesome-icons/solid/bullhorn.svg?react';
 import CollectionsIcon from '@/awesome-icons/solid/shapes.svg?react';
 import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
 import { blockAccount } from 'flavours/polyam/actions/accounts';
@@ -43,7 +43,7 @@ export const BlockModal = ({ accountId, acct }) => {
       <div className='safety-action-modal__top'>
         <div className='safety-action-modal__header'>
           <div className='safety-action-modal__header__icon'>
-            <Icon icon={BanIcon} />
+            <Icon icon={BlockIcon} />
           </div>
 
           <div>
@@ -56,7 +56,7 @@ export const BlockModal = ({ accountId, acct }) => {
 
         <ul className='safety-action-modal__bullet-points'>
           <li>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={AnnouncementIcon} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={CampaignIcon} /></div>
             <div><FormattedMessage id='block_modal.they_will_know' defaultMessage="They can see that they're blocked." /></div>
           </li>
 
@@ -66,7 +66,7 @@ export const BlockModal = ({ accountId, acct }) => {
           </li>
 
           <li>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={AtIcon} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={AlternateEmailIcon} /></div>
             <div><FormattedMessage id='block_modal.you_wont_see_mentions' defaultMessage="You won't see posts from others that mention them." /></div>
           </li>
 

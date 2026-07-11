@@ -180,7 +180,7 @@ export function IgnoreNotificationsModal () {
 }
 
 export function MediaGallery () {
-  return import('flavours/polyam/components/media_gallery');
+  return import('../../../components/media_gallery');
 }
 
 export function Video () {

@@ -141,7 +141,7 @@ class CommunityTimeline extends PureComponent {
     );
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)} name='local'>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='users'
           iconComponent={PeopleIcon}

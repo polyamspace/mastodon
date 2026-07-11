@@ -33,7 +33,7 @@ const longMessages = defineMessages({
     id: 'account.follow_request_cancel',
     defaultMessage: 'Cancel request',
   },
-  editProfile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
+  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
 });
 
 const shortMessages = {
@@ -114,10 +114,7 @@ export const FollowButton: React.FC<{
       dispatch(unmuteAccount(accountId));
     } else if (account && relationship.following) {
       dispatch(
-        openModal({
-          modalType: 'CONFIRM_UNFOLLOW',
-          modalProps: { account },
-        }),
+        openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
       );
     } else if (account && relationship.requested) {
       dispatch(
@@ -147,7 +144,7 @@ export const FollowButton: React.FC<{
   if (!signedIn) {
     label = intl.formatMessage(followMessage);
   } else if (accountId === me) {
-    label = intl.formatMessage(messages.editProfile);
+    label = intl.formatMessage(messages.edit_profile);
   } else if (!relationship) {
     label = <LoadingIndicator />;
   } else if (relationship.muting && withUnmute) {

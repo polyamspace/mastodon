@@ -2,8 +2,8 @@ import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import LocalOnlyIcon from '@/awesome-icons/solid/house.svg?react';
-import FederatedIcon from '@/awesome-icons/solid/tower-broadcast.svg?react';
+import ShareOffIcon from '@/awesome-icons/solid/house.svg?react';
+import ShareIcon from '@/awesome-icons/solid/tower-broadcast.svg?react';
 import { changeComposeAdvancedOption } from 'flavours/polyam/actions/compose';
 import { useAppSelector, useAppDispatch } from 'flavours/polyam/store';
 
@@ -29,15 +29,15 @@ export const FederationButton = () => {
   }, [dispatch]);
 
   const options = [
-    { icon: 'link', iconComponent: FederatedIcon, value: 'federated', text: intl.formatMessage(messages.federated_label), meta: intl.formatMessage(messages.federated_meta) },
-    { icon: 'link-slash', iconComponent: LocalOnlyIcon, value: 'local-only', text: intl.formatMessage(messages.local_only_label), meta: intl.formatMessage(messages.local_only_meta) },
+    { icon: 'link', iconComponent: ShareIcon, value: 'federated', text: intl.formatMessage(messages.federated_label), meta: intl.formatMessage(messages.federated_meta) },
+    { icon: 'link-slash', iconComponent: ShareOffIcon, value: 'local-only', text: intl.formatMessage(messages.local_only_label), meta: intl.formatMessage(messages.local_only_meta) },
   ];
 
   return (
     <DropdownIconButton
       disabled={isEditing}
       icon={do_not_federate ? 'link-slash' : 'link'}
-      iconComponent={do_not_federate ? LocalOnlyIcon : FederatedIcon}
+      iconComponent={do_not_federate ? ShareOffIcon : ShareIcon}
       onChange={handleChange}
       options={options}
       title={intl.formatMessage(messages.change_federation_settings)}

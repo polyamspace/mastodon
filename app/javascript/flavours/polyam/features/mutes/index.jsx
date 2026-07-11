@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
+import VolumeOffIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Account } from 'flavours/polyam/components/account';
 
@@ -63,7 +63,7 @@ class Mutes extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.mutes' defaultMessage="You haven't muted any users yet." />;
 
     return (
-      <Column bindToDocument={!multiColumn} name='mutes' icon='volume-off' iconComponent={MuteIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn} icon='volume-off' iconComponent={VolumeOffIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='mutes'
           onLoadMore={this.handleLoadMore}

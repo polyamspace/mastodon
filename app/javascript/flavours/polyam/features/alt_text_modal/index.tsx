@@ -491,6 +491,7 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
                 />
 
                 <div className='spacer' />
+
                 <button
                   className='link-button'
                   onClick={handleDetectClick}

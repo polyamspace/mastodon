@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { defineMessages } from 'react-intl';
 
-import PollIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import BarChart4BarsIcon from '@/awesome-icons/solid/bars-progress.svg?react';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 
 import { IconButton } from '../../../components/icon_button';
@@ -38,7 +38,7 @@ class PollButton extends PureComponent {
       <div className='compose-form__poll-button'>
         <IconButton
           icon='tasks'
-          iconComponent={PollIcon}
+          iconComponent={BarChart4BarsIcon}
           title={intl.formatMessage(active ? messages.remove_poll : messages.add_poll)}
           disabled={disabled}
           onClick={this.handleClick}

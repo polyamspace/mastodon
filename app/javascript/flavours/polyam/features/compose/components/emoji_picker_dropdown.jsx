@@ -7,7 +7,7 @@ import classNames from 'classnames';
 
 import { supportsPassiveEvents } from 'detect-passive-events';
 
-import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
+import MoodIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
 import { IconButton } from '@/flavours/polyam/components/icon_button';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Popover } from '@/flavours/polyam/components/popover';
@@ -349,7 +349,7 @@ class EmojiPickerDropdown extends PureComponent {
           title={title}
           aria-expanded={active}
           active={active}
-          iconComponent={ReactIcon}
+          iconComponent={MoodIcon}
           onClick={this.onToggle}
           disabled={disabled}
           id="emoji"

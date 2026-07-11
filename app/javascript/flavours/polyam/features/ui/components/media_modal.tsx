@@ -45,6 +45,7 @@ interface MediaModalProps {
   autoPlay?: boolean;
   volume?: number;
 }
+
 const MIN_SWIPE_DISTANCE = 400;
 const isLtrDir = getComputedStyle(document.body).direction !== 'rtl';
 

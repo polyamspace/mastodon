@@ -8,7 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import PinIcon from '@/awesome-icons/solid/thumbtack.svg?react';
+import PushPinIcon from '@/awesome-icons/solid/thumbtack.svg?react';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 import { getStatusList } from 'flavours/polyam/selectors';
 
@@ -51,7 +51,7 @@ class PinnedStatuses extends ImmutablePureComponent {
     const { intl, statusIds, hasMore, multiColumn } = this.props;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='thumb-tack' iconComponent={PinIcon} heading={intl.formatMessage(messages.heading)} ref={this.setRef} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn} icon='thumb-tack' iconComponent={PushPinIcon} heading={intl.formatMessage(messages.heading)} ref={this.setRef} alwaysShowBackButton>
         <StatusList
           statusIds={statusIds}
           scrollKey='pinned_statuses'

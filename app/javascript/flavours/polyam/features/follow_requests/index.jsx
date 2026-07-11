@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
+import PersonAddIcon from '@/awesome-icons/solid/user-plus.svg?react';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
@@ -69,7 +69,7 @@ class FollowRequests extends ImmutablePureComponent {
     );
 
     return (
-      <Column bindToDocument={!multiColumn} name='follow-requests' icon='user-plus' iconComponent={FollowIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn} icon='user-plus' iconComponent={PersonAddIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='follow_requests'
           onLoadMore={this.handleLoadMore}

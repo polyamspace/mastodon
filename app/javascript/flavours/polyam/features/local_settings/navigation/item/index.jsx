@@ -6,8 +6,6 @@ import classNames from 'classnames';
 
 import { Icon } from 'flavours/polyam/components/icon';
 
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
 export default class LocalSettingsPage extends PureComponent {
 
   static propTypes = {

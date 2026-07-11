@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import BanIcon from '@/awesome-icons/solid/ban.svg?react';
+import BlockIcon from '@/awesome-icons/solid/ban.svg?react';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Account } from 'flavours/polyam/components/account';
 
@@ -61,7 +61,7 @@ class Blocks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
 
     return (
-      <Column name='blocks' bindToDocument={!multiColumn} icon='ban' iconComponent={BanIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn} icon='ban' iconComponent={BlockIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}
