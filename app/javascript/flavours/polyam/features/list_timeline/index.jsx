@@ -9,9 +9,9 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import ListIcon from '@/awesome-icons/solid/list-ul.svg?react';
+import ListAltIcon from '@/awesome-icons/solid/list-ul.svg?react';
 import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
-import TrashIcon from '@/awesome-icons/solid/trash.svg?react';
+import DeleteIcon from '@/awesome-icons/solid/trash.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'flavours/polyam/actions/columns';
 import { fetchList } from 'flavours/polyam/actions/lists';
 import { openModal } from 'flavours/polyam/actions/modal';
@@ -136,7 +136,7 @@ class ListTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={title}>
         <ColumnHeader
           icon='list-ul'
-          iconComponent={ListIcon}
+          iconComponent={ListAltIcon}
           active={hasUnread}
           title={title}
           onPin={this.handlePin}
@@ -152,7 +152,7 @@ class ListTimeline extends PureComponent {
               </Link>
 
               <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
-                <Icon id='trash' icon={TrashIcon} /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
+                <Icon id='trash' icon={DeleteIcon} /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
               </button>
             </section>
           </div>

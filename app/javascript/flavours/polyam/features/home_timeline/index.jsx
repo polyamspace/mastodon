@@ -8,7 +8,7 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { connect } from 'react-redux';
 
-import AnnouncementIcon from '@/awesome-icons/solid/bullhorn.svg?react';
+import CampaignIcon from '@/awesome-icons/solid/bullhorn.svg?react';
 import HomeIcon from '@/awesome-icons/solid/house.svg?react';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 import { SymbolLogo } from 'flavours/polyam/components/logo';
@@ -146,13 +146,13 @@ class HomeTimeline extends PureComponent {
           aria-label={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
           onClick={this.handleToggleAnnouncementsClick}
         >
-          <IconWithBadge id='bullhorn' icon={AnnouncementIcon} count={unreadAnnouncements} />
+          <IconWithBadge id='bullhorn' icon={CampaignIcon} count={unreadAnnouncements} />
         </button>
       );
     }
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} name='home' label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='home'
           iconComponent={matchesBreakpoint ? SymbolLogo : HomeIcon}

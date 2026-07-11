@@ -94,6 +94,7 @@ const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
         onClick={handleHeaderClick}
         pinned={pinned}
         multiColumn={multiColumn}
+        showBackButton
       />
 
       <StatusList

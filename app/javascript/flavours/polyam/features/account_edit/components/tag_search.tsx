@@ -34,6 +34,7 @@ export const AccountEditTagSearch: FC = () => {
     // Remove existing featured tags from suggestions
     filterResults: (tag) => !tag.featuring,
   });
+
   const handleSearchChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (e) => {
       setQuery(e.target.value);

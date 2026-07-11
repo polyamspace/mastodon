@@ -67,7 +67,7 @@ class CompareHistoryModal extends PureComponent {
             {label}
           </div>
 
-        <div className='compare-history-modal__container'>
+          <div className='compare-history-modal__container'>
             <div className='status__content'>
               {currentVersion.get('spoiler_text').length > 0 && (
                 <>

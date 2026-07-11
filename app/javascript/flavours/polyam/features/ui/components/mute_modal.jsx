@@ -8,10 +8,10 @@ import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 
 import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
-import AtIcon from '@/awesome-icons/solid/at.svg?react';
-import AnnouncementIcon from '@/awesome-icons/solid/bullhorn.svg?react';
+import AlternateEmailIcon from '@/awesome-icons/solid/at.svg?react';
+import CampaignIcon from '@/awesome-icons/solid/bullhorn.svg?react';
 import ReplyIcon from '@/awesome-icons/solid/reply.svg?react';
-import MuteIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
+import VolumeOffIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import { muteAccount } from 'flavours/polyam/actions/accounts';
 import { closeModal } from 'flavours/polyam/actions/modal';
 import { Button } from 'flavours/polyam/components/button';
@@ -80,7 +80,7 @@ export const MuteModal = ({ accountId, acct }) => {
       <div className='safety-action-modal__top'>
         <div className='safety-action-modal__header'>
           <div className='safety-action-modal__header__icon'>
-            <Icon icon={MuteIcon} />
+            <Icon icon={VolumeOffIcon} />
           </div>
 
           <div>
@@ -93,7 +93,7 @@ export const MuteModal = ({ accountId, acct }) => {
 
         <ul className='safety-action-modal__bullet-points'>
           <li>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={AnnouncementIcon} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={CampaignIcon} /></div>
             <div><FormattedMessage id='mute_modal.they_wont_know' defaultMessage="They won't know they've been muted." /></div>
           </li>
 
@@ -103,7 +103,7 @@ export const MuteModal = ({ accountId, acct }) => {
           </li>
 
           <li>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={AtIcon} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={AlternateEmailIcon} /></div>
             <div><FormattedMessage id='mute_modal.you_wont_see_mentions' defaultMessage="You won't see posts that mention them." /></div>
           </li>
 

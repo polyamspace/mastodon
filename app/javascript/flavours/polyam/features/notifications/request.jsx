@@ -7,8 +7,8 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import ArchiveIcon from '@/awesome-icons/solid/box-archive.svg?react';
-import CheckIcon from '@/awesome-icons/solid/check.svg?react';
+import InventoryIcon from '@/awesome-icons/solid/box-archive.svg?react';
+import DoneIcon from '@/awesome-icons/solid/check.svg?react';
 import DeleteIcon from '@/awesome-icons/solid/trash.svg?react';
 import {
   fetchNotificationRequest,
@@ -92,7 +92,7 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
     <Column bindToDocument={!multiColumn} ref={columnRef} label={columnTitle}>
       <ColumnHeader
         icon='archive'
-        iconComponent={ArchiveIcon}
+        iconComponent={InventoryIcon}
         title={columnTitle}
         onClick={handleHeaderClick}
         multiColumn={multiColumn}
@@ -100,7 +100,7 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
         extraButton={!removed && (
           <>
             <IconButton className='column-header__button' iconComponent={DeleteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
-            <IconButton className='column-header__button' iconComponent={CheckIcon} onClick={handleAccept} title={intl.formatMessage(messages.accept)} />
+            <IconButton className='column-header__button' iconComponent={DoneIcon} onClick={handleAccept} title={intl.formatMessage(messages.accept)} />
           </>
         )}
       />

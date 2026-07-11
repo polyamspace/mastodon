@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 
 import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
 import VisibilityIcon from '@/awesome-icons/regular/eye.svg?react';
-import CommentIcon from '@/awesome-icons/solid/comment.svg?react';
+import ChatIcon from '@/awesome-icons/solid/comment.svg?react';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import { Icon }  from 'flavours/polyam/components/icon';
@@ -637,7 +637,7 @@ class Status extends ImmutablePureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setColumnRef} label={intl.formatMessage(messages.detailedStatus)}>
         <ColumnHeader
           icon='comment'
-          iconComponent={CommentIcon}
+          iconComponent={ChatIcon}
           title={intl.formatMessage(messages.tootHeading)}
           onClick={this.handleHeaderClick}
           showBackButton

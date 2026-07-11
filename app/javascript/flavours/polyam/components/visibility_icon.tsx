@@ -1,9 +1,9 @@
 import { defineMessages, useIntl } from 'react-intl';
 
-import EnvelopeIcon from '@/awesome-icons/solid/envelope.svg?react';
+import MailIcon from '@/awesome-icons/solid/envelope.svg?react';
 import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import LockIcon from '@/awesome-icons/solid/lock.svg?react';
-import UnlistedIcon from '@/awesome-icons/solid/unlock.svg?react';
+import QuietTimeIcon from '@/awesome-icons/solid/unlock.svg?react';
 import type { StatusVisibility } from 'flavours/polyam/models/status';
 
 import { Icon } from './icon';
@@ -37,7 +37,7 @@ export const VisibilityIcon: React.FC<{ visibility: StatusVisibility }> = ({
     },
     unlisted: {
       icon: 'unlock',
-      iconComponent: UnlistedIcon,
+      iconComponent: QuietTimeIcon,
       text: intl.formatMessage(messages.unlisted_short),
     },
     private: {
@@ -47,14 +47,14 @@ export const VisibilityIcon: React.FC<{ visibility: StatusVisibility }> = ({
     },
     direct: {
       icon: 'envelope',
-      iconComponent: EnvelopeIcon,
+      iconComponent: MailIcon,
       text: intl.formatMessage(messages.direct_short),
     },
   };
 
   const visibilityIcon = visibilityIconInfo[visibility];
 
-  // Additional attributes compared to upstream: className, aria-hidden and fixedWidth
+  // Additional attributes compared to upstream: aria-hidden
   return (
     <Icon
       className='status__visibility-icon'

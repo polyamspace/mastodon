@@ -9,10 +9,10 @@ import { connect } from 'react-redux';
 import Atrament from 'atrament'; // the doodling library
 import { debounce, mapValues } from 'lodash';
 
-import BathIcon from '@/awesome-icons/solid/bath.svg?react';
+import ColorsIcon from '@/awesome-icons/solid/bath.svg?react';
 import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
 import UndoIcon from '@/awesome-icons/solid/rotate-left.svg?react';
-import TrashIcon from '@/awesome-icons/solid/trash.svg?react';
+import DeleteIcon from '@/awesome-icons/solid/trash.svg?react';
 import { doodleSet, uploadCompose } from 'flavours/polyam/actions/compose';
 import { Button } from 'flavours/polyam/components/button';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -589,9 +589,9 @@ class DoodleModal extends ImmutablePureComponent {
           </div>
           <div className='doodle-toolbar'>
             <IconButton icon='pencil' iconComponent={EditIcon} title='Draw' label='Draw' onClick={this.setModeDraw} size={18} active={this.mode === 'draw'} inverted />
-            <IconButton icon='bath' iconComponent={BathIcon} title='Fill' label='Fill' onClick={this.setModeFill} size={18} active={this.mode === 'fill'} inverted />
+            <IconButton icon='bath' iconComponent={ColorsIcon} title='Fill' label='Fill' onClick={this.setModeFill} size={18} active={this.mode === 'fill'} inverted />
             <IconButton icon='undo' iconComponent={UndoIcon} title='Undo' label='Undo' onClick={this.undo} size={18} inverted />
-            <IconButton icon='trash' iconComponent={TrashIcon} title='Clear' label='Clear' onClick={this.handleClearBtn} size={18} inverted />
+            <IconButton icon='trash' iconComponent={DeleteIcon} title='Clear' label='Clear' onClick={this.handleClearBtn} size={18} inverted />
           </div>
           <div className='doodle-palette'>
             {

@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import RefreshIcon from '@/awesome-icons/solid/arrows-rotate.svg?react';
-import BoostIcon from '@/svg-icons/boost.svg?react';
+import RepeatIcon from '@/svg-icons/boost.svg?react';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Account } from 'flavours/polyam/components/account';
 import { Icon }  from 'flavours/polyam/components/icon';
@@ -84,7 +84,7 @@ class Reblogs extends ImmutablePureComponent {
       <Column ref={this.setRef}>
         <ColumnHeader
           icon='retweet'
-          iconComponent={BoostIcon}
+          iconComponent={RepeatIcon}
           title={intl.formatMessage(messages.heading)}
           onClick={this.handleHeaderClick}
           showBackButton

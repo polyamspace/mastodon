@@ -574,7 +574,7 @@ class Status extends ImmutablePureComponent {
       rootId,
       skipPrepend,
       avatarSize = 46,
-      children
+      children,
     } = this.props;
 
     // glitch-soc-specific
@@ -601,7 +601,7 @@ class Status extends ImmutablePureComponent {
     //  contents (affected by CW) while other will be displayed outside of the
     //  CW.
     let media = [];
-    let mediaIcons= [];
+    let mediaIcons = [];
 
     if (status === null) {
       return null;
@@ -639,7 +639,7 @@ class Status extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <Hotkeys handlers={handlers} focusables={!unfocusable}>
+        <Hotkeys handlers={handlers} focusable={!unfocusable}>
           <div ref={this.handleRef} className='status focusable' tabIndex={unfocusable ? null : 0}>
             <span>{status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}</span>
             {status.get('spoiler_text').length > 0 && (<span>{status.get('spoiler_text')}</span>)}
@@ -788,7 +788,7 @@ class Status extends ImmutablePureComponent {
         );
       }
       mediaIcons.push('link');
-    } else if (status.get('tagged_collections').size && !status.get('quote')) {
+    } else if (status.get('tagged_collections').size && !status.get('quote') && settings.get('inline_preview_cards') && !this.props.muted) {
       const firstLinkedCollection = status.get('tagged_collections').first();
       if (firstLinkedCollection) {
         media = (

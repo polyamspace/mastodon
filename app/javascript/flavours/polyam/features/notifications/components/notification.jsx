@@ -9,8 +9,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import FlagIcon from '@/awesome-icons/solid/flag.svg?react';
-import FollowIcon from '@/awesome-icons/solid/user-plus.svg?react';
-import UserIcon from '@/awesome-icons/solid/user.svg?react';
+import PersonAddIcon from '@/awesome-icons/solid/user-plus.svg?react';
+import PersonIcon from '@/awesome-icons/solid/user.svg?react';
 import { Account } from 'flavours/polyam/components/account';
 import { LinkedDisplayName } from '@/flavours/polyam/components/display_name';
 import { Icon }  from 'flavours/polyam/components/icon';
@@ -112,7 +112,7 @@ class Notification extends ImmutablePureComponent {
       <Hotkeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-follow focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.follow, { name: account.get('acct') }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='user-plus' icon={FollowIcon} />
+            <Icon id='user-plus' icon={PersonAddIcon} />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
@@ -132,7 +132,7 @@ class Notification extends ImmutablePureComponent {
       <Hotkeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-follow-request focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.follow_request', defaultMessage: '{name} has requested to follow you' }, { name: account.get('acct') }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='user' icon={UserIcon} />
+            <Icon id='user' icon={PersonIcon} />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.follow_request' defaultMessage='{name} has requested to follow you' values={{ name: link }} />
@@ -415,7 +415,7 @@ class Notification extends ImmutablePureComponent {
       <Hotkeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-admin-sign-up focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.adminSignUp, { name: account.get('acct') }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='user-plus' icon={FollowIcon} />
+            <Icon id='user-plus' icon={PersonAddIcon} />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.admin.sign_up' defaultMessage='{name} signed up' values={{ name: link }} />

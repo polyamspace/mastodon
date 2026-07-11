@@ -106,7 +106,7 @@ const makeMapStateToProps = () => {
   const getPendingStatusIds = makeGetStatusIds(true);
 
   /**
-   * @param {import('mastodon/store').RootState} state
+   * @param {import('flavours/polyam/store').RootState} state
    * @param {Object} props
    * @param {string} props.timelineId
    * @param {boolean} [props.initialLoadingState]

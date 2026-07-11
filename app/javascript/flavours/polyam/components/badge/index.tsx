@@ -71,7 +71,7 @@ export const Badge: FC<BadgeProps> = ({
     {icon}
     <span className={classes.content}>
       {label}
-      {domain && <span className={classes.domain}>{domain}</span>}
+      {domain && <span className={classes.domain}> {domain}</span>}
     </span>
   </div>
 );

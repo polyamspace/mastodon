@@ -6,14 +6,14 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import PollIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import InsertChartIcon from '@/awesome-icons/solid/bars-progress.svg?react';
 import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
 import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
 import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
 import FormatQuoteIcon from '@/awesome-icons/solid/quote-right.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
-import PinIcon from '@/awesome-icons/solid/thumbtack.svg?react';
-import BoostIcon from '@/svg-icons/boost.svg?react';
+import PushPinIcon from '@/awesome-icons/solid/thumbtack.svg?react';
+import RepeatIcon from '@/svg-icons/boost.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 import { me } from 'flavours/polyam/initial_state';
 
@@ -140,16 +140,16 @@ export default class StatusPrepend extends PureComponent {
       break;
     case 'featured':
       iconId = 'thumb-tack';
-      iconComponent = PinIcon;
+      iconComponent = PushPinIcon;
       break;
     case 'poll':
       iconId = 'tasks';
-      iconComponent = PollIcon;
+      iconComponent = InsertChartIcon;
       break;
     case 'reblog':
     case 'reblogged_by':
       iconId = 'retweet';
-      iconComponent = BoostIcon;
+      iconComponent = RepeatIcon;
       break;
     case 'status':
       iconId = 'bell';

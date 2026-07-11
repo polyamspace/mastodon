@@ -2,8 +2,8 @@ import { FormattedMessage } from 'react-intl';
 
 import { useSelector } from 'react-redux';
 
-import ImageIcon from '@/awesome-icons/regular/image.svg?react';
-import PollIcon from '@/awesome-icons/solid/bars-progress.svg?react';
+import PhotoLibraryIcon from '@/awesome-icons/regular/image.svg?react';
+import BarChart4BarsIcon from '@/awesome-icons/solid/bars-progress.svg?react';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { Icon } from 'flavours/polyam/components/icon';
@@ -39,8 +39,8 @@ export const ReplyIndicator = () => {
 
         {(status.get('poll') || status.get('media_attachments').size > 0) && (
           <div className='reply-indicator__attachments'>
-            {status.get('poll') && <><Icon icon={PollIcon} /><FormattedMessage id='reply_indicator.poll' defaultMessage='Poll' /></>}
-            {status.get('media_attachments').size > 0 && <><Icon icon={ImageIcon} /><FormattedMessage id='reply_indicator.attachments' defaultMessage='{count, plural, one {# attachment} other {# attachments}}' values={{ count: status.get('media_attachments').size }} /></>}
+            {status.get('poll') && <><Icon icon={BarChart4BarsIcon} /><FormattedMessage id='reply_indicator.poll' defaultMessage='Poll' /></>}
+            {status.get('media_attachments').size > 0 && <><Icon icon={PhotoLibraryIcon} /><FormattedMessage id='reply_indicator.attachments' defaultMessage='{count, plural, one {# attachment} other {# attachments}}' values={{ count: status.get('media_attachments').size }} /></>}
           </div>
         )}
       </div>

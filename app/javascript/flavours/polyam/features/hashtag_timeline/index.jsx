@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import { isEqual } from 'lodash';
 
-import HashtagIcon from '@/awesome-icons/solid/hashtag.svg?react';
+import TagIcon from '@/awesome-icons/solid/hashtag.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'flavours/polyam/actions/columns';
 import { connectHashtagStream } from 'flavours/polyam/actions/streaming';
 import { expandHashtagTimeline, clearTimeline } from 'flavours/polyam/actions/timelines';
@@ -176,7 +176,7 @@ class HashtagTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={`#${id}`}>
         <ColumnHeader
           icon='hashtag'
-          iconComponent={HashtagIcon}
+          iconComponent={TagIcon}
           active={hasUnread}
           title={this.title()}
           onPin={this.handlePin}

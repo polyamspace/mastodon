@@ -6,7 +6,7 @@ import { defineMessages } from 'react-intl';
 import ImageIcon from '@/awesome-icons/regular/image.svg?react';
 import CollapseIcon from '@/awesome-icons/solid/angles-up.svg?react';
 import SettingsIcon from '@/awesome-icons/solid/gear.svg?react';
-import AppSettingsIcon from '@/awesome-icons/solid/gears.svg?react';
+import ManufacturingIcon from '@/awesome-icons/solid/gears.svg?react';
 import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
 import WarningIcon from '@/awesome-icons/solid/triangle-exclamation.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
@@ -45,7 +45,7 @@ class LocalSettingsNavigation extends PureComponent {
           index={0}
           onNavigate={onNavigate}
           icon='cogs'
-          iconComponent={AppSettingsIcon}
+          iconComponent={ManufacturingIcon}
           title={intl.formatMessage(messages.general)}
         />
         <LocalSettingsNavigationItem

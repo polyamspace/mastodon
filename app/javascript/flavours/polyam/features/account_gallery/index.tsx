@@ -73,6 +73,7 @@ const selectGalleryTimeline = createAppSelector(
       `account:${accountId}:media${withReplies ? ':with_replies' : ''}`,
     );
     const statusIds = timeline?.get('items');
+
     if (isList(statusIds)) {
       for (const statusId of statusIds) {
         const status = statuses.get(statusId);
@@ -105,6 +106,7 @@ export const AccountGallery: React.FC<{
     hasMore,
     withReplies,
   } = useAppSelector((state) => selectGalleryTimeline(state, accountId));
+
   const { suspended, blockedBy, hidden } = useAccountVisibility(accountId);
 
   const maxId = attachments.last()?.getIn(['status', 'id']) as
