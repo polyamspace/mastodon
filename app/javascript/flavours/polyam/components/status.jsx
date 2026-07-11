@@ -259,6 +259,9 @@ class Status extends ImmutablePureComponent {
     // as it could cause surprising changes when receiving notifications
     if (settings.getIn(['content_warnings', 'shared_state']) && status.get('spoiler_text').length && !status.get('hidden')) return;
 
+    // Polyam: Do not autocollapse quoted toots.
+    if (isQuotedPost) return;
+
     let autoCollapseHeight = parseInt(autoCollapseSettings.get('height'));
     if (status.get('media_attachments').size && !muted) {
       autoCollapseHeight += 210;
@@ -271,7 +274,7 @@ class Status extends ImmutablePureComponent {
       (autoCollapseSettings.get('reblogs') && prepend === 'reblogged_by') ||
       (autoCollapseSettings.get('replies') && status.get('in_reply_to_id', null) !== null) ||
       (autoCollapseSettings.get('media') && !(status.get('spoiler_text').length) && status.get('media_attachments').size > 0) ||
-      (autoCollapseSettings.get('quotes') && isQuotedPost)
+      (autoCollapseSettings.get('quotes') && !!status.get('quote'))
     ) {
       this.setCollapsed(true);
       // Hack to fix timeline jumps on second rendering when auto-collapsing
