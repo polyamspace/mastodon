@@ -52,7 +52,6 @@ interface InitialStateMeta {
   emoji_style?: string;
   wrapstodon?: InitialStateWrapstodon | null;
   default_content_type: string;
-  notification_sound: { src: string; type: string }[];
 }
 
 interface IntialStateRole {
@@ -201,8 +200,6 @@ export const favouriteModal = getMeta('favourite_modal');
 export const pollLimits = initialState?.poll_limits;
 export const defaultContentType = getMeta('default_content_type');
 
-// Polyam-glitch additions
-export const notificationSound = getMeta('notification_sound');
 export function getAccessToken(): string | undefined {
   return getMeta('access_token');
 }
