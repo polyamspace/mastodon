@@ -40,6 +40,7 @@
   "settings.picker_opts": "Emoji picker categories",
   "settings.show_action_bar": "Show action buttons in collapsed toots",
   "status.collapse": "Collapse",
+  "status.has_quote": "Features an attached quote",
   "status.is_thread": "This toot is part of a thread",
   "status.react": "React",
   "status.reactions.empty": "No one has reacted to this toot yet. When someone does, they will show up here.",
