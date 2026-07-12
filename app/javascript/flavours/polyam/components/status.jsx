@@ -801,6 +801,10 @@ class Status extends ImmutablePureComponent {
       mediaIcons.push('tasks');
     }
 
+    if (status.get('quote')) {
+      mediaIcons.push('quote');
+    }
+
     //  Here we prepare extra data-* attributes for CSS selectors.
     //  Users can use those for theming, hiding avatars etc via UserStyle
     const selectorAttribs = {
