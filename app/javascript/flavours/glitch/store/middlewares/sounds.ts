@@ -1,7 +1,6 @@
 import { isAction } from '@reduxjs/toolkit';
 import type { Middleware, UnknownAction } from '@reduxjs/toolkit';
 
-import { notificationSound } from 'flavours/glitch/initial_state';
 import ready from 'flavours/glitch/ready';
 import { assetHost } from 'flavours/glitch/utils/config';
 
@@ -59,29 +58,16 @@ export const soundsMiddleware = (): Middleware<
   const soundCache: Record<string, HTMLAudioElement> = {};
 
   void ready(() => {
-    soundCache.notificationSound = createAudio(
-      !notificationSound
-        ? [
-            {
-              src: `${assetHost}/sounds/boop.ogg`,
-              type: 'audio/ogg',
-            },
-            {
-              src: `${assetHost}/sounds/boop.mp3`,
-              type: 'audio/mpeg',
-            },
-          ]
-        : [
-            {
-              src: `${assetHost}${(notificationSound[0] as AudioSource).src}`,
-              type: (notificationSound[0] as AudioSource).type,
-            },
-            {
-              src: `${assetHost}${(notificationSound[1] as AudioSource).src}`,
-              type: (notificationSound[1] as AudioSource).type,
-            },
-          ],
-    );
+    soundCache.boop = createAudio([
+      {
+        src: `${assetHost}/sounds/boop.ogg`,
+        type: 'audio/ogg',
+      },
+      {
+        src: `${assetHost}/sounds/boop.mp3`,
+        type: 'audio/mpeg',
+      },
+    ]);
   });
 
   return () => (next) => (action) => {
