@@ -287,6 +287,10 @@ export const DetailedStatus: React.FC<{
     mediaIcons.push('tasks');
   }
 
+  if (status.get('quote')) {
+    mediaIcons.push('quote');
+  }
+
   if (status.get('application')) {
     applicationLink = (
       <>
