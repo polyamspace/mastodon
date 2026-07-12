@@ -42,8 +42,12 @@
   "settings.picker_opts": "Emoji picker categories",
   "settings.show_action_bar": "Show action buttons in collapsed toots",
   "status.collapse": "Collapse",
-  "status.has_quote": "Features an attached quote",
+<<<<<<< HEAD
   "status.hidden_by_moderators": "This toot has been hidden by the moderators of {domain}.",
+||||||| parent of 109fc05114 (Add media icon for quotes (#1247))
+=======
+  "status.has_quote": "Features an attached quote",
+>>>>>>> 109fc05114 (Add media icon for quotes (#1247))
   "status.is_thread": "This toot is part of a thread",
   "status.react": "React",
   "status.reactions": "{count, plural, one {reaction} other {reactions}}",

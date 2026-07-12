@@ -4,6 +4,7 @@ import ImageIcon from '@/awesome-icons/regular/image.svg?react';
 import InsertChartIcon from '@/awesome-icons/solid/bars-progress.svg?react';
 import LinkIcon from '@/awesome-icons/solid/link.svg?react';
 import MusicNoteIcon from '@/awesome-icons/solid/music.svg?react';
+import FormatQuoteIcon from '@/awesome-icons/solid/quote-right.svg?react';
 import MovieIcon from '@/awesome-icons/solid/video.svg?react';
 import { Icon } from 'flavours/polyam/components/icon';
 
@@ -25,6 +26,10 @@ const messages = defineMessages({
     id: 'status.has_audio',
     defaultMessage: 'Features attached audio files',
   },
+  quote: {
+    id: 'status.has_quote',
+    defaultMessage: 'Features an attached quote',
+  },
 });
 
 const iconComponents = {
@@ -33,6 +38,7 @@ const iconComponents = {
   tasks: InsertChartIcon,
   'video-camera': MovieIcon,
   music: MusicNoteIcon,
+  quote: FormatQuoteIcon,
 };
 
 export type IconName = keyof typeof iconComponents;
