@@ -46,6 +46,7 @@ RSpec.describe Admin::ExportDomainBlocksController do
       end
 
       it 'renders page with expected domain blocks and returns http success' do
+        # Polyam: Added exports for reject reports
         expect(mapped_batch_table_rows).to contain_exactly(['bad.domain', :silence], ['worse.domain', :suspend], ['reject.media', :noop], ['reject.reports', :noop])
         expect(response).to have_http_status(200)
       end

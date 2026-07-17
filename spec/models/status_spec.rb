@@ -227,6 +227,7 @@ RSpec.describe Status do
     end
   end
 
+  # Polyam: Reactions
   describe '#reactions_count' do
     it 'is the number of reactions' do
       Fabricate(:status_reaction, account: bob, status: subject)

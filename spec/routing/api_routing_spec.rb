@@ -53,6 +53,7 @@ RSpec.describe 'API routes' do
         .to route_to('api/v1/statuses/favourited_by_accounts#index', status_id: '123')
     end
 
+    # Polyam: Reactions
     it 'routes reacted_by' do
       expect(get('/api/v1/statuses/123/reacted_by'))
         .to route_to('api/v1/statuses/reacted_by_accounts#index', status_id: '123')

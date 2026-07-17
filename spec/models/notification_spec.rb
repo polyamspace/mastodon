@@ -9,7 +9,7 @@ RSpec.describe Notification do
     let(:reblog)       { Fabricate(:status, reblog: status) }
     let(:favourite)    { Fabricate(:favourite, status: status) }
     let(:mention)      { Fabricate(:mention, status: status) }
-    let(:reaction)     { Fabricate(:status_reaction, status: status) }
+    let(:reaction)     { Fabricate(:status_reaction, status: status) } # Polyam: Reactions
 
     context 'when Activity is reblog' do
       let(:activity) { reblog }
@@ -36,6 +36,7 @@ RSpec.describe Notification do
       end
     end
 
+    # Polyam: Reactions
     context 'when Activity is react' do
       let(:activity) { reaction }
 
@@ -66,6 +67,7 @@ RSpec.describe Notification do
       expect(notification.type).to eq :follow
     end
 
+    # Polyam: Reactions
     it 'returns :reaction for a Reaction' do
       notification = described_class.new(activity: StatusReaction.new)
       expect(notification.type).to eq :reaction
@@ -264,7 +266,7 @@ RSpec.describe Notification do
       let(:follow_request) { Fabricate(:follow_request) }
       let(:favourite) { Fabricate(:favourite) }
       let(:poll) { Fabricate(:poll) }
-      let(:reaction) { Fabricate(:status_reaction) }
+      let(:reaction) { Fabricate(:status_reaction) } # Polam: Reactions
 
       let(:notifications) do
         [
@@ -275,7 +277,7 @@ RSpec.describe Notification do
           Fabricate(:notification, type: :follow_request, activity: follow_request),
           Fabricate(:notification, type: :favourite, activity: favourite),
           Fabricate(:notification, type: :poll, activity: poll),
-          Fabricate(:notification, type: :reaction, activity: reaction),
+          Fabricate(:notification, type: :reaction, activity: reaction), # Polyam: Reactions
         ]
       end
 
@@ -347,6 +349,7 @@ RSpec.describe Notification do
           ).and(have_loaded_association(:poll))
         end
 
+        # Polyam: Reactions
         def reaction_attributes
           have_attributes(
             type: :reaction,

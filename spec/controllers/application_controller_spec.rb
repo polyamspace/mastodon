@@ -76,7 +76,7 @@ RSpec.describe ApplicationController do
       allow(Setting).to receive(:[]).with('skin').and_return 'default'
       allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
       allow(Setting).to receive(:[]).with('noindex').and_return false
-      allow(Setting).to receive(:[]).with('show_application').and_return false
+      # Polyam: NoRSS setting
       allow(Setting).to receive(:[]).with('norss').and_return false
 
       expect(controller.view_context.current_flavour).to eq 'glitch'
@@ -95,6 +95,7 @@ RSpec.describe ApplicationController do
     end
   end
 
+  # Polyam: Selectable system skins
   describe 'helper_method :system_skins' do
     it 'returns ["default", "default"] when themes weren\'t changed in admin settings' do
       allow(Setting).to receive(:default_settings).and_return({ 'system_dark' => 'default' })

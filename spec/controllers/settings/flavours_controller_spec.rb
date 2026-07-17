@@ -36,6 +36,8 @@ RSpec.describe Settings::FlavoursController do
       end
     end
 
+    # Polyam: Selectable system skins
+
     describe 'with a user[system_dark] parameter' do
       before do
         put :update, params: { flavour: 'schnozzberry', user: { setting_system_dark: 'wallpaper' } }

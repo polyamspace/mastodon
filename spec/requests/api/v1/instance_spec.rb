@@ -17,7 +17,7 @@ RSpec.describe 'Instances' do
 
         expect(response.parsed_body)
           .to be_present
-          .and include(title: Setting.site_title)
+          .and include(title: Setting.site_title) # Polyam: Check setting
       end
     end
 
@@ -32,7 +32,7 @@ RSpec.describe 'Instances' do
 
         expect(response.parsed_body)
           .to be_present
-          .and include(title: Setting.site_title)
+          .and include(title: Setting.site_title) # Polyam: Check setting
       end
     end
   end

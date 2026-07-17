@@ -6,7 +6,6 @@ RSpec.describe 'Accounts Pins API' do
   include_context 'with API authentication', oauth_scopes: 'write:accounts'
 
   let(:kevin) { Fabricate(:user) }
-  let(:john) { Fabricate(:user) }
 
   before do
     kevin.account.followers << user.account

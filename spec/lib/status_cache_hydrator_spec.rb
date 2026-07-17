@@ -356,6 +356,7 @@ RSpec.describe StatusCacheHydrator do
           end
         end
 
+        # Polyam: Reactions
         context 'when it has been reacted to' do
           before do
             ReactService.new.call(account, reblog, '👍')

@@ -28,6 +28,8 @@ RSpec.describe REST::InstanceSerializer do
         )
     end
 
+    # Polyam: Additional checks for limits
+
     it 'returns the max profile bio length limit' do
       expect(serialization.deep_symbolize_keys)
         .to include(

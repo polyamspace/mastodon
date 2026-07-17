@@ -29,6 +29,8 @@ RSpec.describe ActivityPub::Activity::Like do
       expect(sender.favourited?(status)).to be true
     end
 
+    # Polyam: Reactions
+
     context 'when a Misskey reaction' do
       context 'with emoji' do
         let(:json) do

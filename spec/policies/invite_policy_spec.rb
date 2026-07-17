@@ -6,7 +6,7 @@ RSpec.describe InvitePolicy do
   subject { described_class }
 
   let(:admin)   { Fabricate(:admin_user).account }
-  let(:john)    { Fabricate(:user, created_at: 7.days.ago).account }
+  let(:john)    { Fabricate(:user, created_at: 7.days.ago).account } # Polyam: Invite restrictions
 
   permissions :index? do
     context 'when staff?' do

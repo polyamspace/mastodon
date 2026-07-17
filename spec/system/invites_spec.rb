@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Invites' do
   include ActionView::RecordIdentifier
 
-  let(:user) { Fabricate :user, created_at: 7.days.ago }
+  let(:user) { Fabricate :user, created_at: 7.days.ago } # Polyam: Invite restrictions
 
   before { sign_in user }
 
