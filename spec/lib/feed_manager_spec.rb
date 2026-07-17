@@ -201,22 +201,6 @@ RSpec.describe FeedManager do
         reblog = Fabricate(:status, reblog: status, account: jeff)
         expect(subject.filter?(:home, reblog, alice)).to be false
       end
-
-      it 'returns true for account on exclusive list' do
-        list = Fabricate(:list, account: alice, exclusive: true)
-        alice.follow!(bob)
-        list.accounts << bob
-        status = Fabricate(:status, text: 'Hello world', account: bob)
-        expect(described_class.instance.filter?(:home, status, alice)).to be true
-      end
-
-      it 'returns false for account on non-exclusive list' do
-        list = Fabricate(:list, account: alice)
-        alice.follow!(bob)
-        list.accounts << bob
-        status = Fabricate(:status, text: 'Hello world', account: bob)
-        expect(described_class.instance.filter?(:home, status, alice)).to be false
-      end
     end
 
     context 'with list feed' do

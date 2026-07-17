@@ -604,6 +604,7 @@ RSpec.describe Account::Interactions do
     end
   end
 
+  # Polyam: Reactions
   describe '#reacted?' do
     subject { account.reacted?(status, '👍') }
 

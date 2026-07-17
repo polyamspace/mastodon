@@ -73,21 +73,5 @@ RSpec.describe StatusesHelper do
         expect(result).to match('alternate_email')
       end
     end
-
-    private
-
-    def controller_helpers
-      Module.new do
-        def body_class_string = 'modal-layout compose-standalone'
-
-        def current_account
-          @current_account ||= Fabricate(:account)
-        end
-
-        def current_flavour = 'glitch'
-        def current_skin = 'default'
-        def system_skins = ['default', 'mastodon-light']
-      end
-    end
   end
 end

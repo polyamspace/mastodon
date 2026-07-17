@@ -101,6 +101,7 @@ RSpec.describe Instance do
       end
     end
 
+    # Polyam: Search domain by comment
     describe '#matches_comment' do
       let(:match_domain) { 'example.host' }
       let(:match_other_domain) { 'other.host' }

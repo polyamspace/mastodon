@@ -80,6 +80,7 @@ RSpec.describe Admin::DomainBlocksController do
           post :create, params: { domain_block: { domain: 'example.com', severity: 'suspend', reject_media: true, reject_reports: true } }
         end
 
+        # Polyam: No confirmation
         it 'records a block and calls worker and redirects' do
           expect(DomainBlock.exists?(domain: 'example.com', severity: 'suspend')).to be true
 
@@ -136,6 +137,7 @@ RSpec.describe Admin::DomainBlocksController do
           post :create, params: { domain_block: { domain: 'example.com', severity: 'suspend', reject_media: true, reject_reports: true } }
         end
 
+        # Polyam: No confirmation
         it 'updates the record and calls worker, redirects' do
           expect(DomainBlock.exists?(domain: 'example.com', severity: 'suspend')).to be true
 

@@ -68,6 +68,8 @@ RSpec.describe Sanitize::Config do
       expect(Sanitize.fragment('<abbr title="HyperText Markup Language">HTML</abbr>', subject)).to eq '<abbr title="HyperText Markup Language">HTML</abbr>'
     end
 
+    # Polyam: Code highlighting
+
     it 'keeps data-codelang attribute in code' do
       expect(Sanitize.fragment('<code data-codelang="c++">int main(void) { return 0; // https://joinmastodon.org/foo }</code>', subject)).to eq '<code data-codelang="c++">int main(void) { return 0; // https://joinmastodon.org/foo }</code>'
     end

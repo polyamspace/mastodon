@@ -236,6 +236,7 @@ RSpec.describe StatusPolicy, type: :model do
     end
   end
 
+  # Polyam: Reactions
   context 'with the permission of react?' do
     permissions :react? do
       it 'grants access when viewer is not blocked' do

@@ -52,6 +52,7 @@ RSpec.describe AdvancedTextFormatter do
         end
       end
 
+      # Polyam: Code highlighting
       context 'with a block code with language' do
         let(:text) { "test\n\n```c++\nint main(void) {\n  return 0; // https://joinmastodon.org/foo\n}\n```\n" }
 
@@ -84,6 +85,7 @@ RSpec.describe AdvancedTextFormatter do
           expect(subject).to include '<a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span>'
         end
 
+        # Polyam: Fix Markdown formatting of usernames, hashtags and custom emoji
         context 'when username contains formattable underscores' do
           let(:preloaded_accounts) { [Fabricate(:account, username: '_bob_')] }
           let(:text) { '@_bob_' }
@@ -289,6 +291,7 @@ RSpec.describe AdvancedTextFormatter do
         end
       end
 
+      # Polyam: Fix Markdown formatting of usernames, hashtags and custom emoji
       context 'with text containing a hashtag with underscores' do
         let(:text) { '#_hashtag_' }
 

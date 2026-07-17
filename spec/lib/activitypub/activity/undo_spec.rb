@@ -155,6 +155,7 @@ RSpec.describe ActivityPub::Activity::Undo do
       end
     end
 
+    # Polyam: Adjusted for reactions
     context 'with Like' do
       let(:status) { Fabricate(:status) }
 

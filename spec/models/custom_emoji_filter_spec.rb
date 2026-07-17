@@ -48,6 +48,7 @@ RSpec.describe CustomEmojiFilter do
         end
       end
 
+      # Polyam: Enabled and disabled filter
       context 'with availability' do
         context 'when disabled' do
           let(:params) { { availability: 'disabled' } }

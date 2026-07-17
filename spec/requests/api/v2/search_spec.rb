@@ -132,6 +132,7 @@ RSpec.describe 'Search API' do
       let(:search_params) { nil }
 
       before do
+        # Polyam: Enable search as it's disabled by default for polyam-glitch
         Setting.search_preview = true
         get '/api/v2/search', params: search_params
       end

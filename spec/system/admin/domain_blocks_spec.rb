@@ -19,6 +19,7 @@ RSpec.describe 'blocking domains through the moderation interface' do
     end
   end
 
+  # Polyam: Adjusted for lack of confirmation
   context 'when suspending a new domain' do
     it 'suspends the domain' do
       visit new_admin_domain_block_path
@@ -37,6 +38,7 @@ RSpec.describe 'blocking domains through the moderation interface' do
     end
   end
 
+  # Polyam: Adjusted for lack of confirmation
   context 'when suspending a domain that is already silenced' do
     it 'suspends the domain' do
       domain_block = Fabricate(:domain_block, domain: 'example.com', severity: 'silence')
@@ -89,6 +91,7 @@ RSpec.describe 'blocking domains through the moderation interface' do
 
       submit_domain_block('subdomain.example.com', 'suspend')
 
+      # Polyam: No confirmation
       # It doesn't immediately block but presents a confirmation screen
       # expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'subdomain.example.com'))
       # expect(DomainBlockWorker).to_not have_received(:perform_async)
@@ -117,6 +120,7 @@ RSpec.describe 'blocking domains through the moderation interface' do
       select I18n.t('admin.domain_blocks.new.severity.suspend'), from: 'domain_block_severity'
       click_on submit_button
 
+      # Polyam: No confirmation
       # It doesn't immediately block but presents a confirmation screen
       # expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
       # expect(DomainBlockWorker).to_not have_received(:perform_async)
