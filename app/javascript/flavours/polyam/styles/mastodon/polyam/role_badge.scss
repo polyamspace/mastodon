@@ -1,5 +1,5 @@
-@use '../theme/dark';
-@use '../theme/light';
+@use '../tokens/theme/dark';
+@use '../tokens/theme/light';
 
 .account-role {
   // Default values for automated badge since old style is kept
