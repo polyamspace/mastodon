@@ -28,6 +28,7 @@ export interface ApiReactionJSON {
   me?: boolean;
   url?: string;
   static_url?: string;
+  emoji: ApiCustomEmojiJSON[];
 }
 
 export interface ApiTagJSON {
