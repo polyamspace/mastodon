@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
 
-import MusicNoteIcon from '@/awesome-icons/solid/music.svg?react';
+import SmileyIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
 
 import { EditableTag, Tag } from './tag';
 
@@ -23,7 +23,7 @@ export const Default: Story = {};
 
 export const WithIcon: Story = {
   args: {
-    icon: MusicNoteIcon,
+    icon: SmileyIcon,
   },
 };
 
@@ -38,7 +38,7 @@ export const EditableWithIcon: Story = {
     return (
       <EditableTag
         {...args}
-        removeIcon={MusicNoteIcon}
+        removeIcon={SmileyIcon}
         onRemove={action('Remove')}
       />
     );
