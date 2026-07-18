@@ -7,6 +7,9 @@ STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
 STREAMING_HOST = ENV.fetch('TEST_STREAMING_HOST', 'localhost')
 ENV['STREAMING_API_BASE_URL'] = "http://#{STREAMING_HOST}:#{STREAMING_PORT}"
 
+# Polyam: Update check is disabled by default but specs assume it enabled.
+ENV['UPDATE_CHECK_URL'] ||= 'https://api.joinmastodon.org/update-check'
+
 require_relative '../config/environment'
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
