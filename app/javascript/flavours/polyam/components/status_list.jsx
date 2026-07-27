@@ -6,6 +6,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { debounce } from 'lodash';
 
 import { TIMELINE_GAP, TIMELINE_PINNED_VIEW_ALL, TIMELINE_SUGGESTIONS } from 'flavours/polyam/actions/timelines';
+import { isNonStatusId } from 'flavours/polyam/actions/timelines_typed';
 import { RegenerationIndicator } from 'flavours/polyam/components/regeneration_indicator';
 import { InlineFollowSuggestions } from 'flavours/polyam/features/home_timeline/components/inline_follow_suggestions';
 import { PinnedShowAllButton } from '@/flavours/polyam/features/account_timeline/components/pinned_statuses';
@@ -45,7 +46,7 @@ export default class StatusList extends ImmutablePureComponent {
 
   handleLoadOlder = debounce(() => {
     const { statusIds, lastId, onLoadMore } = this.props;
-    onLoadMore(lastId || (statusIds.size > 0 ? statusIds.last() : undefined));
+    onLoadMore(lastId || statusIds.findLast(id => !isNonStatusId(id)));
   }, 300, { leading: true });
 
   setRef = c => {
