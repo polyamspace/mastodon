@@ -13,7 +13,7 @@ import {
   useAppSelector,
 } from '@/flavours/polyam/store';
 
-import SettingToggle from './setting_toggle';
+import PillBarButton from './pill_bar_button';
 
 const selectNotificationSettings = createAppSelector(
   [
@@ -102,7 +102,7 @@ export const ColumnSettingsGroup: FC<{ label: ReactNode; type: string }> = ({
       <h3 id={`notifications-${type}`}>{label}</h3>
 
       <div className='column-settings__row'>
-        <SettingToggle
+        <PillBarButton
           disabled={!browserPermission}
           prefix='notifications_desktop'
           settings={settings}
@@ -117,7 +117,7 @@ export const ColumnSettingsGroup: FC<{ label: ReactNode; type: string }> = ({
         />
 
         {showPushSettings && (
-          <SettingToggle
+          <PillBarButton
             prefix='notifications_push'
             settings={pushSettings}
             settingPath={['alerts', type]}
@@ -131,7 +131,7 @@ export const ColumnSettingsGroup: FC<{ label: ReactNode; type: string }> = ({
           />
         )}
 
-        <SettingToggle
+        <PillBarButton
           prefix='notifications'
           settings={settings}
           settingPath={['shows', type]}
@@ -144,7 +144,7 @@ export const ColumnSettingsGroup: FC<{ label: ReactNode; type: string }> = ({
           }
         />
 
-        <SettingToggle
+        <PillBarButton
           prefix='notifications'
           settings={settings}
           settingPath={['sounds', type]}
