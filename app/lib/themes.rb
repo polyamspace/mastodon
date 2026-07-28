@@ -27,8 +27,7 @@ class Themes
       screenshots = []
 
       # Polyam: Enabled flavours var
-      # TODO: Remove second condition in next version
-      next unless ENABLED_FLAVOURS.include?(name) || (name == 'vanilla' && ENV['ENABLE_VANILLA'] == 'true')
+      next unless ENABLED_FLAVOURS.include?(name)
 
       if data['locales']
         Dir.glob(File.join(dir, data['locales'], '*.{js,json}')) do |locale|

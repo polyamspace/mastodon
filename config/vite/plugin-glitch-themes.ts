@@ -55,12 +55,7 @@ export function GlitchThemes(): Plugin {
         const flavourName = path.basename(path.dirname(flavourFile));
 
         // Polyam: Skip not explicitly enabled flavours to save compile time
-        // TODO: Remove second condition on next version.
-        if (
-          !enabledFlavours.includes(flavourName) &&
-          !(process.env.ENABLE_VANILLA === 'true' && flavourName === 'vanilla')
-        )
-          continue;
+        if (!enabledFlavours.includes(flavourName)) continue;
 
         const flavourString = await fs.readFile(flavourFile, 'utf8');
         const flavourDef = yaml.load(flavourString, {
