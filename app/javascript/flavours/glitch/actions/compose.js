@@ -198,16 +198,7 @@ export function directCompose(account) {
   };
 }
 
-/**
- * @callback ComposeSuccessCallback
- * @param {Object} status
- */
-
-/**
- * @param {null | string} overridePrivacy
- * @param {undefined | ComposeSuccessCallback} successCallback
- */
-export function submitCompose(overridePrivacy = null, successCallback = undefined) {
+export function submitCompose(successCallback, overridePrivacy) {
   return function (dispatch, getState) {
     const statusText   = getState().getIn(['compose', 'text'], '');
     const media        = getState().getIn(['compose', 'media_attachments']);
