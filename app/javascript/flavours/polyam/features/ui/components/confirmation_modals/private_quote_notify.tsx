@@ -3,6 +3,7 @@ import { forwardRef, useCallback, useState } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { submitCompose } from '@/flavours/polyam/actions/compose';
+import { PRIVATE_QUOTE_MODAL_ID } from '@/flavours/polyam/actions/compose_typed';
 import { changeSetting } from '@/flavours/polyam/actions/settings';
 import { CheckBox } from '@/flavours/polyam/components/check_box';
 import { useAppDispatch } from '@/flavours/polyam/store';
@@ -10,8 +11,6 @@ import { useAppDispatch } from '@/flavours/polyam/store';
 import { ConfirmationModal } from './confirmation_modal';
 import type { BaseConfirmationModalProps } from './confirmation_modal';
 import classes from './styles.module.css';
-
-export const PRIVATE_QUOTE_MODAL_ID = 'quote/private_notify';
 
 const messages = defineMessages({
   title: {
