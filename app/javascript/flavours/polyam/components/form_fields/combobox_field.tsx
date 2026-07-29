@@ -17,6 +17,7 @@ import classNames from 'classnames';
 import KeyboardArrowDownIcon from '@/awesome-icons/solid/chevron-down.svg?react';
 import KeyboardArrowUpIcon from '@/awesome-icons/solid/chevron-up.svg?react';
 import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
+import { useMergedRefs } from '@/flavours/polyam/hooks/useMergedRefs';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 
 import { LoadingIndicator } from '../loading_indicator';
@@ -507,17 +508,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
       );
     });
 
-  const mergeInputRefs = useCallback(
-    (element: HTMLInputElement | null) => {
-      setInputElement(element);
-      if (typeof ref === 'function') {
-        ref(element);
-      } else if (ref) {
-        ref.current = element;
-      }
-    },
-    [ref],
-  );
+  const mergedRef = useMergedRefs(ref, setInputElement);
 
   const id = useId();
   const listId = `${id}-list`;
@@ -543,7 +534,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
         onKeyDown={handleInputKeyDown}
         icon={icon ?? undefined}
         className={classNames(classes.input, className)}
-        ref={mergeInputRefs}
+        ref={mergedRef}
       />
       {hasMenuContent && (
         <IconButton
