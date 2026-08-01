@@ -10,9 +10,8 @@ import {
   insertEmojiCompose,
   uploadCompose,
 } from 'flavours/polyam/actions/compose';
-import { pasteLinkCompose } from 'flavours/polyam/actions/compose_typed';
+import { pasteLinkCompose, PRIVATE_QUOTE_MODAL_ID } from 'flavours/polyam/actions/compose_typed';
 import { openModal } from 'flavours/polyam/actions/modal';
-import { PRIVATE_QUOTE_MODAL_ID } from 'flavours/polyam/features/ui/components/confirmation_modals/private_quote_notify';
 import { me } from 'flavours/polyam/initial_state';
 import { privacyPreference } from 'flavours/polyam/utils/privacy_preference';
 
@@ -89,7 +88,7 @@ const mapDispatchToProps = (dispatch, props) => ({
     dispatch(changeCompose(text));
   },
 
-  onSubmit ({ missingAltText, quoteToPrivate, overridePrivacy = null }) {
+  onSubmit ({ missingAltText, quoteToPrivate, overridePrivacy }) {
     if (missingAltText) {
       dispatch(openModal({
         modalType: 'CONFIRM_MISSING_ALT_TEXT',
@@ -101,11 +100,11 @@ const mapDispatchToProps = (dispatch, props) => ({
         modalProps: {},
       }));
     } else {
-      dispatch(submitCompose(overridePrivacy, (status) => {
+      dispatch(submitCompose((status) => {
         if (props.redirectOnSuccess) {
           window.location.assign(status.url);
         }
-      }));
+      }, overridePrivacy));
     }
   },
 

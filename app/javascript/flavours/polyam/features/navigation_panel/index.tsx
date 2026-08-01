@@ -220,10 +220,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
   type ColumnMap = ImmutableMap<'id' | 'uuid' | 'params', string>;
 
   const columns = useAppSelector(
-    (state) =>
-      (state.settings as ImmutableMap<string, unknown>).get(
-        'columns',
-      ) as ImmutableList<ColumnMap>,
+    (state) => state.settings.get('columns') as ImmutableList<ColumnMap>,
   );
 
   const isPinned = (id: string) => {
