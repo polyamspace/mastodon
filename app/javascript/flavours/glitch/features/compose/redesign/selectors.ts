@@ -2,11 +2,10 @@ import { length } from 'stringz';
 
 import type { ApiMediaAttachmentJSON } from '@/flavours/glitch/api_types/media_attachments';
 import type { StatusVisibility } from '@/flavours/glitch/models/status';
+import type { ComposeType } from '@/flavours/glitch/reducers/slices/composer';
 import { createAppSelector } from '@/flavours/glitch/store';
 
 import { countableText } from '../util/counter';
-
-export type ComposeType = 'post' | 'message' | 'reply';
 
 export const selectComposePrivacy = createAppSelector(
   [

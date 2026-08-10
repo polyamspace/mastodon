@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { lazy, PureComponent, Suspense } from 'react';
 
 import { defineMessages, FormattedMessage } from 'react-intl';
 
@@ -26,6 +26,7 @@ import { identityContextPropShape, withIdentity } from 'flavours/glitch/identity
 import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 import { selectUnreadNotificationGroupsCount } from 'flavours/glitch/selectors/notifications';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { isRedesignEnabled } from '@/flavours/glitch/utils/environment';
 import { checkAnnualReport } from '@/flavours/glitch/reducers/slices/annual_report';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
@@ -277,8 +278,12 @@ class SwitchingColumnsArea extends PureComponent {
       </ColumnsContextProvider>
     );
   }
-
 }
+
+const LazyRedesignComposeButton = lazy(
+  () => import('@/flavours/glitch/features/compose/redesign/trigger')
+    .then(({ ComposeRedesignButton }) => ({ default: ComposeRedesignButton }))
+);
 
 class UI extends PureComponent {
   static propTypes = {
@@ -730,6 +735,12 @@ class UI extends PureComponent {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
+
+          {isRedesignEnabled() && (
+            <Suspense>
+              <LazyRedesignComposeButton />
+            </Suspense>
+          )}
         </div>
       </Hotkeys>
     );
