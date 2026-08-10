@@ -3,20 +3,21 @@ import { useCallback, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import {
-  ImageSquareIcon,
-  SmileyIcon,
-  ChartBarHorizontalIcon,
-} from '@phosphor-icons/react';
+import { ImageSquareIcon, ChartBarHorizontalIcon } from '@phosphor-icons/react';
 
 import { addPoll, uploadCompose } from '@/flavours/polyam/actions/compose';
-import { Button, IconButton } from '@/flavours/polyam/components/button/redesign';
+import {
+  Button,
+  IconButton,
+} from '@/flavours/polyam/components/button/redesign';
 import {
   createAppSelector,
   useAppDispatch,
   useAppSelector,
 } from '@/flavours/polyam/store';
 
+import type { OnEmojiPick } from './emoji';
+import { ComposeEmojiButton } from './emoji';
 import {
   selectComposeAttachments,
   selectComposeCanSubmit,
@@ -26,7 +27,9 @@ import {
 } from './selectors';
 import classes from './styles.module.scss';
 
-export const ComposeFooter: React.FC = () => {
+export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
+  onEmojiPick,
+}) => {
   const type = useAppSelector(selectComposeType);
   const { current, max } = useAppSelector(selectComposeCharsCount);
   const { hasPoll, quotedStatusId } = useAppSelector(
@@ -47,12 +50,7 @@ export const ComposeFooter: React.FC = () => {
     <footer className={classes.footer}>
       <ComposeUploadButton disabled={hasQuote} />
 
-      <IconButton size='sm' icon={SmileyIcon}>
-        <FormattedMessage
-          id='emoji_button.label'
-          defaultMessage='Insert emoji'
-        />
-      </IconButton>
+      <ComposeEmojiButton onPick={onEmojiPick} />
 
       <IconButton
         size='sm'
