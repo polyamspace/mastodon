@@ -2,11 +2,10 @@ import { length } from 'stringz';
 
 import type { ApiMediaAttachmentJSON } from '@/flavours/polyam/api_types/media_attachments';
 import type { StatusVisibility } from '@/flavours/polyam/models/status';
+import type { ComposeType } from '@/flavours/polyam/reducers/slices/composer';
 import { createAppSelector } from '@/flavours/polyam/store';
 
 import { countableText } from '../util/counter';
-
-export type ComposeType = 'post' | 'message' | 'reply';
 
 export const selectComposePrivacy = createAppSelector(
   [
