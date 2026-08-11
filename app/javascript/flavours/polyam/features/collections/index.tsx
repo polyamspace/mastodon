@@ -4,9 +4,9 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { NavigationFocusTarget } from '@/flavours/polyam/components/navigation_focus_target';
-import { Column } from 'flavours/polyam/components/column';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { DisplayNameSimple } from 'flavours/polyam/components/display_name/simple';
 import { Scrollable } from 'flavours/polyam/components/scrollable_list/components';
 import { TabLink, TabList } from 'flavours/polyam/components/tab_list';

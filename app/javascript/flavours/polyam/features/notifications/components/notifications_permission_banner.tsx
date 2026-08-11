@@ -4,11 +4,11 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import UnfoldMoreIcon from '@/awesome-icons/solid/gear.svg?react';
 import CloseIcon from '@/awesome-icons/solid/xmark.svg?react';
+import { messages as columnHeaderMessages } from '@/flavours/polyam/components/column/header';
 import { useAppDispatch } from '@/flavours/polyam/store';
 import { requestBrowserPermission } from 'flavours/polyam/actions/notifications';
 import { changeSetting } from 'flavours/polyam/actions/settings';
 import { Button } from 'flavours/polyam/components/button';
-import { messages as columnHeaderMessages } from 'flavours/polyam/components/column_header';
 import { Icon } from 'flavours/polyam/components/icon';
 import { IconButton } from 'flavours/polyam/components/icon_button';
 

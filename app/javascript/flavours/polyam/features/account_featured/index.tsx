@@ -10,7 +10,8 @@ import AddIcon from '@/awesome-icons/solid/plus.svg?react';
 import { fetchEndorsedAccounts } from '@/flavours/polyam/actions/accounts_typed';
 import { AccountHeader } from '@/flavours/polyam/components/account_header';
 import { AccountListItem } from '@/flavours/polyam/components/account_list_item';
-import { ColumnBackButton } from '@/flavours/polyam/components/column_back_button';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnBackButton } from '@/flavours/polyam/components/column/back_button';
 import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
 import { RemoteHint } from '@/flavours/polyam/components/remote_hint';
 import {
@@ -21,7 +22,6 @@ import {
 import type { TruncatedListItemInfo } from '@/flavours/polyam/components/truncated_list';
 import { TruncatedListItems } from '@/flavours/polyam/components/truncated_list';
 import { BundleColumnError } from '@/flavours/polyam/features/ui/components/bundle_column_error';
-import Column from '@/flavours/polyam/features/ui/components/column';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import { useAccountId } from '@/flavours/polyam/hooks/useAccountId';
 import { useAccountVisibility } from '@/flavours/polyam/hooks/useAccountVisibility';

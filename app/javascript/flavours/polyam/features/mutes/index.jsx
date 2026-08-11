@@ -11,13 +11,13 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import VolumeOffIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
+import { fetchMutes, expandMutes } from '@/flavours/polyam/actions/mutes';
+import { Account } from '@/flavours/polyam/components/account';
+import { Column } from '@/flavours/polyam/components/column';
 import { injectIntl } from '@/flavours/polyam/components/intl';
-import { Account } from 'flavours/polyam/components/account';
-
-import { fetchMutes, expandMutes } from '../../actions/mutes';
-import { LoadingIndicator } from '../../components/loading_indicator';
-import ScrollableList from '../../components/scrollable_list';
-import Column from '../ui/components/column';
+import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
+import ScrollableList from '@/flavours/polyam/components/scrollable_list';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 
 const messages = defineMessages({
   heading: { id: 'column.mutes', defaultMessage: 'Muted users' },
@@ -63,7 +63,8 @@ class Mutes extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.mutes' defaultMessage="You haven't muted any users yet." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='volume-off' iconComponent={VolumeOffIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn}>
+        <ColumnHeader icon='volume-off' iconComponent={VolumeOffIcon} title={intl.formatMessage(messages.heading)} showBackButton />
         <ScrollableList
           scrollKey='mutes'
           onLoadMore={this.handleLoadMore}

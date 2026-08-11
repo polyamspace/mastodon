@@ -11,6 +11,8 @@ import HelpIcon from '@/awesome-icons/solid/circle-question.svg?react';
 import ListAltIcon from '@/awesome-icons/solid/list-ul.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { openModal } from 'flavours/polyam/actions/modal';
 import type {
   ApiCollectionJSON,
@@ -18,8 +20,6 @@ import type {
 } from 'flavours/polyam/api_types/collections';
 import { Badge } from 'flavours/polyam/components/badge';
 import { Callout } from 'flavours/polyam/components/callout';
-import { Column } from 'flavours/polyam/components/column';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { DisplayName } from 'flavours/polyam/components/display_name';
 import { useAccountHandle } from 'flavours/polyam/components/display_name/default';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';

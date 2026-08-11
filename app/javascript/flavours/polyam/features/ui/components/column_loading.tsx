@@ -1,6 +1,6 @@
-import { Column } from 'flavours/polyam/components/column';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
-import type { Props as ColumnHeaderProps } from 'flavours/polyam/components/column_header';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
+import type { ColumnHeaderProps } from '@/flavours/polyam/components/column/header';
 
 export const ColumnLoading: React.FC<ColumnHeaderProps> = (otherProps) => (
   <Column>

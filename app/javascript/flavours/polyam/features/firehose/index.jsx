@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useRef, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
@@ -8,6 +8,8 @@ import { NavLink } from 'react-router-dom';
 
 import PublicIcon from '@/awesome-icons/solid/globe.svg?react';
 import { useIdentity } from '@/flavours/polyam/identity_context';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { addColumn } from 'flavours/polyam/actions/columns';
 import { changeSetting } from 'flavours/polyam/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'flavours/polyam/actions/streaming';
@@ -18,8 +20,6 @@ import { localLiveFeedAccess, remoteLiveFeedAccess, domain, showReblogsPublicTim
 import { canViewFeed } from 'flavours/polyam/permissions';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
 import SettingToggle from '../notifications/components/setting_toggle';
 import StatusListContainer from '../ui/containers/status_list_container';
 
@@ -87,7 +87,6 @@ const Firehose = ({ feedType, multiColumn }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
   const { signedIn, permissions } = useIdentity();
-  const columnRef = useRef(null);
 
   const allowLocalOnly = useAppSelector((state) => state.getIn(['settings', 'firehose', 'allowLocalOnly']));
   const regex = useAppSelector((state) => state.getIn(['settings', 'firehose', 'regex', 'body']));
@@ -131,8 +130,6 @@ const Firehose = ({ feedType, multiColumn }) => {
     },
     [dispatch, onlyMedia, allowLocalOnly, feedType],
   );
-
-  const handleHeaderClick = useCallback(() => columnRef.current?.scrollTop(), []);
 
   useEffect(() => {
     let disconnect;
@@ -211,15 +208,15 @@ const Firehose = ({ feedType, multiColumn }) => {
   }
 
   return (
-    <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
+    <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
         icon='globe'
         iconComponent={PublicIcon}
         active={hasUnread}
         title={intl.formatMessage(title)}
         onPin={handlePin}
-        onClick={handleHeaderClick}
         multiColumn={multiColumn}
+        scrollTopOnClick
       >
         <ColumnSettings />
       </ColumnHeader>

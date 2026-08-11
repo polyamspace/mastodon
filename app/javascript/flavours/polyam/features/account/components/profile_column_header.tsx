@@ -3,20 +3,17 @@ import type { FC } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import PersonIcon from '@/awesome-icons/solid/circle-user.svg?react';
-
-import { ColumnHeader } from '../../../components/column_header';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 
 const messages = defineMessages({
   profile: { id: 'column_header.profile', defaultMessage: 'Profile' },
 });
 
 interface ProfileColumnHeaderProps {
-  onClick: () => void;
   multiColumn: boolean;
 }
 
 export const ProfileColumnHeader: FC<ProfileColumnHeaderProps> = ({
-  onClick,
   multiColumn,
 }) => {
   const intl = useIntl();
@@ -26,7 +23,7 @@ export const ProfileColumnHeader: FC<ProfileColumnHeaderProps> = ({
       icon='user-circle'
       iconComponent={PersonIcon}
       title={intl.formatMessage(messages.profile)}
-      onClick={onClick}
+      scrollTopOnClick
       showBackButton
       multiColumn={multiColumn}
     />

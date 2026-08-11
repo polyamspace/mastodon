@@ -11,11 +11,11 @@ import { connect } from 'react-redux';
 import { domain } from 'flavours/polyam/initial_state';
 
 import CircleInfo from '@/awesome-icons/solid/circle-info.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'flavours/polyam/actions/server';
 import { Account } from 'flavours/polyam/components/account';
-import Column from 'flavours/polyam/components/column';
-import ColumnHeader from 'flavours/polyam/components/column_header';
 import { NavigationFocusTarget } from 'flavours/polyam/components/navigation_focus_target';
 import { ServerHeroImage } from 'flavours/polyam/components/server_hero_image';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
@@ -82,26 +82,18 @@ class About extends PureComponent {
     dispatch(fetchDomainBlocks());
   };
 
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
-
-  setRef = c => {
-    this.column = c;
-  };
-
   render () {
     const { multiColumn, intl, server, extendedDescription, domainBlocks, locale } = this.props;
     const isLoading = server.isLoading;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='info-circle'
           iconComponent={CircleInfo}
           title={intl.formatMessage(messages.title)}
-          onClick={this.handleHeaderClick}
           multiColumn={multiColumn}
+          scrollTopOnClick
         />
 
         <div className='scrollable about' id={getColumnSkipLinkId(1)}>

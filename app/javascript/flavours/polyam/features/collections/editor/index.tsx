@@ -14,9 +14,9 @@ import {
 import { Helmet } from '@unhead/react/helmet';
 
 import ListAltIcon from '@/awesome-icons/solid/list-ul.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { Callout } from 'flavours/polyam/components/callout';
-import { Column } from 'flavours/polyam/components/column';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import { NotSignedInIndicator } from 'flavours/polyam/components/not_signed_in_indicator';
 import { useIdentity } from 'flavours/polyam/identity_context';

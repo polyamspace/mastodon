@@ -7,9 +7,9 @@ import { Icon } from 'flavours/polyam/components/icon';
 import { getColumnSkipLinkId } from 'flavours/polyam/features/ui/components/skip_links';
 import { ButtonInTabsBar } from 'flavours/polyam/features/ui/util/columns_context';
 
-import { useColumnIndexContext } from '../features/ui/components/columns_area';
+import { useAppHistory } from '../router';
 
-import { useAppHistory } from './router';
+import { useColumnIndexContext } from './context';
 
 type OnClickCallback = () => void;
 

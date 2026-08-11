@@ -1,16 +1,15 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import { Helmet } from '@unhead/react/helmet';
 
 import UserSecretIcon from '@/awesome-icons/solid/user-secret.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { NavigationFocusTarget } from '@/flavours/polyam/components/navigation_focus_target';
 import { apiGetPrivacyPolicy } from 'flavours/polyam/api/instance';
 import type { ApiPrivacyPolicyJSON } from 'flavours/polyam/api_types/instance';
-import { Column } from 'flavours/polyam/components/column';
-import type { ColumnRef } from 'flavours/polyam/components/column';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 import { Skeleton } from 'flavours/polyam/components/skeleton';
 
@@ -27,8 +26,6 @@ const PrivacyPolicy: React.FC<{
   const [response, setResponse] = useState<ApiPrivacyPolicyJSON>();
   const [loading, setLoading] = useState(true);
 
-  const column = useRef<ColumnRef>(null);
-
   useEffect(() => {
     apiGetPrivacyPolicy()
       .then((data) => {
@@ -41,13 +38,8 @@ const PrivacyPolicy: React.FC<{
       });
   }, []);
 
-  const handleHeaderClick = useCallback(() => {
-    column.current?.scrollTop();
-  }, []);
-
   return (
     <Column
-      ref={column}
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.title)}
     >
@@ -55,8 +47,8 @@ const PrivacyPolicy: React.FC<{
         icon='user-secret'
         iconComponent={UserSecretIcon}
         title={intl.formatMessage(messages.title)}
-        onClick={handleHeaderClick}
         multiColumn={multiColumn}
+        scrollTopOnClick
       />
 
       <div className='scrollable privacy-policy'>
