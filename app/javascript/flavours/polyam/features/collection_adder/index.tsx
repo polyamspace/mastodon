@@ -11,6 +11,7 @@ import { useCurrentAccountId } from '@/flavours/polyam/hooks/useAccountId';
 import type { Account } from '@/flavours/polyam/models/account';
 import {
   addCollectionItem,
+  collectionEditorActions,
   removeCollectionItem,
 } from '@/flavours/polyam/reducers/slices/collections';
 import { IconButton } from 'flavours/polyam/components/icon_button';
@@ -23,6 +24,7 @@ import {
 } from '../collections/overview/created_by_account';
 
 import { CollectionToggle } from './collection_toggle';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   close: {
@@ -107,6 +109,23 @@ export const CollectionAdder: React.FC<{
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const currentAccountId = useCurrentAccountId();
   const { collections, status } = useCollectionsCreatedBy(currentAccountId);
+  const dispatch = useAppDispatch();
+
+  const handleNewCollection = useCallback(() => {
+    if (account) {
+      dispatch(
+        collectionEditorActions.reset({
+          account_id: account.id,
+          state:
+            account.feature_approval.current_user === 'manual'
+              ? 'pending'
+              : 'accepted',
+        }),
+      );
+    }
+
+    onClose();
+  }, [account, dispatch, onClose]);
 
   return (
     <div className='modal-root__modal dialog-modal'>
@@ -155,12 +174,17 @@ export const CollectionAdder: React.FC<{
                 />
               }
             >
-              <NewCollectionButton onClick={onClose} />
+              <NewCollectionButton onClick={handleNewCollection} />
             </EmptyState>
           ) : (
-            collections.map((item) => (
-              <ListItem key={item.id} collection={item} account={account} />
-            ))
+            <>
+              <div className={classes.newCollection}>
+                <NewCollectionButton onClick={handleNewCollection} />
+              </div>
+              {collections.map((item) => (
+                <ListItem key={item.id} collection={item} account={account} />
+              ))}
+            </>
           )}
         </div>
       </div>
