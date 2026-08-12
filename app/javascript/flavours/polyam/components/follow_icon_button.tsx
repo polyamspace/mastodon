@@ -87,6 +87,7 @@ export const FollowIconButton: React.FC<{
         }),
       );
     } else {
+      // @ts-expect-error this action is not typed yet
       dispatch(followAccount(accountId));
     }
   }, [dispatch, accountId, relationship, account, signedIn]);

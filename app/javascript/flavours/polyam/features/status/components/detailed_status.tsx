@@ -6,11 +6,12 @@
 import type { CSSProperties } from 'react';
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import HomeIcon from '@/awesome-icons/solid/house.svg?react';
 import { AnimatedNumber } from 'flavours/polyam/components/animated_number';
 import AttachmentList from 'flavours/polyam/components/attachment_list';
 import { Avatar } from 'flavours/polyam/components/avatar';
@@ -21,6 +22,7 @@ import { FilterWarning } from 'flavours/polyam/components/filter_warning';
 import { FormattedDateWrapper } from 'flavours/polyam/components/formatted_date';
 import type { StatusLike } from 'flavours/polyam/components/hashtag_bar';
 import { getHashtagBarForStatus } from 'flavours/polyam/components/hashtag_bar';
+import { Icon } from 'flavours/polyam/components/icon';
 import { IconLogo } from 'flavours/polyam/components/logo';
 import MediaGallery from 'flavours/polyam/components/media_gallery';
 import { MentionsPlaceholder } from 'flavours/polyam/components/mentions_placeholder';
@@ -43,6 +45,13 @@ import { useAppSelector } from 'flavours/polyam/store';
 import { compareUrls } from 'flavours/polyam/utils/compare_urls';
 
 import Card from './card';
+
+const messages = defineMessages({
+  localOnly: {
+    id: 'status.local_only',
+    defaultMessage: 'Only visible from your instance',
+  },
+});
 
 interface VideoModalOptions {
   startTime: number;
@@ -91,6 +100,7 @@ export const DetailedStatus: React.FC<{
   const [height, setHeight] = useState(0);
   const [showDespiteFilter, setShowDespiteFilter] = useState(false);
   const nodeRef = useRef<HTMLDivElement>(null);
+  const intl = useIntl();
 
   const letterboxMedia = useAppSelector(
     (state) =>
@@ -372,6 +382,18 @@ export const DetailedStatus: React.FC<{
     </>
   );
 
+  const localOnlyLink = status.get('local_only') ? (
+    <>
+      ·
+      <Icon
+        id='home'
+        icon={HomeIcon}
+        className='status__visibility-icon'
+        aria-label={intl.formatMessage(messages.localOnly)}
+      />
+    </>
+  ) : null;
+
   if (['private', 'direct'].includes(status.get('visibility') as string)) {
     reblogLink = '';
   } else {
@@ -586,6 +608,7 @@ export const DetailedStatus: React.FC<{
               />
             </a>
 
+            {localOnlyLink}
             {visibilityLink}
             {applicationLink}
           </div>
