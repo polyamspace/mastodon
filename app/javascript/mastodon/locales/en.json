@@ -507,7 +507,7 @@
   "compose.minimize": "Minimize composer",
   "compose.new": "Write a new toot or messsage",
   "compose.new.message": "Message",
-  "compose.new.post": "Post",
+  "compose.new.post": "Toot",
   "compose.poll.add": "Add another option",
   "compose.poll.delete": "Delete poll",
   "compose.poll.duration": "Duration: {button}",
