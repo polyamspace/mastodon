@@ -3,6 +3,8 @@ import { useCallback, useId } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { PlusIcon } from '@phosphor-icons/react';
 
 import {
@@ -14,12 +16,16 @@ import {
   deletePollOption,
   updatePollOption,
 } from '@/flavours/polyam/actions/compose_typed';
-import { Button } from '@/flavours/polyam/components/button/redesign';
+import {
+  Button,
+  buttonClasses,
+} from '@/flavours/polyam/components/button/redesign';
 import {
   ToggleField,
   TextInput,
 } from '@/flavours/polyam/components/form_fields/redesign';
 import { useAppSelector, useAppDispatch } from '@/flavours/polyam/store';
+import { DAY, HOUR, MINUTE } from '@/flavours/polyam/utils/time';
 
 import { selectComposePoll } from './selectors';
 import classes from './styles.module.scss';
@@ -43,26 +49,31 @@ const messages = defineMessages({
   },
 });
 
+const pollDurationOptions = [
+  5 * MINUTE,
+  30 * MINUTE,
+  HOUR,
+  12 * HOUR,
+  DAY,
+  3 * DAY,
+  7 * DAY,
+];
+function durationToMessage(durationMs: number) {
+  if (durationMs < HOUR) {
+    return { message: messages.minutes, multiplier: MINUTE };
+  } else if (durationMs < DAY) {
+    return { message: messages.hours, multiplier: HOUR };
+  }
+  return { message: messages.days, multiplier: DAY };
+}
+
 export const ComposePoll: React.FC = () => {
   const { options, maxOptions, expiresIn, multiple } =
     useAppSelector(selectComposePoll);
   const listId = useId();
+  const intl = useIntl();
 
   const dispatch = useAppDispatch();
-  const handleAdd = useCallback(() => {
-    dispatch(addPollOption());
-  }, [dispatch]);
-  const handlePollChangeMultiple: React.ChangeEventHandler<HTMLInputElement> =
-    useCallback(
-      (event) => {
-        dispatch(changePollSettings(expiresIn, event.target.checked));
-      },
-      [dispatch, expiresIn],
-    );
-  const handleDelete = useCallback(() => {
-    dispatch(removePoll());
-  }, [dispatch]);
-
   const handleKeyDown = useCallback(
     (index: number, event: React.KeyboardEvent<HTMLInputElement>) => {
       const value = event.currentTarget.value;
@@ -94,6 +105,28 @@ export const ComposePoll: React.FC = () => {
     },
     [dispatch, listId, maxOptions],
   );
+  const handleAdd = useCallback(() => {
+    dispatch(addPollOption());
+  }, [dispatch]);
+  const handlePollChangeMultiple: React.ChangeEventHandler<HTMLInputElement> =
+    useCallback(
+      (event) => {
+        dispatch(changePollSettings(expiresIn, event.target.checked));
+      },
+      [dispatch, expiresIn],
+    );
+  const handleDurationChange: React.ChangeEventHandler<HTMLSelectElement> =
+    useCallback(
+      (event) => {
+        dispatch(
+          changePollSettings(Number.parseInt(event.target.value), multiple),
+        );
+      },
+      [dispatch, multiple],
+    );
+  const handleDelete = useCallback(() => {
+    dispatch(removePoll());
+  }, [dispatch]);
 
   const firstItemEmpty = !options.at(0);
 
@@ -141,22 +174,36 @@ export const ComposePoll: React.FC = () => {
       />
 
       <div className={classes.pollControls}>
-        <FormattedMessage
-          id='compose.poll.duration'
-          defaultMessage='Duration: {button}'
-          values={{
-            button: (
-              <Button color='tonal' size='xs'>
-                <FormattedMessage
-                  id='intervals.full.days'
-                  defaultMessage='{number, plural, one {# day} other {# days}}'
-                  values={{ number: 1 }}
-                />
-              </Button>
-            ),
-          }}
-          tagName='span'
-        />
+        <span>
+          <FormattedMessage
+            id='compose.poll.duration'
+            defaultMessage='Duration:'
+            description='Followed by current poll duration'
+          />
+          &nbsp;
+          <select
+            value={expiresIn}
+            onChange={handleDurationChange}
+            className={classNames(
+              classes.pollDurationSelect,
+              buttonClasses.base,
+              buttonClasses.solid,
+              buttonClasses.tonal,
+              buttonClasses.xs,
+            )}
+          >
+            {pollDurationOptions.map((duration) => {
+              const { message, multiplier } = durationToMessage(duration);
+              return (
+                <option key={duration} value={duration}>
+                  {intl.formatMessage(message, {
+                    number: duration / multiplier,
+                  })}
+                </option>
+              );
+            })}
+          </select>
+        </span>
 
         <Button
           variant='ghost'
