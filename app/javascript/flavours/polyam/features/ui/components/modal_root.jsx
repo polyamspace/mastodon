@@ -116,6 +116,7 @@ export const MODAL_COMPONENTS = {
   'ACCOUNT_EDIT_IMAGE_DELETE': accountEditModal('ImageDeleteModal'),
   'ACCOUNT_EDIT_IMAGE_UPLOAD': accountEditModal('ImageUploadModal'),
   'ACCOUNT_HIDE_FEATURED_TAB': () => import('@/flavours/polyam/features/ui/components/confirmation_modals/hide_featured_tab').then(module => ({ default: module.ConfirmHideFeaturedTabModal })),
+  'COMPOSER_DRAFT_DELETE': () => import('@/flavours/polyam/features/compose/redesign/cancel_modal'),
 };
 
 /** @arg {keyof import('@/flavours/polyam/features/account_edit/modals')} type */
