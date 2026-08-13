@@ -24,7 +24,7 @@
       "styles/*": ["./app/javascript/styles/*"],
       "flavours/polyam": ["./app/javascript/flavours/polyam"],
       "flavours/polyam/*": ["./app/javascript/flavours/polyam/*"]
-    },
+    }
   },
   "include": [
     "vite.config.mts",

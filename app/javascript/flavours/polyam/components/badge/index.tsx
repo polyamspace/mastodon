@@ -7,8 +7,8 @@ import classNames from 'classnames';
 import BlockIcon from '@/awesome-icons/solid/ban.svg?react';
 import SmartToyIcon from '@/awesome-icons/solid/robot.svg?react';
 import GroupsIcon from '@/awesome-icons/solid/user-group.svg?react';
-import PersonIcon from '@/awesome-icons/solid/user.svg?react';
 import VolumeOffIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
+import { isRedesignEnabled } from '@/flavours/polyam/utils/environment';
 import type { OnAttributeHandler } from '@/flavours/polyam/utils/html';
 import AdminIcon from '@/images/icons/icon_admin.svg?react';
 import ClockIcon from '@/images/icons/icon_clock.svg?react';
@@ -18,6 +18,7 @@ import IconVerified from '@/images/icons/icon_verified.svg?react';
 import { EmojiHTML } from '../emoji/html';
 import { Icon } from '../icon';
 
+import redesignClasses from './redesign.module.scss';
 import classes from './styles.module.scss';
 
 interface BadgeProps extends React.ComponentPropsWithoutRef<'div'> {
@@ -29,6 +30,7 @@ interface BadgeProps extends React.ComponentPropsWithoutRef<'div'> {
   variant?:
     | 'default'
     | 'subtle'
+    | 'accent'
     | 'inverted'
     | 'success'
     | 'warning'
@@ -41,7 +43,7 @@ type PresetBadgeProps = Omit<
 >;
 
 export const Badge: FC<BadgeProps> = ({
-  icon = <PersonIcon />,
+  icon,
   variant = 'default',
   label,
   className,
@@ -54,6 +56,7 @@ export const Badge: FC<BadgeProps> = ({
     {...otherProps}
     className={classNames(
       classes.badge,
+      isRedesignEnabled() && redesignClasses.badge,
       !icon && classes.badgeWithoutIcon,
       classes[variant],
       className,

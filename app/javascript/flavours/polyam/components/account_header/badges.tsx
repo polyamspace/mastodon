@@ -3,6 +3,7 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import PersonIcon from '@/awesome-icons/solid/user.svg?react';
 import { fetchRelationships } from '@/flavours/polyam/actions/accounts';
 import { useAccount } from '@/flavours/polyam/hooks/useAccount';
 import type { AccountRole } from '@/flavours/polyam/models/account';
@@ -52,6 +53,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
     } else {
       badges.push(
         <Badge
+          icon={<PersonIcon />}
           key={role.id}
           label={role.name}
           roleId={role.id}
