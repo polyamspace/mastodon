@@ -7,16 +7,15 @@ import { List as ImmutableList } from 'immutable';
 import { Helmet } from '@unhead/react/helmet';
 
 import RefreshIcon from '@/awesome-icons/solid/rotate-left.svg?react';
-import { fetchQuotes } from 'flavours/polyam/actions/interactions_typed';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
-import { Icon } from 'flavours/polyam/components/icon';
-import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
-import StatusList from 'flavours/polyam/components/status_list';
-import { useIdentity } from 'flavours/polyam/identity_context';
-import { domain } from 'flavours/polyam/initial_state';
-import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
-
-import Column from '../ui/components/column';
+import { fetchQuotes } from '@/flavours/polyam/actions/interactions_typed';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
+import { Icon } from '@/flavours/polyam/components/icon';
+import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
+import StatusList from '@/flavours/polyam/components/status_list';
+import { useIdentity } from '@/flavours/polyam/identity_context';
+import { domain } from '@/flavours/polyam/initial_state';
+import { useAppDispatch, useAppSelector } from '@/flavours/polyam/store';
 
 const messages = defineMessages({
   refresh: { id: 'refresh', defaultMessage: 'Refresh' },

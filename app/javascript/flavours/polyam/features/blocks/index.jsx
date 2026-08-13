@@ -9,13 +9,13 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import BlockIcon from '@/awesome-icons/solid/ban.svg?react';
+import { fetchBlocks, expandBlocks } from '@/flavours/polyam/actions/blocks';
 import { injectIntl } from '@/flavours/polyam/components/intl';
-import { Account } from 'flavours/polyam/components/account';
-
-import { fetchBlocks, expandBlocks } from '../../actions/blocks';
-import { LoadingIndicator } from '../../components/loading_indicator';
-import ScrollableList from '../../components/scrollable_list';
-import Column from '../ui/components/column';
+import { Account } from '@/flavours/polyam/components/account';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
+import { LoadingIndicator } from '@/flavours/polyam/components/loading_indicator';
+import ScrollableList from '@/flavours/polyam/components/scrollable_list';
 
 const messages = defineMessages({
   heading: { id: 'column.blocks', defaultMessage: 'Blocked users' },
@@ -61,7 +61,8 @@ class Blocks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='ban' iconComponent={BlockIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn}>
+        <ColumnHeader icon='ban' iconComponent={BlockIcon} title={intl.formatMessage(messages.heading)} showBackButton />
         <ScrollableList
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}

@@ -8,15 +8,14 @@ import { Helmet } from '@unhead/react/helmet';
 
 import ReactIcon from '@/awesome-icons/solid/face-grin-wide.svg?react';
 import RefreshIcon from '@/awesome-icons/solid/rotate-left.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { fetchReactions } from 'flavours/polyam/actions/interactions_typed';
 import { Account } from 'flavours/polyam/components/account';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { Icon } from 'flavours/polyam/components/icon';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
-
-import Column from '../ui/components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.reacted_by', defaultMessage: 'Reacted by' },

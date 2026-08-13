@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 
 import CampaignIcon from '@/awesome-icons/solid/bullhorn.svg?react';
 import HomeIcon from '@/awesome-icons/solid/house.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 import { SymbolLogo } from 'flavours/polyam/components/logo';
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/polyam/actions/announcements';
@@ -20,8 +22,6 @@ import { withBreakpoint } from 'flavours/polyam/features/ui/hooks/useBreakpoint'
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { expandHomeTimeline } from '../../actions/timelines';
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import { ColumnSettings } from './components/column_settings';
@@ -73,14 +73,6 @@ class HomeTimeline extends PureComponent {
   handleMove = (dir) => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  };
-
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
-
-  setRef = c => {
-    this.column = c;
   };
 
   handleLoadMore = maxId => {
@@ -152,7 +144,7 @@ class HomeTimeline extends PureComponent {
     }
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='home'
           iconComponent={matchesBreakpoint ? SymbolLogo : HomeIcon}
@@ -160,11 +152,11 @@ class HomeTimeline extends PureComponent {
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
           onMove={this.handleMove}
-          onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
           extraButton={announcementsButton}
           appendContent={hasAnnouncements && showAnnouncements && <Announcements />}
+          scrollTopOnClick
         >
           <ColumnSettings />
         </ColumnHeader>

@@ -12,14 +12,14 @@ import { debounce } from 'lodash';
 
 import RefreshIcon from '@/awesome-icons/solid/arrows-rotate.svg?react';
 import StarIcon from '@/awesome-icons/solid/star.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { fetchFavourites, expandFavourites } from 'flavours/polyam/actions/interactions';
 import { Account } from 'flavours/polyam/components/account';
-import ColumnHeader from 'flavours/polyam/components/column_header';
 import { Icon }  from 'flavours/polyam/components/icon';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 import { LoadingIndicator } from 'flavours/polyam/components/loading_indicator';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
-import Column from 'flavours/polyam/features/ui/components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.favourited_by', defaultMessage: 'Favourited by' },

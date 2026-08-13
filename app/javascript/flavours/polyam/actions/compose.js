@@ -11,7 +11,7 @@ import { emojiMartSearch } from '@/flavours/polyam/features/emoji/picker';
 import { recoverHashtags } from 'flavours/polyam/utils/hashtag';
 
 import { showAlert, showAlertForError } from './alerts';
-import { useEmoji } from './emojis';
+import { emojiUse } from './emojis';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
 import { openModal } from './modal';
 import { updateTimeline } from './timelines';
@@ -655,7 +655,7 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
       completion    = suggestion.native || `:${suggestion.id}:`;
       startPosition = position - 1;
 
-      dispatch(useEmoji(suggestion));
+      dispatch(emojiUse(suggestion));
     } else if (suggestion.type === 'hashtag') {
       // TODO: it could make sense to keep the “most capitalized” of the two
       const tokenName = token.slice(1); // strip leading '#'

@@ -14,6 +14,8 @@ import { connect } from 'react-redux';
 import VisibilityOffIcon from '@/awesome-icons/regular/eye-slash.svg?react';
 import VisibilityIcon from '@/awesome-icons/regular/eye.svg?react';
 import ChatIcon from '@/awesome-icons/solid/comment.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 import { Hotkeys } from 'flavours/polyam/components/hotkeys';
 import { Icon }  from 'flavours/polyam/components/icon';
@@ -55,13 +57,11 @@ import {
   undoStatusTranslation,
 } from '../../actions/statuses';
 import { setStatusQuotePolicy } from '../../actions/statuses_typed';
-import ColumnHeader from '../../components/column_header';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import { StatusQuoteManager } from '../../components/status_quoted';
 import { deleteModal } from '../../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../../selectors';
 import { getAncestorsIds, getDescendantsIds } from 'flavours/polyam/selectors/contexts';
-import Column from '../ui/components/column';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 
 import ActionBar from './components/action_bar';

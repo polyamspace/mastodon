@@ -10,11 +10,11 @@ import { Helmet } from '@unhead/react/helmet';
 import AddPhotoAlternateIcon from '@/awesome-icons/solid/camera.svg?react';
 import EditIcon from '@/awesome-icons/solid/pencil.svg?react';
 import PersonIcon from '@/awesome-icons/solid/user.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { updateAccount } from 'flavours/polyam/actions/accounts';
 import { closeOnboarding } from 'flavours/polyam/actions/onboarding';
 import { Button } from 'flavours/polyam/components/button';
-import { Column } from 'flavours/polyam/components/column';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import {
   TextAreaField,
   TextInputField,

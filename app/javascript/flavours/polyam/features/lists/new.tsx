@@ -10,6 +10,8 @@ import { Helmet } from '@unhead/react/helmet';
 
 import ChevronRightIcon from '@/awesome-icons/solid/chevron-right.svg?react';
 import ListAltIcon from '@/awesome-icons/solid/rectangle-list.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { NotSignedInIndicator } from '@/flavours/polyam/components/not_signed_in_indicator';
 import { useIdentity } from '@/flavours/polyam/identity_context';
 import { fetchList } from 'flavours/polyam/actions/lists';
@@ -19,8 +21,6 @@ import type { ApiAccountJSON } from 'flavours/polyam/api_types/accounts';
 import type { RepliesPolicyType } from 'flavours/polyam/api_types/lists';
 import { Avatar } from 'flavours/polyam/components/avatar';
 import { AvatarGroup } from 'flavours/polyam/components/avatar_group';
-import { Column } from 'flavours/polyam/components/column';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import {
   SelectField,
   TextInputField,

@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
@@ -7,15 +7,14 @@ import { isFulfilled } from '@reduxjs/toolkit';
 import { Helmet } from '@unhead/react/helmet';
 
 import TagIcon from '@/awesome-icons/solid/hashtag.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import {
   fetchFollowedHashtags,
   unfollowHashtag,
 } from 'flavours/polyam/actions/tags_typed';
 import type { ApiHashtagJSON } from 'flavours/polyam/api_types/tags';
 import { Button } from 'flavours/polyam/components/button';
-import { Column } from 'flavours/polyam/components/column';
-import type { ColumnRef } from 'flavours/polyam/components/column';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { Hashtag } from 'flavours/polyam/components/hashtag';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
@@ -86,11 +85,6 @@ const FollowedTags: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     [dispatch],
   );
 
-  const columnRef = useRef<ColumnRef>(null);
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, []);
-
   const emptyMessage = (
     <FormattedMessage
       id='empty_column.followed_tags'
@@ -101,16 +95,15 @@ const FollowedTags: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   return (
     <Column
       bindToDocument={!multiColumn}
-      ref={columnRef}
       label={intl.formatMessage(messages.heading)}
     >
       <ColumnHeader
         icon='hashtag'
         iconComponent={TagIcon}
         title={intl.formatMessage(messages.heading)}
-        onClick={handleHeaderClick}
         multiColumn={multiColumn}
         showBackButton
+        scrollTopOnClick
       />
 
       <ScrollableList

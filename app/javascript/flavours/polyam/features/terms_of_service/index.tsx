@@ -11,10 +11,10 @@ import { Link, useParams } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/flavours/polyam/components/column';
 import { NavigationFocusTarget } from '@/flavours/polyam/components/navigation_focus_target';
 import { apiGetTermsOfService } from 'flavours/polyam/api/instance';
 import type { ApiTermsOfServiceJSON } from 'flavours/polyam/api_types/instance';
-import { Column } from 'flavours/polyam/components/column';
 import { BundleColumnError } from 'flavours/polyam/features/ui/components/bundle_column_error';
 
 import { getColumnSkipLinkId } from '../ui/components/skip_links';

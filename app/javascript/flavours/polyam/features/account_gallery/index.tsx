@@ -8,11 +8,12 @@ import PersonIcon from '@/awesome-icons/solid/user.svg?react';
 import { openModal } from '@/flavours/polyam/actions/modal';
 import { expandAccountMediaTimeline } from '@/flavours/polyam/actions/timelines';
 import { AccountHeader } from '@/flavours/polyam/components/account_header';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { LimitedAccountHint } from '@/flavours/polyam/components/limited_account_hint';
 import { RemoteHint } from '@/flavours/polyam/components/remote_hint';
 import ScrollableList from '@/flavours/polyam/components/scrollable_list';
 import { BundleColumnError } from '@/flavours/polyam/features/ui/components/bundle_column_error';
-import Column from '@/flavours/polyam/features/ui/components/column';
 import { useAccountId } from '@/flavours/polyam/hooks/useAccountId';
 import { useAccountVisibility } from '@/flavours/polyam/hooks/useAccountVisibility';
 import type { MediaAttachment } from '@/flavours/polyam/models/media_attachment';
@@ -214,12 +215,15 @@ export const AccountGallery: React.FC<{
   const forceEmptyState = suspended || blockedBy || hidden;
 
   return (
-    <Column
-      icon='user-circle'
-      iconComponent={PersonIcon}
-      heading={intl.formatMessage(messages.profile)}
-      alwaysShowBackButton
-    >
+    <Column>
+      <ColumnHeader
+        icon='user-circle'
+        iconComponent={PersonIcon}
+        title={intl.formatMessage(messages.profile)}
+        showBackButton
+        scrollTopOnClick
+      />
+
       <ScrollableList
         className='account-gallery__container'
         prepend={

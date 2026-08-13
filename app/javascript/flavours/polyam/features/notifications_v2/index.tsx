@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -8,6 +8,16 @@ import { useDebouncedCallback } from 'use-debounce';
 
 import NotificationsIcon from '@/awesome-icons/solid/bell.svg?react';
 import DoneAllIcon from '@/awesome-icons/solid/check.svg?react';
+import {
+  addColumn,
+  removeColumn,
+  moveColumn,
+} from '@/flavours/polyam/actions/columns';
+import { submitMarkers } from '@/flavours/polyam/actions/markers';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
+import { LoadGap } from '@/flavours/polyam/components/load_gap';
+import ScrollableList from '@/flavours/polyam/components/scrollable_list';
 import {
   fetchNotificationsGap,
   updateScrollPosition,
@@ -33,13 +43,6 @@ import {
 } from 'flavours/polyam/selectors/settings';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
 
-import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import { submitMarkers } from '../../actions/markers';
-import { Column } from '../../components/column';
-import type { ColumnRef } from '../../components/column';
-import { ColumnHeader } from '../../components/column_header';
-import { LoadGap } from '../../components/load_gap';
-import ScrollableList from '../../components/scrollable_list';
 import {
   FilteredNotificationsBanner,
   FilteredNotificationsIconButton,
@@ -95,8 +98,6 @@ export const Notifications: React.FC<{
   const needsNotificationPermission = useAppSelector(
     selectNeedsNotificationPermission,
   );
-
-  const columnRef = useRef<ColumnRef>(null);
 
   // Keep track of mounted components for unread notification handling
   useEffect(() => {
@@ -158,10 +159,6 @@ export const Notifications: React.FC<{
     },
     [dispatch, columnId],
   );
-
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, []);
 
   const handleMarkAsRead = useCallback(() => {
     dispatch(markNotificationsAsRead());
@@ -255,7 +252,6 @@ export const Notifications: React.FC<{
   return (
     <Column
       bindToDocument={!multiColumn}
-      ref={columnRef}
       label={intl.formatMessage(messages.title)}
     >
       <ColumnHeader
@@ -265,10 +261,10 @@ export const Notifications: React.FC<{
         title={intl.formatMessage(messages.title)}
         onPin={handlePin}
         onMove={handleMove}
-        onClick={handleHeaderClick}
         pinned={pinned}
         multiColumn={multiColumn}
         extraButton={extraButton}
+        scrollTopOnClick
       >
         <ColumnSettingsContainer />
       </ColumnHeader>

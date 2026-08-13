@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/flavours/polyam/components/column';
 import { CopyButton } from '@/flavours/polyam/components/copy_button';
 import { EmptyState } from '@/flavours/polyam/components/empty_state';
 import { Button } from 'flavours/polyam/components/button';
-import { Column } from 'flavours/polyam/components/column';
 
 import classes from './styles.module.scss';
 

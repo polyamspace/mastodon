@@ -1,5 +1,3 @@
-import { useCallback, useRef } from 'react';
-
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import { NavLink, Switch, Route } from 'react-router-dom';
@@ -7,9 +5,8 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 import { Helmet } from '@unhead/react/helmet';
 
 import TrendingUpIcon from '@/awesome-icons/solid/arrow-trend-up.svg?react';
-import { Column } from 'flavours/polyam/components/column';
-import type { ColumnRef } from 'flavours/polyam/components/column';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { SymbolLogo } from 'flavours/polyam/components/logo';
 import { Search } from 'flavours/polyam/features/compose/components/search';
 import { useBreakpoint } from 'flavours/polyam/features/ui/hooks/useBreakpoint';
@@ -27,25 +24,19 @@ const messages = defineMessages({
 const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const { signedIn } = useIdentity();
   const intl = useIntl();
-  const columnRef = useRef<ColumnRef>(null);
   const logoRequired = useBreakpoint('full');
-
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, []);
 
   return (
     <Column
       bindToDocument={!multiColumn}
-      ref={columnRef}
       label={intl.formatMessage(messages.title)}
     >
       <ColumnHeader
         icon={'explore'}
         iconComponent={logoRequired ? SymbolLogo : TrendingUpIcon}
         title={intl.formatMessage(messages.title)}
-        onClick={handleHeaderClick}
         multiColumn={multiColumn}
+        scrollTopOnClick
       />
 
       <div className='explore__search-header'>

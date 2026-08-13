@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
@@ -9,12 +9,11 @@ import SearchIcon from '@/awesome-icons/solid/magnifying-glass.svg?react';
 import FindInPageIcon from '@/awesome-icons/solid/quote-right.svg?react';
 import CollectionsIcon from '@/awesome-icons/solid/shapes.svg?react';
 import PeopleIcon from '@/awesome-icons/solid/users.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { submitSearch, expandSearch } from 'flavours/polyam/actions/search';
 import type { ApiSearchType } from 'flavours/polyam/api_types/search';
 import { Account } from 'flavours/polyam/components/account';
-import { Column } from 'flavours/polyam/components/column';
-import type { ColumnRef } from 'flavours/polyam/components/column';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import { CompatibilityHashtag as Hashtag } from 'flavours/polyam/components/hashtag';
 import { Icon } from 'flavours/polyam/components/icon';
 import ScrollableList from 'flavours/polyam/components/scrollable_list';
@@ -72,7 +71,6 @@ const typeFromParam = (param?: string): SearchType => {
 export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
   multiColumn,
 }) => {
-  const columnRef = useRef<ColumnRef>(null);
   const intl = useIntl();
   const [q] = useSearchParam('q');
   const [type, setType] = useSearchParam('type');
@@ -92,10 +90,6 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
       );
     }
   }, [dispatch, trimmedValue, mappedType]);
-
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, []);
 
   const handleSelectAll = useCallback(() => {
     setType(null);
@@ -243,15 +237,14 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
   return (
     <Column
       bindToDocument={!multiColumn}
-      ref={columnRef}
       label={intl.formatMessage(messages.title, { q })}
     >
       <ColumnHeader
         icon={'search'}
         iconComponent={SearchIcon}
         title={intl.formatMessage(messages.title, { q })}
-        onClick={handleHeaderClick}
         multiColumn={multiColumn}
+        scrollTopOnClick
         appendContent={
           <>
             <div className='explore__search-header'>

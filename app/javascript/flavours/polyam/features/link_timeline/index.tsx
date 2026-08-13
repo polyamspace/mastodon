@@ -1,14 +1,13 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { useParams } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
 import TrendingUpIcon from '@/awesome-icons/solid/arrow-trend-up.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { expandLinkTimeline } from 'flavours/polyam/actions/timelines';
-import { Column } from 'flavours/polyam/components/column';
-import type { ColumnRef } from 'flavours/polyam/components/column';
-import { ColumnHeader } from 'flavours/polyam/components/column_header';
 import StatusListContainer from 'flavours/polyam/features/ui/containers/status_list_container';
 import type { Card } from 'flavours/polyam/models/status';
 import { useAppDispatch, useAppSelector } from 'flavours/polyam/store';
@@ -19,7 +18,6 @@ export const LinkTimeline: React.FC<{
   const { url } = useParams<{ url: string }>();
   const decodedUrl = url ? decodeURIComponent(url) : undefined;
   const dispatch = useAppDispatch();
-  const columnRef = useRef<ColumnRef>(null);
   const firstStatusId = useAppSelector((state) =>
     decodedUrl
       ? (state.timelines.getIn([`link:${decodedUrl}`, 'items', 0]) as string)
@@ -30,10 +28,6 @@ export const LinkTimeline: React.FC<{
       ? (state.statuses.getIn([firstStatusId, 'card']) as Card)
       : undefined,
   );
-
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, []);
 
   const handleLoadMore = useCallback(
     (maxId: string) => {
@@ -47,14 +41,14 @@ export const LinkTimeline: React.FC<{
   }, [dispatch, decodedUrl]);
 
   return (
-    <Column bindToDocument={!multiColumn} ref={columnRef} label={story?.title}>
+    <Column bindToDocument={!multiColumn} label={story?.title}>
       <ColumnHeader
         icon='explore'
         iconComponent={TrendingUpIcon}
         title={story?.title}
-        onClick={handleHeaderClick}
         multiColumn={multiColumn}
         showBackButton
+        scrollTopOnClick
       />
 
       <StatusListContainer

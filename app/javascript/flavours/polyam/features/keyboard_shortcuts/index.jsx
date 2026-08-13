@@ -8,8 +8,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import InfoIcon from '@/awesome-icons/solid/question.svg?react';
-import Column from 'flavours/polyam/components/column';
-import ColumnHeader from 'flavours/polyam/components/column_header';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 
 const messages = defineMessages({

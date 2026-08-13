@@ -11,12 +11,13 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import PersonAddIcon from '@/awesome-icons/solid/user-plus.svg?react';
+import { Column } from '@/flavours/polyam/components/column';
+import { ColumnHeader } from '@/flavours/polyam/components/column/header';
 import { injectIntl } from '@/flavours/polyam/components/intl';
 
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
 import ScrollableList from '../../components/scrollable_list';
 import { me } from '../../initial_state';
-import Column from '../ui/components/column';
 
 import AccountAuthorizeContainer from './containers/account_authorize_container';
 
@@ -69,7 +70,8 @@ class FollowRequests extends ImmutablePureComponent {
     );
 
     return (
-      <Column bindToDocument={!multiColumn} icon='user-plus' iconComponent={PersonAddIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn}>
+        <ColumnHeader icon='user-plus' iconComponent={PersonAddIcon} title={intl.formatMessage(messages.heading)} showBackButton />
         <ScrollableList
           scrollKey='follow_requests'
           onLoadMore={this.handleLoadMore}
