@@ -57,7 +57,7 @@ export const Badge: FC<BadgeProps> = ({
     className={classNames(
       classes.badge,
       isRedesignEnabled() && redesignClasses.badge,
-      !icon && classes.badgeWithoutIcon,
+      !icon && [classes.badgeWithoutIcon, redesignClasses.badgeWithoutIcon],
       classes[variant],
       className,
     )}
