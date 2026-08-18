@@ -20,8 +20,10 @@ import { SpoilerButton } from 'flavours/polyam/components/spoiler_button';
 import { formatTime, getPointerPosition } from 'flavours/polyam/features/video';
 import { useAudioContext } from 'flavours/polyam/hooks/useAudioContext';
 import { useAudioVisualizer } from 'flavours/polyam/hooks/useAudioVisualizer';
-import { displayMedia, useBlurhash } from 'flavours/polyam/initial_state';
+import { useBlurhash } from 'flavours/polyam/initial_state';
 import { playerSettings } from 'flavours/polyam/settings';
+
+import { useRevealedMedia } from '../../hooks/useRevealedMedia';
 
 import { AudioVisualizer } from './visualizer';
 
@@ -104,7 +106,7 @@ export const Audio: React.FC<{
   const [volume, setVolume] = useState(0.5);
   const [hovered, setHovered] = useState(false);
   const [dragging, setDragging] = useState(false);
-  const [revealed, setRevealed] = useState(false);
+  const [revealed, setRevealed] = useRevealedMedia({ visible, sensitive });
 
   const playerRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -180,17 +182,6 @@ export const Audio: React.FC<{
       gainNodeRef.current.gain.value = muted ? 0 : volume;
     }
   }, [volume, muted, gainNodeRef]);
-
-  useEffect(() => {
-    if (typeof visible !== 'undefined') {
-      setRevealed(visible);
-    } else {
-      setRevealed(
-        displayMedia === 'show_all' ||
-          (displayMedia !== 'hide_all' && !sensitive),
-      );
-    }
-  }, [visible, sensitive]);
 
   useEffect(() => {
     if (!revealed) {

@@ -19,6 +19,7 @@ import VolumeUpIcon from '@/awesome-icons/solid/volume-high.svg?react';
 import VolumeDownIcon from '@/awesome-icons/solid/volume-low.svg?react';
 import VolumeOffIcon from '@/awesome-icons/solid/volume-xmark.svg?react';
 import type { DeployPictureInPictureCallback } from '@/flavours/polyam/actions/picture_in_picture';
+import { useRevealedMedia } from '@/flavours/polyam/hooks/useRevealedMedia';
 import { Blurhash } from 'flavours/polyam/components/blurhash';
 import { Icon } from 'flavours/polyam/components/icon';
 import { SpoilerButton } from 'flavours/polyam/components/spoiler_button';
@@ -29,7 +30,7 @@ import {
   attachFullscreenListener,
   detachFullscreenListener,
 } from 'flavours/polyam/features/ui/util/fullscreen';
-import { displayMedia, useBlurhash } from 'flavours/polyam/initial_state';
+import { useBlurhash } from 'flavours/polyam/initial_state';
 import { playerSettings } from 'flavours/polyam/settings';
 
 import { HotkeyIndicator } from './components/hotkey_indicator';
@@ -228,7 +229,7 @@ export const Video: React.FC<{
   const [fullscreen, setFullscreen] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [muted, setMuted] = useState(false);
-  const [revealed, setRevealed] = useState(false);
+  const [revealed, setRevealed] = useRevealedMedia({ visible, sensitive });
   const [hotkeyEvents, setHotkeyEvents] = useState<HotkeyEvent[]>([]);
 
   const playerRef = useRef<HTMLDivElement>(null);
@@ -375,17 +376,6 @@ export const Video: React.FC<{
     videoRef.current.volume = volume;
     videoRef.current.muted = muted;
   }, [volume, muted]);
-
-  useEffect(() => {
-    if (typeof visible !== 'undefined') {
-      setRevealed(visible);
-    } else {
-      setRevealed(
-        displayMedia === 'show_all' ||
-          (displayMedia !== 'hide_all' && !sensitive),
-      );
-    }
-  }, [visible, sensitive]);
 
   useEffect(() => {
     if (!revealed && videoRef.current) {
@@ -855,7 +845,7 @@ export const Video: React.FC<{
             role='button'
             tabIndex={0}
             aria-label={alt}
-            title={alt}
+            title={fullscreen ? undefined : alt}
             lang={lang}
             onClick={handleClick}
             onKeyDownCapture={handleVideoKeyDown}
