@@ -86,6 +86,7 @@ interface AccountProps {
   extraAccountInfo?: React.ReactNode;
   className?: string;
   children?: React.ReactNode;
+  reference?: string;
 }
 
 export const Account: React.FC<AccountProps> = ({
@@ -100,6 +101,7 @@ export const Account: React.FC<AccountProps> = ({
   extraAccountInfo,
   className,
   children,
+  reference,
 }) => {
   const intl = useIntl();
   const { signedIn } = useIdentity();
@@ -179,7 +181,7 @@ export const Account: React.FC<AccountProps> = ({
                 modalProps: {
                   accountId: id,
                   onConfirm: () => {
-                    apiFollowAccount(id)
+                    apiFollowAccount(id, { ref: reference })
                       .then((relationship) => {
                         dispatch(
                           followAccountSuccess({
@@ -235,6 +237,7 @@ export const Account: React.FC<AccountProps> = ({
     defaultAction,
     isRemote,
     signedIn,
+    reference,
   ]);
 
   if (hidden) {
@@ -284,7 +287,7 @@ export const Account: React.FC<AccountProps> = ({
       />
     );
   } else {
-    button = <FollowIconButton accountId={id} />;
+    button = <FollowIconButton accountId={id} reference={reference} />;
   }
 
   let muteTimeRemaining: React.ReactNode;

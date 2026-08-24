@@ -30,7 +30,8 @@ const messages = defineMessages({
 
 export const FollowIconButton: React.FC<{
   accountId?: string;
-}> = ({ accountId }) => {
+  reference?: string;
+}> = ({ accountId, reference }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
@@ -88,9 +89,9 @@ export const FollowIconButton: React.FC<{
       );
     } else {
       // @ts-expect-error this action is not typed yet
-      dispatch(followAccount(accountId));
+      dispatch(followAccount(accountId, { ref: reference }));
     }
-  }, [dispatch, accountId, relationship, account, signedIn]);
+  }, [dispatch, accountId, relationship, account, signedIn, reference]);
 
   const handleEditProfile = useCallback(() => {
     window.open('/settings/profile', '_blank');
