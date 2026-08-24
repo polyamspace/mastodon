@@ -117,7 +117,7 @@ export const Card: React.FC<{ id: string; source: SuggestionSource }> = ({
             className='explore-suggestions-card__dismiss-button'
           />
           {/* Polyam: Icon buttons instead of text */}
-          <FollowIconButton accountId={account.get('id')} />
+          <FollowIconButton accountId={account.get('id')} reference='suggestions' />
         </div>
       </div>
     </div>
