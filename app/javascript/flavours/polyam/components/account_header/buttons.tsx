@@ -3,6 +3,8 @@ import type { FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import { useLocation } from 'react-router-dom';
+
 import NotificationsIcon from '@/awesome-icons/regular/bell.svg?react';
 import NotificationsActiveIcon from '@/awesome-icons/solid/bell.svg?react';
 import ShareIcon from '@/awesome-icons/solid/share-nodes.svg?react';
@@ -81,6 +83,10 @@ const AccountButtonsOther: FC<
       });
     }
   }, [accountUrl]);
+  const { state } = useLocation<{
+    reference?: string;
+  } | null>();
+  const reference = state?.reference ?? 'profile';
 
   if (!account) {
     return null;
@@ -96,7 +102,7 @@ const AccountButtonsOther: FC<
           accountId={accountId}
           className={classes.followButton}
           labelLength='long'
-          reference='profile'
+          reference={reference}
         />
       )}
       {isFollowing && (
