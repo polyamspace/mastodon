@@ -97,8 +97,12 @@ export const Card: React.FC<{ id: string; source: SuggestionSource }> = ({
 
       <div className='explore-suggestions-card__body'>
         <Link
-          to={`/@${account.get('acct')}`}
+          to={{
+            pathname: `/@${account.get('acct')}`,
+            state: { reference: 'suggestions' },
+          }}
           data-hover-card-account={account.id}
+          data-hover-card-reference='suggestions'
           className='explore-suggestions-card__link'
         >
           <Avatar
@@ -117,7 +121,10 @@ export const Card: React.FC<{ id: string; source: SuggestionSource }> = ({
             className='explore-suggestions-card__dismiss-button'
           />
           {/* Polyam: Icon buttons instead of text */}
-          <FollowIconButton accountId={account.get('id')} reference='suggestions' />
+          <FollowIconButton
+            accountId={account.get('id')}
+            reference='suggestions'
+          />
         </div>
       </div>
     </div>
