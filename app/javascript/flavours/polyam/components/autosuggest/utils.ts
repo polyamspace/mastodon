@@ -7,9 +7,11 @@ export const textAtCursorMatchesToken = (
 ) => {
   let word: string;
 
-  const regexSecondWord = `(\\s[\\p{Script=Latin}\\p{Script=Cyrillic}\\p{M}]+)?`;
+  const isMention =
+    (searchTokens.includes('@') && str.startsWith('@')) ||
+    (searchTokens.includes('＠') && str.startsWith('＠'));
   const regex = new RegExp(
-    `[${searchTokens.join('')}${WORD}+-]+${str.startsWith('@') || str.startsWith('＠') ? regexSecondWord : ''}$`,
+    `[${searchTokens.join('')}${WORD}+-]+${isMention ? '(\\s[\\p{Script=Latin}\\p{Script=Cyrillic}\\p{M}]+)?' : ''}$`,
     'iu',
   );
   const left = str.slice(0, caretPosition).search(regex);
