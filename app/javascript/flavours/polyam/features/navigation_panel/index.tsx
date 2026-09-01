@@ -122,7 +122,6 @@ const NotificationsLink = () => {
   const count = useAppSelector(selectUnreadNotificationGroupsCount);
   const showCount = useAppSelector(
     (state) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       state.local_settings.getIn(
         ['notifications', 'tab_badge'],
         false,
