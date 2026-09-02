@@ -7,6 +7,7 @@ export const textAtCursorMatchesToken = (
 ) => {
   let word: string;
 
+  // Polyam: Check search is mention before applying second word regex
   const isMention =
     (searchTokens.includes('@') && str.startsWith('@')) ||
     (searchTokens.includes('＠') && str.startsWith('＠'));
