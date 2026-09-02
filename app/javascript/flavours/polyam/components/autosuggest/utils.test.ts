@@ -16,7 +16,7 @@ describe('textAtCursorMatchesToken', () => {
     ],
     [
       ['#hash tag', 8, ['#']],
-      [1, '#hash tag'],
+      [null, null],
     ],
     [
       [':+1', 2, [':']],
