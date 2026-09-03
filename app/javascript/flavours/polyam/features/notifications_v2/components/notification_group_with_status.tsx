@@ -71,17 +71,14 @@ export const NotificationGroupWithStatus: React.FC<{
   // Polyam: collapsing
 
   const collapseEnabled = useAppSelector(
-    (state) =>
-      (state.local_settings as ImmutableMap<string, unknown>).getIn([
-        'collapsed',
-        'enabled',
-      ]) as boolean,
+    (state) => state.local_settings.getIn(['collapsed', 'enabled']) as boolean,
   );
 
   const autoCollapseEnabled = useAppSelector((state) => {
-    const autoCollapseSettings = (
-      state.local_settings as ImmutableMap<string, unknown>
-    ).getIn(['collapsed', 'auto']) as ImmutableMap<string, unknown>;
+    const autoCollapseSettings = state.local_settings.getIn([
+      'collapsed',
+      'auto',
+    ]) as ImmutableMap<string, unknown>;
     return (
       (autoCollapseSettings.get('all') as boolean) ||
       (autoCollapseSettings.get('notifications') as boolean)
