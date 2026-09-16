@@ -10,7 +10,11 @@ import { me, reduceMotion } from 'flavours/polyam/initial_state';
 import ready from 'flavours/polyam/ready';
 import { store } from 'flavours/polyam/store';
 
-import { isDevelopment, isProduction } from './utils/environment';
+import {
+  isDevelopment,
+  isProduction,
+  isRedesignEnabled,
+} from './utils/environment';
 
 function main() {
   perf.start('main()');
@@ -32,6 +36,10 @@ function main() {
 
     const { initializeEmoji } = await import('./features/emoji/index');
     await initializeEmoji();
+
+    if (isRedesignEnabled()) {
+      document.documentElement.dataset.redesign = 'true';
+    }
 
     const root = createRoot(mountNode);
     root.render(
