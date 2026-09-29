@@ -90,6 +90,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_31_125329) do
     t.index ["target_account_id"], name: "index_account_pins_on_target_account_id"
   end
 
+  create_table "account_reach_filters", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.binary "bloom_filter"
+    t.datetime "created_at", null: false
+    t.string "salt", null: false
+    t.boolean "saturated", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_reach_filters_on_account_id", unique: true
+  end
+
   create_table "account_relationship_severance_events", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
@@ -1516,6 +1526,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_31_125329) do
   add_foreign_key "account_notes", "accounts", on_delete: :cascade
   add_foreign_key "account_pins", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "account_pins", "accounts", on_delete: :cascade
+  add_foreign_key "account_reach_filters", "accounts", on_delete: :cascade
   add_foreign_key "account_relationship_severance_events", "accounts", on_delete: :cascade
   add_foreign_key "account_relationship_severance_events", "relationship_severance_events", on_delete: :cascade
   add_foreign_key "account_stats", "accounts", on_delete: :cascade
