@@ -87,7 +87,6 @@ class Form::AdminSettings
     require_invite_text
     captcha_enabled
     search_preview
-    authorized_fetch
     wrapstodon
   ).freeze
 
