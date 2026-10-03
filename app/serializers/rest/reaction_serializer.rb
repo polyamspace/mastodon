@@ -8,6 +8,7 @@ class REST::ReactionSerializer < ActiveModel::Serializer
   attribute :me, if: :current_user?
   attribute :url, if: :custom_emoji?
   attribute :static_url, if: :custom_emoji?
+  belongs_to :custom_emoji, key: :emoji, serializer: REST::CustomEmojiSerializer
 
   def count
     object.respond_to?(:count) ? object.count : 0
@@ -35,6 +36,10 @@ class REST::ReactionSerializer < ActiveModel::Serializer
 
   def static_url
     full_asset_url(object.custom_emoji.image.url(:static))
+  end
+
+  def custom_emoji
+    [object.custom_emoji].compact
   end
 
   private
