@@ -60,6 +60,8 @@ class Form::AdminSettings
     email_footer_text
     system_dark
     system_light
+    opt_in_server_directory
+    opt_in_server_recommendation
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -88,6 +90,8 @@ class Form::AdminSettings
     norss
     require_invite_text
     captcha_enabled
+    opt_in_server_directory
+    opt_in_server_recommendation
     search_preview
     wrapstodon
   ).freeze
