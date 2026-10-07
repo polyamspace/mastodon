@@ -53,6 +53,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:default_content_type] = object_account_user.setting_default_content_type
       store[:show_trends]       = Setting.trends && object_account_user.setting_trends
       store[:emoji_style]       = object_account_user.settings['web.emoji_style']
+      store[:display_own_boosts] = object_account_user.setting_display_own_boosts
+      store[:display_own_posts] = object_account_user.setting_display_own_posts
       store[:wrapstodon]        = wrapstodon
       store[:notification_sound] = NotificationSounds.instance.by_name(object_account_user.setting_notification_sound)
       store[:visible_reactions] = object_account_user.setting_visible_reactions
