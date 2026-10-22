@@ -44,7 +44,7 @@ RSpec.describe 'statuses/show.html.haml' do
       def site_hostname = 'example.com'
       def full_asset_url(_) = '//asset.host/image.svg'
       def current_account = nil
-      def current_flavour = 'glitch'
+      def current_flavour = 'polyam'
       def single_user_mode? = false
       def local_time = nil
       def local_time_ago = nil

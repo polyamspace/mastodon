@@ -290,7 +290,7 @@ RSpec.describe ApplicationHelper do
 
   def flavour_helpers
     Module.new do
-      def current_flavour = 'glitch'
+      def current_flavour = 'polyam'
       def current_skin = 'default'
       def system_skins = ['default', 'mastodon-light']
     end
