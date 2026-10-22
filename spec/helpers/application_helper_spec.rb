@@ -76,7 +76,7 @@ RSpec.describe ApplicationHelper do
     it 'returns an svg with the icon and options' do
       expect(helper.material_symbol('lock', class: :test, data: { hidden: true }))
         .to match('<svg.*/svg>')
-        .and match('class="icon material-lock test"')
+        .and match('class="icon fa-lock test"')
         .and match('data-hidden="true"')
     end
   end
