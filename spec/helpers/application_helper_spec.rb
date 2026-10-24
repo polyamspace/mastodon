@@ -71,7 +71,7 @@ RSpec.describe ApplicationHelper do
 
   describe '#material_symbol' do
     # Polyam: Make current_flavour available in this context
-    before { helper.extend flavour_helpers }
+    before { allow(helper).to receive(:current_flavour).and_return('vanilla') }
 
     it 'returns an svg with the icon and options' do
       expect(helper.material_symbol('lock', class: :test, data: { hidden: true }))
@@ -283,16 +283,6 @@ RSpec.describe ApplicationHelper do
         expect(helper.html_title).to eq 'Site Title'
         expect(helper.html_title).to be_html_safe
       end
-    end
-  end
-
-  private
-
-  def flavour_helpers
-    Module.new do
-      def current_flavour = 'glitch'
-      def current_skin = 'default'
-      def system_skins = ['default', 'mastodon-light']
     end
   end
 end
