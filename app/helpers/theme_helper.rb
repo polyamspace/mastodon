@@ -59,7 +59,7 @@ module ThemeHelper
   end
 
   def current_flavour
-    [current_user&.setting_flavour, Setting.flavour, 'glitch', 'vanilla', 'polyam'].find { |flavour| Themes.instance.flavours.include?(flavour) }
+    [current_user&.setting_flavour, Setting.flavour, 'polyam', 'glitch', 'vanilla'].find { |flavour| Themes.instance.flavours.include?(flavour) }
   end
 
   def current_skin
