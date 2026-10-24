@@ -7,7 +7,7 @@ RSpec.describe ThemeHelper do
     let(:result) { helper.theme_style_tags(theme) }
 
     context 'when using "default" theme' do
-      let(:theme) { ['glitch', 'default'] }
+      let(:theme) { ['polyam', 'default'] }
 
       it 'returns the default stylesheet' do
         expect(html_links.last.attributes.symbolize_keys)
@@ -103,26 +103,24 @@ RSpec.describe ThemeHelper do
   describe '#current_theme' do
     subject { helper.current_theme }
 
-    before { Setting.flavour = 'glitch' }
-
     context 'when user is not signed in' do
       context 'when theme was not changed in settings' do
-        it { is_expected.to eq(%w(glitch default default default)) }
+        it { is_expected.to eq(%w(polyam default default default)) }
       end
 
       context 'when theme is changed in settings' do
         before do
-          allow(Themes.instance).to receive(:skins_for).with('glitch').and_return(%w(default contrast))
+          allow(Themes.instance).to receive(:skins_for).with('polyam').and_return(%w(default contrast))
           Setting.skin = 'contrast'
         end
 
-        it { is_expected.to eq(%w(glitch contrast default default)) }
+        it { is_expected.to eq(%w(polyam contrast default default)) }
       end
 
       context 'when theme is changed to invalid value' do
         before { Setting.skin = 'fakethemename' }
 
-        it { is_expected.to eq(%w(glitch default default default)) }
+        it { is_expected.to eq(%w(polyam default default default)) }
       end
     end
 
@@ -132,14 +130,14 @@ RSpec.describe ThemeHelper do
       let(:current_user) { Fabricate :user }
 
       context 'when user did not set theme' do
-        it { is_expected.to eq(%w(glitch default default default)) }
+        it { is_expected.to eq(%w(polyam default default default)) }
       end
 
       context 'when user set theme' do
         before { current_user.settings.update(skin: 'alternate', noindex: false) }
 
         context 'when theme is not valid' do
-          it { is_expected.to eq(%w(glitch default default default)) }
+          it { is_expected.to eq(%w(polyam default default default)) }
         end
       end
     end

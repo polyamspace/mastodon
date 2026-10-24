@@ -45,7 +45,7 @@ RSpec.describe MediaComponentHelper do
       def current_account = Account.last
 
       # Polyam: Fix NoMethodError as flavour variables are not available in specs
-      def current_flavour = 'glitch'
+      def current_flavour = 'polyam'
     end
   end
 end
