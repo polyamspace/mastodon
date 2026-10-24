@@ -26,7 +26,7 @@ RSpec.describe Admin::FilterHelper do
   # Polyam: flavour/skin methods are not available in specs
   def controller_helpers
     Module.new do
-      def current_flavour = 'glitch'
+      def current_flavour = 'polyam'
     end
   end
 end
