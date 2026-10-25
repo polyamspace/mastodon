@@ -707,6 +707,7 @@ class UI extends PureComponent {
               onFocusGettingStartedColumn={this.handleHotkeyGoToStart}
             />
           )}
+
           {moved && (<div className='flash-message alert'>
             <FormattedMessage
               id='moved_to_warning'

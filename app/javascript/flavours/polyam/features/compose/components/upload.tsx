@@ -80,7 +80,6 @@ export const Upload: React.FC<{
     transform: CSS.Transform.toString(transform),
     transition,
   };
-
   const preview_url = media.get('preview_url') as string | null;
   const blurhash = media.get('blurhash') as string | null;
 

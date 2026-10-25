@@ -45,7 +45,6 @@ export const NotificationWithStatus: React.FC<{
   const account = useAppSelector((state) =>
     state.accounts.get(accountIds.at(0) ?? ''),
   );
-
   const label = useMemo(
     () =>
       labelRenderer(

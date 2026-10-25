@@ -315,6 +315,7 @@ on('click', '.input-copy button', ({ target }) => {
           parent.classList.remove('copied');
         }, 700);
       }
+
       return true;
     })
     .catch((error: unknown) => {
