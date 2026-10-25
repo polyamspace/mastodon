@@ -2,7 +2,7 @@ import type React from 'react';
 
 import classNames from 'classnames';
 
-import logo from 'mastodon/../images/logo.svg';
+import logo from '@/images/logo.svg';
 
 export const WordmarkLogo: React.FC = () => (
   <svg viewBox='0 0 261 66' className='logo logo--wordmark' role='img'>

@@ -56,6 +56,7 @@ class Rules extends PureComponent {
               onToggle={this.handleRulesToggle}
               label={item.translations?.[locale]?.text || item.translations?.[locale.split('-')[0]]?.text || item.text}
               multiple
+              // Polyam: Show rule hints
               description={item.get('hint')}
             />
           ))}

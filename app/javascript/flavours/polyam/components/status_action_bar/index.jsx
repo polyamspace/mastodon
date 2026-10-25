@@ -396,6 +396,7 @@ class StatusActionBar extends ImmutablePureComponent {
               needsStatusRefresh={quickBoosting && status.get('quote_approval') === null}
               items={menu}
               direction='right'
+              ariaLabel={intl.formatMessage(messages.more)}
               onOpen={() => {
                 dismissQuoteHint();
                 return true;
@@ -405,7 +406,7 @@ class StatusActionBar extends ImmutablePureComponent {
                 className='status__action-bar__button'
                 icon='ellipsis-h'
                 iconComponent={MoreHorizIcon}
-                ariaLabel={intl.formatMessage(messages.more)}
+                title={intl.formatMessage(messages.more)}
               />
             </Dropdown>
           )}

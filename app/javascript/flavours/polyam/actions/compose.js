@@ -303,6 +303,7 @@ export function submitCompose(successCallback, overridePrivacy) {
       }
 
       dispatch(insertStatusIntoAccountTimelines({ ...response.data }));
+
       if (getState().getIn(['local_settings', 'show_published_toast'])) {
         dispatch(showAlert({
           message: statusId === null ? messages.published : messages.saved,

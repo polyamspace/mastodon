@@ -167,6 +167,7 @@ function apiStatusToTextHashtags (state, status) {
     (name) => `#${name} `,
   )).join('');
 }
+
 /**
  * @param {typeof initialState} state
  * @returns {typeof initialState}

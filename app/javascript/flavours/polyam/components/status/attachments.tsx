@@ -154,6 +154,7 @@ const MediaAttachments: React.FC<{
     },
     [attachment, dispatch, language, statusId],
   );
+  // Polyam: Alt-text modal
   const handleOpenAltText = useCallback(() => {
     dispatch(
       openModal({

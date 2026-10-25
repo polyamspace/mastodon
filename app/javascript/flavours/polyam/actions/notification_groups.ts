@@ -143,7 +143,6 @@ export const fetchNotificationsGap = createDataLoadingThunk(
       max_id: params.gap.maxId,
       exclude_types: getExcludedTypes(getState()),
     }),
-
   ({ notifications, accounts, statuses }, { dispatch }) => {
     dispatch(importFetchedAccounts(accounts));
     dispatch(importFetchedStatuses(statuses));
@@ -210,6 +209,7 @@ export const processNewNotificationForGroups = createAppAsyncThunk(
         return;
       }
     }
+
     dispatchAssociatedRecords(dispatch, [notification]);
 
     return {

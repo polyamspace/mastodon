@@ -7,7 +7,7 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import ArchiveIcon from '@/awesome-icons/solid/box-archive.svg?react';
+import InventoryIcon from '@/awesome-icons/solid/box-archive.svg?react';
 import ArrowDropDownIcon from '@/awesome-icons/solid/caret-down.svg?react';
 import MoreHorizIcon from '@/awesome-icons/solid/ellipsis.svg?react';
 import { openModal } from 'flavours/polyam/actions/modal';
@@ -211,7 +211,7 @@ export const NotificationRequests = ({ multiColumn }) => {
     <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
         icon='archive'
-        iconComponent={ArchiveIcon}
+        iconComponent={InventoryIcon}
         title={intl.formatMessage(messages.title)}
         multiColumn={multiColumn}
         showBackButton

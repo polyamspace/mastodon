@@ -25,6 +25,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
+    // Polyam additions
     collapseEnabled: PropTypes.bool,
   };
 
