@@ -111,9 +111,10 @@ const makeMapStateToProps = () => {
    * @param {string} props.timelineId
    * @param {boolean} [props.initialLoadingState]
    * @param {number} [props.maxItems]
+   * @param {RegExp} [props.regex]
    */
-  const mapStateToProps = (state, { timelineId, initialLoadingState = true, maxItems }) => ({
-    statusIds: getStatusIds(state, { type: timelineId, maxItems }),
+  const mapStateToProps = (state, { timelineId, regex, initialLoadingState = true, maxItems }) => ({
+    statusIds: getStatusIds(state, { type: timelineId, regex, maxItems }),
     lastId:    state.getIn(['timelines', timelineId, 'items'])?.findLast(id => !isNonStatusId(id)),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], initialLoadingState),
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
