@@ -92,7 +92,7 @@ function optionPlus(key: string): KeyMatcher {
 }
 
 /**
- * Matches a single key combined with shift modifier
+ * Polyam: Matches a single key combined with shift modifier
  */
 function shiftPlus(key: string): KeyMatcher {
   return (event) => ({

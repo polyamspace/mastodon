@@ -196,6 +196,7 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     }));
   },
 
+  // Polyam: Alt-text modal
   onOpenAltText (media) {
     dispatch(openModal({modalType: 'ALTTEXT_SHOW', modalProps: { description: media.getIn(['translation', 'description']) || media.get('description') }}));
   },

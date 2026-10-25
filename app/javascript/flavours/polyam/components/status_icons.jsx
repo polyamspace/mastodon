@@ -49,6 +49,7 @@ class StatusIcons extends PureComponent {
     mediaIcons: PropTypes.arrayOf(PropTypes.string),
     intl: PropTypes.object.isRequired,
     settings: ImmutablePropTypes.map.isRequired,
+    // Polyam additions
     collapsible: PropTypes.bool,
     collapsed: PropTypes.bool,
     setCollapsed: PropTypes.func,

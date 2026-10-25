@@ -202,7 +202,7 @@ const Preview: React.FC<{
         blurhash={media.get('blurhash') as string}
         src={media.get('url') as string}
         detailed
-        inline
+        inline // Polyam
         editable
       />
     );

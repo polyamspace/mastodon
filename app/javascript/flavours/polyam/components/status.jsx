@@ -85,7 +85,6 @@ class Status extends ImmutablePureComponent {
   static contextType = SensitiveMediaContext;
 
   static propTypes = {
-    identity: identityContextPropShape,
     containerId: PropTypes.string,
     id: PropTypes.string,
     status: ImmutablePropTypes.map,
@@ -141,8 +140,10 @@ class Status extends ImmutablePureComponent {
       available: PropTypes.bool,
     }),
     contextType: PropTypes.string,
-    onOpenAltText: PropTypes.func,
     ...WithOptionalRouterPropTypes,
+    // Polyam additions
+    identity: identityContextPropShape,
+    onOpenAltText: PropTypes.func,
   };
 
   state = {
