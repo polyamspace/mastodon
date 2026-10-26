@@ -112,9 +112,11 @@ const makeMapStateToProps = () => {
    * @param {boolean} [props.initialLoadingState]
    * @param {number} [props.maxItems]
    * @param {RegExp} [props.regex]
+   * @param {boolean} [props.firehose]
+   * @param {string=} props.columnId
    */
-  const mapStateToProps = (state, { timelineId, regex, initialLoadingState = true, maxItems }) => ({
-    statusIds: getStatusIds(state, { type: timelineId, regex, maxItems }),
+  const mapStateToProps = (state, { firehose = false, columnId = undefined, timelineId, regex, initialLoadingState = true, maxItems }) => ({
+    statusIds: getStatusIds(state, { firehose: firehose, columnId: columnId, type: timelineId, regex, maxItems }),
     lastId:    state.getIn(['timelines', timelineId, 'items'])?.findLast(id => !isNonStatusId(id)),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], initialLoadingState),
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
