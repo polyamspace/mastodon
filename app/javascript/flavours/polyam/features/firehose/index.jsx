@@ -246,7 +246,6 @@ const Firehose = ({ feedType, multiColumn }) => {
         emptyMessage={canViewSelectedFeed ? emptyMessage : disabledTimelineMessage}
         bindToDocument={!multiColumn}
         regex={regex}
-        firehose
       />
 
       <Helmet>
