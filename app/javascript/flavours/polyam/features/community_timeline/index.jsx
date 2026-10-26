@@ -157,7 +157,7 @@ class CommunityTimeline extends PureComponent {
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           regex={this.props.regex}
-          columnId={columnId}
+          columnId={columnId} // Polyam addition
         />
 
         <Helmet>
