@@ -34,21 +34,24 @@ const getRegex = createSelector([
   return regex;
 });
 
-// Settings can both be in column params and in state
-// This destinction didn't matter before the introduction of the firehose column
-// Not sure if oversight or on purpose, but multiple community and public timelines can be pinned, which should each have their own settings
-// There is no distinct timelineId for the firehose column, so an additional prop is parsed which indicates settings should be loaded from firehose
+// Polyam
+// Settings can both be in column params and in state.
+// This destinction didn't matter before the introduction of the firehose column.
+// Upstream does not account for multiple live feeds, which should each have their own settings.
+// There is no distinct timelineId for the firehose column, so an additional prop is passed
+// which is used to determine whether settings should be loaded from firehose instead.
 const getSettings = createSelector([
-  (state, { firehose }) => firehose,
   (state, { columnId }) => columnId,
   (state, { type }) => type,
   (state) => state,
-], (firehose, columnId, type, state) => {
+], (columnId, type, state) => {
   const uuid = columnId;
+  const timelineId = normalizeTimelineId(type)
   const columns = state.getIn(['settings', 'columns']);
   const index = columns.findIndex(c => c.get('uuid') === uuid);
+  const firehose = !uuid && (timelineId === 'public' || timelineId === 'community')
 
-  return (uuid && index >= 0) ? columns.get(index).get('params') : firehose ? state.getIn(['settings', 'firehose'], ImmutableMap()) : state.getIn(['settings', normalizeTimelineId(type)], ImmutableMap());
+  return (uuid && index >= 0) ? columns.get(index).get('params') : firehose ? state.getIn(['settings', 'firehose'], ImmutableMap()) : state.getIn(['settings', timelineId], ImmutableMap());
 });
 
 const makeGetStatusIds = (pending = false) => createSelector([
