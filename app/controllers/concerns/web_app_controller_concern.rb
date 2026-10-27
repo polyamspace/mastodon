@@ -27,7 +27,7 @@ module WebAppControllerConcern
   end
 
   def redirect_unauthenticated_to_permalinks!
-    return if user_signed_in? || permalink_redirector.redirect_path.blank?  # NOTE: Different from upstream because we allow moved users to log in
+    return if user_signed_in? || permalink_redirector.redirect_path.blank? # NOTE: Different from upstream because we allow moved users to log in
 
     expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.day) unless user_signed_in?
 
