@@ -1,6 +1,10 @@
 @use 'application';
+@use 'fairy-floss/fairyfloss';
 @use 'fairy-floss/diff';
 
 html {
   color-scheme: dark;
+
+  @include fairyfloss.palette;
+  @include fairyfloss.tokens;
 }
