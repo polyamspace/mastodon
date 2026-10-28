@@ -1,3 +1,13 @@
+# frozen_string_literal: true
+
+module SettingsHelper
+  def filterable_languages
+    LanguagesHelper.sorted_locale_keys(LanguagesHelper::SUPPORTED_LOCALES.keys)
+  end
+
+  def ui_languages
+    LanguagesHelper.sorted_locale_keys(I18n.available_locales)
+  end
 
   def inline_qrcode_svg(code)
     code
