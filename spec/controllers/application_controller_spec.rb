@@ -95,40 +95,6 @@ RSpec.describe ApplicationController do
     end
   end
 
-  # Polyam: Selectable system skins
-  describe 'helper_method :system_skins' do
-    it 'returns ["default", "default"] when themes weren\'t changed in admin settings' do
-      allow(Setting).to receive(:default_settings).and_return({ 'system_dark' => 'default' })
-      allow(Setting).to receive(:default_settings).and_return({ 'system_light' => 'default' })
-
-      expect(controller.view_context.system_skins).to eq ['default', 'default']
-    end
-
-    it 'returns instances\'s default system skins when user is not signed in' do
-      allow(Setting).to receive(:[]).with('skin').and_return 'default'
-      allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
-      allow(Setting).to receive(:[]).with('system_dark').and_return 'default'
-      allow(Setting).to receive(:[]).with('system_light').and_return 'default'
-
-      expect(controller.view_context.system_skins).to eq ['default', 'default']
-    end
-
-    it 'returns instances\'s default system skins when user didn\'t set them' do
-      current_user = Fabricate(:user)
-      sign_in current_user
-
-      allow(Setting).to receive(:[]).with('skin').and_return 'default'
-      allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
-      allow(Setting).to receive(:[]).with('system_dark').and_return 'default'
-      allow(Setting).to receive(:[]).with('system_light').and_return 'default'
-      allow(Setting).to receive(:[]).with('noindex').and_return false
-      allow(Setting).to receive(:[]).with('show_application').and_return false
-      allow(Setting).to receive(:[]).with('norss').and_return false
-
-      expect(controller.view_context.system_skins).to eq ['default', 'default']
-    end
-  end
-
   describe 'before_action :require_functional!' do
     before do
       routes.draw { get 'success' => 'anonymous#success' }

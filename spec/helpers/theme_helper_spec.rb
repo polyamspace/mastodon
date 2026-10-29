@@ -105,7 +105,7 @@ RSpec.describe ThemeHelper do
 
     context 'when user is not signed in' do
       context 'when theme was not changed in settings' do
-        it { is_expected.to eq(%w(polyam default default default)) }
+        it { is_expected.to eq(['polyam', 'default']) }
       end
 
       context 'when theme is changed in settings' do
@@ -114,13 +114,13 @@ RSpec.describe ThemeHelper do
           Setting.skin = 'contrast'
         end
 
-        it { is_expected.to eq(%w(polyam contrast default default)) }
+        it { is_expected.to eq(['polyam', 'contrast']) }
       end
 
       context 'when theme is changed to invalid value' do
         before { Setting.skin = 'fakethemename' }
 
-        it { is_expected.to eq(%w(polyam default default default)) }
+        it { is_expected.to eq(['polyam', 'default']) }
       end
     end
 
@@ -130,14 +130,14 @@ RSpec.describe ThemeHelper do
       let(:current_user) { Fabricate :user }
 
       context 'when user did not set theme' do
-        it { is_expected.to eq(%w(polyam default default default)) }
+        it { is_expected.to eq(['polyam', 'default']) }
       end
 
       context 'when user set theme' do
         before { current_user.settings.update(skin: 'alternate', noindex: false) }
 
         context 'when theme is not valid' do
-          it { is_expected.to eq(%w(polyam default default default)) }
+          it { is_expected.to eq(['polyam', 'default']) }
         end
       end
     end
