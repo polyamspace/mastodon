@@ -85,6 +85,7 @@ namespace :admin do
     resource :appearance, only: [:show, :update], controller: 'appearance'
     resource :discovery, only: [:show, :update], controller: 'discovery'
     resource :other, only: [:show, :update], controller: 'other'
+    resource :external, only: [:show, :update], controller: 'external'
   end
 
   resources :site_uploads, only: [:destroy]
@@ -176,11 +177,20 @@ namespace :admin do
         post :resend
       end
     end
+
+    namespace :trends do
+      resource :approval, only: [:create, :destroy]
+    end
+
+    namespace :follow_recommendations do
+      resource :suppression, only: [:create, :destroy]
+    end
   end
 
   resources :users, only: [] do
     scope module: :users do
       resource :two_factor_authentication, only: [:destroy]
+      resource :sign_in_token_authentication, only: [:create, :destroy]
       resource :role, only: [:show, :update]
     end
   end

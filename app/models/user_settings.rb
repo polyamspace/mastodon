@@ -23,6 +23,8 @@ class UserSettings
   setting :email_subscriptions, default: false
   setting :system_dark, default: -> { ::Setting.system_dark }
   setting :system_light, default: -> { ::Setting.system_light }
+  setting :display_own_boosts, default: false
+  setting :display_own_posts, default: true
 
   setting_inverse_alias :indexable, :noindex
   setting_inverse_alias :show_followers_count, :hide_followers_count
