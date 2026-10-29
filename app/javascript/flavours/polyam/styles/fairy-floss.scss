@@ -10,7 +10,7 @@ html {
 // to avoid system skin overriding custom skin
 [data-color-scheme='dark'],
 html:not([data-color-scheme]),
-[data-color-scheme='light'] {
+[data-user-theme='fariy-floss'][data-color-scheme='light'] {
   color-scheme: dark;
 
   @include fairyfloss.tokens;
