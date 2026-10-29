@@ -3,8 +3,20 @@
 @use 'fairy-floss/diff';
 
 html {
+  @include fairyfloss.palette;
+}
+
+// Keep selectors in sync with styles/mastodon/tokens/index.scss
+// to avoid system skin overriding custom skin
+[data-color-scheme='dark'],
+html:not([data-color-scheme]),
+[data-color-scheme='light'] {
   color-scheme: dark;
 
-  @include fairyfloss.palette;
   @include fairyfloss.tokens;
+
+  // Prevent inversion of emojis based on color-scheme
+  .invert-on-light {
+    filter: none;
+  }
 }
