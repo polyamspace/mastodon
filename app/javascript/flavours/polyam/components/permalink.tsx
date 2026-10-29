@@ -1,9 +1,10 @@
 import { useCallback } from 'react';
 
+import type { MastodonLocationDescriptor } from './router';
 import { useAppHistory } from './router';
 
 interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  to: string;
+  to: MastodonLocationDescriptor;
 }
 
 export const Permalink: React.FC<Props> = ({
