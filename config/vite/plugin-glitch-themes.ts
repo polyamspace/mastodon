@@ -89,6 +89,13 @@ export function GlitchThemes(): Plugin {
           `app/javascript/skins/${flavourName}/*/{index,common,application}.{css,scss}`,
         );
         for (const entrypoint of alternateSkinFiles) {
+          // Polyam: Skip disabled skins
+          if (
+            disabled_skins.includes(path.basename(path.dirname(entrypoint)))
+          ) {
+            continue;
+          }
+
           const name = `skins/${flavourName}/${path.basename(path.dirname(entrypoint))}`;
           entrypoints[name] = path.resolve(userConfig.envDir, entrypoint);
         }
