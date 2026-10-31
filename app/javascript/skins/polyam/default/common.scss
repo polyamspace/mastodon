@@ -1,1 +1,8 @@
 @use '@/flavours/polyam/styles/application';
+@use '@/flavours/polyam/styles/homogay';
+
+// Working around a vite bug where using identical stylesheets
+// in different entrypoints creates a malformed manifest
+.unused-class {
+  background-color: #fff;
+}
