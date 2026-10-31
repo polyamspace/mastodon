@@ -75,14 +75,6 @@ module User::HasSettings
     settings['skin']
   end
 
-  def setting_system_dark
-    settings['system_dark']
-  end
-
-  def setting_system_light
-    settings['system_light']
-  end
-
   def setting_color_scheme
     settings['web.color_scheme']
   end

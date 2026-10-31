@@ -58,8 +58,6 @@ class Form::AdminSettings
     landing_page
     wrapstodon
     email_footer_text
-    system_dark
-    system_light
   ).freeze
 
   INTEGER_KEYS = %i(

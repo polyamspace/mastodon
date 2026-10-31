@@ -308,56 +308,6 @@ async function mountReactComponent(element: Element) {
   );
 }
 
-// Polyam: System skin settings
-const onChangeFlavourAndSkin = (target: HTMLSelectElement) => {
-  const darkSelectElement = document.querySelector<HTMLSelectElement>(
-    'select#form_admin_settings_system_dark',
-  );
-
-  const lightSelectElement = document.querySelector<HTMLSelectElement>(
-    'select#form_admin_settings_system_light',
-  );
-
-  const selectedGroup = target.selectedOptions[0]
-    ?.parentNode as HTMLOptGroupElement;
-
-  const toggleGroup = (e: HTMLSelectElement) => {
-    for (const group of e.children) {
-      if (group instanceof HTMLOptGroupElement) {
-        if (group.label !== selectedGroup.label) {
-          group.disabled = true;
-        } else {
-          group.disabled = false;
-
-          // Reset system skin settings on flavour change when selected skin not available in group.
-          if (
-            (e.selectedOptions[0]?.parentNode as HTMLOptGroupElement).label !==
-              group.label &&
-            group.querySelector(
-              `option[value="${e.selectedOptions[0]?.value}"]`,
-            ) === null
-          ) {
-            // No need to worry about whether these exist as system skin wouldn't be available in such a case
-            e.value = e === darkSelectElement ? 'default' : 'mastodon-light';
-          }
-        }
-      }
-    }
-  };
-
-  if (darkSelectElement) {
-    toggleGroup(darkSelectElement);
-  }
-
-  if (lightSelectElement) {
-    toggleGroup(lightSelectElement);
-  }
-};
-
-on('change', '#form_admin_settings_flavour_and_skin', ({ target }) => {
-  if (target instanceof HTMLSelectElement) onChangeFlavourAndSkin(target);
-});
-
 // Polyam: User role preview
 
 const updateRoleBadgePreview = (element: HTMLInputElement, text = false) => {
@@ -514,13 +464,6 @@ ready(() => {
         previewCard.classList.toggle('preview-card--image-visible');
       });
     });
-
-  const flavourAndSkin = document.querySelector<HTMLSelectElement>(
-    'select#form_admin_settings_flavour_and_skin',
-  );
-  if (flavourAndSkin) {
-    onChangeFlavourAndSkin(flavourAndSkin);
-  }
 
   const roleColorSelect = document.querySelector<HTMLInputElement>(
     'input#user_role_color',

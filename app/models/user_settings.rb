@@ -21,8 +21,6 @@ class UserSettings
   setting :hide_followers_count, default: false
   setting :default_quote_policy, default: 'followers', in: %w(public followers nobody)
   setting :email_subscriptions, default: false
-  setting :system_dark, default: -> { ::Setting.system_dark }
-  setting :system_light, default: -> { ::Setting.system_light }
 
   setting_inverse_alias :indexable, :noindex
   setting_inverse_alias :show_followers_count, :hide_followers_count

@@ -184,8 +184,6 @@ module ApplicationHelper
       'data-color-scheme': page_color_scheme.parameterize,
       'data-user-flavour': current_flavour.parameterize,
       'data-user-theme': current_skin.parameterize,
-      'data-system-dark': system_skins[0],
-      'data-system-light': system_skins[1],
     }
 
     base[:'data-system-theme'] = 'true' if page_color_scheme == 'auto'
