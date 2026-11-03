@@ -289,7 +289,8 @@ export function submitCompose(successCallback) {
         insertIfOnline(`account:${response.data.account.id}`);
       }
 
-      dispatch(insertStatusIntoAccountTimelines({ ...response.data }))
+      // Polyam: Remove dispatch as it causes overscrolling when navigating back to account TL
+      // dispatch(insertStatusIntoAccountTimelines({ ...response.data }))
 
       dispatch(showAlert({
         message: statusId === null ? messages.published : messages.saved,
