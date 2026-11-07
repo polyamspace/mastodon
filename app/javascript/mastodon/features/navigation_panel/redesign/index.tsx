@@ -12,6 +12,7 @@ import {
   BookmarkSimpleIcon,
 } from '@phosphor-icons/react';
 
+import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { useIdentity } from '@/mastodon/identity_context';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
@@ -69,7 +70,13 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
             <NavigationLink to='/home' iconComponent={HouseIcon}>
               <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
             </NavigationLink>
-            <NavigationLink to='/explore' iconComponent={MagnifyingGlassIcon}>
+            <NavigationLink
+              to={{
+                pathname: '/explore',
+                state: { focusTarget: FOCUS_TARGET.SEARCH },
+              }}
+              iconComponent={MagnifyingGlassIcon}
+            >
               <FormattedMessage
                 id='tabs_bar.explore'
                 defaultMessage='Explore'
