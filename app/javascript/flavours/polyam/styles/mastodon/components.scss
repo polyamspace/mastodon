@@ -1622,9 +1622,7 @@ body > [data-popover-placement] {
       width: calc(100% - var(--thread-margin));
     }
 
-    .more-from-author {
-      width: calc(100% - var(--thread-margin) + 2px);
-    }
+    // Polyam: .more-from-author removed here
 
     .status__content__read-more-button {
       margin-inline-start: var(--thread-margin);
@@ -11136,9 +11134,7 @@ noscript {
 
   // Polyam: Removed margin and restricted width of elements here
 
-  .more-from-author {
-    width: calc(100% - var(--status-gutter-width) + 2px);
-  }
+  // Polyam: Removed .more-from-author here
 
   .status__content__read-more-button {
     margin-inline-start: var(--status-gutter-width);
