@@ -130,7 +130,7 @@ $content-width: $main-column-width + $sidebar-width;
         gap: 6px;
         padding: 15px;
 
-        // Polyam: removed border-radius: var(--radius-sm);
+        // Polyam: removed border-radius: var(--radius-3);
         color: color-mix(
           in oklab,
           var(--color-text-primary),
@@ -181,18 +181,18 @@ $content-width: $main-column-width + $sidebar-width;
       & > a:first-child {
         display: block;
         width: fit-content;
-        margin: var(--space-xl) var(--space-lg);
+        margin: var(--space-6) var(--space-5);
       }
 
       & > nav > ul {
-        margin-inline-start: var(--space-md); // Polyam: only margin at start
-        margin-bottom: var(--space-xl);
+        margin-inline-start: var(--space-4); // Polyam: only margin at start
+        margin-bottom: var(--space-6);
       }
 
       ul {
         // Polyam: Added :not to remove padding from last
         li:not(:last-child) {
-          padding-bottom: var(--space-2xs);
+          padding-bottom: var(--space-1);
         }
 
         a {
@@ -200,8 +200,8 @@ $content-width: $main-column-width + $sidebar-width;
 
           box-sizing: border-box;
           min-height: 36px;
-          gap: var(--space-xs);
-          padding: var(--space-sm); // Polyam: more padding
+          gap: var(--space-2);
+          padding: var(--space-3); // Polyam: more padding
           overflow-wrap: anywhere;
 
           .icon {
@@ -213,8 +213,8 @@ $content-width: $main-column-width + $sidebar-width;
         }
 
         ul a {
-          padding: var(--space-sm); // Polyam: more padding
-          padding-inline-start: var(--space-3xl);
+          padding: var(--space-3); // Polyam: more padding
+          padding-inline-start: var(--space-8);
         }
 
         .simple-navigation-active-leaf > a {
@@ -234,10 +234,10 @@ $content-width: $main-column-width + $sidebar-width;
 
     @media screen and (min-width: ($no-columns-breakpoint + 1px)) {
       max-width: $content-width;
-      margin-top: var(--space-2xs);
+      margin-top: var(--space-1);
       border: var(--border-column);
       border-bottom: none;
-      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      border-radius: var(--radius-6) var(--radius-6) 0 0;
     }
   }
 
@@ -248,7 +248,7 @@ $content-width: $main-column-width + $sidebar-width;
   }
 
   .content {
-    padding: var(--space-xl);
+    padding: var(--space-6);
 
     @media screen and (max-width: $no-columns-breakpoint) {
       max-width: none;

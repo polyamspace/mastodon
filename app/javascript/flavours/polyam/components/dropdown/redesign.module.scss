@@ -5,8 +5,8 @@
 
   display: flex;
   flex-direction: column;
-  padding: var(--space-2xs);
-  border-radius: var(--radius-md);
+  padding: var(--space-1);
+  border-radius: var(--radius-4);
   background: var(--color-bg-primary);
   overflow: hidden;
 
@@ -17,7 +17,7 @@
   > hr {
     height: 1px;
     background-color: var(--color-border-primary);
-    margin: var(--space-2xs) var(--space-sm);
+    margin: var(--space-1) var(--space-3);
     border: none;
   }
 }
@@ -29,9 +29,9 @@
 
   display: flex;
   align-items: center;
-  border-radius: var(--radius-sm);
-  gap: var(--space-xs);
-  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-3);
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
   cursor: var(--cursor);
   transition:
     background 200ms,
@@ -40,7 +40,7 @@
   label {
     cursor: inherit;
     font-weight: inherit;
-    font-size: var(--fs-sm);
+    font-size: var(--fs-14);
   }
 
   &:hover:not(.menuItemDisabled) {
@@ -73,16 +73,16 @@
 }
 
 .menuItemIcon {
-  width: var(--space-lg);
-  height: var(--space-lg);
+  width: var(--space-5);
+  height: var(--space-5);
 }
 
 .menu > hr {
   height: 1px;
   background-color: var(--color-border-primary);
-  margin: var(--space-2xs) var(--space-sm);
+  margin: var(--space-1) var(--space-3);
   border: none;
-  width: calc(100% - (2 * var(--space-sm)));
+  width: calc(100% - (2 * var(--space-3)));
 }
 
 .popoverMenu {

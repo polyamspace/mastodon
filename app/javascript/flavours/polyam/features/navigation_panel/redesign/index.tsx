@@ -12,6 +12,7 @@ import {
   BookmarkSimpleIcon,
 } from '@phosphor-icons/react';
 
+import { Button } from '@/flavours/polyam/components/button/redesign';
 import { useIdentity } from '@/flavours/polyam/identity_context';
 import { openNewComposer } from '@/flavours/polyam/reducers/slices/composer';
 import { selectUnreadNotificationGroupsCount } from '@/flavours/polyam/selectors/notifications';
@@ -55,17 +56,21 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
       {signedIn && (
         <>
           <ul className={classes.list}>
-            <NavigationLink
-              withSpaceAfter
-              as='button'
-              onClick={openComposer}
-              iconComponent={PenNibIcon}
-            >
-              <FormattedMessage
-                id='tabs_bar.publish'
-                defaultMessage='New Post'
-              />
-            </NavigationLink>
+            <li>
+              <Button
+                leadingIcon={PenNibIcon}
+                onClick={openComposer}
+                variant='solid'
+                color='accent'
+                size='md'
+                className={classes.newPostButton}
+              >
+                <FormattedMessage
+                  id='tabs_bar.publish'
+                  defaultMessage='New Post'
+                />
+              </Button>
+            </li>
             <NavigationLink to='/home' iconComponent={HouseIcon}>
               <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
             </NavigationLink>

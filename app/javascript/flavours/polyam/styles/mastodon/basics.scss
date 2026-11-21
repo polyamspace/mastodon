@@ -14,6 +14,8 @@ html {
 
   &[data-redesign='true'] {
     --font-body: Inter, sans-serif;
+
+    background: var(--color-bg-desktop);
   }
 
   --outline-focus-default: 2px solid var(--color-border-brand);
@@ -54,7 +56,6 @@ html.has-modal {
 
 body {
   font-family: var(--font-body);
-  background: var(--color-bg-primary);
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
@@ -185,7 +186,7 @@ body {
         font-size: 20px;
         line-height: 28px;
         font-weight: 400;
-        margin-bottom: var(--space-md);
+        margin-bottom: var(--space-4);
       }
     }
   }

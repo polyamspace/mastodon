@@ -4,12 +4,12 @@
   @include mixins.elevation-2;
 
   container-type: inline-size;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-6);
   background: var(--color-bg-primary);
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
-  padding: var(--space-md);
+  gap: var(--space-4);
+  padding: var(--space-4);
   min-width: 300px;
 }
 
@@ -26,7 +26,7 @@
 
 .toolbar {
   display: flex;
-  gap: var(--space-xs);
+  gap: var(--space-2);
   align-items: center;
   flex-wrap: wrap;
 
@@ -38,7 +38,7 @@
 .flexGrowWrap {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-2);
   flex-grow: 1;
 
   @container (width < 310px) {
@@ -52,13 +52,13 @@
 
 .toolbarMessage {
   display: flex;
-  gap: var(--space-2xs);
+  gap: var(--space-1);
   align-items: center;
   color: var(--color-text-secondary);
 
   svg {
-    width: var(--space-lg);
-    height: var(--space-lg);
+    width: var(--space-5);
+    height: var(--space-5);
   }
 }
 
@@ -71,13 +71,13 @@
 }
 
 .editorWrapper {
-  --fade-size: var(--space-xl);
+  --fade-size: var(--space-6);
 
   overflow-y: auto;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-4);
   scrollbar-width: thin;
   overscroll-behavior-y: contain;
   position: relative;
@@ -93,7 +93,7 @@
     position: sticky;
     bottom: 0;
     flex-shrink: 0;
-    margin-top: calc((-1 * var(--fade-size)) - var(--space-md));
+    margin-top: calc((-1 * var(--fade-size)) - var(--space-4));
     opacity: 0;
     pointer-events: none;
     transition: opacity 200ms;
@@ -106,8 +106,8 @@
 
 .textareaWrapper {
   flex-grow: 1;
-  padding: var(--space-xs);
-  border-radius: var(--radius-xs);
+  padding: var(--space-2);
+  border-radius: var(--radius-2);
   transition: border 200ms;
   cursor: text;
 
@@ -121,7 +121,7 @@
   }
 
   textarea {
-    @include mixins.type-body-lg;
+    @include mixins.type-body;
 
     border: none;
     width: 100%;
@@ -132,14 +132,14 @@
 .footer {
   display: flex;
   align-items: center;
-  gap: var(--space-2xs);
+  gap: var(--space-1);
   flex-wrap: wrap;
 }
 
 .counter {
   display: flex;
   align-items: center;
-  gap: var(--space-3xs);
+  gap: var(--space-half);
   font-family: var(--font-monospace);
   color: var(--color-text-tertiary);
   margin-inline-start: auto;
@@ -153,10 +153,10 @@
   display: block;
 
   [data-label] {
-    @include mixins.type-label-sm;
+    @include mixins.type-caption;
 
     color: var(--color-text-tertiary);
-    padding: var(--space-xs) var(--space-sm) 0;
+    padding: var(--space-2) var(--space-3) 0;
   }
 
   [data-fields] {
@@ -169,7 +169,7 @@
 }
 
 .languageMenu {
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-2) var(--space-3);
 
   :global(.emoji-mart-search) {
     padding: 0;
@@ -183,7 +183,7 @@
 
   :global(.emoji-mart-scroll) {
     padding: 0;
-    margin-top: var(--space-xs);
+    margin-top: var(--space-2);
   }
 }
 
@@ -204,7 +204,7 @@
 
 .mediaGrid {
   display: grid;
-  gap: var(--space-3xs);
+  gap: var(--space-half);
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   aspect-ratio: 3/2;
@@ -219,7 +219,7 @@
 }
 
 .mediaUpload {
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-4);
   position: relative;
   background-size: cover;
   background-position: center;
@@ -243,21 +243,21 @@
 
 .mediaMenuButton {
   position: absolute;
-  top: var(--space-xs);
-  right: var(--space-xs);
+  top: var(--space-2);
+  right: var(--space-2);
 }
 
 .mediaAlt {
   @include mixins.type-micro;
 
   display: block;
-  padding: var(--space-2xs);
-  border-radius: var(--radius-xs);
+  padding: var(--space-1);
+  border-radius: var(--radius-2);
   background: var(--color-bg-inverted);
   color: var(--color-text-inverted);
   position: absolute;
-  bottom: var(--space-xs);
-  right: var(--space-xs);
+  bottom: var(--space-2);
+  right: var(--space-2);
   text-transform: uppercase;
 }
 
@@ -270,27 +270,27 @@
 .poll {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-3);
   border: 0.5px solid var(--color-text-tertiary);
-  border-radius: var(--radius-md);
-  padding: var(--space-xs);
+  border-radius: var(--radius-4);
+  padding: var(--space-2);
 
   ol {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: var(--space-2);
     counter-reset: poll;
     width: 100%;
   }
 
   label {
-    @include mixins.type-label-sm;
+    @include mixins.type-caption;
   }
 }
 
 .pollOption {
   display: flex;
-  gap: var(--space-sm);
+  gap: var(--space-3);
   align-items: center;
   counter-increment: poll;
 
@@ -298,18 +298,18 @@
     @include mixins.type-micro;
 
     content: counter(poll, upper-alpha);
-    width: var(--space-lg);
-    height: var(--space-lg);
+    width: var(--space-5);
+    height: var(--space-5);
     flex-shrink: 0;
-    line-height: var(--space-lg);
+    line-height: var(--space-5);
     text-align: center;
-    border-radius: var(--radius-xs);
+    border-radius: var(--radius-2);
     background: var(--color-bg-highlight);
   }
 }
 
 .pollAddNew {
-  margin-left: var(--space-lg);
+  margin-left: var(--space-5);
 }
 
 .pollMultipleToggle {

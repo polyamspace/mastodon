@@ -2,8 +2,8 @@
 
 .button {
   position: fixed;
-  bottom: var(--space-md);
-  right: var(--space-md);
+  bottom: var(--space-4);
+  right: var(--space-4);
 }
 
 .composer,
@@ -11,20 +11,20 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  margin: var(--space-md);
+  margin: var(--space-4);
   box-sizing: border-box;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-6);
 }
 
 .composer {
-  width: min(560px, calc(100vw - var(--space-md) * 2));
+  width: min(560px, calc(100vw - var(--space-4) * 2));
   min-height: 520px;
   max-height: 80vh;
 }
 
 .composerMinimized {
-  width: min(320px, calc(100vw - var(--space-md) * 2));
-  padding: var(--space-md);
+  width: min(320px, calc(100vw - var(--space-4) * 2));
+  padding: var(--space-4);
 }
 
 @media (width < #{variables.$mobile-menu-breakpoint}) {

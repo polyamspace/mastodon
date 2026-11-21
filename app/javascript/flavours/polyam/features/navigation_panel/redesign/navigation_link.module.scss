@@ -1,11 +1,11 @@
 @use '@/flavours/polyam/styles/mastodon/mixins';
 
 .wrapper {
-  padding-bottom: var(--space-3xs);
+  padding-bottom: var(--space-half);
 }
 
 .wrapperWithSpace {
-  padding-bottom: var(--space-md);
+  padding-bottom: var(--space-4);
 }
 
 .link {
@@ -13,9 +13,9 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: var(--space-xs);
-  gap: var(--space-sm);
-  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  gap: var(--space-3);
+  border-radius: var(--radius-3);
   border: none;
   color: inherit;
   background-color: transparent;
